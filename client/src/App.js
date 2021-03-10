@@ -1,54 +1,25 @@
-import React, {useEffect} from 'react';
-import logo from './logo.svg';
-import './App.css';
-import { connect } from 'react-redux';
+import React from 'react';
+import { BrowserRouter, Route, Switch } from "react-router-dom";
 
-import { fetchAllProducts } from './stores/products/products.actions';
+//Pages
+import Home from './pages/Home.js';
+import Product from './pages/Product.js';
+//Components
+import Header from './components/Header/Header.js';
+import Footer from './components/Footer/Footer.js';
 
-const App = ({fetchAllProductsEffect, STORE_PRODUCTS}) => {
-  console.log(STORE_PRODUCTS)
-
-  useEffect(()=>{
-    fetchAllProductsEffect()
-  },[fetchAllProductsEffect])
+const App = () => {
 
   return (
-    <div className="App">
-      {STORE_PRODUCTS.productsReducers.productsLoading
-        ?(
-          <p>Cargando</p>
-        )
-        :(
-          <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-        )
-      }
-    </div>
+      <BrowserRouter>
+        <Header/>
+          <Switch>
+              <Route exact path="/" render={()=> <Home/> } />
+              <Route exact path="/product" render={()=> <Product/> } />
+          </Switch>
+        <Footer/>
+      </BrowserRouter>
   );
-}
+};
 
-const mapStateToProps =  state => {
-  return {
-    STORE_PRODUCTS : state
-  }
-}
-const mapDispatchToProps = dispatch =>{
-  return {
-    fetchAllProductsEffect: () => dispatch(fetchAllProducts())
-  }
-}
-
-
-export default connect(mapStateToProps, mapDispatchToProps)(App);
+export default App;
