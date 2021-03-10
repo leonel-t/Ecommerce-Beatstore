@@ -12,15 +12,12 @@ module.exports = (sequelize) => {
       type: DataTypes.STRING,
     },
     price: {
-      type: DataTypes.NUMBER,
+      type: DataTypes.INTEGER,
     },
     stock: {
-      type: DataTypes.NUMBER,
+      type: DataTypes.INTEGER,
     },
-    categories: {
-      type: DataTypes.ARRAY(DataTypes.STRING),
-      allowNull: false,
-    },
+
     image: {
       type: DataTypes.ARRAY(DataTypes.STRING),
       allowNull: false,
