@@ -16,7 +16,7 @@ const App = () => {
         <Header/>
           <Switch>
               <Route exact path="/" render={()=> <Home/> } />
-              <Route exact path="/Catalog" render={()=> <Catalog/> } />
+              <Route exact path="/catalog" render={()=> <Catalog/> } />
               <Route exact path="/product" render={()=> <Product/> } />
           </Switch>
         <Footer/>
