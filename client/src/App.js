@@ -8,20 +8,22 @@ import Catalog from './pages/Catalog.js';
 //Components
 import Header from './components/Header/Header.js';
 import Footer from './components/Footer/Footer.js';
+import FloatingCard from './components/FloatingCard/FloatingCard.js';
 
 const App = () => {
 
   return (
     
-      <BrowserRouter>
-          <Switch>
-              <Route exact path="/" render={()=> <Home/> } />
-              <Route exact path="/catalog" render={()=> <Catalog/> } />
-              <Route exact path="/product/:productId" render={()=> <Product/> } />
-          </Switch>
-        <Header/>
-        <Footer/>
-      </BrowserRouter>
+    <BrowserRouter>
+        <Switch>
+            <Route exact path="/" render={()=> <Home/> } />
+            <Route exact path="/catalog" render={()=> <Catalog/> } />
+            <Route exact path="/product/:productId" render={()=> <Product/> } />
+        </Switch>
+    <Header/>
+    <FloatingCard/>
+    <Footer/>
+    </BrowserRouter>
   );
 };
 
