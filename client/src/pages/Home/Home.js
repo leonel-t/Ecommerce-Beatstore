@@ -1,6 +1,7 @@
 import React, {useEffect} from 'react';
 import { connect } from 'react-redux';
-import { fetchAllProducts } from '../stores/products/products.actions';
+import { fetchAllProducts } from '../../stores/products/products.actions';
+import './Home.css';
 
 const Home = ({fetchAllProductsEffect, STORE_PRODUCTS}) =>{
 
@@ -9,7 +10,8 @@ const Home = ({fetchAllProductsEffect, STORE_PRODUCTS}) =>{
       },[fetchAllProductsEffect]);
 
     return (
-        <h1>Home</h1>
+        <div className='HomeBg' autoPlay loop muted>
+        </div>
     )
 }
 

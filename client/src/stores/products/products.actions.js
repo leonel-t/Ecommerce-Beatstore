@@ -16,7 +16,7 @@ export const fetchAllProducts = () => {
         dispatch(getAllProductsRequest())
         axios.get("https://jsonplaceholder.typicode.com/photos")
             .then(products => {
-                dispatch(getAllProductsSuccess(products))
+                dispatch(getAllProductsSuccess(products.data))
             })
             .catch(error => {
                 dispatch(getAllProductsFailure(error))

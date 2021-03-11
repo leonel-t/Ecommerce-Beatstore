@@ -1,0 +1,76 @@
+.NavBar {
+    background-color: transparent;
+    height: 98px;
+    left: 0px;
+    position: fixed;
+    top: 0px;
+    width: 1920px;
+}
+
+.SearchBar input {
+    background-color: rgba(0,0,0,0.651);
+    border-radius: 25px;
+    height: 50px;
+    left: 206px;
+    position: absolute;
+    top: calc(50.00% - 25px);
+    width: 719px;
+    border: none;
+    text-align:center;
+}
+input {
+    color: white;
+    font-size: xx-large;
+    font-family: Gabriola;
+}
+    input:focus, input.form-control:focus {
+        outline: none !important;
+        outline-width: 0 !important;
+        box-shadow: none;
+        -moz-box-shadow: none;
+        -webkit-box-shadow: none;
+    }
+
+#logo {
+    display: none;
+}
+
+.navbar-zCOIAP {
+    background-color: none;
+    height: 100%;
+    left: 0px;
+    position: absolute;
+    top: 0px;
+    width: 100%;
+}
+
+#option1, #option2, #option3 {
+    background-color: transparent;
+    height: 52px;
+    letter-spacing: 0.00px;
+    line-height: 28px;
+    pointer-events: auto;
+    position: absolute;
+    text-align: left;
+    top: 33px;
+    transition: all 0.2s ease;
+    font-family: Gabriola;
+    font-size: xx-large;
+    text-decoration: none;
+    color: white;
+}
+
+#option1 {
+    overflow: hidden;
+    right: calc(36.43% - 81px);
+    width: 221px;
+}
+
+#option3 {
+    right: 28px; 
+    width: 222px;  
+}
+#option2 {
+    right: calc(16.72% - 50px);
+    width: 299px;
+}
