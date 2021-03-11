@@ -4,7 +4,13 @@ import './BeatCommentsInputComponent.css';
 const BeatCommentsInputComponent = () =>{
     return (
         <div className="--BeatCommentsInputComponent-div">
-            <input type="text" className="--BeatCommentsInputComponent-input"></input>
+            <input
+             type="text" 
+             className="--BeatCommentsInputComponent-input"
+             placeholder="Add your comment..."
+             >
+
+            </input>
         </div>
         
     )

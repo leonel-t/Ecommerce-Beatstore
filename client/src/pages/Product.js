@@ -6,6 +6,7 @@ import { fetchOneProduct } from '../stores/products/products.actions';
 //components
 import BeatComponent from '../components/Product/BeatComponent/BeatComponent';
 import BeatCommentsInputComponent from '../components/Product/BeatCommentsInputComponent/BeatCommentsInputComponent';
+import TabPanel from '../components/Product/TabPanel/TabPanel';
 import "./product.css"
 
 const Product = ({fetchOneProductEffect, STORE_PRODUCT}) =>{
@@ -27,6 +28,7 @@ const Product = ({fetchOneProductEffect, STORE_PRODUCT}) =>{
                
                 <BeatCommentsInputComponent/>
                 
+                <TabPanel/>
               </main>
              
             )
