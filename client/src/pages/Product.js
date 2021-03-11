@@ -1,26 +1,48 @@
 import React, {useEffect} from 'react';
+import { useParams } from "react-router-dom";
+
 import { connect } from 'react-redux';
-import { fetchAllProducts } from '../stores/products/products.actions';
+import { fetchOneProduct } from '../stores/products/products.actions';
+//components
+import BeatComponent from '../components/Product/BeatComponent/BeatComponent';
+import BeatCommentsInputComponent from '../components/Product/BeatCommentsInputComponent/BeatCommentsInputComponent';
+import "./product.css"
 
-const Product = ({fetchAllProductsEffect, STORE_PRODUCTS}) =>{
+const Product = ({fetchOneProductEffect, STORE_PRODUCT}) =>{
 
+  const { productId } = useParams();
     useEffect(()=>{
-        fetchAllProductsEffect()
-      },[fetchAllProductsEffect]);
-
+        fetchOneProductEffect(productId)
+      },[fetchOneProductEffect, productId]);
+      
     return (
-        <h1>Product</h1>
+        <>
+          {STORE_PRODUCT.productLoading
+            ?(
+              <p>Cargando</p>
+            )
+            :(
+              <main className="product--main">
+                <BeatComponent product={STORE_PRODUCT.product}/>
+               
+                <BeatCommentsInputComponent/>
+                
+              </main>
+             
+            )
+          }
+        </>
     )
 }
 
 const mapStateToProps =  state => {
     return {
-      STORE_PRODUCTS : state
+      STORE_PRODUCT : state.productsReducers
     }
   }
   const mapDispatchToProps = dispatch =>{
     return {
-      fetchAllProductsEffect: () => dispatch(fetchAllProducts()) 
+      fetchOneProductEffect: (productId) => dispatch(fetchOneProduct(productId)) 
     }
   }
   

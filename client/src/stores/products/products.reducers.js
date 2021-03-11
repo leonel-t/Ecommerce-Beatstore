@@ -50,7 +50,7 @@ const productsReducers = (state = initialState, action) =>{
         case GET_ONE_PRODUCT_FAILURE:
             return {
                 ...state,
-                productsError: 'error 404',
+                productError: 'error 404',
                 productLoading: false
             }
         default: 

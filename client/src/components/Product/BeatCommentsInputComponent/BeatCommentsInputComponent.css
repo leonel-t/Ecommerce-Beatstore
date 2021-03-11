@@ -1,0 +1,21 @@
+.--BeatCommentsInputComponent-input{
+    width: 85%;
+    height: 50px;
+    margin-left: 5px;
+    padding-left: 50px;
+    background: url('./input-comments-icon.png') left center / cover no-repeat;
+    background-color: #2c2a2a;
+    background-size: 50px;
+    border:none;
+    color:white;
+    font-size: 1.3rem;
+    outline: none;
+
+}
+.--BeatCommentsInputComponent-div{
+    position:relative;
+    display: flex;
+    justify-content: center;
+    width: 98%;
+    margin-bottom: 50px;
+}
