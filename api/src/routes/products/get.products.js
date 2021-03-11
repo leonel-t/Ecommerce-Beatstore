@@ -21,5 +21,15 @@ module.exports = {
           .catch(error=>{
               res.status(400).json(error)
           })
+      }),
+      productById:server.get('/:id', (req, res, next) => {
+        const {id}=req.params;
+        productControler.findById(id)
+          .then(product=>{
+              res.status(200).json(product)
+          })
+          .catch(error=>{
+              res.status(400).json(error)
+          })
       })
 }

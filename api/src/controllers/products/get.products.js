@@ -23,6 +23,17 @@ module.exports = {
             ]
         })
 
+    },
+    findById(id) {
+        return Product.findOne({
+            where: { id: id },
+            include: [
+              {
+                model: Category,
+              },
+            ],
+          })
+
     }
 
 }
