@@ -1,0 +1,23 @@
+.HomeBg {
+    width: 1920px;
+    height: 1080px;
+    background-image: url("https://mir-s3-cdn-cf.behance.net/project_modules/1400/9bc27292880429.5e569ff84e4d0.gif");
+    background-size: cover;
+    overflow-x: auto;
+}
+
+.SearchBarMiddle input{
+    background-color: rgba(0,0,0,0.651);
+    border-radius: 40px;
+    height: 80px;
+    position: absolute;
+    top: calc(50.00% - 25px);
+    width: 820px;
+    border: none;
+    text-align:center;
+}
+.SearchBarMiddle{
+    display: flex;
+    width: 100%;    
+    justify-content: center;
+}

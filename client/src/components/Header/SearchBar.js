@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect } from 'react';
 import "./Header.css";
 import {connect} from "react-redux";
 import {fetchAllProducts, getAllProductsSuccess} from "../../stores/products/products.actions"
@@ -10,25 +10,25 @@ const SearchBar = ({fechtAllProductsEffect, STORE_PRODUCTS,getAllProducts}) =>{
         fechtAllProductsEffect()
     },[fechtAllProductsEffect])
 
-    const [input, setInput] = useState({
-        title:""
-    })
+    // const [input, setInput] = useState({
+    //     title:""
+    // })
 
-    const handleChange = (e) => {
-        setInput({
-            ...input,
-            [e.target.name] : e.target.value
-        })
-    }
+    // const handleChange = (e) => {
+    //     setInput({
+    //         ...input,
+    //         [e.target.name] : e.target.value
+    //     })
+    // }
 
 
 
-    const handleSubmit =  (e) => {
-        e.preventDefault();
-        getAllProducts(input.title)
-    }
+    // const handleSubmit =  (e) => {
+    //     e.preventDefault();
+    //     getAllProducts(input.title)
+    // }
 
-    const {title} = input
+    // const {title} = input
 
     return (
         <div>
@@ -37,9 +37,12 @@ const SearchBar = ({fechtAllProductsEffect, STORE_PRODUCTS,getAllProducts}) =>{
           <p>Cargando</p>
         )
         :( 
-            <form onSubmit={handleSubmit} className="SearchBar" >               
-                    <input placeholder="busqueda..." src={SearchImg} /> 
-                    <button type="submit" name="title" value={title} onChange={handleChange}>Buscar</button>
+            <form >               
+                    <div className="SearchBar">
+                        <input placeholder="busqueda..."/> 
+                        <img  id="SearchImg" src={SearchImg} alt="SearchIcon"/>
+                    </div>
+                    
                     <div>
             {/* // {STORE_PRODUCTS.productsReducers.products.map((title)=> {
             //             if(title === input.title){

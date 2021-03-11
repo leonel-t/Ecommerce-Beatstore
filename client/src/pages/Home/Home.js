@@ -1,7 +1,8 @@
 import React, {useEffect} from 'react';
 import { connect } from 'react-redux';
 import { fetchAllProducts } from '../../stores/products/products.actions';
-import './Home.css';
+import MiddleSearchBar from './MiddleSearchBar/MiddleSearchBar.js';
+import Container from "./Lists/Container"
 
 const Home = ({fetchAllProductsEffect, STORE_PRODUCTS}) =>{
 
@@ -10,7 +11,9 @@ const Home = ({fetchAllProductsEffect, STORE_PRODUCTS}) =>{
       },[fetchAllProductsEffect]);
 
     return (
-        <div className='HomeBg' autoPlay loop muted>
+        <div>
+            <MiddleSearchBar/>
+            <Container/>
         </div>
     )
 }

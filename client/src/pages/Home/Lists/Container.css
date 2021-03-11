@@ -1,0 +1,42 @@
+
+.Container {
+    width: 1920px;
+    height: 1080px;
+    background-color: black;
+    background-size: cover;
+    overflow-x: auto;
+}
+
+#title1{
+    background-color: transparent;
+    color: white;
+    font-family: "Gabriola";
+    font-size: 50px;
+    font-style: italic;
+    font-weight: 400;
+    height: auto;
+    left: 175px;
+    letter-spacing: 0.00px;
+    line-height: 50px;
+    position: absolute;
+    text-align: left;
+    top: 1200px;
+    width: 672px;
+}
+
+#title2{
+    background-color: transparent;
+    color: white;
+    font-family: "Gabriola";
+    font-size: 50px;
+    font-style: italic;
+    font-weight: 400;
+    height: auto;
+    left: 175px;
+    letter-spacing: 0.00px;
+    line-height: 50px;
+    position: absolute;
+    text-align: left;
+    top: 1600px;
+    width: 672px;
+}
