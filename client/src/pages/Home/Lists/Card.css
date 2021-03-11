@@ -1,0 +1,38 @@
+.Card {
+    background-image: url(Izan-Llunas-en-Luis-Miguel-La-Serie-2018-1-e1525061588546-1024x502.png);
+    background-size: 200%;
+    background-repeat: no-repeat;
+    background-position: 30% ;
+    height: 211px;
+    left: 0px;
+    position: relative;
+    top: 0px;
+    width: 211px;
+    margin: 15px;
+    cursor: pointer;
+}
+
+.CardInfo {
+    background-color: rgba(0, 0, 0, 0.89);
+    color: white;
+    width: 100%;
+    position: absolute;
+    bottom: 0;
+    opacity: 0.3;
+}
+.CardInfo:hover{
+    opacity: 1;
+}
+.CardInfo p{
+    margin: -4px;
+    color: rgb(163, 163, 163);
+    font-size: small;
+    text-align:left;
+    margin-left: 20px;
+}
+.CardInfo h3 {
+    text-align: left;
+    margin-left: 20px;
+    font-size: 0.9em;
+}
+

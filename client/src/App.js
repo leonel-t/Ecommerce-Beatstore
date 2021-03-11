@@ -14,12 +14,12 @@ const App = () => {
   return (
     
       <BrowserRouter>
-        <Header/>
           <Switch>
               <Route exact path="/" render={()=> <Home/> } />
               <Route exact path="/catalog" render={()=> <Catalog/> } />
               <Route exact path="/product/:productId" render={()=> <Product/> } />
           </Switch>
+        <Header/>
         <Footer/>
       </BrowserRouter>
   );

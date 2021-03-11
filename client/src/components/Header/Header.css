@@ -32,7 +32,11 @@ input {
     }
 
 #logo {
-    display: none;
+    position: absolute;
+    height: 52px;
+    top: 27px;
+    left: 70px;
+    cursor: pointer;
 }
 
 .navbar-zCOIAP {
@@ -59,12 +63,15 @@ input {
     text-decoration: none;
     color: white;
 }
+    #option1:hover, #option2:hover, #option3:hover {
+        color: lightsteelblue;
+    }
 
-#option1 {
-    overflow: hidden;
-    right: calc(36.43% - 81px);
-    width: 221px;
-}
+    #option1 {
+        overflow: hidden;
+        right: calc(36.43% - 81px);
+        width: 221px;
+    }
 
 #option3 {
     right: 28px; 
@@ -74,3 +81,12 @@ input {
     right: calc(16.72% - 50px);
     width: 299px;
 }
+
+#SearchImg {
+    position: absolute;
+    height: 40px;
+    top: 27px;
+    left: 940px;
+    cursor: pointer;
+}
+
