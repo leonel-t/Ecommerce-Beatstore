@@ -3,7 +3,7 @@ import "./Header.css";
 import {connect} from "react-redux";
 import {fetchAllProducts, getAllProductsSuccess} from "../../stores/products/products.actions"
 import SearchImg from "./Search.png"
-
+import Filter from "./Filter"
 const SearchBar = ({fechtAllProductsEffect, STORE_PRODUCTS,getAllProducts}) =>{
 
     useEffect(()=>{
@@ -39,8 +39,9 @@ const SearchBar = ({fechtAllProductsEffect, STORE_PRODUCTS,getAllProducts}) =>{
         :( 
             <form >               
                     <div className="SearchBar">
-                        <input placeholder="busqueda..."/> 
-                        <img  id="SearchImg" src={SearchImg} alt="SearchIcon"/>
+                        <input placeholder="busqueda..."/>
+                        <img  id="SearchImg" src={SearchImg} alt="SearchIcon"/><p id="barra">|</p>
+                        <Filter className="filtro" /> 
                     </div>
                     
                     <div>

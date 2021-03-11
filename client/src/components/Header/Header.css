@@ -5,6 +5,7 @@
     position: fixed;
     top: 0px;
     width: 1920px;
+    border: none;
 }
 
 .SearchBar input {
@@ -35,7 +36,7 @@ input {
     position: absolute;
     height: 52px;
     top: 27px;
-    left: 70px;
+    left: 50px;
     cursor: pointer;
 }
 
@@ -46,7 +47,10 @@ input {
     position: absolute;
     top: 0px;
     width: 100%;
+    border: none;
+
 }
+
 
 #option1, #option2, #option3 {
     background-color: transparent;
@@ -84,9 +88,18 @@ input {
 
 #SearchImg {
     position: absolute;
-    height: 40px;
-    top: 27px;
-    left: 940px;
+    height: 30px;
+    top: 34px;
+    left: 220px;
     cursor: pointer;
+}
+#barra {
+    position: absolute;
+    height: 30px;
+    top: -5px;
+    left: 260px;
+    font-size: 1.9em;
+    color: gray;
+    font-family: Gabriola;
 }
 
