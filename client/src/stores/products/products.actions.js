@@ -42,6 +42,39 @@ export const getAllProductsFailure = (error) =>{
     }
 } 
 
+//FETCH PRODUCT BY ID
+export const fetchOneProduct = (productId) => {
+
+    return (dispatch) =>{
+        dispatch(getOneProductRequest())
+        axios.get(`https://jsonplaceholder.typicode.com/posts/${productId}`)
+            .then(product => {
+                dispatch(getOneProductSuccess(product.data))
+            })
+            .catch(error => {
+                dispatch(getOneProductFailure(error))
+            })
+    }
+}
+
+export const getOneProductRequest = () =>{
+    return {
+        type: GET_ONE_PRODUCT_REQUEST,
+    }
+} 
+export const getOneProductSuccess = (product) =>{
+    return {
+        type:GET_ONE_PRODUCT_SUCCESS,
+        payload: product
+    }
+} 
+export const getOneProductFailure = (error) =>{
+    return {
+        type:GET_ONE_PRODUCT_FAILURE,
+        payload: error
+    }
+} 
+
 
 
 

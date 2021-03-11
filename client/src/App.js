@@ -12,12 +12,13 @@ import Footer from './components/Footer/Footer.js';
 const App = () => {
 
   return (
+    
       <BrowserRouter>
         <Header/>
           <Switch>
               <Route exact path="/" render={()=> <Home/> } />
               <Route exact path="/catalog" render={()=> <Catalog/> } />
-              <Route exact path="/product" render={()=> <Product/> } />
+              <Route exact path="/product/:productId" render={()=> <Product/> } />
           </Switch>
         <Footer/>
       </BrowserRouter>
