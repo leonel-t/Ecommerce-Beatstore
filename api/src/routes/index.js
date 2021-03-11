@@ -1,11 +1,9 @@
-const { Router } = require('express');
-const productRouter = require('./products/get.products.js');
-
+const { Router } = require("express");
+const getProducts = require("../controllers/products/get.products.js");
+const getProductsRouter = require("./products/get.products.js");
 
 const router = Router();
 
-
-router.use('/products', productRouter.all);
-router.use('/products/categoria', productRouter.cat);
+router.use("/products", getProductsRouter);
 
 module.exports = router;
