@@ -28,12 +28,13 @@ module.exports = {
         return Product.findOne({
             where: { id: id },
             include: [
-              {
-                model: Category,
-              },
-            ],
-          })
+                {
+                    model: Categories
+                }
+            ]
 
+        })
+      
     }
 
 }
