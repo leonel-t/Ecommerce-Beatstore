@@ -42,15 +42,7 @@
     background-color: blueviolet;
     align-items: center;
 }
-.--TabPanel-div-col-1{
 
-}
-.--TabPanel-div-col-2{
-
-}
-.--TabPanel-div-col-3{
-
-}
 
 .--TabPanel-div h1 {
     color:red;
@@ -69,10 +61,12 @@
 
 .--TabPanel-div-container-col-active{
     display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
     width: 100%;
-    flex-direction: row;
     background-color: rgb(39, 39, 44);
     border: 1px solid black;
+    padding: 5px;
 }
 
 @media(max-width:700px){

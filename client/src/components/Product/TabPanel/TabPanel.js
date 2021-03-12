@@ -1,6 +1,83 @@
 import React, {useState} from "react";
 import CommentCard from "../CommentCard/CommentCard";
+import RelatedTracks from "../RelatedTracks/RelatedTracks";
+import FansCard from "../FansCard/FansCard";
 import "./TabPanel.css";
+
+const commentsMap = [
+  {
+    username: "pepe",
+    date: "1 day ago",
+    coment: "buena cancion",
+  },
+  {
+    username: "pepe",
+    date: "1 day ago",
+    coment: "buena cancion",
+  },
+  {
+    username: "pepe",
+    date: "1 day ago",
+    coment: "buena cancion",
+  },
+  {
+    username: "pepe",
+    date: "1 day ago",
+    coment: "buena cancion",
+  },
+  {
+    username: "pepe",
+    date: "1 day ago",
+    coment: "buena cancion esto es una prueba de un comentario muy muy muy m,uy largooooooo para ver que pasaa",
+  },
+];
+
+const FansMap=[
+  {
+    username:"pepe",
+    date:"liked this track 5 days ago"
+  },
+  {
+    username:"pepe",
+    date:"liked this track 5 days ago"
+  },
+  {
+    username:"pepe",
+    date:"liked this track 5 days ago"
+  },
+  {
+    username:"pepe",
+    date:"liked this track 5 days ago"
+  },
+];
+
+const RelatedTrack=[
+    {
+      title:"Musica Ligera",
+      autor:"Gustavo cerati",
+      price:"500"
+    },
+    {
+        title:"En Remolinos",
+        autor:"Gustavo cerati",
+        price:"500 $"
+      },
+      {
+        title:"Signos",
+        autor:"Gustavo cerati",
+        price:"200 $"
+      },
+      {
+        title:"Persiana americana",
+        autor:"Gustavo cerati",
+        price:"500 $"
+      },
+      {
+        title:"Musica Ligera",
+        autor:"Gustavo cerati",
+        price:"500 $"
+      },
+  ];
 
 const TabPanel = () => {
 
@@ -57,13 +134,33 @@ const TabPanel = () => {
       {/* Containers */}
       <div className="--TabPanel-div-container">
         <div className={relatedTrack ? "--TabPanel-div-container-col-active" : "--TabPanel-div-container-col"}>
-            <p>Related Tracks</p>
+            
+            {
+                RelatedTrack.map((related, index)=>{
+                    return (
+                        <RelatedTracks key={index} title={related.title} author={related.autor} price={related.price}></RelatedTracks>
+                    )
+                })
+            }
+            
         </div>
         <div className={comments ? "--TabPanel-div-container-col-active" : "--TabPanel-div-container-col"}>
-            <CommentCard/>
+            {
+                commentsMap.map((comment, index)=>{
+                    return (
+                        <CommentCard key={index} username={comment.username} date={comment.date} comment={comment.coment}/>
+                    )
+                })
+            }
         </div>
         <div className={fans ? "--TabPanel-div-container-col-active" : "--TabPanel-div-container-col"}>
-            <p>Fans</p>
+            {
+                FansMap.map((fan, index)=>{
+                  return (
+                    <FansCard key={index} username={fan.username} date={fan.date}/>
+                  )
+                })
+            }
         </div>
       </div>
     </div>

@@ -1,0 +1,30 @@
+:root{
+    --FansCard-content-username-p: #fff;
+    --FansCard-content-info-p: #9f9f9f;
+}
+.--FansCard{
+    display: flex;
+    flex-direction: row;
+    border-bottom: 2px solid rgb(44, 43, 43);
+}
+.--FansCard-image{
+    align-self: center;
+}
+.--FansCard-image img{
+    width: 55px;
+    border-radius: 50%;
+}
+.--FansCard-content{
+    margin-left: 20px;
+}
+.--FansCard-content-username{
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    font-size: 1.3rem;
+    color: var(--FansCard-content-username-p);
+}
+.--FansCard-content-date{
+    font-family: 'Courier New', Courier, monospace;
+    font-style: italic;
+    font-size: 0.9rem;
+    color: var(--FansCard-content-info-p);
+}
