@@ -1,8 +1,7 @@
-const server = require('express').Router();
 const { Product, Categories } = require('../../db');
 module.exports = {
-    deleteById(id){
-      return Product.destroy({
+   async deleteById(id){
+     const deletedProd = await Product.destroy({
             where: { id: id },
             include: [
                 {
@@ -10,5 +9,7 @@ module.exports = {
                 }
             ]
         })
+        console.log("RESPUESTA A DELETE",deletedProd)
+        return deletedProd;
     }
 }
