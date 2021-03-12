@@ -1,7 +1,7 @@
 #ListB{
     width: 100%;
-    position: absolute;
-    top: 1750px;
+    position: relative;
+    top: 400px;
     background-color:transparent;
     height: 300px;
     display: flex;
