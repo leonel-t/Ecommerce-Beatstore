@@ -2,7 +2,7 @@ import React from "react";
 import "./CommentCard.css";
 import imgProfile from "./profile-image.png"
 
-const CommentCard = () => {
+const CommentCard = ({username , date , comment}) => {
 
     return (
         <div className="--CommentCard">
@@ -11,12 +11,12 @@ const CommentCard = () => {
             </div>
             <div className="--CommentCard-contentDiv">
                 <div className="--CommentCard-contentDiv-commentInfo">
-                    <span>loren ipsum</span>
+                    <span className="--CommentCard-contentDiv-commentInfo-userName">{username}</span>
                     <span>  ·  </span>
-                    <span>3 days ago</span>
+                    <span className="--CommentCard-contentDiv-commentInfo-date">{date}</span>
                 </div>
                 <div className="--CommentCard-contentDiv-comment">
-                    <span>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</span>
+                    <span>{comment}</span>
                 </div>
             </div>
         </div>

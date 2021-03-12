@@ -17,7 +17,7 @@ const FloatingCard = () => {
             <audio 
                 id="fc"
                 src={Song}
-                autoPlay={true}
+                autoPlay={false}
                 onEnded={() => play = "pause"}
             />
             <div id="backgroundPlay">
