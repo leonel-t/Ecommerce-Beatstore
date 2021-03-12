@@ -9,7 +9,8 @@ const Cards2 = () => {
             <Card/>
             <Card/>
             <Card/>
-            <Card/>
+            <Card />
+       
         </div>
     )
 }

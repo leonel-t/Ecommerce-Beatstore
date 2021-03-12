@@ -4,7 +4,10 @@ import {
     GET_ALL_PRODUCTS_FAILURE,
     GET_ONE_PRODUCT_REQUEST,
     GET_ONE_PRODUCT_SUCCESS,
-    GET_ONE_PRODUCT_FAILURE
+    GET_ONE_PRODUCT_FAILURE,
+    SEARCH_PRODUCT_SUCCESS,
+    SEARCH_PRODUCT_FAILURE,
+    SEARCH_PRODUCT_REQUEST
 } from '../products/products.actions';
 
 let initialState = {
@@ -14,7 +17,9 @@ let initialState = {
     product:{},
     productLoading:true,
     productError:'',
-
+    searchResults: [],
+    searchLoading: true,
+    searchError: ''
 }
 
 const productsReducers = (state = initialState, action) =>{
@@ -52,6 +57,23 @@ const productsReducers = (state = initialState, action) =>{
                 ...state,
                 productError: 'error 404',
                 productLoading: false
+            }
+        case SEARCH_PRODUCT_REQUEST:
+            return {
+                ...state,
+                searchLoading: true
+            }
+        case SEARCH_PRODUCT_SUCCESS :
+            return {
+                ...state,
+                searchLoading: false,
+                searchResults: action.payload
+            }
+        case SEARCH_PRODUCT_FAILURE:
+            return {
+                ...state,
+                searchError: 'error 404',
+                searchLoading: false
             }
         default: 
         return state;

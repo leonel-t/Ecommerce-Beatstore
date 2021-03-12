@@ -1,4 +1,5 @@
 import React, {useState} from "react";
+import CommentCard from "../CommentCard/CommentCard";
 import "./TabPanel.css";
 
 const TabPanel = () => {
@@ -59,7 +60,7 @@ const TabPanel = () => {
             <p>Related Tracks</p>
         </div>
         <div className={comments ? "--TabPanel-div-container-col-active" : "--TabPanel-div-container-col"}>
-            <p>Comments</p>
+            <CommentCard/>
         </div>
         <div className={fans ? "--TabPanel-div-container-col-active" : "--TabPanel-div-container-col"}>
             <p>Fans</p>

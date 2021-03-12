@@ -10,7 +10,7 @@ const Header = () =>{
 
     return (
       <div className="NavBar" >
-        <img class="navbar-zCOIAP" data-id="342fc321-f2b1-4e94-a2f0-d97f2118bd31" src="https://cdn.animaapp.com/projects/604829c37b81d727e7cb8c9e/releases/6048e9a37c95ed32e1c01cfc/img/navbar@1x.png" anima-src="https://cdn.animaapp.com/projects/604829c37b81d727e7cb8c9e/releases/6048e9a37c95ed32e1c01cfc/img/navbar@1x.png" alt="background"/>
+        <img className="navbar-zCOIAP" data-id="342fc321-f2b1-4e94-a2f0-d97f2118bd31" src="https://cdn.animaapp.com/projects/604829c37b81d727e7cb8c9e/releases/6048e9a37c95ed32e1c01cfc/img/navbar@1x.png" anima-src="https://cdn.animaapp.com/projects/604829c37b81d727e7cb8c9e/releases/6048e9a37c95ed32e1c01cfc/img/navbar@1x.png" alt="background"/>
         <Link to="/" id="logoLink"><img src={Logo} id="logo" alt="logo"/></Link>
         <SearchBar />
         <div className="navOptions"> 

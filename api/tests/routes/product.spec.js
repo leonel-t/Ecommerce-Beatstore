@@ -7,6 +7,7 @@ const { Product, conn } = require('../../src/db.js');
 const agent = session(app);
 const product = {
   name: 'producto',
+  image:"asdf"
 };
 
 describe('PRODUCT routes', () => {
