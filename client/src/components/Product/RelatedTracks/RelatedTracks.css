@@ -5,6 +5,9 @@
     width: 100%;
     height: auto;
 }
+.--RelatedTracks-main:hover{
+    background-color: rgb(31, 29, 29);
+}
 .--RelatedTracks-main-row{
     display: flex;
     flex-direction: row;

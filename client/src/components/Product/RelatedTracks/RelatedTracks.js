@@ -27,6 +27,12 @@ const RelatedTracks = ({title, author, price}) => {
                     <span className="material-icons">
                     star_border
                     </span>
+                    <span className="material-icons">
+                    star_border
+                    </span>
+                    <span className="material-icons">
+                    star_border
+                    </span>
                     </div>
                 </div>
             </div>
