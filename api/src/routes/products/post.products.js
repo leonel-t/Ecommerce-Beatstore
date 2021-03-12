@@ -14,7 +14,7 @@ server.post("/", (req, res, next) => {
       res.status(400).json(error);
     });
 });
-
+// AGREGAR CATEGORIAS A PRODUCTOS 
 server.post('/:idProducto/category/:idCategoria',async (req, res) =>  {
   try {
   const { idProducto, idCategoria } = req.params;
