@@ -19,7 +19,6 @@ server.post("/", (req, res, next) => {
 server.post('/:idProducto/category/:idCategoria',async (req, res) =>  {
   try {
   const { idProducto, idCategoria } = req.params;
-        console.log('LLEGUE');
     const result = await postControler.addCategoryToProduct(idProducto, idCategoria)
     
     return res.status(201).send("Category added!");
