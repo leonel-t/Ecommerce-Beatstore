@@ -12,6 +12,7 @@ server.post("/", (req, res, next) => {
     })
     .catch((error) => {
       res.status(400).json(error);
+      console.log(error)
     });
 });
 // AGREGAR CATEGORIAS A PRODUCTOS 
