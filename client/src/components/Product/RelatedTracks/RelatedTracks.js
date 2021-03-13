@@ -21,18 +21,10 @@ const RelatedTracks = ({title, author, price}) => {
                 </div>
                 <div className="--RelatedTracks-main-col-menu">
                     <div className="--RelatedTracks-main-col-menu-btn-b">
-                        <button>Comprar {price}</button>
+                        <button>Buy Now {price}</button>
                     </div>
                     <div className="--RelatedTracks-main-col-menu-btn-menu">
-                    <span className="material-icons">
-                    star_border
-                    </span>
-                    <span className="material-icons">
-                    star_border
-                    </span>
-                    <span className="material-icons">
-                    star_border
-                    </span>
+
                     </div>
                 </div>
             </div>

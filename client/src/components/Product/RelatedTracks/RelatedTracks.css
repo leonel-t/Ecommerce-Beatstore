@@ -2,8 +2,12 @@
     display: flex;
     flex-direction: column;
     flex-wrap: wrap;
-    width: 100%;
+    width: 98%;
     height: auto;
+    background: linear-gradient(#2221229f, #8708db62);
+    
+    border-radius: 15px;
+    margin: 5px;
 }
 .--RelatedTracks-main:hover{
     background-color: rgb(31, 29, 29);
@@ -46,11 +50,12 @@
     margin: 0;
     padding: 0;
     color: antiquewhite;
+    font-size: 2rem;
 }
 .--RelatedTracks-main-col-text p{
     margin: 0;
     padding: 0;
-    color: brown;
+    color: rgb(204, 168, 7);
     font-size: 1.1rem;
 }
 .--RelatedTracks-main-col-menu{
@@ -63,10 +68,27 @@
     
 }
 .--RelatedTracks-main-col-menu-btn-b button{
-    margin: 10px;
-    background-color: blueviolet;
+    margin-right: 30px;
+    background-color: rgb(73, 9, 133);
+    border-radius: 10px;
+    padding: 15px;
     color: antiquewhite;
-    height: 50px;
-    width: 100px;
-    font-size: 1rem;
+    height: auto;
+    width: 150px;
+    font-size: 1.3rem;
+    outline: none;
+    cursor: pointer;
+    border: none;
+}
+.--RelatedTracks-main-col-menu-btn-b button:hover{
+
+    background-color: rgb(101, 15, 182);
+    box-shadow: 0px 0px 15px black;
+
+}
+.--RelatedTracks-main-col-menu-btn-b button:active{
+
+    background-color: rgb(137, 11, 141);
+    box-shadow: none;
+
 }

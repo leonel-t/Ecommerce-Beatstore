@@ -35,6 +35,8 @@ module.exports = {
     });
   },
   findByProduct(inputValue) {
+
+
       return Product.findAll({
           where: {
               [Op.or]: [

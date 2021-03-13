@@ -1,4 +1,7 @@
 import axios from 'axios';
+import '../../auxiliar/variables.js';
+import { serverUrl } from '../../auxiliar/variables.js';
+
 //FETCH ALL PRODUCTS FROM THE SERVER WITCH THUNK
 export const GET_ALL_PRODUCTS_REQUEST = "GET_ALL_PRODUCTS_REQUEST";
 export const GET_ALL_PRODUCTS_SUCCESS = "GET_ALL_PRODUCTS_SUCCESS";
@@ -88,7 +91,7 @@ export const searchProducts = (products) => {
 
     return (dispatch) =>{
         dispatch(searchProductRequest())
-        axios.get("http://localhost:3001/products/search/" + products)
+        axios.get(`${serverUrl}/products/search/${products}`)
             .then(products => {
                 dispatch(searchProductSuccess(products.data))
             })
