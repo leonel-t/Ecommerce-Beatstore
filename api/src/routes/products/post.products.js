@@ -1,14 +1,28 @@
 const server = require("express").Router();
 const postControler = require("../../controllers/products/post.products");
-const { Product, Categories } = require("../../db");
 module.exports = server;
 
 server.post("/", (req, res, next) => {
-  const attributes = req.body;
+  const {name, description, price, stock} = req.body;
+
+  const imagen = req.files
+  const imgToDb = imagen[0].filename
+  const audioToDb = imagen[1].filename
+  console.log(req.files)
+
+  let product = {
+    name:name,
+    description: description,
+    price:price,
+    stock:stock,
+    image:imgToDb,
+    audio:audioToDb
+  }
+  
   postControler
-    .addProduct(attributes)
-    .then((products) => {
-      res.status(201).json(products);
+    .addProduct(product )
+    .then((product) => {
+      res.status(201).json(product);
     })
     .catch((error) => {
       res.status(400).json(error);
