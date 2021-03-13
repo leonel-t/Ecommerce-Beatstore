@@ -2,12 +2,15 @@
     width: 85%;
     height: 50px;
     margin-left: 5px;
+    padding: 18px;
     padding-left: 55px;
     background: url('./input-comments-icon.png') left center / cover no-repeat;
     background-color: #2c2a2a;
     background-size: 50px;
-    border:none;
+    border-radius: 15px;
+    border: 1px solid rgb(20, 20, 20);
     color:white;
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
     font-size: 1.3rem;
     outline: none;
 
@@ -17,5 +20,16 @@
     display: flex;
     justify-content: center;
     width: 98%;
+    margin-top: 15px;
     margin-bottom: 50px;
+}
+@media(max-width:864px){
+    .--BeatCommentsInputComponent-div{
+        position:relative;
+        display: flex;
+        justify-content: center;
+        width: 98%;
+        margin-top: 100px;
+        margin-bottom: 50px;
+    }
 }
