@@ -88,7 +88,7 @@ export const searchProducts = (products) => {
 
     return (dispatch) =>{
         dispatch(searchProductRequest())
-        axios.get("https://restcountries.eu/rest/v2/name/" + products)
+        axios.get("http://localhost:3001/products/search/" + products)
             .then(products => {
                 dispatch(searchProductSuccess(products.data))
             })

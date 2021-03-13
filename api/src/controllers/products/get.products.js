@@ -1,4 +1,7 @@
 const { Product, Categories } = require("../../db");
+const Sequelize = require("sequelize")
+const Op = Sequelize.Op;
+
 module.exports = {
   findAllProducts() {
     return Product.findAll({
@@ -31,14 +34,23 @@ module.exports = {
       ],
     });
   },
-  findByProduct(value) {
-    return Product.findAll({
-      where: {
-        name: value,
-        or: {
-          description: value,
-        },
-      },
-    });
-  },
+  findByProduct(inputValue) {
+      return Product.findAll({
+          where: {
+              [Op.or]: [
+                  {
+                      name: {
+                          [Op.like]: '%' + inputValue + '%'
+                      }
+                  },
+                  {
+                      description: {
+                          [Op.like]: '%' + inputValue + '%'
+                      }
+                  }
+              ]
+          },
+          include: [{ model: Categories, as: 'categories' }]
+      })
+    },
 };

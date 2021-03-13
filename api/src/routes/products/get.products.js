@@ -1,8 +1,8 @@
 const server = require("express").Router();
-const productControler = require("../../controllers/products/get.products");
+const productController = require("../../controllers/products/get.products");
 
 server.get("/", (req, res, next) => {
-  productControler
+  productController
     .findAllProducts()
     .then((products) => {
       res.status(200).json(products);
@@ -13,7 +13,7 @@ server.get("/", (req, res, next) => {
 });
 server.get("/:id", (req, res, next) => {
   const { id } = req.params;
-  productControler
+  productController
     .findById(id)
     .then((product) => {
       res.status(200).json(product);
@@ -24,7 +24,7 @@ server.get("/:id", (req, res, next) => {
 });
 server.get("/categoria/:nombreCat", (req, res, next) => {
   const { nombreCat } = req.params;
-  productControler
+  productController
     .findByCategory(nombreCat)
     .then((products) => {
       res.status(200).json(products);
@@ -33,9 +33,9 @@ server.get("/categoria/:nombreCat", (req, res, next) => {
       res.status(400).json(error);
     });
 });
-server.get("/search", (req, res, next) => {
-  const { query } = req.params;
-  productControler
+server.get("/search/:query", (req, res, next) => {
+    const { query } = req.params;
+  productController
     .findByProduct(query)
     .then((product) => {
       res.status(200).json(product);
