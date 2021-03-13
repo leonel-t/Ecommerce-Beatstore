@@ -10,7 +10,6 @@ module.exports = {
       stock,
       image,
     });
-
     return Producto;
   },
 

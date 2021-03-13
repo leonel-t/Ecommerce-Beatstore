@@ -31,14 +31,23 @@ module.exports = {
       ],
     });
   },
-  findByProduct(value) {
+  findByProduct(inputValue) {
     return Product.findAll({
       where: {
-        name: value,
-        or: {
-          description: value,
-        },
+        [Op.or]: [
+          {
+            name: {
+              [Op.like]: "%" + inputValue + "%",
+            },
+          },
+          {
+            description: {
+              [Op.like]: "%" + inputValue + "%",
+            },
+          },
+        ],
       },
+      include: [{ model: Categories, as: "categories" }],
     });
   },
 };
