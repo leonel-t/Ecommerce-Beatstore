@@ -1,6 +1,7 @@
 import './beatComponent.css';
 import React from 'react';
 import imgTest from "../../../assets/images/albumImage.png";
+import Spectrum from '../Spectrum/Spectrum';
 /*
             <img src={imgTest}></img>
             <p>{product.id}</p>
@@ -16,38 +17,34 @@ const BeatComponent = ({ product }) => {
                 </div>
                 <div className="beatComponent--main-beatInfo-col">
                     <span className="material-icons icon-size"> play_circle_outline </span>
-                    <h1>Musica ligera</h1>
+                    <h1>Musica ligera </h1><p>Gustavo Cerati</p>
                     <div className="beatComponent--main-beatInfo-col-author">
-{/*
-                        <span class="material-icons icons ">
-                            copyright
-                        </span>
-*/}
-                        <p>Gustavo Cerati</p>
+                        
                     </div>
                     <div className="beatComponent--main-beatActions-col">
                         <div className="beatComponent--main-beatActions-col-div">
                             <span className="material-icons icons"> play_arrow </span>
-                            <p>500</p>
+                            500
                         </div>
                         <div className="beatComponent--main-beatActions-col-div">
                             <span className="icon-bpm icons">BPM</span>
-                            <p>150</p>
+                            150
                         </div>
                         <div className="beatComponent--main-beatActions-col-div">
                             <span className="material-icons icons">music_note</span>
-                            <p>Em</p>
+                            Em
                         </div>
                         <div className="beatComponent--main-beatActions-col-div">
                             <span className="material-icons icons">event</span>
-                            <p>12/5/2020</p>
+                            12/5/2020
                         </div>
                     </div>
+                    <Spectrum></Spectrum>
                 </div>
 
 
                 <div className="beatComponent--main-beatTags-col">
-
+                        
                 </div>
             </div>
         </div>
