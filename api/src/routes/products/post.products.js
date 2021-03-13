@@ -3,30 +3,28 @@ const postControler = require("../../controllers/products/post.products");
 module.exports = server;
 
 server.post("/", (req, res, next) => {
-  const {name, description, price, stock} = req.body;
+  const {name, description, artist, price, bpm, scale, date} = req.body;
 
-  const imagen = req.files
-  const imgToDb = imagen[0].filename
-  const audioToDb = imagen[1].filename
-  console.log(req.files)
+  const files = req.files
+  const imgToDb = files[0].filename
+  const audioToDb = files[1].filename
 
   let product = {
     name:name,
     description: description,
+    artist:artist,
     price:price,
-    stock:stock,
+    bpm:bpm,
+    scale:scale,
+    date:date,
     image:imgToDb,
     audio:audioToDb
   }
   
-  postControler
-    .addProduct(product )
-    .then((product) => {
-      res.status(201).json(product);
-    })
-    .catch((error) => {
+  postControler.addProduct(product).then(product => {
+      res.status(200).json(product);
+    }).catch((error) => {
       res.status(400).json(error);
-      console.log(error)
     });
 });
 // AGREGAR CATEGORIAS A PRODUCTOS 

@@ -9,18 +9,48 @@ module.exports = (sequelize) => {
     },
     description: {
       type: DataTypes.STRING,
+      allowNull: false,
+    },
+    artist: {
+      type: DataTypes.STRING,
+      allowNull: false,
     },
     price: {
       type: DataTypes.DECIMAL,
+      allowNull: false,
     },
-    stock: {
+    reproductions: {
       type: DataTypes.INTEGER,
+      allowNull: true,
+      defaultValue: 0,
+    },
+    bpm: {
+      type: DataTypes.INTEGER,
+      allowNull: true,
+      defaultValue: 0,
+    },
+    scale: {
+      type: DataTypes.STRING,
+      allowNull: true,
+      defaultValue: "Em",
+    },
+    likes: {
+      type: DataTypes.INTEGER,
+      allowNull: true,
+      defaultValue: 0,
+    },
+    date: {
+      type: DataTypes.STRING,
+      allowNull: true,
+      defaultValue: "01/01/1987",
     },
     image: {
       type: DataTypes.STRING,
+      allowNull: false,
     },
     audio: {
       type: DataTypes.STRING,
+      allowNull: false,
     },
   });
 };
