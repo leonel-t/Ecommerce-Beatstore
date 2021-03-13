@@ -7,7 +7,7 @@ import Filter from "./Filter"
 import { useDispatch } from 'react-redux'
 
 
-const SearchBar = ({searchAllProductsEffect, STORE_PRODUCTS,getAllProducts}) =>{
+const SearchBar = () =>{
 
 
     const dispatch = useDispatch();
@@ -33,23 +33,13 @@ const SearchBar = ({searchAllProductsEffect, STORE_PRODUCTS,getAllProducts}) =>{
 
     
     return (
-        // <div>
-        // {STORE_PRODUCTS.productsReducers.productsLoading
-        // ?(
-        //   <p>LOADING...</p>
-        // )
-        // :( 
             <form onSubmit={handleSubmit}>               
                     <div className="SearchBar">
                     <input onChange={handleChange} name="title" value={title} placeholder="busqueda..." />
-                    <img onClick={handleSubmit} id="SearchImg" src={SearchImg} alt="SearchIcon" /><p id="barra">|</p>
-                        <Filter className="filtro" /> 
+                    <div id="SearchImg"><img onClick={handleSubmit} src={SearchImg} alt="SearchIcon" /></div>
+                    <Filter className="filtro" /> 
                     </div>
- 
             </form> 
-        // )
-        // };
-        // </div>
         )
     }
 

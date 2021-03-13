@@ -1,4 +1,4 @@
-.Card {
+.w3-content {
     background-image: url(Izan-Llunas-en-Luis-Miguel-La-Serie-2018-1-e1525061588546-1024x502.png);
     background-size: 200%;
     background-repeat: no-repeat;
@@ -12,7 +12,7 @@
     cursor: pointer;
 }
 
-.CardInfo {
+.mySlides {
     background-color: rgba(0, 0, 0, 0.89);
     color: white;
     width: 100%;
@@ -20,19 +20,90 @@
     bottom: 0;
     opacity: 0.3;
 }
-.CardInfo:hover{
+.mySlides:hover{
     opacity: 1;
 }
-.CardInfo p{
+.mySlides p{
     margin: -4px;
     color: rgb(163, 163, 163);
     font-size: small;
     text-align:left;
     margin-left: 20px;
 }
-.CardInfo h3 {
+.mySlides h3 {
     text-align: left;
     margin-left: 20px;
     font-size: 0.9em;
 }
 
+/* para 980px o menos */
+@media screen and (max-width:980px) {
+    .w3-content {
+        background-image: url(Izan-Llunas-en-Luis-Miguel-La-Serie-2018-1-e1525061588546-1024x502.png);
+        background-size: 200%;
+        background-repeat: no-repeat;
+        background-position: 30% ;
+        height: 211px;
+        left: 0px;
+        position: relative;
+        top: 0px;
+        width: 211px;
+        margin: 15px;
+        cursor: pointer;
+    }
+    
+    .mySlides {
+        background-color: rgba(0, 0, 0, 0.89);
+        color: white;
+        width: 100%;
+        position: absolute;
+        bottom: 0;
+        opacity: 0.3;
+    }
+    .mySlides:hover{
+        opacity: 1;
+    }
+    .mySlides p{
+        margin: -4px;
+        color: rgb(163, 163, 163);
+        font-size: small;
+        text-align:left;
+        margin-left: 20px;
+    }
+    .mySlides h3 {
+        text-align: left;
+        margin-left: 20px;
+        font-size: 0.9em;
+    }
+}
+
+/* para 700px o menos */
+@media screen and (max-width:700px) {
+
+
+}
+
+/* para 480px o menos */
+@media screen and (max-width:480px) {
+    .w3-content {
+        height: 150px;
+        width: 150px;
+        margin: 5px;
+    }
+    
+    .mySlides:hover{
+        opacity: 1;
+    }
+    .mySlides p{
+        margin: -4px;
+        color: rgb(163, 163, 163);
+        font-size: small;
+        text-align:left;
+        margin-left: 20px;
+    }
+    .mySlides h3 {
+        text-align: left;
+        margin-left: 20px;
+        font-size: 0.3em;
+    }
+}

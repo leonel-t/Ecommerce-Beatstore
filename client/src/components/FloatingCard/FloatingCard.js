@@ -4,7 +4,7 @@ import Song from './Lobster - Homeworld.mp3'
 import './FloatingCard.css';
 
 var play = "play";
-var playIcon = "https://www.flaticon.es/svg/vstatic/svg/4029/4029004.svg?token=exp=1615494523~hmac=96ca9630be244144467779ce1742106d";
+var playIcon = "https://www.flaticon.es/svg/vstatic/svg/4029/4029004.svg?token=exp=1615658321~hmac=39ffc83f5430a724888711e6cae3d135";
 
 const Play = (e) => {
     play === "play" ? play = "pause" : play = "play";    

@@ -9,3 +9,27 @@
     align-items: center;
     justify-content: center;
 }
+
+/* para 980px o menos */
+@media screen and (max-width:980px) {
+    #ListA{
+        top: 400px;
+        height: 300px;
+    }
+}
+
+/* para 700px o menos */
+@media screen and (max-width:700px) {
+    #ListA{
+        top: 400px;
+        height: 300px;
+    }
+
+}
+
+/* para 480px o menos */
+@media screen and (max-width:480px) {
+    #ListA{
+        display: none;
+    }
+}
