@@ -5,26 +5,32 @@
 .--FansCard{
     display: flex;
     flex-direction: row;
+    margin: 5px;
+    padding-bottom: 10px;
     border-bottom: 2px solid rgb(44, 43, 43);
 }
 .--FansCard-image{
+    padding-left: 10px;
     align-self: center;
 }
 .--FansCard-image img{
-    width: 55px;
+    width: 60px;
     border-radius: 50%;
 }
 .--FansCard-content{
     margin-left: 20px;
+    margin-right: 10px;
 }
 .--FansCard-content-username{
     font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
     font-size: 1.3rem;
+    margin: 13px 0px 29px 0px;
     color: var(--FansCard-content-username-p);
 }
 .--FansCard-content-date{
     font-family: 'Courier New', Courier, monospace;
     font-style: italic;
     font-size: 0.9rem;
+    margin: 5px 0px;
     color: var(--FansCard-content-info-p);
 }
