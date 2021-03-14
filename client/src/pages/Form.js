@@ -68,22 +68,25 @@ export default function Form() {
       errors.description = "description is required";
     }
     if (!input.artist) {
-      errors.artist = "description is required";
+      errors.artist = "artist is required";
     }
     if (!input.price) {
-      errors.price = "description is required";
+      errors.price = "price is required";
     }
     if (!input.bpm) {
-      errors.bpm = "description is required";
+      errors.bpm = "bpm is required";
     }
     if (!input.date) {
-      errors.date = "description is required";
+      errors.date = "date is required";
+    }
+    if (!input.scale) {
+      errors.scale = "scale is required";
     }
     if (!image) {
-      errors.image = "description is required";
+      errors.image = "image is required";
     }
     if (!audio) {
-      errors.audio = "description is required";
+      errors.audio = "audio is required";
     }
     return errors;
   }
@@ -121,10 +124,10 @@ export default function Form() {
         }}
       ></textarea>
       <label>artist</label>
-      {errors.description && <p className="danger">{errors.description}</p>}
+      {errors.artist && <p className="danger">{errors.artist}</p>}
 
       <input
-        className={`${errors.description && "danger"}`}
+        className={`${errors.artist && "danger"}`}
         name="artist"
         onChange={(e) => {
           handleInputChange(e);
@@ -132,10 +135,10 @@ export default function Form() {
       ></input>
 
       <label>price</label>
-      {errors.description && <p className="danger">{errors.description}</p>}
+      {errors.price && <p className="danger">{errors.price}</p>}
 
       <input
-        className={`${errors.description && "danger"}`}
+        className={`${errors.price && "danger"}`}
         name="price"
         type="number"
         onChange={(e) => {
@@ -144,10 +147,10 @@ export default function Form() {
       ></input>
 
       <label>bpm</label>
-      {errors.description && <p className="danger">{errors.description}</p>}
+      {errors.bpm && <p className="danger">{errors.bpm}</p>}
 
       <input
-        className={`${errors.description && "danger"}`}
+        className={`${errors.bpm && "danger"}`}
         name="bpm"
         type="number"
         onChange={(e) => {
@@ -155,20 +158,20 @@ export default function Form() {
         }}
       ></input>
       <label>scale</label>
-      {errors.description && <p className="danger">{errors.description}</p>}
+      {errors.scale && <p className="danger">{errors.scale}</p>}
 
       <input
-        className={`${errors.description && "danger"}`}
+        className={`${errors.scale && "danger"}`}
         name="scale"
         onChange={(e) => {
           handleInputChange(e);
         }}
       ></input>
       <label>date</label>
-      {errors.description && <p className="danger">{errors.description}</p>}
+      {errors.date && <p className="danger">{errors.date}</p>}
 
       <input
-        className={`${errors.description && "danger"}`}
+        className={`${errors.date && "danger"}`}
         name="date"
         onChange={(e) => {
           handleInputChange(e);
@@ -176,10 +179,10 @@ export default function Form() {
       ></input>
 
       <label>image file</label>
-      {errors.description && <p className="danger">{errors.description}</p>}
+      {/* {errors.image && <p className="danger">{errors.image}</p>} */}
 
       <input
-        className={`${errors.description && "danger"}`}
+        // className={`${errors.image && "danger"}`}
         type="file"
         name="image"
         onChange={(e) => {
@@ -187,10 +190,10 @@ export default function Form() {
         }}
       ></input>
       <label>audio file</label>
-      {errors.description && <p className="danger">{errors.description}</p>}
+      {/* {errors.audio && <p className="danger">{errors.audio}</p>} */}
 
       <input
-        className={`${errors.description && "danger"}`}
+        // className={`${errors.audio && "danger"}`}
         type="file"
         name="audio"
         onChange={(e) => {
