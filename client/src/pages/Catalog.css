@@ -1,3 +1,11 @@
 .catalog--main{
+    display:flex;
+    width: 95%;
+    padding-left: 50px;
+    padding-right: 50px;
+    flex-direction: row;
+    justify-content: space-around;
+    margin: 5px;
     margin-top: 97px;
+    flex-wrap: wrap;
 }
