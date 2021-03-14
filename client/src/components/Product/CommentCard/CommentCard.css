@@ -23,14 +23,8 @@
     margin-left: 20px;
     margin-right: 10px;
 }
-.--CommentCard-contentDiv-commentInfo{
-    
-}
 .--CommentCard-contentDiv-commentInfo span{
     color: var(--CommentCard-contentDiv-commentInfo-span);
-}
-.--CommentCard-contentDiv-comment{
-
 }
 .--CommentCard-contentDiv-commentInfo-userName{
     font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
