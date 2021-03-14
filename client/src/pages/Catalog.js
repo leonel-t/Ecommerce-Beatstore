@@ -1,9 +1,15 @@
-import '../assets/css/catalog.css'
+import './Catalog.css'
 import React, {useEffect} from 'react';
 import { connect } from 'react-redux';
 import { fetchAllProducts } from '../stores/products/products.actions';
+import CatalogCard from '../components/Product/Catalog/CatalogCard';
 
 const Catalog = ({fetchAllProductsEffect, STORE_PRODUCTS}) =>{
+
+    const song=[{
+      name:"The Rules",
+      autor:"Stuck in the Sound"
+    }]
 
     useEffect(()=>{
         fetchAllProductsEffect()
@@ -11,7 +17,7 @@ const Catalog = ({fetchAllProductsEffect, STORE_PRODUCTS}) =>{
 
     return (
         <main className="catalog--main">
-          <h1>Catalog</h1>
+          <CatalogCard name={song[0].name} autor={song[0].autor}/>
         </main>
     )
 }
