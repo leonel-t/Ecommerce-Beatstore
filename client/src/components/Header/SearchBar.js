@@ -1,14 +1,13 @@
 import React, { useState } from 'react';
-import "./Header.css";
 import {connect} from "react-redux";
-import {searchProducts} from "../../stores/products/products.actions"
+import { searchProducts } from "../../stores/products/products.actions"
 import SearchImg from "./Search.png"
 import Filter from "./Filter"
 import { useDispatch } from 'react-redux'
+import { useHistory } from "react-router-dom"
+import "./Header.css";
 
-
-const SearchBar = () =>{
-
+const SearchBar = ({STORE_PRODUCTS}) =>{
 
     const dispatch = useDispatch();
 
@@ -17,6 +16,8 @@ const SearchBar = () =>{
     })
 
     const {title} = input
+
+    const history = useHistory();
 
     const handleChange = (e) => {
         setInput({
@@ -28,7 +29,8 @@ const SearchBar = () =>{
 
     const handleSubmit =  (e) => {
         e.preventDefault();
-        dispatch(searchProducts(input.title))
+        dispatch(searchProducts(input.title));
+        history.push(`/results/${input.title}`)
     }
 
     

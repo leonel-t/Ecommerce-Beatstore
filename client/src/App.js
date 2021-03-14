@@ -10,6 +10,7 @@ import Form from './pages/Form';
 import Header from './components/Header/Header.js';
 import Footer from './components/Footer/Footer.js';
 import FloatingCard from './components/FloatingCard/FloatingCard.js';
+import Results from './pages/Home/Results/Results.js';
 
 const App = () => {
 
@@ -21,7 +22,7 @@ const App = () => {
             <Route exact path="/catalog" render={()=> <Catalog/> } />
             <Route exact path="/product/:productId" render={()=> <Product/> } />
             <Route exact path="/add" render={()=> <Form  /> } />
-
+            <Route exact path="/results/:productSearch" render={()=> <Results /> } />
         </Switch>
     <Header/>
     <FloatingCard/>

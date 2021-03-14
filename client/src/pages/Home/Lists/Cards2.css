@@ -12,18 +12,12 @@
 
 /* para 980px o menos */
 @media screen and (max-width:980px) {
-    #ListB{
-        top: 400px;
-        height: 300px;
-    }
+
 }
 
 /* para 700px o menos */
 @media screen and (max-width:700px) {
-    #ListB{
-        top: 400px;
-        height: 300px;
-    }
+
 
 }
 
@@ -34,6 +28,6 @@
     }
     #ListC{
         width: 480px;
-        height: 640px;
+        height: 380px;
     }
 }

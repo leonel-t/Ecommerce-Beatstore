@@ -4,11 +4,13 @@
     right: 0px;
     position: fixed;
     top: 200px;
-    width: 100px;
+    width: 120px;
     border: none;
     display: flex;
     align-self: flex-end;
     cursor: pointer;
+    border-top-left-radius: 15px;
+    border-bottom-left-radius: 15px;
 }
 
 .FloatingCardAudio:hover {
@@ -16,20 +18,21 @@
 }
 
 #backgroundPlay{
-    width: 80px;
-    height: 85px;
-    background-image: url("https://direct.rhapsody.com/imageserver/images/alb.384474096/500x500.jpg");
+    width: 90px;
+    height: 90px;
+    border-radius: 10px;
+    box-shadow: 2px 2px 2px 1px rgba(0, 0, 0, 0.2);
+    background-image: url("../../assets/images/albumImage.png");
     background-size: cover;
     background-repeat: no-repeat;
     align-self: center;
-    margin-left: 5px;
+    margin-left: 10px;
     text-align: center;
 }
 #buttonPlay{
     width: 60px;
     height: 60px;
     margin-top: 15px;
-    
 }
 
 /* para 980px o menos */
@@ -48,7 +51,7 @@
     .FloatingCardAudio {
         background-color: rgba(0,0,0,0.651);
         border-radius: 40px;
-        top: 300px;
+        top: 250px;
         width: 300px;
         right: 80px;
         margin-left: auto;
