@@ -1,9 +1,9 @@
 const { Product, Categories } = require("../../db");
-module.exports = {
-  addProduct: async (product ) => {
 
-    const Producto = await Product.create(product);
-    return Producto;
+module.exports = {
+
+  addProduct: async (product) => {
+    return await Product.create(product).then(product =>  product );  
   },
 
   addCategoryToProduct (idProducto, idCategoria) {
