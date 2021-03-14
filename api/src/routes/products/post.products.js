@@ -4,7 +4,7 @@ module.exports = server;
 
 server.post("/", (req, res, next) => {
   const {name, description, artist, price, bpm, scale, date} = req.body;
-
+  console.log(req.body)
   const files = req.files
   const imgToDb = files[0].filename
   const audioToDb = files[1].filename
@@ -17,7 +17,7 @@ server.post("/", (req, res, next) => {
     bpm:bpm,
     scale:scale,
     date:date,
-    image:imgToDb,
+    image: imgToDb,
     audio:audioToDb
   }
   
