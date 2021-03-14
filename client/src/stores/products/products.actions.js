@@ -23,7 +23,7 @@ export const fetchAllProducts = () => {
 
     return (dispatch) =>{
         dispatch(getAllProductsRequest())
-        axios.get("https://jsonplaceholder.typicode.com/todos")
+        axios.get("http://localhost:3001/products/")
             .then(products => {
                 dispatch(getAllProductsSuccess(products.data))
             })

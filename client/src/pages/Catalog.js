@@ -6,10 +6,8 @@ import CatalogCard from '../components/Product/Catalog/CatalogCard';
 
 const Catalog = ({fetchAllProductsEffect, STORE_PRODUCTS}) =>{
 
-    const song=[{
-      name:"The Rules",
-      autor:"Stuck in the Sound"
-    }]
+    const allProducts = STORE_PRODUCTS.products;
+
 
     useEffect(()=>{
         fetchAllProductsEffect()
@@ -17,14 +15,27 @@ const Catalog = ({fetchAllProductsEffect, STORE_PRODUCTS}) =>{
 
     return (
         <main className="catalog--main">
-          <CatalogCard name={song[0].name} autor={song[0].autor}/>
+          {allProducts && allProducts.length >= 1
+            ?(
+              allProducts.map((product, index) =>{
+                return (
+                  <CatalogCard key={index} id={product.id} name={product.name} autor={product.artist} image={product.image}/>
+                )
+              })
+              
+            )
+            :(
+              <p>NO PRODUCTS IN DB</p>
+            )
+          }
+          
         </main>
     )
 }
 
 const mapStateToProps =  state => {
     return {
-      STORE_PRODUCTS : state
+      STORE_PRODUCTS : state.productsReducers
     }
   }
   const mapDispatchToProps = dispatch =>{
