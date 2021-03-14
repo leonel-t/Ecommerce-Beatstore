@@ -56,7 +56,7 @@ export const fetchOneProduct = (productId) => {
 
     return (dispatch) =>{
         dispatch(getOneProductRequest())
-        axios.get(`https://jsonplaceholder.typicode.com/posts/${productId}`)
+        axios.get(`http://localhost:3001/products/${productId}`)
             .then(product => {
                 dispatch(getOneProductSuccess(product.data))
             })
