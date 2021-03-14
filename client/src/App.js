@@ -8,15 +8,17 @@ import Catalog from './pages/Catalog.js';
 import Admin from './pages/Admin.js';
 import Form from './pages/Form';
 //Components
-import Header from './components/Header/Header.js';
+//import Header from './components/Header/Header.js';
+import Header from './components/NewHeader/NewHeader.js';
 import Footer from './components/Footer/Footer.js';
-import FloatingCard from './components/FloatingCard/FloatingCard.js';
+//import FloatingCard from './components/FloatingCard/FloatingCard.js';
 
 const App = () => {
 
   return (
     
     <BrowserRouter>
+        <Header/>
         <Switch>
             <Route exact path="/" render={()=> <Home/> } />
             <Route exact path="/catalog" render={()=> <Catalog/> } />
@@ -25,9 +27,8 @@ const App = () => {
             <Route exact path="/admin" render={()=> <Admin  /> } />
 
         </Switch>
-    <Header/>
-    <FloatingCard/>
-    <Footer/>
+        
+        <Footer/>
     </BrowserRouter>
   );
 };
