@@ -6,9 +6,9 @@ server.post("/", (req, res, next) => {
   const {name, description, artist, price, bpm, scale, date} = req.body;
 
   const files = req.files
-  const imgToDb = files[0].filename
-  const audioToDb = files[1].filename
-
+  //  const imgToDb = files[0].filename
+  //  const audioToDb = files[1].filename
+console.log(files)
   let product = {
     name:name,
     description: description,
@@ -17,8 +17,8 @@ server.post("/", (req, res, next) => {
     bpm:bpm,
     scale:scale,
     date:date,
-    image:imgToDb,
-    audio:audioToDb
+    //  image:imgToDb,
+    //  audio:audioToDb
   }
   
   postControler.addProduct(product).then(product => {
