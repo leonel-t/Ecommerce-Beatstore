@@ -1,0 +1,36 @@
+.--CatalogCard{
+    display: flex;
+    flex-direction: column;
+    width: 200px;
+    height: 270px;
+    padding: 5px;
+}
+.--CatalogCard-image img{
+    width: 200px;
+    border-radius: 4px;
+}
+.--CatalogCard-info{
+    display: flex;
+    flex-direction: column;
+}
+.--CatalogCard-info p{
+    margin: 0px;
+}
+.--CatalogCard-info-song{
+    color: rgb(255, 255, 255);
+    font-size: 1.2rem;
+}
+.--CatalogCard-info-autor{
+    color: rgb(126, 126, 126);
+    font-size: 0.7rem;
+}
+.--CatalogCard-link{
+    text-decoration: none;
+    color: rgb(255, 255, 255);
+    font-size: 1.2rem;
+}
+.--CatalogCard-link:hover{
+    text-decoration: none;
+    color: rgb(138, 3, 126);
+    font-size: 1.2rem;
+}

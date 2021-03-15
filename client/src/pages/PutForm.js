@@ -1,12 +1,31 @@
-import React, { Component } from "react";
+import React, { Component, useEffect } from "react";
+import { useParams } from "react-router-dom";
+import { connect } from "react-redux";
 import "./form.css";
 import Select from "react-select";
 import axios from "axios";
-export default function Form() {
+import "./product.css";
+import { fetchOneProduct } from "../stores/products/products.actions";
+const PutForm = ({ STORE_ADMIN, fetchProduct }) => {
+  console.log(STORE_ADMIN);
+  const { id } = useParams();
+  useEffect(() => {
+    fetchProduct(id);
+  }, [fetchProduct, id]);
+
   const [categories, setCategories] = React.useState([]);
   const [image, setImage] = React.useState({});
   const [audio, setAudio] = React.useState();
   const [errors, setErrors] = React.useState({});
+  const product = {
+    name: STORE_ADMIN.name,
+    description: STORE_ADMIN.description,
+    artist: STORE_ADMIN.artist,
+    price: STORE_ADMIN.price,
+    bpm: STORE_ADMIN.bpm,
+    scale: STORE_ADMIN.scale,
+    date: STORE_ADMIN.date,
+  };
   const [input, setInput] = React.useState({});
   function handleSubmit(e) {
     e.preventDefault();
@@ -21,9 +40,12 @@ export default function Form() {
     form.append("date", input.date);
     form.append("files", image[0]);
     form.append("files", audio[0]);
-    alert(JSON.stringify(input));
+    form.append("oldImage", STORE_ADMIN.image);
+    form.append("oldAudio", STORE_ADMIN.audio);
+    form.append("id", STORE_ADMIN.id);
+
     const options = {
-      method: "POST",
+      method: "PUT",
       url: "http://localhost:3001/products/",
       headers: { "Content-Type": "multipart/form-data" },
       data: form,
@@ -109,6 +131,7 @@ export default function Form() {
       <input
         className={`${errors.name && "danger"}`}
         name="name"
+        placeholder={product.name}
         onChange={(e) => {
           handleInputChange(e);
         }}
@@ -119,6 +142,7 @@ export default function Form() {
       <textarea
         className={`${errors.description && "danger"}`}
         name="description"
+        placeholder={product.description}
         onChange={(e) => {
           handleInputChange(e);
         }}
@@ -129,6 +153,7 @@ export default function Form() {
       <input
         className={`${errors.artist && "danger"}`}
         name="artist"
+        placeholder={product.artist}
         onChange={(e) => {
           handleInputChange(e);
         }}
@@ -140,6 +165,7 @@ export default function Form() {
       <input
         className={`${errors.price && "danger"}`}
         name="price"
+        placeholder={product.price}
         type="number"
         onChange={(e) => {
           handleInputChange(e);
@@ -153,6 +179,7 @@ export default function Form() {
         className={`${errors.bpm && "danger"}`}
         name="bpm"
         type="number"
+        placeholder={product.bpm}
         onChange={(e) => {
           handleInputChange(e);
         }}
@@ -163,6 +190,7 @@ export default function Form() {
       <input
         className={`${errors.scale && "danger"}`}
         name="scale"
+        placeholder={product.scale}
         onChange={(e) => {
           handleInputChange(e);
         }}
@@ -173,16 +201,17 @@ export default function Form() {
       <input
         className={`${errors.date && "danger"}`}
         name="date"
+        placeholder={product.date}
         onChange={(e) => {
           handleInputChange(e);
         }}
       ></input>
 
       <label>image file</label>
-      {/* {errors.image && <p className="danger">{errors.image}</p>} */}
+      {errors.image && <p className="danger">{errors.image}</p>}
 
       <input
-        // className={`${errors.image && "danger"}`}
+        className={`${errors.image && "danger"}`}
         type="file"
         name="image"
         onChange={(e) => {
@@ -190,10 +219,10 @@ export default function Form() {
         }}
       ></input>
       <label>audio file</label>
-      {/* {errors.audio && <p className="danger">{errors.audio}</p>} */}
+      {errors.audio && <p className="danger">{errors.audio}</p>}
 
       <input
-        // className={`${errors.audio && "danger"}`}
+        className={`${errors.audio && "danger"}`}
         type="file"
         name="audio"
         onChange={(e) => {
@@ -220,4 +249,15 @@ export default function Form() {
       </button>
     </form>
   );
-}
+};
+const mapStateToProps = (state) => {
+  return {
+    STORE_ADMIN: state.adminReducers.product,
+  };
+};
+const mapDispatchToProps = (dispatch) => {
+  return {
+    fetchProduct: (id) => dispatch(fetchOneProduct(id)),
+  };
+};
+export default connect(mapStateToProps, mapDispatchToProps)(PutForm);

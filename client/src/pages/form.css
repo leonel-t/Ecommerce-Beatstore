@@ -1,15 +1,18 @@
 .formAdd {
-  padding-top: 90px;  
-  margin:auto;  
+  margin-left:25%;
   width: 50%;
   font-size: 20px;
+
+
   background-color: rgb(37, 37, 37);
   display: flex;
   flex-direction: column;
   align-items: center;
+  flex-wrap: wrap;
 }
 .formAdd label {
     color: white;
+    font-size: larger;
 }
 
 .basic-multi-select{
@@ -22,11 +25,14 @@
     margin: 8px 0;
     box-sizing: border-box;
 }
+
 .formAdd  input {
     width: 50%;
     padding: 12px 20px;
     margin: 8px 0;
     box-sizing: border-box;
+    font-size: large;
+    text-align: center;
 }
 
 .submitbuton {
@@ -50,7 +56,7 @@ p.danger {
   display: inline;
 
   color: red;
-  font-size: 15px;
+  font-size: 20px;
 }
 
 input.danger {
