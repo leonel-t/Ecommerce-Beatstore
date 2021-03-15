@@ -36,6 +36,21 @@ const BeatComponent = ({ product }) => {
                                 {product.date}
                             </div>
                         </div>
+                        <div className="beatComponent--main-beatActions-col">
+                            <button className="beatComponent--main-beatActions-col-btn">
+                                <div className="beatComponent--main-beatActions-col-btn-row">
+                                    <div>
+                                        <span class="material-icons">add_shopping_cart</span>
+                                    </div>
+                                     <div>
+                                        Buy $ {product.price} 
+                                     </div>
+                                </div>
+                            </button>
+                        </div>
+                        <div className="beatComponent--main-beatActions-col">
+                            <p>{product.description}</p>
+                        </div>
                         <Spectrum></Spectrum>
                     </div>
     
