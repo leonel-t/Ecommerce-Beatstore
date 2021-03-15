@@ -1,7 +1,8 @@
 .HomeBg {
-    width: 1920px;
+    display:flex;
+    width: 98%;
     height: 1080px;
-    background-image: url("https://cdnb.artstation.com/p/assets/images/images/023/898/069/original/aaron-truehitt-blazercitynew-color-animated2.gif?1580704655");
+    background-image: url("https://images-ext-1.discordapp.net/external/-krdtiQS_1A80Xqk7TBZBYYW4NR65ZEXt5rNEXXf0Uc/https/mir-s3-cdn-cf.behance.net/project_modules/1400/9bc27292880429.5e569ff84e4d0.gif?width=400&height=225");
     background-position: 0 100%;
     background-size: cover;
     overflow-x: auto;
