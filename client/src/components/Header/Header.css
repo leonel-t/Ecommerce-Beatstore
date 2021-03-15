@@ -14,6 +14,7 @@
     top: calc(50.00% - 25px);
     width: 719px;
     border: none;
+    display: none;
     
 }
 

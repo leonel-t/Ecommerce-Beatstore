@@ -7,21 +7,30 @@
     overflow-x: auto;
 }
 
+.SearchBarMiddle{
+    width: 60%;     
+    position: absolute;
+    display: flex;
+    justify-content: center;
+    top: 460px;
+    height: 60px;
+}
+
 .SearchBarMiddle input{
     background-color: rgba(0,0,0,0.840);
-    border-radius: 40px;
-    height: 80px;
-    position: absolute;
-    top: 460px;
-    width: 820px;
-    border: none;
+    border-radius: 30px;
+    width: 90%;
+    border: none;    
     text-align:center;
+    font-family: Gabriola;
+    font-size: 2em;
 }
-.SearchBarMiddle{
-    display: flex;
-    width: 100%;    
-    justify-content: center;
+
+.SearchBarMiddle img{
+    width: 7%;
+    left: 0;
 }
+
 /* para 980px o menos */
 @media screen and (max-width:980px) {
 .HomeBg {
@@ -33,21 +42,6 @@
     overflow-x: auto;
 }
 
-.SearchBarMiddle input{
-    background-color: rgba(0,0,0,0.840);
-    border-radius: 40px;
-    height: 80px;
-    position: absolute;
-    top: 460px;
-    width: 820px;
-    border: none;
-    text-align:center;
-}
-.SearchBarMiddle{
-    display: flex;
-    width: 100%;    
-    justify-content: center;
-}
 }
 
 /* para 700px o menos */
