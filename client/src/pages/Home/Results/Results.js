@@ -12,18 +12,22 @@ const Results = ({STORE_PRODUCTS}) => {
 
     return (
         <div className='Muestra'>
-            <h1>HISTORY</h1>
+            <h1>Results :</h1>
                 {STORE_PRODUCTS.productsReducers.searchResults.map((product,id)=>{
                     console.log(product.name) 
                     return (
-                          <div className="encontrado">
-                            <ul>    
+                          <div className="encontrado">  
+                          <div className="ListAll">                            
+                              <ul>    
                                 <li> Name: {product.name} </li>,                            
                                 <li> Description: {product.description} </li>,
-                                <li> Price: {product.price} </li>,   
-                                <li> Image: {product.image} </li>,
-                                <li> Audio: {product.audio} </li>                 
-                            </ul>
+                                <li> Price: {"U$S" + " " + product.price}  </li>, 
+                                <li> Audio: {product.audio} </li>                                                
+                            </ul>   
+                          </div> 
+                          <div className="ImageAlbum">
+                              <img  src={`http://localhost:3001/images/${product.image}`} />
+                          </div> 
                         </div>    
                         )                    
                     })}

@@ -10,9 +10,9 @@
 
 .SearchBarMiddle{
     width: 60%;     
-    position: absolute;
+    position: absolute; 
     left:0;
-    right:0;
+    right:0;    
     margin:auto;
     top: 50%;
     height: 75px;
@@ -88,6 +88,8 @@
         overflow-x: auto;
     }
     .SearchBarMiddle{
-        display: none;
+        width: 80%;     
+        top: 50%;
+        height: 75px;
     }
 }

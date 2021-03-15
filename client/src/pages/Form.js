@@ -172,6 +172,7 @@ export default function Form() {
 
       <input
         className={`${errors.date && "danger"}`}
+        type="date"
         name="date"
         onChange={(e) => {
           handleInputChange(e);

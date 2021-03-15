@@ -9,7 +9,7 @@ const NewHeader = () =>{
       <header className="--newHeader-main" >
           <div className="--newHeader-main-row">
             <div className="--newHeader-main-row-col-logo">
-                <img src={Logo} alt="BeatShop"></img>
+                <Link to="/"><img src={Logo} alt="BeatShop"></img></Link>
             </div>
             <div className="--newHeader-main-row-col-menu">
                 <ul className="--newHeader-main-row-col-menu-ul">

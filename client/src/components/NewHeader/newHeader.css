@@ -24,6 +24,7 @@
     flex-direction: row;
     justify-content: center;
     align-items: center;
+    cursor: pointer;
 }
 .--newHeader-main-row-col-logo img{
   width: 220px;
