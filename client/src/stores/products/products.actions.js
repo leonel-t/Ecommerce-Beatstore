@@ -85,8 +85,6 @@ export const getOneProductFailure = (error) =>{
 } 
 
 //PRUEBA PARA QUE TRAIGA POR NOMBRE
-
-
 export const searchProducts = (products) => {
 
     return (dispatch) =>{
