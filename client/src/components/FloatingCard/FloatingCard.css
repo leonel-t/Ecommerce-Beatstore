@@ -4,34 +4,78 @@
     right: 0px;
     position: fixed;
     top: 200px;
-    width: 100px;
+    width: 120px;
     border: none;
     display: flex;
     align-self: flex-end;
     cursor: pointer;
+    border-top-left-radius: 15px;
+    border-bottom-left-radius: 15px;
 }
 
-    .FloatingCardAudio:hover {
-        width: 350px;
-        height: 80px;
-    }
+.FloatingCardAudio:hover {
+    width: 350px;
+}
 
 #backgroundPlay{
-    width: 80px;
-    height: 85px;
-    background-image: url("https://direct.rhapsody.com/imageserver/images/alb.384474096/500x500.jpg");
+    width: 90px;
+    height: 90px;
+    border-radius: 10px;
+    box-shadow: 2px 2px 2px 1px rgba(0, 0, 0, 0.2);
+    background-image: url("../../assets/images/albumImage.png");
     background-size: cover;
     background-repeat: no-repeat;
     align-self: center;
-    margin-left: 5px;
+    margin-left: 10px;
     text-align: center;
-
 }
-
 #buttonPlay{
     width: 60px;
     height: 60px;
     margin-top: 15px;
-    
 }
 
+/* para 980px o menos */
+@media screen and (max-width:980px) {
+
+}
+
+/* para 700px o menos */
+@media screen and (max-width:700px) {
+
+
+}
+
+/* para 480px o menos */
+@media screen and (max-width:480px) {
+    .FloatingCardAudio {
+        background-color: rgba(0,0,0,0.651);
+        border-radius: 40px;
+        top: 250px;
+        width: 300px;
+        right: 80px;
+        margin-left: auto;
+        margin-right: auto;
+    }
+    .FloatingCardAudio:hover {
+        width: 300px;
+    }
+    #backgroundPlay{
+        width: 100px;
+        height: 100px;
+        border-radius: 50px;
+        background-image: url("https://d1csarkz8obe9u.cloudfront.net/posterpreviews/0485429bea95e0f71b7e3003854edcad_screen.jpg?ts=1561426255");
+        background-size: cover;
+        background-repeat: no-repeat;
+        align-self: center;
+        margin-left: auto;
+        margin-right: auto;
+    }
+    
+    #buttonPlay{
+        width: 80%;
+        height: 80%;
+        justify-content: center;
+        margin-top: 10px;        
+    }
+}

@@ -40,3 +40,38 @@
     top: 1650px;
     width: 672px;
 }
+
+/* para 980px o menos */
+@media screen and (max-width:980px) {
+    .Container {
+        width: 980px;
+        height: 650px;
+
+    }
+}
+
+/* para 700px o menos */
+@media screen and (max-width:700px) {
+    .Container {
+        width: 700px;
+        height: 450px;
+
+    }
+
+}
+
+/* para 480px o menos */
+@media screen and (max-width:480px) {
+    .Container {
+        width: 480px;
+        height: 260px;
+
+    }
+    #title1{
+    display: none;
+    }
+    
+    #title2{
+    display: none;
+    }
+}

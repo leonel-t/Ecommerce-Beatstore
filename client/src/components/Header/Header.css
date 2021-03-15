@@ -7,38 +7,58 @@
     width: 1920px;
     border: none;
 }
-
-.SearchBar input {
-    background-color: rgba(0,0,0,0.651);
-    border-radius: 25px;
+.SearchBar{
     height: 50px;
     left: 206px;
     position: absolute;
     top: calc(50.00% - 25px);
     width: 719px;
     border: none;
-    text-align:center;
+    display: none;
+    
 }
 
-.NavBar input {
+.SearchBar input {
+    width: 100%;
+    background-color: rgba(0,0,0,0.651);
+    border-radius: 25px;
     color: white;
     font-size: xx-large;
     font-family: Gabriola;
+    text-align:center;
+    border: none;
 }
-    input:focus, input.form-control:focus {
-        outline: none !important;
-        outline-width: 0 !important;
-        box-shadow: none;
-        -moz-box-shadow: none;
-        -webkit-box-shadow: none;
-    }
+
+input:focus, input.form-control:focus {
+    outline: none !important;
+    outline-width: 0 !important;
+    box-shadow: none;
+    -moz-box-shadow: none;
+    -webkit-box-shadow: none;
+}
+#SearchImg {
+    width: 40px;
+    position: absolute;
+    height: 30px;
+    top: 10px;
+    left: 10px;
+    justify-content: center;
+    cursor: pointer;
+}
+#SearchImg img{
+    width: 100%;  
+}
 
 #logo {
+    width: 100px;
+    height: 54px;
     position: absolute;
-    height: 52px;
-    top: 27px;
-    left: 50px;
+    top: 15px;
+    left: 0;
     cursor: pointer;
+}
+#logo img {
+    width: 100%;
 }
 
 .navbar-zCOIAP {
@@ -52,55 +72,92 @@
 
 }
 
-
-#option1, #option2, #option3 {
+.navOptions{
     background-color: transparent;
-    height: 52px;
-    letter-spacing: 0.00px;
+    height: 50px;
     line-height: 28px;
     pointer-events: auto;
     position: absolute;
+    top: calc(50.00% - 25px);
+    right: 260px;
+    width: 500px;
+    float: left;
+    text-align:right;
+
+}
+.navOptions ul {
+    width: 100%;
+}
+.navOptions ul li{
+    width: 33%;
+    display:inline-block;
+    list-style-type: none;
     text-align: left;
-    top: 33px;
-    transition: all 0.2s ease;
     font-family: Gabriola;
     font-size: xx-large;
-    text-decoration: none;
-    color: white;
+    color: white;   
 }
-    #option1:hover, #option2:hover, #option3:hover {
-        color: lightsteelblue;
+
+#option1:hover, #option2:hover, #option3:hover {
+    color: lightsteelblue;
+}
+
+/* para 980px o menos */
+@media screen and (max-width:980px) {
+
+}
+
+/* para 700px o menos */
+@media screen and (max-width:700px) {
+
+
+}
+
+/* para 480px o menos */
+@media screen and (max-width:480px) {
+    .NavBar {
+        height: 120px;
+        width: 480px;
     }
-
-    #option1 {
-        overflow: hidden;
-        right: calc(36.43% - 81px);
-        width: 221px;
+    .SearchBar{
+        height: 70px;
+        width: 260px;
+        left: 110px;       
     }
-
-#option3 {
-    right: 28px; 
-    width: 222px;  
+    #logo {
+        width: 80px;
+        top: calc(50.00% - 25px);
+        left: 10px;
+        cursor: pointer;
+    }
+    .navOptions{
+        background-image: url("https://www.flaticon.es/svg/vstatic/svg/1636/1636053.svg?token=exp=1615656958~hmac=e82cbeacc0430a39c785cb0d424f0d2f");
+        background-size: 70%;
+        background-repeat: no-repeat;
+        background-position-x: center;
+        height: 56px;
+        right: 10px;
+        width: 80px;
+        float: none;   
+    }
+    .navOptions ul{
+        position: relative;
+        margin: 0 0;
+        padding: 0 0 0 0;   
+        height: 100px;
+        top: 80px; 
+        display: none;
+    }
+    .navOptions ul li{
+        width: 100%;
+        text-align: center;
+        font-family: Gabriola;
+        font-size: xx-large;
+        color: white;
+        padding-bottom:20px;
+        
+    }
+    .navOptions:hover .navOptions ul {
+        display: block;   
+    }
 }
-#option2 {
-    right: calc(16.72% - 50px);
-    width: 299px;
-}
-
-#SearchImg {
-    position: absolute;
-    height: 30px;
-    top: 34px;
-    left: 220px;
-    cursor: pointer;
-}
-#barra {
-    position: absolute;
-    height: 30px;
-    top: -5px;
-    left: 260px;
-    font-size: 1.9em;
-    color: gray;
-    font-family: Gabriola;
-}
-
