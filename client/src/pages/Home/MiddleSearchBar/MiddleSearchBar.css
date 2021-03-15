@@ -1,7 +1,8 @@
 .HomeBg {
-    width: 1920px;
+    display: flex;
+    width: 100%;
     height: 1080px;
-    background-image: url("https://cdnb.artstation.com/p/assets/images/images/023/898/069/original/aaron-truehitt-blazercitynew-color-animated2.gif?1580704655");
+    background-image: url("../../../assets/images/bg-home.gif");
     background-position: 0 100%;
     background-size: cover;
     overflow-x: auto;
@@ -16,19 +17,47 @@
     height: 60px;
 }
 
-.SearchBarMiddle input{
-    background-color: rgba(0,0,0,0.840);
-    border-radius: 30px;
-    width: 90%;
-    border: none;    
-    text-align:center;
-    font-family: Gabriola;
-    font-size: 2em;
-}
 
 .SearchBarMiddle img{
     width: 7%;
+    left:0;
+    right:0;
+    margin:auto;
+    top: 50%;
+    height: 75px;
+}
+
+.SearchBarMiddle input{
+    
+    background-color: rgba(0,0,0,0.840);
+    border-radius: 30px;
+    height: 65px;
+    width:100%;
+    border: none;    
+    text-align:center;
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    font-size: 2em;
+    outline: none;
+    color: #ba0bc0;
+    box-shadow: 0px 0px 10px rgb(148, 4, 153);
+
+}
+.SearchBarMiddle input::placeholder{
+    
+    color: #ba0bc0;
+    
+}
+.ContainerImg{
+    width: 40px;
+    position: absolute;
+    top: 8px;
+    right: 18px;
+    height: 60px;
+}
+.ContainerImg img{
+    width: 100%;
     left: 0;
+    cursor: pointer;
 }
 
 /* para 980px o menos */

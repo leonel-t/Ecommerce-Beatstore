@@ -6,11 +6,7 @@ import "./Results.css"
 
 const Results = ({STORE_PRODUCTS}) => {
 
-      const buscado = () => {
 
-
-             
-        }
 
         
 
