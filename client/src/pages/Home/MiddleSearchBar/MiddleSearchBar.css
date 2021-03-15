@@ -10,18 +10,9 @@
 
 .SearchBarMiddle{
     width: 60%;     
-    position: absolute;
-    display: flex;
-    justify-content: center;
-    top: 460px;
-    height: 60px;
-}
-
-
-.SearchBarMiddle img{
-    width: 7%;
+    position: absolute; 
     left:0;
-    right:0;
+    right:0;    
     margin:auto;
     top: 50%;
     height: 75px;
@@ -97,6 +88,8 @@
         overflow-x: auto;
     }
     .SearchBarMiddle{
-        display: none;
+        width: 80%;     
+        top: 50%;
+        height: 75px;
     }
 }

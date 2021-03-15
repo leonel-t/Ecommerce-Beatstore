@@ -12,15 +12,16 @@ const Results = ({STORE_PRODUCTS}) => {
 
     return (
         <div className='Muestra'>
-            <h1>HISTORY</h1>
+            <h1>Results :</h1>
                 {STORE_PRODUCTS.productsReducers.searchResults.map((product,id)=>{
                     console.log(product.name) 
                     return (
                           <div className="encontrado">
+                              <div> <img width="200px" src={`http://localhost:3001/images/${product.image}`} /> </div>
                             <ul>    
                                 <li> Name: {product.name} </li>,                            
                                 <li> Description: {product.description} </li>,
-                                <li> Price: {product.price} </li>,   
+                                <li> Price: {"U$S" + " " + product.price} </li>,   
                                 <li> Image: {product.image} </li>,
                                 <li> Audio: {product.audio} </li>                 
                             </ul>
