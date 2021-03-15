@@ -8,12 +8,13 @@ import Catalog from "./pages/Catalog.js";
 import Admin from "./pages/Admin.js";
 import Form from "./pages/Form";
 import PutForm from "./pages/PutForm";
-
+import Categories from "./pages/AddCategories";
 //Components
 //import Header from './components/Header/Header.js';
 import Header from "./components/NewHeader/NewHeader.js";
 import Footer from "./components/Footer/Footer.js";
 //import FloatingCard from './components/FloatingCard/FloatingCard.js';
+import addCategories from "./pages/AddCategories";
 
 const App = () => {
   return (
@@ -26,6 +27,7 @@ const App = () => {
         <Route exact path="/add" render={() => <Form />} />
         <Route exact path="/admin" render={() => <Admin />} />
         <Route exact path="/put/:id" render={() => <PutForm />} />
+        <Route exact path="/addCategories" render={() => <Categories />} />
       </Switch>
 
       <Footer />
