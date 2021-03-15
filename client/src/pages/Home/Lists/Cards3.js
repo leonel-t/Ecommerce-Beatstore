@@ -5,7 +5,7 @@ import "./Cards.css"
 import { connect } from "react-redux";
 import { fetchAllProducts } from "../../../stores/products/products.actions";
 
-const Cards = ({ fetchAllProductsEffect, STORE_PRODUCTS }) => {
+const CardsTres = ({ fetchAllProductsEffect, STORE_PRODUCTS }) => {
   const allProducts = STORE_PRODUCTS.products;
 
   useEffect(() => {
@@ -16,9 +16,9 @@ const Cards = ({ fetchAllProductsEffect, STORE_PRODUCTS }) => {
         <div id="ListA">
             {allProducts && allProducts.length > 1
             ?(
-                allProducts.slice(0,5).map((product, index)=>{
+                allProducts.slice(5,10).map((product, index)=>{
                     return (
-                        <Card key={index} id={product.id} name={product.name} image={product.image} artist={product.artist} date={product.date}/> 
+                        <Card key={index} name={product.name} image={product.image} artist={product.artist} date={product.date}/> 
                     )
                 })
             ):(
@@ -42,4 +42,4 @@ const mapStateToProps = (state) => {
     };
   };
   
-  export default connect(mapStateToProps, mapDispatchToProps)(Cards);
+  export default connect(mapStateToProps, mapDispatchToProps)(CardsTres);
