@@ -7,21 +7,38 @@
     overflow-x: auto;
 }
 
+.SearchBarMiddle{
+    width: 60%;     
+    position: absolute;
+    left:0;
+    right:0;
+    margin:auto;
+    top: 40%;
+    height: 75px;
+}
+
 .SearchBarMiddle input{
     background-color: rgba(0,0,0,0.840);
-    border-radius: 40px;
-    height: 80px;
-    position: absolute;
-    top: 460px;
-    width: 820px;
-    border: none;
+    border-radius: 30px;
+    width:100%;
+    border: none;    
     text-align:center;
+    font-family: Gabriola;
+    font-size: 2em;
 }
-.SearchBarMiddle{
-    display: flex;
-    width: 100%;    
-    justify-content: center;
+.ContainerImg{
+    width: 40px;
+    position: absolute;
+    top: 8px;
+    right: 18px;
+    height: 60px;
 }
+.ContainerImg img{
+    width: 100%;
+    left: 0;
+    cursor: pointer;
+}
+
 /* para 980px o menos */
 @media screen and (max-width:980px) {
 .HomeBg {
@@ -33,21 +50,6 @@
     overflow-x: auto;
 }
 
-.SearchBarMiddle input{
-    background-color: rgba(0,0,0,0.840);
-    border-radius: 40px;
-    height: 80px;
-    position: absolute;
-    top: 460px;
-    width: 820px;
-    border: none;
-    text-align:center;
-}
-.SearchBarMiddle{
-    display: flex;
-    width: 100%;    
-    justify-content: center;
-}
 }
 
 /* para 700px o menos */

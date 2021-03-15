@@ -23,7 +23,7 @@ const App = () => {
             <Route exact path="/catalog" render={()=> <Catalog/> } />
             <Route exact path="/product/:productId" render={()=> <Product/> } />
             <Route exact path="/add" render={()=> <Form  /> } />
-            <Route exact path="/results/:productSearch" render={()=> <Results /> } />
+            <Route exact path="/results/:name" render={()=> <Results /> } />
             <Route exact path="/admin" render={()=> <Admin  /> } />
         </Switch>
     <Header/>
