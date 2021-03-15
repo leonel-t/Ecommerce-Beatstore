@@ -1,15 +1,18 @@
 
 import React from 'react';
+import {Link} from 'react-router-dom';
 import "./Card.css"
 
-const Card = () => {
-
+const Card = ({id, name, artist, image, date}) => {
+    var sectionStyle = {
+        backgroundImage: "url(" + ` http://localhost:3001/images/${ image }` + ")"
+      };
     return (
-        <div className="w3-content">
+        <div style={ sectionStyle} className="w3-content">
             <div className="mySlides">
-                <h3>Luis Miguel</h3>
-                <p>La malagueña</p>
-                <p>Año 1993</p>
+                <Link className="link-style" to={`/product/${id}`}><h3>{name}</h3></Link>
+                <p>{artist}</p>
+                <p>Año {date}</p>
                 <br/>
             </div>
         </div>
