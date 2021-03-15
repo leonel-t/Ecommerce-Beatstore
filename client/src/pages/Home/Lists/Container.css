@@ -1,6 +1,6 @@
 
 .Container {
-    width: 1920px;
+    width: 100%;
     height: 1080px;
     background-color: black;
     background-size: cover;
@@ -10,9 +10,8 @@
 #title1{
     background-color: transparent;
     color: white;
-    font-family: "Gabriola";
-    font-size: 50px;
-    font-style: italic;
+    font-family:Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+    font-size: 3rem;
     font-weight: 400;
     height: auto;
     left: 175px;
@@ -20,16 +19,13 @@
     line-height: 50px;
     position: absolute;
     text-align: left;
-    top: 1250px;
-    width: 672px;
 }
 
 #title2{
     background-color: transparent;
     color: white;
-    font-family: "Gabriola";
-    font-size: 50px;
-    font-style: italic;
+    font-family:Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+    font-size: 3rem;
     font-weight: 400;
     height: auto;
     left: 175px;
@@ -37,7 +33,7 @@
     line-height: 50px;
     position: absolute;
     text-align: left;
-    top: 1650px;
+    top: 1550px;
     width: 672px;
 }
 

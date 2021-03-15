@@ -37,7 +37,7 @@ const MiddleSearchBar = () => {
     return (
      <form onSubmit={handleSubmit} className='HomeBg'>
          <div className="SearchBarMiddle">
-             <input onChange={handleChange} name="name" value={name} placeholder="busqueda..." />
+             <input onChange={handleChange} name="name" value={name} placeholder="Search..." />
                  <div className="ContainerImg">
                      <img onClick={handleSubmit} src={SearchImg} alt="SearchIcon" />
                      </div>
