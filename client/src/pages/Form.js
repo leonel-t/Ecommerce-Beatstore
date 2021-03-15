@@ -1,13 +1,28 @@
-import React, { Component } from "react";
+import React, { Component, useEffect } from "react";
 import "./form.css";
 import Select from "react-select";
 import axios from "axios";
+let optionCategories;
 export default function Form() {
   const [categories, setCategories] = React.useState([]);
   const [image, setImage] = React.useState({});
   const [audio, setAudio] = React.useState();
   const [errors, setErrors] = React.useState({});
   const [input, setInput] = React.useState({});
+  const [cat, setCat] = React.useState([]);
+  useEffect(() => {
+    const datos = async () => {
+      return await fetch("http://localhost:3001/categories")
+        .then((response) => response.json())
+        .then((optionCategories) => {
+          console.log(optionCategories);
+          return setCat(optionCategories);
+        });
+    };
+
+    datos();
+  }, [optionCategories]);
+
   function handleSubmit(e) {
     e.preventDefault();
 
@@ -19,9 +34,10 @@ export default function Form() {
     form.append("bpm", input.bpm);
     form.append("scale", input.scale);
     form.append("date", input.date);
+    form.append("selectCat", input.selectCat);
+
     form.append("files", image[0]);
     form.append("files", audio[0]);
-    alert(JSON.stringify(input));
     const options = {
       method: "POST",
       url: "http://localhost:3001/products/",
@@ -90,19 +106,20 @@ export default function Form() {
     }
     return errors;
   }
+  const option = cat.map((c) => {
+    return {
+      value: c.name,
+      label: c.name,
+    };
+  });
 
-  const option = [
-    { value: "rock", label: "Rock" },
-    { value: "pop", label: "Pop" },
-    { value: "lo-fi", label: "Lo-fi" },
-    { value: "chill-hop", label: "Chill-Hop" },
-  ];
   return (
     <form
       enctype="multipart/form-data"
       className="formAdd"
       onSubmit={(e) => handleSubmit(e)}
     >
+      {console.log(cat)}
       <label>name</label>
       {errors.name && <p className="danger">{errors.name}</p>}
 
@@ -204,6 +221,7 @@ export default function Form() {
 
       <Select
         isMulti
+        name="selectCat"
         options={option}
         className="basic-multi-select"
         onChange={setCategories}
