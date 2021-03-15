@@ -1,4 +1,7 @@
+.Muestra{
+    width: 100%;
 
+}
 .Muestra h1 {
     color: white;
     margin-top: 100px;
@@ -11,6 +14,7 @@
 
 .encontrado{
     width: 80%;
+    display: flex;
     margin-left: auto;
     margin-right: auto;
     padding: 20px;    
@@ -19,7 +23,21 @@
     margin-bottom: 20px;
 }
 
-.encontrado ul li{
+.ImageAlbum  img{
+    width: 200px;
+    position: relative;
+    top: 15%;
+}
+.ImageAlbum {
+    width: 50%;
+    position: relative;
+    left: 30%;
+}
+
+.ListAll {
+    width: 50%;
+}
+.ListAll ul li{
     color: white;
     text-align: justify;
     list-style: none;
