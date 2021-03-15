@@ -20,11 +20,7 @@ import Results from './pages/Home/Results/Results.js';
 
 //import Header from './components/Header/Header.js';
 import Header from "./components/NewHeader/NewHeader.js";
-
-
-
 //import FloatingCard from './components/FloatingCard/FloatingCard.js';
-
 
 const App = () => {
   return (

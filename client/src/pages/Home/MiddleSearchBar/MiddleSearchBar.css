@@ -1,8 +1,10 @@
 .HomeBg {
-    display:flex;
-    width: 98%;
+
+    display: flex;
+    width: 100%;
     height: 1080px;
-    background-image: url("https://images-ext-1.discordapp.net/external/-krdtiQS_1A80Xqk7TBZBYYW4NR65ZEXt5rNEXXf0Uc/https/mir-s3-cdn-cf.behance.net/project_modules/1400/9bc27292880429.5e569ff84e4d0.gif?width=400&height=225");
+    background-image: url("../../../assets/images/bg-home.gif");
+
     background-position: 0 100%;
     background-size: cover;
     overflow-x: auto;
@@ -14,18 +16,29 @@
     left:0;
     right:0;
     margin:auto;
-    top: 40%;
+    top: 50%;
     height: 75px;
 }
 
 .SearchBarMiddle input{
+    
     background-color: rgba(0,0,0,0.840);
     border-radius: 30px;
+    height: 65px;
     width:100%;
     border: none;    
     text-align:center;
-    font-family: Gabriola;
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
     font-size: 2em;
+    outline: none;
+    color: #ba0bc0;
+    box-shadow: 0px 0px 10px rgb(148, 4, 153);
+
+}
+.SearchBarMiddle input::placeholder{
+    
+    color: #ba0bc0;
+    
 }
 .ContainerImg{
     width: 40px;
