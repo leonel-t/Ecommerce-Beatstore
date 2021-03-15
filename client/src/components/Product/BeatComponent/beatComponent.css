@@ -51,6 +51,43 @@
     align-content:center;
     flex-wrap: wrap;
 }
+.beatComponent--main-beatActions-col-btn{
+    height: 60px;
+    width: 180px;
+    margin: 5px;
+    border: none;
+    background-color: #830c71;
+    border-radius: 10px;
+    outline: none;
+    color:antiquewhite;
+    font-size: 1.3rem;
+    text-align: center;
+}
+.beatComponent--main-beatActions-col-btn span{
+    padding-top: 0px;
+    margin-right: 5px;
+}
+.beatComponent--main-beatActions-col-btn-row{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    padding-top: 5px;
+}
+
+.beatComponent--main-beatActions-col-btn:hover{
+    height: 60px;
+    width: 180px;
+    margin: 5px;
+    border: none;
+    background-color: #d612f0;
+    border-radius: 10px;
+    outline: none;
+    color:antiquewhite;
+    font-size: 1.3rem;
+    text-align: center;
+    cursor:pointer;
+}
+
 .beatComponent--main-beatInfo-col h1{
     margin:15px;
     margin-top:10px;
