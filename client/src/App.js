@@ -12,9 +12,16 @@ import Categories from "./pages/AddCategories";
 import Login from "./pages/Login.js";
 
 //Components
+
+// import Header from './components/Header/Header.js';
+import Footer from './components/Footer/Footer.js';
+// import FloatingCard from './components/FloatingCard/FloatingCard.js';
+import Results from './pages/Home/Results/Results.js';
+
 //import Header from './components/Header/Header.js';
 import Header from "./components/NewHeader/NewHeader.js";
 import Footer from "./components/Footer/Footer.js";
+
 
 //import FloatingCard from './components/FloatingCard/FloatingCard.js';
 import addCategories from "./pages/AddCategories";
@@ -32,8 +39,10 @@ const App = () => {
         <Route exact path="/put/:id" render={() => <PutForm />} />
         <Route exact path="/addCategories" render={() => <Categories />} />
         <Route exact path="/login" render={() => <Login/>}/>
+        <Route exact path="/results/:name" render={()=> <Results /> } />
       </Switch>
       <Footer />
+
     </BrowserRouter>
   );
 };

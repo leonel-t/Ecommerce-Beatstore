@@ -1,14 +1,15 @@
 import React, { useState } from 'react';
-import "./Header.css";
+import { useDispatch } from 'react-redux';
 import {connect} from "react-redux";
-import {searchProducts} from "../../stores/products/products.actions"
-import SearchImg from "./Search.png"
+import { useHistory } from "react-router-dom"
+
+import { searchProducts } from "../../stores/products/products.actions"
 import Filter from "./Filter"
-import { useDispatch } from 'react-redux'
 
 
-const SearchBar = ({searchAllProductsEffect, STORE_PRODUCTS,getAllProducts}) =>{
+import "./Header.css";
 
+const SearchBar = () =>{
 
     const dispatch = useDispatch();
 
@@ -17,6 +18,8 @@ const SearchBar = ({searchAllProductsEffect, STORE_PRODUCTS,getAllProducts}) =>{
     })
 
     const {title} = input
+
+    const history = useHistory();
 
     const handleChange = (e) => {
         setInput({
@@ -28,28 +31,18 @@ const SearchBar = ({searchAllProductsEffect, STORE_PRODUCTS,getAllProducts}) =>{
 
     const handleSubmit =  (e) => {
         e.preventDefault();
-        dispatch(searchProducts(input.title))
+        dispatch(searchProducts(input.title));
     }
 
     
     return (
-        // <div>
-        // {STORE_PRODUCTS.productsReducers.productsLoading
-        // ?(
-        //   <p>LOADING...</p>
-        // )
-        // :( 
             <form onSubmit={handleSubmit}>               
                     <div className="SearchBar">
                     <input onChange={handleChange} name="title" value={title} placeholder="busqueda..." />
-                    <img onClick={handleSubmit} id="SearchImg" src={SearchImg} alt="SearchIcon" /><p id="barra">|</p>
-                        <Filter className="filtro" /> 
+                    <div id="Glass"><img onClick={handleSubmit} alt="SearchIcon" /></div>
+                    <Filter className="filtro" /> 
                     </div>
- 
             </form> 
-        // )
-        // };
-        // </div>
         )
     }
 
