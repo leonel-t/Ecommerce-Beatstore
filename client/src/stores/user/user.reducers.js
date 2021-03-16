@@ -1,57 +1,56 @@
 import {
-    GET_ALL_PRODUCTS_REQUEST,
-    GET_ALL_PRODUCTS_SUCCESS,
-    GET_ALL_PRODUCTS_FAILURE,
-    GET_ONE_PRODUCT_REQUEST,
-    GET_ONE_PRODUCT_SUCCESS,
-    GET_ONE_PRODUCT_FAILURE
-} from '../products/products.actions';
+    GET_USER_REQUEST,
+    GET_USER_SUCCESS,
+    GET_USER_FAILURE,
+    GET_CART_REQUEST,
+    GET_CART_SUCCESS,
+    GET_CAR_FAILURE
+} from './user.actions';
 
 let initialState = {
-    products:[],
-    productsLoading:true,
-    productsError:'',
-    product:{},
-    productLoading:true,
-    productError:'',
-
+    user:{},
+    userLoading:true,
+    userError:"",
+    cart:[],
+    cartLoading:true,
+    cartError:""
 }
 
 const userReducers = (state = initialState, action) =>{
     switch(action.type){
-        case GET_ALL_PRODUCTS_REQUEST:
+        case GET_USER_REQUEST:
             return {
                 ...state,
-                productsLoading: true
+                userLoading: true
             }
-        case GET_ALL_PRODUCTS_SUCCESS:
+        case GET_USER_SUCCESS:
             return {
                 ...state,
-                productsLoading: false,
+                userLoading: false,
                 products: action.payload
                 }
-        case GET_ALL_PRODUCTS_FAILURE:
+        case GET_USER_FAILURE:
             return {
                 ...state,
-                productsError: 'error 404',
-                productsLoading: false
+                userError: action.payload,
+                userLoading: false
             }
-        case GET_ONE_PRODUCT_REQUEST:
+        case GET_CART_REQUEST:
             return {
                 ...state,
-                productLoading: true
+                cartLoading: true
             }
-        case GET_ONE_PRODUCT_SUCCESS:
+        case GET_CART_SUCCESS:
             return {
                 ...state,
-                productLoading: false,
-                product: action.payload
+                cartLoading: false,
+                cart: action.payload
                 }
-        case GET_ONE_PRODUCT_FAILURE:
+        case GET_CAR_FAILURE:
             return {
                 ...state,
-                productsError: 'error 404',
-                productLoading: false
+                cartError: action.payload,
+                cartLoading: false
             }
         default: 
         return state;

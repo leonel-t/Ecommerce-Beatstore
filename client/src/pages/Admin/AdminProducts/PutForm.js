@@ -4,8 +4,8 @@ import { connect } from "react-redux";
 import "./form.css";
 import Select from "react-select";
 import axios from "axios";
-import "./product.css";
-import { fetchOneProduct } from "../stores/products/products.actions";
+import "../../Product/product.css";
+import { fetchOneProduct } from "../../../stores/products/products.actions";
 const PutForm = ({ STORE_ADMIN, fetchProduct }) => {
   console.log(STORE_ADMIN);
   const { id } = useParams();

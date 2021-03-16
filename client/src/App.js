@@ -1,24 +1,19 @@
 import React from "react";
 import { BrowserRouter, Route, Switch } from "react-router-dom";
-
 //Pages
 import Home from "./pages/Home/Home.js";
-import Product from "./pages/Product.js";
-import Catalog from "./pages/Catalog.js";
-import Admin from "./pages/Admin.js";
-import Form from "./pages/Form";
-import PutForm from "./pages/PutForm";
-import Categories from "./pages/AddCategories";
-import Login from "./pages/Login.js";
-
+import Product from "./pages/Product/Product.js";
+import Catalog from "./pages/Catalog/Catalog.js";
+import Admin from "./pages/Admin/Admin.js";
+import Form from "./pages/Admin/AdminProducts/Form";
+import PutForm from "./pages/Admin/AdminProducts/PutForm";
+import Categories from "./pages/Admin/AdminCategories/AddCategories";
+import Login from "./pages/Login/Login.js";
 //Components
-
 import Footer from './components/Footer/Footer.js';
 // import FloatingCard from './components/FloatingCard/FloatingCard.js';
 import Results from './pages/Home/Results/Results.js';
-
 import Header from "./components/Header/Header.js";
-
 
 const App = () => {
   return (
@@ -36,7 +31,6 @@ const App = () => {
         <Route exact path="/results/:name" render={()=> <Results /> } />
       </Switch>
       <Footer />
-
     </BrowserRouter>
   );
 };
