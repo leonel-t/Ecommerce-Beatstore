@@ -99,19 +99,25 @@ const RegisterCard = () => {
                         value={input.email}/>
                     
                     {errors.email && errors.email === 'email aready exist'
-                    ?
-                    (<p className="danger">{errors.email}</p> ):
-                    (
-                      <p>  </p>
-                    )
+                        ?
+                        (
+                        <p className="danger">{errors.email}</p> 
+                        )
+                        :
+                        (
+                        <p>  </p>
+                        )
                      }
                 </div>
 
                 <div className="--RegisterCard-form-username">
                     <p className='--RegisterCard-title'>Username</p>
-                    <input className="--RegisterCard-form-input" type="text" placeholder="Set a username for you profile"
-                        name="username" onChange={handleInputChange} value={input.username}/>
-                        {/* {errors.username && <p className="danger">{errors.username}</p>} */}
+                    <input className="--RegisterCard-form-input" 
+                        type="text" 
+                        placeholder="Set a username for you profile"
+                        name="username" 
+                        onChange={handleInputChange} 
+                        value={input.username}/>
                 </div>
                 <div className="--RegisterCard-form-password">
                     <p className='--RegisterCard-title'>Password</p>
@@ -133,8 +139,12 @@ const RegisterCard = () => {
                 </div>
                 <div className="--RegisterCard-form-password-repeat">
                     <p className='--RegisterCard-title'>Confirm password</p>
-                    <input className="--RegisterCard-form-input" type="password" placeholder="Type your password again"
-                        name="confirmPassword" onChange={handleInputChange} value={input.confirmPassword}/>
+                    <input className="--RegisterCard-form-input" 
+                        type="password" 
+                        placeholder="Type your password again"
+                        name="confirmPassword" 
+                        onChange={handleInputChange} 
+                        value={input.confirmPassword}/>
                 </div>
                 <button type="submit">Sign up</button>
             </form>
