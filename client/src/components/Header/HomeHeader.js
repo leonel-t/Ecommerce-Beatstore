@@ -2,9 +2,7 @@ import React from 'react';
 import "./Header.css"
 import Logo from '../../assets/images/logo.png'
 import { Link } from 'react-router-dom';
-
-
-const Header = () =>  {
+const HomeHeader = () =>{
 
 
     return (
@@ -14,10 +12,7 @@ const Header = () =>  {
                 <Link to="/"><img src={Logo} alt="BeatShop"></img></Link>
             </div>
             <div className="--newHeader-main-row-col-menu">
-                <input placeholder="Search"></input>
-            </div>
-            <div className="--newHeader-main-row-col-menu">
-                <ul className="--newHeader-main-row-col-menu-ul">
+            <ul className="--newHeader-main-row-col-menu-ul">
                     <li><Link className="--newHeader-main-row-col-menu-link" to="/">Home</Link></li>
                     <li><Link className="--newHeader-main-row-col-menu-link" to="/catalog">Catalog</Link></li>
                     <li><Link className="--newHeader-main-row-col-menu-link" to="/login">Login</Link></li>
@@ -41,4 +36,4 @@ const Header = () =>  {
 
 
 
-export default Header;
+export default HomeHeader;
