@@ -19,7 +19,7 @@ import Footer from './components/Footer/Footer.js';
 import Results from './pages/Home/Results/Results.js';
 
 //import Header from './components/Header/Header.js';
-import Header from "./components/NewHeader/NewHeader.js";
+import Header from "./components/Header/Header.js";
 
 
 const App = () => {
