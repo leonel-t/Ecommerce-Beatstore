@@ -2,7 +2,9 @@ import React from 'react';
 import "./Header.css"
 import Logo from '../../assets/images/logo.png'
 import { Link } from 'react-router-dom';
-const NewHeader = () =>{
+
+
+const NewHeader = () =>  {
 
 
     return (

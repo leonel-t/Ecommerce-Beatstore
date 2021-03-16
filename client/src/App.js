@@ -10,6 +10,7 @@ import Form from "./pages/Form";
 import PutForm from "./pages/PutForm";
 import Categories from "./pages/AddCategories";
 import Login from "./pages/Login.js";
+import Register from "./pages/Register/Register"
 
 //Components
 
@@ -34,6 +35,8 @@ const App = () => {
         <Route exact path="/addCategories" render={() => <Categories />} />
         <Route exact path="/login" render={() => <Login/>}/>
         <Route exact path="/results/:name" render={()=> <Results /> } />
+        <Route exact path="/register" render={()=> <Register /> } />
+
       </Switch>
       <Footer />
 

@@ -1,10 +1,10 @@
 import React, { useState } from 'react';
-import "./RegisterCard.css"
+import "./Register.css"
 import axios from 'axios';
 import { useHistory } from "react-router-dom";
 
 
-const RegisterCard = () => {
+const Register = () => {
     const history = useHistory();
     const [errors, setErrors] = useState({});
     const [input, setInput] = useState({
@@ -142,4 +142,4 @@ const RegisterCard = () => {
     )
 }
 
-export default RegisterCard;
+export default Register;
