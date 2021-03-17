@@ -110,8 +110,12 @@ const Register = () => {
 
                 <div className="--RegisterCard-form-username">
                     <p className='--RegisterCard-title'>Username</p>
-                    <input className="--RegisterCard-form-input" type="text" placeholder="Set a username for you profile"
-                        name="username" onChange={handleInputChange} value={input.username}/>
+                    <input className="--RegisterCard-form-input" 
+                        type="text" 
+                        placeholder="Set a username for you profile"
+                        name="username" 
+                        onChange={handleInputChange} 
+                        value={input.username}/>
                         {/* {errors.username && <p className="danger">{errors.username}</p>} */}
                 </div>
                 <div className="--RegisterCard-form-password">
