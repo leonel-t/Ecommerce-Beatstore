@@ -53,7 +53,7 @@ const Register = () => {
              password: input.password,
              email: input.email
             }
-       const user = await axios.post('http://localhost:3001/users', newUser)
+       await axios.post('http://localhost:3001/users', newUser)
        .then((user)=>{
            if(user.data.msg === 'email aready exist'){
             setErrors({
