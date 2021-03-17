@@ -8,7 +8,7 @@ const getCategoriesRouter = require("./categories/get.categories");
 
 const getUserRouter = require("./users/get.users");
 const postUserRouter = require("./users/post.users");
-
+const loginUser = require("./users/login.users")
 
 const router = Router();
 
@@ -22,5 +22,7 @@ router.use("/users", getUserRouter);
 router.use("/users", postUserRouter);
 
 router.use("/products", putProductsRouter);
+
+router.use("/login", loginUser);
 
 module.exports = router;
