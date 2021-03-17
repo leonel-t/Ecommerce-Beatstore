@@ -13,6 +13,14 @@
     margin: 0px;
     color: white;
 }
+.--LoginCard span{
+    margin: 0px;
+    color: white;
+}
+.--LoginCard a{
+    margin: 0px;
+    color: #eb3270;
+}
 .--LoginCard-form-input{
     width: 100%;
     height: 30px;

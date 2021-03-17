@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import axios from 'axios'
-import { useHistory } from "react-router-dom";
+import { Link, useHistory } from "react-router-dom";
 import "./Login.css"
 
 const Login = () => {
@@ -59,6 +59,8 @@ const Login = () => {
                 </div>
                 <button type='submit'>Sign in</button>
             </form>
+            <span>Don't have an account?</span>
+            <Link to="/register">Sign up</Link>
         </div>
     )
 }
