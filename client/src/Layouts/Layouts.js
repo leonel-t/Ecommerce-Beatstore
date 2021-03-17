@@ -1,9 +1,12 @@
 import React from 'react';
+import Logo from "../assets/images/logo.png"
+import "./Layouts.css"
 //Components
 import Header from "../components/Header/Header";
 import HomeHeader from "../components/Header/HomeHeader";
 import AdminHeader from "../components/Header/AdminHeader";
 import Footer from '../components/Footer/Footer.js';
+import { Link } from 'react-router-dom';
 // import FloatingCard from './components/FloatingCard/FloatingCard.js';
 
 const HomeLayout = ({children}) => {
@@ -30,6 +33,9 @@ const HomeLayout = ({children}) => {
   const LoginLayout = ({children}) => {
     return (
         <div>
+            <div className="--Header-Login-Layout">
+                <Link to="/"><img src={Logo} alt="BeatShop"/></Link>
+            </div>
             {children}
             <Footer></Footer>
         </div>
