@@ -24,8 +24,9 @@ const Login = () => {
              password: input.password,
             }
        
-        await axios.post('http://localhost:3001/users/signin', newUser)
-        .then((user)=>{
+        await axios.post('http://localhost:3001/users/login', newUser)
+        .then((user)=>{            
+            localStorage.setItem("token",user.data.token)
             console.log(user)
             return history.push('/')
         })   
