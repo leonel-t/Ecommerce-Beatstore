@@ -1,4 +1,4 @@
-import React, { Component, useEffect } from "react";
+import React, {useEffect } from "react";
 import { useParams } from "react-router-dom";
 import { connect } from "react-redux";
 import "./form.css";
@@ -14,6 +14,7 @@ const PutForm = ({ STORE_ADMIN, fetchProduct }) => {
   }, [fetchProduct, id]);
 
   const [categories, setCategories] = React.useState([]);
+  console.log(categories);
   const [image, setImage] = React.useState({});
   const [audio, setAudio] = React.useState();
   const [errors, setErrors] = React.useState({});

@@ -4,8 +4,9 @@ import {Link} from 'react-router-dom';
 import "./Card.css"
 
 const Card = ({id, name, artist, image, date}) => {
+ // eslint-disable-next-line  
     var sectionStyle = {
-        backgroundImage: "url(" + ` http://localhost:3001/images/${ image }` + ")"
+      backgroundImage: "url(" + ` http://localhost:3001/images/${ image }` + ")" 
       };
     return (
         <div style={ sectionStyle} className="w3-content">
