@@ -7,6 +7,7 @@ var passport = require('passport');
 
 const session = require('express-session')
 const secureRoute = require('./routes/secureRoutes');
+const logout = require('./routes/Logout') 
 
 const multer = require("./middlewares/multer.middleware");
 const statics = require("./middlewares/statics.middleware");
@@ -46,6 +47,7 @@ server.use(session(
 server.use('/', routes);
 server.use("/images", statics);
 server.use('/profile', passport.authenticate('jwt', { session: false }), secureRoute);
+server.use('/',logout);
 
 //---------PASSSPORT AUTHENTICATION-------------
 require(".././src/middlewares/passport.middleware")
