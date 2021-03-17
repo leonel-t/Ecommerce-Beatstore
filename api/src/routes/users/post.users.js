@@ -43,12 +43,18 @@ module.exports = server;
       }); 
 
   });
-// passport.authenticate('local', { failureRedirect: '/login' }),
-//     function(req, res) {
-//     res.redirect('/');
-//     }
-//   server.post('/register',
-//   passport.authenticate('local', { failureRedirect: '/login' }),
-//   function(req, res) {
-//     res.redirect('/');
-//   });
+server.post("/signin", (req, res, next) => {
+    const { password, email } = req.body;
+
+  postControler
+    .signIn(email,password)
+    .then((user) => {
+      res.status(200).json(user)
+    })
+    .catch((err)=>{
+      res.status(400).json(err.message)
+    })
+
+  });
+
+

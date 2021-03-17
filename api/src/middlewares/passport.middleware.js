@@ -17,6 +17,7 @@ passport.use(new LocalStrategy(
       .catch(err => {
         return done(err);
       })
+
     }));
    
  //GUARDO LA SESSION PARA PERMANECERLA ACTIVA
