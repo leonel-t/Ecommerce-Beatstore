@@ -114,129 +114,134 @@ export default function Form() {
   });
 
   return (
-    <form
-      enctype="multipart/form-data"
-      className="formAdd"
-      onSubmit={(e) => handleSubmit(e)}
-    >
-      {console.log(cat)}
-      <label>name</label>
-      {errors.name && <p className="danger">{errors.name}</p>}
-
-      <input
-        className={`${errors.name && "danger"}`}
-        name="name"
-        onChange={(e) => {
-          handleInputChange(e);
-        }}
-      />
-      <label>description</label>
-
-      {errors.description && <p className="danger">{errors.description}</p>}
-      <textarea
-        className={`${errors.description && "danger"}`}
-        name="description"
-        onChange={(e) => {
-          handleInputChange(e);
-        }}
-      ></textarea>
-      <label>artist</label>
-      {errors.artist && <p className="danger">{errors.artist}</p>}
-
-      <input
-        className={`${errors.artist && "danger"}`}
-        name="artist"
-        onChange={(e) => {
-          handleInputChange(e);
-        }}
-      ></input>
-
-      <label>price</label>
-      {errors.price && <p className="danger">{errors.price}</p>}
-
-      <input
-        className={`${errors.price && "danger"}`}
-        name="price"
-        type="number"
-        onChange={(e) => {
-          handleInputChange(e);
-        }}
-      ></input>
-
-      <label>bpm</label>
-      {errors.bpm && <p className="danger">{errors.bpm}</p>}
-
-      <input
-        className={`${errors.bpm && "danger"}`}
-        name="bpm"
-        type="number"
-        onChange={(e) => {
-          handleInputChange(e);
-        }}
-      ></input>
-      <label>scale</label>
-      {errors.scale && <p className="danger">{errors.scale}</p>}
-
-      <input
-        className={`${errors.scale && "danger"}`}
-        name="scale"
-        onChange={(e) => {
-          handleInputChange(e);
-        }}
-      ></input>
-      <label>date</label>
-      {errors.date && <p className="danger">{errors.date}</p>}
-
-      <input
-        className={`${errors.date && "danger"}`}
-        type="date"
-        name="date"
-        onChange={(e) => {
-          handleInputChange(e);
-        }}
-      ></input>
-
-      <label>image file</label>
-      {/* {errors.image && <p className="danger">{errors.image}</p>} */}
-
-      <input
-        // className={`${errors.image && "danger"}`}
-        type="file"
-        name="image"
-        onChange={(e) => {
-          handleInputChange(e);
-        }}
-      ></input>
-      <label>audio file</label>
-      {/* {errors.audio && <p className="danger">{errors.audio}</p>} */}
-
-      <input
-        // className={`${errors.audio && "danger"}`}
-        type="file"
-        name="audio"
-        onChange={(e) => {
-          handleInputChange(e);
-        }}
-      ></input>
-      <label>categories</label>
-
-      <Select
-        isMulti
-        name="selectCat"
-        options={option}
-        className="basic-multi-select"
-        onChange={setCategories}
-      />
-
-      <button
-        className="submitbuton"
-        type="submit"
-        onChange={(e) => {
-          handleInputChange(e);
-        }}
+    <div class="subContainer">
+      <h2>Complete product data:</h2>
+      <form
+        enctype="multipart/form-data"
+        class="container formAdd"
+        onSubmit={(e) => handleSubmit(e)}
       >
-        Submit
-      </button>
-    </form>
+        <div class="column-1 box">
+          <label>Name</label>
+          {errors.name && <p className="danger">{errors.name}</p>}
+
+          <input
+            className={`${errors.name && "danger"}`}
+            name="name"
+            onChange={(e) => {
+              handleInputChange(e);
+            }}
+          />
+          <label>Description</label>
+
+          {errors.description && <p className="danger">{errors.description}</p>}
+          <textarea
+            className={`${errors.description && "danger"}`}
+            name="description"
+            onChange={(e) => {
+              handleInputChange(e);
+            }}
+          ></textarea>
+          <label>Artist</label>
+          {errors.artist && <p className="danger">{errors.artist}</p>}
+
+          <input
+            className={`${errors.artist && "danger"}`}
+            name="artist"
+            onChange={(e) => {
+              handleInputChange(e);
+            }}
+          ></input>
+
+          <label>Price</label>
+          {errors.price && <p className="danger">{errors.price}</p>}
+
+          <input
+            className={`${errors.price && "danger"}`}
+            name="price"
+            type="number"
+            onChange={(e) => {
+              handleInputChange(e);
+            }}
+          ></input>
+
+          <label>BPM</label>
+          {errors.bpm && <p className="danger">{errors.bpm}</p>}
+
+          <input
+            className={`${errors.bpm && "danger"}`}
+            name="bpm"
+            type="number"
+            onChange={(e) => {
+              handleInputChange(e);
+            }}
+          ></input>
+        </div>
+        <div class="column-2 box">
+          <label>Scale</label>
+          {errors.scale && <p className="danger">{errors.scale}</p>}
+
+          <input
+            className={`${errors.scale && "danger"}`}
+            name="scale"
+            onChange={(e) => {
+              handleInputChange(e);
+            }}
+          ></input>
+          <label>Date</label>
+          {errors.date && <p className="danger">{errors.date}</p>}
+
+          <input
+            className={`${errors.date && "danger"}`}
+            type="date"
+            name="date"
+            onChange={(e) => {
+              handleInputChange(e);
+            }}
+          ></input>
+
+          <label>Image file</label>
+          {/* {errors.image && <p className="danger">{errors.image}</p>} */}
+
+          <input
+            // className={`${errors.image && "danger"}`}
+            type="file"
+            name="image"
+            onChange={(e) => {
+              handleInputChange(e);
+            }}
+          ></input>
+          <label>Audio file</label>
+          {/* {errors.audio && <p className="danger">{errors.audio}</p>} */}
+
+          <input
+            // className={`${errors.audio && "danger"}`}
+            type="file"
+            name="audio"
+            onChange={(e) => {
+              handleInputChange(e);
+            }}
+          ></input>
+          <label>Categories</label>
+
+          <Select
+            isMulti
+            name="selectCat"
+            options={option}
+            className="basic-multi-select"
+            onChange={setCategories}
+          />
+          <button
+            className="submitbuton"
+            type="submit"
+            onChange={(e) => {
+              handleInputChange(e);
+            }}
+          >
+            Submit
+          </button>
+        </div>
+      </form>
+    </div>
   );
 }
