@@ -70,9 +70,10 @@ const Register = () => {
            if(user.data.msg === 'user already exist'){
                 console.log("redrect")
                 
-                return history.push('/home')
+                return history.push('/register')
                
             }
+            return history.push('/login')
            
        })   
        .catch((error)=>{
