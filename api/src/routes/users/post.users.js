@@ -46,21 +46,6 @@ module.exports = server;
 
   });
 
-  // server.post('/signin99',function(req, res) {
-  
-  //   const { password, email } = req.body;
-
-  // postControler
-  //   .signIn(email,password)
-  //   .then((user) => {
-  //     res.status(200).json(user)
-  //   })
-  //   .catch((err)=>{
-  //     res.status(400).json(err.message)
-  //   })
-
-  // });
-
   server.post('/login',
       async (req,res,next)=> {
         passport.authenticate('local',

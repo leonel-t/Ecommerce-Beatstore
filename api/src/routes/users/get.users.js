@@ -25,9 +25,7 @@ module.exports = server;
         res.status(400).json(error);
       });
   });
-  server.get('/logout', (req, res, next) => {
-      req.logout();
-  })
+
 
   // server.get(
   //   '/profile',

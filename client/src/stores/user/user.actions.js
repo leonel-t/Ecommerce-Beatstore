@@ -12,10 +12,21 @@ export const GET_CAR_FAILURE = "GET_CAR_FAILURE";
 export const fetchUser = () => {
 
     return (dispatch) =>{
+
         dispatch(getUserRequest())
-        axios.get("https://jsonplaceholder.typicode.com/photos")
+        const options = {
+            method: 'GET',
+            url: 'http://localhost:3001/profile',
+            params: {
+              secret_token: localStorage.getItem('token'),
+                email: localStorage.getItem('email')
+            },
+            headers: {'Content-Type': 'application/x-www-form-urlencoded'},
+          };
+        axios.request(options)
             .then(user => {
                 dispatch(getUserSuccess(user))
+                
             })
             .catch(error => {
                 dispatch(getUserFailure(error))

@@ -8,7 +8,7 @@ import {
 } from './user.actions';
 
 let initialState = {
-    user:{},
+    user:[],
     userLoading:true,
     userError:"",
     cart:[],
@@ -27,7 +27,7 @@ const userReducers = (state = initialState, action) =>{
             return {
                 ...state,
                 userLoading: false,
-                products: action.payload
+                user: action.payload
                 }
         case GET_USER_FAILURE:
             return {

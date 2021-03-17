@@ -26,9 +26,17 @@ const Login = () => {
        
         await axios.post('http://localhost:3001/users/login', newUser)
         .then((user)=>{            
+            let email = JSON.parse(user.config.data)
+            console.log(email)
             localStorage.setItem("token",user.data.token)
-            console.log(user)
-            return history.push('/')
+            localStorage.setItem("email", email.email)
+            
+            if(user.data.token){
+                return history.push('/profile')
+            }else{
+                console.log("Error de inicio de sesion")
+            }
+            
         })   
        .catch((error)=>{
             console.log(error)
