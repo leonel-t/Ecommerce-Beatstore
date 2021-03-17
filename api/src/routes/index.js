@@ -8,20 +8,24 @@ const getCategoriesRouter = require("./categories/get.categories");
 
 const getUserRouter = require("./users/get.users");
 const postUserRouter = require("./users/post.users");
+const putUserRouter = require("./users/put.users")
 
 const router = Router();
 
 router.use("/products", getProductsRouter);
 router.use("/products", postProductsRouter);
 router.use("/products", deleteProductsRouter);
+router.use("/products", putProductsRouter);
+
 router.use("/categories", postCategoriesRouter);
 router.use("/categories", getCategoriesRouter);
 
 router.use("/users", getUserRouter);
 router.use("/users", postUserRouter);
+router.use("/users", putUserRouter);
 
 
-router.use("/products", putProductsRouter);
+
 
 
 module.exports = router;
