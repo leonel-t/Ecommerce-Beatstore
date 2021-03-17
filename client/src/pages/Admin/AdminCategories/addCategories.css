@@ -4,9 +4,12 @@
     flex-direction: column;
     color: white;
 }
-.catAdd button{
-    display:block;
-}   
+.catAdd input,textarea{
+    color: azure;
+    background: transparent;
+    border: none;
+    border-bottom: 1px solid #535353;
+    display: block;}   
 .--submitbuton{
     margin-top: 10px;
     background-color:purple; /* Green */

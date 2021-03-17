@@ -1,42 +1,88 @@
-.formAdd {
-  margin-left:25%;
-  width: 50%;
-  font-size: 20px;
 
-
-  background-color: rgb(37, 37, 37);
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  flex-wrap: wrap;
+/* 
+body {
+  margin: 0;
+} */
+.subContainer input, textarea{
+  color:rgb(128, 128, 128);
+    background: transparent;
+    border: none;
+    border-bottom: 1px solid #535353;
+    display: block;
 }
+.subContainer input,textarea{width:100%;display:block}
+.basic-multi-select input{
+  background-color: black;
+}
+.subContainer h2 {
+  color: aliceblue;
+}
+
+.container {
+  display: flex;
+  justify-content:space-around;
+  width: 100%;
+  
+  background-color:rgb(7, 7, 7);
+  padding: 10px;
+  border: 2px solid rgb(116, 113, 113);
+}
+.column-2{
+  padding: 20px;
+  width: 50%;
+  
+  
+}
+.column-1 {
+  width: 50%;
+  padding: 20px;
+}
+.subContainer{
+  padding: 110px;
+  font-family:Verdana, Geneva, Tahoma, sans-serif;
+  color: #535353;
+}
+
+
+@media only screen and (max-width: 500px) {
+  .subContainer{
+    padding: 50px;
+  }
+  .container {
+    flex-direction: column;
+  }
+.column-2 {
+  padding: 3px;
+  width: 98%;
+
+  
+  
+}
+ .column-1 {
+  padding: 3px;
+  width: 98%;
+  
+  
+}
+  
+}
+
+
+
+
+
+
 .formAdd label {
+  display: block;
     color: white;
     font-size: larger;
+    padding: 5%;
 }
 
-.basic-multi-select{
-    width: 50%;
 
-}
-.formAdd  textarea{
-    width: 50%;
-    padding: 12px 20px;
-    margin: 8px 0;
-    box-sizing: border-box;
-}
-
-.formAdd  input {
-    width: 50%;
-    padding: 12px 20px;
-    margin: 8px 0;
-    box-sizing: border-box;
-    font-size: large;
-    text-align: center;
-}
 
 .submitbuton {
-    width: 50%;
+    width: 100%;
     background-color: #005c03;
     color: white;
     padding: 14px 20px;
@@ -56,12 +102,12 @@ p.danger {
   display: inline;
 
   color: red;
-  font-size: 20px;
+  font-size: 10px;
 }
 
-input.danger {
-  border: 2px solid red;
+input.danger textarea.danger {
+  background: transparent;
+  border: none;
+  border-bottom: 1px solid #ce2c2c;
 }
-textarea.danger {
-  border: 2px solid red;
-}
+
