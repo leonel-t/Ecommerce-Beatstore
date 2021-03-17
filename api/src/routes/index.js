@@ -9,6 +9,7 @@ const getCategoriesRouter = require("./categories/get.categories");
 const getUserRouter = require("./users/get.users");
 const postUserRouter = require("./users/post.users");
 const putUserRouter = require("./users/put.users")
+const deleteUserRouter = require("./users/delete.users")
 
 const router = Router();
 
@@ -23,8 +24,7 @@ router.use("/categories", getCategoriesRouter);
 router.use("/users", getUserRouter);
 router.use("/users", postUserRouter);
 router.use("/users", putUserRouter);
-
-
+router.use("/users", deleteUserRouter);
 
 
 
