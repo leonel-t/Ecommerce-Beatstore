@@ -2,11 +2,11 @@ import React, {useEffect} from 'react';
 import { useParams } from "react-router-dom";
 
 import { connect } from 'react-redux';
-import { fetchOneProduct } from '../stores/products/products.actions';
+import { fetchOneProduct } from '../../stores/products/products.actions';
 //components
-import BeatComponent from '../components/Product/BeatComponent/BeatComponent';
-import BeatCommentsInputComponent from '../components/Product/BeatCommentsInputComponent/BeatCommentsInputComponent';
-import TabPanel from '../components/Product/TabPanel/TabPanel';
+import BeatComponent from '../../components/Product/BeatComponent/BeatComponent';
+import BeatCommentsInputComponent from '../../components/Product/BeatCommentsInputComponent/BeatCommentsInputComponent';
+import TabPanel from '../../components/Product/TabPanel/TabPanel';
 import "./product.css"
 
 const Product = ({fetchOneProductEffect, STORE_PRODUCT}) =>{

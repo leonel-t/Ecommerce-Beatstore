@@ -1,8 +1,8 @@
 import "./Catalog.css";
 import React, { useEffect } from "react";
 import { connect } from "react-redux";
-import { fetchAllProducts } from "../stores/products/products.actions";
-import CatalogCard from "../components/Product/Catalog/CatalogCard";
+import { fetchAllProducts } from "../../stores/products/products.actions";
+import CatalogCard from "../../components/Product/Catalog/CatalogCard";
 
 const Catalog = ({ fetchAllProductsEffect, STORE_PRODUCTS }) => {
   const allProducts = STORE_PRODUCTS.products;

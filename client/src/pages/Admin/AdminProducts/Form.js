@@ -1,32 +1,28 @@
 import React, { Component, useEffect } from "react";
-import { useParams } from "react-router-dom";
-import { connect } from "react-redux";
 import "./form.css";
 import Select from "react-select";
 import axios from "axios";
-import "./product.css";
-import { fetchOneProduct } from "../stores/products/products.actions";
-const PutForm = ({ STORE_ADMIN, fetchProduct }) => {
-  console.log(STORE_ADMIN);
-  const { id } = useParams();
-  useEffect(() => {
-    fetchProduct(id);
-  }, [fetchProduct, id]);
-
+let optionCategories;
+export default function Form() {
   const [categories, setCategories] = React.useState([]);
   const [image, setImage] = React.useState({});
   const [audio, setAudio] = React.useState();
   const [errors, setErrors] = React.useState({});
-  const product = {
-    name: STORE_ADMIN.name,
-    description: STORE_ADMIN.description,
-    artist: STORE_ADMIN.artist,
-    price: STORE_ADMIN.price,
-    bpm: STORE_ADMIN.bpm,
-    scale: STORE_ADMIN.scale,
-    date: STORE_ADMIN.date,
-  };
   const [input, setInput] = React.useState({});
+  const [cat, setCat] = React.useState([]);
+  useEffect(() => {
+    const datos = async () => {
+      return await fetch("http://localhost:3001/categories")
+        .then((response) => response.json())
+        .then((optionCategories) => {
+          console.log(optionCategories);
+          return setCat(optionCategories);
+        });
+    };
+
+    datos();
+  }, [optionCategories]);
+
   function handleSubmit(e) {
     e.preventDefault();
 
@@ -38,14 +34,12 @@ const PutForm = ({ STORE_ADMIN, fetchProduct }) => {
     form.append("bpm", input.bpm);
     form.append("scale", input.scale);
     form.append("date", input.date);
+    form.append("selectCat", input.selectCat);
+
     form.append("files", image[0]);
     form.append("files", audio[0]);
-    form.append("oldImage", STORE_ADMIN.image);
-    form.append("oldAudio", STORE_ADMIN.audio);
-    form.append("id", STORE_ADMIN.id);
-
     const options = {
-      method: "PUT",
+      method: "POST",
       url: "http://localhost:3001/products/",
       headers: { "Content-Type": "multipart/form-data" },
       data: form,
@@ -112,26 +106,26 @@ const PutForm = ({ STORE_ADMIN, fetchProduct }) => {
     }
     return errors;
   }
+  const option = cat.map((c) => {
+    return {
+      value: c.name,
+      label: c.name,
+    };
+  });
 
-  const option = [
-    { value: "rock", label: "Rock" },
-    { value: "pop", label: "Pop" },
-    { value: "lo-fi", label: "Lo-fi" },
-    { value: "chill-hop", label: "Chill-Hop" },
-  ];
   return (
     <form
       enctype="multipart/form-data"
       className="formAdd"
       onSubmit={(e) => handleSubmit(e)}
     >
+      {console.log(cat)}
       <label>name</label>
       {errors.name && <p className="danger">{errors.name}</p>}
 
       <input
         className={`${errors.name && "danger"}`}
         name="name"
-        placeholder={product.name}
         onChange={(e) => {
           handleInputChange(e);
         }}
@@ -142,7 +136,6 @@ const PutForm = ({ STORE_ADMIN, fetchProduct }) => {
       <textarea
         className={`${errors.description && "danger"}`}
         name="description"
-        placeholder={product.description}
         onChange={(e) => {
           handleInputChange(e);
         }}
@@ -153,7 +146,6 @@ const PutForm = ({ STORE_ADMIN, fetchProduct }) => {
       <input
         className={`${errors.artist && "danger"}`}
         name="artist"
-        placeholder={product.artist}
         onChange={(e) => {
           handleInputChange(e);
         }}
@@ -165,7 +157,6 @@ const PutForm = ({ STORE_ADMIN, fetchProduct }) => {
       <input
         className={`${errors.price && "danger"}`}
         name="price"
-        placeholder={product.price}
         type="number"
         onChange={(e) => {
           handleInputChange(e);
@@ -179,7 +170,6 @@ const PutForm = ({ STORE_ADMIN, fetchProduct }) => {
         className={`${errors.bpm && "danger"}`}
         name="bpm"
         type="number"
-        placeholder={product.bpm}
         onChange={(e) => {
           handleInputChange(e);
         }}
@@ -190,7 +180,6 @@ const PutForm = ({ STORE_ADMIN, fetchProduct }) => {
       <input
         className={`${errors.scale && "danger"}`}
         name="scale"
-        placeholder={product.scale}
         onChange={(e) => {
           handleInputChange(e);
         }}
@@ -200,18 +189,18 @@ const PutForm = ({ STORE_ADMIN, fetchProduct }) => {
 
       <input
         className={`${errors.date && "danger"}`}
+        type="date"
         name="date"
-        placeholder={product.date}
         onChange={(e) => {
           handleInputChange(e);
         }}
       ></input>
 
       <label>image file</label>
-      {errors.image && <p className="danger">{errors.image}</p>}
+      {/* {errors.image && <p className="danger">{errors.image}</p>} */}
 
       <input
-        className={`${errors.image && "danger"}`}
+        // className={`${errors.image && "danger"}`}
         type="file"
         name="image"
         onChange={(e) => {
@@ -219,10 +208,10 @@ const PutForm = ({ STORE_ADMIN, fetchProduct }) => {
         }}
       ></input>
       <label>audio file</label>
-      {errors.audio && <p className="danger">{errors.audio}</p>}
+      {/* {errors.audio && <p className="danger">{errors.audio}</p>} */}
 
       <input
-        className={`${errors.audio && "danger"}`}
+        // className={`${errors.audio && "danger"}`}
         type="file"
         name="audio"
         onChange={(e) => {
@@ -233,6 +222,7 @@ const PutForm = ({ STORE_ADMIN, fetchProduct }) => {
 
       <Select
         isMulti
+        name="selectCat"
         options={option}
         className="basic-multi-select"
         onChange={setCategories}
@@ -249,15 +239,4 @@ const PutForm = ({ STORE_ADMIN, fetchProduct }) => {
       </button>
     </form>
   );
-};
-const mapStateToProps = (state) => {
-  return {
-    STORE_ADMIN: state.adminReducers.product,
-  };
-};
-const mapDispatchToProps = (dispatch) => {
-  return {
-    fetchProduct: (id) => dispatch(fetchOneProduct(id)),
-  };
-};
-export default connect(mapStateToProps, mapDispatchToProps)(PutForm);
+}

@@ -1,6 +1,6 @@
 import React from 'react';
-import LoginCard from '../components/LoginCard/LoginCard';
-import RegisterCard from '../components/RegisterCard/RegisterCard';
+import LoginCard from '../../components/LoginCard/LoginCard';
+import RegisterCard from '../../components/RegisterCard/RegisterCard';
 import "./Login.css"
 
 const Login = () => {
