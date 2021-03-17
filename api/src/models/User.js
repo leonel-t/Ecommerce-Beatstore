@@ -8,15 +8,29 @@ module.exports = (sequelize) => {
     },
     password: {
       type: DataTypes.STRING,
+    },
+    password_virtual:{
+      type: DataTypes.VIRTUAL,
       allowNull: false,
+      validate: {
+        len:{
+          args: [6,12],
+          msg: 'invalid password'
+        }
+      }
     },
     rol: {
       type: DataTypes.ENUM("admin", "client"),
-      email: DataTypes.STRING,
+      defaultValue:"client"
     },
     email: {
       type: DataTypes.STRING,
       allowNull: false,
+      validate:{
+        isEmail:{
+          msg: 'invalid email'
+        }
+      }
     },
   });
 };

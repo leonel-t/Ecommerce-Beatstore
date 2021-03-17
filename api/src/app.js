@@ -6,6 +6,9 @@ const multer = require("./middlewares/multer.middleware");
 const statics = require("./middlewares/statics.middleware");
 const routes = require('./routes/index.js');
 
+var passport = require('passport');
+require("./middlewares/passport.middleware")
+
 require('./db.js');
 
 const server = express();
@@ -23,6 +26,12 @@ server.use((req, res, next) => {
   next();
 });
 
+server.use(require('express-session')({
+  secret: 'secret',
+  resave: false,
+  saveUninitialized: false
+}));
+
 server.use('/', routes);
 
 server.use("/images", statics);
@@ -34,6 +43,18 @@ server.use((err, req, res, next) => { // eslint-disable-line no-unused-vars
   const message = err.message || err;
   console.error(err);
   res.status(status).send(message);
+});
+
+// Inicializa Passport y recupera el estado de autenticación de la sesión.
+
+server.use(passport.initialize());
+server.use(passport.session());
+
+// Middleware para mostrar la sesión actual en cada request
+server.use((req, res, next) => {
+  console.log(req.session);
+  console.log(req.user);
+  next();
 });
 
 module.exports = server;

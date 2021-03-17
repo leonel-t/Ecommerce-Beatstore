@@ -6,6 +6,9 @@ const postCategoriesRouter = require("./categories/post.categories");
 const putProductsRouter = require("./products/put.products");
 const getCategoriesRouter = require("./categories/get.categories");
 
+const getUserRouter = require("./users/get.users");
+const postUserRouter = require("./users/post.users");
+
 const router = Router();
 
 router.use("/products", getProductsRouter);
@@ -14,6 +17,11 @@ router.use("/products", deleteProductsRouter);
 router.use("/categories", postCategoriesRouter);
 router.use("/categories", getCategoriesRouter);
 
+router.use("/users", getUserRouter);
+router.use("/users", postUserRouter);
+
+
 router.use("/products", putProductsRouter);
+
 
 module.exports = router;
