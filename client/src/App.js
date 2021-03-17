@@ -16,7 +16,18 @@ import Categories from "./pages/Admin/AdminCategories/AddCategories";
 import Login from "./pages/Login/Login.js";
 import Register from "./pages/Register/Register";
 import Results from './pages/Home/Results/Results.js';
+<<<<<<< HEAD
+<<<<<<< HEAD
 
+//import Header from './components/Header/Header.js';
+import Header from "./components/Header/Header.js";
+
+=======
+import Header from "./components/Header/Header.js";
+>>>>>>> 628a87a9b8eecdefee2e5b3dd88c76782a1c7452
+=======
+
+>>>>>>> 87d03991e20ab61a0d3b3911e15753d720fb4c5b
 
 const App = () => {
   return (
