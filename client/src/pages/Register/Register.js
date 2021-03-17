@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import "./Register.css"
 import axios from 'axios';
-import { useHistory } from "react-router-dom";
+import { Link, useHistory } from "react-router-dom";
 
 
 const Register = () => {
@@ -139,6 +139,8 @@ const Register = () => {
                 </div>
                 <button type="submit">Sign up</button>
             </form>
+            <span>Already have an account?</span>
+            <Link to="/login">Sign in</Link>
         </div>
     )
 }

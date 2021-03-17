@@ -12,6 +12,14 @@
 .--RegisterCard p{
     margin: 0px;
 }
+.--RegisterCard span{
+    margin: 0px;
+    color: white;
+}
+.--RegisterCard a{
+    margin: 0px;
+    color: #eb3270;
+}
 .--RegisterCard-title{
     color: white;
 }
