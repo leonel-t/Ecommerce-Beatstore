@@ -6,8 +6,8 @@ const multer = require("./middlewares/multer.middleware");
 const statics = require("./middlewares/statics.middleware");
 const routes = require('./routes/index.js');
 
-var passport = require('passport');
-require("./middlewares/passport.middleware")
+var passport = require("./middlewares/passport.middleware").server;
+
 
 require('./db.js');
 
@@ -47,13 +47,13 @@ server.use((err, req, res, next) => { // eslint-disable-line no-unused-vars
 
 // Inicializa Passport y recupera el estado de autenticación de la sesión.
 
-server.use(passport.initialize());
-server.use(passport.session());
+server.use(passport);
+
 
 // Middleware para mostrar la sesión actual en cada request
 server.use((req, res, next) => {
-  console.log(req.session);
-  console.log(req.user);
+  console.log("Session aca" + req.session);
+  console.log("User aca" + req.user);
   next();
 });
 

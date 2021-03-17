@@ -26,7 +26,6 @@ const Login = () => {
 
        const user = await axios.post('http://localhost:3001/users/signin', newUser)
         .then((user)=>{
-            console.log(user)
             return history.push('/')
         })   
        .catch((error)=>{
