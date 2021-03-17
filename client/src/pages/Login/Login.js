@@ -23,8 +23,8 @@ const Login = () => {
              email:input.email,
              password: input.password,
             }
-
-       const user = await axios.post('http://localhost:3001/users/signin', newUser)
+       
+        await axios.post('http://localhost:3001/users/signin', newUser)
         .then((user)=>{
             console.log(user)
             return history.push('/')
@@ -33,6 +33,7 @@ const Login = () => {
             console.log(error)
         })
     }
+    
 
     return(
         <div className="--LoginCard">

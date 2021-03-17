@@ -1,9 +1,11 @@
 const server = require("express").Router();
 const postControler = require("../../controllers/users/post.users");
+
 module.exports = server;
 
 
   server.post("/", (req, res, next) => {
+
     const { name, password, email } = req.body;
     var user;
     if(name && password && email){
@@ -14,7 +16,7 @@ module.exports = server;
         };
     }
 
-    console.log(req.body);
+    console.log("Creando usuario",JSON.stringify(req.body));
 
     postControler
       .addUser(user)
@@ -43,7 +45,9 @@ module.exports = server;
       }); 
 
   });
-server.post("/signin", (req, res, next) => {
+
+  server.post('/signin',function(req, res) {
+  
     const { password, email } = req.body;
 
   postControler
@@ -56,5 +60,6 @@ server.post("/signin", (req, res, next) => {
     })
 
   });
+
 
 

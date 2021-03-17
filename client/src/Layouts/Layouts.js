@@ -4,7 +4,7 @@ import "./Layouts.css"
 //Components
 import Header from "../components/Header/Header";
 import HomeHeader from "../components/Header/HomeHeader";
-import AdminHeader from "../components/Header/AdminHeader";
+// import AdminHeader from "../components/Header/AdminHeader";
 import Footer from '../components/Footer/Footer.js';
 import { Link } from 'react-router-dom';
 // import FloatingCard from './components/FloatingCard/FloatingCard.js';
