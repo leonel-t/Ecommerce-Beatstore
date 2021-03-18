@@ -4,11 +4,12 @@ import { connect } from "react-redux";
 import "./form.css";
 import Select from "react-select";
 import axios from "axios";
+import { useHistory } from "react-router-dom";
 import "../../Product/product.css";
 import { fetchOneProduct } from "../../../stores/admin/admin.actions";
 
 const PutForm = ({ STORE_ADMIN, fetchProduct }) => {
-
+  const history = useHistory();
   const storeProduct = STORE_ADMIN.product;
 
   const { id } = useParams();
@@ -21,6 +22,8 @@ const PutForm = ({ STORE_ADMIN, fetchProduct }) => {
   const [image, setImage] = React.useState({});
   const [audio, setAudio] = React.useState();
   const [editFiles, setEditFiles] = React.useState(false);
+  const [editImage, setEditImage] = React.useState(false);
+  const [editAudio, setEditAudio] = React.useState(false);
   const [errors, setErrors] = React.useState({});
   var product = {}
   if(storeProduct.name){
@@ -66,6 +69,8 @@ const PutForm = ({ STORE_ADMIN, fetchProduct }) => {
     form.append("oldAudio", storeProduct.audio);
     form.append("id", storeProduct.id);
     form.append("editFiles", editFiles );
+    form.append("editImage", editImage );
+    form.append("editAudio", editAudio );
 
     const options = {
       method: "PUT",
@@ -77,7 +82,7 @@ const PutForm = ({ STORE_ADMIN, fetchProduct }) => {
     axios
       .request(options)
       .then(function (response) {
-        console.log(response.data);
+        return history.push('/admin')
       })
       .catch(function (error) {
         console.error(error);
@@ -88,9 +93,11 @@ const PutForm = ({ STORE_ADMIN, fetchProduct }) => {
     if (event.target.name === "image") {
       setImage(event.target.files);
       setEditFiles("edit")
+      setEditImage("edit")
     } else if (event.target.name === "audio") {
       setAudio(event.target.files);
       setEditFiles("edit")
+      setEditAudio("edit")
     } else {
       setInput({
         ...input,
