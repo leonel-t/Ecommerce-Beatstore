@@ -1,6 +1,5 @@
 import axios from 'axios';
 import '../../auxiliar/variables.js';
-import { serverUrl } from '../../auxiliar/variables.js';
 
 //FETCH ALL PRODUCTS FROM THE SERVER WITCH THUNK
 export const GET_ALL_PRODUCTS_REQUEST = "GET_ALL_PRODUCTS_REQUEST";
@@ -23,7 +22,7 @@ export const fetchAllProducts = () => {
 
     return (dispatch) =>{
         dispatch(getAllProductsRequest())
-        axios.get("https://jsonplaceholder.typicode.com/todos")
+        axios.get("http://localhost:3001/products/")
             .then(products => {
                 dispatch(getAllProductsSuccess(products.data))
             })
@@ -84,40 +83,7 @@ export const getOneProductFailure = (error) =>{
     }
 } 
 
-//PRUEBA PARA QUE TRAIGA POR NOMBRE
 
-
-export const searchProducts = (products) => {
-
-    return (dispatch) =>{
-        dispatch(searchProductRequest())
-        axios.get(`${serverUrl}/products/search/${products}`)
-            .then(products => {
-                dispatch(searchProductSuccess(products.data))
-            })
-            .catch(error => {
-                dispatch(searchProductFailure(error))
-            })
-    }
-}
-
-export const searchProductRequest = () =>{
-    return {
-        type: SEARCH_PRODUCT_REQUEST,
-    }
-} 
-export const searchProductSuccess = (product) =>{
-    return {
-        type: SEARCH_PRODUCT_SUCCESS,
-        payload: product
-    }
-} 
-export const searchProductFailure = (error) =>{
-    return {
-        type: SEARCH_PRODUCT_FAILURE,
-        payload: error
-    }
-} 
 
 
 
