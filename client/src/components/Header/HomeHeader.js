@@ -1,22 +1,18 @@
 import React, { useEffect } from 'react';
 import { connect } from 'react-redux';
 import {fetchUser} from '../../stores/user/user.actions'
-import "./Header.css"
+import "./HomeHeader.css"
 import Logo from '../../assets/images/logo.png'
-import { Link , useHistory} from 'react-router-dom';
+import { Link } from 'react-router-dom';
 
 
 const HomeHeader = ({fetchUserEffect, STORE_USER}) =>{
-    const history = useHistory();
-
+  
     useEffect(() => {
         fetchUserEffect();
       }, [fetchUserEffect]);
 
-      const handleClick2 = (e) =>{
-        e.preventDefault()
-        history.push("/profile")
-      }
+
 
     return (
       <header className="--newHeader-main" >

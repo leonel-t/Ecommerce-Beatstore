@@ -40,7 +40,7 @@ const BeatComponent = ({ product }) => {
                             <button className="beatComponent--main-beatActions-col-btn">
                                 <div className="beatComponent--main-beatActions-col-btn-row">
                                     <div>
-                                        <span class="material-icons">add_shopping_cart</span>
+                                        <span className="material-icons">add_shopping_cart</span>
                                     </div>
                                      <div>
                                         Buy $ {product.price} 

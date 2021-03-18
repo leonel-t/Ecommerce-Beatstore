@@ -51,7 +51,7 @@ const Header = () =>  {
             </div>
             <div className="--newHeader-main-row-col-user">
                 <div className="--newHeader-main-row-col-user-icon">
-                    <span class="material-icons --user-icon">
+                    <span className="material-icons --user-icon">
                     account_circle
                     </span>
                 </div>
