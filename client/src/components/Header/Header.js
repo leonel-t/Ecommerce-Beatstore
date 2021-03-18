@@ -46,12 +46,12 @@ const Header = () =>  {
                     <li><Link className="--newHeader-main-row-col-menu-link" to="/">Home</Link></li>
                     <li><Link className="--newHeader-main-row-col-menu-link" to="/catalog">Catalog</Link></li>
                     <li><Link className="--newHeader-main-row-col-menu-link" to="/login">Login</Link></li>
-                    <li><Link className="--newHeader-main-row-col-menu-link" to="/add">Admin</Link></li>
+                    <li><Link className="--newHeader-main-row-col-menu-link" to="/admin">Admin</Link></li>
                 </ul>
             </div>
             <div className="--newHeader-main-row-col-user">
                 <div className="--newHeader-main-row-col-user-icon">
-                    <span class="material-icons --user-icon">
+                    <span className="material-icons --user-icon">
                     account_circle
                     </span>
                 </div>

@@ -1,0 +1,61 @@
+.--SummaryCard{
+    display: flex;
+    flex-direction: column;
+    background-color: rgb(32, 32, 32);
+    border-radius: 5px;
+    padding: 10px;
+    min-width: 350px;
+}
+.--SummaryCard-sub{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+.--SummaryCard-tot{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+.--SummaryCard-sub span{
+    font-size: 20px;
+    margin-bottom: 10px;
+    margin-top: 10px;
+    color: gray;
+}
+.--SummaryCard-tot span{
+    font-size: 30px;
+    margin-bottom: 10px;
+    margin-top: 10px;
+    color: white;
+}
+.--SummaryCard-span{
+    margin: 5px;
+    margin-top: 20px;
+    font-size: 15px;
+    color: white;
+}
+.--SummaryCard-code{
+    margin-bottom: 20px;
+    background-color: rgb(43, 43, 43);
+    border: 2px solid rgb(149, 28, 135);
+    border-radius: 5px;
+    height: 20px;
+    color: white;
+}
+.--SummaryCard-buttonout{
+    width: 100%;
+    height: 30px;
+    margin: 5px;
+    padding: 0px 12px;
+    background: linear-gradient(45deg, rgb(234, 50, 111), rgb(145, 27, 137));
+    border: 1px solid black;
+    border-radius: 5px;
+}
+.--SummaryCard-buttoncode{
+    height: 30px;
+    margin: 5px;
+    padding: 0px 12px;
+    background: linear-gradient(45deg, rgb(234, 50, 111), rgb(145, 27, 137));
+    border: 1px solid black;
+    border-radius: 5px;
+}

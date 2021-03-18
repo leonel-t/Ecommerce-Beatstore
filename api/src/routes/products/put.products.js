@@ -2,7 +2,6 @@ const server = require("express").Router();
 const putControler = require("../../controllers/products/put.products");
 const fs = require("fs");
 const path = require("path");
-const asd = require("../../../");
 module.exports = server;
 
 server.put("/", (req, res, next) => {
@@ -17,32 +16,85 @@ server.put("/", (req, res, next) => {
     date,
     oldImage,
     oldAudio,
+    editFiles,
+    editImage,
+    editAudio
   } = req.body;
-  if (oldImage && oldAudio) {
-    let url = path.join(__dirname, "../../../uploads/");
-    let img = oldImage;
-    let audio = oldAudio;
-    let imgPath = url + img;
-    let audioPath = url + audio;
-    fs.unlinkSync(imgPath);
-    fs.unlinkSync(audioPath);
+  var product;
+
+  if (editFiles === "edit") {
+    if(editImage === "edit"){
+      let url = path.join(__dirname, "../../../uploads/");
+      let img = oldImage;
+      let imgPath = url + img;
+      let aux = [];
+          aux.push(imgPath)
+      
+          for (let i = 0; i < aux.length; i++) {
+            console.log("DELET FILES")
+            fs.unlinkSync(aux[i])
+            console.log("FILE DELETE", aux[i])
+          }
+  
+          const files = req.files;
+          const imgToDb = files[0].filename;
+  
+          product = {
+            name: name,
+            description: description,
+            artist: artist,
+            price: price,
+            bpm: bpm,
+            scale: scale,
+            date: date,
+            image: imgToDb,
+          };
+    }
+    if(editAudio === "edit"){
+      let url = path.join(__dirname, "../../../uploads/");
+      let audio = oldAudio;
+      let audioPath = url + audio;
+      let aux = [];
+          aux.push(audioPath)
+      
+          for (let i = 0; i < aux.length; i++) {
+            console.log("DELET FILES")
+            fs.unlinkSync(aux[i])
+            console.log("FILE DELETE", aux[i])
+          }
+  
+          const files = req.files;
+          var audioToDb
+          if(editImage === "edit"){
+             audioToDb = files[1].filename;
+          }else{
+             audioToDb = files[0].filename;
+          }
+  
+          product = {
+            name: name,
+            description: description,
+            artist: artist,
+            price: price,
+            bpm: bpm,
+            scale: scale,
+            date: date,
+            audio: audioToDb,
+          };
+    }
+  }else{
+
+    product = {
+      name: name,
+      description: description,
+      artist: artist,
+      price: price,
+      bpm: bpm,
+      scale: scale,
+      date: date,
+    };
+
   }
-  console.log(req.body);
-  const files = req.files;
-  const imgToDb = files[0].filename;
-  const audioToDb = files[1].filename;
-  console.log(files);
-  let product = {
-    name: name,
-    description: description,
-    artist: artist,
-    price: price,
-    bpm: bpm,
-    scale: scale,
-    date: date,
-    image: imgToDb,
-    audio: audioToDb,
-  };
 
   putControler
     .editProduct(product, id)

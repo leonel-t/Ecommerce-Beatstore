@@ -1,6 +1,13 @@
 .--admin--main{
-    margin-top: 97px;
+    margin-top: 120px;
     color: antiquewhite;
     display: flex;
     justify-content: center;
+    width: 100%;
+}
+.--admin--main-btn{
+    text-decoration: none;
+    color: antiquewhite;
+    background-color: blueviolet;
+    padding: 15px;
 }

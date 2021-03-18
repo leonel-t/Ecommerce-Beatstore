@@ -22,6 +22,7 @@
 }
 
 .beatComponent--main-row{
+    padding-top: 100px;
     display:flex;
     flex-direction:column;
     width: 100%;

@@ -1,0 +1,38 @@
+.--ItemCard{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    margin: 10px;
+    padding-bottom: 10px;
+    border-bottom: 2px solid rgb(44, 43, 43);
+}
+.--ItemCard-left img{
+    width: 90px;
+    border-radius: 5px;
+}
+.--ItemCard-left{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
+.--ItemCard-right{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
+.--ItemCard-data{
+    margin-left: 5px;
+}
+.--ItemCard-data h2{
+    margin: 0px;
+    color: white;
+}
+.--ItemCard-data p{
+    margin: 0px;
+    color: white;
+}
+.--ItemCard span{
+    margin-left: 10px;
+    color: white;
+}

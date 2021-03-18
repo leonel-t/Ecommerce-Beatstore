@@ -25,7 +25,9 @@ export const fetchUser = () => {
           };
         axios.request(options)
             .then(user => {
-                dispatch(getUserSuccess(user))
+                setTimeout(()=>{
+                    dispatch(getUserSuccess(user))
+                },2000)
                 
             })
             .catch(error => {
