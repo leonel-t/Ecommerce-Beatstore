@@ -16,7 +16,7 @@ const Profile = ({fetchUserEffect, STORE_USER}) =>{
       const handleClick = (e) =>{
         e.preventDefault()
         localStorage.clear()
-        history.push("/")
+       return history.push("/login")
       }
       const handleClick2 = (e) =>{
         e.preventDefault()

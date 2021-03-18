@@ -1,9 +1,22 @@
-import React from 'react';
+import React, { useEffect } from 'react';
+import { connect } from 'react-redux';
+import {fetchUser} from '../../stores/user/user.actions'
 import "./Header.css"
 import Logo from '../../assets/images/logo.png'
-import { Link } from 'react-router-dom';
-const HomeHeader = () =>{
+import { Link , useHistory} from 'react-router-dom';
 
+
+const HomeHeader = ({fetchUserEffect, STORE_USER}) =>{
+    const history = useHistory();
+
+    useEffect(() => {
+        fetchUserEffect();
+      }, [fetchUserEffect]);
+
+      const handleClick2 = (e) =>{
+        e.preventDefault()
+        history.push("/profile")
+      }
 
     return (
       <header className="--newHeader-main" >
@@ -16,7 +29,13 @@ const HomeHeader = () =>{
                     <li><Link className="--newHeader-main-row-col-menu-link" to="/">Home</Link></li>
                     <li><Link className="--newHeader-main-row-col-menu-link" to="/catalog">Catalog</Link></li>
                     <li><Link className="--newHeader-main-row-col-menu-link" to="/login">Login</Link></li>
-                    <li><Link className="--newHeader-main-row-col-menu-link" to="/add">Admin</Link></li>
+                    {STORE_USER.user && STORE_USER.user.data &&STORE_USER.user.data.user.rol === "admin"
+                        ?(
+                            <li><Link className="--newHeader-main-row-col-menu-link" to="/add">Admin</Link></li>
+                        ):(
+                            <></>
+                        )
+                    }
                 </ul>
             </div>
             <div className="--newHeader-main-row-col-user">
@@ -26,7 +45,14 @@ const HomeHeader = () =>{
                     </span>
                 </div>
                 <div className="--newHeader-main-row-col-user-options">
+                {STORE_USER.user && STORE_USER.user.data
+                ?(
+                    <p><Link className="link-email" to="/profile">{STORE_USER.user.data.user.email}</Link></p>
+                ):(
                     <p>Login / Register</p>
+                )
+                    
+                }
                 </div>
             </div>
           </div>
@@ -36,4 +62,17 @@ const HomeHeader = () =>{
 
 
 
-export default HomeHeader;
+const mapStateToProps =  state => {
+    return {
+      STORE_USER : state.userReducers
+    }
+  }
+
+  const mapDispatchToProps = (dispatch) => {
+    return {
+      fetchUserEffect: () => dispatch(fetchUser()),
+    };
+  };
+  
+  
+export default connect(mapStateToProps, mapDispatchToProps)(HomeHeader);

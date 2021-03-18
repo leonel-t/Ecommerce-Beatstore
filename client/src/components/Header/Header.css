@@ -1,12 +1,12 @@
 .--newHeader-main{
-    position: sticky;
+    position: fixed;
     top:0;
     left:0;
     display: flex;
     width: 100%;
     flex-direction: row;
     min-height: 97px;
-    background: linear-gradient(#5c045f8a, #0303037e);
+    background: linear-gradient(#5c045f8a, #03030300);
     z-index: 99;
     justify-content: center;
     border-bottom-left-radius: 15px ;
@@ -48,7 +48,7 @@
 }
 .--newHeader-main-row-col-menu-link{
     padding: 8px;
-    background-color: rgba(137, 43, 226, 0.575);
+    background-color: rgba(137, 43, 226, 0.699);
     margin: 2px;
     color: antiquewhite;
     font-size: 1.5rem;
@@ -74,7 +74,11 @@
     align-items: center;
 }
 .--user-icon{
-    font-size: 4rem;
+    font-size: 3rem;
+    color: antiquewhite;
+}
+.link-email{
+    text-decoration: none;
     color: antiquewhite;
 }
 .--newHeader-main-row-col-user-options p {
