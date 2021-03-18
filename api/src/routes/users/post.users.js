@@ -98,7 +98,7 @@ module.exports = server;
                 id: user.id,
               },
               "secret",
-              { expiresIn: "1m" }
+              { expiresIn: "10m" }
             );
             const dataUser = {
               id: user.id,
