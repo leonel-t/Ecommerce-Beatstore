@@ -2,6 +2,7 @@ import React, { useEffect } from "react";
 import "./form.css";
 import Select from "react-select";
 import axios from "axios";
+import Admin from "../Admin";
 
 export default function Form() {
   const [categories, setCategories] = React.useState([]);
@@ -128,6 +129,7 @@ export default function Form() {
 
   return (
     <div class="subContainer">
+      <Admin />
       <h2>Complete product data:</h2>
       <form
         enctype="multipart/form-data"
@@ -255,9 +257,7 @@ export default function Form() {
           </button>
         </div>
       </form>
-      <div className="divider">
-
-      </div>
+      <div className="divider"></div>
     </div>
   );
 }
