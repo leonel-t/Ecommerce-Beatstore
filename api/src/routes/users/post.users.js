@@ -1,7 +1,10 @@
 const server = require("express").Router();
 const postControler = require("../../controllers/users/post.users");
-var passport = require('passport');
 const jwt = require('jsonwebtoken')
+
+var passport = require('passport')
+require("../../middlewares/passport.middleware")
+
 module.exports = server;
 
 
@@ -46,51 +49,85 @@ module.exports = server;
 
   });
 
-  // server.post('/signin99',function(req, res) {
-  
-  //   const { password, email } = req.body;
-
-  // postControler
-  //   .signIn(email,password)
-  //   .then((user) => {
-  //     res.status(200).json(user)
-  //   })
-  //   .catch((err)=>{
-  //     res.status(400).json(err.message)
-  //   })
-
-  // });
-
-  server.post('/login',
-      async (req,res,next)=> {
-        passport.authenticate('local',
-          async(err,user,info) =>{
-            // try {
-            //   if (err || !user) {
-            //     const error = new Error('An error occurred.');
+  // server.post('/login',
+  //     async (req,res,next)=> {
+  //       console.log(req.body)
+  //       passport.authenticate('login',
+  //         async(err,user,info) =>{
+  //           try {
+  //             if (err || !user) {
+  //               const error = new Error('An error occurred.');
     
-            //     return next(error);
-            //   }
-              req.login(
-                user,
-                { session: false },
-                async (error) => {
-                  if (error) return next(error);
+  //               return next(error);
+  //             }
+  //             req.logIn(
+  //               user,
+  //               { session: false },
+  //               async (error) => {
+  //                 if (error) return next(error);
     
-                  const body = { _id: user._id, email: user.email };
-                  console.log(body)
-                  const token = jwt.sign({ user: body }, 'TOP_SECRET');
-                  console.log(token)
+  //                 const body = { id: user.id, email: user.email };
+  //                 console.log(body)
+  //                 const token = jwt.sign( body, 'secret');
+  //                 console.log(token)
     
-                  return res.json({ token });
-                }
-              );
-            // } catch (error) {
-            //   return next(error);
-            // }
+  //                 return res.json({ token });
+  //               }
+  //             );
+
+  //     }catch (error) {
+  //       return next(error);
+  //     }
+  //   }
+  //   )(req,res,next);
+  // }
+  // )
+  server.post(
+    "/login",
+    function (req, res, next) {
+      passport.authenticate(
+        "local",
+        { session: false },
+        function (err, user, info) {
+          if (err) return next(err);
+          if (!user) return next(info);
+          req.logIn(user, { session: false }, function (err) {
+            if (err) return next(err);
+            const token = jwt.sign(
+              {
+                id: user.id,
+              },
+              "secret",
+              { expiresIn: "10m" }
+            );
+            const dataUser = {
+              id: user.id,
+              email: user.email,
+              name: user.name,
+              rol: user.rol,
+            };
+            
+            const data = { msg: "Login successful", user: dataUser, token };
+            console.log(data)
+            return res.status(200).json(data);
+          });
+        }
+      )(req, res, next);
+    },
+    function (err, req, res, next) {
+      if (err) {
+        res.status(200).json(err);
       }
-    )(req,res,next);
-  })
+    }
+  );
 
+  server.post("/logout", (req, res) => {
+    console.log(req)
+    if (req.isAuthenticated()) {
+      req.logout();
+      res.status(200).json({ msg: "logout successful" });
+    }
+    res.status(200).json({ msg: "no authenticated user" });
+  });
 
 

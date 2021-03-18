@@ -25,19 +25,8 @@ module.exports = server;
         res.status(400).json(error);
       });
   });
-  server.get('/logout', (req, res, next) => {
-      req.logout();
-  })
 
-  // server.get(
-  //   '/profile',
-  //   (req, res, next) => {
-  //     res.json({
-  //       message: 'You made it to the secure route',
-  //       user: req.user,
-  //       token: req.query.secret_token
-  //     })
-  //   }
-  // );
+
+
 
 

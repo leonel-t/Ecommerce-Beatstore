@@ -2,61 +2,46 @@ const express = require('express');
 const cookieParser = require('cookie-parser');
 const bodyParser = require('body-parser');
 const morgan = require('morgan');
-//PASSPORT
-var passport = require('passport');
-
 const session = require('express-session')
-const secureRoute = require('./routes/secureRoutes');
+const routes = require('./routes/index.js');
 
 const multer = require("./middlewares/multer.middleware");
 const statics = require("./middlewares/statics.middleware");
-const routes = require('./routes/index.js');
+const cors = require("./middlewares/cors.middleware");
+const passport = require(".././src/middlewares/passport.middleware").server
 
+var passport2 = require('passport')
+
+const logout = require('./routes/Logout')
+const secureRoute = require('./routes/secureRoutes');
 
 require('./db.js');
 
 const server = express();
-server.use(multer);
+
 server.name = 'API';
 
-server.use(express.urlencoded( {extended: true, limit: '50mb'} ));
-server.use(express.json({ limit: '50mb' }));
-server.use(cookieParser());
+server.use(bodyParser.urlencoded( {extended: true, limit: '50mb'} ));
+server.use(bodyParser.json({ limit: '50mb' }));
+server.use(cookieParser('secret'));
 server.use(morgan('dev'));
 server.use((req, res, next) => {
-  res.header('Access-Control-Allow-Origin', 'http://localhost:3000'); // update to match the domain you will make the request from
+  res.header('Access-Control-Allow-Origin', 'http://localhost:3000'); 
   res.header('Access-Control-Allow-Credentials', 'true');
   res.header('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content-Type, Accept');
   next();
 });
-
-server.use(session(
-  {
-    name: 'sid',
-    secret:'secret', // Debería estar en un archivo de environment
-    resave:false,
-    saveUninitialized:false,
-    cookie:{
-      maxAge: 1000 * 60 * 60 * 2 // Está en milisegundos --> 2hs
-    }
-  }
-));
+server.use(session({ name: 'sid', secret:'secret', resave:false, saveUninitialized:false,}));
 
 
+server.use(cors);
+server.use(multer);
+server.use(passport);
 server.use('/', routes);
 server.use("/images", statics);
-server.use('/profile', passport.authenticate('jwt', { session: false }), secureRoute);
+server.use('/profile', passport2.authenticate('jwt', { session: false }), secureRoute);
+server.use('/logout', logout);
 
-//---------PASSSPORT AUTHENTICATION-------------
-require(".././src/middlewares/passport.middleware")
-server.use(passport.initialize());
-server.use(passport.session());
-
-server.use((req, res, next) => {
-  console.log(req.session);
-  console.log(req.user);
-  next();
-});
 
 // Error catching endware.
 server.use((err, req, res, next) => { // eslint-disable-line no-unused-vars
