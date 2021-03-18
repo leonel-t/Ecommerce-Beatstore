@@ -38,7 +38,9 @@ body {
   padding: 20px;
 }
 .subContainer{
-  padding: 110px;
+  padding-left: 5%;
+  padding-right: 5%;
+
   font-family:Verdana, Geneva, Tahoma, sans-serif;
   color: #535353;
 }
@@ -46,8 +48,8 @@ body {
 
 @media only screen and (max-width: 500px) {
   .subContainer{
-    padding: 50px;
-  }
+    padding-left: 10%;
+    padding-right: 10%;  }
   .container {
     flex-direction: column;
   }

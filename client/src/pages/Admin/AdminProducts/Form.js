@@ -15,7 +15,6 @@ export default function Form() {
       return await fetch("http://localhost:3001/categories")
         .then((response) => response.json())
         .then((optionCategories) => {
-          console.log(optionCategories);
           return setCat(optionCategories);
         });
     };
@@ -23,6 +22,7 @@ export default function Form() {
     datos();
   }, [optionCategories]);
 
+  let idProduct;
   function handleSubmit(e) {
     e.preventDefault();
 
@@ -34,25 +34,30 @@ export default function Form() {
     form.append("bpm", input.bpm);
     form.append("scale", input.scale);
     form.append("date", input.date);
-    form.append("selectCat", input.selectCat);
+    form.append("selectCat", cat.selectCat);
 
     form.append("files", image[0]);
     form.append("files", audio[0]);
+
+    console.log(input);
     const options = {
       method: "POST",
       url: "http://localhost:3001/products/",
       headers: { "Content-Type": "multipart/form-data" },
       data: form,
     };
-
-    axios
-      .request(options)
-      .then(function (response) {
-        console.log(response.data);
-      })
-      .catch(function (error) {
-        console.error(error);
+    axios.request(options).then(function (response) {
+      idProduct = response.data.id;
+      console.log(categories);
+      categories.forEach((element) => {
+        console.log(element);
+        axios
+          .post(
+            `http://localhost:3001/products/${idProduct}/category/${element.value}`
+          )
+          .then((res) => console.log(res));
       });
+    });
   }
 
   const handleInputChange = (event) => {
@@ -92,9 +97,16 @@ export default function Form() {
     if (!input.bpm) {
       errors.bpm = "bpm is required";
     }
+
     if (!input.date) {
       errors.date = "date is required";
     }
+    var today = new Date();
+    let msecsToday = today.getTime();
+    var msecsProduct = Date.parse(input.date);
+    msecsProduct > msecsToday
+      ? (errors.date = "insert a valid date!")
+      : console.log("ok");
     if (!input.scale) {
       errors.scale = "scale is required";
     }
@@ -108,7 +120,7 @@ export default function Form() {
   }
   const option = cat.map((c) => {
     return {
-      value: c.name,
+      value: c.id,
       label: c.name,
     };
   });
