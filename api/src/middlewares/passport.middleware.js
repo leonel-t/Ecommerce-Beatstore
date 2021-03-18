@@ -1,69 +1,63 @@
-//CONFIG MIDDLEWARE
-var passport = require('passport');
-var Strategy = require('passport-local').Strategy;
-const { User } = require("../../src/db");
-const bcrypt = require('bcrypt')
+const server = require('express').Router();
+const passport = require("passport");
+const PassportLocal = require('passport-local').Strategy;
+const passportJWT = require('passport-jwt');
+const JWTStrategy =  passportJWT.Strategy;
+const ExtractJWT = passportJWT.ExtractJwt
+const { User } = require("../db");
+const bcrypt = require('bcrypt');
 
-const JWTstrategy = require('passport-jwt').Strategy;
-const ExtractJWT = require('passport-jwt').ExtractJwt;
+server.use(passport.initialize());
+server.use(passport.session());
 
-passport.use(
-  new JWTstrategy(
-    {
-      secretOrKey: 'TOP_SECRET',
-      jwtFromRequest: ExtractJWT.fromUrlQueryParameter('secret_token')
-    },
-    async (token, done) => {
-      try {
-            return done(null, token.user);
-      } catch (error) {
-        done(error);
-      }
-    }
-  )
-);
+passport.use(new PassportLocal({
+        usernameField : 'email',
+        passwordField : 'password'
+    },function(email, password, done) {
+    User.findOne({ 
+      where : { 
+        email : email 
+      } })
+    .then(user => {
+        if(user){
+            const passwordIsRight = bcrypt.compareSync(password, user.password);
 
-const customFields = {
-    emailField: 'email',
-    passwordField: 'password' 
-}
+            if(passwordIsRight){
+                return done(null, user);
+            }else {
+                return done(null, false, { msg : 'Password invalid'});
+            }
 
-
-const verifyCallback = async (email, password, done) => {
-        try {
-          const user = await User.findOne({ email : email });
-  
-          if (!user) {
-            return done(null, false, { message: 'User not found' });
-          }
-  
-          const validate = await bcrypt.compare(password,user.password)
-  
-          if (!validate) {
-            return done(null, false, { message: 'Wrong Password' });
-          }
-  
-          return done(null, user, { message: 'Logged in Successfully' });
-        } catch (error) {
-          return done(error);
+        }else {
+            return done(null, false, { msg : 'Email invalid'});
         }
-}
+    })
+    .catch(err => {
+        return done(err, false);
+    })
+}))
 
-  
-const strategy = new Strategy(customFields,verifyCallback);
+passport.use('jwt',new JWTStrategy(
+        { 
+          secretOrKey: 'secret',
+          jwtFromRequest: ExtractJWT.fromUrlQueryParameter('secret_token')
+        },
+        function(payload, done){
+            done(null, payload);
+        }
+));
 
-
-passport.use(strategy);
-
-passport.serializeUser(function(user, done) {
+passport.serializeUser((user, done) => {
+  console.log("SERIALIZE:",user)
     done(null, user.id);
-  });
-  
-  passport.deserializeUser(function(id, done) {
-    User.findOne({id:id}, function(err, user) {
-      done(err, user);
-    });
-  });
+})
 
-  
+passport.deserializeUser((id, done) => {
+  console.log("DESSERIALIZE:",id)
+    User.findByPk(id)
+    .then(user => {
+        done(null, user);
+    })
+})
 
+module.exports = { passport, server };
