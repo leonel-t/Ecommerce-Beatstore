@@ -3,6 +3,7 @@ import { useParams } from "react-router-dom";
 
 import { connect } from 'react-redux';
 import { fetchOneProduct } from '../../stores/products/products.actions';
+
 //components
 import BeatComponent from '../../components/Product/BeatComponent/BeatComponent';
 import BeatCommentsInputComponent from '../../components/Product/BeatCommentsInputComponent/BeatCommentsInputComponent';
@@ -44,7 +45,7 @@ const mapStateToProps =  state => {
   }
   const mapDispatchToProps = dispatch =>{
     return {
-      fetchOneProductEffect: (productId) => dispatch(fetchOneProduct(productId)) 
+      fetchOneProductEffect: (productId) => dispatch(fetchOneProduct(productId))
     }
   }
   

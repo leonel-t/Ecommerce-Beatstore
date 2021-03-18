@@ -25,6 +25,7 @@ const HomeHeader = ({fetchUserEffect, STORE_USER}) =>{
                     <li><Link className="--newHeader-main-row-col-menu-link" to="/">Home</Link></li>
                     <li><Link className="--newHeader-main-row-col-menu-link" to="/catalog">Catalog</Link></li>
                     <li><Link className="--newHeader-main-row-col-menu-link" to="/login">Login</Link></li>
+                    <li><Link className="--newHeader-main-row-col-menu-link" to="/cart">Cart</Link></li>
                     {STORE_USER.user && STORE_USER.user.data &&STORE_USER.user.data.user.rol === "admin"
                         ?(
                             <li><Link className="--newHeader-main-row-col-menu-link" to="/admin">Admin</Link></li>

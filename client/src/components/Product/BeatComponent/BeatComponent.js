@@ -1,9 +1,15 @@
 import './beatComponent.css';
 import React from 'react';
 import Spectrum from '../Spectrum/Spectrum';
+import { connect } from 'react-redux';
+import { addItemToCart } from '../../../stores/user/user.actions';
 
-const BeatComponent = ({ product }) => {
+const BeatComponent = ({ addItemToCartEffect, product }) => {
 
+    const handleAddToCart = (product)=>{
+        console.log(product)
+        return addItemToCartEffect("user", product)
+    }
     return (
         <div className="beatComponent--main">
             {product && product.name
@@ -38,7 +44,9 @@ const BeatComponent = ({ product }) => {
                         </div>
                         <div className="beatComponent--main-beatActions-col">
                             <button className="beatComponent--main-beatActions-col-btn">
-                                <div className="beatComponent--main-beatActions-col-btn-row">
+                                <div 
+                                onClick={()=> {return handleAddToCart(product)}}
+                                className="beatComponent--main-beatActions-col-btn-row">
                                     <div>
                                         <span className="material-icons">add_shopping_cart</span>
                                     </div>
@@ -69,5 +77,17 @@ const BeatComponent = ({ product }) => {
     )
 }
 
+const mapStateToProps =  state => {
+    return {
+      STORE_PRODUCT : state.productsReducers
+    }
+  }
+  const mapDispatchToProps = dispatch =>{
+    return {
+      addItemToCartEffect: (user, product) => dispatch(addItemToCart(user, product))  
+    }
+  }
+  
+  
+export default connect(mapStateToProps, mapDispatchToProps)(BeatComponent);
 
-export default BeatComponent;
