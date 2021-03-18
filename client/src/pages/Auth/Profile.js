@@ -2,7 +2,7 @@ import React, { useEffect } from 'react';
 import { connect } from 'react-redux';
 import {fetchUser} from '../../stores/user/user.actions'
 import {useHistory} from 'react-router-dom'
-
+import Spiner from '../../assets/images/Spinner.svg';
 import './Profile.css'
 
 const Profile = ({fetchUserEffect, STORE_USER}) =>{
@@ -25,7 +25,14 @@ const Profile = ({fetchUserEffect, STORE_USER}) =>{
 
 
     return (
-        <div>
+        <>
+        {STORE_USER.userLoading
+          ?(
+            <div className="loadding-div">
+                <div className="loader"></div>
+            </div>
+          ):(
+            <div>
             {STORE_USER.user && STORE_USER.user.data
               ?(
                 <div>
@@ -39,6 +46,9 @@ const Profile = ({fetchUserEffect, STORE_USER}) =>{
             }
             
         </div>
+          )
+        }
+        </>
 
     )
 }
