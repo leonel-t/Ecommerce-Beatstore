@@ -6,7 +6,9 @@ body {
 .subContainer{
   padding-top: 80px;
 }
-
+.divider{
+  min-height: 150px;
+}
 .subContainer input, textarea{
   color:rgb(128, 128, 128);
     background: transparent;

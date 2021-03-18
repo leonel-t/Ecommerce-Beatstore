@@ -255,6 +255,9 @@ export default function Form() {
           </button>
         </div>
       </form>
+      <div className="divider">
+
+      </div>
     </div>
   );
 }
