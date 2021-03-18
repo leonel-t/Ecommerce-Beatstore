@@ -3,6 +3,12 @@
 body {
   margin: 0;
 } */
+.subContainer{
+  padding-top: 80px;
+}
+.divider{
+  min-height: 150px;
+}
 .subContainer input, textarea{
   color:rgb(128, 128, 128);
     background: transparent;
@@ -24,7 +30,7 @@ body {
   width: 100%;
   
   background-color:rgb(7, 7, 7);
-  padding: 10px;
+  padding: 5px;
   border: 2px solid rgb(116, 113, 113);
 }
 .column-2{

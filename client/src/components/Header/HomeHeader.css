@@ -67,7 +67,7 @@
 }
 .--newHeader-main-row-col-user{
     display: flex;
-    min-width: 200px;
+    width: 300px;
     flex-direction: row;
     justify-content: center;
     align-content: center;

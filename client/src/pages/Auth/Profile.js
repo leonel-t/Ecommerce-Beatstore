@@ -2,7 +2,6 @@ import React, { useEffect } from 'react';
 import { connect } from 'react-redux';
 import {fetchUser} from '../../stores/user/user.actions'
 import {useHistory} from 'react-router-dom'
-
 import './Profile.css'
 
 const Profile = ({fetchUserEffect, STORE_USER}) =>{
@@ -16,7 +15,7 @@ const Profile = ({fetchUserEffect, STORE_USER}) =>{
       const handleClick = (e) =>{
         e.preventDefault()
         localStorage.clear()
-        history.push("/")
+       return history.push("/login")
       }
       const handleClick2 = (e) =>{
         e.preventDefault()
@@ -25,7 +24,14 @@ const Profile = ({fetchUserEffect, STORE_USER}) =>{
 
 
     return (
-        <div>
+        <>
+        {STORE_USER.userLoading
+          ?(
+            <div className="loadding-div">
+                <div className="loader"></div>
+            </div>
+          ):(
+            <div>
             {STORE_USER.user && STORE_USER.user.data
               ?(
                 <div>
@@ -39,6 +45,9 @@ const Profile = ({fetchUserEffect, STORE_USER}) =>{
             }
             
         </div>
+          )
+        }
+        </>
 
     )
 }

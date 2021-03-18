@@ -2,7 +2,7 @@ import React from "react";
 import { BrowserRouter, Route, Switch } from "react-router-dom";
 
 //Layouts
-import { HomeLayout, PagesLayout, LoginLayout } from './Layouts/Layouts';
+import { HomeLayout, PagesLayout, LoginLayout, AdminLayout } from './Layouts/Layouts';
 
 //Pages
 import Home from "./pages/Home/Home.js";
@@ -26,8 +26,8 @@ const App = () => {
         <RouteWrapper exact path="/" component={Home} layout={HomeLayout} />
         <RouteWrapper exact path="/catalog" component={Catalog} layout={PagesLayout} />
         <RouteWrapper exact path="/product/:productId" component={Product} layout={PagesLayout} />
-        <RouteWrapper exact path="/add" component={Form} layout={PagesLayout} />
-        <RouteWrapper exact path="/admin" component={Admin} layout={PagesLayout} />
+        <RouteWrapper exact path="/add" component={Form} layout={AdminLayout} />
+        <RouteWrapper exact path="/admin" component={Admin} layout={AdminLayout} />
         <RouteWrapper exact path="/put/:id" component={PutForm} layout={PagesLayout} />
         <RouteWrapper exact path="/addCategories" component={Categories} layout={PagesLayout} />
         <RouteWrapper exact path="/login" component={Login} layout={LoginLayout} />
