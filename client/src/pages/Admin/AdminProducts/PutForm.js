@@ -5,9 +5,12 @@ import "./form.css";
 import Select from "react-select";
 import axios from "axios";
 import "../../Product/product.css";
-import { fetchOneProduct } from "../../../stores/products/products.actions";
+import { fetchOneProduct } from "../../../stores/admin/admin.actions";
+
 const PutForm = ({ STORE_ADMIN, fetchProduct }) => {
-  console.log(STORE_ADMIN);
+
+  const storeProduct = STORE_ADMIN.product;
+
   const { id } = useParams();
   useEffect(() => {
     fetchProduct(id);
@@ -17,16 +20,30 @@ const PutForm = ({ STORE_ADMIN, fetchProduct }) => {
   console.log(categories);
   const [image, setImage] = React.useState({});
   const [audio, setAudio] = React.useState();
+  const [editFiles, setEditFiles] = React.useState(false);
   const [errors, setErrors] = React.useState({});
-  const product = {
-    name: STORE_ADMIN.name,
-    description: STORE_ADMIN.description,
-    artist: STORE_ADMIN.artist,
-    price: STORE_ADMIN.price,
-    bpm: STORE_ADMIN.bpm,
-    scale: STORE_ADMIN.scale,
-    date: STORE_ADMIN.date,
-  };
+  var product = {}
+  if(storeProduct.name){
+    product = {
+      name: storeProduct.name,
+      description: storeProduct.description,
+      artist: storeProduct.artist,
+      price: storeProduct.price,
+      bpm: storeProduct.bpm,
+      scale: storeProduct.scale,
+      date: storeProduct.date,
+    };
+  }else{
+    product = {
+      name: "No Product",
+      description: "No Product",
+      artist: "No Product",
+      price: "No Product",
+      bpm: "No Product",
+      scale: "No Product",
+      date: "No Product",
+    };
+  }
   const [input, setInput] = React.useState({});
   function handleSubmit(e) {
     e.preventDefault();
@@ -39,11 +56,16 @@ const PutForm = ({ STORE_ADMIN, fetchProduct }) => {
     form.append("bpm", input.bpm);
     form.append("scale", input.scale);
     form.append("date", input.date);
-    form.append("files", image[0]);
-    form.append("files", audio[0]);
-    form.append("oldImage", STORE_ADMIN.image);
-    form.append("oldAudio", STORE_ADMIN.audio);
-    form.append("id", STORE_ADMIN.id);
+    if(image && image[0] && editFiles === "edit"){
+      form.append("files", image[0]);
+    }
+    if(audio && audio[0] && editFiles === "edit"){
+      form.append("files", audio[0]);
+    }
+    form.append("oldImage", storeProduct.image);
+    form.append("oldAudio", storeProduct.audio);
+    form.append("id", storeProduct.id);
+    form.append("editFiles", editFiles );
 
     const options = {
       method: "PUT",
@@ -65,8 +87,10 @@ const PutForm = ({ STORE_ADMIN, fetchProduct }) => {
   const handleInputChange = (event) => {
     if (event.target.name === "image") {
       setImage(event.target.files);
+      setEditFiles("edit")
     } else if (event.target.name === "audio") {
       setAudio(event.target.files);
+      setEditFiles("edit")
     } else {
       setInput({
         ...input,
@@ -238,7 +262,7 @@ const PutForm = ({ STORE_ADMIN, fetchProduct }) => {
         className="basic-multi-select"
         onChange={setCategories}
       />
-
+  
       <button
         className="submitbuton"
         type="submit"
@@ -253,7 +277,7 @@ const PutForm = ({ STORE_ADMIN, fetchProduct }) => {
 };
 const mapStateToProps = (state) => {
   return {
-    STORE_ADMIN: state.adminReducers.product,
+    STORE_ADMIN: state.adminReducers,
   };
 };
 const mapDispatchToProps = (dispatch) => {

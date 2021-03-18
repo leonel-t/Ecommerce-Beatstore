@@ -17,32 +17,55 @@ server.put("/", (req, res, next) => {
     date,
     oldImage,
     oldAudio,
+    editFiles
   } = req.body;
-  if (oldImage && oldAudio) {
+  var product;
+
+  if (editFiles === "edit") {
     let url = path.join(__dirname, "../../../uploads/");
     let img = oldImage;
     let audio = oldAudio;
     let imgPath = url + img;
     let audioPath = url + audio;
-    fs.unlinkSync(imgPath);
-    fs.unlinkSync(audioPath);
+    let aux = [];
+        aux.push(imgPath)
+        aux.push(audioPath)
+    
+        for (let i = 0; i < aux.length; i++) {
+          console.log("DELET FILES")
+          fs.unlinkSync(aux[i])
+          console.log("FILE DELETE", aux[i])
+        }
+
+        const files = req.files;
+        const imgToDb = files[0].filename;
+        const audioToDb = files[1].filename;
+
+        product = {
+          name: name,
+          description: description,
+          artist: artist,
+          price: price,
+          bpm: bpm,
+          scale: scale,
+          date: date,
+          image: imgToDb,
+          audio: audioToDb,
+        };
+
+  }else{
+
+    product = {
+      name: name,
+      description: description,
+      artist: artist,
+      price: price,
+      bpm: bpm,
+      scale: scale,
+      date: date,
+    };
+
   }
-  console.log(req.body);
-  const files = req.files;
-  const imgToDb = files[0].filename;
-  const audioToDb = files[1].filename;
-  console.log(files);
-  let product = {
-    name: name,
-    description: description,
-    artist: artist,
-    price: price,
-    bpm: bpm,
-    scale: scale,
-    date: date,
-    image: imgToDb,
-    audio: audioToDb,
-  };
 
   putControler
     .editProduct(product, id)
