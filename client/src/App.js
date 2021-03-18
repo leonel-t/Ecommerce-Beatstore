@@ -16,6 +16,7 @@ import Categories from "./pages/Admin/AdminCategories/AddCategories";
 import Login from "./pages/Login/Login.js";
 import Register from "./pages/Register/Register";
 import Results from './pages/Home/Results/Results.js';
+import Cart from "./pages/Cart/Cart";
 
 
 const App = () => {
@@ -32,6 +33,7 @@ const App = () => {
         <RouteWrapper exact path="/login" component={Login} layout={LoginLayout} />
         <RouteWrapper exact path="/results/:name" component={Results} layout={PagesLayout} />
         <RouteWrapper exact path="/register" component={Register} layout={LoginLayout} />
+        <RouteWrapper exact path="/cart" component={Cart} layout={HomeLayout} />
       </Switch>
     </BrowserRouter>
   );

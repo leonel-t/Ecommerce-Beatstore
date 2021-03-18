@@ -1,0 +1,11 @@
+.--Cart{
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: space-around;
+}
+.--Cart-items{
+    display: flex;
+    flex-direction: column;
+    width: 70%;
+}
