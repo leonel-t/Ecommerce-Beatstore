@@ -10,6 +10,10 @@ const bcrypt = require('bcrypt');
 server.use(passport.initialize());
 server.use(passport.session());
 
+const {ACCESS_TOKEN_SECRET} = process.env;
+
+//------------------------LOCAL-------------------------------
+
 passport.use(new PassportLocal({
         usernameField : 'email',
         passwordField : 'password'
@@ -37,9 +41,11 @@ passport.use(new PassportLocal({
     })
 }))
 
+//------------------------TOKEN-------------------------------
+
 passport.use('jwt',new JWTStrategy(
         { 
-          secretOrKey: 'secret',
+          secretOrKey: ACCESS_TOKEN_SECRET,
           jwtFromRequest: ExtractJWT.fromUrlQueryParameter('secret_token')
         },
         function(payload, done){
@@ -48,12 +54,10 @@ passport.use('jwt',new JWTStrategy(
 ));
 
 passport.serializeUser((user, done) => {
-  console.log("SERIALIZE:",user)
     done(null, user.id);
 })
 
 passport.deserializeUser((id, done) => {
-  console.log("DESSERIALIZE:",id)
     User.findByPk(id)
     .then(user => {
         done(null, user);

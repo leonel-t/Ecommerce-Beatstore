@@ -42,7 +42,11 @@ const Login = () => {
             console.log(error)
         })
     }
-    
+    const handleSubmitGitHub = async (e) => {
+        e.preventDefault();
+        await axios.get('http://localhost:3001/users/auth/github/')
+        .then(user => console.log(user)) 
+    }
 
     return(
         <div className="--LoginCard">
@@ -67,6 +71,7 @@ const Login = () => {
                         value={input.password}/>
                 </div>
                 <button type='submit'>Sign in</button>
+                <button onClick={handleSubmitGitHub}>Sign in with GitHub</button>
             </form>
             <span>Don't have an account?</span>
             <Link to="/register">Sign up</Link>

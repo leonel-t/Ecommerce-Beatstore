@@ -11,6 +11,9 @@ const postUserRouter = require("./users/post.users");
 const putUserRouter = require("./users/put.users")
 const deleteUserRouter = require("./users/delete.users")
 
+const githubRouter = require("./githubRoute")
+
+
 const router = Router();
 
 router.use("/products", getProductsRouter);
@@ -25,6 +28,8 @@ router.use("/users", getUserRouter);
 router.use("/users", postUserRouter);
 router.use("/users", putUserRouter);
 router.use("/users", deleteUserRouter);
+
+router.use("/", githubRouter);
 
 
 

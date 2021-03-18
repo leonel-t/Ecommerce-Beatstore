@@ -12,10 +12,11 @@ const passport = require(".././src/middlewares/passport.middleware").server
 
 var passport2 = require('passport')
 
-const logout = require('./routes/Logout')
 const secureRoute = require('./routes/secureRoutes');
 
+
 require('./db.js');
+const {ACCESS_TOKEN_SECRET} = process.env;
 
 const server = express();
 
@@ -23,7 +24,7 @@ server.name = 'API';
 
 server.use(bodyParser.urlencoded( {extended: true, limit: '50mb'} ));
 server.use(bodyParser.json({ limit: '50mb' }));
-server.use(cookieParser('secret'));
+server.use(cookieParser(ACCESS_TOKEN_SECRET));
 server.use(morgan('dev'));
 server.use((req, res, next) => {
   res.header('Access-Control-Allow-Origin', 'http://localhost:3000'); 
@@ -31,7 +32,13 @@ server.use((req, res, next) => {
   res.header('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content-Type, Accept');
   next();
 });
-server.use(session({ name: 'sid', secret:'secret', resave:false, saveUninitialized:false,}));
+server.use(session({ name: 'sid',secret:ACCESS_TOKEN_SECRET, resave:false, saveUninitialized:false, 
+  cookie:{
+    httpOnly:true,
+    secure:true,
+    maxAge: 24 * 60 * 60 * 1000
+  }
+}));
 
 
 server.use(cors);
@@ -40,7 +47,6 @@ server.use(passport);
 server.use('/', routes);
 server.use("/images", statics);
 server.use('/profile', passport2.authenticate('jwt', { session: false }), secureRoute);
-server.use('/logout', logout);
 
 
 // Error catching endware.

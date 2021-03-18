@@ -1,6 +1,8 @@
 const server = require("express").Router();
 const getUserController = require("../controllers/users/get.users")
 
+const {ACCESS_TOKEN_SECRET} = process.env;
+
 module.exports = server;
 
 
@@ -21,3 +23,18 @@ module.exports = server;
 
     }
   );
+
+
+  
+  function authenticateToken(req,res,next){
+    const authHeader = req.headers['authorization']
+    const token = authHeader && authHeader.split(' ')[1]
+    if(token === null) return res.status(401).json('invalid Token')
+
+    jwt.verify(token, ACCESS_TOKEN_SECRET, (err,user) => {
+      if(err) return res.status(403).json('access error')
+      req.user = user
+      next()
+    })
+  }
+

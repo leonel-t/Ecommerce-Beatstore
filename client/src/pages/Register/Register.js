@@ -59,30 +59,22 @@ const Register = () => {
             setErrors({
                 email:'email aready exist'
             })
-           
            }
            if(user.data.msg === 'invalid password'){
             setErrors({
                 password:'invalid password'
             })
            }
-
            if(user.data.msg === 'user already exist'){
-                console.log("redrect")
-                
                 return history.push('/register')
-               
             }
-            return history.push('/login')
-           
+            if(user.data.msg === null){
+                return history.push('/login')
+            }         
        })   
        .catch((error)=>{
             console.log(error)
         })
-
-    //    localStorage.setItem('user', JSON.stringify(user.data))
-
-  
     }
 
     return(

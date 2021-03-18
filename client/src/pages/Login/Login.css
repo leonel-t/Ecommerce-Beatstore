@@ -39,4 +39,5 @@
     background: linear-gradient(45deg, rgb(234, 50, 111), rgb(145, 27, 137));
     border: 1px solid black;
     border-radius: 5px;
+    cursor:pointer;
 }
