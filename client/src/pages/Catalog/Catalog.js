@@ -29,6 +29,8 @@ const Catalog = ({ fetchAllProductsEffect, STORE_PRODUCTS }) => {
                   name={product.name}
                   autor={product.artist}
                   image={product.image}
+                  price={product.price}
+                  product={product}
                 />
               );
             })
@@ -48,7 +50,7 @@ const mapStateToProps = (state) => {
 };
 const mapDispatchToProps = (dispatch) => {
   return {
-    fetchAllProductsEffect: () => dispatch(fetchAllProducts()),
+    fetchAllProductsEffect: () => dispatch(fetchAllProducts())
   };
 };
 

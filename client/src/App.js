@@ -3,8 +3,8 @@ import { BrowserRouter, Route, Switch } from "react-router-dom";
 
 //Layouts
 import {
-  HomeLayout,
   PagesLayout,
+  HomeLayout,
   LoginLayout,
   AdminLayout,
 } from "./Layouts/Layouts";
@@ -45,7 +45,7 @@ const App = () => {
         <RouteWrapper exact path="/admin" component={Admin} layout={AdminLayout} />
         <RouteWrapper exact path="/put/:id" component={PutForm} layout={PagesLayout} />
         <RouteWrapper exact path="/addCategories" component={Categories} layout={PagesLayout} />
-        <RouteWrapper exact path="/login" component={Login} layout={LoginLayout} />
+        <RouteWrapper exact path="/login" component={Login} layout={LoginLayout}  />
         <RouteWrapper exact path="/results/:name" component={Results} layout={PagesLayout} />
         <RouteWrapper exact path="/register" component={Register} layout={LoginLayout} />
         <RouteWrapper exact path="/cart" component={Cart} layout={PagesLayout} />
