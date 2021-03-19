@@ -45,7 +45,7 @@ const {
   Product,
   Categories,
   User,
-  Coment,
+  Comment,
   Order,
   OrderLine,
 } = sequelize.models;
@@ -54,8 +54,9 @@ const {
 // Product.hasMany(Reviews);
 Product.belongsToMany(Categories, { through: "Product_Categories" });
 Categories.belongsToMany(Product, { through: "Product_Categories" });
-User.hasMany(Coment, { as: "coments", foreignKey: "authorId" });
-Coment.belongsTo(User, { as: "author" });
+Comment.hasMany(Product, { foreignKey: "ProductId" });
+Product.belongsTo(Comment);
+
 Order.hasMany(OrderLine, { foreignKey: "orderId" });
 OrderLine.belongsTo(Order);
 
