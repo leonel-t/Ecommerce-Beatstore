@@ -1,9 +1,17 @@
+import 'js-snackbar/snackbar.css';
 import './beatComponent.css';
 import React from 'react';
 import Spectrum from '../Spectrum/Spectrum';
+import { connect } from 'react-redux';
+import { addItemToCart } from '../../../stores/user/user.actions';
+import { show, ACTION_TYPE } from 'js-snackbar';
+const BeatComponent = ({ addItemToCartEffect, product }) => {
 
-const BeatComponent = ({ product }) => {
-
+    const handleAddToCart = (product)=>{
+        console.log(product)
+        show({ text: 'PRODUCT ADDED!', pos:'bottom-center', duration: 5000, });
+        return addItemToCartEffect("user", product)
+    }
     return (
         <div className="beatComponent--main">
             {product && product.name
@@ -38,7 +46,9 @@ const BeatComponent = ({ product }) => {
                         </div>
                         <div className="beatComponent--main-beatActions-col">
                             <button className="beatComponent--main-beatActions-col-btn">
-                                <div className="beatComponent--main-beatActions-col-btn-row">
+                                <div 
+                                onClick={()=> {return handleAddToCart(product)}}
+                                className="beatComponent--main-beatActions-col-btn-row">
                                     <div>
                                         <span className="material-icons">add_shopping_cart</span>
                                     </div>
@@ -69,5 +79,17 @@ const BeatComponent = ({ product }) => {
     )
 }
 
+const mapStateToProps =  state => {
+    return {
+      STORE_PRODUCT : state.productsReducers
+    }
+  }
+  const mapDispatchToProps = dispatch =>{
+    return {
+      addItemToCartEffect: (user, product) => dispatch(addItemToCart(user, product))  
+    }
+  }
+  
+  
+export default connect(mapStateToProps, mapDispatchToProps)(BeatComponent);
 
-export default BeatComponent;

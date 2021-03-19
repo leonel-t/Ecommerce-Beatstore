@@ -2,8 +2,8 @@ import React from 'react';
 import "./Header.css"
 import Logo from '../../assets/images/logo.png'
 import { Link } from 'react-router-dom';
-
-const AdminHeader = () =>{
+import { connect } from 'react-redux';
+const AdminHeader = ({STORE_CART}) =>{
 
 
     return (
@@ -31,5 +31,12 @@ const AdminHeader = () =>{
 }
 
 
+const mapStateToProps =  state => {
+    return {
+      STORE_CART : state.userReducers.cart
+    }
+  }
+  
+  
+export default connect(mapStateToProps)(AdminHeader);
 
-export default AdminHeader;

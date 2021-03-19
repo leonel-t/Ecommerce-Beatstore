@@ -42,49 +42,14 @@ const App = () => {
           layout={PagesLayout}
         />
         <RouteWrapper exact path="/add" component={Form} layout={AdminLayout} />
-        <RouteWrapper
-          exact
-          path="/admin"
-          component={Admin}
-          layout={AdminLayout}
-        />
-        <RouteWrapper
-          exact
-          path="/put/:id"
-          component={PutForm}
-          layout={PagesLayout}
-        />
-        <RouteWrapper
-          exact
-          path="/addCategories"
-          component={Categories}
-          layout={PagesLayout}
-        />
-        <RouteWrapper
-          exact
-          path="/login"
-          component={Login}
-          layout={LoginLayout}
-        />
-        <RouteWrapper
-          exact
-          path="/results/:name"
-          component={Results}
-          layout={PagesLayout}
-        />
-        <RouteWrapper
-          exact
-          path="/register"
-          component={Register}
-          layout={LoginLayout}
-        />
-        <RouteWrapper exact path="/cart" component={Cart} layout={HomeLayout} />
-        <RouteWrapper
-          exact
-          path="/profile"
-          component={Profile}
-          layout={LoginLayout}
-        />
+        <RouteWrapper exact path="/admin" component={Admin} layout={AdminLayout} />
+        <RouteWrapper exact path="/put/:id" component={PutForm} layout={PagesLayout} />
+        <RouteWrapper exact path="/addCategories" component={Categories} layout={PagesLayout} />
+        <RouteWrapper exact path="/login" component={Login} layout={LoginLayout} />
+        <RouteWrapper exact path="/results/:name" component={Results} layout={PagesLayout} />
+        <RouteWrapper exact path="/register" component={Register} layout={LoginLayout} />
+        <RouteWrapper exact path="/cart" component={Cart} layout={PagesLayout} />
+        <RouteWrapper exact path="/profile" component={Profile} layout={LoginLayout} />
       </Switch>
     </BrowserRouter>
   );

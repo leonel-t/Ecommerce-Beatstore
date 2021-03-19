@@ -8,8 +8,10 @@ import './Header.css'
 import { useDispatch } from 'react-redux';
 import { searchProducts } from '../../stores/products/products.actions';
 
+import { connect } from 'react-redux';
 
-const Header = () =>  {
+const Header = ({STORE_CART}) =>  {
+
     const [name, setName] = useState("");
 
     const dispatch = useDispatch();
@@ -47,6 +49,19 @@ const Header = () =>  {
                     <li><Link className="--newHeader-main-row-col-menu-link" to="/catalog">Catalog</Link></li>
                     <li><Link className="--newHeader-main-row-col-menu-link" to="/login">Login</Link></li>
                     <li><Link className="--newHeader-main-row-col-menu-link" to="/admin">Admin</Link></li>
+                    <li><Link className="--newHeader-main-row-col-menu-link" to="/cart">
+                         Cart
+                         <span className="--header-cart-item-length">
+                             {STORE_CART && STORE_CART.length > 0
+                             ?(
+                                STORE_CART.length
+                             ):(
+                                 0
+                             )
+                             }
+                         </span>
+                        </Link>
+                    </li>
                 </ul>
             </div>
             <div className="--newHeader-main-row-col-user">
@@ -65,5 +80,11 @@ const Header = () =>  {
 }
 
 
-
-export default Header;
+const mapStateToProps =  state => {
+    return {
+      STORE_CART : state.userReducers.cart
+    }
+  }
+  
+  
+export default connect(mapStateToProps)(Header);
