@@ -1,10 +1,17 @@
 import "./ItemCard.css"
-import React from "react"
+import React, {useEffect} from "react"
 import { connect } from 'react-redux';
-import { deleteItemInCart } from '../../../stores/user/user.actions';
+import { fetchCart, deleteItemInCart } from '../../../stores/user/user.actions';
 import swal from "sweetalert"
 
-const ItemCard = ({ deleteItemInCartEffect, STORE_PRODUCT, id, img, name, autor, price }) => {
+const ItemCard = ({fetchCartEffect, deleteItemInCartEffect, STORE_PRODUCT, id, img, name, autor, price }) => {
+
+  var user = false;
+
+    useEffect(()=>{
+        fetchCartEffect(user)
+      },[fetchCartEffect, user]);    
+
     const handleDelete= (id, state) => {
         
         swal({
@@ -52,6 +59,7 @@ const mapStateToProps =  state => {
   }
 const mapDispatchToProps = dispatch =>{
     return {
+        fetchCartEffect: (user) => dispatch(fetchCart(user)),
         deleteItemInCartEffect: (productId, deleteAll) => dispatch(deleteItemInCart(productId, deleteAll))
     }
   }

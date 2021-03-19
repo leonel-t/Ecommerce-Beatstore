@@ -3,9 +3,9 @@ import React, {useEffect} from "react"
 import ItemCard from "../../components/Cart/ItemCard/ItemCard"
 import SummaryCard from "../../components/Cart/SummaryCard/SummaryCard";
 import { connect } from 'react-redux';
-import { fetchCart, deleteItemInCart } from '../../stores/user/user.actions';
+import { fetchCart, deleteItemInCart, getDiscountCoupon } from '../../stores/user/user.actions';
 import swal from 'sweetalert'
-const Cart = ({fetchCartEffect, deleteItemInCartEffect ,STORE_CART}) => {
+const Cart = ({fetchCartEffect, deleteItemInCartEffect, getDiscountCouponEffect ,STORE_CART, TOTAL_PRICE, SUBTOTAL_PRICE, DISCOUNT_PRICE}) => {
     var user = false;
 
     useEffect(()=>{
@@ -26,6 +26,7 @@ const Cart = ({fetchCartEffect, deleteItemInCartEffect ,STORE_CART}) => {
               swal("the cart has been emptied!", {
                 icon: "success",
               });
+                      
               return deleteItemInCartEffect(id, state)
             } else {
               swal("your cart is safe!");
@@ -59,20 +60,24 @@ const Cart = ({fetchCartEffect, deleteItemInCartEffect ,STORE_CART}) => {
                     )
                 }
             </div>
-            <SummaryCard subtotal="1210" total="1100" discount="110"/>
+            <SummaryCard funtionD={getDiscountCouponEffect} subtotal={SUBTOTAL_PRICE} total={TOTAL_PRICE} discount={DISCOUNT_PRICE}/>
         </div>
     )
 }
 
 const mapStateToProps =  state => {
     return {
-      STORE_CART : state.userReducers.cart
+      STORE_CART : state.userReducers.cart,
+      TOTAL_PRICE : state.userReducers.totalPrice,
+      SUBTOTAL_PRICE : state.userReducers.subtotalPrice,
+      DISCOUNT_PRICE : state.userReducers.coupon
     }
   }
   const mapDispatchToProps = dispatch =>{
     return {
         fetchCartEffect: (user) => dispatch(fetchCart(user)),
-        deleteItemInCartEffect: (productId, deleteAll) => dispatch(deleteItemInCart(productId, deleteAll))
+        deleteItemInCartEffect: (productId, deleteAll) => dispatch(deleteItemInCart(productId, deleteAll)),
+        getDiscountCouponEffect: (code) => dispatch(getDiscountCoupon(code)),
     }
   }
   

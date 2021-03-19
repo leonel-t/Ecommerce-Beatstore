@@ -15,6 +15,10 @@ export const ADD_ITEM_TO_CARD_FAILURE = "ADD_ITEM_TO_CARD_FAILURE";
 export const DELETE_ITEM_CART_REQUEST = "DELETE_ITEM_CART_REQUEST";
 export const DELETE_ITEM_CART_SUCCESS = "DELETE_ITEM_CART_SUCCESS";
 export const DELETE_ITEM_CART_FAILURE = "DELETE_ITEM_CART_FAILURE";
+export const GET_CALCULATOR_TOTAL_PRICE = "GET_CALCULATOR_TOTAL_PRICE";
+//COUPON
+export const GET_DISCOUNT_COUPON = "GET_DISCOUNT_COUPON";
+
 //GET USER
 export const fetchUser = () => {
 
@@ -61,6 +65,13 @@ export const getUserFailure = (error) =>{
     }
 } 
 
+//GET CALCULATOR TOTAL PRICE
+export const getCalculator = () =>{
+    return {
+        type:GET_CALCULATOR_TOTAL_PRICE,
+    }
+} 
+
 //GET CART
 export const fetchCart = (user) => {
     if(user){
@@ -76,7 +87,9 @@ export const fetchCart = (user) => {
         }
     }else{
         return (dispatch)=>{
-            dispatch(getCartSuccess(user, false))
+            dispatch(getCartSuccess(user, false));
+            dispatch(getCalculator());
+            
         }
     }
 }
@@ -145,11 +158,25 @@ export const addItemToCartFailure = (error) =>{
     }
 } 
 
+//COUPON CODE
+export const getDiscountCoupon = (code) => {
+    return (dispatch)=>{
+        dispatch(getDiscountCouponAction(code));
+        dispatch(fetchCart());
+    }
+}
+export const getDiscountCouponAction = (code) =>{
+    return {
+        type: GET_DISCOUNT_COUPON,
+        payload: code
+    }
+} 
 
 //DELETE ITEM CART
 export const deleteItemInCart = (productId, deleteAll) => {
     return (dispatch)=>{
-        return dispatch(deleteItemCartSuccess(productId, deleteAll))
+        dispatch(deleteItemCartSuccess(productId, deleteAll));
+        dispatch(fetchCart());
     }
 }
 
