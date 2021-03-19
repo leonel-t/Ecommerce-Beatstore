@@ -1,5 +1,8 @@
 const server = require("express").Router();
 const usersController = require("../../controllers/users/get.users");
+
+
+
 module.exports = server;
 
   server.get("/", (req, res, next) => {
@@ -25,6 +28,12 @@ module.exports = server;
         res.status(400).json(error);
       });
   });
+
+  
+
+
+
+
 
 
 

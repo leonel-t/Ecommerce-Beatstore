@@ -1,9 +1,21 @@
-import React, { useState } from 'react';
-import axios from 'axios'
+import React, { useEffect, useState } from 'react';
+import axios, {AxiosResponse} from 'axios'
 import { Link, useHistory } from "react-router-dom";
 import "./Login.css"
 
+
 const Login = () => {
+
+    // const [cagada, setCagada] = useState({})
+
+    // useEffect(()=>{
+    //     axios.get('http://localhost:3001/users',{withCredentials: true}).then((res: AxiosResponse)=>{
+    //             if(res.data){
+    //                 setCagada({res.data})
+    //             }
+    //     })
+    // },[])
+
     const history = useHistory();
     const [input, setInput] = useState({
         email: "",
@@ -42,7 +54,16 @@ const Login = () => {
             console.log(error)
         })
     }
-    
+    const loginGitHub = async (e) => {
+        e.preventDefault();  
+        window.open('http://localhost:3001/auth/github/', "_self")
+
+    }
+
+    const loginGoogle = async (e) => {
+        e.preventDefault();
+        window.open('http://localhost:3001/auth/google/', "_self")
+    }
 
     return(
         <div className="--LoginCard">
@@ -66,7 +87,12 @@ const Login = () => {
                         onChange={handleInputChange} 
                         value={input.password}/>
                 </div>
-                <button type='submit'>Sign in</button>
+                <div className="--Submit-buttons">
+                    <button type='submit'>Sign in</button>
+                    <button id="github" onClick={loginGitHub} />
+                    <button id='google' onClick={loginGoogle} />
+                </div>
+
             </form>
             <span>Don't have an account?</span>
             <Link to="/register">Sign up</Link>
