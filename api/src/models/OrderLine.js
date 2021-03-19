@@ -1,18 +1,18 @@
 const { DataTypes } = require("sequelize");
 
 module.exports = (sequelize) => {
-  sequelize.define("orderline", {
+  sequelize.define("orderLine", {
     productId:{
         type: DataTypes.INTEGER,
         allowNull: false,
       },
     price:{
         type: DataTypes.DECIMAL,
-        allowNull: false,
+        allowNull: true,
       },
     subtotal:{
         type: DataTypes.DECIMAL,
-        allowNull: false,
+        allowNull: true,
       },
     orderId:{
         type: DataTypes.INTEGER,
