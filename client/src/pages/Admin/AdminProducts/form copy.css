@@ -1,5 +1,11 @@
 
-
+/* 
+body {
+  margin: 0;
+} */
+.subContainer{
+  padding-top: 80px;
+}
 .divider{
   min-height: 150px;
 }
@@ -7,7 +13,7 @@
   color:rgb(128, 128, 128);
     background: transparent;
     border: none;
-    border-bottom: 1px solid #0004e4;
+    border-bottom: 1px solid #535353;
     display: block;
 }
 .subContainer input,textarea{width:100%;display:block}
@@ -23,9 +29,9 @@
   justify-content:space-around;
   width: 100%;
   
-  background-color:rgb(22, 22, 22);
+  background-color:rgb(59, 0, 107);
   padding: 5px;
-  border: 2px solid rgb(79, 0, 170);
+  border: 2px solid rgb(116, 113, 113);
 }
 .column-2{
   padding: 20px;

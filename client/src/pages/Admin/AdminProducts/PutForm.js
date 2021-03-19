@@ -1,4 +1,4 @@
-import React, {useEffect } from "react";
+import React, { useEffect } from "react";
 import { useParams } from "react-router-dom";
 import { connect } from "react-redux";
 import "./form.css";
@@ -7,6 +7,7 @@ import axios from "axios";
 import { useHistory } from "react-router-dom";
 import "../../Product/product.css";
 import { fetchOneProduct } from "../../../stores/admin/admin.actions";
+import Admin from "../Admin";
 
 const PutForm = ({ STORE_ADMIN, fetchProduct }) => {
   const history = useHistory();
@@ -25,8 +26,20 @@ const PutForm = ({ STORE_ADMIN, fetchProduct }) => {
   const [editImage, setEditImage] = React.useState(false);
   const [editAudio, setEditAudio] = React.useState(false);
   const [errors, setErrors] = React.useState({});
-  var product = {}
-  if(storeProduct.name){
+  const [cat, setCat] = React.useState([]);
+  useEffect(() => {
+    const datos = async () => {
+      return await fetch("http://localhost:3001/categories")
+        .then((response) => response.json())
+        .then((optionCategories) => {
+          return setCat(optionCategories);
+        });
+    };
+
+    datos();
+  }, []);
+  var product = {};
+  if (storeProduct.name) {
     product = {
       name: storeProduct.name,
       description: storeProduct.description,
@@ -36,7 +49,7 @@ const PutForm = ({ STORE_ADMIN, fetchProduct }) => {
       scale: storeProduct.scale,
       date: storeProduct.date,
     };
-  }else{
+  } else {
     product = {
       name: "No Product",
       description: "No Product",
@@ -59,18 +72,18 @@ const PutForm = ({ STORE_ADMIN, fetchProduct }) => {
     form.append("bpm", input.bpm);
     form.append("scale", input.scale);
     form.append("date", input.date);
-    if(image && image[0] && editFiles === "edit"){
+    if (image && image[0] && editFiles === "edit") {
       form.append("files", image[0]);
     }
-    if(audio && audio[0] && editFiles === "edit"){
+    if (audio && audio[0] && editFiles === "edit") {
       form.append("files", audio[0]);
     }
     form.append("oldImage", storeProduct.image);
     form.append("oldAudio", storeProduct.audio);
     form.append("id", storeProduct.id);
-    form.append("editFiles", editFiles );
-    form.append("editImage", editImage );
-    form.append("editAudio", editAudio );
+    form.append("editFiles", editFiles);
+    form.append("editImage", editImage);
+    form.append("editAudio", editAudio);
 
     const options = {
       method: "PUT",
@@ -82,7 +95,7 @@ const PutForm = ({ STORE_ADMIN, fetchProduct }) => {
     axios
       .request(options)
       .then(function (response) {
-        return history.push('/admin')
+        return history.push("/admin");
       })
       .catch(function (error) {
         console.error(error);
@@ -92,12 +105,12 @@ const PutForm = ({ STORE_ADMIN, fetchProduct }) => {
   const handleInputChange = (event) => {
     if (event.target.name === "image") {
       setImage(event.target.files);
-      setEditFiles("edit")
-      setEditImage("edit")
+      setEditFiles("edit");
+      setEditImage("edit");
     } else if (event.target.name === "audio") {
       setAudio(event.target.files);
-      setEditFiles("edit")
-      setEditAudio("edit")
+      setEditFiles("edit");
+      setEditAudio("edit");
     } else {
       setInput({
         ...input,
@@ -145,141 +158,147 @@ const PutForm = ({ STORE_ADMIN, fetchProduct }) => {
     return errors;
   }
 
-  const option = [
-    { value: "rock", label: "Rock" },
-    { value: "pop", label: "Pop" },
-    { value: "lo-fi", label: "Lo-fi" },
-    { value: "chill-hop", label: "Chill-Hop" },
-  ];
   return (
-    <form
-      enctype="multipart/form-data"
-      className="formAdd"
-      onSubmit={(e) => handleSubmit(e)}
-    >
-      <label>name</label>
-      {errors.name && <p className="danger">{errors.name}</p>}
+    <div class="subContainer">
+      <Admin />
 
-      <input
-        className={`${errors.name && "danger"}`}
-        name="name"
-        placeholder={product.name}
-        onChange={(e) => {
-          handleInputChange(e);
-        }}
-      />
-      <label>description</label>
-
-      {errors.description && <p className="danger">{errors.description}</p>}
-      <textarea
-        className={`${errors.description && "danger"}`}
-        name="description"
-        placeholder={product.description}
-        onChange={(e) => {
-          handleInputChange(e);
-        }}
-      ></textarea>
-      <label>artist</label>
-      {errors.artist && <p className="danger">{errors.artist}</p>}
-
-      <input
-        className={`${errors.artist && "danger"}`}
-        name="artist"
-        placeholder={product.artist}
-        onChange={(e) => {
-          handleInputChange(e);
-        }}
-      ></input>
-
-      <label>price</label>
-      {errors.price && <p className="danger">{errors.price}</p>}
-
-      <input
-        className={`${errors.price && "danger"}`}
-        name="price"
-        placeholder={product.price}
-        type="number"
-        onChange={(e) => {
-          handleInputChange(e);
-        }}
-      ></input>
-
-      <label>bpm</label>
-      {errors.bpm && <p className="danger">{errors.bpm}</p>}
-
-      <input
-        className={`${errors.bpm && "danger"}`}
-        name="bpm"
-        type="number"
-        placeholder={product.bpm}
-        onChange={(e) => {
-          handleInputChange(e);
-        }}
-      ></input>
-      <label>scale</label>
-      {errors.scale && <p className="danger">{errors.scale}</p>}
-
-      <input
-        className={`${errors.scale && "danger"}`}
-        name="scale"
-        placeholder={product.scale}
-        onChange={(e) => {
-          handleInputChange(e);
-        }}
-      ></input>
-      <label>date</label>
-      {errors.date && <p className="danger">{errors.date}</p>}
-
-      <input
-        className={`${errors.date && "danger"}`}
-        name="date"
-        placeholder={product.date}
-        onChange={(e) => {
-          handleInputChange(e);
-        }}
-      ></input>
-
-      <label>image file</label>
-      {errors.image && <p className="danger">{errors.image}</p>}
-
-      <input
-        className={`${errors.image && "danger"}`}
-        type="file"
-        name="image"
-        onChange={(e) => {
-          handleInputChange(e);
-        }}
-      ></input>
-      <label>audio file</label>
-      {errors.audio && <p className="danger">{errors.audio}</p>}
-
-      <input
-        className={`${errors.audio && "danger"}`}
-        type="file"
-        name="audio"
-        onChange={(e) => {
-          handleInputChange(e);
-        }}
-      ></input>
-      <label>categories</label>
-
-      <Select
-        isMulti
-        options={option}
-        className="basic-multi-select"
-        onChange={setCategories}
-      />
-  
-      <button
-        className="submitbuton"
-        type="submit"
-        onChange={(e) => {
-          handleInputChange(e);
-        }}
+      <h2>Complete product data:</h2>
+      <form
+        enctype="multipart/form-data"
+        class="container formAdd"
+        onSubmit={(e) => handleSubmit(e)}
       >
-        Submit
-      </button>
-    </form>
+        <div class="column-1 box">
+          <label>Name</label>
+          {errors.name && <p className="danger">{errors.name}</p>}
+
+          <input
+            className={`${errors.name && "danger"}`}
+            name="name"
+            placeholder={product.name}
+            onChange={(e) => {
+              handleInputChange(e);
+            }}
+          />
+          <label>Description</label>
+
+          {errors.description && <p className="danger">{errors.description}</p>}
+          <textarea
+            className={`${errors.description && "danger"}`}
+            placeholder={product.description}
+            name="description"
+            onChange={(e) => {
+              handleInputChange(e);
+            }}
+          ></textarea>
+          <label>Artist</label>
+          {errors.artist && <p className="danger">{errors.artist}</p>}
+
+          <input
+            className={`${errors.artist && "danger"}`}
+            name="artist"
+            placeholder={product.artist}
+            onChange={(e) => {
+              handleInputChange(e);
+            }}
+          ></input>
+
+          <label>Price</label>
+          {errors.price && <p className="danger">{errors.price}</p>}
+
+          <input
+            placeholder={product.price}
+            className={`${errors.price && "danger"}`}
+            name="price"
+            type="number"
+            onChange={(e) => {
+              handleInputChange(e);
+            }}
+          ></input>
+
+          <label>BPM</label>
+          {errors.bpm && <p className="danger">{errors.bpm}</p>}
+
+          <input
+            placeholder={product.bpm}
+            className={`${errors.bpm && "danger"}`}
+            name="bpm"
+            type="number"
+            onChange={(e) => {
+              handleInputChange(e);
+            }}
+          ></input>
+        </div>
+        <div class="column-2 box">
+          <label>Scale</label>
+          {errors.scale && <p className="danger">{errors.scale}</p>}
+
+          <input
+            placeholder={product.scale}
+            className={`${errors.scale && "danger"}`}
+            name="scale"
+            onChange={(e) => {
+              handleInputChange(e);
+            }}
+          ></input>
+          <label>Date</label>
+
+          {errors.date && <p className="danger">{errors.date}</p>}
+
+          <input
+            placeholder={product.date}
+            className={`${errors.date && "danger"}`}
+            type="date"
+            name="date"
+            onChange={(e) => {
+              handleInputChange(e);
+            }}
+          ></input>
+
+          <label>Image file</label>
+          {/* {errors.image && <p className="danger">{errors.image}</p>} */}
+
+          <input
+            // className={`${errors.image && "danger"}`}
+            type="file"
+            name="image"
+            onChange={(e) => {
+              handleInputChange(e);
+            }}
+          ></input>
+          <label>Audio file</label>
+          {/* {errors.audio && <p className="danger">{errors.audio}</p>} */}
+
+          <input
+            // className={`${errors.audio && "danger"}`}
+            type="file"
+            name="audio"
+            onChange={(e) => {
+              handleInputChange(e);
+            }}
+          ></input>
+          <label>Categories</label>
+
+          <Select
+            isMulti
+            name="selectCat"
+            options={cat}
+            className="basic-multi-select"
+            onChange={setCategories}
+          />
+          <button
+            className="submitbuton"
+            type="submit"
+            onChange={(e) => {
+              handleInputChange(e);
+            }}
+          >
+            Submit
+          </button>
+        </div>
+      </form>
+      <div className="divider"></div>
+    </div>
   );
 };
 const mapStateToProps = (state) => {
