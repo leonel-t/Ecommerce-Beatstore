@@ -76,6 +76,37 @@ server.post(
     }
   );
 
+  server.post(
+    "/login/github",
+    function (req, res, next) {
+      passport.authenticate(
+          "local",
+          { session: false },
+          function (err, user, info) {
+          if (err) return next(err);
+          if (!user) return next(info);
+            req.logIn(user, { session: false }, function (err) {
+              if (err) return next(err);
+              const token = jwt.sign({id: user.id,}, ACCESS_TOKEN_SECRET,{expiresIn: "10m"});
+              const dataUser = {
+                id: user.id,
+                email: user.email,
+                name: user.name,
+                rol: user.rol,
+              };
+              const data = { msg: "Login successful", user: dataUser, token };
+              return res.status(200).json(data);
+            });
+          }
+        )(req, res, next);
+      },
+      function (err, req, res, next) {
+        if (err) {
+          res.status(200).json(err);
+        }
+      }
+    );
+
 server.post("/logout",(req, res) => {
   console.log(req.session)
         req.logout()   

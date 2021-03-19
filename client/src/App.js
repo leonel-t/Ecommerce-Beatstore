@@ -18,6 +18,7 @@ import Register from "./pages/Register/Register";
 import Results from './pages/Home/Results/Results.js';
 import Cart from "./pages/Cart/Cart";
 import Profile from './pages/Auth/Profile'
+import LoginGithub from './pages/Login/LoginGithub'
 
 
 const App = () => {
@@ -36,6 +37,7 @@ const App = () => {
         <RouteWrapper exact path="/register" component={Register} layout={LoginLayout} />
         <RouteWrapper exact path="/cart" component={Cart} layout={HomeLayout} />
         <RouteWrapper exact path="/profile" component={Profile} layout={LoginLayout} />
+        <RouteWrapper exact path="/login/github/:email/:password" component={LoginGithub} layout={PagesLayout} />
       </Switch>
     </BrowserRouter>
   );

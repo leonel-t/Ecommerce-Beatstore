@@ -2,6 +2,10 @@ const { DataTypes } = require("sequelize");
 
 module.exports = (sequelize) => {
   sequelize.define("user", {
+    githubId:{
+      type: DataTypes.STRING,
+      allowNull: true
+    },
     name: {
       type: DataTypes.STRING,
       allowNull: false,
@@ -14,7 +18,7 @@ module.exports = (sequelize) => {
       allowNull: false,
       validate: {
         len:{
-          args: [6,12],
+          args: [6,30],
           msg: 'invalid password'
         }
       }

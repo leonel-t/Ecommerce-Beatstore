@@ -32,12 +32,10 @@ server.use((req, res, next) => {
   res.header('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content-Type, Accept');
   next();
 });
-server.use(session({ name: 'sid',secret:ACCESS_TOKEN_SECRET, resave:false, saveUninitialized:false, 
-  cookie:{
-    httpOnly:true,
-    secure:true,
-    maxAge: 24 * 60 * 60 * 1000
-  }
+server.use(session({ 
+  secret:ACCESS_TOKEN_SECRET,
+  resave:false, 
+  saveUninitialized:false, 
 }));
 
 

@@ -1,6 +1,9 @@
 const server = require('express').Router();
 const passport = require("passport");
 var GitHubStrategy = require('passport-github').Strategy;
+const { User } = require("../db");
+
+require('../middlewares/cors.middleware')
 
 const {GITHUB_ID,GITHUB_SECRET} = process.env;
 
@@ -11,23 +14,31 @@ passport.use(new GitHubStrategy({
     clientSecret: GITHUB_SECRET,
     callbackURL: "http://localhost:3001/auth/github/callback"
   },
-  function(accessToken, refreshToken, profile, done) {
-    // User.findOrCreate({ githubId: profile.id }, function (err, user) {}) 
-    console.log(profile)
-    return done(null, profile);
-  }
+  function(accessToken, refreshToken, profile, cb) {
+    var newUser = {
+      githubId: profile.id,
+      name: profile.displayName,
+      email: profile.username +"@gmail.com",
+      password_virtual: "12345678"
+    }
+    User.findOrCreate({where: {githubId: newUser.githubId}, defaults: newUser})
+    .spread(function(user, created) {
+    console.log(user.get({
+      plain: true
+    }))
+    return cb(null,profile)
+  })
+}
 ));
-  
 
 server.use(passport.initialize());
 server.use(passport.session());
 
-passport.serializeUser((user, done) => {
-    done(null, user.id);
-})
+passport.serializeUser(function(user, done) {
+  done(null, user);
+});
 
-passport.deserializeUser((id, done) => {
-        done(null, user);
-})
-
+passport.deserializeUser(function(user, done) {
+  done(null, user);
+});
 module.exports = { passport, server };

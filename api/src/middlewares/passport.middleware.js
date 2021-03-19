@@ -9,7 +9,6 @@ const bcrypt = require('bcrypt');
 
 server.use(passport.initialize());
 server.use(passport.session());
-
 const {ACCESS_TOKEN_SECRET} = process.env;
 
 //------------------------LOCAL-------------------------------
