@@ -88,6 +88,19 @@
     text-align: center;
     cursor:pointer;
 }
+.beatComponent--main-beatActions-col-btn:active{
+    height: 60px;
+    width: 180px;
+    margin: 5px;
+    border: none;
+    background-color: #3a0641;
+    border-radius: 10px;
+    outline: none;
+    color:antiquewhite;
+    font-size: 1.3rem;
+    text-align: center;
+    cursor:pointer;
+}
 
 .beatComponent--main-beatInfo-col h1{
     margin:15px;
