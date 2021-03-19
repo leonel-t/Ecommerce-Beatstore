@@ -1,5 +1,6 @@
 import React from "react";
 import "./addCategories.css";
+import Admin from "../Admin";
 
 function AddCategories() {
   const [input, setInput] = React.useState({
@@ -46,6 +47,7 @@ function AddCategories() {
   };
   return (
     <form className="catAdd" onSubmit={(e) => handleSubmit(e)}>
+      <Admin />
       <h1>Add Category:</h1>
       <div>
         <p>name:</p>

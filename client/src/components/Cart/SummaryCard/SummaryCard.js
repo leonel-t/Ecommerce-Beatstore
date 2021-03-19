@@ -1,14 +1,18 @@
 import "./SummaryCard.css"
-import React from "react"
+import React, { useState } from "react"
 
 
-const SummaryCard = ({subtotal, total, discount}) => {
+const SummaryCard = ({funtionD, subtotal, total, discount}) => {
+    const [code,setCode] = useState("")
     return (
         <div className="--SummaryCard">
             <span className="--SummaryCard-span">Got promo code?</span>
-            <form>
-                <input className="--SummaryCard-code" placeholder="Type code..."/>
-                <button className="--SummaryCard-buttoncode">Apply</button>
+            <form onSubmit={(e)=> {
+                e.preventDefault()
+                return funtionD(code)
+            }}>
+                <input name="code" value={code} onChange={(e)=>setCode(e.target.value)} className="--SummaryCard-code" placeholder="Type code..."/>
+                <button type="submit" className="--SummaryCard-buttoncode">Apply</button>
             </form>
             <div className="--SummaryCard-sub">
                 <span>Subtotal</span>

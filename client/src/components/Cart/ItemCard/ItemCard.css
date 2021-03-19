@@ -36,3 +36,8 @@
     margin-left: 10px;
     color: white;
 }
+.--ItemCard-deletItem:hover{
+    color:red;
+    cursor: pointer;
+    font-size: 1.8rem;
+}
