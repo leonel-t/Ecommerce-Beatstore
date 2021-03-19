@@ -21,10 +21,10 @@ const postOrder = require("./order/post.order");
 const putOrder = require("./order/put.order");
 const deleteOrder = require("./order/delete.order");
 
-const getOrderLine = require("./order-line/get.orderLine");
-const postOrderLine = require("./order-line/post.orderLine");
-const putOrderLine = require("./order-line/put.orderLine");
-const deleteOrderLine = require("./order-line/delete.orderLine");
+const getOrderLine = require("./orderline/get.orderLine");
+const postOrderLine = require("./orderline/post.orderLine");
+const putOrderLine = require("./orderline/put.orderLine");
+const deleteOrderLine = require("./orderline/delete.orderLine");
 
 const router = Router();
 
@@ -43,10 +43,10 @@ router.use("/order", postOrder);
 router.use("/order", putOrder);
 router.use("/order", deleteOrder);
 
-router.use("/order-line", getOrderLine);
-router.use("/order-line", postOrderLine);
-router.use("/order-line", putOrderLine);
-router.use("/order-line", deleteOrderLine);
+router.use("/orderline", getOrderLine);
+router.use("/orderline", postOrderLine);
+router.use("/orderline", putOrderLine);
+router.use("/orderline", deleteOrderLine);
 
 router.use("/users", getUserRouter);
 router.use("/users", postUserRouter);
