@@ -222,3 +222,27 @@
     border-radius: 5px;
     color:rgb(247, 242, 248);
 }
+
+.snackbar-container{
+    max-width: 150px !important;
+    min-width: 150px !important;
+    width: 150px !important;
+    background-color: rgb(156, 9, 161) !important; 
+    transition: all 500ms ease;
+    transition-property: top, right, bottom, left, opacity;
+    font-family: Roboto, sans-serif;
+    font-size: 14px;
+    min-height: 14px;
+    position: fixed;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: white;
+    line-height: 22px;
+    padding: 18px 24px;
+    bottom: 0;
+    top: 0;
+    opacity: 0;
+    border-radius: 5px;
+    z-index: 9999;
+}

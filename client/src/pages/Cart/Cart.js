@@ -4,14 +4,35 @@ import ItemCard from "../../components/Cart/ItemCard/ItemCard"
 import SummaryCard from "../../components/Cart/SummaryCard/SummaryCard";
 import { connect } from 'react-redux';
 import { fetchCart, deleteItemInCart } from '../../stores/user/user.actions';
+import swal from 'sweetalert'
 const Cart = ({fetchCartEffect, deleteItemInCartEffect ,STORE_CART}) => {
     var user = false;
 
     useEffect(()=>{
-        
         fetchCartEffect(user)
       },[fetchCartEffect, user]);    
     
+      const handleDelete= (id, state) => {
+        
+        swal({
+            title: "Are you sure?",
+            text: "you are about to empty the cart!",
+            icon: "warning",
+            buttons: true,
+            dangerMode: true,
+          })
+          .then((willDelete) => {
+            if (willDelete) {
+              swal("the cart has been emptied!", {
+                icon: "success",
+              });
+              return deleteItemInCartEffect(id, state)
+            } else {
+              swal("your cart is safe!");
+            }
+          });
+
+    }
     return (
         <div className="--Cart">
             <div className="--Cart-items">
@@ -28,7 +49,7 @@ const Cart = ({fetchCartEffect, deleteItemInCartEffect ,STORE_CART}) => {
                         </div>
                         <div>
                             <button
-                            onClick={()=>deleteItemInCartEffect(null, true)}
+                            onClick={()=>handleDelete(null, true)}
                             >Empy Cart</button>
                         </div>
                       </>

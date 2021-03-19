@@ -1,13 +1,15 @@
+import 'js-snackbar/snackbar.css';
 import './beatComponent.css';
 import React from 'react';
 import Spectrum from '../Spectrum/Spectrum';
 import { connect } from 'react-redux';
 import { addItemToCart } from '../../../stores/user/user.actions';
-
+import { show, ACTION_TYPE } from 'js-snackbar';
 const BeatComponent = ({ addItemToCartEffect, product }) => {
 
     const handleAddToCart = (product)=>{
         console.log(product)
+        show({ text: 'PRODUCT ADDED!', pos:'bottom-center', duration: 5000, });
         return addItemToCartEffect("user", product)
     }
     return (
