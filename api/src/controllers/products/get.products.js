@@ -1,4 +1,4 @@
-const { Product, Categories } = require("../../db");
+const { Product, Categories, Comment } = require("../../db");
 const Sequelize = require("sequelize");
 const Op = Sequelize.Op;
 
@@ -9,6 +9,10 @@ module.exports = {
         {
           model: Categories,
           as: "categories",
+        },
+        {
+          model: Comment,
+          as: "comments",
         },
       ],
     });
@@ -27,10 +31,17 @@ module.exports = {
   },
   findById(id) {
     return Product.findOne({
-      where: { id: id },
+      where:{
+        id:id
+      },
       include: [
         {
           model: Categories,
+          as: "categories",
+        },
+        {
+          model: Comment,
+          as: "comments",
         },
       ],
     });
