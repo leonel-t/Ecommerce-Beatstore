@@ -26,7 +26,17 @@ const postOrderLine = require("./orderline/post.orderLine");
 const putOrderLine = require("./orderline/put.orderLine");
 const deleteOrderLine = require("./orderline/delete.orderLine");
 
+const getComments = require("./comments/get.comments");
+const postComments = require("./comments/post.comments");
+const putComments = require("./comments/put.comments");
+const deleteComments = require("./comments/delete.comments");
+
 const router = Router();
+
+router.use("/comments", getComments);
+router.use("/comments", postComments);
+router.use("/comments", putComments);
+router.use("/comments", deleteComments);
 
 router.use("/products", getProductsRouter);
 router.use("/products", postProductsRouter);
@@ -54,7 +64,5 @@ router.use("/users", putUserRouter);
 router.use("/users", deleteUserRouter);
 
 router.use("/", githubRouter);
-
-
 
 module.exports = router;
