@@ -44,11 +44,6 @@ module.exports = {
                       name: {
                           [Op.like]: '%' + inputValue + '%'
                       }
-                  },
-                  {
-                      description: {
-                          [Op.like]: '%' + inputValue + '%'
-                      }
                   }
               ]
           },

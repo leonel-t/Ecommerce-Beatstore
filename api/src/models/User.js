@@ -2,6 +2,10 @@ const { DataTypes } = require("sequelize");
 
 module.exports = (sequelize) => {
   sequelize.define("user", {
+    googleId:{
+      type: DataTypes.STRING,
+      allowNull: true
+    },
     githubId:{
       type: DataTypes.STRING,
       allowNull: true

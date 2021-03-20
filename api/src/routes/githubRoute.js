@@ -15,7 +15,7 @@ server.get('/auth/github',
 server.get('/auth/github/callback', 
   passport.authenticate('github', { failureRedirect: 'http://localhost:3000/' }),
   function (req, res) {   
-          console.log("REQUSERID",req.user)
+          console.log(req.user)
           res.redirect(`http://localhost:3000/login/github/${req.user.username}@gmail.com/12345678`);
   });
 
@@ -29,7 +29,7 @@ server.get('/auth/google/callback',
   function(req, res) {
     // Successful authentication, redirect home.
     console.log(req.user)
-    res.redirect('http://localhost:3000/login');
+    res.redirect(`http://localhost:3000/login/github/${req.user.name.familyName}@gmail.com/12345678`);
   });
 
 
@@ -50,6 +50,6 @@ server.get('/logout', (req, res) => {
       path: '/'
     });
     req.session.destroy(function (err) {
-      res.redirect('/');
+      res.redirect('http://localhost:3000/');
     });
 });

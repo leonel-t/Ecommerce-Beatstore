@@ -1,49 +1,105 @@
 .--RegisterCard{
+    margin-top: 3%;
+    width: 100%;
     display: flex;
-    flex-direction: column;
-    align-items: center;
-}
-.--RegisterCard-form{
-    width: 200px;
 }
 .--RegisterCard h2{
-    color: white;
+    font-size: 1.2em;
+    text-align: center;
+    color: rgb(141, 129, 129);
+    text-shadow: 0px 0px 5px rgb(70, 10, 139);
 }
-.--RegisterCard p{
-    margin: 0px;
+
+.--RegisterCardAll{
+    width: 30%;
+    background-color: rgba(22, 22, 22, 1);
+    border-radius: 10px;    
+    box-shadow: 0px 0px 10px rgb(137, 76, 206);
+    margin-left: auto;
+    margin-right: auto;
 }
-.--RegisterCard span{
-    margin: 0px;
-    color: white;
-}
-.--RegisterCard a{
-    margin: 0px;
-    color: #eb3270;
+
+.--RegisterCard-form{
+    width: 60%;
+    margin-left: auto;
+    margin-right: auto;
+    text-align: center;
 }
 .--RegisterCard-title{
+    margin: 5px;
     color: white;
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
 }
 .--RegisterCard-form-input{
     width: 100%;
     height: 30px;
-    padding: 0px 12px;
-    font-size: 14px;
-    color: black;
-    background: white;
+    margin-bottom: 0px;
+    font-size: 12px;
+    color: white;
     border: 1px solid white;
     border-radius: 5px;
+    padding: 0 0 0 5px;
 }
+.--RegisterCard-form-input:active{
+    background-color: white;
+}
+.--RegisterCard-form-input:valid{
+    background-color: rgb(19, 18, 18);
+    border: 2px solid rgb(70, 10, 139);
+}
+.--RegisterCard-form-input:invalid{
+    background-color: rgb(19, 18, 18);
+    border: 2px solid rgb(136, 18, 128);
+}
+.--RegisterCard-form-input::placeholder{
+    text-align: center;
+    color: white;
+}
+
 .--RegisterCard-form button{
-    width: 100%;
-    height: 30px;
-    margin: 5px;
+    width: 90%;
+    height: 35px;
+    font-size: 0.9em;
+    margin: 20px 1px 5px ;
     padding: 0px 12px;
-    background: linear-gradient(45deg, rgb(234, 50, 111), rgb(145, 27, 137));
+    background: linear-gradient(45deg, rgb(71, 8, 87), rgb(136, 18, 128));
     border: 1px solid black;
     border-radius: 5px;
+    cursor:pointer;
+    color: white;
+    font-family:-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+}
+.--RegisterCard-form button:hover{
+    background: linear-gradient(45deg, rgb(45, 9, 55), rgb(87, 20, 82));
 }
 .danger {
     color: #d4c;
     font-size: 1em;
     font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+}
+.foots{
+    width: 100%;
+    text-align: center;
+    margin: 10px 0px ;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+} 
+.foots span{
+    width: 100%;
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+    font-weight: bold;
+    color: rgb(141, 129, 129);
+    text-shadow: 0px 0px 5px rgb(70, 10, 139);
+}
+.signups{
+    width:30%;  
+    text-decoration: none;
+    color:white;
+    border: 2px solid rgb(70, 10, 139);
+    border-radius: 5px;
+    padding: 3px;
+    margin-top:8px;
+    padding-bottom: 8px;
+
 }

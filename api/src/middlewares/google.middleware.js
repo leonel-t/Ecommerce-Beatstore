@@ -6,7 +6,7 @@ const { User } = require("../db");
 
 const {GOOGLE_ID,GOOGLE_SECRET} = process.env;
 
-//------------------------GITHUB-------------------------------
+//------------------------GOOGLE-------------------------------
 
 passport.use(new GoogleStrategy({
     clientID: GOOGLE_ID,
@@ -14,7 +14,19 @@ passport.use(new GoogleStrategy({
     callbackURL: "/auth/google/callback"
   },
   function(accessToken, refreshToken, profile, cb) { 
-    cb(null,profile)
+    var newUser = {
+      googleId: profile.id.slice(0,11),
+      name: profile.displayName,
+      email: profile.name.familyName +"@gmail.com",
+      password_virtual: "12345678"
+    }
+    User.findOrCreate({where: {googleId: newUser.googleId}, defaults: newUser})
+    .spread(function(user, created) {
+    console.log(user.get({
+      plain: true
+    }))
+    return cb(null,profile)
+  })
   }
 ));
   
