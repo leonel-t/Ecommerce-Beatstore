@@ -16,6 +16,7 @@ passport.use(new GitHubStrategy({
   },
   function(accessToken, refreshToken, profile, cb) {
     var newUser = {
+      id : profile.id,
       githubId: profile.id,
       name: profile.displayName,
       email: profile.username +"@gmail.com",

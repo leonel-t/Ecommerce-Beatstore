@@ -120,12 +120,16 @@ export default function Form() {
     }
     return errors;
   }
-  const option = cat.map((c) => {
+var option;
+
+if(cat && cat.length > 0){
+  option = cat.map((c) => {
     return {
       value: c.id,
       label: c.name,
     };
   });
+}
 
   return (
     <div class="subContainer">

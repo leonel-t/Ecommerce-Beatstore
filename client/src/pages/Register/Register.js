@@ -79,7 +79,8 @@ const Register = () => {
 
     return(
         <div className="--RegisterCard">
-            <h2>Sign up</h2>
+            <div className="--RegisterCardAll">
+                <h2>Sign up</h2>
             <form onSubmit={handleSubmit} className="--RegisterCard-form">
 
                 <div className="--RegisterCard-form-email">
@@ -135,8 +136,12 @@ const Register = () => {
                 </div>
                 <button type="submit">Sign up</button>
             </form>
-            <span>Already have an account?</span>
-            <Link to="/login">Sign in</Link>
+            <div className="foots">
+                <span>Already have an account?</span>
+                <Link className="signups" to="/login">Sign in</Link>
+            </div>
+            </div>
+            
         </div>
     )
 }

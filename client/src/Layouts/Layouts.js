@@ -47,7 +47,6 @@ const HomeLayout = ({children}) => {
                 <Link to="/"><img src={Logo} alt="BeatShop"/></Link>
             </div>
             {children}
-            <Footer></Footer>
         </div>
     )
   }

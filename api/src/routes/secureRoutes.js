@@ -1,5 +1,6 @@
 const server = require("express").Router();
 const getUserController = require("../controllers/users/get.users")
+const jwt = require('jsonwebtoken')
 
 const {ACCESS_TOKEN_SECRET} = process.env;
 
@@ -11,6 +12,8 @@ module.exports = server;
     (req, res, next) => {
       let email = req.query.email
       console.log('este es el email', req.query)
+      var decoded = jwt.verify(req.query.secret_token, ACCESS_TOKEN_SECRET);
+      console.log(decoded)
 
       getUserController
        .findByEmail(email).then(user => {

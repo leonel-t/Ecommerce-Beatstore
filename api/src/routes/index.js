@@ -11,13 +11,32 @@ const deleteCategoriesRouter = require("./categories/delete.categories");
 
 const getUserRouter = require("./users/get.users");
 const postUserRouter = require("./users/post.users");
-const putUserRouter = require("./users/put.users")
-const deleteUserRouter = require("./users/delete.users")
+const putUserRouter = require("./users/put.users");
+const deleteUserRouter = require("./users/delete.users");
 
-const githubRouter = require("./githubRoute")
+const githubRouter = require("./githubRoute");
 
+const getOrder = require("./order/get.order");
+const postOrder = require("./order/post.order");
+const putOrder = require("./order/put.order");
+const deleteOrder = require("./order/delete.order");
+
+const getOrderLine = require("./orderline/get.orderLine");
+const postOrderLine = require("./orderline/post.orderLine");
+const putOrderLine = require("./orderline/put.orderLine");
+const deleteOrderLine = require("./orderline/delete.orderLine");
+
+const getComments = require("./comments/get.comments");
+const postComments = require("./comments/post.comments");
+const putComments = require("./comments/put.comments");
+const deleteComments = require("./comments/delete.comments");
 
 const router = Router();
+
+router.use("/comments", getComments);
+router.use("/comments", postComments);
+router.use("/comments", putComments);
+router.use("/comments", deleteComments);
 
 router.use("/products", getProductsRouter);
 router.use("/products", postProductsRouter);
@@ -29,6 +48,15 @@ router.use("/categories", getCategoriesRouter);
 router.use("/categories", putCategoriesRouter);
 router.use("/categories", deleteCategoriesRouter);
 
+router.use("/order", getOrder);
+router.use("/order", postOrder);
+router.use("/order", putOrder);
+router.use("/order", deleteOrder);
+
+router.use("/orderline", getOrderLine);
+router.use("/orderline", postOrderLine);
+router.use("/orderline", putOrderLine);
+router.use("/orderline", deleteOrderLine);
 
 router.use("/users", getUserRouter);
 router.use("/users", postUserRouter);
@@ -36,7 +64,5 @@ router.use("/users", putUserRouter);
 router.use("/users", deleteUserRouter);
 
 router.use("/", githubRouter);
-
-
 
 module.exports = router;
