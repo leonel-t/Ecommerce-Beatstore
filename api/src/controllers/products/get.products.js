@@ -8,6 +8,7 @@ module.exports = {
       include: [
         {
           model: Categories,
+          as: "categories",
         },
       ],
     });

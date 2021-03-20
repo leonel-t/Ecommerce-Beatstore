@@ -52,8 +52,9 @@ const {
 
 // Aca vendrian las relaciones
 // Product.hasMany(Reviews);
-Product.belongsToMany(Categories, { through: "Product_Categories" });
-Categories.belongsToMany(Product, { through: "Product_Categories" });
+Product.belongsToMany(Categories, { through: 'Products_Categories', as: 'categories' })
+Categories.belongsToMany(Product, { through: 'Products_Categories', as: 'products' })
+//
 Comment.hasMany(Product, { foreignKey: "ProductId" });
 Product.belongsTo(Comment);
 
