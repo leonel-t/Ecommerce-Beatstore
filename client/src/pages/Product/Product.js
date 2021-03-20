@@ -3,6 +3,7 @@ import { useParams } from "react-router-dom";
 
 import { connect } from 'react-redux';
 import { fetchOneProduct, postComment } from '../../stores/products/products.actions';
+import {fetchUser} from '../../stores/user/user.actions';
 
 //components
 import BeatComponent from '../../components/Product/BeatComponent/BeatComponent';
@@ -10,12 +11,13 @@ import BeatCommentsInputComponent from '../../components/Product/BeatCommentsInp
 import TabPanel from '../../components/Product/TabPanel/TabPanel';
 import "./product.css";
 
-const Product = ({fetchOneProductEffect, postCommentEffect, STORE_PRODUCT}) =>{
+const Product = ({fetchOneProductEffect, postCommentEffect, fetchUserEffect,  STORE_PRODUCT}) =>{
 
   const { productId } = useParams();
     useEffect(()=>{
+        fetchUserEffect()
         fetchOneProductEffect(productId)
-      },[fetchOneProductEffect, productId]);
+      },[fetchUserEffect, fetchOneProductEffect, productId]);
       
     return (
         <>
@@ -46,7 +48,8 @@ const mapStateToProps =  state => {
   const mapDispatchToProps = dispatch =>{
     return {
       fetchOneProductEffect: (productId) => dispatch(fetchOneProduct(productId)),
-      postCommentEffect: (productId, comment) => dispatch(postComment(productId, comment))
+      postCommentEffect: (productId, comment) => dispatch(postComment(productId, comment)),
+      fetchUserEffect: () => dispatch(fetchUser())
     }
   }
   

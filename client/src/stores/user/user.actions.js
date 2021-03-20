@@ -29,7 +29,7 @@ export const fetchUser = () => {
             method: 'GET',
             url: 'http://localhost:3001/profile',
             params: {
-              secret_token: localStorage.getItem('token'),
+                secret_token: localStorage.getItem('token'),
                 email: localStorage.getItem('email')
             },
             headers: {'Content-Type': 'application/x-www-form-urlencoded'},
