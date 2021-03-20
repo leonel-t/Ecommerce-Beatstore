@@ -52,16 +52,11 @@ module.exports = {
         [Op.or]: [
           {
             name: {
-              [Op.like]: "%" + inputValue + "%",
-            },
+                [Op.like]: '%' + inputValue + '%'
+            }
+          }
+              ]
           },
-          {
-            description: {
-              [Op.like]: "%" + inputValue + "%",
-            },
-          },
-        ],
-      },
       include: [{ model: Categories, as: "categories" }],
     });
   },

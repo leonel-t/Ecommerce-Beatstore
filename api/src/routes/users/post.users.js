@@ -14,6 +14,7 @@ server.post("/",
     var user;
     if(name && password && email){
         user = {
+            id: Date.now() + Math.round(Math.random() * 1E9),
             name:name.toString(),
             password_virtual:password.toString(),
             email:email.toString()
@@ -87,7 +88,7 @@ server.post(
           if (!user) return next(info);
             req.logIn(user, { session: false }, function (err) {
               if (err) return next(err);
-              const token = jwt.sign({id: user.id,}, ACCESS_TOKEN_SECRET,{expiresIn: "10m"});
+              const token = jwt.sign({id: user.id}, ACCESS_TOKEN_SECRET,{expiresIn: "10m"});
               const dataUser = {
                 id: user.id,
                 email: user.email,

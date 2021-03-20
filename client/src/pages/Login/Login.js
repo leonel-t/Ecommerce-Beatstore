@@ -1,27 +1,23 @@
-import React, { useEffect, useState } from 'react';
-import axios, {AxiosResponse} from 'axios'
+import React, { useState } from 'react';
+import axios from 'axios'
 import { Link, useHistory } from "react-router-dom";
 import "./Login.css"
 
 
 const Login = () => {
 
-    // const [cagada, setCagada] = useState({})
-
-    // useEffect(()=>{
-    //     axios.get('http://localhost:3001/users',{withCredentials: true}).then((res: AxiosResponse)=>{
-    //             if(res.data){
-    //                 setCagada({res.data})
-    //             }
-    //     })
-    // },[])
-
-    const history = useHistory();
     const [input, setInput] = useState({
         email: "",
         password:""
     });
 
+    const history = useHistory();
+    var tokenVerify = localStorage.getItem("token")
+
+    if(tokenVerify){
+        setTimeout(()=> history.push('/profile'),100)
+    }
+   
     const handleInputChange =(e) => {
         setInput({
              ...input,
@@ -38,8 +34,9 @@ const Login = () => {
        
         await axios.post('http://localhost:3001/users/login', newUser)
         .then((user)=>{            
+
             let email = JSON.parse(user.config.data)
-            console.log(email)
+            console.log(user.data)
             localStorage.setItem("token",user.data.token)
             localStorage.setItem("email", email.email)
             
@@ -67,23 +64,26 @@ const Login = () => {
 
     return(
         <div className="--LoginCard">
-            <h2>Sign in to continue</h2>
+            <div className="--LoginAllCard">
+            <h2 >Sign in to continue</h2>
             <form onSubmit={handleSubmit} className="--LoginCard-form">
                 <div className="--LoginCard-form-identification">
-                    <p>Email</p>
+                    <p className="name">Email</p>
                     <input className="--LoginCard-form-input" 
                         type="email" 
-                        placeholder="Type your username or email"
+                        placeholder="Type your email"
                         name="email" 
+                        required
                         onChange={handleInputChange} 
                         value={input.email}/>
                 </div>
                 <div className="--LoginCard-form-credential">
-                    <p>Password</p>
+                    <p className="name">Password</p>
                     <input className="--LoginCard-form-input" 
                         type="password" 
                         placeholder="Type your password"
                         name="password" 
+                        required
                         onChange={handleInputChange} 
                         value={input.password}/>
                 </div>
@@ -94,8 +94,13 @@ const Login = () => {
                 </div>
 
             </form>
-            <span>Don't have an account?</span>
-            <Link to="/register">Sign up</Link>
+            <div className="foot">
+                <span>Don't have an account?</span>
+                
+                <Link className="signup" to="/register">Sign up</Link>  
+            </div>
+            
+            </div>
         </div>
     )
 }

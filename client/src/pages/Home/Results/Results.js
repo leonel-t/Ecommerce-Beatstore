@@ -1,9 +1,20 @@
 
-import React from 'react';
-import {connect} from "react-redux"
+import React, { useEffect } from 'react';
+import { connect } from 'react-redux'
+import { useParams } from "react-router-dom"
+
+import {searchProducts} from "../../../stores/products/products.actions"
 import "./Results.css"
 
-const Results = ({STORE_PRODUCTS}) => {
+const Results = ({STORE_PRODUCTS, SEARCH_EFFECT}) => {
+
+    const {name} = useParams();
+
+        useEffect(()=>{
+            SEARCH_EFFECT(name)
+        },[SEARCH_EFFECT,name])
+
+
 
     return (
         <div className='Muestra'>
@@ -16,7 +27,7 @@ const Results = ({STORE_PRODUCTS}) => {
                               <ul>    
                                 <li> Name: {product.name} </li>,                            
                                 <li> Description: {product.description} </li>,
-                                <li> Price: {`"U$S" + " " + ${product.price}`}  </li>, 
+                                <li> Price: {"U$S" + " " + `${product.price}`}  </li>, 
                                 <li> Audio: {product.audio} </li>                                                
                             </ul>   
                           </div> 
@@ -36,7 +47,14 @@ function mapStateToProps(state) {
     };
   }
 
+function mapDispatchToProps(dispatch) {
+    return {
+    SEARCH_EFFECT: (name) => {dispatch(searchProducts(name))}
+    };
+  }
+
 
 export default connect(
     mapStateToProps,
+    mapDispatchToProps
   )(Results);

@@ -2,11 +2,22 @@ import React, { useEffect } from 'react';
 import { connect } from 'react-redux';
 import {fetchUser} from '../../stores/user/user.actions'
 import {useHistory} from 'react-router-dom'
+import jwt from 'jsonwebtoken'
+
 import './Profile.css'
 
 const Profile = ({fetchUserEffect, STORE_USER}) =>{
 
   const history = useHistory();
+
+// var token= localStorage.getItem('token')
+
+//   if(token){
+//     var decoded = jwt.verify(token,'$2y$12$GeqnBZJiqMrX9ZN04N9KRe8XzNKLLiuUJ5oC1BYYE3WjRnRoB/HFW');
+//   }
+  
+  
+//   console.log(decoded)
 
     useEffect(() => {
         fetchUserEffect();
@@ -15,11 +26,17 @@ const Profile = ({fetchUserEffect, STORE_USER}) =>{
       const handleClick = (e) =>{
         e.preventDefault()
         localStorage.clear()
-       return history.push("/login")
+        return window.location.replace("http://localhost:3001/logout")
       }
+      
       const handleClick2 = (e) =>{
         e.preventDefault()
         history.push("/login")
+      }
+
+      const handleClick3 = (e) =>{
+        e.preventDefault()
+        history.push("/catalog")
       }
 
 
@@ -34,13 +51,25 @@ const Profile = ({fetchUserEffect, STORE_USER}) =>{
             <div>
             {STORE_USER.user && STORE_USER.user.data
               ?(
-                <div>
-                   <h1 className="titule">Profile: {"  "} {STORE_USER.user.data.user.name}</h1>
+                <div className="profile">
+                  <div className="contentProfile">
+                  <div className="contentData">
+                    <p className="titule">User: {"  "} {STORE_USER.user.data.user.name}</p>
+                    <p className="titule">Email: {"  "} {STORE_USER.user.data.user.email}</p>
+                   </div>
                    <button onClick={handleClick}>Logout</button>
+                   <button onClick={handleClick3}>Start to buy</button>
+                </div>
                 </div>
               ):(
-                <h1>User Not Found </h1>,
-                <button onClick={handleClick2}>Go to login</button>
+                <div className="profile">
+                    <div className="contentProfile">
+                        <div className="contentData">
+                          <p className="titule">User Not Found </p>
+                        </div>
+                        <button onClick={handleClick2}>Go to login</button>                
+                    </div>
+                  </div>
               )  
             }
             

@@ -38,7 +38,7 @@ export const fetchUser = () => {
             .then(user => {
                 setTimeout(()=>{
                     dispatch(getUserSuccess(user))
-                },2000)
+                },100)
                 
             })
             .catch(error => {
