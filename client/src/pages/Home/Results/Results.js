@@ -27,7 +27,7 @@ const Results = ({STORE_PRODUCTS, SEARCH_EFFECT}) => {
                               <ul>    
                                 <li> Name: {product.name} </li>,                            
                                 <li> Description: {product.description} </li>,
-                                <li> Price: {"U$S" + " " + `${product.price}`}  </li>, 
+                                <li> Price: {"U$S"} {`${product.price}`}  </li>, 
                                 <li> Audio: {product.audio} </li>                                                
                             </ul>   
                           </div> 

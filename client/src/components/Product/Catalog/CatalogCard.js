@@ -3,7 +3,7 @@ import "./CatalogCard.css";
 import {Link} from 'react-router-dom';
 import { connect } from "react-redux";
 import { addItemToCart } from "../../../stores/user/user.actions";
-import { show, ACTION_TYPE } from 'js-snackbar';
+import { show } from 'js-snackbar';
 
 const CatalogCard = ({addItemToCartEffect,STORE_PRODUCTS, id, name, autor, image, price, product}) => {
     const handleAddToCart = (product)=>{
