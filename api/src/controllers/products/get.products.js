@@ -1,5 +1,5 @@
-const { Product, Categories } = require("../../db");
-const Sequelize = require("sequelize")
+const { Product, Categories, Comment } = require("../../db");
+const Sequelize = require("sequelize");
 const Op = Sequelize.Op;
 
 module.exports = {
@@ -8,6 +8,11 @@ module.exports = {
       include: [
         {
           model: Categories,
+          as: "categories",
+        },
+        {
+          model: Comment,
+          as: "comments",
         },
       ],
     });
@@ -26,15 +31,23 @@ module.exports = {
   },
   findById(id) {
     return Product.findOne({
-      where: { id: id },
+      where:{
+        id:id
+      },
       include: [
         {
           model: Categories,
+          as: "categories",
+        },
+        {
+          model: Comment,
+          as: "comments",
         },
       ],
     });
   },
   findByProduct(inputValue) {
+<<<<<<< HEAD
 
 
       return Product.findAll({
@@ -46,8 +59,24 @@ module.exports = {
                       }
                   }
               ]
+=======
+    return Product.findAll({
+      where: {
+        [Op.or]: [
+          {
+            name: {
+              [Op.like]: "%" + inputValue + "%",
+            },
           },
-          include: [{ model: Categories, as: 'categories' }]
-      })
-    },
+          {
+            description: {
+              [Op.like]: "%" + inputValue + "%",
+            },
+>>>>>>> ca2778cd3193a01f8c7593546962ee5112de3726
+          },
+        ],
+      },
+      include: [{ model: Categories, as: "categories" }],
+    });
+  },
 };
