@@ -15,6 +15,9 @@
     outline: none;
 
 }
+.--BeatCommentsInputComponent-div-comment-added{
+    color:white;
+}
 .--BeatCommentsInputComponent-div{
     position:relative;
     display: flex;
