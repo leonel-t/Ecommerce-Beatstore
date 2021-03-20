@@ -29,7 +29,7 @@ const Product = ({fetchOneProductEffect, STORE_PRODUCT}) =>{
                
                 <BeatCommentsInputComponent/>
                 
-                <TabPanel/>
+                <TabPanel product={STORE_PRODUCT.product}/>
               </main>
              
             )

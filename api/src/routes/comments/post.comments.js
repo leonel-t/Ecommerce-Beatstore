@@ -2,9 +2,9 @@ const server = require("express").Router();
 const commentControler = require("../../controllers/comments/comments.controller");
 
 server.post("/", (req, res, next) => {
-  const comment = req.body;
+  const {idProduct, comment} = req.body;
   commentControler
-    .createComment(comment)
+    .createComment(idProduct, comment)
     .then((comment) => {
       res.status(201).json(comment);
     })

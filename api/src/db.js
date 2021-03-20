@@ -55,8 +55,8 @@ const {
 Product.belongsToMany(Categories, { through: 'Products_Categories', as: 'categories' })
 Categories.belongsToMany(Product, { through: 'Products_Categories', as: 'products' })
 //
-Comment.hasMany(Product, { foreignKey: "ProductId" });
-Product.belongsTo(Comment);
+Product.belongsToMany(Comment, { through: 'Products_Comments', as: 'comments' })
+Comment.belongsToMany(Product, { through: 'Products_Comments', as: 'comments' })
 
 Order.hasMany(OrderLine, { foreignKey: "orderId" });
 OrderLine.belongsTo(Order);
