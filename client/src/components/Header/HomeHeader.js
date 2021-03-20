@@ -12,7 +12,10 @@ const HomeHeader = ({fetchUserEffect, STORE_USER}) =>{
         fetchUserEffect();
       }, [fetchUserEffect]);
 
-
+      const divName = (name) =>{
+       var separado = name.split(" ")
+       return separado[0]
+      } 
 
     return (
       <header className="--newHeader-main" >
@@ -55,7 +58,7 @@ const HomeHeader = ({fetchUserEffect, STORE_USER}) =>{
                 <div className="--newHeader-main-row-col-user-options">
                 {STORE_USER.user && STORE_USER.user.data
                 ?(
-                    <p><Link className="link-email" to="/profile">{STORE_USER.user.data.user.email}</Link></p>
+                    <p className="--nameUser"><Link className="link-email" to="/profile">{divName(STORE_USER.user.data.user.name) || STORE_USER.user.data.user.email}</Link></p>
                 ):(
                     <p>Login / Register</p>
                 )

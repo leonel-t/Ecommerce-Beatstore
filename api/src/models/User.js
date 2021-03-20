@@ -3,12 +3,12 @@ const { DataTypes } = require("sequelize");
 module.exports = (sequelize) => {
   sequelize.define("user", {
     id:{
-      type: DataTypes.STRING(1000),
+      type: DataTypes.STRING(255),
       primaryKey: true,
       allowNull: true
     },
     googleId:{
-      type: DataTypes.STRING(1000),
+      type: DataTypes.STRING,
       allowNull: true
     },
     githubId:{
