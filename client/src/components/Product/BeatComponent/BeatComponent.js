@@ -20,7 +20,7 @@ const BeatComponent = ({ addItemToCartEffect, product }) => {
                         <img alt="album" src={`http://localhost:3001/images/${product.image}`}></img>
                     </div>
                     <div className="beatComponent--main-beatInfo-col">
-                        <span className="material-icons icon-size"> play_circle_outline </span>
+                        
                         <h1>{product.name} </h1><p>{product.artist}</p>
                         <div className="beatComponent--main-beatInfo-col-author">
                             
@@ -57,10 +57,26 @@ const BeatComponent = ({ addItemToCartEffect, product }) => {
                                 </div>
                             </button>
                         </div>
-                        <div className="beatComponent--main-beatActions-col">
+                        <div className="beatComponent--main-beatActions-col column">
+                            {product.categories && product.categories.length > 0
+                                ?(
+                                    product.categories.map((categorie)=>{
+                                        return (
+                                            <span className="beatComponent--main-beatActions-col-cat">{categorie.name}</span>
+                                        )
+                                    })
+                                ):(
+                                    <></>
+                                )
+                            }
+                        </div>
+                        <div className="beatComponent--main-beatActions-col column">
                             <p>{product.description}</p>
                         </div>
-                        <Spectrum></Spectrum>
+                        <div className="spec">
+                            <span className="material-icons icon-size"> play_circle_outline </span>
+                            <Spectrum></Spectrum>
+                        </div>
                     </div>
     
     

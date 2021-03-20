@@ -35,15 +35,18 @@
     display:flex;
     width: 100%;
     justify-content: center;
-    align-items: center;
 }
+
 .beatComponent--main-imagen-col img{
     width: 250px;
     border-radius: 5px;
     box-shadow: 3px 3px 5px rgb(0, 0, 0);
+    align-self: start;
 }
 
-
+.spec{
+    display: flex;
+}
 .beatComponent--main-beatInfo-col{
     display:flex;
     width: 100%;
@@ -105,14 +108,16 @@
 .beatComponent--main-beatInfo-col h1{
     margin:15px;
     margin-top:10px;
-    margin-left: 5px;
+    margin-left: 65px;
     font-size:2rem;
     color:var(--beatComponent--main-beatInfo-col-h1);
 }
-.beatComponent--main-beatInfo-col .icon-size{
+.icon-size{
     font-size: 5rem;
+    margin-top: 20px;
     color: var(--beatComponent--main-beatInfo-col-play-icon);
     background-color: black;
+    height: 80px;
     border-radius: 50%;
     margin-right: 3px;
 }
@@ -133,9 +138,24 @@
 .beatComponent--main-beatActions-col{
     display:flex;
     width: 100%;
-    justify-content: center;
+    justify-content: left;
     align-items: center;
     margin-left: 60px;
+}
+
+.beatComponent--main-beatActions-col .column{
+    display:flex;
+    width: 100%;
+    flex-direction: column;
+    justify-content: left;
+    align-items: center;
+}
+.beatComponent--main-beatActions-col-cat{
+    margin: 6px;
+    padding: 6px;
+    background-color: #000000;
+    color: #830c71;
+    border-radius: 5px;
 }
 
 .beatComponent--main-beatActions-col-div{
