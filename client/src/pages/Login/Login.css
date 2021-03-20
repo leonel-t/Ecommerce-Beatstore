@@ -4,7 +4,7 @@
     display: flex;
 }
 .--LoginAllCard{
-    width: 30%;
+    width: 25%;
     background-color: rgba(22, 22, 22, 1);
     border-radius: 10px;    
     box-shadow: 0px 0px 10px rgb(137, 76, 206);
@@ -14,13 +14,19 @@
 }
 @media(max-width: 1100px){
     .--LoginAllCard{
-        width: 40%;
+        width: 30%;
+    
+    }
+}
+@media(max-width: 860px){
+    .--LoginAllCard{
+        width: 45%;
     
     }
 }
 @media(max-width: 600px){
     .--LoginAllCard{
-        width: 100%;
+        width: 80%;
         margin-left:50px;
         margin-right: 50px;
     }

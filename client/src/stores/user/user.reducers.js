@@ -64,7 +64,7 @@ const userReducers = (state = initialState, action) =>{
                     ...state,
                     cartLoading: false,
                     }
-            }
+            }// eslint-disable-next-line
             return {
                 ...state,
                 cartLoading: false,

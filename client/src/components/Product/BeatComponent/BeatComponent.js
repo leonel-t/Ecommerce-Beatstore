@@ -4,7 +4,7 @@ import React from 'react';
 import Spectrum from '../Spectrum/Spectrum';
 import { connect } from 'react-redux';
 import { addItemToCart } from '../../../stores/user/user.actions';
-import { show, ACTION_TYPE } from 'js-snackbar';
+import { show } from 'js-snackbar';
 const BeatComponent = ({ addItemToCartEffect, product }) => {
 
     const handleAddToCart = (product)=>{

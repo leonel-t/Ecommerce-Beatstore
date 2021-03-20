@@ -4,8 +4,8 @@ import {Link} from 'react-router-dom';
 import "./Card.css"
 
 const Card = ({id, name, artist, image, date}) => {
- // eslint-disable-next-line  
-    var sectionStyle = {
+ 
+    var sectionStyle = {// eslint-disable-next-line  
       backgroundImage: "url(" + ` http://localhost:3001/images/${ image }` + ")" 
       };
     return (
