@@ -15,9 +15,9 @@ passport.use(new GoogleStrategy({
   },
   function(accessToken, refreshToken, profile, cb) { 
     var newUser = {
-      googleId: profile.id.slice(0,11),
-      name: profile.displayName,
-      email: profile.name.familyName +"@gmail.com",
+      id: profile.id,
+      name: profile.displayName || "anonymus",
+      email: profile.name.familyName +"@gmail.com" || "anonymus@gmail.com",
       password_virtual: "12345678"
     }
     User.findOrCreate({where: {googleId: newUser.googleId}, defaults: newUser})

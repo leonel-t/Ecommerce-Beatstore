@@ -13,7 +13,7 @@ server.get('/auth/github',
   passport.authenticate('github',{ session: false, scope: ['profile'] }));
 
 server.get('/auth/github/callback', 
-  passport.authenticate('github', { failureRedirect: 'http://localhost:3000/' }),
+  passport.authenticate('github', { failureRedirect: 'http://localhost:3000/login' }),
   function (req, res) {   
           console.log(req.user)
           res.redirect(`http://localhost:3000/login/github/${req.user.username}@gmail.com/12345678`);

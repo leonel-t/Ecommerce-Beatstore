@@ -2,11 +2,22 @@ import React, { useEffect } from 'react';
 import { connect } from 'react-redux';
 import {fetchUser} from '../../stores/user/user.actions'
 import {useHistory} from 'react-router-dom'
+import jwt from 'jsonwebtoken'
+
 import './Profile.css'
 
 const Profile = ({fetchUserEffect, STORE_USER}) =>{
 
   const history = useHistory();
+
+// var token= localStorage.getItem('token')
+
+//   if(token){
+//     var decoded = jwt.verify(token,'$2y$12$GeqnBZJiqMrX9ZN04N9KRe8XzNKLLiuUJ5oC1BYYE3WjRnRoB/HFW');
+//   }
+  
+  
+//   console.log(decoded)
 
     useEffect(() => {
         fetchUserEffect();
@@ -15,8 +26,9 @@ const Profile = ({fetchUserEffect, STORE_USER}) =>{
       const handleClick = (e) =>{
         e.preventDefault()
         localStorage.clear()
-        return window.open("http://localhost:3001/logout")
+        return window.location.replace("http://localhost:3001/logout")
       }
+      
       const handleClick2 = (e) =>{
         e.preventDefault()
         history.push("/login")

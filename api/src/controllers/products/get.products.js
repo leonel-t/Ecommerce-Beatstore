@@ -47,35 +47,16 @@ module.exports = {
     });
   },
   findByProduct(inputValue) {
-<<<<<<< HEAD
-
-
-      return Product.findAll({
-          where: {
-              [Op.or]: [
-                  {
-                      name: {
-                          [Op.like]: '%' + inputValue + '%'
-                      }
-                  }
-              ]
-=======
     return Product.findAll({
       where: {
         [Op.or]: [
           {
             name: {
-              [Op.like]: "%" + inputValue + "%",
-            },
+                [Op.like]: '%' + inputValue + '%'
+            }
+          }
+              ]
           },
-          {
-            description: {
-              [Op.like]: "%" + inputValue + "%",
-            },
->>>>>>> ca2778cd3193a01f8c7593546962ee5112de3726
-          },
-        ],
-      },
       include: [{ model: Categories, as: "categories" }],
     });
   },

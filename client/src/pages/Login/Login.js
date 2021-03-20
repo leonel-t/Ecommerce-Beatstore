@@ -1,18 +1,23 @@
-import React, { useEffect, useState } from 'react';
-import axios, {AxiosResponse} from 'axios'
+import React, { useState } from 'react';
+import axios from 'axios'
 import { Link, useHistory } from "react-router-dom";
 import "./Login.css"
 
 
 const Login = () => {
 
-
-    const history = useHistory();
     const [input, setInput] = useState({
         email: "",
         password:""
     });
 
+    const history = useHistory();
+    var tokenVerify = localStorage.getItem("token")
+
+    if(tokenVerify){
+        setTimeout(()=> history.push('/profile'),100)
+    }
+   
     const handleInputChange =(e) => {
         setInput({
              ...input,
@@ -29,8 +34,9 @@ const Login = () => {
        
         await axios.post('http://localhost:3001/users/login', newUser)
         .then((user)=>{            
+
             let email = JSON.parse(user.config.data)
-            console.log(email)
+            console.log(user.data)
             localStorage.setItem("token",user.data.token)
             localStorage.setItem("email", email.email)
             
