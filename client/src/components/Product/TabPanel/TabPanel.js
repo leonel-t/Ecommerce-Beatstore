@@ -3,35 +3,7 @@ import CommentCard from "../CommentCard/CommentCard";
 import RelatedTracks from "../RelatedTracks/RelatedTracks";
 import FansCard from "../FansCard/FansCard";
 import "./TabPanel.css";
-import axios from "axios";
-const commentsMap = [
-  {
-    username: "pepe",
-    date: "1 day ago",
-    coment: "buena cancion",
-  },
-  {
-    username: "pepe",
-    date: "1 day ago",
-    coment: "buena cancion",
-  },
-  {
-    username: "pepe",
-    date: "1 day ago",
-    coment: "buena cancion",
-  },
-  {
-    username: "pepe",
-    date: "1 day ago",
-    coment: "buena cancion",
-  },
-  {
-    username: "pepe",
-    date: "1 day ago",
-    coment:
-      "buena cancion esto es una prueba de un comentario muy muy muy m,uy largooooooo para ver que pasaa",
-  },
-];
+
 
 const FansMap = [
   {
@@ -80,17 +52,12 @@ const RelatedTrack = [
   },
 ];
 
-const TabPanel = () => {
+const TabPanel = ({product}) => {
   const [relatedTrack, setRelatedTrack] = useState(true);
   const [fans, setFans] = useState(false);
-  const [comments2, setComments2] = useState([]);
   const [comments, setComments] = useState(false);
 
-  function handleComment() {
-    axios.get("http://localhost:3001/comments").then((comments) => {
-      setComments(comments);
-    });
-  }
+
   const handleClick = (param) => {
     switch (param) {
       case "relatedTrack":
@@ -104,7 +71,6 @@ const TabPanel = () => {
           setRelatedTrack(false);
           setFans(false);
           setComments(true);
-          handleComment();
         };
       case "fans":
         return () => {
@@ -170,16 +136,22 @@ const TabPanel = () => {
               : "--TabPanel-div-container-col"
           }
         >
-          {comments2.map((comment, index) => {
-            return (
-              <CommentCard
-                key={index}
-                username={comment.author}
-                date={"12/10/2001"}
-                comment={comment.comment}
-              />
-            );
-          })}
+          {product && product.comments && product.comments.length > 0
+            ?(
+              product.comments.map((comment, index) => {
+                return (
+                  <CommentCard
+                    key={index}
+                    username={comment.author}
+                    date={"12/10/2001"}
+                    comment={comment.comment}
+                  />
+                );
+              })
+            ):(
+              <></>
+            )
+          }
         </div>
         <div
           className={
