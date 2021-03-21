@@ -4,7 +4,10 @@
     height: 1080px;
     background-color: black;
     background-size: cover;
-    overflow-x: auto;
+    overflow-x: none;
+}
+.Container h1{
+    color: antiquewhite;
 }
 
 #title1{

@@ -1,6 +1,6 @@
-import React, {useEffect} from 'react';
+import React, {useEffect, useRef } from 'react';
 import {animated, useSpring } from "react-spring";
-import { useScroll } from "react-use-gesture"
+import { useScroll, useDrag  } from "react-use-gesture"
 import { connect } from 'react-redux';
 import {useHistory} from 'react-router-dom';
 import { fetchAllProducts } from '../../../stores/products/products.actions';
@@ -8,6 +8,7 @@ import { fetchAllProducts } from '../../../stores/products/products.actions';
 import "./wrapper.css";
 
 const Wrapper = ({fetchAllProductsEffect,  PRODUCTS}) =>{
+
     const history = useHistory()
     useEffect(()=>{
         fetchAllProductsEffect()
@@ -24,6 +25,7 @@ const Wrapper = ({fetchAllProductsEffect,  PRODUCTS}) =>{
             return value < -clampAt ? -clampAt : value
           }
       };
+
 
       const bind = useScroll(event =>{
           set({
@@ -94,6 +96,5 @@ const mapStateToProps =  state => {
 
     }
   }
-  
   
 export default connect(mapStateToProps, mapDispatchToProps)(Wrapper);
