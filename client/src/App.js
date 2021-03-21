@@ -14,7 +14,7 @@ import Home from "./pages/Home/Home.js";
 
 import Product from "./pages/Product/Product.js";
 import Catalog from "./pages/Catalog/Catalog.js";
-import Admin from "./pages/Admin/Admin.js";
+import Edit from "./pages/Admin/AdminEdit/Edit";
 import Form from "./pages/Admin/AdminProducts/Form";
 import PutForm from "./pages/Admin/AdminProducts/PutForm";
 import Categories from "./pages/Admin/AdminCategories/AddCategories";
@@ -45,8 +45,10 @@ const App = () => {
           component={Product}
           layout={PagesLayout}
         />
+        {/* <RouteWrapper exact path="/edit" component={Edit} layout={AdminLayout} /> */}
         <RouteWrapper exact path="/add" component={Form} layout={AdminLayout} />
-        <RouteWrapper exact path="/admin" component={Admin} layout={AdminLayout} />
+        <RouteWrapper exact path="/add" component={Form} layout={AdminLayout} />
+        <RouteWrapper exact path="/admin" component={Edit} layout={AdminLayout} />
         <RouteWrapper exact path="/put/:id" component={PutForm} layout={PagesLayout} />
         <RouteWrapper exact path="/addCategories" component={Categories} layout={PagesLayout} />
         <RouteWrapper exact path="/login" component={Login} layout={LoginLayout}  />

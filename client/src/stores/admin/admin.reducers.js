@@ -7,9 +7,14 @@ import {
   GET_ONE_PRODUCT_FAILURE,
   SEARCH_PRODUCT_SUCCESS,
   SEARCH_PRODUCT_FAILURE,
-  SEARCH_PRODUCT_REQUEST,
+  SEARCH_PRODUCT_REQUEST
 } from "../products/products.actions";
-
+import {
+  DELETE_PRODUCT_REQUEST,
+  DELETE_PRODUCT_SUCCESS,
+  DELETE_PRODUCT_FAILURE
+} from "../admin/admin.actions";
+ 
 let initialState = {
   products: [],
   productsLoading: true,
@@ -20,6 +25,8 @@ let initialState = {
   searchResults: [],
   searchLoading: true,
   searchError: "",
+  deleteProductError: "",
+  deleteProductLoading: true,
 };
 
 const adminReducers = (state = initialState, action) => {
@@ -41,6 +48,22 @@ const adminReducers = (state = initialState, action) => {
         productsError: "error 404",
         productsLoading: false,
       };
+      case DELETE_PRODUCT_REQUEST:
+        return {
+          ...state,
+          deleteProductLoading: true,
+        };
+      case DELETE_PRODUCT_SUCCESS:
+        return {
+          ...state,
+          deleteProductLoading: false,
+        };
+      case DELETE_PRODUCT_FAILURE:
+        return {
+          ...state,
+          deleteProductError: "error 404",
+          deleteProductLoading: false,
+        };
     case GET_ONE_PRODUCT_REQUEST:
       return {
         ...state,

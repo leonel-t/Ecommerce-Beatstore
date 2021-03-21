@@ -1,110 +1,106 @@
-
-
-.divider{
+.divider {
   min-height: 150px;
 }
-.subContainer input, textarea{
-  color:rgb(128, 128, 128);
-    background: transparent;
-    border: none;
-    border-bottom: 1px solid #0004e4;
-    display: block;
+
+.subContainer input, textarea {
+  color: rgb(128, 128, 128);
+  background: transparent;
+  border: none;
+  border-bottom: 1px solid #777777;
+  display: block;
 }
-.subContainer input,textarea{width:100%;display:block}
-.basic-multi-select input{
+
+.subContainer input, textarea {
+  width: 100%;
+  display: block
+}
+
+.basic-multi-select input {
   background-color: black;
 }
+
 .subContainer h2 {
   color: aliceblue;
 }
 
 .container {
+  border-radius: 15px;
   display: flex;
-  justify-content:space-around;
-  width: 100%;
-  
-  background-color:rgb(22, 22, 22);
+  justify-content: space-around;
+  width: 99%;
+  background-color: rgb(22, 22, 22);
   padding: 5px;
-  border: 2px solid rgb(79, 0, 170);
 }
-.column-2{
+
+.subContainer form {
+  background-color: rgb(22, 22, 22);
+  border: 2px solid rgb(79, 0, 170);
+  border-radius: 15px;
+}
+
+.column-2 {
   padding: 20px;
   width: 50%;
-  
-  
 }
+
 .column-1 {
   width: 50%;
   padding: 20px;
 }
-.subContainer{
+
+.subContainer {
   padding-left: 5%;
   padding-right: 5%;
-
-  font-family:Verdana, Geneva, Tahoma, sans-serif;
+  font-family: Verdana, Geneva, Tahoma, sans-serif;
   color: #535353;
 }
 
-
 @media only screen and (max-width: 500px) {
-  .subContainer{
+  .subContainer {
     padding-left: 10%;
-    padding-right: 10%;  }
+    padding-right: 10%;
+  }
   .container {
     flex-direction: column;
   }
-.column-2 {
-  padding: 3px;
-  width: 98%;
-
-  
-  
+  .column-2 {
+    padding: 3px;
+    width: 98%;
+  }
+  .column-1 {
+    padding: 3px;
+    width: 98%;
+  }
 }
- .column-1 {
-  padding: 3px;
-  width: 98%;
-  
-  
-}
-  
-}
-
-
-
-
-
 
 .formAdd label {
   display: block;
-    color: white;
-    font-size: larger;
-    padding: 5%;
+  color: white;
+  font-size: larger;
+  padding: 5%;
 }
 
-
-
 .submitbuton {
-    width: 100%;
-    background-color: #005c03;
-    color: white;
-    padding: 14px 20px;
-    margin: 8px 0;
-    border: none;
-    border-radius: 4px;
-    cursor: pointer;
+  width: 100%;
+  background: linear-gradient(45deg, violet, purple);
+  color: white;
+  padding: 14px 20px;
+  margin: 8px 0;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
 }
 
 .submitbuton:hover {
-    background-color: #45a049;
+  background: linear-gradient(45deg, rgb(253, 188, 253), rgb(226, 0, 226));
 }
 
-
- 
 p.danger {
+  font-family: 'Courier New', Courier, monospace;
   display: inline;
-
   color: red;
-  font-size: 10px;
+  font-size: 1.2rem;
+  padding: 3px;
 }
 
 input.danger textarea.danger {
@@ -113,3 +109,60 @@ input.danger textarea.danger {
   border-bottom: 1px solid #ce2c2c;
 }
 
+.buttonInput::-webkit-file-upload-button {
+  color: white;
+  border-radius: 4px;
+  border: none;
+  outline: none;
+  padding: 9px;
+  background: linear-gradient(45deg, violet, purple);
+}
+
+.buttonInput::-webkit-file-upload-button:hover {
+  background: linear-gradient(45deg, rgb(250, 212, 250), rgb(255, 90, 255));
+  cursor: pointer;
+  color: black;
+}
+
+#dateClass {
+  font-size: 1.5rem;
+  padding: 5px;
+}
+
+input[type="date"]::-webkit-calendar-picker-indicator {
+  background-color: rgb(98, 0, 255);
+  border-radius: 5px;
+  display: block;
+  width: 20px;
+  height: 20px;
+  border-width: thin;
+}
+
+.radioTone {
+  margin-top: 10px;
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  align-items: center;
+  justify-content: center;
+}
+
+.radioColumn {
+  display: flex;
+  width: 33%;
+  justify-content: left;
+  padding-right: 30px;
+}
+
+.divButton {
+  display: flex;
+  bottom: 0;
+  width: 98%;
+  align-content: center;
+  justify-content: center;
+}
+
+.divButton button {
+  width: 50%;
+}

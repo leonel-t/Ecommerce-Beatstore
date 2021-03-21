@@ -2,11 +2,84 @@ import React, { useEffect } from "react";
 import "./form.css";
 import Select from "react-select";
 import axios from "axios";
-import Admin from "../Admin";
+import Admin from "../AdminNav";
 
 export default function Form() {
+  const customStyles = {
+    control: (base, state) => ({
+      ...base,
+      // match with the menu
+      borderRadius: state.isFocused ? "3px 3px 0 0" : 3,
+      // Overwrittes the different states of border
+      borderColor: state.isFocused ? "yellow" : "green",
+      // Removes weird border around container
+      boxShadow: state.isFocused ? null : null,
+      "&:hover": {
+        // Overwrittes the different states of border
+        borderColor: state.isFocused ? "red" : "blue",
+        background: "white"
+      }
+    }),
+    menu: (base, state) => ({
+      ...base,
+      // override border radius to match the box
+      borderRadius: 0,
+      // kill the gap
+      marginTop: 0,
+      background: state.isFocused ? "yellow" : "green",
+      "&:hover": {
+        // Overwrittes the different states of border
+        background: "blue"
+      }
+    }),
+    menuList: base => ({
+      ...base,
+      // kill the white space on first and last option
+      padding: 0,
+      background: "white",
+
+    }),
+    menuPortal: base => ({
+      background: "red",
+      "&:hover": {
+        // Overwrittes the different states of border
+        background: "blue"
+      }
+    }),
+    multiValueLabel: base => ({
+      background: "red",
+      color: "black",
+      padding: "5px",
+      borderRadius: "25px"
+    }),
+    multiValueLabel: base => ({
+      background: "rgb(106,31,174)",
+      color: "white",
+      padding: "5px",
+      borderRadius: "5px",
+      outline: "none",
+    }),
+    multiValueRemove: base => ({
+      background: "red",
+      color: "white",
+      padding: "4x",
+      marginBottom: "10px",
+      borderRadius: "5px"
+    }),
+    singleValue: base => ({
+      background: "yellow",
+      color: "black",
+      "&:hover": {
+        // Overwrittes the different states of border
+        background: "blue"
+      }
+    }),
+    group: base => ({
+      background: "yellow",
+      color: "black"
+    })
+  };
   const [categories, setCategories] = React.useState([]);
-  console.log(categories);
   const [image, setImage] = React.useState({});
   const [audio, setAudio] = React.useState();
   const [errors, setErrors] = React.useState({});
@@ -45,8 +118,11 @@ export default function Form() {
     const options = {
       method: "POST",
       url: "http://localhost:3001/products/",
-      headers: { "Content-Type": "multipart/form-data" },
+      headers: {
+        "Content-Type": "multipart/form-data", "Cross-Origin-Opener-Policy": "same-origin"
+      },
       data: form,
+
     };
     axios.request(options).then(function (response) {
       idProduct = response.data.id;
@@ -61,7 +137,28 @@ export default function Form() {
       });
     });
   }
-
+  const optionTone = [{
+    value: "C",
+    label: "C"
+  }, {
+    value: "D",
+    label: "D"
+  }, {
+    value: "E",
+    label: "E"
+  }, {
+    value: "F",
+    label: "F"
+  }, {
+    value: "G",
+    label: "G"
+  }, {
+    value: "A",
+    label: "A"
+  }, {
+    value: "B",
+    label: "B"
+  }]
   const handleInputChange = (event) => {
     if (event.target.name === "image") {
       setImage(event.target.files);
@@ -120,136 +217,164 @@ export default function Form() {
     }
     return errors;
   }
-var option;
+  var option;
 
-if(cat && cat.length > 0){
-  option = cat.map((c) => {
-    return {
-      value: c.id,
-      label: c.name,
-    };
-  });
-}
+  if (cat && cat.length > 0) {
+    option = cat.map((c) => {
+      return {
+        value: c.id,
+        label: c.name,
+      };
+    });
+  }
 
   return (
-    <div class="subContainer">
+    <div className="subContainer">
       <Admin />
       <h2>Complete product data:</h2>
       <form
-        enctype="multipart/form-data"
-        class="container formAdd"
         onSubmit={(e) => handleSubmit(e)}
       >
-        <div class="column-1 box">
-          <label>Name</label>
-          {errors.name && <p className="danger">{errors.name}</p>}
+        <div className="container formAdd"
+        >
 
-          <input
-            className={`${errors.name && "danger"}`}
-            name="name"
-            onChange={(e) => {
-              handleInputChange(e);
-            }}
-          />
-          <label>Description</label>
+          <div className="column-1 box">
+            <label>Name</label>
+            {errors.name && <p className="danger">{errors.name}</p>}
 
-          {errors.description && <p className="danger">{errors.description}</p>}
-          <textarea
-            className={`${errors.description && "danger"}`}
-            name="description"
-            onChange={(e) => {
-              handleInputChange(e);
-            }}
-          ></textarea>
-          <label>Artist</label>
-          {errors.artist && <p className="danger">{errors.artist}</p>}
+            <input
+              className={`${errors.name && "danger"}`}
+              name="name"
+              onChange={(e) => {
+                handleInputChange(e);
+              }}
+            />
+            <label>Description</label>
 
-          <input
-            className={`${errors.artist && "danger"}`}
-            name="artist"
-            onChange={(e) => {
-              handleInputChange(e);
-            }}
-          ></input>
+            {errors.description && <p className="danger">{errors.description}</p>}
+            <textarea
+              className={`${errors.description && "danger"}`}
+              name="description"
+              onChange={(e) => {
+                handleInputChange(e);
+              }}
+            ></textarea>
+            <label>Artist</label>
+            {errors.artist && <p className="danger">{errors.artist}</p>}
 
-          <label>Price</label>
-          {errors.price && <p className="danger">{errors.price}</p>}
+            <input
+              className={`${errors.artist && "danger"}`}
+              name="artist"
+              onChange={(e) => {
+                handleInputChange(e);
+              }}
+            ></input>
 
-          <input
-            className={`${errors.price && "danger"}`}
-            name="price"
-            type="number"
-            onChange={(e) => {
-              handleInputChange(e);
-            }}
-          ></input>
+            <label>Price</label>
+            {errors.price && <p className="danger">{errors.price}</p>}
 
-          <label>BPM</label>
-          {errors.bpm && <p className="danger">{errors.bpm}</p>}
+            <input
+              className={`${errors.price && "danger"}`}
+              name="price"
+              type="number"
+              onChange={(e) => {
+                handleInputChange(e);
+              }}
+            ></input>
 
-          <input
-            className={`${errors.bpm && "danger"}`}
-            name="bpm"
-            type="number"
-            onChange={(e) => {
-              handleInputChange(e);
-            }}
-          ></input>
-        </div>
-        <div class="column-2 box">
-          <label>Scale</label>
-          {errors.scale && <p className="danger">{errors.scale}</p>}
+            <label>BPM</label>
+            {errors.bpm && <p className="danger">{errors.bpm}</p>}
 
-          <input
+            <input
+              className={`${errors.bpm && "danger"}`}
+              name="bpm"
+              type="number"
+              onChange={(e) => {
+                handleInputChange(e);
+              }}
+            ></input>
+          </div>
+          <div className="column-2 box">
+            <label>Tone</label>
+            {errors.scale && <p className="danger">{errors.scale}</p>}
+
+            {/* <input
             className={`${errors.scale && "danger"}`}
             name="scale"
             onChange={(e) => {
               handleInputChange(e);
             }}
-          ></input>
-          <label>Date</label>
-          {errors.date && <p className="danger">{errors.date}</p>}
+          ></input> */}
+            <Select
+              name="selectCat"
+              options={optionTone}
+              onChange={setCategories}
+              styles={customStyles}
+            />
+            <div className="radioTone">
+              <div className="radioColumn" >
+                <label for="indoor">
+                  natural
+              </label>
+                <input id="indoor" type="radio" name="indoor-outdoor" value="indoor" />
+              </div>
+              <div className="radioColumn" >
+                <label for="indoor">
+                  #
+              </label>
+                <input id="indoor" type="radio" name="indoor-outdoor" value="indoor" />
+              </div>
+              <div className="radioColumn">
+                <label for="outdoor">b</label>
+                <input id="outdoor" type="radio" name="indoor-outdoor" value="outdoor" />
+              </div>
+            </div>
+            <label>Date</label>
+            {errors.date && <p className="danger">{errors.date}</p>}
 
-          <input
-            className={`${errors.date && "danger"}`}
-            type="date"
-            name="date"
-            onChange={(e) => {
-              handleInputChange(e);
-            }}
-          ></input>
+            <input
+              id="dateClass"
+              className={` ${errors.date && "danger"}`}
+              type="date"
+              name="date"
+              onChange={(e) => {
+                handleInputChange(e);
+              }}
+            ></input>
 
-          <label>Image file</label>
-          {/* {errors.image && <p className="danger">{errors.image}</p>} */}
+            <label>Image file</label>
 
-          <input
-            // className={`${errors.image && "danger"}`}
-            type="file"
-            name="image"
-            onChange={(e) => {
-              handleInputChange(e);
-            }}
-          ></input>
-          <label>Audio file</label>
-          {/* {errors.audio && <p className="danger">{errors.audio}</p>} */}
+            <input
+              className="buttonInput"
+              type="file"
+              name="image"
+              onChange={(e) => {
+                handleInputChange(e);
+              }}
+            ></input>
+            <label>Audio file</label>
 
-          <input
-            // className={`${errors.audio && "danger"}`}
-            type="file"
-            name="audio"
-            onChange={(e) => {
-              handleInputChange(e);
-            }}
-          ></input>
-          <label>Categories</label>
+            <input
+              className="buttonInput"
+              type="file"
+              name="audio"
+              onChange={(e) => {
+                handleInputChange(e);
+              }}
+            ></input>
+            <label>Categories</label>
 
-          <Select
-            isMulti
-            name="selectCat"
-            options={option}
-            className="basic-multi-select"
-            onChange={setCategories}
-          />
+            <Select
+              isMulti
+              name="selectCat"
+              options={option}
+              onChange={setCategories}
+              styles={customStyles}
+            />
+          </div>
+        </div>
+        <div className="divButton">
+
           <button
             className="submitbuton"
             type="submit"
@@ -257,7 +382,7 @@ if(cat && cat.length > 0){
               handleInputChange(e);
             }}
           >
-            Submit
+            Save beat
           </button>
         </div>
       </form>
