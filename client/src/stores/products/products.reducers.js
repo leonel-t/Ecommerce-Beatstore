@@ -7,7 +7,10 @@ import {
     GET_ONE_PRODUCT_FAILURE,
     SEARCH_PRODUCT_SUCCESS,
     SEARCH_PRODUCT_FAILURE,
-    SEARCH_PRODUCT_REQUEST
+    SEARCH_PRODUCT_REQUEST,
+    POST_COMMENT_REQUEST,
+    POST_COMMENT_SUCCESS,
+    POST_COMMENT_FAILURE
 } from '../products/products.actions';
 
 let initialState = {
@@ -16,6 +19,7 @@ let initialState = {
     searchResults: [],
     Loading:true,
     Error:'',
+    LoadingComment:false
 }
 
 const productsReducers = (state = initialState, action) =>{
@@ -36,6 +40,22 @@ const productsReducers = (state = initialState, action) =>{
                 ...state,
                 Error: 'error 404',
                 Loading: false
+            }
+        case POST_COMMENT_REQUEST:
+            return {
+                ...state,
+                LoadingComment: true
+            }
+        case POST_COMMENT_SUCCESS:
+            return {
+                ...state,
+                LoadingComment: false,
+                }
+        case POST_COMMENT_FAILURE:
+            return {
+                ...state,
+                Error: 'error 404',
+                LoadingComment: false
             }
         case GET_ONE_PRODUCT_REQUEST:
             return {

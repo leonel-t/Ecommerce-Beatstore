@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import "./Header.css"
 import Logo from '../../assets/images/logo.png'
 import { Link } from 'react-router-dom';
@@ -7,12 +7,17 @@ import SearchImg from "./Search.png"
 import './Header.css'
 import { useDispatch } from 'react-redux';
 import { searchProducts } from '../../stores/products/products.actions';
+import {fetchUser} from '../../stores/user/user.actions';
 
 import { connect } from 'react-redux';
 
-const Header = ({STORE_CART}) =>  {
+const Header = ({fetchUserEffect, STORE_CART, STORE_USER}) =>  {
 
     const [name, setName] = useState("");
+
+    useEffect(() => {
+        fetchUserEffect();
+      }, [fetchUserEffect]);
 
     const dispatch = useDispatch();
     const history = useHistory();
@@ -71,7 +76,14 @@ const Header = ({STORE_CART}) =>  {
                     </span>
                 </div>
                 <div className="--newHeader-main-row-col-user-options">
+                {STORE_USER.user && STORE_USER.user.data
+                ?(
+                    <p><Link className="link-email" to="/profile">{STORE_USER.user.data.user.email}</Link></p>
+                ):(
                     <p>Login / Register</p>
+                )
+                    
+                }
                 </div>
             </div>
           </div>
@@ -79,12 +91,18 @@ const Header = ({STORE_CART}) =>  {
     )
 }
 
-
 const mapStateToProps =  state => {
     return {
-      STORE_CART : state.userReducers.cart
+        STORE_CART : state.userReducers.cart,
+        STORE_USER : state.userReducers
     }
   }
+
+  const mapDispatchToProps = (dispatch) => {
+    return {
+      fetchUserEffect: () => dispatch(fetchUser()),
+    };
+  };
   
   
-export default connect(mapStateToProps)(Header);
+export default connect(mapStateToProps, mapDispatchToProps)(Header);
