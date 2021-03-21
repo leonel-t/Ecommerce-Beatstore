@@ -7,7 +7,7 @@ const Footer = () =>{
 
     return (
         <div id="pie">
-          <h1>BeatShop 2021</h1>
+          <h1>BeatStore 2021</h1>
         </div>
     )
 }

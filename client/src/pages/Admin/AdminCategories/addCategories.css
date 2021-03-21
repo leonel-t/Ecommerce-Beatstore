@@ -1,0 +1,27 @@
+.catAdd{
+    align-items: center;
+    display: flex;
+    flex-direction: column;
+    color: white;
+}
+.catAdd input,textarea{
+    color: azure;
+    background: transparent;
+    border: none;
+    border-bottom: 1px solid #535353;
+    display: block;}   
+.--submitbuton{
+    margin-top: 10px;
+    background-color:purple; /* Green */
+    border: none;
+    color: white;
+    padding: 10px ;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    width: 170px;
+}
+.--submitbuton:hover{
+    background-color: red;
+}

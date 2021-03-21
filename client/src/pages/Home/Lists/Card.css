@@ -1,5 +1,4 @@
 .w3-content {
-    background-image: url("Izan-Llunas-en-Luis-Miguel-La-Serie-2018-1-e1525061588546-1024x502.png");
     background-size: 200%;
     background-repeat: no-repeat;
     background-position: 30% ;
@@ -34,6 +33,11 @@
     text-align: left;
     margin-left: 20px;
     font-size: 0.9em;
+}
+.link-style{
+    text-decoration: none;
+    font-size: 1em;
+    color: white;
 }
 
 /* para 980px o menos */

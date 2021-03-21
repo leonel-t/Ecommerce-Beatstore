@@ -1,0 +1,115 @@
+
+
+.divider{
+  min-height: 150px;
+}
+.subContainer input, textarea{
+  color:rgb(128, 128, 128);
+    background: transparent;
+    border: none;
+    border-bottom: 1px solid #0004e4;
+    display: block;
+}
+.subContainer input,textarea{width:100%;display:block}
+.basic-multi-select input{
+  background-color: black;
+}
+.subContainer h2 {
+  color: aliceblue;
+}
+
+.container {
+  display: flex;
+  justify-content:space-around;
+  width: 100%;
+  
+  background-color:rgb(22, 22, 22);
+  padding: 5px;
+  border: 2px solid rgb(79, 0, 170);
+}
+.column-2{
+  padding: 20px;
+  width: 50%;
+  
+  
+}
+.column-1 {
+  width: 50%;
+  padding: 20px;
+}
+.subContainer{
+  padding-left: 5%;
+  padding-right: 5%;
+
+  font-family:Verdana, Geneva, Tahoma, sans-serif;
+  color: #535353;
+}
+
+
+@media only screen and (max-width: 500px) {
+  .subContainer{
+    padding-left: 10%;
+    padding-right: 10%;  }
+  .container {
+    flex-direction: column;
+  }
+.column-2 {
+  padding: 3px;
+  width: 98%;
+
+  
+  
+}
+ .column-1 {
+  padding: 3px;
+  width: 98%;
+  
+  
+}
+  
+}
+
+
+
+
+
+
+.formAdd label {
+  display: block;
+    color: white;
+    font-size: larger;
+    padding: 5%;
+}
+
+
+
+.submitbuton {
+    width: 100%;
+    background-color: #005c03;
+    color: white;
+    padding: 14px 20px;
+    margin: 8px 0;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+.submitbuton:hover {
+    background-color: #45a049;
+}
+
+
+ 
+p.danger {
+  display: inline;
+
+  color: red;
+  font-size: 10px;
+}
+
+input.danger textarea.danger {
+  background: transparent;
+  border: none;
+  border-bottom: 1px solid #ce2c2c;
+}
+

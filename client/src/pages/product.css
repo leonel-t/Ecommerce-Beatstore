@@ -1,9 +1,0 @@
-.product--main{
-    position:relative;
-    display:flex;
-    flex-direction: column;
-    flex-wrap: wrap;
-    width: 100%;
-    background-color: black;
-}
-

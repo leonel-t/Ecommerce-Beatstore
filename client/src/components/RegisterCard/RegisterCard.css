@@ -11,6 +11,8 @@
 }
 .--RegisterCard p{
     margin: 0px;
+}
+.--RegisterCard-title{
     color: white;
 }
 .--RegisterCard-form-input{
@@ -31,4 +33,9 @@
     background: linear-gradient(45deg, rgb(234, 50, 111), rgb(145, 27, 137));
     border: 1px solid black;
     border-radius: 5px;
+}
+.danger {
+    color: #d4c;
+    font-size: 1em;
+    font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
 }

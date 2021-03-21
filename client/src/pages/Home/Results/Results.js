@@ -1,29 +1,39 @@
 
-import React, {useEffect} from 'react';
-import {connect} from "react-redux"
+import React, { useEffect } from 'react';
+import { connect } from 'react-redux'
+import { useParams } from "react-router-dom"
+
+import {searchProducts} from "../../../stores/products/products.actions"
 import "./Results.css"
-// import {searchProductSuccess} from "../../../stores/products/products.actions"
 
-const Results = ({STORE_PRODUCTS}) => {
+const Results = ({STORE_PRODUCTS, SEARCH_EFFECT}) => {
+
+    const {name} = useParams();
+
+        useEffect(()=>{
+            SEARCH_EFFECT(name)
+        },[SEARCH_EFFECT,name])
 
 
-
-        
 
     return (
         <div className='Muestra'>
-            <h1>HISTORY</h1>
+            <h1>Results :</h1>
                 {STORE_PRODUCTS.productsReducers.searchResults.map((product,id)=>{
                     console.log(product.name) 
                     return (
-                          <div className="encontrado">
-                            <ul>    
+                          <div className="encontrado">  
+                          <div className="ListAll">                            
+                              <ul>    
                                 <li> Name: {product.name} </li>,                            
                                 <li> Description: {product.description} </li>,
-                                <li> Price: {product.price} </li>,   
-                                <li> Image: {product.image} </li>,
-                                <li> Audio: {product.audio} </li>                 
-                            </ul>
+                                <li> Price: {"U$S"} {`${product.price}`}  </li>, 
+                                <li> Audio: {product.audio} </li>                                                
+                            </ul>   
+                          </div> 
+                          <div className="ImageAlbum">
+                              <img  src={`http://localhost:3001/images/${product.image}`} alt='album2' />
+                          </div> 
                         </div>    
                         )                    
                     })}
@@ -36,13 +46,15 @@ function mapStateToProps(state) {
     STORE_PRODUCTS: state
     };
   }
-//   const mapDispatchToProps = dispatch =>{
-//     return {
-//       fetchAllProductsEffect: (product) => dispatch(searchProductSuccess(product)) 
-//     }
-//   }
+
+function mapDispatchToProps(dispatch) {
+    return {
+    SEARCH_EFFECT: (name) => {dispatch(searchProducts(name))}
+    };
+  }
+
 
 export default connect(
     mapStateToProps,
-    // mapDispatchToProps
+    mapDispatchToProps
   )(Results);

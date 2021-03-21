@@ -1,36 +1,108 @@
-import React from 'react';
-import Logo from "./logo.svg"
-import { Link } from 'react-router-dom';
-import SearchBar from './SearchBar'
+import React, { useState, useEffect } from 'react';
 import "./Header.css"
+import Logo from '../../assets/images/logo.png'
+import { Link } from 'react-router-dom';
+import { useHistory } from "react-router-dom"
+import SearchImg from "./Search.png"
+import './Header.css'
+import { useDispatch } from 'react-redux';
+import { searchProducts } from '../../stores/products/products.actions';
+import {fetchUser} from '../../stores/user/user.actions';
 
+import { connect } from 'react-redux';
 
-const Header = () =>{
+const Header = ({fetchUserEffect, STORE_CART, STORE_USER}) =>  {
 
+    const [name, setName] = useState("");
+
+    useEffect(() => {
+        fetchUserEffect();
+      }, [fetchUserEffect]);
+
+    const dispatch = useDispatch();
+    const history = useHistory();
+
+    const handleChange = (e) => {
+        setName(e.target.value);
+    }
+        
+    const handleSubmit = (e) => {
+        e.preventDefault();
+        dispatch(searchProducts(name));
+        history.push(`/results/${name}`);
+    }
 
     return (
-      <div className="NavBar" >
+      <header className="--newHeader-main" >
+          <div className="--newHeader-main-row">
+            <div className="--newHeader-main-row-col-logo">
+                <Link to="/"><img src={Logo} alt="BeatShop"></img></Link>
+            </div>
+            <div className="--newHeader-main-row-col-menu">
+                
+               <form onSubmit={handleSubmit} className='--newHeader-main-row-col-menu-form'>
+                    <div className="--newHeader-main-row-col-menu-form-div">
+                        <input onChange={handleChange} name="name" value={name} placeholder="Search..." />
+                        <img className="--newHeader-main-row-col-menu-form-div-img" onClick={handleSubmit} src={SearchImg} alt="SearchIcon" />
+                    </div>
+                </form>
 
-        <img className="navbar-zCOIAP" data-id="342fc321-f2b1-4e94-a2f0-d97f2118bd31" src="https://cdn.animaapp.com/projects/604829c37b81d727e7cb8c9e/releases/6048e9a37c95ed32e1c01cfc/img/navbar@1x.png" anima-src="https://cdn.animaapp.com/projects/604829c37b81d727e7cb8c9e/releases/6048e9a37c95ed32e1c01cfc/img/navbar@1x.png" alt="background"/>
-
-        <div id="logo"> 
-          <Link to="/" id="logoLink">
-            <img src={Logo}  alt="logo"/>
-          </Link> 
-        </div>
-
-        <SearchBar />
-        <div className="navOptions">
-            <ul> 
-              <Link to="/" ><li id="option1">option 1</li></Link>
-              <Link to="/" ><li id="option2">option 2</li></Link>
-              <Link to="/" ><li id="option3">option 3</li></Link>
-            </ul> 
-        </div>
-      </div>
+            </div>
+            <div className="--newHeader-main-row-col-menu">
+                <ul className="--newHeader-main-row-col-menu-ul">
+                    <li><Link className="--newHeader-main-row-col-menu-link" to="/">Home</Link></li>
+                    <li><Link className="--newHeader-main-row-col-menu-link" to="/catalog">Catalog</Link></li>
+                    <li><Link className="--newHeader-main-row-col-menu-link" to="/login">Login</Link></li>
+                    <li><Link className="--newHeader-main-row-col-menu-link" to="/admin">Admin</Link></li>
+                    <li><Link className="--newHeader-main-row-col-menu-link" to="/cart">
+                         Cart
+                         <span className="--header-cart-item-length">
+                             {STORE_CART && STORE_CART.length > 0
+                             ?(
+                                STORE_CART.length
+                             ):(
+                                 0
+                             )
+                             }
+                         </span>
+                        </Link>
+                    </li>
+                </ul>
+            </div>
+            <div className="--newHeader-main-row-col-user">
+                <div className="--newHeader-main-row-col-user-icon">
+                    <span className="material-icons --user-icon">
+                    account_circle
+                    </span>
+                </div>
+                <div className="--newHeader-main-row-col-user-options">
+                {STORE_USER.user && STORE_USER.user.data
+                ?(
+                    <p><Link className="link-email" to="/profile">{STORE_USER.user.data.user.email}</Link></p>
+                ):(
+                    <p>Login / Register</p>
+                )
+                    
+                }
+                </div>
+            </div>
+          </div>
+      </header>
     )
 }
 
+const mapStateToProps =  state => {
+    return {
+        STORE_CART : state.userReducers.cart,
+        STORE_USER : state.userReducers
+    }
+  }
 
-
-export default Header;
+  const mapDispatchToProps = (dispatch) => {
+    return {
+      fetchUserEffect: () => dispatch(fetchUser()),
+    };
+  };
+  
+  
+export default connect(mapStateToProps, mapDispatchToProps)(Header);

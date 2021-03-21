@@ -1,9 +1,16 @@
+import 'js-snackbar/snackbar.css';
 import './beatComponent.css';
 import React from 'react';
 import Spectrum from '../Spectrum/Spectrum';
+import { connect } from 'react-redux';
+import { addItemToCart } from '../../../stores/user/user.actions';
+import { show } from 'js-snackbar';
+const BeatComponent = ({ addItemToCartEffect, product }) => {
 
-const BeatComponent = ({ product }) => {
-
+    const handleAddToCart = (product)=>{
+        show({ text: 'PRODUCT ADDED!', pos:'bottom-center', duration: 5000, });
+        return addItemToCartEffect("user", product)
+    }
     return (
         <div className="beatComponent--main">
             {product && product.name
@@ -13,7 +20,7 @@ const BeatComponent = ({ product }) => {
                         <img alt="album" src={`http://localhost:3001/images/${product.image}`}></img>
                     </div>
                     <div className="beatComponent--main-beatInfo-col">
-                        <span className="material-icons icon-size"> play_circle_outline </span>
+                        
                         <h1>{product.name} </h1><p>{product.artist}</p>
                         <div className="beatComponent--main-beatInfo-col-author">
                             
@@ -38,9 +45,11 @@ const BeatComponent = ({ product }) => {
                         </div>
                         <div className="beatComponent--main-beatActions-col">
                             <button className="beatComponent--main-beatActions-col-btn">
-                                <div className="beatComponent--main-beatActions-col-btn-row">
+                                <div 
+                                onClick={()=> {return handleAddToCart(product)}}
+                                className="beatComponent--main-beatActions-col-btn-row">
                                     <div>
-                                        <span class="material-icons">add_shopping_cart</span>
+                                        <span className="material-icons">add_shopping_cart</span>
                                     </div>
                                      <div>
                                         Buy $ {product.price} 
@@ -48,10 +57,26 @@ const BeatComponent = ({ product }) => {
                                 </div>
                             </button>
                         </div>
-                        <div className="beatComponent--main-beatActions-col">
+                        <div className="beatComponent--main-beatActions-col column">
+                            {product.categories && product.categories.length > 0
+                                ?(
+                                    product.categories.map((categorie)=>{
+                                        return (
+                                            <span className="beatComponent--main-beatActions-col-cat">{categorie.name}</span>
+                                        )
+                                    })
+                                ):(
+                                    <></>
+                                )
+                            }
+                        </div>
+                        <div className="beatComponent--main-beatActions-col column">
                             <p>{product.description}</p>
                         </div>
-                        <Spectrum></Spectrum>
+                        <div className="spec">
+                            <span className="material-icons icon-size"> play_circle_outline </span>
+                            <Spectrum></Spectrum>
+                        </div>
                     </div>
     
     
@@ -69,5 +94,17 @@ const BeatComponent = ({ product }) => {
     )
 }
 
+const mapStateToProps =  state => {
+    return {
+      STORE_PRODUCT : state.productsReducers
+    }
+  }
+  const mapDispatchToProps = dispatch =>{
+    return {
+      addItemToCartEffect: (user, product) => dispatch(addItemToCart(user, product))  
+    }
+  }
+  
+  
+export default connect(mapStateToProps, mapDispatchToProps)(BeatComponent);
 
-export default BeatComponent;

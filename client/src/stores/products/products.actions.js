@@ -17,6 +17,11 @@ export const SEARCH_PRODUCT_REQUEST = "SEARCH_PRODUCT_REQUEST";
 export const SEARCH_PRODUCT_SUCCESS = "SEARCH_PRODUCT_SUCCESS"; 
 export const SEARCH_PRODUCT_FAILURE = "SEARCH_PRODUCT_FAILURE"; 
 
+//POST COMMENT
+export const POST_COMMENT_REQUEST = "POST_COMMENT_REQUEST";
+export const POST_COMMENT_SUCCESS = "POST_COMMENT_SUCCESS"; 
+export const POST_COMMENT_FAILURE = "POST_COMMENT_FAILURE";
+
 
 
 export const fetchAllProducts = () => {
@@ -85,8 +90,6 @@ export const getOneProductFailure = (error) =>{
 } 
 
 //PRUEBA PARA QUE TRAIGA POR NOMBRE
-
-
 export const searchProducts = (products) => {
 
     return (dispatch) =>{
@@ -119,5 +122,46 @@ export const searchProductFailure = (error) =>{
     }
 } 
 
+//POST COMMENT
+export const postComment = (productId, comment) => {
+    
+    return (dispatch) =>{
 
+        dispatch(postCommentRequest())
+        const options = {
+            method: "POST",
+            url: "http://localhost:3001/comments",
+            headers: {  "Content-Type": "application/json" },
+            data: {
+                idProduct: productId,
+                comment: {
+                    author: comment.author, 
+                    comment: comment.text}}
+          };
+          axios.request(options).then(() => {
+                dispatch(fetchOneProduct(productId))
+                dispatch(postCommentSuccess())
+            })
+            .catch(error => {
+                dispatch(postCommentFailure(error))
+            })
 
+    }
+
+}
+export const postCommentRequest = () =>{
+    return {
+        type: POST_COMMENT_REQUEST,
+    }
+} 
+export const postCommentSuccess = () =>{
+    return {
+        type: POST_COMMENT_SUCCESS,
+    }
+} 
+export const postCommentFailure = (error) =>{
+    return {
+        type: POST_COMMENT_FAILURE,
+        payload: error
+    }
+} 

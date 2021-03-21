@@ -1,46 +1,74 @@
 import React from "react";
 import { BrowserRouter, Route, Switch } from "react-router-dom";
 
+//Layouts
+import {
+  PagesLayout,
+  HomeLayout,
+  LoginLayout,
+  AdminLayout,
+} from "./Layouts/Layouts";
+
 //Pages
 import Home from "./pages/Home/Home.js";
-import Product from "./pages/Product.js";
-import Catalog from "./pages/Catalog.js";
-import Admin from "./pages/Admin.js";
-import Form from "./pages/Form";
-import PutForm from "./pages/PutForm";
-import Categories from "./pages/AddCategories";
-import Login from "./pages/Login.js";
 
-//Components
+import Product from "./pages/Product/Product.js";
+import Catalog from "./pages/Catalog/Catalog.js";
+import Admin from "./pages/Admin/Admin.js";
+import Form from "./pages/Admin/AdminProducts/Form";
+import PutForm from "./pages/Admin/AdminProducts/PutForm";
+import Categories from "./pages/Admin/AdminCategories/AddCategories";
+import Login from "./pages/Login/Login.js";
+import Register from "./pages/Register/Register";
+import Results from "./pages/Home/Results/Results.js";
+import Cart from "./pages/Cart/Cart";
 
-// import Header from './components/Header/Header.js';
-import Footer from './components/Footer/Footer.js';
-// import FloatingCard from './components/FloatingCard/FloatingCard.js';
-import Results from './pages/Home/Results/Results.js';
-
-//import Header from './components/Header/Header.js';
+import Profile from './pages/Auth/Profile'
+import LoginGithub from './pages/Login/LoginGithub'
 import Header from "./components/NewHeader/NewHeader.js";
-//import FloatingCard from './components/FloatingCard/FloatingCard.js';
+
 
 const App = () => {
   return (
     <BrowserRouter>
-      <Header />
       <Switch>
-        <Route exact path="/" render={() => <Home />} />
-        <Route exact path="/catalog" render={() => <Catalog />} />
-        <Route exact path="/product/:productId" render={() => <Product />} />
-        <Route exact path="/add" render={() => <Form />} />
-        <Route exact path="/admin" render={() => <Admin />} />
-        <Route exact path="/put/:id" render={() => <PutForm />} />
-        <Route exact path="/addCategories" render={() => <Categories />} />
-        <Route exact path="/login" render={() => <Login/>}/>
-        <Route exact path="/results/:name" render={()=> <Results /> } />
+        <RouteWrapper exact path="/" component={Home} layout={HomeLayout} />
+        <RouteWrapper
+          exact
+          path="/catalog"
+          component={Catalog}
+          layout={PagesLayout}
+        />
+        <RouteWrapper
+          exact
+          path="/product/:productId"
+          component={Product}
+          layout={PagesLayout}
+        />
+        <RouteWrapper exact path="/add" component={Form} layout={AdminLayout} />
+        <RouteWrapper exact path="/admin" component={Admin} layout={AdminLayout} />
+        <RouteWrapper exact path="/put/:id" component={PutForm} layout={PagesLayout} />
+        <RouteWrapper exact path="/addCategories" component={Categories} layout={PagesLayout} />
+        <RouteWrapper exact path="/login" component={Login} layout={LoginLayout}  />
+        <RouteWrapper exact path="/results/:name" component={Results} layout={PagesLayout} />
+        <RouteWrapper exact path="/register" component={Register} layout={LoginLayout} />
+        <RouteWrapper exact path="/cart" component={Cart} layout={PagesLayout} />
+        <RouteWrapper exact path="/profile" component={Profile} layout={LoginLayout} />
+        <RouteWrapper exact path="/login/github/:email/:password" component={LoginGithub} layout={PagesLayout} />
       </Switch>
-      <Footer />
-
     </BrowserRouter>
   );
 };
-
+function RouteWrapper({ component: Component, layout: Layout, ...rest }) {
+  return (
+    <Route
+      {...rest}
+      render={(props) => (
+        <Layout {...props}>
+          <Component {...props} />
+        </Layout>
+      )}
+    />
+  );
+}
 export default App;

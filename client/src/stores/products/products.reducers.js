@@ -7,19 +7,19 @@ import {
     GET_ONE_PRODUCT_FAILURE,
     SEARCH_PRODUCT_SUCCESS,
     SEARCH_PRODUCT_FAILURE,
-    SEARCH_PRODUCT_REQUEST
+    SEARCH_PRODUCT_REQUEST,
+    POST_COMMENT_REQUEST,
+    POST_COMMENT_SUCCESS,
+    POST_COMMENT_FAILURE
 } from '../products/products.actions';
 
 let initialState = {
     products:[],
-    productsLoading:true,
-    productsError:'',
     product:{},
-    productLoading:true,
-    productError:'',
     searchResults: [],
-    searchLoading: true,
-    searchError: ''
+    Loading:true,
+    Error:'',
+    LoadingComment:false
 }
 
 const productsReducers = (state = initialState, action) =>{
@@ -27,53 +27,69 @@ const productsReducers = (state = initialState, action) =>{
         case GET_ALL_PRODUCTS_REQUEST:
             return {
                 ...state,
-                productsLoading: true
+                Loading: true
             }
         case GET_ALL_PRODUCTS_SUCCESS:
             return {
                 ...state,
-                productsLoading: false,
+                Loading: false,
                 products: action.payload
                 }
         case GET_ALL_PRODUCTS_FAILURE:
             return {
                 ...state,
-                productsError: 'error 404',
-                productsLoading: false
+                Error: 'error 404',
+                Loading: false
+            }
+        case POST_COMMENT_REQUEST:
+            return {
+                ...state,
+                LoadingComment: true
+            }
+        case POST_COMMENT_SUCCESS:
+            return {
+                ...state,
+                LoadingComment: false,
+                }
+        case POST_COMMENT_FAILURE:
+            return {
+                ...state,
+                Error: 'error 404',
+                LoadingComment: false
             }
         case GET_ONE_PRODUCT_REQUEST:
             return {
                 ...state,
-                productLoading: true
+                Loading: true
             }
         case GET_ONE_PRODUCT_SUCCESS:
             return {
                 ...state,
-                productLoading: false,
+                Loading: false,
                 product: action.payload
                 }
         case GET_ONE_PRODUCT_FAILURE:
             return {
                 ...state,
-                productError: 'error 404',
-                productLoading: false
+                Error: 'error 404',
+                Loading: false
             }
         case SEARCH_PRODUCT_REQUEST:
             return {
                 ...state,
-                searchLoading: true
+                Loading: true
             }
         case SEARCH_PRODUCT_SUCCESS :
             return {
                 ...state,
-                searchLoading: false,
+                Loading: false,
                 searchResults: action.payload
             }
         case SEARCH_PRODUCT_FAILURE:
             return {
                 ...state,
-                searchError: 'error 404',
-                searchLoading: false
+                Error: 'error 404',
+                Loading: false
             }
         default: 
         return state;
