@@ -16,6 +16,10 @@ export const SEARCH_PRODUCT_REQUEST = "SEARCH_PRODUCT_REQUEST";
 export const SEARCH_PRODUCT_SUCCESS = "SEARCH_PRODUCT_SUCCESS"; 
 export const SEARCH_PRODUCT_FAILURE = "SEARCH_PRODUCT_FAILURE"; 
 
+//DELETE PRODUCT BY ID
+export const DELETE_PRODUCT_REQUEST = "DELETE_PRODUCT_REQUEST";
+export const DELETE_PRODUCT_SUCCESS = "DELETE_PRODUCT_SUCCESS"; 
+export const DELETE_PRODUCT_FAILURE = "DELETE_PRODUCT_FAILURE"; 
 
 
 export const fetchAllProducts = () => {
@@ -46,6 +50,37 @@ export const getAllProductsSuccess = (products) =>{
 export const getAllProductsFailure = (error) =>{
     return {
         type:GET_ALL_PRODUCTS_FAILURE,
+        payload: error
+    }
+} 
+//DELETE PRODUCT
+export const deleteProducts = (id) => {
+    console.log("ESTE ES EL IDDDDDDDDDDDDDDDDDDDDD",id)
+    return (dispatch) =>{
+        dispatch(deleteProductsRequest())
+        fetch(`http://localhost:3001/products/${id}`, {
+            method: 'DELETE',
+          })
+          .then(res => dispatch(deleteProductsSuccess()))  
+          .catch(error => {
+                dispatch(deleteProductsFailure(error))
+         })
+    }
+}
+
+export const deleteProductsRequest = () =>{
+    return {
+        type: DELETE_PRODUCT_REQUEST,
+    }
+} 
+export const deleteProductsSuccess = () =>{
+    return {
+        type:DELETE_PRODUCT_SUCCESS,
+    }
+} 
+export const deleteProductsFailure = (error) =>{
+    return {
+        type:DELETE_PRODUCT_FAILURE,
         payload: error
     }
 } 

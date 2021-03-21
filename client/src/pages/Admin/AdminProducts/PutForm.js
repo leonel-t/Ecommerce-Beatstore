@@ -7,7 +7,7 @@ import axios from "axios";
 import { useHistory } from "react-router-dom";
 import "../../Product/product.css";
 import { fetchOneProduct } from "../../../stores/admin/admin.actions";
-import Admin from "../Admin";
+import Admin from "../AdminNav";
 
 const PutForm = ({ STORE_ADMIN, fetchProduct }) => {
   const history = useHistory();
