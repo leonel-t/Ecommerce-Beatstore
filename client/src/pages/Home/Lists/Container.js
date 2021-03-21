@@ -10,10 +10,6 @@ const Container = () => {
     return (
         <div className='Container'>
                 <Wrapper/>
-                <Wrapper/>
-                <Wrapper/>
-                <Wrapper/>
-                <Wrapper/>
         </div>
         )
 }

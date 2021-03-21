@@ -1,9 +1,11 @@
+
 .wrapper{
     display: flex;
     width: 100%;
-    overflow-x: scroll;
     margin: 15px;
-    padding: 25px 0;
+    padding: 25px;
+    overflow-y: hidden;
+    overflow-x: scroll;
     
 }
 .wrapper::-webkit-scrollbar{

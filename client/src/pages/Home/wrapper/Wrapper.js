@@ -1,4 +1,4 @@
-import React, {useEffect, useState, useRef} from 'react';
+import React, {useEffect} from 'react';
 import {animated, useSpring } from "react-spring";
 import { useScroll } from "react-use-gesture"
 import { connect } from 'react-redux';
@@ -7,22 +7,23 @@ import { fetchAllProducts } from '../../../stores/products/products.actions';
 
 import "./wrapper.css";
 
-const Product = ({fetchAllProductsEffect,  PRODUCTS}) =>{
+const Wrapper = ({fetchAllProductsEffect,  PRODUCTS}) =>{
     const history = useHistory()
     useEffect(()=>{
         fetchAllProductsEffect()
       },[fetchAllProductsEffect]);
-      const [styles, set] = useSpring(()=>({
 
+      const [styles, set] = useSpring(()=>({
           transform:"perspective(500px) rotateY(25deg)"
       }));
+
       const clamp = (value, clampAt = 30) =>{
           if(value > 0){
               return value > clampAt ? clampAt : value
           }else{
             return value < -clampAt ? -clampAt : value
           }
-      }
+      };
 
       const bind = useScroll(event =>{
           set({
@@ -30,10 +31,12 @@ const Product = ({fetchAllProductsEffect,  PRODUCTS}) =>{
                   event.scrolling ? clamp(event.delta[0]) : 0
                 }deg`
           })
-      })
+      });
+
       const handleClick = (id)=>{
           history.push(`/product/${id}`)
-      }
+      };
+
     return (
         <>
           {PRODUCTS.productLoading
@@ -93,4 +96,4 @@ const mapStateToProps =  state => {
   }
   
   
-export default connect(mapStateToProps, mapDispatchToProps)(Product);
+export default connect(mapStateToProps, mapDispatchToProps)(Wrapper);
