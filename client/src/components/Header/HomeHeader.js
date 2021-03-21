@@ -40,7 +40,7 @@ const HomeHeader = ({fetchUserEffect, STORE_USER}) =>{
                              }
                          </span>
                       </Link></li>
-                    {STORE_USER.user && STORE_USER.user.data &&STORE_USER.user.data.user.rol === "admin"
+                    {STORE_USER.user && STORE_USER.user.data && STORE_USER.user.data.user.rol === "admin"
                         ?(
                             <li><Link className="--newHeader-main-row-col-menu-link" to="/admin">Admin</Link></li>
                         ):(
