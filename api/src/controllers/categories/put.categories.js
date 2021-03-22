@@ -2,12 +2,17 @@ const { Categories } = require("../../db");
 
 module.exports = {
     editCat: async (cat, id) => {
+        return await Categories.update(cat, {
+            where: { id: parseInt(id) },
+        }).then((cat) => cat);
+    },
+
+    editCat2: async (cat, id) => {
         try {
-            console.log(cat, id)
             const existingCat = await Categories.findOne({
-                where:{
-                id: id
-                } 
+                where: {
+                    id: id
+                }
             });
             console.log(existingCat)
             existingCat.name = cat.name
@@ -18,6 +23,6 @@ module.exports = {
         }
         catch (err) {
             res.status(400).json(err);
-          };
+        };
     }
 }
