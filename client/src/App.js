@@ -25,7 +25,7 @@ import Cart from "./pages/Cart/Cart";
 
 import Profile from './pages/Auth/Profile'
 import LoginGithub from './pages/Login/LoginGithub'
-import Header from "./components/NewHeader/NewHeader.js";
+// import Header from "./components/Header/Header.js";
 
 
 const App = () => {
