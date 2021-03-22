@@ -4,14 +4,14 @@ import { useHistory } from "react-router-dom";
 import Admin from "../AdminNav";
 import { connect } from "react-redux";
 import { fetchAllProducts, deleteProducts } from "../../../stores/admin/admin.actions";
-const Edit = ({ fetchCartEffect, fetchAllProductsEffect, deleteProductsEffect,  STORE_CART }) => {
+const Edit = ({ fetchCartEffect, fetchAllProductsEffect, deleteProductsEffect, STORE_CART }) => {
   var user = false;
   const history = useHistory();
 
   useEffect(() => {
     fetchCartEffect(user);
     fetchAllProductsEffect()
-  }, [fetchCartEffect,fetchAllProductsEffect, user]);
+  }, [fetchCartEffect, fetchAllProductsEffect, user]);
   const handleClickEdit = (productId) => {
     history.push(`/put/${productId}`);
   };
@@ -49,7 +49,7 @@ const Edit = ({ fetchCartEffect, fetchAllProductsEffect, deleteProductsEffect,  
                           border_color
                         </span>
                         <span className="material-icons --ItemCard-deletItem"
-                         onClick={() => handleClickDelete(product.id)}
+                          onClick={() => handleClickDelete(product.id)}
 
                         >
                           delete
@@ -62,7 +62,7 @@ const Edit = ({ fetchCartEffect, fetchAllProductsEffect, deleteProductsEffect,  
               <div></div>
             </>
           ) : (
-            <p className="empy-cart">Empy Cart</p>
+            <p className="empty-cart">Empty Cart</p>
           )}
         </div>
       </div>
