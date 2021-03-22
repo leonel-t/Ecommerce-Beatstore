@@ -12,8 +12,10 @@ const Admin = () => {
       <Link className="--admin--main-btn" to="/addcategories">
         Add categories
       </Link>
-    
- 
+
+      <Link className="--admin--main-btn" to="/listcat">
+        List Categories
+      </Link>
     </main>
   );
 };

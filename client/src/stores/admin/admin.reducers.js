@@ -12,9 +12,19 @@ import {
 import {
   DELETE_PRODUCT_REQUEST,
   DELETE_PRODUCT_SUCCESS,
-  DELETE_PRODUCT_FAILURE
+  DELETE_PRODUCT_FAILURE,
+  GET_ALL_CATEGORIES_REQUEST,
+  GET_ALL_CATEGORIES_SUCCESS,
+  GET_ALL_CATEGORIES_FAILURE,
+  PUT_ONE_CATEGORY_REQUEST,
+  PUT_ONE_CATEGORY_SUCCESS,
+  PUT_ONE_CATEGORY_FAILURE,
+  DELETE_CATEGORY_REQUEST,
+  DELETE_CATEGORY_SUCCESS,
+  DELETE_CATEGORY_FAILURE
 } from "../admin/admin.actions";
- 
+
+
 let initialState = {
   products: [],
   productsLoading: true,
@@ -27,6 +37,12 @@ let initialState = {
   searchError: "",
   deleteProductError: "",
   deleteProductLoading: true,
+  categories: [],
+  categoriesError: "",
+  categoriesLoading: true,
+  category: {},
+  categoryLoading: true,
+  categoryError: ""
 };
 
 const adminReducers = (state = initialState, action) => {
@@ -48,22 +64,72 @@ const adminReducers = (state = initialState, action) => {
         productsError: "error 404",
         productsLoading: false,
       };
-      case DELETE_PRODUCT_REQUEST:
-        return {
-          ...state,
-          deleteProductLoading: true,
-        };
-      case DELETE_PRODUCT_SUCCESS:
-        return {
-          ...state,
-          deleteProductLoading: false,
-        };
-      case DELETE_PRODUCT_FAILURE:
-        return {
-          ...state,
-          deleteProductError: "error 404",
-          deleteProductLoading: false,
-        };
+    case GET_ALL_CATEGORIES_REQUEST:
+      return {
+        ...state,
+        categoriesLoading: true,
+      };
+    case GET_ALL_CATEGORIES_SUCCESS:
+      return {
+        ...state,
+        categoriesLoading: false,
+        categories: action.payload,
+      };
+    case GET_ALL_CATEGORIES_FAILURE:
+      return {
+        ...state,
+        categoriesError: "error 404",
+        categoriesLoading: false,
+      };
+    case PUT_ONE_CATEGORY_REQUEST:
+      return {
+        ...state,
+        categoryLoading: true,
+      };
+    case PUT_ONE_CATEGORY_SUCCESS:
+      return {
+        ...state,
+        categoryLoading: false,
+        category: action.payload,
+      };
+    case PUT_ONE_CATEGORY_FAILURE:
+      return {
+        ...state,
+        categoryError: "error 404",
+        categoryLoading: false,
+      };
+    case DELETE_PRODUCT_REQUEST:
+      return {
+        ...state,
+        deleteProductLoading: true,
+      };
+    case DELETE_PRODUCT_SUCCESS:
+      return {
+        ...state,
+        deleteProductLoading: false,
+      };
+    case DELETE_PRODUCT_FAILURE:
+      return {
+        ...state,
+        deleteCategoryError: "error 404",
+        deleteCategoryLoading: false,
+      };
+    case DELETE_CATEGORY_REQUEST:
+      return {
+        ...state,
+        deleteCategoryLoading: true,
+      };
+    case DELETE_CATEGORY_SUCCESS:
+      return {
+        ...state,
+        deleteCategoryLoading: false,
+      };
+    case DELETE_CATEGORY_FAILURE:
+      return {
+        ...state,
+        deleteProductError: "error 404",
+        deleteProductLoading: false,
+      };
     case GET_ONE_PRODUCT_REQUEST:
       return {
         ...state,

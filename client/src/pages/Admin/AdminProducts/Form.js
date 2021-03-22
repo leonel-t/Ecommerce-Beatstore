@@ -85,6 +85,15 @@ export default function Form() {
   const [errors, setErrors] = React.useState({});
   const [input, setInput] = React.useState({});
   const [cat, setCat] = React.useState([]);
+  const [alt, setAlt] = React.useState({})
+  const [tone, setTone] = React.useState({})
+  const handleAlt = (e) => {
+    setAlt({
+      ...alt,
+      [e.target.name]: e.target.value
+    })
+
+  }
   useEffect(() => {
     const datos = async () => {
       return await fetch("http://localhost:3001/categories")
@@ -107,14 +116,13 @@ export default function Form() {
     form.append("artist", input.artist);
     form.append("price", input.price);
     form.append("bpm", input.bpm);
-    form.append("scale", input.scale);
+    form.append("scale", tone.value + alt.radName);
     form.append("date", input.date);
-    form.append("selectCat", cat.selectCat);
+    // form.append("selectCat", cat.selectCat);
 
     form.append("files", image[0]);
     form.append("files", audio[0]);
 
-    console.log(input);
     const options = {
       method: "POST",
       url: "http://localhost:3001/products/",
@@ -124,6 +132,7 @@ export default function Form() {
       data: form,
 
     };
+
     axios.request(options).then(function (response) {
       idProduct = response.data.id;
       console.log(categories);
@@ -206,8 +215,8 @@ export default function Form() {
     msecsProduct > msecsToday
       ? (errors.date = "insert a valid date!")
       : console.log("ok");
-    if (!input.scale) {
-      errors.scale = "scale is required";
+    if (!tone.value) {
+      errors.tone = "tone is required";
     }
     if (!image) {
       errors.image = "image is required";
@@ -296,37 +305,27 @@ export default function Form() {
           </div>
           <div className="column-2 box">
             <label>Tone</label>
-            {errors.scale && <p className="danger">{errors.scale}</p>}
+            {errors.tone && <p className="danger">{errors.tone}</p>}
 
-            {/* <input
-            className={`${errors.scale && "danger"}`}
-            name="scale"
-            onChange={(e) => {
-              handleInputChange(e);
-            }}
-          ></input> */}
+
             <Select
-              name="selectCat"
+              name="selectTone"
               options={optionTone}
-              onChange={setCategories}
+              onChange={setTone}
               styles={customStyles}
             />
             <div className="radioTone">
               <div className="radioColumn" >
-                <label for="indoor">
-                  natural
-              </label>
-                <input id="indoor" type="radio" name="indoor-outdoor" value="indoor" />
+                <label for="indoor">natural</label>
+                <input type="radio" name="radName" value="" />
               </div>
               <div className="radioColumn" >
-                <label for="indoor">
-                  #
-              </label>
-                <input id="indoor" type="radio" name="indoor-outdoor" value="indoor" />
+                <label for="indoor"># </label>
+                <input type="radio" name="radName" value="#" onChange={handleAlt} />
               </div>
               <div className="radioColumn">
-                <label for="outdoor">b</label>
-                <input id="outdoor" type="radio" name="indoor-outdoor" value="outdoor" />
+                <label >b</label>
+                <input type="radio" name="radName" value="b" onChange={handleAlt} />
               </div>
             </div>
             <label>Date</label>
