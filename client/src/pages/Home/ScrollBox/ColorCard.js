@@ -1,18 +1,35 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import './colorCard.css';
-
-function ColorCard({ color }) {
+import {useHistory} from "react-router-dom"
+function ColorCard({ product }) {
+  const history = useHistory()
   function handleColorCopy() {
-    if (navigator) navigator.clipboard.writeText(color);
+    if(product && product.id){
+      history.push(`/product/${product.id}`)
+    }
   }
+
   return (
-    <div className="color-card" style={{ backgroundColor: color }}>
+    <>
+    {product && product.artist
+      ?(
+        <div className="color-card" style={{ background:`url(http://localhost:3001/images/${product.image})`}}>
+        <button className="color-card__code" onClick={handleColorCopy}>
+          {product.name.slice(0,16)}
+        </button>
+       </div>
+      ):(
+        <div className="color-card" style={{ backgroundColor:"white"  }}>
       <button className="color-card__code" onClick={handleColorCopy}>
-        {color}
+      
       </button>
     </div>
+      )
+    }
+      </>
   );
+
 }
 
 ColorCard.propTypes = {
