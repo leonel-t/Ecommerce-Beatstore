@@ -2,6 +2,7 @@ import React, { useEffect } from 'react';
 import { connect } from 'react-redux';
 import {fetchUser} from '../../stores/user/user.actions'
 import {useHistory} from 'react-router-dom'
+
 // import jwt from 'jsonwebtoken'
 
 import './Profile.css'

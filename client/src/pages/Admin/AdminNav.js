@@ -1,4 +1,4 @@
-import "./admin.css";
+import "./adminNav.css";
 import React from "react";
 import { Link } from "react-router-dom";
 
@@ -8,11 +8,13 @@ const Admin = () => {
       <Link className="--admin--main-btn" to="/add">
         Add Product
       </Link>
-      <Link className="--admin--main-btn" to="/put/1">
-        Add Product
-      </Link>
+
       <Link className="--admin--main-btn" to="/addcategories">
-        Add Product
+        Add categories
+      </Link>
+
+      <Link className="--admin--main-btn" to="/listcat">
+        List Categories
       </Link>
     </main>
   );
