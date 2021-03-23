@@ -11,6 +11,19 @@
     flex-direction: column;
     width: 70%;
 }
-.empy-cart{
+.--Cart-items h1{
     color: white;
+}
+.empty-cart{
+    color: white;
+    font-size: 1.4rem;
+}
+.--Cart-deleteCart{
+    width: 100px;
+    height: 30px;
+    margin: 5px;
+    padding: 0px 12px;
+    background: linear-gradient(45deg, rgb(234, 50, 111), rgb(145, 27, 137));
+    border: 1px solid black;
+    border-radius: 5px;
 }
