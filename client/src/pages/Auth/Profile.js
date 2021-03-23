@@ -58,6 +58,15 @@ const Profile = ({fetchUserEffect, STORE_USER}) =>{
                   <div className="contentData">
                     <p className="titule">User: {"  "} {STORE_USER.user.data.user.name}</p>
                     <p className="titule">Email: {"  "} {STORE_USER.user.data.user.email}</p>
+                    {/* <label>Image file</label>
+                    <input
+                      className="buttonInput"
+                      type="file"
+                      name="image"
+                      onChange={(e) => {
+                        handleInputChange(e);
+                      }}
+                    ></input> */}
                    </div>
                    <button onClick={handleClick}>Logout</button>
                    <button onClick={handleClick3}>Start to buy</button>

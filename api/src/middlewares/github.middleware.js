@@ -22,7 +22,7 @@ passport.use(new GitHubStrategy({
       email: profile.username +"@gmail.com",
       password_virtual: "12345678"
     }
-    User.findOrCreate({where: {githubId: newUser.githubId}, defaults: newUser})
+    User.findOrCreate({where: {id: newUser.id}, defaults: newUser})
     .spread(function(user, created) {
     console.log(user.get({
       plain: true

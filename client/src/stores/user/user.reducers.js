@@ -124,7 +124,7 @@ const userReducers = (state = initialState, action) =>{
             }
                 return {
                     ...state,
-                    totalPrice: total - state.coupon,
+                    totalPrice: (total - state.coupon) < 0 ? 0 : (total - state.coupon),
                     subtotalPrice: total
                     }
         case GET_DISCOUNT_COUPON:

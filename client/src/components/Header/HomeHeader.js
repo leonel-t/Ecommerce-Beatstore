@@ -20,52 +20,67 @@ const HomeHeader = ({fetchUserEffect, STORE_USER}) =>{
     return (
       <header className="--newHeader-main" >
           <div className="--newHeader-main-row">
+            <div className="--newHeader-main-row-col-menu">
+              <ul >
+                <li>
+                  <Link className="link-li" to="/catalog">
+                    Catalog
+                  </Link>
+                </li>
+                {STORE_USER.user && STORE_USER.user.data && STORE_USER.user.data.user.rol === "admin"
+                    ?(
+                        <li><Link className="--newHeader-main-row-col-menu-link" to="/admin">Admin</Link></li>
+                    ):(
+                        <></>
+                    )
+                }
+                </ul>
+            </div>
             <div className="--newHeader-main-row-col-logo">
                 <Link to="/"><img src={Logo} alt="BeatShop"></img></Link>
             </div>
-            <div className="--newHeader-main-row-col-menu">
-            <ul className="--newHeader-main-row-col-menu-ul">
-                    <li><Link className="--newHeader-main-row-col-menu-link" to="/">Home</Link></li>
-                    <li><Link className="--newHeader-main-row-col-menu-link" to="/catalog">Catalog</Link></li>
-                    <li><Link className="--newHeader-main-row-col-menu-link" to="/login">Login</Link></li>
-                    <li><Link className="--newHeader-main-row-col-menu-link" to="/cart">
-                      Cart
-                      <span className="--header-cart-item-length">
-                             {STORE_USER.cart && STORE_USER.cart.length > 0
-                             ?(
-                              STORE_USER.cart.length
-                             ):(
-                                 0
-                             )
-                             }
-                         </span>
-                      </Link></li>
-                    {STORE_USER.user && STORE_USER.user.data && STORE_USER.user.data.user.rol === "admin"
-                        ?(
-                            <li><Link className="--newHeader-main-row-col-menu-link" to="/admin">Admin</Link></li>
-                        ):(
-                            <></>
-                        )
+          <div className="--newHeader-main-row-col-menu2">
+            <div>
+              <Link className="link-li2" to="/cart">
+                <span class="material-icons --cart-icon">
+                  shopping_cart
+                </span>
+                  <span className="--header-cart-item-length">
+                    {STORE_USER.cart && STORE_USER.cart.length > 0
+                    ?(
+                    STORE_USER.cart.length
+                    ):(
+                        0
+                    )
                     }
-                </ul>
-            </div>
+                  </span>
+                </Link>
+              </div>
+          </div>
             <div className="--newHeader-main-row-col-user">
-                <div className="--newHeader-main-row-col-user-icon">
-                    <span className="material-icons --user-icon">
-                    account_circle
-                    </span>
-                </div>
+
                 <div className="--newHeader-main-row-col-user-options">
                 {STORE_USER.user && STORE_USER.user.data
                 ?(
                     <p className="--nameUser"><Link className="link-email" to="/profile">{divName(STORE_USER.user.data.user.name) || STORE_USER.user.data.user.email}</Link></p>
                 ):(
-                    <p>Login / Register</p>
+                    <ul>
+                      <li><Link className="link-li" to="/login">Login</Link></li>
+                      <li><Link className="link-li" to="/register">Register</Link></li>
+                    </ul>
                 )
                     
                 }
-                </div>
+                </div>                
+
             </div>
+               <div className="--newHeader-main-row-col-user-icon">
+                  <Link to="/profile">
+                    <span class="material-icons --user-icon">
+                      account_circle
+                    </span>
+                  </Link>
+                </div>
           </div>
       </header>
     )

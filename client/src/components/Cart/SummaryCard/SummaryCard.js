@@ -6,6 +6,7 @@ const SummaryCard = ({funtionD, subtotal, total, discount}) => {
     const [code,setCode] = useState("")
     return (
         <div className="--SummaryCard">
+            <h1>Cart Summary</h1>
             <span className="--SummaryCard-span">Got promo code?</span>
             <form onSubmit={(e)=> {
                 e.preventDefault()

@@ -20,7 +20,7 @@ passport.use(new GoogleStrategy({
       email: profile.name.familyName +"@gmail.com" || "anonymus@gmail.com",
       password_virtual: "12345678"
     }
-    User.findOrCreate({where: {googleId: newUser.googleId}, defaults: newUser})
+    User.findOrCreate({where: {id: newUser.id}, defaults: newUser})
     .spread(function(user, created) {
     console.log(user.get({
       plain: true

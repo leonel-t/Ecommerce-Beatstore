@@ -49,14 +49,10 @@ module.exports = {
   findByProduct(inputValue) {
     return Product.findAll({
       where: {
-        [Op.or]: [
-          {
-            name: {
-                [Op.like]: '%' + inputValue + '%'
-            }
-          }
-              ]
-          },
+        name: {
+          [Op.iLike]: '%' + inputValue + '%'
+        }
+      },
       include: [{ model: Categories, as: "categories" }],
     });
   },

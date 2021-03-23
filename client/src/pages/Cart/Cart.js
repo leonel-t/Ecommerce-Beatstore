@@ -37,6 +37,7 @@ const Cart = ({fetchCartEffect, deleteItemInCartEffect, getDiscountCouponEffect 
     return (
         <div className="--Cart">
             <div className="--Cart-items">
+              <h1>Cart Review</h1>
                 {STORE_CART && STORE_CART.length > 0
                     ?(
 
@@ -44,19 +45,19 @@ const Cart = ({fetchCartEffect, deleteItemInCartEffect, getDiscountCouponEffect 
                         <div>
                         {
                          STORE_CART.map((product, index)=>
-                            <ItemCard key={index} id={product.id} img={product.image} name={product.name} autor={product.autor} price={product.price}/>
+                            <ItemCard key={index} id={product.id} img={product.image} name={product.name} autor={product.artist} price={product.price}/>
                         )
                         }
                         </div>
                         <div>
-                            <button
+                            <button className="--Cart-deleteCart"
                             onClick={()=>handleDelete(null, true)}
-                            >Empy Cart</button>
+                            >Empty Cart</button>
                         </div>
                       </>
                     ):
                     (
-                        <p className="empy-cart">Empy Cart</p>
+                        <p className="empty-cart">You don't have items in cart</p>
                     )
                 }
             </div>

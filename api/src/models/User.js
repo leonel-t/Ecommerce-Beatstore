@@ -7,14 +7,6 @@ module.exports = (sequelize) => {
       primaryKey: true,
       allowNull: true
     },
-    googleId:{
-      type: DataTypes.STRING,
-      allowNull: true
-    },
-    githubId:{
-      type: DataTypes.STRING,
-      allowNull: true
-    },
     name: {
       type: DataTypes.STRING,
       allowNull: false,
