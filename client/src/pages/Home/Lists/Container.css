@@ -4,7 +4,13 @@
     height: 1080px;
     background-color: black;
     background-size: cover;
-    overflow-x: auto;
+    overflow-x: none;
+}
+.Container h1{
+    color: antiquewhite;
+}
+.Container h2{
+    color: antiquewhite;
 }
 
 #title1{
@@ -41,8 +47,6 @@
 @media screen and (max-width:980px) {
     .Container {
         width: 980px;
-        height: 650px;
-
     }
 }
 
@@ -50,8 +54,6 @@
 @media screen and (max-width:700px) {
     .Container {
         width: 700px;
-        height: 450px;
-
     }
 
 }
@@ -60,8 +62,6 @@
 @media screen and (max-width:480px) {
     .Container {
         width: 480px;
-        height: 260px;
-
     }
     #title1{
     display: none;

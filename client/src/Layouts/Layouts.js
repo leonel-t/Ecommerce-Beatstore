@@ -4,8 +4,9 @@ import "./Layouts.css"
 //Components
 import Header from "../components/Header/Header";
 import HomeHeader from "../components/Header/HomeHeader";
-//import AdminHeader from "../components/Header/AdminHeader";
+import AdminHeader from "../components/Header/AdminHeader";
 import Footer from '../components/Footer/Footer.js';
+import PagesFooter from '../components/Footer/PagesFooter.js';
 import { Link } from 'react-router-dom';
 // import FloatingCard from './components/FloatingCard/FloatingCard.js';
 
@@ -26,7 +27,7 @@ const HomeLayout = ({children}) => {
         <div>
             <Header></Header>
             {children}
-            <Footer></Footer>
+            <PagesFooter></PagesFooter>
         </div>
     )
   }
@@ -34,7 +35,7 @@ const HomeLayout = ({children}) => {
   const AdminLayout = ({children}) => {
     return (
         <div>
-            <Header></Header>
+            <AdminHeader></AdminHeader>
             {children}
         </div>
     )

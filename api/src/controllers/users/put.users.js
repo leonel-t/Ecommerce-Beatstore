@@ -10,7 +10,7 @@ module.exports = {
             });
             existingUser.name = user.name
             existingUser.email = user.email
-            existingUser.password = user.password
+            existingUser.password_virtual = user.password
             await existingUser.save()
 
             return user;

@@ -2,7 +2,8 @@ import React, { useEffect } from 'react';
 import { connect } from 'react-redux';
 import {fetchUser} from '../../stores/user/user.actions'
 import {useHistory} from 'react-router-dom'
-import jwt from 'jsonwebtoken'
+
+// import jwt from 'jsonwebtoken'
 
 import './Profile.css'
 
@@ -31,6 +32,7 @@ const Profile = ({fetchUserEffect, STORE_USER}) =>{
       
       const handleClick2 = (e) =>{
         e.preventDefault()
+        localStorage.clear()
         history.push("/login")
       }
 
@@ -56,6 +58,15 @@ const Profile = ({fetchUserEffect, STORE_USER}) =>{
                   <div className="contentData">
                     <p className="titule">User: {"  "} {STORE_USER.user.data.user.name}</p>
                     <p className="titule">Email: {"  "} {STORE_USER.user.data.user.email}</p>
+                    {/* <label>Image file</label>
+                    <input
+                      className="buttonInput"
+                      type="file"
+                      name="image"
+                      onChange={(e) => {
+                        handleInputChange(e);
+                      }}
+                    ></input> */}
                    </div>
                    <button onClick={handleClick}>Logout</button>
                    <button onClick={handleClick3}>Start to buy</button>

@@ -1,13 +1,19 @@
 import React from "react";
 import "./addCategories.css";
 import Admin from "../AdminNav";
+import { connect } from 'react-redux';
+import { useParams } from "react-router-dom";
+import { putCategoryById } from "../../../stores/admin/admin.actions";
 
-function AddCategories() {
+function EditCategories({ putCategoryByIdEffect }) {
   const [input, setInput] = React.useState({
     name: "",
     description: "",
   });
   const [errors, setErrors] = React.useState({});
+  const { idCat, name, description } = useParams();
+
+  console.log(idCat)
   function validate(input) {
     let errors = {};
     if (!input.name) {
@@ -35,15 +41,9 @@ function AddCategories() {
   };
   const handleSubmit = (e) => {
     e.preventDefault();
-    const requestOptions = {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({
-        ...input,
-      }),
-    };
-    console.log(requestOptions.body);
-    fetch("http://localhost:3001/categories", requestOptions);
+    return putCategoryByIdEffect(idCat, JSON.stringify({
+      ...input,
+    }))
   };
   return (
     <form className="catAdd" onSubmit={(e) => handleSubmit(e)}>
@@ -58,18 +58,20 @@ function AddCategories() {
           name="name"
           onChange={handleInputChange}
           value={input.name}
+          placeholder={name}
         />
       </div>
       <div>
         {errors.username && <p className="danger">{errors.username}</p>}
         <p>description:</p>
         <textarea
-          placeholder="type the description here"
+          placeholder={description}
           className={`${errors.description && "danger"}`}
           type="text"
           name="description"
           onChange={handleInputChange}
           value={input.description}
+
         />
       </div>
       <div>
@@ -81,4 +83,20 @@ function AddCategories() {
     </form>
   );
 }
-export default AddCategories;
+
+const mapStateToProps = state => {
+  return {
+    STORE_PRODUCT: state.productsReducers,
+  }
+}
+
+const mapDispatchToProps = dispatch => {
+  return {
+    putCategoryByIdEffect: (idCat, category) => dispatch(putCategoryById(idCat, category)),
+
+  }
+}
+
+
+export default connect(mapStateToProps, mapDispatchToProps)(EditCategories);
+
