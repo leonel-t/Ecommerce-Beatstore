@@ -32,30 +32,37 @@ const Header = ({fetchUserEffect, STORE_CART, STORE_USER}) =>  {
         history.push(`/results/${name}`);
     }
 
+    const divName = (name) =>{
+        var separado = name.split(" ")
+        return separado[0]
+       } 
+
     return (
       <header className="--newHeader-main" >
           <div className="--newHeader-main-row">
-            <div className="--newHeader-main-row-col-logo">
-                <Link to="/"><img src={Logo} alt="BeatShop"></img></Link>
-            </div>
-            <div className="--newHeader-main-row-col-menu">
+            <div className="--newHeader-main-row-col-menu4">
+                <ul className="--newHeader-main-row-col-menu-ul">
+                    {/* <li><Link className="--newHeader-main-row-col-menu-link" to="/admin">Admin</Link></li> */}
                 
-               <form onSubmit={handleSubmit} className='--newHeader-main-row-col-menu-form'>
+                <form onSubmit={handleSubmit} className='--newHeader-main-row-col-menu-form'>
                     <div className="--newHeader-main-row-col-menu-form-div">
                         <input onChange={handleChange} name="name" value={name} placeholder="Search..." />
                         <img className="--newHeader-main-row-col-menu-form-div-img" onClick={handleSubmit} src={SearchImg} alt="SearchIcon" />
                     </div>
                 </form>
 
-            </div>
-            <div className="--newHeader-main-row-col-menu">
-                <ul className="--newHeader-main-row-col-menu-ul">
-                    <li><Link className="--newHeader-main-row-col-menu-link" to="/">Home</Link></li>
-                    <li><Link className="--newHeader-main-row-col-menu-link" to="/catalog">Catalog</Link></li>
-                    <li><Link className="--newHeader-main-row-col-menu-link" to="/login">Login</Link></li>
-                    <li><Link className="--newHeader-main-row-col-menu-link" to="/admin">Admin</Link></li>
-                    <li><Link className="--newHeader-main-row-col-menu-link" to="/cart">
-                         Cart
+                </ul>
+
+            </div>  
+            <div className="--newHeader-main-row-col-logo">
+                <Link to="/"><img src={Logo} alt="BeatShop"></img></Link>
+            </div> 
+            <div className="--newHeader-main-row-col-menu3">
+                <div>
+                    <Link className="--newHeader-main-row-col-menu-link" to="/cart">
+                        <span class="material-icons --cart-icon">
+                            shopping_cart
+                        </span>
                          <span className="--header-cart-item-length">
                              {STORE_CART && STORE_CART.length > 0
                              ?(
@@ -65,26 +72,33 @@ const Header = ({fetchUserEffect, STORE_CART, STORE_USER}) =>  {
                              )
                              }
                          </span>
-                        </Link>
-                    </li>
-                </ul>
-            </div>
-            <div className="--newHeader-main-row-col-user">
-                <div className="--newHeader-main-row-col-user-icon">
-                    <span className="material-icons --user-icon">
-                    account_circle
-                    </span>
+                    </Link>
                 </div>
+            </div>          
+
+            <div className="--newHeader-main-row-col-user">
+                
                 <div className="--newHeader-main-row-col-user-options">
                 {STORE_USER.user && STORE_USER.user.data
                 ?(
-                    <p><Link className="link-email" to="/profile">{STORE_USER.user.data.user.email}</Link></p>
+                    <p><Link className="link-email" to="/profile">{divName(STORE_USER.user.data.user.name) || STORE_USER.user.data.user.email}</Link></p>
                 ):(
-                    <p>Login / Register</p>
+                    <ul>
+                      <li><Link className="link-licopy" to="/">Home</Link></li>
+                      <li><Link className="link-licopy" to="/login">Login</Link></li>
+                      <li><Link className="link-licopy" to="/register">Register</Link></li>
+                    </ul>
                 )
                     
                 }
                 </div>
+            </div>
+            <div className="--newHeader-main-row-col-user-icon">
+                <Link to="/profile">
+                    <span class="material-icons --user-icon">
+                     account_circle
+                    </span>
+                </Link>
             </div>
           </div>
       </header>
