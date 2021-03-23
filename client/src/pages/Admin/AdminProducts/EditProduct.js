@@ -19,7 +19,6 @@ const PutForm = ({ STORE_ADMIN, fetchProduct }) => {
   }, [fetchProduct, id]);
 
   const [categories, setCategories] = React.useState([]);
-  console.log(categories);
   const [image, setImage] = React.useState({});
   const [audio, setAudio] = React.useState();
   const [editFiles, setEditFiles] = React.useState(false);
@@ -27,6 +26,8 @@ const PutForm = ({ STORE_ADMIN, fetchProduct }) => {
   const [editAudio, setEditAudio] = React.useState(false);
   const [errors, setErrors] = React.useState({});
   const [cat, setCat] = React.useState([]);
+  const [alt, setAlt] = React.useState({})
+  const [tone, setTone] = React.useState({})
   useEffect(() => {
     const datos = async () => {
       return await fetch("http://localhost:3001/categories")
@@ -61,6 +62,14 @@ const PutForm = ({ STORE_ADMIN, fetchProduct }) => {
     };
   }
   const [input, setInput] = React.useState({});
+  const handleAlt = (e) => {
+    setAlt({
+      ...alt,
+      [e.target.name]: e.target.value
+    })
+
+  }
+  let idProduct;
   function handleSubmit(e) {
     e.preventDefault();
 
@@ -70,47 +79,63 @@ const PutForm = ({ STORE_ADMIN, fetchProduct }) => {
     form.append("artist", input.artist);
     form.append("price", input.price);
     form.append("bpm", input.bpm);
-    form.append("scale", input.scale);
+    form.append("scale", tone.value + alt.radName);
     form.append("date", input.date);
-    if (image && image[0] && editFiles === "edit") {
-      form.append("files", image[0]);
-    }
-    if (audio && audio[0] && editFiles === "edit") {
-      form.append("files", audio[0]);
-    }
-    form.append("oldImage", storeProduct.image);
-    form.append("oldAudio", storeProduct.audio);
-    form.append("id", storeProduct.id);
-    form.append("editFiles", editFiles);
-    form.append("editImage", editImage);
-    form.append("editAudio", editAudio);
+    // form.append("selectCat", cat.selectCat);
+
+    form.append("files", image[0]);
+    form.append("files", audio[0]);
 
     const options = {
-      method: "PUT",
+      method: "POST",
       url: "http://localhost:3001/products/",
-      headers: { "Content-Type": "multipart/form-data" },
+      headers: {
+        "Content-Type": "multipart/form-data", "Cross-Origin-Opener-Policy": "same-origin"
+      },
       data: form,
+
     };
 
-    axios
-      .request(options)
-      .then(function (response) {
-        return history.push("/admin");
-      })
-      .catch(function (error) {
-        console.error(error);
+    axios.request(options).then(function (response) {
+      idProduct = response.data.id;
+      console.log(categories);
+      categories.forEach((element) => {
+        console.log(element);
+        axios
+          .post(
+            `http://localhost:3001/products/${idProduct}/category/${element.value}`
+          )
+          .then((res) => console.log(res));
       });
+    });
   }
-
+  const optionTone = [{
+    value: "C",
+    label: "C"
+  }, {
+    value: "D",
+    label: "D"
+  }, {
+    value: "E",
+    label: "E"
+  }, {
+    value: "F",
+    label: "F"
+  }, {
+    value: "G",
+    label: "G"
+  }, {
+    value: "A",
+    label: "A"
+  }, {
+    value: "B",
+    label: "B"
+  }]
   const handleInputChange = (event) => {
     if (event.target.name === "image") {
       setImage(event.target.files);
-      setEditFiles("edit");
-      setEditImage("edit");
     } else if (event.target.name === "audio") {
       setAudio(event.target.files);
-      setEditFiles("edit");
-      setEditAudio("edit");
     } else {
       setInput({
         ...input,
@@ -143,11 +168,18 @@ const PutForm = ({ STORE_ADMIN, fetchProduct }) => {
     if (!input.bpm) {
       errors.bpm = "bpm is required";
     }
+
     if (!input.date) {
       errors.date = "date is required";
     }
-    if (!input.scale) {
-      errors.scale = "scale is required";
+    var today = new Date();
+    let msecsToday = today.getTime();
+    var msecsProduct = Date.parse(input.date);
+    msecsProduct > msecsToday
+      ? (errors.date = "insert a valid date!")
+      : console.log("ok");
+    if (!tone.value) {
+      errors.tone = "tone is required";
     }
     if (!image) {
       errors.image = "image is required";
@@ -157,135 +189,164 @@ const PutForm = ({ STORE_ADMIN, fetchProduct }) => {
     }
     return errors;
   }
+  var option;
 
+  if (cat && cat.length > 0) {
+    option = cat.map((c) => {
+      return {
+        value: c.id,
+        label: c.name,
+      };
+    });
+  }
   return (
-    <div class="subContainer">
+    <div className="subContainer">
+      {console.log(product)}
       <Admin />
-
       <h2>Complete product data:</h2>
       <form
-        enctype="multipart/form-data"
-        class="container formAdd"
         onSubmit={(e) => handleSubmit(e)}
       >
-        <div class="column-1 box">
-          <label>Name</label>
-          {errors.name && <p className="danger">{errors.name}</p>}
+        <div className="container formAdd"
+        >
 
-          <input
-            className={`${errors.name && "danger"}`}
-            name="name"
-            placeholder={product.name}
-            onChange={(e) => {
-              handleInputChange(e);
-            }}
-          />
-          <label>Description</label>
+          <div className="column-1 box">
+            <label>Name</label>
+            {errors.name && <p className="danger">{errors.name}</p>}
 
-          {errors.description && <p className="danger">{errors.description}</p>}
-          <textarea
-            className={`${errors.description && "danger"}`}
-            placeholder={product.description}
-            name="description"
-            onChange={(e) => {
-              handleInputChange(e);
-            }}
-          ></textarea>
-          <label>Artist</label>
-          {errors.artist && <p className="danger">{errors.artist}</p>}
+            <input
+              placeholder={product.name}
+              className={`${errors.name && "danger"}`}
+              name="name"
+              onChange={(e) => {
+                handleInputChange(e);
+              }}
+            />
+            <label>Description</label>
 
-          <input
-            className={`${errors.artist && "danger"}`}
-            name="artist"
-            placeholder={product.artist}
-            onChange={(e) => {
-              handleInputChange(e);
-            }}
-          ></input>
+            {errors.description && <p className="danger">{errors.description}</p>}
+            <textarea
+              placeholder={product.description}
+              className={`${errors.description && "danger"}`}
+              name="description"
+              onChange={(e) => {
+                handleInputChange(e);
+              }}
+            ></textarea>
+            <label>Artist</label>
+            {errors.artist && <p className="danger">{errors.artist}</p>}
 
-          <label>Price</label>
-          {errors.price && <p className="danger">{errors.price}</p>}
+            <input
+              placeholder={product.artist}
+              className={`${errors.artist && "danger"}`}
+              name="artist"
+              onChange={(e) => {
+                handleInputChange(e);
+              }}
+            ></input>
 
-          <input
-            placeholder={product.price}
-            className={`${errors.price && "danger"}`}
-            name="price"
-            type="number"
-            onChange={(e) => {
-              handleInputChange(e);
-            }}
-          ></input>
+            <label>Price</label>
+            {errors.price && <p className="danger">{errors.price}</p>}
 
-          <label>BPM</label>
-          {errors.bpm && <p className="danger">{errors.bpm}</p>}
+            <input
+              placeholder={product.price}
+              className={`${errors.price && "danger"}`}
+              name="price"
+              type="number"
+              onChange={(e) => {
+                handleInputChange(e);
+              }}
+            ></input>
 
-          <input
-            placeholder={product.bpm}
-            className={`${errors.bpm && "danger"}`}
-            name="bpm"
-            type="number"
-            onChange={(e) => {
-              handleInputChange(e);
-            }}
-          ></input>
+            <label>BPM</label>
+            {errors.bpm && <p className="danger">{errors.bpm}</p>}
+
+            <input
+              placeholder={product.bpm}
+              className={`${errors.bpm && "danger"}`}
+              name="bpm"
+              type="number"
+              onChange={(e) => {
+                handleInputChange(e);
+              }}
+            ></input>
+          </div>
+          <div className="column-2 box">
+            <label>Tone</label>
+            {errors.tone && <p className="danger">{errors.tone}</p>}
+
+
+            <Select
+              placeholder={product.scale}
+
+              name="selectTone"
+              options={optionTone}
+              onChange={setTone}
+            // styles={customStyles}
+            />
+            <div className="radioTone">
+              <div className="radioColumn" >
+                <label for="indoor">natural</label>
+                <input type="radio" name="radName" value="" />
+              </div>
+              <div className="radioColumn" >
+                <label for="indoor"># </label>
+                <input type="radio" name="radName" value="#" onChange={handleAlt} />
+              </div>
+              <div className="radioColumn">
+                <label >b</label>
+                <input type="radio" name="radName" value="b" onChange={handleAlt} />
+              </div>
+            </div>
+            <label>Date</label>
+            {errors.date && <p className="danger">{errors.date}</p>}
+
+            <input
+              placeholder={product.date}
+
+              id="dateClass"
+              className={` ${errors.date && "danger"}`}
+              type="date"
+              name="date"
+              onChange={(e) => {
+                handleInputChange(e);
+              }}
+            ></input>
+
+            <label>Image file</label>
+
+            <input
+              className="buttonInput"
+              type="file"
+              name="image"
+              onChange={(e) => {
+                handleInputChange(e);
+              }}
+            ></input>
+            <label>Audio file</label>
+
+            <input
+              className="buttonInput"
+              type="file"
+              name="audio"
+              onChange={(e) => {
+                handleInputChange(e);
+              }}
+            ></input>
+            <label>Categories</label>
+
+            <Select
+              placeholder={product.categories}
+              isMulti
+              name="selectCat"
+              options={option}
+              onChange={setCategories}
+            // styles={customStyles}
+            />
+          </div>
         </div>
-        <div class="column-2 box">
-          <label>Scale</label>
-          {errors.scale && <p className="danger">{errors.scale}</p>}
+        <div className="divButton">
 
-          <input
-            placeholder={product.scale}
-            className={`${errors.scale && "danger"}`}
-            name="scale"
-            onChange={(e) => {
-              handleInputChange(e);
-            }}
-          ></input>
-          <label>Date</label>
-
-          {errors.date && <p className="danger">{errors.date}</p>}
-
-          <input
-            placeholder={product.date}
-            className={`${errors.date && "danger"}`}
-            type="date"
-            name="date"
-            onChange={(e) => {
-              handleInputChange(e);
-            }}
-          ></input>
-
-          <label>Image file</label>
-          {/* {errors.image && <p className="danger">{errors.image}</p>} */}
-
-          <input
-            // className={`${errors.image && "danger"}`}
-            type="file"
-            name="image"
-            onChange={(e) => {
-              handleInputChange(e);
-            }}
-          ></input>
-          <label>Audio file</label>
-          {/* {errors.audio && <p className="danger">{errors.audio}</p>} */}
-
-          <input
-            // className={`${errors.audio && "danger"}`}
-            type="file"
-            name="audio"
-            onChange={(e) => {
-              handleInputChange(e);
-            }}
-          ></input>
-          <label>Categories</label>
-
-          <Select
-            isMulti
-            name="selectCat"
-            options={cat}
-            className="basic-multi-select"
-            onChange={setCategories}
-          />
           <button
             className="submitbuton"
             type="submit"
@@ -293,14 +354,15 @@ const PutForm = ({ STORE_ADMIN, fetchProduct }) => {
               handleInputChange(e);
             }}
           >
-            Submit
+            Save beat
           </button>
         </div>
       </form>
       <div className="divider"></div>
     </div>
   );
-};
+}
+
 const mapStateToProps = (state) => {
   return {
     STORE_ADMIN: state.adminReducers,
