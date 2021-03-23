@@ -1,4 +1,4 @@
-import "./edit.css";
+import "./listProduct.css";
 import React, { useEffect } from "react";
 import { useHistory } from "react-router-dom";
 import Admin from "../AdminNav";
