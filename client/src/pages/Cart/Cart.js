@@ -44,7 +44,7 @@ const Cart = ({fetchCartEffect, deleteItemInCartEffect, getDiscountCouponEffect 
                         <div>
                         {
                          STORE_CART.map((product, index)=>
-                            <ItemCard key={index} id={product.id} img={product.image} name={product.name} autor={product.autor} price={product.price}/>
+                            <ItemCard key={index} id={product.id} img={product.image} name={product.name} autor={product.artist} price={product.price}/>
                         )
                         }
                         </div>
