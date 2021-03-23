@@ -87,6 +87,13 @@ export default function Form() {
   const [cat, setCat] = React.useState([]);
   const [alt, setAlt] = React.useState({})
   const [tone, setTone] = React.useState({})
+  const handleAlt = (e) => {
+    setAlt({
+      ...alt,
+      [e.target.name]: e.target.value
+    })
+
+  }
   useEffect(() => {
     const datos = async () => {
       return await fetch("http://localhost:3001/categories")
@@ -99,13 +106,6 @@ export default function Form() {
     datos();
   }, []);
 
-  const handleAlt = (e) => {
-    setAlt({
-      ...alt,
-      [e.target.name]: e.target.value
-    })
-
-  }
   let idProduct;
   function handleSubmit(e) {
     e.preventDefault();
@@ -116,7 +116,7 @@ export default function Form() {
     form.append("artist", input.artist);
     form.append("price", input.price);
     form.append("bpm", input.bpm);
-    form.append("scale", tone.value + alt.radName);
+    form.append("scale", alt.radName == undefined ? tone.value : tone.value + alt.radName);
     form.append("date", input.date);
     // form.append("selectCat", cat.selectCat);
 

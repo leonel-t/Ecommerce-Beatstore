@@ -1,89 +1,30 @@
 import React, { useEffect } from "react";
+import { useParams } from "react-router-dom";
+import { connect } from "react-redux";
 import "./form.css";
 import Select from "react-select";
 import axios from "axios";
+import { useHistory } from "react-router-dom";
+import "../../Product/product.css";
+import { fetchOneProduct } from "../../../stores/admin/admin.actions";
 import Admin from "../AdminNav";
 
-export default function Form() {
-  const customStyles = {
-    control: (base, state) => ({
-      ...base,
-      // match with the menu
-      borderRadius: state.isFocused ? "3px 3px 0 0" : 3,
-      // Overwrittes the different states of border
-      borderColor: state.isFocused ? "yellow" : "green",
-      // Removes weird border around container
-      boxShadow: state.isFocused ? null : null,
-      "&:hover": {
-        // Overwrittes the different states of border
-        borderColor: state.isFocused ? "red" : "blue",
-        background: "white"
-      }
-    }),
-    menu: (base, state) => ({
-      ...base,
-      // override border radius to match the box
-      borderRadius: 0,
-      // kill the gap
-      marginTop: 0,
-      background: state.isFocused ? "yellow" : "green",
-      "&:hover": {
-        // Overwrittes the different states of border
-        background: "blue"
-      }
-    }),
-    menuList: base => ({
-      ...base,
-      // kill the white space on first and last option
-      padding: 0,
-      background: "white",
+const PutForm = ({ STORE_ADMIN, fetchProduct }) => {
+  const history = useHistory();
+  const storeProduct = STORE_ADMIN.product;
 
-    }),
-    menuPortal: base => ({
-      background: "red",
-      "&:hover": {
-        // Overwrittes the different states of border
-        background: "blue"
-      }
-    }),
-    multiValueLabel: base => ({
-      background: "red",
-      color: "black",
-      padding: "5px",
-      borderRadius: "25px"
-    }),
-    multiValueLabel: base => ({
-      background: "rgb(106,31,174)",
-      color: "white",
-      padding: "5px",
-      borderRadius: "5px",
-      outline: "none",
-    }),
-    multiValueRemove: base => ({
-      background: "red",
-      color: "white",
-      padding: "4x",
-      marginBottom: "10px",
-      borderRadius: "5px"
-    }),
-    singleValue: base => ({
-      background: "yellow",
-      color: "black",
-      "&:hover": {
-        // Overwrittes the different states of border
-        background: "blue"
-      }
-    }),
-    group: base => ({
-      background: "yellow",
-      color: "black"
-    })
-  };
+  const { id } = useParams();
+  useEffect(() => {
+    fetchProduct(id);
+  }, [fetchProduct, id]);
+
   const [categories, setCategories] = React.useState([]);
   const [image, setImage] = React.useState({});
   const [audio, setAudio] = React.useState();
+  const [editFiles, setEditFiles] = React.useState(false);
+  const [editImage, setEditImage] = React.useState(false);
+  const [editAudio, setEditAudio] = React.useState(false);
   const [errors, setErrors] = React.useState({});
-  const [input, setInput] = React.useState({});
   const [cat, setCat] = React.useState([]);
   const [alt, setAlt] = React.useState({})
   const [tone, setTone] = React.useState({})
@@ -98,7 +39,29 @@ export default function Form() {
 
     datos();
   }, []);
-
+  var product = {};
+  if (storeProduct.name) {
+    product = {
+      name: storeProduct.name,
+      description: storeProduct.description,
+      artist: storeProduct.artist,
+      price: storeProduct.price,
+      bpm: storeProduct.bpm,
+      scale: storeProduct.scale,
+      date: storeProduct.date,
+    };
+  } else {
+    product = {
+      name: "No Product",
+      description: "No Product",
+      artist: "No Product",
+      price: "No Product",
+      bpm: "No Product",
+      scale: "No Product",
+      date: "No Product",
+    };
+  }
+  const [input, setInput] = React.useState({});
   const handleAlt = (e) => {
     setAlt({
       ...alt,
@@ -236,9 +199,9 @@ export default function Form() {
       };
     });
   }
-
   return (
     <div className="subContainer">
+      {console.log(product)}
       <Admin />
       <h2>Complete product data:</h2>
       <form
@@ -252,6 +215,7 @@ export default function Form() {
             {errors.name && <p className="danger">{errors.name}</p>}
 
             <input
+              placeholder={product.name}
               className={`${errors.name && "danger"}`}
               name="name"
               onChange={(e) => {
@@ -262,6 +226,7 @@ export default function Form() {
 
             {errors.description && <p className="danger">{errors.description}</p>}
             <textarea
+              placeholder={product.description}
               className={`${errors.description && "danger"}`}
               name="description"
               onChange={(e) => {
@@ -272,6 +237,7 @@ export default function Form() {
             {errors.artist && <p className="danger">{errors.artist}</p>}
 
             <input
+              placeholder={product.artist}
               className={`${errors.artist && "danger"}`}
               name="artist"
               onChange={(e) => {
@@ -283,6 +249,7 @@ export default function Form() {
             {errors.price && <p className="danger">{errors.price}</p>}
 
             <input
+              placeholder={product.price}
               className={`${errors.price && "danger"}`}
               name="price"
               type="number"
@@ -295,6 +262,7 @@ export default function Form() {
             {errors.bpm && <p className="danger">{errors.bpm}</p>}
 
             <input
+              placeholder={product.bpm}
               className={`${errors.bpm && "danger"}`}
               name="bpm"
               type="number"
@@ -309,10 +277,12 @@ export default function Form() {
 
 
             <Select
+              placeholder={product.scale}
+
               name="selectTone"
               options={optionTone}
               onChange={setTone}
-              styles={customStyles}
+            // styles={customStyles}
             />
             <div className="radioTone">
               <div className="radioColumn" >
@@ -332,6 +302,8 @@ export default function Form() {
             {errors.date && <p className="danger">{errors.date}</p>}
 
             <input
+              placeholder={product.date}
+
               id="dateClass"
               className={` ${errors.date && "danger"}`}
               type="date"
@@ -364,11 +336,12 @@ export default function Form() {
             <label>Categories</label>
 
             <Select
+              placeholder={product.categories}
               isMulti
               name="selectCat"
               options={option}
               onChange={setCategories}
-              styles={customStyles}
+            // styles={customStyles}
             />
           </div>
         </div>
@@ -389,3 +362,15 @@ export default function Form() {
     </div>
   );
 }
+
+const mapStateToProps = (state) => {
+  return {
+    STORE_ADMIN: state.adminReducers,
+  };
+};
+const mapDispatchToProps = (dispatch) => {
+  return {
+    fetchProduct: (id) => dispatch(fetchOneProduct(id)),
+  };
+};
+export default connect(mapStateToProps, mapDispatchToProps)(PutForm);
