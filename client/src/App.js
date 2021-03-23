@@ -14,20 +14,22 @@ import Home from "./pages/Home/Home.js";
 
 import Product from "./pages/Product/Product.js";
 import Catalog from "./pages/Catalog/Catalog.js";
-import Edit from "./pages/Admin/AdminEdit/Edit";
-import Form from "./pages/Admin/AdminProducts/Form";
-import PutForm from "./pages/Admin/AdminProducts/PutForm";
+import Edit from "./pages/Admin/AdminProducts/ListProducts";
+import Form from "./pages/Admin/AdminProducts/AddProduct";
+import PutForm from "./pages/Admin/AdminProducts/EditProduct";
 import Categories from "./pages/Admin/AdminCategories/AddCategories";
 import Login from "./pages/Login/Login.js";
 import Register from "./pages/Register/Register";
 import Results from "./pages/Home/Results/Results.js";
 import Cart from "./pages/Cart/Cart";
 import EditCategories from './pages/Admin/AdminCategories/EditCategories';
-
+import Admin from './pages/Admin/AdminNav';
+import ProductList from './pages/Admin/AdminProducts/ListProducts';
 
 import Profile from './pages/Auth/Profile'
 import LoginGithub from './pages/Login/LoginGithub'
 import ListCategories from "./pages/Admin/AdminCategories/ListCategories";
+import './pages/Admin/AdminProducts/listProduct.css';
 
 
 
@@ -49,11 +51,12 @@ const App = () => {
           component={Product}
           layout={PagesLayout}
         />
+        <RouteWrapper exact path="/listproducts" component={ProductList} layout={AdminLayout} />
         <RouteWrapper exact path="/listcat" component={ListCategories} layout={AdminLayout} />
         <RouteWrapper exact path="/editCat/:idCat/:name/:description" component={EditCategories} layout={PagesLayout} />
         <RouteWrapper exact path="/add" component={Form} layout={AdminLayout} />
         <RouteWrapper exact path="/add" component={Form} layout={AdminLayout} />
-        <RouteWrapper exact path="/admin" component={Edit} layout={AdminLayout} />
+        <RouteWrapper exact path="/admin" component={Admin} layout={AdminLayout} />
         <RouteWrapper exact path="/put/:id" component={PutForm} layout={PagesLayout} />
         <RouteWrapper exact path="/addCategories" component={Categories} layout={PagesLayout} />
         <RouteWrapper exact path="/login" component={Login} layout={LoginLayout} />
