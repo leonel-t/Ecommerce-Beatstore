@@ -1,6 +1,7 @@
 const { Categories } = require("../../db");
+
 module.exports = {
-  getCategories: (findAllProducts = () => {
-    return Categories.findAll();
-  }),
+  getCategories: async ()=>{
+    return await Categories.findAll();
+  },
 };

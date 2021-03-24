@@ -1,15 +1,14 @@
 const server = require("express").Router();
-const commentControler = require("../../controllers/comments/comments.controller");
+const {createComment} = require("../../controllers/comments/comments.controller");
+const {protectorUser} = require("../../middlewares/protector.middleware");
 
-server.post("/", (req, res, next) => {
+server.post("/", protectorUser, (req, res, next) => {
+  console.log(req.body)
   const {idProduct, comment} = req.body;
-  commentControler
-    .createComment(idProduct, comment)
-    .then((comment) => {
-      res.status(201).json(comment);
-    })
-    .catch((error) => {
-      res.status(400).json(error);
+  return createComment(idProduct, comment).then((commentAdded) => {
+      return res.status(201).json(commentAdded);
+    }).catch((error) => {
+      return res.status(400).json(error.message);
     });
 });
 

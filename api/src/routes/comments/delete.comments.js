@@ -1,13 +1,13 @@
 const server = require("express").Router();
-const commentControler = require("../../controllers/comments/comments.controller");
+const {deleteComment} = require("../../controllers/comments/comments.controller");
+const {protectorAdmin} = require("../../middlewares/protector.middleware");
 
-server.delete("/", (req, res, next) => {
-  commentControler.deleteComment
-    .then((products) => {
-      res.status(201).json(products);
-    })
-    .catch((error) => {
-      res.status(400).json(error);
+server.delete("/:commentId",protectorAdmin, (req, res, next) => {
+  let {commentId} = req.params;
+  return deleteComment(commentId).then((comment) => {
+      return res.status(201).json(comment);
+    }).catch((error) => {
+      return res.status(400).json(error);
     });
 });
 
