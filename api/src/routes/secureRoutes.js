@@ -4,19 +4,13 @@ const jwt = require('jsonwebtoken')
 
 const {ACCESS_TOKEN_SECRET} = process.env;
 
-module.exports = server;
-
-
-  server.get(
-    '/',
-    (req, res, next) => {
+  server.get('/', (req, res, next) => {
       let email = req.query.email
       console.log('este es el email', req.query)
       var decoded = jwt.verify(req.query.secret_token, ACCESS_TOKEN_SECRET);
       console.log(decoded)
 
-      getUserController
-       .findByEmail(email).then(user => {
+      getUserController.findByEmail(email).then(user => {
          res.json({
          message: 'You made it to the secure route',
          user: user,
@@ -41,3 +35,4 @@ module.exports = server;
     })
   }
 
+  module.exports = server;

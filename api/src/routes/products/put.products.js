@@ -1,25 +1,16 @@
 const server = require("express").Router();
-const putControler = require("../../controllers/products/put.products");
+const {editProduct} = require("../../controllers/products/put.products");
 const fs = require("fs");
 const path = require("path");
-module.exports = server;
 
 server.put("/", (req, res, next) => {
-  const {
-    id,
-    name,
-    description,
-    artist,
-    price,
-    bpm,
-    scale,
-    date,
-    oldImage,
-    oldAudio,
-    editFiles,
-    editImage,
-    editAudio
-  } = req.body;
+  
+  const { 
+    id, name, description, artist,
+    price, bpm, scale, date, oldImage,
+    oldAudio, editFiles, editImage,
+    editAudio } = req.body;
+
   var product;
 
   if (editFiles === "edit") {
@@ -96,12 +87,11 @@ server.put("/", (req, res, next) => {
 
   }
 
-  putControler
-    .editProduct(product, id)
-    .then((product) => {
+  return editProduct(product, id).then((product) => {
       res.status(200).json(product);
-    })
-    .catch((error) => {
+    }).catch((error) => {
       res.status(400).json(error);
     });
 });
+
+module.exports = server;

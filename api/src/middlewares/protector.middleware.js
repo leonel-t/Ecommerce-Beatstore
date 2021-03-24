@@ -33,12 +33,10 @@ var protectorAdmin = function (req, res, next) {
                 
             }else{  
               
-              if(!verifiedJwt.body.rol){
-                  console.log("NO client")
-                  return res.status(400).json("NO AUTORIZATION ONLY CLIENTS");
-              }else{
-                  
-                   next();
+              if(verifiedJwt.body.rol === "client" || verifiedJwt.body.rol === "admin"  ){
+                return  next();
+            }else{
+              return res.status(400).json("NO AUTORIZATION ONLY ADMINS");
               }       
             }
           });

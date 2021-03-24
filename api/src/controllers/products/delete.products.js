@@ -1,15 +1,20 @@
 const { Product, Categories } = require('../../db');
+
 module.exports = {
-   async deleteById(id){
-     const deletedProd = await Product.destroy({
-            where: { id: id },
+    deleteProductById: async (id) => {
+        return await Product.destroy({
+            where: {
+              id: id,
+            },
             include: [
                 {
                     model: Categories
                 }
             ]
-        })
-        console.log("RESPUESTA A DELETE",deletedProd)
-        return deletedProd;
-    }
-}
+          }).then(product =>{
+            return product === 1 ? "product delete succesfully" : "product dons´t exist";
+        }).catch((err)=>{
+            return err
+        });
+    },
+};
