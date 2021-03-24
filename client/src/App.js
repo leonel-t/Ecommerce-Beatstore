@@ -55,7 +55,6 @@ const App = () => {
         <RouteWrapper exact path="/listcat" component={ListCategories} layout={AdminLayout} />
         <RouteWrapper exact path="/editCat/:idCat/:name/:description" component={EditCategories} layout={PagesLayout} />
         <RouteWrapper exact path="/add" component={Form} layout={AdminLayout} />
-        <RouteWrapper exact path="/add" component={Form} layout={AdminLayout} />
         <RouteWrapper exact path="/admin" component={Admin} layout={AdminLayout} />
         <RouteWrapper exact path="/put/:id" component={PutForm} layout={PagesLayout} />
         <RouteWrapper exact path="/addCategories" component={Categories} layout={PagesLayout} />
