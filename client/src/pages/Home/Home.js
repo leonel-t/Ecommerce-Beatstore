@@ -2,6 +2,7 @@ import React from 'react';
 import { connect } from 'react-redux';
 import MiddleSearchBar from './MiddleSearchBar/MiddleSearchBar.js';
 import Container from "./Lists/Container"
+import FloatingCard from '../../components/FloatingCard/FloatingCard.js';
 
 const Home = () =>{
 
@@ -9,8 +10,7 @@ const Home = () =>{
     return (
         <div>
             <MiddleSearchBar/>
-            <Container/>
-           
+            <Container/>           
         </div>
     )
 }
