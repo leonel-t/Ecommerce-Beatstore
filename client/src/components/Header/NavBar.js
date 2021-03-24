@@ -24,7 +24,9 @@ const NavBar = () => {
             <a href="" onClick={() => { history.push(`/login`) }}>Login</a>
 
             <a href="javascript:void(0);" className="icon" onClick={() => dropDownNav()}>
-                <i className="fa fa-bars"></i>
+                <span class="material-icons">
+                    menu
+                    </span>
             </a>
         </div>
     )
