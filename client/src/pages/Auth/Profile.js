@@ -6,6 +6,7 @@ import {useHistory} from 'react-router-dom'
 // import jwt from 'jsonwebtoken'
 
 import './Profile.css'
+import axios from 'axios';
 
 const Profile = ({fetchUserEffect, STORE_USER}) =>{
 
@@ -41,7 +42,30 @@ const Profile = ({fetchUserEffect, STORE_USER}) =>{
         history.push("/catalog")
       }
 
+  function  generateNewToken(){
+    const options = {
+      method: 'POST',
+      url: 'http://localhost:3001/users/token/',
+      headers: {
+        'Content-Type': 'application/json',
+        token: localStorage.getItem("refreshToken")
+      },
+      data:{
+        useremail:localStorage.getItem("email"),
+        refreshToken: localStorage.getItem("refreshToken")
+      }
+    };
 
+  axios.request(options,{
+    }).then(newTokens =>{
+      console.log("estosss",newTokens)
+        localStorage.setItem("token", newTokens.data.newToken)
+        localStorage.setItem("refreshToken", newTokens.data.newRefreshToken)
+        history.push("/")
+    }).catch(()=>{
+      console.log("ERRORRRRRRRRRRRRRRRRRRRR")
+    })
+  }
     return (
         <>
         {STORE_USER.userLoading
@@ -73,6 +97,8 @@ const Profile = ({fetchUserEffect, STORE_USER}) =>{
                 </div>
                 </div>
               ):(
+                <>
+                {generateNewToken()}
                 <div className="profile">
                     <div className="contentProfile">
                         <div className="contentData">
@@ -81,6 +107,7 @@ const Profile = ({fetchUserEffect, STORE_USER}) =>{
                         <button onClick={handleClick2}>Go to login</button>                
                     </div>
                   </div>
+                </>
               )  
             }
             
