@@ -1,13 +1,15 @@
-import React from 'react';
+import React, {useRef} from 'react';
 import { connect } from 'react-redux';
 import MiddleSearchBar from './MiddleSearchBar/MiddleSearchBar.js';
 import Container from "./Lists/Container"
 
 const Home = () =>{
+const main = useRef()
+console.log(main.current)
 
 
     return (
-        <div>
+        <div ref={main}>
             <MiddleSearchBar/>
             <Container/>
            
