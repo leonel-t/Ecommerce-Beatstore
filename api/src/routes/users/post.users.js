@@ -1,12 +1,13 @@
 const server = require("express").Router();
 const postControler = require("../../controllers/users/post.users");
 const jwt = require('jsonwebtoken')
+const { User } = require("../../db");
 
 var passport = require('passport')
 require("../../middlewares/passport.middleware").passport
 
 module.exports = server;
-const {ACCESS_TOKEN_SECRET} = process.env;
+const {ACCESS_TOKEN_SECRET, REFRESH_TOKEN_SECRET} = process.env;
 
 server.post("/",
   async (req, res, next) => {
@@ -45,7 +46,32 @@ server.post("/",
       }); 
 
   });
+function generateToken(user){
+    return jwt.sign({id: user.id, rol: user.rol}, ACCESS_TOKEN_SECRET,{expiresIn: "10s"});
+}
+var refreshTokens = [];
 
+server.post('/token', function(req, res, next){
+  const {useremail, refreshToken} = req.body;
+  console.log(useremail, refreshToken)
+  User.findOne({
+    where:{
+      email:useremail
+    }
+  }).then(user =>{
+
+    refreshTokens = refreshTokens.filter((token)=> token !== refreshToken);
+    const newRefreshToken = jwt.sign({id: user.id,rol: user.rol}, REFRESH_TOKEN_SECRET);
+    refreshTokens.push(newRefreshToken)
+    const newToken = generateToken({id: user.id,rol: user.rol})
+  
+    res.status(201).json({newToken, newRefreshToken})
+  }).catch((err)=>{
+    res.status(400).json("NO USER")
+  })
+
+
+})
 server.post(
   "/login",
   function (req, res, next) {
@@ -57,14 +83,16 @@ server.post(
         if (!user) return next(info);
           req.logIn(user, { session: false }, function (err) {
             if (err) return next(err);
-            const token = jwt.sign({id: user.id,rol: user.rol}, ACCESS_TOKEN_SECRET,{expiresIn: "10m"});
+            const token = generateToken(user)
+            const refreshToken = jwt.sign({id: user.id,rol: user.rol}, REFRESH_TOKEN_SECRET);
+            refreshTokens.push(refreshToken)
             const dataUser = {
               id: user.id,
               email: user.email,
               name: user.name,
               rol: user.rol,
             };
-            const data = { msg: "Login successful", user: dataUser, token };
+            const data = { msg: "Login successful", user: dataUser, token, refreshToken };
             return res.status(200).json(data);
           });
         }
