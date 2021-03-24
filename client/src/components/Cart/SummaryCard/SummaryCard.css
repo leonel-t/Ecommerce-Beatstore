@@ -6,6 +6,12 @@
     padding: 10px;
     min-width: 350px;
 }
+.--SummaryCard h1{
+    color: white;
+    margin: 0px;
+    padding-bottom: 5px;
+    border-bottom: 1px solid rgb(70, 70, 70);
+}
 .--SummaryCard-sub{
     display: flex;
     flex-direction: row;
