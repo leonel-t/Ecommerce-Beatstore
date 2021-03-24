@@ -1,46 +1,40 @@
 const server = require("express").Router();
-const productController = require("../../controllers/products/get.products");
+const {
+  getAllProducts,
+  findProductById,
+  findProductsByCategoryName,
+  getProductsByLetterIncludeInTheName
+ } = require("../../controllers/products/get.products");
 
 server.get("/", (req, res, next) => {
-  productController
-    .findAllProducts()
-    .then((products) => {
+  return getAllProducts().then((products) => {
       res.status(200).json(products);
-    })
-    .catch((error) => {
+    }).catch((error) => {
       res.status(400).json(error);
     });
 });
 server.get("/:id", (req, res, next) => {
   const { id } = req.params;
-  productController
-    .findById(id)
-    .then((product) => {
+   return findProductById(id).then((product) => {
+     console.log(product)
       res.status(200).json(product);
-    })
-    .catch((error) => {
+    }).catch((error) => {
       res.status(400).json(error);
     });
 });
 server.get("/categoria/:nombreCat", (req, res, next) => {
-  const { nombreCat } = req.params;
-  productController
-    .findByCategory(nombreCat)
-    .then((products) => {
+  let { category } = req.params;
+  return findProductsByCategoryName(category).then((products) => {
       res.status(200).json(products);
-    })
-    .catch((error) => {
+    }).catch((error) => {
       res.status(400).json(error);
     });
 });
 server.get("/search/:query", (req, res, next) => {
-    const { query } = req.params;
-  productController
-    .findByProduct(query)
-    .then((product) => {
+    let { query } = req.params;
+    return getProductsByLetterIncludeInTheName(query).then((product) => {
       res.status(200).json(product);
-    })
-    .catch((error) => {
+    }).catch((error) => {
       res.status(400).json(error);
     });
 });
