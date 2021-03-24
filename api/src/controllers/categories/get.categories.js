@@ -1,6 +1,6 @@
 const { Categories } = require("../../db");
 module.exports = {
-  getCat: (findAllProducts = () => {
+  getCategories: (findAllProducts = () => {
     return Categories.findAll();
   }),
 };

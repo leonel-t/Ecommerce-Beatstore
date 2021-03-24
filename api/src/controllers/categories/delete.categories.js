@@ -1,18 +1,15 @@
 const { Categories } = require("../../db");
 
 module.exports = {
-    deleteCat: async (id) => {
-        try {
-            const existingCat = await Categories.findOne({
-                where:{
-                id: id
-                } 
-            });
-            await existingCat.destroy()
-            return 'Succesfully deleted Category';
-        }
-        catch (err) {
-            res.status(400).json(err);
-          };
-    }
-}
+    deleteCategory: async (id) => {
+        return await Categories.destroy({
+            where: {
+              id: id,
+            },
+          }).then(category =>{
+            return category === 1 ? "category delete succesfully" : "category dons´t exist";
+        }).catch((err)=>{
+            return err
+        });
+    },
+};

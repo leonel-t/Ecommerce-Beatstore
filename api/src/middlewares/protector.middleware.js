@@ -2,20 +2,13 @@ const {ACCESS_TOKEN_SECRET} = process.env
 const nJwt = require('njwt');
 
 var protectorAdmin = function (req, res, next) {
-    console.log('LOGGED', req.headers.token);
     const token = req.headers.token;
-
     if(token){
         nJwt.verify(token,ACCESS_TOKEN_SECRET,function(err,verifiedJwt){
-
             if(err){
-                console.log("error",err); 
                 return res.status(400).json("TOKEN EXPIRED");
-                
             }else{  
-              
               if(verifiedJwt.body.rol !== "admin"){
-                  console.log("NO ADMIN")
                   return res.status(400).json("NO AUTORIZATION ONLY ADMINS");
               }else{
                    next();
@@ -24,9 +17,7 @@ var protectorAdmin = function (req, res, next) {
           });
     }else{
         return res.status(400).json("NO TOKEN");
-    }
-
-
+    };
   };
 
   var protectorUser = function (req, res, next) {
