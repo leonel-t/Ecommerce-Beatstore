@@ -1,6 +1,6 @@
 import React, { useRef } from 'react';
 import './navBar.css';
-import { useHistory } from "react-router-dom"
+import { useHistory, Link } from "react-router-dom"
 
 const NavBar = () => {
     const main = useRef()
@@ -18,11 +18,10 @@ const NavBar = () => {
     return (
 
         <div ref={main} className="topnav" id="myTopnav">
-            <a href="" className="active" onClick={() => { history.push(`/`) }}>Home</a>
-            <a href="" onClick={() => { history.push(`/catalog`) }}>Catalog</a>
-            <a href="" onClick={() => { history.push(`/admin`) }}>Admin</a>
-            <a href="" onClick={() => { history.push(`/login`) }}>Login</a>
-
+            <Link  className="link active" to="/">Home</Link>
+            <Link className="link "  to="/catalog">Catalog</Link>
+            <Link className="link "  to="/admin">Admin</Link>
+            <Link className="link "  to="/Login">Login</Link>
             <a href="javascript:void(0);" className="icon" onClick={() => dropDownNav()}>
                 <span class="material-icons">
                     menu
