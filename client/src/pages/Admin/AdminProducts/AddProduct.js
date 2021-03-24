@@ -127,7 +127,8 @@ export default function Form() {
       method: "POST",
       url: "http://localhost:3001/products/",
       headers: {
-        "Content-Type": "multipart/form-data", "Cross-Origin-Opener-Policy": "same-origin"
+        "Content-Type": "multipart/form-data", "Cross-Origin-Opener-Policy": "same-origin",
+        "token": localStorage.getItem("token")
       },
       data: form,
 

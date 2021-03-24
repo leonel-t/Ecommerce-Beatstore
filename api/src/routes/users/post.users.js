@@ -58,6 +58,7 @@ server.post(
           req.logIn(user, { session: false }, function (err) {
             if (err) return next(err);
             const token = jwt.sign({id: user.id, rol: user.rol}, ACCESS_TOKEN_SECRET,{expiresIn: "30m"});
+
             const dataUser = {
               id: user.id,
               email: user.email,
@@ -89,6 +90,7 @@ server.post(
             req.logIn(user, { session: false }, function (err) {
               if (err) return next(err);
               const token = jwt.sign({id: user.id, rol: user.rol}, ACCESS_TOKEN_SECRET,{expiresIn: "30m"});
+
               const dataUser = {
                 id: user.id,
                 email: user.email,
@@ -108,13 +110,5 @@ server.post(
       }
     );
 
-server.post("/logout",(req, res) => {
-  console.log(req.session)
-        req.logout()   
-        req.session.destroy((err) => {
-            res.clearCookie('sid');  
-        })
-        res.status(200).json('Logged out');
-});
 
 

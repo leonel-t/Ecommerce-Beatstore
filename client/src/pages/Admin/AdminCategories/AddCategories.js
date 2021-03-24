@@ -37,7 +37,10 @@ function AddCategories() {
     e.preventDefault();
     const requestOptions = {
       method: "POST",
-      headers: { "Content-Type": "application/json" },
+      headers: {
+         "Content-Type": "application/json",
+         "token": localStorage.getItem("token")
+        },
       body: JSON.stringify({
         ...input,
       }),
