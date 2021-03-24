@@ -1,14 +1,17 @@
 const server = require("express").Router();
 const postControler = require("../../controllers/products/post.products");
-module.exports = server;
+const {ACCESS_TOKEN_SECRET} = process.env
+
+var nJwt = require('njwt');
 
 server.post("/", (req, res, next) => {
+
   const { name, description, artist, price, bpm, scale, date } = req.body;
-  console.log(req.body);
+
   const files = req.files;
   const imgToDb = files[0].filename;
   const audioToDb = files[1].filename;
-  console.log(files);
+
   let product = {
     name: name,
     description: description,
@@ -44,3 +47,5 @@ server.post("/:idProducto/category/:idCategoria", async (req, res) => {
     return res.status(400).send({ data: error });
   }
 });
+
+module.exports = server;
