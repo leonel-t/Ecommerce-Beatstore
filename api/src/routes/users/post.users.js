@@ -57,7 +57,7 @@ server.post(
         if (!user) return next(info);
           req.logIn(user, { session: false }, function (err) {
             if (err) return next(err);
-            const token = jwt.sign({id: user.id,}, ACCESS_TOKEN_SECRET,{expiresIn: "10m"});
+            const token = jwt.sign({id: user.id, rol: user.rol}, ACCESS_TOKEN_SECRET,{expiresIn: "30m"});
             const dataUser = {
               id: user.id,
               email: user.email,
@@ -88,7 +88,7 @@ server.post(
           if (!user) return next(info);
             req.logIn(user, { session: false }, function (err) {
               if (err) return next(err);
-              const token = jwt.sign({id: user.id}, ACCESS_TOKEN_SECRET,{expiresIn: "10m"});
+              const token = jwt.sign({id: user.id, rol: user.rol}, ACCESS_TOKEN_SECRET,{expiresIn: "30m"});
               const dataUser = {
                 id: user.id,
                 email: user.email,
