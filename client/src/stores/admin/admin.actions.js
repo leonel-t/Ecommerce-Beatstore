@@ -74,6 +74,10 @@ export const deleteProducts = (id) => {
         dispatch(deleteProductsRequest())
         fetch(`http://localhost:3001/products/${id}`, {
             method: 'DELETE',
+            headers: {
+                "Content-Type": "application/json",
+                "token": localStorage.getItem("token")
+               },
         })
             .then(res => dispatch(deleteProductsSuccess()))
             .catch(error => {
@@ -175,8 +179,9 @@ export const putCategoryById = (idCat, category) => {
             method: 'PUT',
             url: `http://localhost:3001/categories/${idCat}`,
             headers: {
-                'Content-Type': 'application/json'
-            },
+                "Content-Type": "application/json",
+                "token": localStorage.getItem("token")
+               },
             data: category
         };
 
@@ -214,6 +219,10 @@ export const deleteCategory = (id) => {
         dispatch(deleteCategoryRequest())
         fetch(`http://localhost:3001/categories/${id}`, {
             method: 'DELETE',
+            headers: {
+                "Content-Type": "application/json",
+                "token": localStorage.getItem("token")
+               },
         })
             .then(res => {
                 dispatch(deleteCategorySuccess())

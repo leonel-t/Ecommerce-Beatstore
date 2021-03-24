@@ -131,7 +131,10 @@ export const postComment = (productId, comment) => {
         const options = {
             method: "POST",
             url: "http://localhost:3001/comments",
-            headers: {  "Content-Type": "application/json" },
+            headers: {
+                "Content-Type": "application/json",
+                "token": localStorage.getItem("token")
+               },
             data: {
                 idProduct: productId,
                 comment: {

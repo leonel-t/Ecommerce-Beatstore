@@ -1,15 +1,15 @@
 const server = require("express").Router();
-const deleteCatControler = require("../../controllers/categories/delete.categories");
-module.exports = server;
+const {deleteCategory} = require("../../controllers/categories/delete.categories");
+const {protectorAdmin} = require("../../middlewares/protector.middleware");
 
-server.delete('/:id', (req, res, next) => {
+
+server.delete('/:id',  protectorAdmin, (req, res, next) => {
     const { id } = req.params;
-    deleteCatControler
-        .deleteCat(id)
-        .then((cat) => {
-            res.status(200).json(cat);
-          })
-          .catch((error) => {
-            res.status(400).json(error);
-          })
-})
+    return deleteCategory(id).then((category) => {
+      return res.status(202).json(category);
+    }).catch((error) => {
+      return res.status(400).json(error);
+    });
+});
+
+module.exports = server;

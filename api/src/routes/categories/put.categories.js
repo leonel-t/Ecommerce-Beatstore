@@ -1,17 +1,15 @@
 const server = require("express").Router();
 const putCatControler = require("../../controllers/categories/put.categories");
-module.exports = server;
+const {protectorAdmin} = require("../../middlewares/protector.middleware");
 
-server.put('/:id', (req, res, next) => {
+server.put('/:id',protectorAdmin, (req, res, next) => {
   const cat = req.body;
-  console.log(cat)
   const { id } = req.params;
-  putCatControler
-    .editCat(cat, id)
-    .then((cat) => {
-      res.status(200).json(cat);
-    })
-    .catch((error) => {
-      res.status(400).json(error);
-    })
-})
+  return putCatControler.editCat(cat, id).then((cat) => {
+      return res.status(200).json(cat);
+    }).catch((error) => {
+      return res.status(400).json(error);
+    });
+});
+
+module.exports = server;
