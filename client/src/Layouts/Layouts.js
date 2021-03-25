@@ -17,7 +17,6 @@ const HomeLayout = ({ children }) => {
     return (
         <div>
             <HomeHeader></HomeHeader>
-            <NavBar />
             {children}
             <Footer></Footer>
         </div>
@@ -28,7 +27,6 @@ const PagesLayout = ({ children }) => {
     return (
         <div>
             <Header></Header>
-            <NavBar />
             {children}
             <PagesFooter></PagesFooter>
         </div>
@@ -38,7 +36,6 @@ const PagesLayout = ({ children }) => {
 const AdminLayout = ({ children }) => {
     return (
         <div>
-            <NavBar />
             <AdminHeader></AdminHeader>
             {children}
         </div>

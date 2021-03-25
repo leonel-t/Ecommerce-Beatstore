@@ -36,6 +36,11 @@ export const DELETE_CATEGORY_REQUEST = "DELETE_CATEGORY_REQUEST";
 export const DELETE_CATEGORY_SUCCESS = "DELETE_CATEGORY_SUCCESS";
 export const DELETE_CATEGORY_FAILURE = "DELETE_CATEGORY_FAILURE";
 
+//FETCH ALL USERS FROM THE SERVER WITH THUNK
+export const GET_ALL_USERS_REQUEST = "GET_ALL_USERS_REQUEST";
+export const GET_ALL_USERS_SUCCESS = "GET_ALL_USERS_SUCCESS";
+export const GET_ALL_USERS_FAILURE = "GET_ALL_USERS_FAILURE";
+
 export const fetchAllProducts = () => {
 
     return (dispatch) => {
@@ -67,6 +72,47 @@ export const getAllProductsFailure = (error) => {
         payload: error
     }
 }
+
+//FETCH ALL USERS
+export const fetchAllUsers = () => {
+
+    return (dispatch) => {
+        dispatch(getAllUsersRequest())
+        const options = {
+            method: 'GET',
+            url: 'http://localhost:3001/users/',
+            headers: {
+              ContentType: "application/json",
+              token: localStorage.getItem("token")
+            }
+          };
+        axios.request(options).then(users => {
+                dispatch(getAllUsersSuccess(users.data))
+            })
+            .catch(error => {
+                dispatch(getAllUsersFailure(error))
+            })
+    }
+}
+
+export const getAllUsersRequest = () => {
+    return {
+        type: GET_ALL_USERS_REQUEST,
+    }
+}
+export const getAllUsersSuccess = (users) => {
+    return {
+        type: GET_ALL_USERS_SUCCESS,
+        payload: users
+    }
+}
+export const getAllUsersFailure = (error) => {
+    return {
+        type: GET_ALL_USERS_FAILURE,
+        payload: error
+    }
+}
+
 //DELETE PRODUCT
 export const deleteProducts = (id) => {
     console.log("ESTE ES EL IDDDDDDDDDDDDDDDDDDDDD", id)

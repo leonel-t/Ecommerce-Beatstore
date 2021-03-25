@@ -2,7 +2,7 @@ import "./adminNav.css";
 import React from "react";
 import { Link } from "react-router-dom";
 
-const Admin = () => {
+const AdminNav = () => {
   return (
     <main className="--admin--main">
       <Link className="--admin--main-btn" to="/listproducts">
@@ -19,9 +19,12 @@ const Admin = () => {
       <Link className="--admin--main-btn" to="/addcategories">
         Add Categories
       </Link>
+      <Link className="--admin--main-btn" to="/admin/ListUsers">
+        List Users
+      </Link>
 
     </main>
   );
 };
 
-export default Admin;
+export default AdminNav;

@@ -23,7 +23,8 @@ import Register from "./pages/Register/Register";
 import Results from "./pages/Home/Results/Results.js";
 import Cart from "./pages/Cart/Cart";
 import EditCategories from './pages/Admin/AdminCategories/EditCategories';
-import Admin from './pages/Admin/AdminNav';
+import Admin from './pages/Admin/Admin';
+import AdminListUsers from './pages/Admin/AdminListUsers/AdminListUsers';
 import ProductList from './pages/Admin/AdminProducts/ListProducts';
 
 import Profile from './pages/Auth/Profile'
@@ -56,6 +57,7 @@ const App = () => {
         <RouteWrapper exact path="/editCat/:idCat/:name/:description" component={EditCategories} layout={PagesLayout} />
         <RouteWrapper exact path="/add" component={Form} layout={AdminLayout} />
         <RouteWrapper exact path="/admin" component={Admin} layout={AdminLayout} />
+        <RouteWrapper exact path="/admin/ListUsers" component={AdminListUsers} layout={AdminLayout} />
         <RouteWrapper exact path="/put/:id" component={PutForm} layout={PagesLayout} />
         <RouteWrapper exact path="/addCategories" component={Categories} layout={PagesLayout} />
         <RouteWrapper exact path="/login" component={Login} layout={LoginLayout} />

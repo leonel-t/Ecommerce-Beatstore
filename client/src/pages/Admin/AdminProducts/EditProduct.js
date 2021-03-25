@@ -7,7 +7,7 @@ import axios from "axios";
 import { useHistory } from "react-router-dom";
 import "../../Product/product.css";
 import { fetchOneProduct } from "../../../stores/admin/admin.actions";
-import Admin from "../AdminNav";
+import AdminNav from "../AdminNav/AdminNav";
 
 const PutForm = ({ STORE_ADMIN, fetchProduct }) => {
   const history = useHistory();
@@ -202,7 +202,7 @@ const PutForm = ({ STORE_ADMIN, fetchProduct }) => {
   return (
     <div className="subContainer">
       {console.log(product)}
-      <Admin />
+      <AdminNav />
       <h2>Complete product data:</h2>
       <form
         onSubmit={(e) => handleSubmit(e)}
