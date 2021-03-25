@@ -31,6 +31,8 @@ const postComments = require("./comments/post.comments");
 const putComments = require("./comments/put.comments");
 const deleteComments = require("./comments/delete.comments");
 
+const passReset = require('./passReset/passReset');
+
 const router = Router();
 
 router.use("/comments", getComments);
@@ -62,6 +64,8 @@ router.use("/users", getUserRouter);
 router.use("/users", postUserRouter);
 router.use("/users", putUserRouter);
 router.use("/users", deleteUserRouter);
+
+router.use("/passreset", passReset);
 
 router.use("/", githubRouter);
 
