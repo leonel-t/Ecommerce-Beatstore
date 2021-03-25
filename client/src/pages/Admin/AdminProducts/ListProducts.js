@@ -22,7 +22,6 @@ const Edit = ({ fetchCartEffect, fetchAllProductsEffect, deleteProductsEffect, S
   }
   return (
     <div>
-      <AdminNav />
       <div className="--Cart">
         <div className="--Cart-items">
           {STORE_CART && STORE_CART.length > 0 ? (

@@ -63,13 +63,34 @@ const UserCard = ({user})=>{
             <div className="usercard-col-3">
             {user.rol === "admin" && userResponse === "admin"
                     ?(
-                    <button
-                    className="btn-privilege"
-                    onClick={(e)=>handleClickAdmin(e, user.id, "client")}>Revoque Privilege</button>
+                        <div className="btn-menu">
+                            <span class="material-icons">
+                                supervisor_account
+                            </span>
+                            <span>
+                                User Administrator
+                            </span>
+                            <button
+                            className="btn-privilege"
+                            onClick={(e)=>handleClickAdmin(e, user.id, "client")}>
+                                Revoque Privilege
+                            </button>
+                        </div>
                     ):(
-                    <button 
-                    className="btn-privilege"
-                    onClick={(e)=>handleClickAdmin(e, user.id, "admin")}>Upgrade Privilege </button>
+                        <div className="btn-menu">
+                        <span class="material-icons">
+                            perm_identity
+                        </span>
+                        <span>
+                            User Client 
+                        </span>
+                        <button 
+                        className="btn-privilege"
+                         onClick={(e)=>handleClickAdmin(e, user.id, "admin")}>
+                             Upgrade Privilege 
+                        </button>
+                    </div>
+                    
                     )
                 }
                 {userEdit
