@@ -3,7 +3,7 @@ const Sequelize = require("sequelize");
 const Op = Sequelize.Op;
 
 module.exports = {
-  getAllProducts: async ()=> {
+  getAllProducts: async () => {
     return await Product.findAll({
       include: [
         {
@@ -31,8 +31,8 @@ module.exports = {
   },
   findProductById: async (id) => {
     return await Product.findOne({
-      where:{
-        id:id
+      where: {
+        id: id
       },
       include: [
         {
@@ -46,7 +46,7 @@ module.exports = {
       ],
     });
   },
-  getProductsByLetterIncludeInTheName: async (inputValue)=> {
+  getProductsByLetterIncludeInTheName: async (inputValue) => {
     return await Product.findAll({
       where: {
         name: {
@@ -55,5 +55,15 @@ module.exports = {
       },
       include: [{ model: Categories, as: "categories" }],
     });
+  },
+  searchProductsByCategoryName(categoryName) {
+    return Categories.findAll({
+      where: {
+        name: {
+          [Op.iLike]: categoryName
+        }
+      },
+      include: [{ model: Product, as: 'products' }]
+    })
   },
 };

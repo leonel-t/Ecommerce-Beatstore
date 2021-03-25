@@ -10,20 +10,27 @@ import {
     SEARCH_PRODUCT_REQUEST,
     POST_COMMENT_REQUEST,
     POST_COMMENT_SUCCESS,
-    POST_COMMENT_FAILURE
+    POST_COMMENT_FAILURE,
+    GET_PRODUCTS_BY_CATEGORY
 } from '../products/products.actions';
 
 let initialState = {
-    products:[],
-    product:{},
+    products: [],
+    product: {},
     searchResults: [],
-    Loading:true,
-    Error:'',
-    LoadingComment:false
+    Loading: true,
+    Error: '',
+    LoadingComment: false,
+    productCategories: [],
 }
 
-const productsReducers = (state = initialState, action) =>{
-    switch(action.type){
+const productsReducers = (state = initialState, action) => {
+    switch (action.type) {
+        case GET_PRODUCTS_BY_CATEGORY:
+            return {
+                ...state,
+                productCategories: action.payload
+            }
         case GET_ALL_PRODUCTS_REQUEST:
             return {
                 ...state,
@@ -34,7 +41,7 @@ const productsReducers = (state = initialState, action) =>{
                 ...state,
                 Loading: false,
                 products: action.payload
-                }
+            }
         case GET_ALL_PRODUCTS_FAILURE:
             return {
                 ...state,
@@ -50,7 +57,7 @@ const productsReducers = (state = initialState, action) =>{
             return {
                 ...state,
                 LoadingComment: false,
-                }
+            }
         case POST_COMMENT_FAILURE:
             return {
                 ...state,
@@ -67,7 +74,7 @@ const productsReducers = (state = initialState, action) =>{
                 ...state,
                 Loading: false,
                 product: action.payload
-                }
+            }
         case GET_ONE_PRODUCT_FAILURE:
             return {
                 ...state,
@@ -79,7 +86,7 @@ const productsReducers = (state = initialState, action) =>{
                 ...state,
                 Loading: true
             }
-        case SEARCH_PRODUCT_SUCCESS :
+        case SEARCH_PRODUCT_SUCCESS:
             return {
                 ...state,
                 Loading: false,
@@ -91,8 +98,8 @@ const productsReducers = (state = initialState, action) =>{
                 Error: 'error 404',
                 Loading: false
             }
-        default: 
-        return state;
+        default:
+            return state;
     }
 }
 
