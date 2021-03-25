@@ -26,4 +26,51 @@
     background: linear-gradient(45deg, rgb(234, 50, 111), rgb(145, 27, 137));
     border: 1px solid black;
     border-radius: 5px;
+    outline: none;
+}
+.--Cart-deleteCart:hover{
+    background: linear-gradient(225deg, rgb(234, 50, 111), rgb(145, 27, 137));
+}
+.--Cart-deleteCart:active{
+    background: linear-gradient(45deg, rgba(234, 50, 111, 0.5), rgba(145, 27, 137, 0.5));
+}
+.swal-overlay {
+    background-color: rgba(0, 0, 0, 0.74);
+  }
+.swal-modal {
+    background-color: rgb(31, 31, 31);
+    border: 2px solid rgb(54, 54, 54);
+}
+.swal-title {
+    color: white;
+}
+.swal-text {
+    color: white;
+}
+.swal-icon--success__hide-corners{
+    background-color: rgb(31, 31, 31);
+}
+.swal-icon--success::before{
+    background-color: rgb(31, 31, 31);
+}
+.swal-icon--success::after{
+    background-color: rgb(31, 31, 31);
+}
+.swal-button:focus{
+    box-shadow: none;
+}
+.swal-button--cancel{
+    color: white;
+    outline: none;
+    background-color: rgb(145, 27, 137);
+}
+.swal-button--cancel:not([false]):hover{
+    background-color: rgb(233, 41, 220);
+}
+.swal-button--confirm{
+    outline: none;
+    background-color: rgb(234, 50, 111);
+}
+.swal-button--confirm:not([false]):hover{
+    background-color: rgb(168, 39, 82);
 }

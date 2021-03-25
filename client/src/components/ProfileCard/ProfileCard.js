@@ -14,7 +14,7 @@ const ProfileCard = ({ name, email }) => {
                 <img alt="profileImage" src={profileImg} />
             </div>
             <div className="--profileCard-user-info">
-                <p>{name}</p>
+                <p className="--profileCard-user-info-name">{name}</p>
                 <p>{email}</p>
             </div>
             <div className="--profileCard-user-butons">
