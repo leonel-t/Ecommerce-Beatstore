@@ -38,6 +38,7 @@ const Login = () => {
             let email = JSON.parse(user.config.data)
             console.log(user.data)
             localStorage.setItem("token",user.data.token)
+            localStorage.setItem("refreshToken",user.data.refreshToken)
             localStorage.setItem("email", email.email)
             
             if(user.data.token){

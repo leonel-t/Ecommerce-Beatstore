@@ -16,6 +16,10 @@
     flex-direction: row;
     align-items: center;
 }
+.--ItemCard-data a{
+    text-decoration: none;
+    font-family: 'Oxanium', cursive;
+}
 .--ItemCard-right{
     display: flex;
     flex-direction: row;
@@ -27,14 +31,17 @@
 .--ItemCard-data h2{
     margin: 0px;
     color: white;
+    font-family: 'Oxanium', cursive;
 }
 .--ItemCard-data p{
     margin: 0px;
     color: white;
+    font-family: 'Oxanium', cursive;
 }
 .--ItemCard span{
     margin-left: 10px;
     color: white;
+    font-family: 'Oxanium', cursive;
 }
 .--ItemCard-deletItem:hover{
     color:red;

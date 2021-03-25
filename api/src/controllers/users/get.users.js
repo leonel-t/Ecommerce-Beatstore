@@ -5,7 +5,7 @@ module.exports = {
         return User.findAll(); 
       },
 
-      findById(id) {
+     findUserById(id) {
         return User.findOne({
           where: { id: id }
         });

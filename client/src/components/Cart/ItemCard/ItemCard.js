@@ -1,11 +1,14 @@
 import "./ItemCard.css"
 import React, {useEffect} from "react"
 import { connect } from 'react-redux';
+import {Link} from "react-router-dom"
 import { fetchCart, deleteItemInCart } from '../../../stores/user/user.actions';
 import swal from "sweetalert"
+import sound from "../../../assets/audio/trash-click.mp3"
 
 const ItemCard = ({fetchCartEffect, deleteItemInCartEffect, STORE_PRODUCT, id, img, name, autor, price }) => {
-
+  const audio = new Audio(sound);
+        audio.volume=1;
   var user = false;
 
     useEffect(()=>{
@@ -13,22 +16,24 @@ const ItemCard = ({fetchCartEffect, deleteItemInCartEffect, STORE_PRODUCT, id, i
       },[fetchCartEffect, user]);    
 
     const handleDelete= (id, state) => {
-        
         swal({
             title: "Are you sure?",
-            text: "Once deleted, you will not be able to recover this imaginary file!",
+            text: "you are about to remove the product from the cart!",
             icon: "warning",
             buttons: true,
-            dangerMode: true,
           })
           .then((willDelete) => {
             if (willDelete) {
-              swal("Item delete Sussecce!", {
+              swal("the product has been removed from the cart!", {
                 icon: "success",
+                timer: 2000
               });
+              audio.play();
               return deleteItemInCartEffect(id, state);
             } else {
-              swal("Your imaginary file is safe!");
+              swal("the product has not been removed!",{
+                timer: 2000
+              });
             }
           });
 
@@ -38,7 +43,8 @@ const ItemCard = ({fetchCartEffect, deleteItemInCartEffect, STORE_PRODUCT, id, i
             <div className="--ItemCard-left">
                 <img alt="albumImg" src={`http://localhost:3001/images/${img}`} />
                 <div className="--ItemCard-data">
-                    <h2>{name}</h2>
+                    <Link to={`/product/${id}`}><h2>{name}</h2></Link>
+                    
                     <p>{autor}</p>
                 </div>
             </div>

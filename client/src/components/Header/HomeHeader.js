@@ -4,10 +4,12 @@ import {fetchUser} from '../../stores/user/user.actions'
 import "./HomeHeader.css"
 import Logo from '../../assets/images/logo.png'
 import { Link } from 'react-router-dom';
-
+import i18n from '../../i18n';
 
 const HomeHeader = ({fetchUserEffect, STORE_USER}) =>{
-  
+  const changeLanguage = (lng) => {
+    i18n.changeLanguage(lng);
+  }     
     useEffect(() => {
         fetchUserEffect();
       }, [fetchUserEffect]);
@@ -27,13 +29,6 @@ const HomeHeader = ({fetchUserEffect, STORE_USER}) =>{
                     Catalog
                   </Link>
                 </li>
-                {STORE_USER.user && STORE_USER.user.data && STORE_USER.user.data.user.rol === "admin"
-                    ?(
-                        <li><Link className="--newHeader-main-row-col-menu-link" to="/admin">Admin</Link></li>
-                    ):(
-                        <></>
-                    )
-                }
                 </ul>
             </div>
             <div className="--newHeader-main-row-col-logo">
@@ -62,11 +57,26 @@ const HomeHeader = ({fetchUserEffect, STORE_USER}) =>{
                 <div className="--newHeader-main-row-col-user-options">
                 {STORE_USER.user && STORE_USER.user.data
                 ?(
-                    <p className="--nameUser"><Link className="link-email" to="/profile">{divName(STORE_USER.user.data.user.name) || STORE_USER.user.data.user.email}</Link></p>
+                  <ul>
+                     <li> 
+                        <button className="btn-en" onClick={() => changeLanguage('en')}></button>
+                      </li>
+                      <li>
+                        <button className="btn-es" onClick={() => changeLanguage('es')}></button></li>
+                      <li>
+                        <Link className="link-email" to="/profile">{divName(STORE_USER.user.data.user.name) || STORE_USER.user.data.user.email}</Link>
+                      </li>
+                  </ul>
+                    
                 ):(
                     <ul>
+                      <li> 
+                        <button className="btn-en" onClick={() => changeLanguage('en')}></button>
+                      </li>
+                      <li><button className="btn-es" onClick={() => changeLanguage('es')}></button></li>
                       <li><Link className="link-li" to="/login">Login</Link></li>
                       <li><Link className="link-li" to="/register">Register</Link></li>
+                      
                     </ul>
                 )
                     

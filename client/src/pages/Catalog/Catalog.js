@@ -1,22 +1,22 @@
 import "./Catalog.css";
 import React, { useEffect } from "react";
 import { connect } from "react-redux";
-import { fetchAllProducts } from "../../stores/products/products.actions";
+import { fetchAllProducts, getProductsByCategories } from "../../stores/products/products.actions";
 import CatalogCard from "../../components/Product/Catalog/CatalogCard";
 
-const Catalog = ({ fetchAllProductsEffect, STORE_PRODUCTS }) => {
+const Catalog = ({ fetchAllProductsEffect, getProductsByCategoriesEffect, STORE_PRODUCTS }) => {
   const allProducts = STORE_PRODUCTS.products;
 
   useEffect(() => {
     fetchAllProductsEffect();
-  }, [fetchAllProductsEffect]);
+  }, [fetchAllProductsEffect, getProductsByCategoriesEffect]);
 
   return (
     <main className="catalog--main">
       <div className="catalog--main-row">
         <div className="catalog--main-col-menu">
           <div className="catalog--main-col-menu-box">
-            <h2>Categories</h2>          
+            <h2>Categories</h2>
           </div>
         </div>
         <div className="catalog--main-col">
@@ -50,7 +50,9 @@ const mapStateToProps = (state) => {
 };
 const mapDispatchToProps = (dispatch) => {
   return {
-    fetchAllProductsEffect: () => dispatch(fetchAllProducts())
+    fetchAllProductsEffect: () => dispatch(fetchAllProducts()),
+
+
   };
 };
 

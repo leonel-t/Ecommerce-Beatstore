@@ -128,7 +128,7 @@
 }
 .--newHeader-main-row-col-user-options p {
 
-    font-size: 1.4em;
+    font-size: 1.0em;
     font-family: 'Oxanium', cursive;
 }
 .--newHeader-main-row-col-user-options p:hover {
@@ -159,7 +159,10 @@
     left: -40px;
     cursor: pointer;
 }
-
+.--newHeader-main-row-col-menu-link{
+    text-decoration: none;
+    color: white;
+}
 @media(max-width:800px){
     .--newHeader-main{
         position: sticky;
@@ -197,4 +200,25 @@
         align-items: center;
         padding: 15px;
     }
+}
+
+.btn-en{
+    width: 50px;
+    min-height: 30px;
+    height: auto;
+    outline: none;
+    background-image: url("../../assets/images/langs/en.png");
+    background-position: top left;
+    background-size: 100%;
+    cursor: pointer;
+}
+.btn-es{
+    width: 50px;
+    min-height: 30px;
+    height: auto;
+    outline: none;
+    background-image: url("../../assets/images/langs/es.png");
+    background-position: top left;
+    background-size: 100%;
+    cursor: pointer;
 }

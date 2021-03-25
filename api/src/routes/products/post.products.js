@@ -1,16 +1,15 @@
 const server = require("express").Router();
-const postControler = require("../../controllers/products/post.products");
-const {ACCESS_TOKEN_SECRET} = process.env
-
+const {addProduct, addCategoryToProduct } = require("../../controllers/products/post.products");
+const {protectorUser} = require("../../middlewares/protector.middleware");
 var nJwt = require('njwt');
 
-server.post("/", (req, res, next) => {
+server.post("/", protectorUser, (req, res, next) => {
 
-  const { name, description, artist, price, bpm, scale, date } = req.body;
+  let { name, description, artist, price, bpm, scale, date } = req.body;
 
-  const files = req.files;
-  const imgToDb = files[0].filename;
-  const audioToDb = files[1].filename;
+  let files = req.files;
+  let imgToDb = files[0].filename;
+  let audioToDb = files[1].filename;
 
   let product = {
     name: name,
@@ -24,28 +23,22 @@ server.post("/", (req, res, next) => {
     audio: audioToDb,
   };
 
-  postControler
-    .addProduct(product)
-    .then((product) => {
+  return addProduct(product).then((product) => {
       res.status(200).json(product);
-    })
-    .catch((error) => {
+    }).catch((error) => {
       res.status(400).json(error);
     });
 });
+
 // AGREGAR CATEGORIAS A PRODUCTOS
 server.post("/:idProducto/category/:idCategoria", async (req, res) => {
-  try {
-    const { idProducto, idCategoria } = req.params;
-    const result = await postControler.addCategoryToProduct(
-      idProducto,
-      idCategoria
-    );
+  let { idProducto, idCategoria } = req.params;
 
+  return addCategoryToProduct(idProducto, idCategoria ).then((data)=>{
     return res.status(201).send("Category added!");
-  } catch (error) {
+  }).catch(error => {
     return res.status(400).send({ data: error });
-  }
+  });   
 });
 
 module.exports = server;

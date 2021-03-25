@@ -1,24 +1,28 @@
-.--RelatedTracks-main{
+.--RelatedTracks-main {
     display: flex;
     flex-direction: column;
     flex-wrap: wrap;
     width: 98%;
     height: auto;
-    background: linear-gradient(#2221229f, #8708db62);
-    
+    /* background: linear-gradient(#2221229f, #8708db62); */
+    background-color: black;
     border-radius: 15px;
     margin: 5px;
+    color: white;
 }
-.--RelatedTracks-main:hover{
-    background-color: rgb(31, 29, 29);
+
+.--RelatedTracks-main:hover {
+    background-color: #8708db62;
 }
-.--RelatedTracks-main-row{
+
+.--RelatedTracks-main-row {
     display: flex;
     flex-direction: row;
     width: 100%;
     justify-content: space-around;
 }
-.--RelatedTracks-main-col-play{
+
+.--RelatedTracks-main-col-play {
     display: flex;
     width: auto;
     padding-left: 20px;
@@ -26,18 +30,20 @@
     align-content: center;
     align-items: center;
 }
-.play-icon{
+
+.play-icon {
     font-size: 3rem;
 }
-.--RelatedTracks-main-col-img{
+
+.--RelatedTracks-main-col-img {
     display: flex;
     width: auto;
     justify-content: center;
     align-content: center;
     align-items: center;
-    padding: 10px;
 }
-.--RelatedTracks-main-col-text{
+
+.--RelatedTracks-main-col-text {
     display: flex;
     flex-direction: column;
     width: 60%;
@@ -46,28 +52,31 @@
     align-items: left;
     padding-left: 10px;
 }
-.--RelatedTracks-main-col-text h3{
+
+.--RelatedTracks-main-col-text h3 {
     margin: 0;
     padding: 0;
     color: antiquewhite;
     font-size: 2rem;
 }
-.--RelatedTracks-main-col-text p{
+
+.--RelatedTracks-main-col-text p {
     margin: 0;
     padding: 0;
-    color: rgb(204, 168, 7);
+    color: white;
     font-size: 1.1rem;
 }
-.--RelatedTracks-main-col-menu{
+
+.--RelatedTracks-main-col-menu {
     display: flex;
     width: 10%;
     flex-direction: column;
     justify-content: center;
     align-items: center;
     margin-right: 35px;
-    
 }
-.--RelatedTracks-main-col-menu-btn-b button{
+
+.--RelatedTracks-main-col-menu-btn-b button {
     margin-right: 30px;
     background-color: rgb(73, 9, 133);
     border-radius: 10px;
@@ -80,15 +89,13 @@
     cursor: pointer;
     border: none;
 }
-.--RelatedTracks-main-col-menu-btn-b button:hover{
 
+.--RelatedTracks-main-col-menu-btn-b button:hover {
     background-color: rgb(101, 15, 182);
     box-shadow: 0px 0px 15px black;
-
 }
-.--RelatedTracks-main-col-menu-btn-b button:active{
 
+.--RelatedTracks-main-col-menu-btn-b button:active {
     background-color: rgb(137, 11, 141);
     box-shadow: none;
-
 }

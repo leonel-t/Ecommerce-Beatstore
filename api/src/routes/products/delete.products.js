@@ -1,22 +1,14 @@
 const server = require('express').Router();
-const  productControler = require("../../controllers/products/delete.products")
+const  { deleteProductById } = require("../../controllers/products/delete.products")
+const {protectorAdmin} = require("../../middlewares/protector.middleware");
 
-
- server.delete('/:id',async (req, res) => {
-  try {
-    const {id}=req.params;
-    const result = await productControler.deleteById(id)
-    console.log("Esto es delete",result)
-    if (result===1){
-      return  res.status(200).send('Product deleted');
-    } else {
-      return  res.status(200).send('Product doesnt exist')
-    }
-    
-  }
-  catch (error) {
-    return res.status(400).send({ data: error });
-  }
-  })
+ server.delete('/:id', protectorAdmin, (req, res) => {
+    let { id } = req.params;
+    return deleteProductById(id).then(productDelete =>{
+      return res.status(200).json(productDelete);
+    }).catch((error) => {
+      res.status(400).json(error);
+    });   
+  });
 
   module.exports = server;

@@ -1,12 +1,13 @@
 const server = require("express").Router();
 const postControler = require("../../controllers/users/post.users");
 const jwt = require('jsonwebtoken')
+const { User } = require("../../db");
 
 var passport = require('passport')
 require("../../middlewares/passport.middleware").passport
 
 module.exports = server;
-const {ACCESS_TOKEN_SECRET} = process.env;
+const {ACCESS_TOKEN_SECRET, REFRESH_TOKEN_SECRET} = process.env;
 
 server.post("/",
   async (req, res, next) => {
@@ -45,7 +46,39 @@ server.post("/",
       }); 
 
   });
+function generateToken(user){
+    return jwt.sign({id: user.id, rol: user.rol}, ACCESS_TOKEN_SECRET,{expiresIn: "10m"});
+}
 
+server.post('/token', function(req, res, next){
+  const {useremail, refreshToken} = req.body;
+  console.log(useremail, refreshToken)
+  User.findOne({
+    where:{
+      email:useremail
+    }
+  }).then(user =>{
+    const newRefreshToken = jwt.sign({id: user.id,rol: "refreshToken"}, REFRESH_TOKEN_SECRET);
+
+    User.update({
+      refresToken:newRefreshToken
+    },{
+      where:{
+        id: user.dataValues.id
+      }
+    }).catch((err)=>{
+      console.log(error)
+    })
+ 
+    const newToken = generateToken({id: user.id,rol: user.rol})
+  
+    res.status(201).json({newToken, newRefreshToken})
+  }).catch((err)=>{
+    res.status(400).json("NO USER")
+  })
+
+
+})
 server.post(
   "/login",
   function (req, res, next) {
@@ -57,15 +90,24 @@ server.post(
         if (!user) return next(info);
           req.logIn(user, { session: false }, function (err) {
             if (err) return next(err);
-            const token = jwt.sign({id: user.id, rol: user.rol}, ACCESS_TOKEN_SECRET,{expiresIn: "30m"});
-
+            const token = generateToken(user)
+            const refreshToken = jwt.sign({id: user.id,rol: "refreshToken"}, REFRESH_TOKEN_SECRET);
             const dataUser = {
               id: user.id,
               email: user.email,
               name: user.name,
               rol: user.rol,
             };
-            const data = { msg: "Login successful", user: dataUser, token };
+            const data = { msg: "Login successful", user: dataUser, token, refreshToken };
+            User.update({
+              refresToken:refreshToken
+            },{
+              where:{
+                id: user.dataValues.id
+              }
+            }).catch((err)=>{
+              console.log(error)
+            })
             return res.status(200).json(data);
           });
         }
@@ -89,15 +131,29 @@ server.post(
           if (!user) return next(info);
             req.logIn(user, { session: false }, function (err) {
               if (err) return next(err);
+<<<<<<< HEAD
               const token = jwt.sign({id: user.id, rol: user.rol}, ACCESS_TOKEN_SECRET,{expiresIn: "30m"});
 
+=======
+              const token = generateToken({id: user.id, rol: user.rol})
+              const refreshToken = jwt.sign({id: user.id,rol: "refreshToken"}, REFRESH_TOKEN_SECRET);
+>>>>>>> 128cad4b71f5496c7a10d1d958e729fbe282dbbd
               const dataUser = {
                 id: user.id,
                 email: user.email,
                 name: user.name,
                 rol: user.rol,
               };
-              const data = { msg: "Login successful", user: dataUser, token };
+              const data = { msg: "Login successful", user: dataUser, token, refreshToken };
+              User.update({
+                refresToken:refreshToken
+              },{
+                where:{
+                  id: user.dataValues.id
+                }
+              }).catch((err)=>{
+                console.log(error)
+              })
               return res.status(200).json(data);
             });
           }

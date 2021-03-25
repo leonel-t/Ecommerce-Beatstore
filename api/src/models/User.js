@@ -14,6 +14,10 @@ module.exports = (sequelize) => {
     password: {
       type: DataTypes.STRING,
     },
+    refresToken: {
+      type: DataTypes.STRING,
+      allowNull: true,
+    },
     password_virtual:{
       type: DataTypes.VIRTUAL,
       allowNull: false,

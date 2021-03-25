@@ -23,14 +23,14 @@ import Register from "./pages/Register/Register";
 import Results from "./pages/Home/Results/Results.js";
 import Cart from "./pages/Cart/Cart";
 import EditCategories from './pages/Admin/AdminCategories/EditCategories';
-import Admin from './pages/Admin/AdminNav';
+import Admin from './pages/Admin/Admin';
+import AdminListUsers from './pages/Admin/AdminListUsers/AdminListUsers';
 import ProductList from './pages/Admin/AdminProducts/ListProducts';
 
 import Profile from './pages/Auth/Profile'
 import LoginGithub from './pages/Login/LoginGithub'
 import ListCategories from "./pages/Admin/AdminCategories/ListCategories";
 import './pages/Admin/AdminProducts/listProduct.css';
-
 
 
 
@@ -53,16 +53,17 @@ const App = () => {
         />
         <RouteWrapper exact path="/listproducts" component={ProductList} layout={AdminLayout} />
         <RouteWrapper exact path="/listcat" component={ListCategories} layout={AdminLayout} />
-        <RouteWrapper exact path="/editCat/:idCat/:name/:description" component={EditCategories} layout={PagesLayout} />
+        <RouteWrapper exact path="/editCat/:idCat/:name/:description" component={EditCategories} layout={AdminLayout} />
         <RouteWrapper exact path="/add" component={Form} layout={AdminLayout} />
         <RouteWrapper exact path="/admin" component={Admin} layout={AdminLayout} />
+        <RouteWrapper exact path="/admin/ListUsers" component={AdminListUsers} layout={AdminLayout} />
         <RouteWrapper exact path="/put/:id" component={PutForm} layout={PagesLayout} />
-        <RouteWrapper exact path="/addCategories" component={Categories} layout={PagesLayout} />
+        <RouteWrapper exact path="/addCategories" component={Categories} layout={AdminLayout} />
         <RouteWrapper exact path="/login" component={Login} layout={LoginLayout} />
         <RouteWrapper exact path="/results/:name" component={Results} layout={PagesLayout} />
         <RouteWrapper exact path="/register" component={Register} layout={LoginLayout} />
-        <RouteWrapper exact path="/cart" component={Cart} layout={PagesLayout} />
-        <RouteWrapper exact path="/profile" component={Profile} layout={LoginLayout} />
+        <RouteWrapper exact path="/cart" component={Cart} layout={HomeLayout} />
+        <RouteWrapper exact path="/profile" component={Profile} layout={PagesLayout} />
         <RouteWrapper exact path="/login/github/:email/:password" component={LoginGithub} layout={PagesLayout} />
       </Switch>
     </BrowserRouter>
