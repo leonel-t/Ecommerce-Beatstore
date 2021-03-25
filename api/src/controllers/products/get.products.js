@@ -56,46 +56,14 @@ module.exports = {
       include: [{ model: Categories, as: "categories" }],
     });
   },
-  searchProductsByCategoryName: (categories) => {
-    var products = [];
-    var categorias = [];
-
-    for (let i = 0; i < categories.length; i++) {
-      console.log("BUCLE", categories[i])
-      Categories.findAll({
-        where: {
-          name: {
-            [Op.iLike]: categories[i]
-          }
-        },
-        include: [{ model: Product, as: 'products' }]
-      }).then(cat => {
-        console.log(cat)
-
-        /*
-                for (let e = 0; e < cat[0].categories.length; e++) {
-                  if (cat[0].categories[e]) {
-        
-                    console.log(cat[0].categories[e])
-                  }
-                }
-        * */
-
-      })
-
-    }
-
-
-    /*
-        for (let e = 0; e < categorias[0].categories.length; e++) {
-          if (categorias[0].categories[e]) {
-            products.push(categorias[0].categories[e])
-          }
-           }
-    */
-
-
-    console.log("BUCLE", products)
-    return products
+  searchProductsByCategoryName(categoryName) {
+    return Categories.findAll({
+      where: {
+        name: {
+          [Op.iLike]: categoryName
+        }
+      },
+      include: [{ model: Product, as: 'products' }]
+    })
   },
 };

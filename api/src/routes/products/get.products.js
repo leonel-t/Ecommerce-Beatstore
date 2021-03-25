@@ -39,10 +39,13 @@ server.get("/search/:query", (req, res, next) => {
     res.status(400).json(error);
   });
 });
-server.get("/categories/products", (req, res, next) => {
-  let { categories } = req.body
-  return searchProductsByCategoryName(categories)
-
-})
+server.get("/productsbycategories/:categoryName", (req, res, next) => {
+  let { categoryName } = req.params;
+  return searchProductsByCategoryName(categoryName).then((product) => {
+    res.status(200).json(product);
+  }).catch((error) => {
+    res.status(400).json(error);
+  });
+});
 
 module.exports = server;
