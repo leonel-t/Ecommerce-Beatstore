@@ -1,11 +1,14 @@
 import React from "react";
 import "./RelatedTracks.css";
 import imgProfile from "./profile-image.png"
-
-const RelatedTracks = ({title, author, price}) => {
-
+import { useHistory } from "react-router";
+const RelatedTracks = ({ id, title, author, price, image }) => {
+    const history = useHistory()
+    function handleClick() {
+        history.push("/product/" + id);
+    }
     return (
-        <div className="--RelatedTracks-main">
+        <div className="--RelatedTracks-main" onClick={handleClick}>
             <div className="--RelatedTracks-main-row">
                 <div className="--RelatedTracks-main-col-play">
                     <span className="material-icons play-icon">
@@ -13,10 +16,10 @@ const RelatedTracks = ({title, author, price}) => {
                     </span>
                 </div>
                 <div className="--RelatedTracks-main-col-img">
-                    <img src={imgProfile} alt="album"></img>
+                    <img height="50px" src={"http://localhost:3001/images/" + image} alt="album"></img>
                 </div>
                 <div className="--RelatedTracks-main-col-text">
-                    <h3>{title}</h3>
+                    <h4>{title}</h4>
                     <p>{author}</p>
                 </div>
                 <div className="--RelatedTracks-main-col-menu">

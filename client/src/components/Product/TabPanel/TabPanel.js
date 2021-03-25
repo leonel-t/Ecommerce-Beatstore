@@ -1,10 +1,10 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import CommentCard from "../CommentCard/CommentCard";
 import RelatedTracks from "../RelatedTracks/RelatedTracks";
 import FansCard from "../FansCard/FansCard";
 import "./TabPanel.css";
-
-
+import { getProductsByCategories } from "../../../stores/products/products.actions";
+import { connect } from "react-redux";
 const FansMap = [
   {
     username: "pepe",
@@ -24,38 +24,11 @@ const FansMap = [
   },
 ];
 
-const RelatedTrack = [
-  {
-    title: "Musica Ligera",
-    autor: "Gustavo cerati",
-    price: "500",
-  },
-  {
-    title: "En Remolinos",
-    autor: "Gustavo cerati",
-    price: "500 $",
-  },
-  {
-    title: "Signos",
-    autor: "Gustavo cerati",
-    price: "200 $",
-  },
-  {
-    title: "Persiana americana",
-    autor: "Gustavo cerati",
-    price: "500 $",
-  },
-  {
-    title: "Musica Ligera",
-    autor: "Gustavo cerati",
-    price: "500 $",
-  },
-];
-
-const TabPanel = ({ product }) => {
+const TabPanel = ({ product, productsByCategories }) => {
   const [relatedTrack, setRelatedTrack] = useState(true);
   const [fans, setFans] = useState(false);
   const [comments, setComments] = useState(false);
+
 
 
   const handleClick = (param) => {
@@ -118,13 +91,15 @@ const TabPanel = ({ product }) => {
               : "--TabPanel-div-container-col"
           }
         >
-          {RelatedTrack.map((related, index) => {
+          {productsByCategories.map((related, index) => {
             return (
               <RelatedTracks
+                id={related.id}
                 key={index}
-                title={related.title}
-                author={related.autor}
+                title={related.name}
+                author={related.artist}
                 price={related.price}
+                image={related.image}
               ></RelatedTracks>
             );
           })}
@@ -171,4 +146,12 @@ const TabPanel = ({ product }) => {
   );
 };
 
-export default TabPanel;
+const mapStateToProps = (state) => {
+  return {
+    STORE_PRODUCTS: state.productsReducers,
+  };
+};
+
+
+export default connect(mapStateToProps)(TabPanel);
+
