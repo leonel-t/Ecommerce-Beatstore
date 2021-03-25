@@ -16,6 +16,9 @@
     flex-direction: row;
     align-items: center;
 }
+.--ItemCard-data a{
+    text-decoration: none;
+}
 .--ItemCard-right{
     display: flex;
     flex-direction: row;
