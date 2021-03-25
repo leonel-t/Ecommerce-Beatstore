@@ -20,16 +20,18 @@ const ItemCard = ({fetchCartEffect, deleteItemInCartEffect, STORE_PRODUCT, id, i
             text: "you are about to remove the product from the cart!",
             icon: "warning",
             buttons: true,
-            dangerMode: true,
           })
           .then((willDelete) => {
             if (willDelete) {
               swal("the product has been removed from the cart!", {
                 icon: "success",
+                timer: 2000
               });
               return deleteItemInCartEffect(id, state);
             } else {
-              swal("the product has not been removed!");
+              swal("the product has not been removed!",{
+                timer: 2000
+              });
             }
           });
 

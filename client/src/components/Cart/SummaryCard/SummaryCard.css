@@ -4,7 +4,10 @@
     background-color: rgb(32, 32, 32);
     border-radius: 5px;
     padding: 10px;
+    position: sticky;
+    top: 120px;
     min-width: 350px;
+    max-height: 318px;
 }
 .--SummaryCard h1{
     color: white;
@@ -56,6 +59,15 @@
     background: linear-gradient(45deg, rgb(234, 50, 111), rgb(145, 27, 137));
     border: 1px solid black;
     border-radius: 5px;
+    outline: none;
+    box-shadow: -2px 1px 4px rgb(19, 19, 19);
+}
+.--SummaryCard-buttonout:hover{
+    background: linear-gradient(225deg, rgb(234, 50, 111), rgb(145, 27, 137));
+}
+.--SummaryCard-buttonout:active{
+    background: linear-gradient(45deg, rgba(234, 50, 111, 0.5), rgba(145, 27, 137, 0.5));
+    box-shadow: none;
 }
 .--SummaryCard-buttoncode{
     height: 30px;
@@ -64,4 +76,13 @@
     background: linear-gradient(45deg, rgb(234, 50, 111), rgb(145, 27, 137));
     border: 1px solid black;
     border-radius: 5px;
+    outline: none;
+    box-shadow: -2px 1px 4px rgb(19, 19, 19);
+}
+.--SummaryCard-buttoncode:hover{
+    background: linear-gradient(225deg, rgb(234, 50, 111), rgb(145, 27, 137));
+}
+.--SummaryCard-buttoncode:active{
+    background: linear-gradient(45deg, rgba(234, 50, 111, 0.5), rgba(145, 27, 137, 0.5));
+    box-shadow: none;
 }
