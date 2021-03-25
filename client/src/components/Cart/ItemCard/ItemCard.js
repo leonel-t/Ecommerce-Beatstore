@@ -4,9 +4,11 @@ import { connect } from 'react-redux';
 import {Link} from "react-router-dom"
 import { fetchCart, deleteItemInCart } from '../../../stores/user/user.actions';
 import swal from "sweetalert"
+import sound from "../../../assets/audio/trash-click.mp3"
 
 const ItemCard = ({fetchCartEffect, deleteItemInCartEffect, STORE_PRODUCT, id, img, name, autor, price }) => {
-
+  const audio = new Audio(sound);
+        audio.volume=1;
   var user = false;
 
     useEffect(()=>{
@@ -14,7 +16,6 @@ const ItemCard = ({fetchCartEffect, deleteItemInCartEffect, STORE_PRODUCT, id, i
       },[fetchCartEffect, user]);    
 
     const handleDelete= (id, state) => {
-        
         swal({
             title: "Are you sure?",
             text: "you are about to remove the product from the cart!",
@@ -27,6 +28,7 @@ const ItemCard = ({fetchCartEffect, deleteItemInCartEffect, STORE_PRODUCT, id, i
                 icon: "success",
                 timer: 2000
               });
+              audio.play();
               return deleteItemInCartEffect(id, state);
             } else {
               swal("the product has not been removed!",{
