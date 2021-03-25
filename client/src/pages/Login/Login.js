@@ -93,14 +93,12 @@ const Login = () => {
                     <button id="github" onClick={loginGitHub} />
                     <button id='google' onClick={loginGoogle} />
                 </div>
-
             </form>
             <div className="foot">
-                <span>Don't have an account?</span>
-                
-                <Link className="signup" to="/register">Sign up</Link>  
+                <Link className="passRes" to='/register'>Don't have an account?</Link> 
+                <Link className="passRes" to='/login/resetpassword'>Forgot your password?</Link>
+                <Link className="signup" to="/register">Sign up</Link>
             </div>
-            
             </div>
         </div>
     )

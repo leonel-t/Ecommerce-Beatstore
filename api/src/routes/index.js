@@ -31,8 +31,6 @@ const postComments = require("./comments/post.comments");
 const putComments = require("./comments/put.comments");
 const deleteComments = require("./comments/delete.comments");
 
-const promoteRouter = require("./users/promote.users.js")
-
 const router = Router();
 
 router.use("/comments", getComments);
@@ -65,7 +63,7 @@ router.use("/users", postUserRouter);
 router.use("/users", putUserRouter);
 router.use("/users", deleteUserRouter);
 
-router.use("/", promoteRouter);
+// router.use("/", promoteRouter);
 router.use("/", githubRouter);
 
 module.exports = router;

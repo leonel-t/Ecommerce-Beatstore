@@ -31,6 +31,7 @@ import Profile from './pages/Auth/Profile'
 import LoginGithub from './pages/Login/LoginGithub'
 import ListCategories from "./pages/Admin/AdminCategories/ListCategories";
 import './pages/Admin/AdminProducts/listProduct.css';
+import ResetPassword from './components/LoginCard/ResetPassword/ResetPassword';
 
 
 
@@ -65,10 +66,12 @@ const App = () => {
         <RouteWrapper exact path="/cart" component={Cart} layout={HomeLayout} />
         <RouteWrapper exact path="/profile" component={Profile} layout={PagesLayout} />
         <RouteWrapper exact path="/login/github/:email/:password" component={LoginGithub} layout={PagesLayout} />
+        <RouteWrapper exact path="/login/resetpassword" component={ResetPassword} layout={LoginLayout}/>
       </Switch>
     </BrowserRouter>
   );
 };
+
 function RouteWrapper({ component: Component, layout: Layout, ...rest }) {
   return (
     <Route
