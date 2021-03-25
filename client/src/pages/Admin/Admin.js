@@ -4,7 +4,6 @@ import "./admin.css";
 const Admin = () => {
   return (
     <>
-    <AdminNav/>
     <main className="--admin--main-panel">
         <h1>ADMIN</h1>
     </main>

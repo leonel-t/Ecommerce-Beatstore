@@ -25,7 +25,6 @@ const ListCategories = ({ fetchCartEffect, fetchAllCategoriesEffect, deleteCateg
   }
   return (
     <div className="list-users-main">
-      <AdminNav />
       <div className="--Cart">
         <div className="--Cart-items">
           {STORE_CATS && STORE_CATS.length > 0 ? (

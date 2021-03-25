@@ -50,7 +50,6 @@ function AddCategories() {
   };
   return (
     <form className="catAdd" onSubmit={(e) => handleSubmit(e)}>
-      <AdminNav />
       <h1>Add Category:</h1>
       <div>
         <p>name:</p>
