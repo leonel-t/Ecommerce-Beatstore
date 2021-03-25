@@ -2,7 +2,7 @@ import React, { useEffect } from "react";
 import "./form.css";
 import Select from "react-select";
 import axios from "axios";
-import Admin from "../AdminNav";
+import AdminNav from "../AdminNav/AdminNav";
 
 export default function Form() {
   const customStyles = {
@@ -240,7 +240,7 @@ export default function Form() {
 
   return (
     <div className="subContainer">
-      <Admin />
+      <AdminNav />
       <h2>Complete product data:</h2>
       <form
         onSubmit={(e) => handleSubmit(e)}

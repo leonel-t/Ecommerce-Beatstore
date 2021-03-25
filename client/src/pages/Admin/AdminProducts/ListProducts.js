@@ -1,7 +1,7 @@
 import "./listProduct.css";
 import React, { useEffect } from "react";
 import { useHistory } from "react-router-dom";
-import Admin from "../AdminNav";
+import AdminNav from "../AdminNav/AdminNav";
 import { connect } from "react-redux";
 import { fetchAllProducts, deleteProducts } from "../../../stores/admin/admin.actions";
 const Edit = ({ fetchCartEffect, fetchAllProductsEffect, deleteProductsEffect, STORE_CART }) => {
@@ -22,7 +22,7 @@ const Edit = ({ fetchCartEffect, fetchAllProductsEffect, deleteProductsEffect, S
   }
   return (
     <div>
-      <Admin />
+      <AdminNav />
       <div className="--Cart">
         <div className="--Cart-items">
           {STORE_CART && STORE_CART.length > 0 ? (

@@ -9,6 +9,7 @@ import './Profile.css'
 import axios from 'axios';
 import ProfileCard from '../../components/ProfileCard/ProfileCard';
 import TabUser from '../../components/Product/TabUser/TabUser';
+import NavBar from '../../pages/Admin/AdminNav/AdminNav';
 
 const Profile = ({ fetchUserEffect, STORE_USER }) => {
 
@@ -67,10 +68,14 @@ const Profile = ({ fetchUserEffect, STORE_USER }) => {
           <div>
             {STORE_USER.user && STORE_USER.user.data
               ? (
+                <>
+                <NavBar/>
                 <div className="--Profile">
+                  
                   <ProfileCard name={STORE_USER.user.data.user.name} email={STORE_USER.user.data.user.email}/>
                   <TabUser/>
                 </div>
+                </>
               ) : (
                 <>
                   {generateNewToken()}

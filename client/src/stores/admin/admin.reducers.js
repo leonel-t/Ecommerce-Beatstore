@@ -21,9 +21,11 @@ import {
   PUT_ONE_CATEGORY_FAILURE,
   DELETE_CATEGORY_REQUEST,
   DELETE_CATEGORY_SUCCESS,
-  DELETE_CATEGORY_FAILURE
+  DELETE_CATEGORY_FAILURE,
+  GET_ALL_USERS_REQUEST,
+  GET_ALL_USERS_SUCCESS,
+  GET_ALL_USERS_FAILURE
 } from "../admin/admin.actions";
-
 
 let initialState = {
   products: [],
@@ -42,15 +44,35 @@ let initialState = {
   categoriesLoading: true,
   category: {},
   categoryLoading: true,
-  categoryError: ""
+  categoryError: "",
+  users: [],
+  usersLoading:true,
+  usersError: ""
 };
 
 const adminReducers = (state = initialState, action) => {
   switch (action.type) {
+    case GET_ALL_USERS_REQUEST:
+      return {
+        ...state,
+        usersLoading: true,
+      };
+    case GET_ALL_USERS_SUCCESS:
+      return {
+        ...state,
+        usersLoading: false,
+        users: action.payload,
+      };
+    case GET_ALL_USERS_FAILURE:
+      return {
+        ...state,
+        usersError: "error 404",
+        usersLoading: false,
+      };
     case GET_ALL_PRODUCTS_REQUEST:
       return {
         ...state,
-        productsLoading: true,
+        usersLoading: true,
       };
     case GET_ALL_PRODUCTS_SUCCESS:
       return {
