@@ -7,13 +7,14 @@
     position: sticky;
     top: 120px;
     min-width: 350px;
-    max-height: 318px;
+    max-height: 341px;
 }
 .--SummaryCard h1{
     color: white;
     margin: 0px;
     padding-bottom: 5px;
     border-bottom: 1px solid rgb(70, 70, 70);
+    font-family: 'Goldman', cursive;
 }
 .--SummaryCard-sub{
     display: flex;
@@ -30,18 +31,21 @@
     margin-bottom: 10px;
     margin-top: 10px;
     color: gray;
+    font-family: 'Oxanium', cursive;
 }
 .--SummaryCard-tot span{
     font-size: 30px;
     margin-bottom: 10px;
     margin-top: 10px;
     color: white;
+    font-family: 'Goldman', cursive;
 }
 .--SummaryCard-span{
     margin: 5px;
     margin-top: 20px;
     font-size: 15px;
     color: white;
+    font-family: 'Oxanium', cursive;
 }
 .--SummaryCard-code{
     margin-bottom: 20px;
@@ -50,6 +54,7 @@
     border-radius: 5px;
     height: 20px;
     color: white;
+    padding-left: 5px;
 }
 .--SummaryCard-buttonout{
     width: 100%;
@@ -61,13 +66,17 @@
     border-radius: 5px;
     outline: none;
     box-shadow: -2px 1px 4px rgb(19, 19, 19);
+    cursor: pointer;
+    color: white;
 }
 .--SummaryCard-buttonout:hover{
     background: linear-gradient(225deg, rgb(234, 50, 111), rgb(145, 27, 137));
+    color: rgb(223, 223, 223);
 }
 .--SummaryCard-buttonout:active{
     background: linear-gradient(45deg, rgba(234, 50, 111, 0.5), rgba(145, 27, 137, 0.5));
     box-shadow: none;
+    color: rgb(126, 126, 126);
 }
 .--SummaryCard-buttoncode{
     height: 30px;
@@ -78,11 +87,15 @@
     border-radius: 5px;
     outline: none;
     box-shadow: -2px 1px 4px rgb(19, 19, 19);
+    cursor: pointer;
+    color: white;
 }
 .--SummaryCard-buttoncode:hover{
     background: linear-gradient(225deg, rgb(234, 50, 111), rgb(145, 27, 137));
+    color: rgb(223, 223, 223);
 }
 .--SummaryCard-buttoncode:active{
     background: linear-gradient(45deg, rgba(234, 50, 111, 0.5), rgba(145, 27, 137, 0.5));
     box-shadow: none;
+    color: rgb(126, 126, 126);
 }
