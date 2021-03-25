@@ -70,6 +70,7 @@ const App = () => {
     </BrowserRouter>
   );
 };
+
 function RouteWrapper({ component: Component, layout: Layout, ...rest }) {
   return (
     <Route
