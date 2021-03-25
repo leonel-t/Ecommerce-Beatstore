@@ -9,20 +9,14 @@ import COLORS from '../ScrollBox/data.json';
 
 //Internationalization
 import { withTranslation } from 'react-i18next';
-import i18n from '../../../i18n';
 
 const Container = ({t, STORE_PRODUCTS}) => {
     console.log(STORE_PRODUCTS)
-    const changeLanguage = (lng) => {
-        i18n.changeLanguage(lng);
-      }
+
     return (
         <div className='Container'>
-            <div>
-                <button onClick={() => changeLanguage('en')}>In Inglish</button>
-                <button onClick={() => changeLanguage('es')}>En Español</button>
+
                 <h1>{t('title')}</h1>
-            </div>
                 <Wrapper/>
             <h2>{t('title2')}</h2>
 
