@@ -7,7 +7,13 @@
     "@testing-library/react": "^9.3.2",
     "@testing-library/user-event": "^7.1.2",
     "axios": "^0.21.1",
+<<<<<<< HEAD
     "emailjs-com": "^2.6.4",
+=======
+    "i18next": "^20.1.0",
+    "i18next-browser-languagedetector": "^6.1.0",
+    "i18next-http-backend": "^1.2.1",
+>>>>>>> 06bc8fb7062274ddb49dd3950365af29fc8296d4
     "js-snackbar": "^1.1.2",
     "jsonwebtoken": "^8.5.1",
     "passport-github": "^1.1.0",
@@ -15,6 +21,7 @@
     "prop-types": "^15.7.2",
     "react": "^16.13.1",
     "react-dom": "^16.13.1",
+    "react-i18next": "^11.8.11",
     "react-redux": "^7.2.2",
     "react-router-dom": "^5.2.0",
     "react-scripts": "3.4.1",

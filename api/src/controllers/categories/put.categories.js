@@ -1,7 +1,7 @@
 const { Categories } = require("../../db");
 
 module.exports = {
-    editCat: async (category, id) => {
+    editCategory: async (category, id) => {
         return await Categories.update(category, {
             where: { id: parseInt(id) },
         }).then(() => {

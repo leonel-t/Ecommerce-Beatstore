@@ -1,9 +1,11 @@
 import "./SummaryCard.css"
 import React, { useState } from "react"
-
+import sound from "../../../assets/audio/laser-click.mp3"
 
 const SummaryCard = ({funtionD, subtotal, total, discount}) => {
-    const [code,setCode] = useState("")
+    const [code,setCode] = useState("");
+    const audio = new Audio(sound);
+          audio.volume=0.1;
     return (
         <div className="--SummaryCard">
             <h1>Cart Summary</h1>
@@ -13,7 +15,7 @@ const SummaryCard = ({funtionD, subtotal, total, discount}) => {
                 return funtionD(code)
             }}>
                 <input name="code" value={code} onChange={(e)=>setCode(e.target.value)} className="--SummaryCard-code" placeholder="Type code..."/>
-                <button type="submit" className="--SummaryCard-buttoncode">Apply</button>
+                <button onClick={()=>audio.play()} type="submit" className="--SummaryCard-buttoncode">Apply</button>
             </form>
             <div className="--SummaryCard-sub">
                 <span>Subtotal</span>
@@ -27,7 +29,7 @@ const SummaryCard = ({funtionD, subtotal, total, discount}) => {
                 <span>Total</span>
                 <span>${total}</span>
             </div>
-            <button className="--SummaryCard-buttonout">Checkout</button>
+            <button onClick={()=>audio.play()} className="--SummaryCard-buttonout">Checkout</button>
         </div>
     )
 }

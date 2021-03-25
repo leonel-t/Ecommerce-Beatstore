@@ -1,17 +1,14 @@
 const server = require("express").Router();
-const usersController = require("../../controllers/users/get.users");
-
+const {findAllUsers, findUserById } = require("../../controllers/users/get.users");
+const {protectorUser} = require("../../middlewares/protector.middleware");
 
 
 module.exports = server;
 
   server.get("/", (req, res, next) => {
-    usersController
-      .findAllUsers()
-      .then((user) => {
-        res.status(200).json(user);
-      })
-      .catch((error) => {
+    return findAllUsers().then((users) => {
+        res.status(200).json(users);
+      }).catch((error) => {
         res.status(400).json(error);
       });
   });
@@ -19,12 +16,9 @@ module.exports = server;
   server.get("/:id", (req, res, next) => {
     const { id } = req.params;
     
-    usersController
-      .findById(id)
-      .then((user) => {
+    return findUserById(id).then((user) => {
         res.status(200).json(user);
-      })
-      .catch((error) => {
+      }).catch((error) => {
         res.status(400).json(error);
       });
   });

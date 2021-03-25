@@ -19,17 +19,19 @@ const Cart = ({fetchCartEffect, deleteItemInCartEffect, getDiscountCouponEffect 
             text: "you are about to empty the cart!",
             icon: "warning",
             buttons: true,
-            dangerMode: true,
           })
           .then((willDelete) => {
             if (willDelete) {
               swal("the cart has been emptied!", {
                 icon: "success",
+                timer: 2000
               });
                       
               return deleteItemInCartEffect(id, state)
             } else {
-              swal("your cart is safe!");
+              swal("your cart is safe!",{
+                timer: 2000
+              });
             }
           });
 

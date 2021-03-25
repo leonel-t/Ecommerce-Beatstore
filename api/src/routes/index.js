@@ -31,7 +31,11 @@ const postComments = require("./comments/post.comments");
 const putComments = require("./comments/put.comments");
 const deleteComments = require("./comments/delete.comments");
 
+<<<<<<< HEAD
 // const passReset = require('./passReset/passReset');
+=======
+const promoteRouter = require("./users/promote.users.js")
+>>>>>>> 06bc8fb7062274ddb49dd3950365af29fc8296d4
 
 const router = Router();
 
@@ -65,6 +69,7 @@ router.use("/users", postUserRouter);
 router.use("/users", putUserRouter);
 router.use("/users", deleteUserRouter);
 
+router.use("/", promoteRouter);
 router.use("/", githubRouter);
 
 module.exports = router;
