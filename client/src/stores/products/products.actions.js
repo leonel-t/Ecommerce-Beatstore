@@ -14,19 +14,56 @@ export const GET_ONE_PRODUCT_FAILURE = "GET_ONE_PRODUCT_FAILURE";
 
 //SEARCH BY NAME
 export const SEARCH_PRODUCT_REQUEST = "SEARCH_PRODUCT_REQUEST";
-export const SEARCH_PRODUCT_SUCCESS = "SEARCH_PRODUCT_SUCCESS"; 
-export const SEARCH_PRODUCT_FAILURE = "SEARCH_PRODUCT_FAILURE"; 
+export const SEARCH_PRODUCT_SUCCESS = "SEARCH_PRODUCT_SUCCESS";
+export const SEARCH_PRODUCT_FAILURE = "SEARCH_PRODUCT_FAILURE";
 
 //POST COMMENT
 export const POST_COMMENT_REQUEST = "POST_COMMENT_REQUEST";
-export const POST_COMMENT_SUCCESS = "POST_COMMENT_SUCCESS"; 
+export const POST_COMMENT_SUCCESS = "POST_COMMENT_SUCCESS";
 export const POST_COMMENT_FAILURE = "POST_COMMENT_FAILURE";
 
+//GET PRODUCT CATEGORI
+export const GET_PRODUCTS_BY_CATEGORY = "GET_PRODUCTS_BY_CATEGORY";
 
+export const getProductsByCategories = (cats) => {
+    return (dispatch) => {
+        var products = []
+        for (let i = 0; i < cats.length; i++) {
+            axios.get("http://localhost:3001/products/productsbycategories/" + cats[i])
+                .then(p => {
+                    if (p.data.length > 0) {
+
+                        for (let e = 0; e < p.data.length; e++) {
+
+                            if (p.data[e].products.length > 0) {
+                                for (let j = 0; j < p.data[e].products.length; j++) {
+                                    products.push(p.data[e].products[j])
+                                }
+
+                            }
+
+                        }
+
+                    }
+                })
+                .catch(error => {
+                    console.log(error)
+                })
+
+        }
+        dispatch(productsToReducers(products))
+    }
+}
+export const productsToReducers = (prod) => {
+    return {
+        type: GET_PRODUCTS_BY_CATEGORY,
+        payload: prod
+    }
+}
 
 export const fetchAllProducts = () => {
 
-    return (dispatch) =>{
+    return (dispatch) => {
         dispatch(getAllProductsRequest())
         axios.get("http://localhost:3001/products/")
             .then(products => {
@@ -38,28 +75,28 @@ export const fetchAllProducts = () => {
     }
 }
 
-export const getAllProductsRequest = () =>{
+export const getAllProductsRequest = () => {
     return {
         type: GET_ALL_PRODUCTS_REQUEST,
     }
-} 
-export const getAllProductsSuccess = (products) =>{
+}
+export const getAllProductsSuccess = (products) => {
     return {
-        type:GET_ALL_PRODUCTS_SUCCESS,
+        type: GET_ALL_PRODUCTS_SUCCESS,
         payload: products
     }
-} 
-export const getAllProductsFailure = (error) =>{
+}
+export const getAllProductsFailure = (error) => {
     return {
-        type:GET_ALL_PRODUCTS_FAILURE,
+        type: GET_ALL_PRODUCTS_FAILURE,
         payload: error
     }
-} 
+}
 
 //FETCH PRODUCT BY ID
 export const fetchOneProduct = (productId) => {
 
-    return (dispatch) =>{
+    return (dispatch) => {
         dispatch(getOneProductRequest())
         axios.get(`http://localhost:3001/products/${productId}`)
             .then(product => {
@@ -71,28 +108,28 @@ export const fetchOneProduct = (productId) => {
     }
 }
 
-export const getOneProductRequest = () =>{
+export const getOneProductRequest = () => {
     return {
         type: GET_ONE_PRODUCT_REQUEST,
     }
-} 
-export const getOneProductSuccess = (product) =>{
+}
+export const getOneProductSuccess = (product) => {
     return {
-        type:GET_ONE_PRODUCT_SUCCESS,
+        type: GET_ONE_PRODUCT_SUCCESS,
         payload: product
     }
-} 
-export const getOneProductFailure = (error) =>{
+}
+export const getOneProductFailure = (error) => {
     return {
-        type:GET_ONE_PRODUCT_FAILURE,
+        type: GET_ONE_PRODUCT_FAILURE,
         payload: error
     }
-} 
+}
 
 //PRUEBA PARA QUE TRAIGA POR NOMBRE
 export const searchProducts = (products) => {
 
-    return (dispatch) =>{
+    return (dispatch) => {
         dispatch(searchProductRequest())
         axios.get(`${serverUrl}/products/search/${products}`)
             .then(products => {
@@ -104,28 +141,28 @@ export const searchProducts = (products) => {
     }
 }
 
-export const searchProductRequest = () =>{
+export const searchProductRequest = () => {
     return {
         type: SEARCH_PRODUCT_REQUEST,
     }
-} 
-export const searchProductSuccess = (product) =>{
+}
+export const searchProductSuccess = (product) => {
     return {
         type: SEARCH_PRODUCT_SUCCESS,
         payload: product
     }
-} 
-export const searchProductFailure = (error) =>{
+}
+export const searchProductFailure = (error) => {
     return {
         type: SEARCH_PRODUCT_FAILURE,
         payload: error
     }
-} 
+}
 
 //POST COMMENT
 export const postComment = (productId, comment) => {
-    
-    return (dispatch) =>{
+
+    return (dispatch) => {
 
         dispatch(postCommentRequest())
         const options = {
@@ -134,17 +171,19 @@ export const postComment = (productId, comment) => {
             headers: {
                 "Content-Type": "application/json",
                 "token": localStorage.getItem("token")
-               },
+            },
             data: {
                 idProduct: productId,
                 comment: {
-                    author: comment.author, 
-                    comment: comment.text}}
-          };
-          axios.request(options).then(() => {
-                dispatch(fetchOneProduct(productId))
-                dispatch(postCommentSuccess())
-            })
+                    author: comment.author,
+                    comment: comment.text
+                }
+            }
+        };
+        axios.request(options).then(() => {
+            dispatch(fetchOneProduct(productId))
+            dispatch(postCommentSuccess())
+        })
             .catch(error => {
                 dispatch(postCommentFailure(error))
             })
@@ -152,19 +191,19 @@ export const postComment = (productId, comment) => {
     }
 
 }
-export const postCommentRequest = () =>{
+export const postCommentRequest = () => {
     return {
         type: POST_COMMENT_REQUEST,
     }
-} 
-export const postCommentSuccess = () =>{
+}
+export const postCommentSuccess = () => {
     return {
         type: POST_COMMENT_SUCCESS,
     }
-} 
-export const postCommentFailure = (error) =>{
+}
+export const postCommentFailure = (error) => {
     return {
         type: POST_COMMENT_FAILURE,
         payload: error
     }
-} 
+}
