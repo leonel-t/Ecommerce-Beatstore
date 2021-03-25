@@ -1,10 +1,9 @@
 import "./listCat.css";
 import React, { useEffect } from "react";
 import { useHistory } from "react-router-dom";
-import AdminNav from "../AdminNav/AdminNav";
 import { connect } from "react-redux";
-import { fetchAllProducts, deleteCategory, fetchAllCategories } from "../../../stores/admin/admin.actions";
-const ListCategories = ({ fetchCartEffect, fetchAllCategoriesEffect, deleteCategoryEffect, STORE_CATS }) => {
+import { deleteCategory, fetchAllCategories } from "../../../stores/admin/admin.actions";
+const ListCategories = ({ fetchAllCategoriesEffect, deleteCategoryEffect, STORE_CATS }) => {
   var user = false;
   const history = useHistory();
 

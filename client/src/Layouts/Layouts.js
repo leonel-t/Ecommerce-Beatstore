@@ -28,7 +28,9 @@ const PagesLayout = ({ children }) => {
     return (
         <div>
             <Header></Header>
-            {children}
+            <div className="page-layout-main">
+                {children}
+            </div>
             <PagesFooter></PagesFooter>
         </div>
     )

@@ -1,6 +1,5 @@
 import React from "react";
 import "./addCategories.css";
-import AdminNav from "../AdminNav/AdminNav";
 
 function AddCategories() {
   const [input, setInput] = React.useState({

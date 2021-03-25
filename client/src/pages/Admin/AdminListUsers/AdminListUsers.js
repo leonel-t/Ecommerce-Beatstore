@@ -1,5 +1,4 @@
 import React,{useEffect} from "react";
-import AdminNav from "../AdminNav/AdminNav";
 import {connect} from 'react-redux';
 import {fetchAllUsers} from '../../../stores/admin/admin.actions';
 import UserCard from './UserCard.js' 

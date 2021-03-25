@@ -1,6 +1,5 @@
 import React from "react";
 import "./addCategories.css";
-import AdminNav from "../AdminNav/AdminNav";
 import { connect } from 'react-redux';
 import { useParams } from "react-router-dom";
 import { putCategoryById } from "../../../stores/admin/admin.actions";
