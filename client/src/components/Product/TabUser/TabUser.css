@@ -1,0 +1,34 @@
+.--TabUser{
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+}
+.--TabUser-tab{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    border-bottom: 1px solid rgb(99, 99, 99);
+}
+.--TabUser-tab p:hover{
+    background-color: rgb(56, 56, 56);
+    border-radius: 5px;
+    padding: 10px;
+    margin: 0px
+}
+.--TabUser-tab-active p{
+    margin: 10px 5px 0px 5px;
+    padding: 5px;
+    color: white;
+    border-bottom: 1px solid white;
+}
+.--TabUser-tab-inactive p{
+    margin: 10px 5px 0px 5px;
+    padding: 5px;
+    color: gray;
+}
+.--TabUser-content-active{
+    color: white;
+}
+.--TabUser-content-inactive{
+    display: none;
+}

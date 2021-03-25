@@ -7,29 +7,23 @@ import { useHistory } from 'react-router-dom'
 
 import './Profile.css'
 import axios from 'axios';
+import ProfileCard from '../../components/ProfileCard/ProfileCard';
+import TabUser from '../../components/Product/TabUser/TabUser';
 
 const Profile = ({ fetchUserEffect, STORE_USER }) => {
 
   const history = useHistory();
 
   // var token= localStorage.getItem('token')
-
   //   if(token){
   //     var decoded = jwt.verify(token,'$2y$12$GeqnBZJiqMrX9ZN04N9KRe8XzNKLLiuUJ5oC1BYYE3WjRnRoB/HFW');
   //   }
-
-
   //   console.log(decoded)
 
   useEffect(() => {
     fetchUserEffect();
   }, [fetchUserEffect]);
 
-  const handleClick = (e) => {
-    e.preventDefault()
-    localStorage.clear()
-    return window.location.replace("http://localhost:3001/logout")
-  }
 
   const handleClick2 = (e) => {
     e.preventDefault()
@@ -37,10 +31,6 @@ const Profile = ({ fetchUserEffect, STORE_USER }) => {
     history.push("/login")
   }
 
-  const handleClick3 = (e) => {
-    e.preventDefault()
-    history.push("/catalog")
-  }
 
   function generateNewToken() {
     const options = {
@@ -77,24 +67,9 @@ const Profile = ({ fetchUserEffect, STORE_USER }) => {
           <div>
             {STORE_USER.user && STORE_USER.user.data
               ? (
-                <div className="profile">
-                  <div className="contentProfile">
-                    <div className="contentData">
-                      <p className="titule">User: {"  "} {STORE_USER.user.data.user.name}</p>
-                      <p className="titule">Email: {"  "} {STORE_USER.user.data.user.email}</p>
-                      {/* <label>Image file</label>
-                    <input
-                      className="buttonInput"
-                      type="file"
-                      name="image"
-                      onChange={(e) => {
-                        handleInputChange(e);
-                      }}
-                    ></input> */}
-                    </div>
-                    <button onClick={handleClick}>Logout</button>
-                    <button onClick={handleClick3}>Start to buy</button>
-                  </div>
+                <div className="--Profile">
+                  <ProfileCard name={STORE_USER.user.data.user.name} email={STORE_USER.user.data.user.email}/>
+                  <TabUser/>
                 </div>
               ) : (
                 <>

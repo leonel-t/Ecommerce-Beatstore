@@ -1,6 +1,6 @@
 import React from "react";
 import "./FansCard.css";
-import imgProfile from "./profile-image.png"
+import imgProfile from "../../../assets/images/profile-image.jpg"
 
 const FansCard = ({username , date}) => {
 

@@ -1,0 +1,26 @@
+.--profileCard-user{
+    display: flex;
+    flex-direction: column;
+    margin: 20px;
+    padding-right: 25px;
+    border-right: 1px solid rgb(88, 88, 88);
+}
+.--profileCard-user-img img{
+    height: 200px;
+    border-radius: 100px;
+}
+.--profileCard-user-info{
+    margin: 10px;
+}
+.--profileCard-user-info p{
+    color: white;
+}
+.--profileCard-user-butons button{
+    padding: 5px 10px;
+    background: linear-gradient(45deg, rgb(234, 50, 111), rgb(145, 27, 137));
+    border: 1px solid black;
+    border-radius: 5px;
+    cursor:pointer;
+    color: white;
+    font-size: 1em;
+}

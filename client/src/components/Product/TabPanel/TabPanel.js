@@ -52,7 +52,7 @@ const RelatedTrack = [
   },
 ];
 
-const TabPanel = ({product}) => {
+const TabPanel = ({ product }) => {
   const [relatedTrack, setRelatedTrack] = useState(true);
   const [fans, setFans] = useState(false);
   const [comments, setComments] = useState(false);
@@ -137,7 +137,7 @@ const TabPanel = ({product}) => {
           }
         >
           {product && product.comments && product.comments.length > 0
-            ?(
+            ? (
               product.comments.map((comment, index) => {
                 return (
                   <CommentCard
@@ -148,7 +148,7 @@ const TabPanel = ({product}) => {
                   />
                 );
               })
-            ):(
+            ) : (
               <></>
             )
           }
