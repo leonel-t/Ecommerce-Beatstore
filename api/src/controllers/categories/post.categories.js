@@ -1,15 +1,12 @@
-const { Product, Categories } = require("../../db");
+const { Categories } = require("../../db");
 module.exports = {
-    addCat: async (params) => {
-        const { name, description } = params;
-    
-        const cat = await Categories.create({
-          name,
-          description,
-       
-        });
-    
-        return cat;
-      },
-    
-}
+    addCat: async (category) => {
+      let { name, description } = category;
+      return await Categories.create({
+        name,
+        description,
+      }).then(category =>{
+        return category;
+      });       
+    },
+}; 

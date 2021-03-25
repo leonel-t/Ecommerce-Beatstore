@@ -1,26 +1,17 @@
 const server = require("express").Router();
 const postControler = require("../../controllers/categories/post.categories");
-const {protectorAdmin, protectorUser } = require("../../middlewares/protector.middleware")
+const {protectorAdmin} = require("../../middlewares/protector.middleware");
 
-
-
-server.post("/", protectorUser, (req, res, next) => {
-  console.log(req.headers.token)
+server.post("/", protectorAdmin, (req, res, next) => {
+  const attributes = req.body;
   if(!req.headers.token ){
     res.status(400).json("NO AUTORIZATION TOKEN");
   }else{
-      const attributes = req.body;
-  
-  postControler.addCat(attributes)
-    .then((category) => {
-      res.status(201).json(category);
-    })
-    .catch((error) => {
-      res.status(400).json(error.message);
+    postControler.addCat(attributes).then((category) => {
+      return res.status(201).json(category);
+    }).catch((error) => {
+      return res.status(400).json(error.message);
     });
-  }
-
-
+  };
 });
-
 module.exports = server;

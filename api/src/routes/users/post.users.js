@@ -131,14 +131,24 @@ server.post(
           if (!user) return next(info);
             req.logIn(user, { session: false }, function (err) {
               if (err) return next(err);
-              const token = jwt.sign({id: user.id, rol: user.rol}, ACCESS_TOKEN_SECRET,{expiresIn: "10m"});
+              const token = generateToken({id: user.id, rol: user.rol})
+              const refreshToken = jwt.sign({id: user.id,rol: "refreshToken"}, REFRESH_TOKEN_SECRET);
               const dataUser = {
                 id: user.id,
                 email: user.email,
                 name: user.name,
                 rol: user.rol,
               };
-              const data = { msg: "Login successful", user: dataUser, token };
+              const data = { msg: "Login successful", user: dataUser, token, refreshToken };
+              User.update({
+                refresToken:refreshToken
+              },{
+                where:{
+                  id: user.dataValues.id
+                }
+              }).catch((err)=>{
+                console.log(error)
+              })
               return res.status(200).json(data);
             });
           }
