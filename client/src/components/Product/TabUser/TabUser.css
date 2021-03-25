@@ -2,6 +2,7 @@
     width: 100%;
     display: flex;
     flex-direction: column;
+    margin-right: 10px;
 }
 .--TabUser-tab{
     display: flex;
@@ -13,7 +14,8 @@
     background-color: rgb(56, 56, 56);
     border-radius: 5px;
     padding: 10px;
-    margin: 0px
+    margin: 0px;
+    cursor: pointer;
 }
 .--TabUser-tab-active p{
     margin: 10px 5px 0px 5px;
