@@ -9,6 +9,7 @@ const Catalog = ({ fetchAllProductsEffect, getProductsByCategoriesEffect, STORE_
 
   useEffect(() => {
     fetchAllProductsEffect();
+    getProductsByCategoriesEffect(["trap", "rock", "soul"])
   }, [fetchAllProductsEffect, getProductsByCategoriesEffect]);
 
   return (
@@ -51,6 +52,7 @@ const mapStateToProps = (state) => {
 const mapDispatchToProps = (dispatch) => {
   return {
     fetchAllProductsEffect: () => dispatch(fetchAllProducts()),
+    getProductsByCategoriesEffect: (payload) => dispatch(getProductsByCategories(payload)),
 
 
   };
