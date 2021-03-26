@@ -66,6 +66,7 @@
     color:antiquewhite;
     font-size: 1.3rem;
     text-align: center;
+
 }
 .beatComponent--main-beatActions-col-btn span{
     padding-top: 0px;
@@ -149,6 +150,12 @@
     flex-direction: column;
     justify-content: left;
     align-items: center;
+}
+.finger-up{
+    color: white;
+    font-size: 3rem;
+    margin-left: 30px;
+    cursor: pointer;
 }
 .beatComponent--main-beatActions-col-cat{
     margin: 6px;

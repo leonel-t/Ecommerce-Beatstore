@@ -54,8 +54,10 @@ const BeatComponent = ({ addItemToCartEffect, product }) => {
                                      <div>
                                         Buy $ {product.price} 
                                      </div>
+                                     
                                 </div>
                             </button>
+                            <span class="material-icons finger-up">thumb_up_off_alt</span>
                         </div>
                         <div className="beatComponent--main-beatActions-col column">
                             {product.categories && product.categories.length > 0
@@ -71,10 +73,11 @@ const BeatComponent = ({ addItemToCartEffect, product }) => {
                             }
                         </div>
                         <div className="beatComponent--main-beatActions-col column">
-                            <p>{product.description}</p>
+                            <p>{product.description}</p> 
                         </div>
                         <div className="spec">
                             <span className="material-icons icon-size"> play_circle_outline </span>
+                           
                             <Spectrum></Spectrum>
                         </div>
                     </div>
