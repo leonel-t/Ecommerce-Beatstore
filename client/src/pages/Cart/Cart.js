@@ -4,8 +4,11 @@ import ItemCard from "../../components/Cart/ItemCard/ItemCard"
 import SummaryCard from "../../components/Cart/SummaryCard/SummaryCard";
 import { connect } from 'react-redux';
 import { fetchCart, deleteItemInCart, getDiscountCoupon } from '../../stores/user/user.actions';
-import swal from 'sweetalert'
-const Cart = ({fetchCartEffect, deleteItemInCartEffect, getDiscountCouponEffect ,STORE_CART, TOTAL_PRICE, SUBTOTAL_PRICE, DISCOUNT_PRICE}) => {
+import swal from 'sweetalert';
+//Internationalization
+import { withTranslation } from 'react-i18next';
+
+const Cart = ({t,fetchCartEffect, deleteItemInCartEffect, getDiscountCouponEffect ,STORE_CART, TOTAL_PRICE, SUBTOTAL_PRICE, DISCOUNT_PRICE}) => {
     var user = false;
 
     useEffect(()=>{
@@ -15,21 +18,21 @@ const Cart = ({fetchCartEffect, deleteItemInCartEffect, getDiscountCouponEffect 
       const handleDelete= (id, state) => {
         
         swal({
-            title: "Are you sure?",
-            text: "you are about to empty the cart!",
+            title: t("page.cart.alerts.emptyCart.title"),
+            text: t("page.cart.alerts.emptyCart.text"),
             icon: "warning",
             buttons: true,
           })
           .then((willDelete) => {
             if (willDelete) {
-              swal("the cart has been emptied!", {
+              swal(t("page.cart.alerts.emptyCart.cartEmpty"), {
                 icon: "success",
                 timer: 2000
               });
                       
               return deleteItemInCartEffect(id, state)
             } else {
-              swal("your cart is safe!",{
+              swal(t("page.cart.alerts.emptyCart.cartSafe"),{
                 timer: 2000
               });
             }
@@ -39,7 +42,7 @@ const Cart = ({fetchCartEffect, deleteItemInCartEffect, getDiscountCouponEffect 
     return (
         <div className="--Cart">
             <div className="--Cart-items">
-              <h1>Cart Review</h1>
+              <h1>{t("page.cart.title")}</h1>
                 {STORE_CART && STORE_CART.length > 0
                     ?(
 
@@ -54,12 +57,14 @@ const Cart = ({fetchCartEffect, deleteItemInCartEffect, getDiscountCouponEffect 
                         <div>
                             <button className="--Cart-deleteCart"
                             onClick={()=>handleDelete(null, true)}
-                            >Empty Cart</button>
+                            >
+                              {t("page.cart.alerts.emptyCart.btn")}
+                            </button>
                         </div>
                       </>
                     ):
                     (
-                        <p className="empty-cart">You don't have items in cart</p>
+                        <p className="empty-cart">{t("page.cart.alerts.emptyCart.noItems")}</p>
                     )
                 }
             </div>
@@ -85,4 +90,4 @@ const mapStateToProps =  state => {
   }
   
   
-export default connect(mapStateToProps, mapDispatchToProps)(Cart);
+export default connect(mapStateToProps, mapDispatchToProps)(withTranslation()(Cart));

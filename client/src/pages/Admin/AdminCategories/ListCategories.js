@@ -4,7 +4,6 @@ import { useHistory } from "react-router-dom";
 import { connect } from "react-redux";
 import { deleteCategory, fetchAllCategories } from "../../../stores/admin/admin.actions";
 const ListCategories = ({ fetchAllCategoriesEffect, deleteCategoryEffect, STORE_CATS }) => {
-  var user = false;
   const history = useHistory();
 
   useEffect(() => {

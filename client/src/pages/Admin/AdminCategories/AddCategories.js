@@ -1,7 +1,11 @@
 import React from "react";
+
+//Internationalization
+import { withTranslation } from 'react-i18next';
+
 import "./addCategories.css";
 
-function AddCategories() {
+function AddCategories({t}) {
   const [input, setInput] = React.useState({
     name: "",
     description: "",
@@ -48,12 +52,13 @@ function AddCategories() {
     fetch("http://localhost:3001/categories", requestOptions);
   };
   return (
+    
     <form className="catAdd" onSubmit={(e) => handleSubmit(e)}>
-      <h1>Add Category:</h1>
+      <h1>{t("page.admin.forms.addGen.addGenre")}</h1>
       <div>
-        <p>name:</p>
+        <p>{t("page.admin.forms.addGen.name")}</p>
         <input
-          placeholder="type the category name"
+          placeholder={t("page.admin.forms.addGen.placeholderOne")}
           className={`${errors.name && "danger"}`}
           type="text"
           name="name"
@@ -63,9 +68,9 @@ function AddCategories() {
       </div>
       <div>
         {errors.username && <p className="danger">{errors.username}</p>}
-        <p>description:</p>
+        <p>{t("page.admin.forms.addGen.description")}</p>
         <textarea
-          placeholder="type the description here"
+          placeholder={t("page.admin.forms.addGen.placeholderTwo")}
           className={`${errors.description && "danger"}`}
           type="text"
           name="description"
@@ -76,10 +81,10 @@ function AddCategories() {
       <div>
         {errors.description && <p className="danger">{errors.password}</p>}
         <button className="--submitbuton" type="submit">
-          Submit
+        {t("page.admin.forms.addGen.submit")}
         </button>
       </div>
     </form>
   );
 }
-export default AddCategories;
+export default withTranslation()(AddCategories);

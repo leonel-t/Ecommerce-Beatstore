@@ -2,9 +2,10 @@ import React, { useState } from 'react';
 import "./Register.css"
 import axios from 'axios';
 import { Link, useHistory } from "react-router-dom";
+//Internationalization
+import { withTranslation } from 'react-i18next';
 
-
-const Register = () => {
+const Register = ({t}) => {
     const history = useHistory();
     const [errors, setErrors] = useState({});
     const [input, setInput] = useState({
@@ -47,7 +48,6 @@ const Register = () => {
 
     const handleSubmit = async (e) => {
         e.preventDefault();
-        console.log('Esto me trae el input', input)
         let newUser = {
             name:input.username,
              password: input.password,
@@ -80,14 +80,14 @@ const Register = () => {
     return(
         <div className="--RegisterCard">
             <div className="--RegisterCardAll">
-                <h2>Sign up</h2>
+                <h2>{t("page.register.title")}</h2>
             <form onSubmit={handleSubmit} className="--RegisterCard-form">
 
                 <div className="--RegisterCard-form-email">
-                    <p className='--RegisterCard-title'>Email</p>
+                    <p className='--RegisterCard-title'>{t("page.register.emailTitle")}</p>
                     <input className="--RegisterCard-form-input" 
                         type="text" 
-                        placeholder="Type your email"
+                        placeholder={t("page.register.emailPlaceholder")}
                         name="email" 
                         onChange={handleInputChange} 
                         value={input.email}/>
@@ -102,20 +102,20 @@ const Register = () => {
                 </div>
 
                 <div className="--RegisterCard-form-username">
-                    <p className='--RegisterCard-title'>Username</p>
+                    <p className='--RegisterCard-title'>{t("page.register.usernameTitle")}</p>
                     <input className="--RegisterCard-form-input" 
                         type="text" 
-                        placeholder="Set a username for you profile"
+                        placeholder={t("page.register.usernamePlaceholder")}
                         name="username" 
                         onChange={handleInputChange} 
                         value={input.username}/>
                         {/* {errors.username && <p className="danger">{errors.username}</p>} */}
                 </div>
                 <div className="--RegisterCard-form-password">
-                    <p className='--RegisterCard-title'>Password</p>
+                    <p className='--RegisterCard-title'>{t("page.register.passwordTitle")}</p>
                     <input className="--RegisterCard-form-input" 
                         type="password" 
-                        placeholder="Type your password"
+                        placeholder={t("page.register.passwordPlaceholder")}
                         name="password" 
                         onChange={handleInputChange} 
                         value={input.password}/>
@@ -130,15 +130,15 @@ const Register = () => {
                     
                 </div>
                 <div className="--RegisterCard-form-password-repeat">
-                    <p className='--RegisterCard-title'>Confirm password</p>
-                    <input className="--RegisterCard-form-input" type="password" placeholder="Type your password again"
+                    <p className='--RegisterCard-title'>{t("page.register.confirmPasswordTitle")}</p>
+                    <input className="--RegisterCard-form-input" type="password" placeholder={t("page.register.confirmPasswordPlaceholder")}
                         name="confirmPassword" onChange={handleInputChange} value={input.confirmPassword}/>
                 </div>
-                <button type="submit">Sign up</button>
+                <button type="submit">{t("page.register.signupButton")}</button>
             </form>
             <div className="foots">
-                <span>Already have an account?</span>
-                <Link className="signups" to="/login">Sign in</Link>
+                <span>{t("page.register.haveAcount")}</span>
+                <Link className="signups" to="/login">{t("page.register.signinButton")}</Link>
             </div>
             </div>
             
@@ -146,4 +146,4 @@ const Register = () => {
     )
 }
 
-export default Register;
+export default withTranslation()(Register);

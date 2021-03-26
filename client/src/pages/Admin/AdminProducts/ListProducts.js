@@ -1,7 +1,6 @@
 import "./listProduct.css";
 import React, { useEffect } from "react";
 import { useHistory } from "react-router-dom";
-import AdminNav from "../AdminNav/AdminNav";
 import { connect } from "react-redux";
 import { fetchAllProducts, deleteProducts } from "../../../stores/admin/admin.actions";
 const Edit = ({ fetchCartEffect, fetchAllProductsEffect, deleteProductsEffect, STORE_CART }) => {

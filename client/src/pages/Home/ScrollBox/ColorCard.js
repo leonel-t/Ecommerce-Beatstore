@@ -1,5 +1,4 @@
 import React from 'react';
-import PropTypes from 'prop-types';
 import './colorCard.css';
 import {useHistory} from "react-router-dom"
 function ColorCard({ product }) {
@@ -32,8 +31,6 @@ function ColorCard({ product }) {
 
 }
 
-ColorCard.propTypes = {
-  color: PropTypes.string.isRequired,
-};
+
 
 export default ColorCard;

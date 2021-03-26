@@ -28,7 +28,7 @@ const HomeHeader = ({t,fetchUserEffect, STORE_USER}) =>{
               <ul >
                 <li>
                   <Link className="link-li" to="/catalog">
-                    {t("catalog")}
+                    {t('headers.homeHeader.catalog')}
                   </Link>
                 </li>
                 </ul>
@@ -74,8 +74,8 @@ const HomeHeader = ({t,fetchUserEffect, STORE_USER}) =>{
                         <button className="btn-en" onClick={() => changeLanguage('en')}></button>
                       </li>
                       <li><button className="btn-es" onClick={() => changeLanguage('es')}></button></li>
-                      <li><Link className="link-li" to="/login">Login</Link></li>
-                      <li><Link className="link-li" to="/register">Register</Link></li>
+                      <li><Link className="link-li" to="/login">{t('headers.homeHeader.login')}</Link></li>
+                      <li><Link className="link-li" to="/register">{t('headers.homeHeader.register')}</Link></li>
                       
                     </ul>
                 )
@@ -86,7 +86,7 @@ const HomeHeader = ({t,fetchUserEffect, STORE_USER}) =>{
             </div>
                <div className="--newHeader-main-row-col-user-icon">
                   <Link to="/profile">
-                   <i class="fas fa-user --user-icon"></i>
+                   <i className="fas fa-user --user-icon"></i>
                   </Link>
                 </div>
           </div>

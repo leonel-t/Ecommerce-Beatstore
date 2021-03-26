@@ -14,7 +14,6 @@ import Home from "./pages/Home/Home.js";
 
 import Product from "./pages/Product/Product.js";
 import Catalog from "./pages/Catalog/Catalog.js";
-import Edit from "./pages/Admin/AdminProducts/ListProducts";
 import Form from "./pages/Admin/AdminProducts/AddProduct";
 import PutForm from "./pages/Admin/AdminProducts/EditProduct";
 import Categories from "./pages/Admin/AdminCategories/AddCategories";

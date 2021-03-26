@@ -6,10 +6,13 @@ import { useHistory } from "react-router-dom"
 import {searchProducts} from "../../../stores/products/products.actions"
 // import Filter from "./Filter"
 
+//Internationalization
+import { withTranslation } from 'react-i18next';
+
 import SearchImg from "./Search.png"
 import './MiddleSearchBar.css'
 
-const MiddleSearchBar = () => {
+const MiddleSearchBar = ({t}) => {
     const [input, setInput] = useState({
         name: ""
     })    
@@ -39,7 +42,7 @@ const MiddleSearchBar = () => {
      <form onSubmit={handleSubmit} className='HomeBg'>
          <div className="SearchBarMiddle">
 
-             <input onChange={handleChange} name="name" value={name} placeholder="Search..." />
+             <input onChange={handleChange} name="name" value={name} placeholder={t("page.home.MiddleSearchBar")} />
                  <div className="ContainerImg">
                      <img onClick={handleSubmit} src={SearchImg} alt="SearchIcon" />
                      </div>
@@ -60,4 +63,4 @@ function mapStateToProps(state) {
 
 export default connect(
     mapStateToProps,
-  )(MiddleSearchBar);
+  )(withTranslation()(MiddleSearchBar));

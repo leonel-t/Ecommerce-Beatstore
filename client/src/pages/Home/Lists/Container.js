@@ -1,11 +1,9 @@
-
 import React from 'react';
 import './Container.css'
 import {connect} from "react-redux";
 import Wrapper from "../wrapper/Wrapper"
 import ColorCard from '../ScrollBox/ColorCard';
 import ScrollBox from '../ScrollBox/ScrollBox';
-import COLORS from '../ScrollBox/data.json';
 
 //Internationalization
 import { withTranslation } from 'react-i18next';
@@ -15,30 +13,55 @@ const Container = ({t, STORE_PRODUCTS}) => {
 
     return (
         <div className='Container'>
-
-                <h1>{t('title')}</h1>
+            <h1>{t('page.home.sliders.1')}</h1>
+            <Wrapper/>
+            <h2>{t('page.home.sliders.2')}</h2>
+            {STORE_PRODUCTS && STORE_PRODUCTS.length > 0
+                ?( 
+                    <ScrollBox>
+                       { STORE_PRODUCTS.map((product, index) => {
+                           return (
+                            <ColorCard product={product} key={index} />
+                            )
+                       })}
+                    </ScrollBox>
+                    ):(
+                        <p>{t("page.home.sliders.noBeats")}</p>
+                       )           
+                }
+                <h2>{t('page.home.sliders.3')}</h2>
                 <Wrapper/>
-            <h2>{t('title2')}</h2>
-
-            {STORE_PRODUCTS && STORE_PRODUCTS.length > 0
+                <h2>{t('page.home.sliders.4')}</h2>
+                {STORE_PRODUCTS && STORE_PRODUCTS.length > 0
                     ?( 
                     <ScrollBox>
                        { STORE_PRODUCTS.map((product, index) => {
-                           console.log("ESTOSSS", product)
                            return (
                             <ColorCard product={product} key={index} />
                             )
                        })}
                     </ScrollBox>
                     ):(
-                        <p>No Products</p>
+                        <p>{t("page.home.sliders.noBeats")}</p>
+                        )
+                }
+                <h2>{t('page.home.sliders.5')}</h2>
+                {STORE_PRODUCTS && STORE_PRODUCTS.length > 0
+                    ?( 
+                    <ScrollBox>
+                       { STORE_PRODUCTS.map((product, index) => {
+                           return (
+                            <ColorCard product={product} key={index} />
+                            )
+                       })}
+                    </ScrollBox>
+                    ):(
+                        <p>{t("page.home.sliders.noBeats")}</p>
                         )
                
                 }
-                <h2>The Best Alternative Confortable Hi-Fi Beats</h2>
-                <Wrapper/>
-            <h2>The Best Tango Hi-Fi Beats</h2>
-            {STORE_PRODUCTS && STORE_PRODUCTS.length > 0
+                <h2>{t("page.home.sliders.6")}</h2>
+                {STORE_PRODUCTS && STORE_PRODUCTS.length > 0
                     ?( 
                     <ScrollBox>
                        { STORE_PRODUCTS.map((product, index) => {
@@ -49,39 +72,7 @@ const Container = ({t, STORE_PRODUCTS}) => {
                        })}
                     </ScrollBox>
                     ):(
-                        <p>No Products</p>
-                        )
-               
-                }
-    <h2>The Best Hip Hop Beats</h2>
-            {STORE_PRODUCTS && STORE_PRODUCTS.length > 0
-                    ?( 
-                    <ScrollBox>
-                       { STORE_PRODUCTS.map((product, index) => {
-                           console.log("ESTOSSS", product)
-                           return (
-                            <ColorCard product={product} key={index} />
-                            )
-                       })}
-                    </ScrollBox>
-                    ):(
-                        <p>No Products</p>
-                        )
-               
-                }
-        <h2>The Best Bachata Beats</h2>
-            {STORE_PRODUCTS && STORE_PRODUCTS.length > 0
-                    ?( 
-                    <ScrollBox>
-                       { STORE_PRODUCTS.map((product, index) => {
-                           console.log("ESTOSSS", product)
-                           return (
-                            <ColorCard product={product} key={index} />
-                            )
-                       })}
-                    </ScrollBox>
-                    ):(
-                        <p>No Products</p>
+                        <p>{t("page.home.sliders.noBeats")}</p>
                         )
                
                 }
@@ -94,6 +85,5 @@ const mapStateToProps =  state => {
       STORE_PRODUCTS : state.productsReducers.products
     }
   }
-  
   
 export default connect(mapStateToProps)(withTranslation()(Container));

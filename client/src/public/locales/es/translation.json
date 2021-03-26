@@ -1,5 +1,167 @@
 {
     "title": "Este es el titulo en español",
     "title2":"Los mejores Beats de la Musica Pop",
-    "catalog":"Catalogo"
+    "catalog":"Catalogo",
+    "headers":{
+      "homeHeader":{
+        "catalog":"Catalogo",
+        "login":"Ingresar",
+        "register":"Registrarse"
+      },
+      "header":{
+        "home":"Inicio",
+        "catalog":"Catalogo",
+        "login":"Ingresar",
+        "register":"Registrarse",
+        "searchInput":"Buscar"
+      },
+      "adminHeader":{
+        "catalog":"Catalogo",
+        "home":"Inicio",
+        "configuration":"Ajustes",
+        "adminNav": {
+          "adminDashboard": "Menu de Administrador",
+          "listBeats": "Lista de Canciones",
+          "addBeats": "Agregar Canciones",
+          "listGenre": "Lista de Generos Musicales",
+          "addGenre": "Agregar Genero",
+          "listUsers": "Lista de Usuarios"
+        }
+
+      }
+    },
+    "page":{
+      "home":{
+        "MiddleSearchBar":"Buscar",
+        "sliders":{
+          "1":"Los Beats mas populares",
+          "2":"Los mejores Beats de la musica Pop",
+          "3":"Los Hi-Fi Beats mas populares",
+          "4":"Blues Beats",
+          "5":"Rap & Trap Beats mas populares",
+          "6":"Lo mejor del Rock & Roll",
+          "7":"Beats Musica Alternativa ",
+          "noBeats":"No hay Sonidos"
+        }   
+      },      
+      "profile":{
+        "title": "Usuario no encontrado",
+        "button": "Volver a Inicio",
+        "profileCard": {
+          "editButton": "Editar Cuenta",
+          "logout": "Cerrar Sesion"
+        },
+        "tabUser":{
+          "purchases": "Mis Compras",
+          "coments": "Mis Comentarios",
+          "componentPurchases": "COMPONENTE DE COMPRAS",
+          "componentComments": "COMPONENTE DE COMENTARIOS"
+        }
+      },
+      "catalog":{
+        
+      },
+      "cart":{
+        "title":"Carrito",
+        "noItems":"No tienes artículos en el carrito",
+        "summary":"Resumen de compra",
+        "promoCodeTitle":"¿Tienes un código de promoción?",
+        "promoCodeInput":"Escribe el Codigo",
+        "promoCodeButton":"Aplicar",
+        "subtotal":"Subtotal",
+        "discount":"Descuento",
+        "total":"Total",
+        "checkout":"Comprar",
+        "alerts":{
+          "emptyCart":{
+            "title":"¿Estas Seguro?",
+            "text":"Estas a punto de vaciar el carrito!",
+            "cartEmpty":"El carrito se vacio correctamente!",
+            "cartSafe":"Tu carrito esta a salvo!",
+            "btn":"Vaciar Carrito",
+            "noItems":"No tienes Canciones en el carrito"
+          },
+          "emptyItem":{
+            "title":"Are you sure?",
+            "text":"you are about to remove the product from the cart!",
+            "cartEmpty":"the product has been removed from the cart!",
+            "cartSafe":"the product has not been removed!!"
+
+          }
+        }
+      },
+      "login":{
+        "title":"Ingresa Tu Cuenta",
+        "emailTitle":"Correo Electronico",
+        "emailPlaceholder":"Escribe tu correo electronico",
+        "passwordTitle":"Contraseña",
+        "passwordPlaceholder":"Escribe tu contraseña",
+        "signinButton":"Ingresar",
+        "dontAcount":"¿No tienes una cuenta?",
+        "signupButton":"Crear Cuenta"
+      },
+      "register":{
+        "title":"Crear Una Cuenta",
+        "emailTitle":"Correo Electronico",
+        "emailPlaceholder":"Escribe tu correo electronico",
+        "usernameTitle":"Nombre de Usuario",
+        "usernamePlaceholder":"Escribe tu Nombre de Usuario",
+        "passwordTitle":"Contraseña",
+        "passwordPlaceholder":"Escribe tu contraseña",
+        "confirmPasswordTitle":"Confirma tu Contraseña",
+        "confirmPasswordPlaceholder":"Escribe tu contraseña",
+        "signupButton":"Crear Cuenta",
+        "haveAcount":"¿Ya tienes una cuenta?",
+        "signinButton":"Ingresar con tu cuenta"
+      },
+      "admin":{
+        "title":"Administracion",
+        "forms":{
+          "addBeats":{
+            "title":"Completa los campos",
+            "name":"Nombre",
+            "tone":"Tono",
+            "description":"Descripcion",
+            "artist":"Artista",
+            "date":"Fecha de lanzamiento",
+            "price":"Precio",
+            "bpm":"Bpm",
+            "image":"Seleciona una Imagen",
+            "audio":"Seleciona un Audio",
+            "categories":"Categorias",
+            "addBeatButton":"Agregar Cancion",
+            "notes":{
+              "c":"DO",
+              "d":"RE",
+              "e":"MI",
+              "f":"FA",
+              "g":"SOL",
+              "a":"LA",
+              "b":"SI"
+            },
+            "errors":{
+              "inpName":"Nombre requerido",
+              "inpDescription":"descripcion requerida",
+              "inpArtist":"artista requerido",
+              "inpPrice":"precio requerido",
+              "inpBpm":"beats por minuto requerido",
+              "inpDate":"Fecha de Lanzamiento requerida",
+              "inpTone":"tono requerido",
+              "inpValidDate":"Ingresar una fecha valida!",
+              "inpImage":"Una imagen es requerida",
+              "inpAudio":"El audio es requerido"
+            }                   
+          },
+          "addGen":{
+            "addGenre": "Agregar Genero Musical",
+            "name": "Nombre",
+            "description": "Descripcion",
+            "submit": "Enviar",
+            "placeholderOne": "nombre del tipo de genero",
+            "placeholderTwo": "descripcion sobre el genero"
+          }
+      }
+    }
+
+    }
   }

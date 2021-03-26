@@ -4,13 +4,11 @@ import { connect } from "react-redux";
 import "./form.css";
 import Select from "react-select";
 import axios from "axios";
-import { useHistory } from "react-router-dom";
 import "../../Product/product.css";
 import { fetchOneProduct } from "../../../stores/admin/admin.actions";
 import AdminNav from "../AdminNav/AdminNav";
 
 const PutForm = ({ STORE_ADMIN, fetchProduct }) => {
-  const history = useHistory();
   const storeProduct = STORE_ADMIN.product;
 
   const { id } = useParams();
@@ -21,9 +19,6 @@ const PutForm = ({ STORE_ADMIN, fetchProduct }) => {
   const [categories, setCategories] = React.useState([]);
   const [image, setImage] = React.useState({});
   const [audio, setAudio] = React.useState();
-  const [editFiles, setEditFiles] = React.useState(false);
-  const [editImage, setEditImage] = React.useState(false);
-  const [editAudio, setEditAudio] = React.useState(false);
   const [errors, setErrors] = React.useState({});
   const [cat, setCat] = React.useState([]);
   const [alt, setAlt] = React.useState({})

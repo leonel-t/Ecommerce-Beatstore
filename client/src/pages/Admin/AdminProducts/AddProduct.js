@@ -1,9 +1,13 @@
 import React, { useEffect } from "react";
-import "./form.css";
 import Select from "react-select";
 import axios from "axios";
 
-export default function Form() {
+//Internationalization
+import { withTranslation } from 'react-i18next';
+
+import "./form.css";
+
+const Form = ({t})=> {
   const customStyles = {
     control: (base, state) => ({
       ...base,
@@ -44,12 +48,6 @@ export default function Form() {
         // Overwrittes the different states of border
         background: "blue"
       }
-    }),
-    multiValueLabel: base => ({
-      background: "red",
-      color: "black",
-      padding: "5px",
-      borderRadius: "25px"
     }),
     multiValueLabel: base => ({
       background: "rgb(106,31,174)",
@@ -115,7 +113,7 @@ export default function Form() {
     form.append("artist", input.artist);
     form.append("price", input.price);
     form.append("bpm", input.bpm);
-    form.append("scale", alt.radName == undefined ? tone.value : tone.value + alt.radName);
+    form.append("scale", alt.radName === undefined ? tone.value : tone.value + alt.radName);
     form.append("date", input.date);
     // form.append("selectCat", cat.selectCat);
 
@@ -135,38 +133,32 @@ export default function Form() {
 
     axios.request(options).then(function (response) {
       idProduct = response.data.id;
-      console.log(categories);
       categories.forEach((element) => {
-        console.log(element);
-        axios
-          .post(
-            `http://localhost:3001/products/${idProduct}/category/${element.value}`
-          )
-          .then((res) => console.log(res));
+        axios.post(`http://localhost:3001/products/${idProduct}/category/${element.value}`).then((res) => console.log(res));
       });
     });
   }
   const optionTone = [{
     value: "C",
-    label: "C"
+    label: t("page.admin.forms.addBeats.notes.c")
   }, {
     value: "D",
-    label: "D"
+    label: t("page.admin.forms.addBeats.notes.d")
   }, {
     value: "E",
-    label: "E"
+    label: t("page.admin.forms.addBeats.notes.e")
   }, {
     value: "F",
-    label: "F"
+    label: t("page.admin.forms.addBeats.notes.f")
   }, {
     value: "G",
-    label: "G"
+    label: t("page.admin.forms.addBeats.notes.g")
   }, {
     value: "A",
-    label: "A"
+    label: t("page.admin.forms.addBeats.notes.a")
   }, {
     value: "B",
-    label: "B"
+    label: t("page.admin.forms.addBeats.notes.b")
   }]
   const handleInputChange = (event) => {
     if (event.target.name === "image") {
@@ -191,38 +183,38 @@ export default function Form() {
     let errors = {};
 
     if (!input.name) {
-      errors.name = "name is required";
+      errors.name = t("page.admin.forms.addBeats.errors.inpName");
     }
     if (!input.description) {
-      errors.description = "description is required";
+      errors.description = t("page.admin.forms.addBeats.errors.inpDescription");
     }
     if (!input.artist) {
-      errors.artist = "artist is required";
+      errors.artist = t("page.admin.forms.addBeats.errors.inpArtist");
     }
     if (!input.price) {
-      errors.price = "price is required";
+      errors.price = t("page.admin.forms.addBeats.errors.inpPrice");
     }
     if (!input.bpm) {
-      errors.bpm = "bpm is required";
+      errors.bpm = t("page.admin.forms.addBeats.errors.inpBpm");
     }
 
     if (!input.date) {
-      errors.date = "date is required";
+      errors.date = t("page.admin.forms.addBeats.errors.inpDate");
     }
     var today = new Date();
     let msecsToday = today.getTime();
     var msecsProduct = Date.parse(input.date);
     msecsProduct > msecsToday
-      ? (errors.date = "insert a valid date!")
+      ? (errors.date = t("page.admin.forms.addBeats.errors.inpValidDate"))
       : console.log("ok");
     if (!tone.value) {
-      errors.tone = "tone is required";
+      errors.tone = t("page.admin.forms.addBeats.errors.inpTone");
     }
     if (!image) {
-      errors.image = "image is required";
+      errors.image = t("page.admin.forms.addBeats.errors.inpImage");
     }
     if (!audio) {
-      errors.audio = "audio is required";
+      errors.audio = t("page.admin.forms.addBeats.errors.inpAudio");
     }
     return errors;
   }
@@ -239,7 +231,7 @@ export default function Form() {
 
   return (
     <div className="subContainer">
-      <h2>Complete product data:</h2>
+      <h2>{t("page.admin.forms.addBeats.title")}</h2>
       <form
         onSubmit={(e) => handleSubmit(e)}
       >
@@ -247,7 +239,7 @@ export default function Form() {
         >
 
           <div className="column-1 box">
-            <label>Name</label>
+            <label>{t("page.admin.forms.addBeats.name")}</label>
             {errors.name && <p className="danger">{errors.name}</p>}
 
             <input
@@ -257,7 +249,7 @@ export default function Form() {
                 handleInputChange(e);
               }}
             />
-            <label>Description</label>
+            <label>{t("page.admin.forms.addBeats.description")}</label>
 
             {errors.description && <p className="danger">{errors.description}</p>}
             <textarea
@@ -267,7 +259,7 @@ export default function Form() {
                 handleInputChange(e);
               }}
             ></textarea>
-            <label>Artist</label>
+            <label>{t("page.admin.forms.addBeats.artist")}</label>
             {errors.artist && <p className="danger">{errors.artist}</p>}
 
             <input
@@ -278,7 +270,7 @@ export default function Form() {
               }}
             ></input>
 
-            <label>Price</label>
+            <label>{t("page.admin.forms.addBeats.price")}</label>
             {errors.price && <p className="danger">{errors.price}</p>}
 
             <input
@@ -290,7 +282,7 @@ export default function Form() {
               }}
             ></input>
 
-            <label>BPM</label>
+            <label>{t("page.admin.forms.addBeats.bpm")}</label>
             {errors.bpm && <p className="danger">{errors.bpm}</p>}
 
             <input
@@ -303,7 +295,7 @@ export default function Form() {
             ></input>
           </div>
           <div className="column-2 box">
-            <label>Tone</label>
+            <label>{t("page.admin.forms.addBeats.tone")}</label>
             {errors.tone && <p className="danger">{errors.tone}</p>}
 
 
@@ -327,7 +319,7 @@ export default function Form() {
                 <input type="radio" name="radName" value="b" onChange={handleAlt} />
               </div>
             </div>
-            <label>Date</label>
+            <label>{t("page.admin.forms.addBeats.date")}</label>
             {errors.date && <p className="danger">{errors.date}</p>}
 
             <input
@@ -340,7 +332,7 @@ export default function Form() {
               }}
             ></input>
 
-            <label>Image file</label>
+            <label>{t("page.admin.forms.addBeats.image")}</label>
 
             <input
               className="buttonInput"
@@ -350,7 +342,7 @@ export default function Form() {
                 handleInputChange(e);
               }}
             ></input>
-            <label>Audio file</label>
+            <label>{t("page.admin.forms.addBeats.audio")}</label>
 
             <input
               className="buttonInput"
@@ -360,7 +352,7 @@ export default function Form() {
                 handleInputChange(e);
               }}
             ></input>
-            <label>Categories</label>
+            <label>{t("page.admin.forms.addBeats.categories")}</label>
 
             <Select
               isMulti
@@ -380,7 +372,7 @@ export default function Form() {
               handleInputChange(e);
             }}
           >
-            Save beat
+            {t("page.admin.forms.addBeats.addBeatButton")}
           </button>
         </div>
       </form>
@@ -388,3 +380,4 @@ export default function Form() {
     </div>
   );
 }
+export default withTranslation()(Form)
