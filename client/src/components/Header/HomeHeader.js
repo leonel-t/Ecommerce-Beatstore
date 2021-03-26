@@ -5,8 +5,10 @@ import "./HomeHeader.css"
 import Logo from '../../assets/images/logo.png'
 import { Link } from 'react-router-dom';
 import i18n from '../../i18n';
+//Internationalization
+import { withTranslation } from 'react-i18next';
 
-const HomeHeader = ({fetchUserEffect, STORE_USER}) =>{
+const HomeHeader = ({t,fetchUserEffect, STORE_USER}) =>{
   const changeLanguage = (lng) => {
     i18n.changeLanguage(lng);
   }     
@@ -26,7 +28,7 @@ const HomeHeader = ({fetchUserEffect, STORE_USER}) =>{
               <ul >
                 <li>
                   <Link className="link-li" to="/catalog">
-                    Catalog
+                    {t("catalog")}
                   </Link>
                 </li>
                 </ul>
@@ -107,4 +109,4 @@ const mapStateToProps =  state => {
   };
   
   
-export default connect(mapStateToProps, mapDispatchToProps)(HomeHeader);
+export default connect(mapStateToProps, mapDispatchToProps)(withTranslation()(HomeHeader));
