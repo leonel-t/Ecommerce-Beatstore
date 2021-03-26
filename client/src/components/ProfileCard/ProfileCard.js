@@ -23,16 +23,16 @@ const audio = new Audio(sound);
     }
     const [trancit, settrancit] = useState(false)
     return (
-        <div className="--profileCard-user">
+        <div className={"--profileCard-user"}>
             <div className={trancit ? "trancition-active" : "trancition"}></div>
-            <div className="--profileCard-user-img">
+            <div className={trancit ? "--profileCard-user--hidden" : "--profileCard-user-img"}>
                 <img alt="profileImage" src={profileImg} />
             </div>
-            <div className="--profileCard-user-info">
+            <div className={trancit ? "--profileCard-user--hidden" : "--profileCard-user-info"}>
                 <p className="--profileCard-user-info-name">{name}</p>
                 <p>{email}</p>
             </div>
-            <div className="--profileCard-user-butons">
+            <div className={trancit ? "--profileCard-user--hidden" : "--profileCard-user-butons"}>
                 <button>{t("page.profile.profileCard.editButton")}</button>
                 <button onClick={handleLogout}>{t("page.profile.profileCard.logout")}</button>
             </div>
