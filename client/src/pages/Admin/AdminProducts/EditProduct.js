@@ -336,7 +336,6 @@ const PutForm = ({ STORE_ADMIN, fetchProduct }) => {
               name="selectCat"
               options={option}
               onChange={setCategories}
-            // styles={customStyles}
             />
           </div>
         </div>

@@ -1,13 +1,14 @@
 import React, { useEffect } from "react";
 import Select from "react-select";
 import axios from "axios";
-
+import laserSound from "../../../assets/audio/tab-sound.ogg"
 //Internationalization
 import { withTranslation } from 'react-i18next';
+import swal from 'sweetalert';
 
 import "./form.css";
 
-const Form = ({t})=> {
+const Form = ({ t }) => {
   const customStyles = {
     control: (base, state) => ({
       ...base,
@@ -76,6 +77,7 @@ const Form = ({t})=> {
       color: "black"
     })
   };
+
   const [categories, setCategories] = React.useState([]);
   const [image, setImage] = React.useState({});
   const [audio, setAudio] = React.useState();
@@ -102,41 +104,51 @@ const Form = ({t})=> {
 
     datos();
   }, []);
-
+  const audioErr = new Audio(laserSound)
   let idProduct;
   function handleSubmit(e) {
     e.preventDefault();
+    try {
+      const form = new FormData();
 
-    const form = new FormData();
-    form.append("name", input.name);
-    form.append("description", input.description);
-    form.append("artist", input.artist);
-    form.append("price", input.price);
-    form.append("bpm", input.bpm);
-    form.append("scale", alt.radName === undefined ? tone.value : tone.value + alt.radName);
-    form.append("date", input.date);
-    // form.append("selectCat", cat.selectCat);
+      form.append("name", input.name);
+      form.append("description", input.description);
+      form.append("artist", input.artist);
+      form.append("price", input.price);
+      form.append("bpm", input.bpm);
+      form.append("scale", alt.radName === undefined ? tone.value : tone.value + alt.radName);
+      form.append("date", input.date);
+      form.append("selectCat", cat.selectCat);
 
-    form.append("files", image[0]);
-    form.append("files", audio[0]);
+      form.append("files", image[0]);
+      form.append("files", audio[0]);
+      const options = {
+        method: "POST",
+        url: "http://localhost:3001/products/",
+        headers: {
+          "Content-Type": "multipart/form-data", "Cross-Origin-Opener-Policy": "same-origin",
+          "token": localStorage.getItem("token")
+        },
+        data: form,
 
-    const options = {
-      method: "POST",
-      url: "http://localhost:3001/products/",
-      headers: {
-        "Content-Type": "multipart/form-data", "Cross-Origin-Opener-Policy": "same-origin",
-        "token": localStorage.getItem("token")
-      },
-      data: form,
+      };
 
-    };
-
-    axios.request(options).then(function (response) {
-      idProduct = response.data.id;
-      categories.forEach((element) => {
-        axios.post(`http://localhost:3001/products/${idProduct}/category/${element.value}`).then((res) => console.log(res));
+      axios.request(options).then(function (response) {
+        idProduct = response.data.id;
+        categories.forEach((element) => {
+          axios.post(`http://localhost:3001/products/${idProduct}/category/${element.value}`).then((res) => console.log(res));
+        });
       });
-    });
+      swal({
+        title: "item added",
+        icon: "success",
+        //buttons: true,
+      })
+
+    } catch (error) {
+      audioErr.play()
+      console.log("faltan inputs")
+    }
   }
   const optionTone = [{
     value: "C",
