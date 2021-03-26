@@ -37,9 +37,7 @@ const HomeHeader = ({fetchUserEffect, STORE_USER}) =>{
           <div className="--newHeader-main-row-col-menu2">
             <div>
               <Link className="link-li2" to="/cart">
-                <span class="material-icons --cart-icon">
-                  shopping_cart
-                </span>
+                  <i className="fas fa-shopping-cart --cart-icon"></i>
                   <span className="--header-cart-item-length">
                     {STORE_USER.cart && STORE_USER.cart.length > 0
                     ?(
@@ -86,9 +84,7 @@ const HomeHeader = ({fetchUserEffect, STORE_USER}) =>{
             </div>
                <div className="--newHeader-main-row-col-user-icon">
                   <Link to="/profile">
-                    <span class="material-icons --user-icon">
-                      account_circle
-                    </span>
+                   <i class="fas fa-user --user-icon"></i>
                   </Link>
                 </div>
           </div>

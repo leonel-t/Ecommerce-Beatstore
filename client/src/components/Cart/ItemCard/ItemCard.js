@@ -51,9 +51,12 @@ const ItemCard = ({fetchCartEffect, deleteItemInCartEffect, STORE_PRODUCT, id, i
             <div
              className="--ItemCard-right">
                 <span>${price}</span>
+                
                 <span 
                 onClick={()=>handleDelete(id, false)}
-                className="material-icons --ItemCard-deletItem">delete</span>
+                >
+                  <i class="fas fa-trash-alt --ItemCard-deletItem"></i>
+                </span>
             </div>
         </div>
     )
