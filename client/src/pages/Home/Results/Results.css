@@ -1,46 +1,13 @@
-.Muestra{
-    width: 100%;
-
-}
-.Muestra h1 {
-    color: white;
-    margin-top: 100px;
-    width: 100%;
-    text-align: center;
-    font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
-    font-size: 1.8em;
-    color: #ba0bc0;
-}
-
-.encontrado{
-    width: 80%;
+.--Results{
     display: flex;
-    margin-left: auto;
-    margin-right: auto;
-    padding: 20px;    
-    background-color: rgba(31, 2, 32, 0.5);
-    border-radius: 20px;
-    margin-bottom: 20px;
+    flex-direction: column;
+    margin: 20px;
 }
-
-.ImageAlbum  img{
-    width: 200px;
-    position: relative;
-    top: 15%;
-}
-.ImageAlbum {
-    width: 50%;
-    position: relative;
-    left: 30%;
-}
-
-.ListAll {
-    width: 50%;
-}
-.ListAll ul li{
+.--Results h1{
     color: white;
-    text-align: justify;
-    list-style: none;
-    font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
-    font-size: 1.6em;
+    font-family: 'Goldman', cursive;
+}
+.--Results-items{
+    display: flex;
+    flex-direction: column;
 }
