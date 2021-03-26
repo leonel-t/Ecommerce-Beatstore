@@ -3,16 +3,29 @@ import emailjs from 'emailjs-com';
 import './ResetPass.css';
 
 const ResetPass = () => {
+    
+    function generateResetCode() {
+        let length = 9,
+          charset =
+            "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789",
+          retVal = "";
+        for (var i = 0, n = charset.length; i < length; ++i) {
+          retVal += charset.charAt(Math.floor(Math.random() * n));
+        }
+        return retVal;
+      }
+
     const [input, setInput] = useState({
         name: "",
         to_name: "",
-        message:'9039485'
+        message: ""
     });
 
     const handleInputChange =(e) => {
         setInput({
              ...input,
-             [e.target.name]: e.target.value
+             [e.target.name]: e.target.value,
+             message: generateResetCode()
         });
       };
 
