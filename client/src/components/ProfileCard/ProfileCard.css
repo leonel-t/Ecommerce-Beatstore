@@ -9,6 +9,64 @@
     background-color: rgb(34, 34, 34);
     border-radius: 10px;
 }
+.trancition{
+    display: none;
+}
+.trancition-active{
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    background-color: rgb(8, 8, 8);
+    animation: shutdown 1.3s ease-in ;
+    z-index: 999;
+    -webkit-animation: shutdown 2.5s linear infinite;
+
+}
+@keyframes shutdown {
+    0% {
+      opacity: 0;
+    }
+    8%, 46% {
+      transform: scale(1, 1);
+      opacity: 1;
+      background-color: rgb(8, 8, 8);
+    }
+    50% {
+      transform: scale(1, 0.02);
+      opacity: 0.8;
+      background-color: rgb(8, 8, 8);
+     
+    }
+    55%, 100% {
+      transform: scale(0, 0);
+      opacity: 0.3;
+      background-color: rgb(255, 255, 255);
+    }
+  }
+
+@keyframes tranciti{
+    0%{
+        border-radius: 50%;
+        top: 150px;
+        left:50px;
+        bottom: 0px;
+        right: 0px;
+        width: 80px;
+        height: 80px;
+    }
+
+    100%{
+        border-radius: 50%;
+        top: 0px;
+        left:0px;
+        bottom: 0px;
+        right: 0px;
+        width: 1220px;
+        height: 1220px;
+    }
+}
 .--profileCard-user-img img{
     height: 200px;
     border: 3px solid rgb(234, 50, 111);
