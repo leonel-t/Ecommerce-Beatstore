@@ -97,11 +97,10 @@ const Login = ({t}) => {
 
             </form>
             <div className="foot">
-                <span>{t("page.login.dontAcount")}</span>
-                
+                <Link to='/register' className='Link'>{t("page.login.dontAcount")}</Link>
+                <Link to ='/resetpass' className='Link'>Forgot your password?</Link>
                 <Link className="signup" to="/register">{t("page.login.signupButton")}</Link>  
             </div>
-            
             </div>
         </div>
     )

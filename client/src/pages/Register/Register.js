@@ -137,7 +137,7 @@ const Register = ({t}) => {
                 <button type="submit">{t("page.register.signupButton")}</button>
             </form>
             <div className="foots">
-                <span>{t("page.register.haveAcount")}</span>
+                <Link to='/login' className='Link'>{t("page.register.haveAcount")}</Link>
                 <Link className="signups" to="/login">{t("page.register.signinButton")}</Link>
             </div>
             </div>
