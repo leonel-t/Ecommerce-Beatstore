@@ -1,5 +1,4 @@
 import React, { useState } from 'react';
-import { Link } from 'react-router-dom';
 import "./LoginCard.css"
 
 const LoginCard = () => {
@@ -30,7 +29,6 @@ const LoginCard = () => {
                         name="password" onChange={handleInputChange} value={input.password}/>
                 </div>
                 <button>Sign in</button>
-                <Link>Forgot your password?</Link>
             </form>
         </div>
     )

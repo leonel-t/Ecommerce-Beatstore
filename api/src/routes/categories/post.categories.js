@@ -2,7 +2,7 @@ const server = require("express").Router();
 const {addCatategory} = require("../../controllers/categories/post.categories");
 const {protectorAdmin} = require("../../middlewares/protector.middleware");
 
-server.post("/", protectorAdmin, (req, res, next) => {
+server.post("/", (req, res, next) => {
   const attributes = req.body;
      return addCatategory(attributes).then((category) => {
       return res.status(201).json(category);
