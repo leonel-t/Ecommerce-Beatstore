@@ -1,9 +1,9 @@
 const server = require("express").Router();
-const {addProduct, addCategoryToProduct } = require("../../controllers/products/post.products");
-const {protectorUser} = require("../../middlewares/protector.middleware");
+const {createProduct, addCategoryToProduct } = require("../../controllers/products/post.products");
+//const {protectorUser} = require("../../middlewares/protector.middleware");
 var nJwt = require('njwt');
 
-server.post("/", protectorUser, (req, res, next) => {
+server.post("/", (req, res, next) => {
 
   let { name, description, artist, price, bpm, scale, date } = req.body;
 
@@ -23,7 +23,7 @@ server.post("/", protectorUser, (req, res, next) => {
     audio: audioToDb,
   };
 
-  return addProduct(product).then((product) => {
+  return createProduct(product).then((product) => {
       res.status(200).json(product);
     }).catch((error) => {
       res.status(400).json(error);
