@@ -1,7 +1,8 @@
 
-import React, { useEffect } from 'react';
+import React, { useEffect, useLayoutEffect } from 'react';
 import { connect } from 'react-redux'
 import { useParams } from "react-router-dom"
+import ResultCard from '../../../components/ResultCard/ResultCard';
 
 import {searchProducts} from "../../../stores/products/products.actions"
 import "./Results.css"
@@ -17,28 +18,25 @@ const Results = ({STORE_PRODUCTS, SEARCH_EFFECT}) => {
 
 
     return (
-        <div className='Muestra'>
-            <h1>Results :</h1>
-                {STORE_PRODUCTS.productsReducers.searchResults.map((product,id)=>{
-                    console.log(product.name) 
-                    return (
-                          <div className="encontrado">  
-                          <div className="ListAll">                            
-                              <ul>    
-                                <li> Name: {product.name} </li>,                            
-                                <li> Description: {product.description} </li>,
-                                <li> Price: {"U$S"} {`${product.price}`}  </li>, 
-                                <li> Audio: {product.audio} </li>                                                
-                            </ul>   
-                          </div> 
-                          <div className="ImageAlbum">
-                              <img  src={`http://localhost:3001/images/${product.image}`} alt='album2' />
-                          </div> 
-                        </div>    
-                        )                    
-                    })}
+        <div className="--Results">
+            {STORE_PRODUCTS.productsReducers.searchResults && STORE_PRODUCTS.productsReducers.searchResults.length > 0 ? (
+                <>
+                    <h1>Search results:</h1>
+                    <div className="--Results-items">
+                        {
+                            STORE_PRODUCTS.productsReducers.searchResults.map((product,id)=>
+                                <ResultCard product={product} key={id}/>
+                            )
+                        }
+                    </div>
+                </>
+            ) : (
+                <>
+                    <h1>We have not found products that match your search.</h1>
+                </>
+            )}
         </div>
-        )
+    )
 }
 
 function mapStateToProps(state) {
