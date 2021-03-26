@@ -131,13 +131,8 @@ server.post(
           if (!user) return next(info);
             req.logIn(user, { session: false }, function (err) {
               if (err) return next(err);
-<<<<<<< HEAD
-              const token = jwt.sign({id: user.id, rol: user.rol}, ACCESS_TOKEN_SECRET,{expiresIn: "30m"});
-
-=======
               const token = generateToken({id: user.id, rol: user.rol})
               const refreshToken = jwt.sign({id: user.id,rol: "refreshToken"}, REFRESH_TOKEN_SECRET);
->>>>>>> 128cad4b71f5496c7a10d1d958e729fbe282dbbd
               const dataUser = {
                 id: user.id,
                 email: user.email,
