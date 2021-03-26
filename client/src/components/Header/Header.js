@@ -9,9 +9,16 @@ import { useDispatch } from 'react-redux';
 import { searchProducts } from '../../stores/products/products.actions';
 import {fetchUser} from '../../stores/user/user.actions';
 
+//Internationalization
+import i18n from '../../i18n';
+import { withTranslation } from 'react-i18next';
+
 import { connect } from 'react-redux';
 
-const Header = ({fetchUserEffect, STORE_CART, STORE_USER}) =>  {
+const Header = ({t,fetchUserEffect, STORE_CART, STORE_USER}) =>  {
+    const changeLanguage = (lng) => {
+        i18n.changeLanguage(lng);
+      } 
 
     const [name, setName] = useState("");
 
@@ -46,7 +53,7 @@ const Header = ({fetchUserEffect, STORE_CART, STORE_USER}) =>  {
                 
                 <form onSubmit={handleSubmit} className='--newHeader-main-row-col-menu-form'>
                     <div className="--newHeader-main-row-col-menu-form-div">
-                        <input onChange={handleChange} name="name" value={name} placeholder="Search..." />
+                        <input onChange={handleChange} name="name" value={name} placeholder={t('headers.header.searchInput')} />
                         <img className="--newHeader-main-row-col-menu-form-div-img" onClick={handleSubmit} src={SearchImg} alt="SearchIcon" />
                     </div>
                 </form>
@@ -81,12 +88,26 @@ const Header = ({fetchUserEffect, STORE_CART, STORE_USER}) =>  {
                 <div className="--newHeader-main-row-col-user-options">
                 {STORE_USER.user && STORE_USER.user.data
                 ?(
-                    <p><Link className="link-email" to="/profile">{divName(STORE_USER.user.data.user.name) || STORE_USER.user.data.user.email}</Link></p>
+                    <ul>
+                    <li> 
+                       <button className="btn-en" onClick={() => changeLanguage('en')}></button>
+                     </li>
+                     <li>
+                       <button className="btn-es" onClick={() => changeLanguage('es')}></button></li>
+                     <li>
+                       <Link className="link-email" to="/profile">{divName(STORE_USER.user.data.user.name) || STORE_USER.user.data.user.email}</Link>
+                     </li>
+                     <li><Link className="link-licopy" to="/">{t('headers.header.home')}</Link></li>
+                 </ul>
                 ):(
                     <ul>
-                      <li><Link className="link-licopy" to="/">Home</Link></li>
-                      <li><Link className="link-licopy" to="/login">Login</Link></li>
-                      <li><Link className="link-licopy" to="/register">Register</Link></li>
+                      <li> 
+                        <button className="btn-en" onClick={() => changeLanguage('en')}></button>
+                      </li>
+                      <li><button className="btn-es" onClick={() => changeLanguage('es')}></button></li>
+                      <li><Link className="link-licopy" to="/">{t('headers.header.home')}</Link></li>
+                      <li><Link className="link-licopy" to="/login">{t('headers.header.login')}</Link></li>
+                      <li><Link className="link-licopy" to="/register">{t('headers.header.register')}</Link></li>
                     </ul>
                 )
                     
@@ -119,4 +140,4 @@ const mapStateToProps =  state => {
   };
   
   
-export default connect(mapStateToProps, mapDispatchToProps)(Header);
+export default connect(mapStateToProps, mapDispatchToProps)(withTranslation()(Header));

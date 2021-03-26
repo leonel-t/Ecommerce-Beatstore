@@ -1,9 +1,13 @@
 import React, {useState} from "react"
-import "./ProfileCard.css"
 import profileImg from "../../assets/images/profile-image.jpg"
 import sound from "../../assets/audio/system-shut-down.mp3"
 
-const ProfileCard = ({ name, email }) => {
+//Internationalization
+import { withTranslation } from 'react-i18next';
+
+import "./ProfileCard.css"
+
+const ProfileCard = ({ t,name, email }) => {
 
 const audio = new Audio(sound);
       audio.volume=0.1;
@@ -29,11 +33,11 @@ const audio = new Audio(sound);
                 <p>{email}</p>
             </div>
             <div className="--profileCard-user-butons">
-                <button>Edit account</button>
-                <button onClick={handleLogout}>Logout</button>
+                <button>{t("page.profile.profileCard.editButton")}</button>
+                <button onClick={handleLogout}>{t("page.profile.profileCard.logout")}</button>
             </div>
         </div>
     )
 }
 
-export default ProfileCard;
+export default withTranslation()(ProfileCard);

@@ -5,7 +5,6 @@ import "./Layouts.css"
 import Header from "../components/Header/Header";
 import HomeHeader from "../components/Header/HomeHeader";
 import AdminHeader from "../components/Header/AdminHeader";
-import Footer from '../components/Footer/Footer.js';
 import PagesFooter from '../components/Footer/PagesFooter.js';
 import AdminNav from '../pages/Admin/AdminNav/AdminNav';
 import { Link } from 'react-router-dom';

@@ -1,6 +1,6 @@
-import React, {useEffect, useRef } from 'react';
+import React, {useEffect } from 'react';
 import {animated, useSpring } from "react-spring";
-import { useScroll, useDrag  } from "react-use-gesture"
+import { useScroll  } from "react-use-gesture"
 import { connect } from 'react-redux';
 import {useHistory} from 'react-router-dom';
 import { fetchAllProducts } from '../../../stores/products/products.actions';
@@ -58,6 +58,7 @@ const Wrapper = ({fetchAllProductsEffect,  PRODUCTS}) =>{
                                     let bg = `http://localhost:3001/images/${product.image}`
                                     return (
                                     <animated.div 
+                                    key={index}
                                     onClick={()=> handleClick(product.id)}
                                     style={ {
                                         ...styles,

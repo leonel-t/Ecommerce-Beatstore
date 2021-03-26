@@ -3,9 +3,18 @@ import {fetchUser} from '../../stores/user/user.actions'
 import Logo from '../../assets/images/logo.png'
 import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
+
+//Internationalization
+import i18n from '../../i18n';
+import { withTranslation } from 'react-i18next';
+
 import "./Header.css"
 
-const AdminHeader = ({fetchUserEffect,STORE_USER}) =>{
+const AdminHeader = ({t,fetchUserEffect,STORE_USER}) =>{
+
+  const changeLanguage = (lng) => {
+    i18n.changeLanguage(lng);
+  } 
 
   useEffect(() => {
     fetchUserEffect();
@@ -23,17 +32,24 @@ const AdminHeader = ({fetchUserEffect,STORE_USER}) =>{
                 <Link to="/"><img src={Logo} alt="BeatShop"></img></Link>
             </div>
             <div className="--newHeader-main-row-col-menu5">
-                <h2>Configuration</h2>
+                <h2>  {t('headers.adminHeader.configuration')} </h2>
             </div>
             <div className="--newHeader-main-row-col-user">  
                 <div className="--newHeader-main-row-col-user-options">
                 {STORE_USER.user && STORE_USER.user.data
                 ?(
-                    <p className="--nameUser"><Link className="link-email" to="/profile">{divName(STORE_USER.user.data.user.name) || STORE_USER.user.data.user.email}</Link></p>
+                 <ul>
+                    <li><button className="btn-en" onClick={() => changeLanguage('en')}></button></li>
+                    <li><button className="btn-es" onClick={() => changeLanguage('es')}></button></li>
+                    <li className="--nameUser"><Link className="link-email" to="/profile">{divName(STORE_USER.user.data.user.name) || STORE_USER.user.data.user.email}</Link></li>
+                 </ul> 
+                 
                 ):(
                   <ul>
-                    <li><Link className="link-licopy" to="/catalog">Catalog</Link></li>
-                    <li><Link className="link-licopy" to="/">Home</Link></li>   
+                     <li><button className="btn-en" onClick={() => changeLanguage('en')}></button></li>
+                      <li><button className="btn-es" onClick={() => changeLanguage('es')}></button></li>
+                    <li><Link className="link-licopy" to="/catalog">{t('headers.adminHeader.catalog')}</Link></li>
+                    <li><Link className="link-licopy" to="/">{t('headers.adminHeader.home')}</Link></li>   
                   </ul>
                   )
     
@@ -66,5 +82,5 @@ const mapStateToProps =  state => {
   };
   
   
-export default connect(mapStateToProps, mapDispatchToProps)(AdminHeader);
+export default connect(mapStateToProps, mapDispatchToProps)(withTranslation()(AdminHeader));
 

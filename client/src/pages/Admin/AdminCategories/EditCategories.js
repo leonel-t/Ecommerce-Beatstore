@@ -50,7 +50,6 @@ function EditCategories({ putCategoryByIdEffect }) {
       <div>
         <p>name:</p>
         <input
-          placeholder="type the category name"
           className={`${errors.name && "danger"}`}
           type="text"
           name="name"

@@ -6,7 +6,10 @@ import { fetchCart, deleteItemInCart } from '../../../stores/user/user.actions';
 import swal from "sweetalert"
 import sound from "../../../assets/audio/trash-click.mp3"
 
-const ItemCard = ({fetchCartEffect, deleteItemInCartEffect, STORE_PRODUCT, id, img, name, autor, price }) => {
+//Internationalization
+import { withTranslation } from 'react-i18next';
+
+const ItemCard = ({t, fetchCartEffect, deleteItemInCartEffect, STORE_PRODUCT, id, img, name, autor, price }) => {
   const audio = new Audio(sound);
         audio.volume=1;
   var user = false;
@@ -17,21 +20,21 @@ const ItemCard = ({fetchCartEffect, deleteItemInCartEffect, STORE_PRODUCT, id, i
 
     const handleDelete= (id, state) => {
         swal({
-            title: "Are you sure?",
-            text: "you are about to remove the product from the cart!",
+            title: t("page.cart.alerts.emptyItem.title"),
+            text: t("page.cart.alerts.emptyItem.text"),
             icon: "warning",
             buttons: true,
           })
           .then((willDelete) => {
             if (willDelete) {
-              swal("the product has been removed from the cart!", {
+              swal(t("page.cart.alerts.emptyItem.cartEmpty"), {
                 icon: "success",
                 timer: 2000
               });
               audio.play();
               return deleteItemInCartEffect(id, state);
             } else {
-              swal("the product has not been removed!",{
+              swal(t("page.cart.alerts.emptyItem.cartSafe"),{
                 timer: 2000
               });
             }
@@ -74,4 +77,4 @@ const mapDispatchToProps = dispatch =>{
   }
   
   
-export default connect(mapStateToProps, mapDispatchToProps)(ItemCard);
+export default connect(mapStateToProps, mapDispatchToProps)(withTranslation()(ItemCard));

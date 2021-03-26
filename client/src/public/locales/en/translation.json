@@ -1,4 +1,176 @@
 {
     "title": "This is de Title in inglish",
-    "title2":"The Best Pop Beats"
+    "title2":"The Best Pop Beats",
+    "catalog":"Catalog",
+    "homeHeader":{
+      "catalog":"Catalog",
+      "login":"Login",
+      "register":"Register"
+    },
+    "headers":{
+      "homeHeader":{
+        "catalog":"Catalog",
+        "login":"Login",
+        "register":"Register"
+      },
+      "header":{
+        "home":"Home",
+        "catalog":"Catalog",
+        "login":"Login",
+        "register":"Register",
+        "searchInput":"Search"
+      },
+      "adminHeader":{
+        "configuration":"Configuration",
+        "catalog":"Catalog",
+        "home":"Home",
+        "adminNav": {
+          "adminDashboard": "Admin Dashboard",
+          "listBeats": "List Beats",
+          "addBeats": "Add Beats",
+          "listGenre": "List Musical Genres",
+          "addGenre": "Add Genres",
+          "listUsers": "List Users"
+        }
+      }
+    },
+    "page":{
+      "home":{
+        "MiddleSearchBar":"Search",
+        "sliders":{
+          "1":"Best Beats",
+          "2":"Best Beats Of Pop",
+          "3":"Best Hi-Fi Beats",
+          "4":"Blues Top Beats",
+          "5":"Rap & Trap Top Beats ",
+          "6":"The Best Of Rock & Roll",
+          "7":"Alternative Beats",
+          "noBeats":"No Beats"
+        }
+      },     
+       "profile":{
+        "title": "User Not Found",
+        "button": "Go To Login",
+        "profileCard": {
+          "editButton": "Edit Account",
+          "logout": "Logout"
+        },
+        "tabUser":{
+          "purchases": "My purchases",
+          "coments": "My Comments",
+          "componentPurchases": "COMPONENT PURCHASES",
+          "componentComments": "COMPONENT COMMENT"
+        }
+      },
+      "catalog":{
+        "title":"Generes"
+      },
+      "product":{
+        "relatedTracks":"Related Tracks",
+        "comments":"Comments",
+        "fans":"Fans"
+      },
+      "cart":{
+        "title":"Cart Review",
+        "noItems":"You don't have items in cart",
+        "summary":"Cart Summary",
+        "promoCodeTitle":"Got promo code?",
+        "promoCodeInput":"Type Code",
+        "promoCodeButton":"Apply",
+        "subtotal":"Subtotal",
+        "discount":"Discount",
+        "total":"Total",
+        "checkout":"Checkout",
+        "alerts":{
+          "emptyCart":{
+            "title":"Are you sure?",
+            "text":"you are about to empty the cart!",
+            "cartEmpty":"the cart has been emptied!",
+            "cartSafe":"your cart is safe!",
+            "btn":"Empty Cart",
+            "noItems":"You don't have items in cart"
+
+          },
+          "emptyItem":{
+            "title":"Are you sure?",
+            "text":"you are about to remove the product from the cart!",
+            "cartEmpty":"the product has been removed from the cart!",
+            "cartSafe":"the product has not been removed!!"
+
+          }
+        }
+      },
+      "login":{
+        "title":"Sign in to continue",
+        "emailTitle":"Email",
+        "emailPlaceholder":"Type Your Email",
+        "passwordTitle":"Password",
+        "passwordPlaceholder":"Type You Password",
+        "signinButton":"Sign In",
+        "dontAcount":"Don't have an account?",
+        "signupButton":"Sign Up"
+      },
+      "register":{
+        "title":"Sign up",
+        "emailTitle":"Email",
+        "emailPlaceholder":"Type Your Email",
+        "usernameTitle":"Username",
+        "usernamePlaceholder":"Type Your Username",
+        "passwordTitle":"Password",
+        "passwordPlaceholder":"Type Your Password",
+        "confirmPasswordTitle":"Confirm Password",
+        "confirmPasswordPlaceholder":"Type Your Password",
+        "signupButton":"SignUp",
+        "haveAcount":"Already have an account?",
+        "signinButton":"SignIn"
+      },
+      "admin":{
+        "title":"Administration",
+        "forms":{
+          "addBeats":{
+            "title":"Complete product data:",
+            "name":"Name",
+            "tone":"Tone",
+            "description":"Description",
+            "artist":"Artist",
+            "date":"Realease Date",
+            "price":"Price",
+            "bpm":"Bpm",
+            "image":"Select Image",
+            "audio":"Select Audio",
+            "categories":"Categories",
+            "addBeatButton":"Add Beat",
+            "notes":{
+              "c":"C",
+              "d":"D",
+              "e":"E",
+              "f":"F",
+              "g":"G",
+              "a":"A",
+              "b":"B"
+            },
+            "errors":{
+              "inpName":"name is required",
+              "inpDescription":"description is required",
+              "inpArtist":"artist is required",
+              "inpPrice":"price is required",
+              "inpBpm":"bpm is required",
+              "inpDate":"date is required",
+              "inpTone":"tone is required",
+              "inpValidDate":"insert a valid date!",
+              "inpImage":"image is required",
+              "inpAudio":"audio is required"
+            }
+          },
+          "addGen":{
+            "addGenre": "Complete form",
+            "name": "Name",
+            "description": "Description",
+            "submit": "Submit",
+            "placeholderOne": "type the category name",
+            "placeholderTwo": "type the description here"
+        }
+        }
+      }
+    }
   }
