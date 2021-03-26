@@ -59,7 +59,12 @@
         }
       },
       "catalog":{
-        
+        "title":"Generos"
+      },
+      "product":{
+        "relatedTracks":"Relacionados",
+        "comments":"Comentarios",
+        "fans":"Seguidores"
       },
       "cart":{
         "title":"Carrito",

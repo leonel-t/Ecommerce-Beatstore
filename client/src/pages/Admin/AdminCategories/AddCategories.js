@@ -52,10 +52,10 @@ function AddCategories({t}) {
     fetch("http://localhost:3001/categories", requestOptions);
   };
   return (
-    
-    <form className="catAdd" onSubmit={(e) => handleSubmit(e)}>
+  <div className="--cat-all">
+        <form className="catAdd" onSubmit={(e) => handleSubmit(e)}>
       <h1>{t("page.admin.forms.addGen.addGenre")}</h1>
-      <div>
+      <div className="input-name">
         <p>{t("page.admin.forms.addGen.name")}</p>
         <input
           placeholder={t("page.admin.forms.addGen.placeholderOne")}
@@ -66,7 +66,7 @@ function AddCategories({t}) {
           value={input.name}
         />
       </div>
-      <div>
+      <div className="input-description">
         {errors.username && <p className="danger">{errors.username}</p>}
         <p>{t("page.admin.forms.addGen.description")}</p>
         <textarea
@@ -78,13 +78,15 @@ function AddCategories({t}) {
           value={input.description}
         />
       </div>
-      <div>
+      <div className="button-submit">
         {errors.description && <p className="danger">{errors.password}</p>}
         <button className="--submitbuton" type="submit">
         {t("page.admin.forms.addGen.submit")}
         </button>
       </div>
     </form>
+  </div>
+
   );
 }
 export default withTranslation()(AddCategories);

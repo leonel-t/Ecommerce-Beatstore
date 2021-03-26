@@ -63,7 +63,12 @@
         }
       },
       "catalog":{
-
+        "title":"Generes"
+      },
+      "product":{
+        "relatedTracks":"Related Tracks",
+        "comments":"Comments",
+        "fans":"Fans"
       },
       "cart":{
         "title":"Cart Review",
@@ -158,7 +163,7 @@
             }
           },
           "addGen":{
-            "addGenre": "Add Genre",
+            "addGenre": "Complete form",
             "name": "Name",
             "description": "Description",
             "submit": "Submit",

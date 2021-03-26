@@ -40,17 +40,11 @@ const Edit = ({ fetchCartEffect, fetchAllProductsEffect, deleteProductsEffect, S
                         </div>
                       </div>
                       <div className="--ItemCard-right">
-                        <span
-                          className="material-icons --ItemCard-editItem"
-                          onClick={() => handleClickEdit(product.id)}
-                        >
-                          border_color
+                        <span onClick={() => handleClickEdit(product.id)}>
+                          <i class="far fa-edit --ItemCard-editItem"></i>
                         </span>
-                        <span className="material-icons --ItemCard-deletItem"
-                          onClick={() => handleClickDelete(product.id)}
-
-                        >
-                          delete
+                        <span onClick={() => handleClickDelete(product.id)}>
+                          <i class="fas fa-trash-alt --ItemCard-deletItem"></i>
                         </span>
                       </div>
                     </div>

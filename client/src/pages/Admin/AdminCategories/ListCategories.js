@@ -38,17 +38,11 @@ const ListCategories = ({ fetchAllCategoriesEffect, deleteCategoryEffect, STORE_
                         </div>
                       </div>
                       <div className="--ItemCard-right">
-                        <span
-                          className="material-icons --ItemCard-editItem"
-                          onClick={() => handleClickEdit(category.id, category.name, category.description)}
-                        >
-                          border_color
+                        <span onClick={() => handleClickEdit(category.id, category.name, category.description)}>
+                          <i class="far fa-edit --ItemCard-editItem"></i>
                         </span>
-                        <span className="material-icons --ItemCard-deletItem"
-                          onClick={() => handleClickDelete(category.id)}
-
-                        >
-                          delete
+                        <span onClick={() => handleClickDelete(category.id)}>
+                          <i class="fas fa-trash-alt --ItemCard-deletItem"></i>
                         </span>
                       </div>
                     </div>
