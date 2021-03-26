@@ -1,9 +1,15 @@
+/* rgb(234, 50, 111) naranha
+rgb(79, 0, 170) violeta */
+
+
 .divider {
   min-height: 150px;
 }
 
 .subContainer input, textarea {
-  color: rgb(128, 128, 128);
+  outline: none;
+
+  color:white;
   background: transparent;
   border: none;
   border-bottom: 1px solid #777777;
@@ -11,16 +17,23 @@
 }
 
 .subContainer input, textarea {
+  outline: none;
+
   width: 100%;
   display: block
 }
 
 .basic-multi-select input {
+  outline: none;
+
   background-color: black;
 }
 
 .subContainer h2 {
   color: aliceblue;
+  font-family: 'Goldman', cursive;
+  font-size: 3rem;
+  text-align: center;
 }
 
 .container {
@@ -34,7 +47,7 @@
 
 .subContainer form {
   background-color: rgb(22, 22, 22);
-  border: 2px solid rgb(79, 0, 170);
+  border: 2px solid rgb(234, 50, 111);
   border-radius: 15px;
 }
 
@@ -51,7 +64,6 @@
 .subContainer {
   padding-left: 5%;
   padding-right: 5%;
-  font-family: Verdana, Geneva, Tahoma, sans-serif;
   color: #535353;
 }
 
@@ -76,13 +88,17 @@
 .formAdd label {
   display: block;
   color: white;
-  font-size: larger;
+  font-size: 20px;
   padding: 5%;
+  font-family: 'Oxanium', cursive;
+
 }
 
 .submitbuton {
+  
+  outline: none;
   width: 100%;
-  background: linear-gradient(45deg, violet, purple);
+  background: linear-gradient(225deg, rgb(234, 50, 111), rgb(79, 0, 170));
   color: white;
   padding: 14px 20px;
   margin: 8px 0;
@@ -92,21 +108,27 @@
 }
 
 .submitbuton:hover {
-  background: linear-gradient(45deg, rgb(253, 188, 253), rgb(226, 0, 226));
+  background: linear-gradient(25deg, rgb(234, 50, 111), rgb(79, 0, 170));
 }
-
+.submitbuton:active {
+  outline: none;
+  background: rgb(79, 0, 170);
+}
 p.danger {
-  font-family: 'Courier New', Courier, monospace;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue', sans-serif;
   display: inline;
-  color: red;
+  color:  rgb(234, 50, 111);
   font-size: 1.2rem;
   padding: 3px;
+  text-transform: uppercase;
 }
 
 input.danger textarea.danger {
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue', sans-serif;
+
   background: transparent;
   border: none;
-  border-bottom: 1px solid #ce2c2c;
+  border-bottom: 1px solid #6a2cce;
 }
 
 .buttonInput::-webkit-file-upload-button {
@@ -115,13 +137,15 @@ input.danger textarea.danger {
   border: none;
   outline: none;
   padding: 9px;
-  background: linear-gradient(45deg, violet, purple);
+  background: linear-gradient(225deg, rgb(234, 50, 111), rgb(79, 0, 170));
 }
-
 .buttonInput::-webkit-file-upload-button:hover {
-  background: linear-gradient(45deg, rgb(250, 212, 250), rgb(255, 90, 255));
+  background: linear-gradient(25deg, rgb(234, 50, 111), rgb(79, 0, 170));
   cursor: pointer;
-  color: black;
+  outline: none;
+}
+.buttonInput::-webkit-file-upload-button:active {
+  background: rgb(79, 0, 170);
 }
 
 #dateClass {
@@ -137,7 +161,16 @@ input[type="date"]::-webkit-calendar-picker-indicator {
   height: 20px;
   border-width: thin;
 }
+input[type="number"] {
+  outline: none;
+  background-color: rgb(22, 22, 22);
 
+}
+input[type="select"] {
+  outline: none;
+  background-color: rgb(22, 22, 22);
+
+}
 .radioTone {
   margin-top: 10px;
   width: 100%;
