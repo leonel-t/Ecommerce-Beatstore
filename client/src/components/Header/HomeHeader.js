@@ -34,7 +34,7 @@ const HomeHeader = ({t,fetchUserEffect, STORE_USER}) =>{
                 </ul>
             </div>
             <div className="--newHeader-main-row-col-logo">
-                <Link className="bts-logo" to="/">BeatStore</Link>
+              <Link to="/"><img src={Logo} alt="BeatShop"></img></Link>
             </div>
           <div className="--newHeader-main-row-col-menu2">
             <div>

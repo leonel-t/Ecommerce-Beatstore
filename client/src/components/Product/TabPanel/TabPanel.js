@@ -5,7 +5,7 @@ import FansCard from "../FansCard/FansCard";
 import "./TabPanel.css";
 //Internationalization
 import { withTranslation } from 'react-i18next';
-
+import sound from "../../../assets/audio/tab-sound.ogg"
 const FansMap = [
   {
     username: "pepe",
@@ -58,23 +58,28 @@ const TabPanel = ({ t, product }) => {
   const [fans, setFans] = useState(false);
   const [comments, setComments] = useState(false);
 
+  const audio = new Audio(sound);
+  audio.volume=0.1;
 
   const handleClick = (param) => {
     switch (param) {
       case "relatedTrack":
         return () => {
+          audio.play()
           setComments(false);
           setRelatedTrack(true);
           setFans(false);
         };
       case "comments":
         return () => {
+          audio.play()
           setRelatedTrack(false);
           setFans(false);
           setComments(true);
         };
       case "fans":
         return () => {
+          audio.play()
           setFans(true);
           setComments(false);
           setRelatedTrack(false);
