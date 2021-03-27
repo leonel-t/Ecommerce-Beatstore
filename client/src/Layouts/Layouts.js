@@ -47,7 +47,7 @@ const AdminLayout = ({ children }) => {
 
 const LoginLayout = ({ children }) => {
     return (
-        <div>
+        <div style={{backgroundColor:"white"}}>
             <div className="--Header-Login-Layout">
                 <Link to="/"><img src={Logo} alt="BeatShop" /></Link>
             </div>

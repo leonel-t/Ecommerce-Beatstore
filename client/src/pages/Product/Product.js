@@ -4,7 +4,6 @@ import { useParams } from "react-router-dom";
 import { connect } from 'react-redux';
 import { fetchOneProduct, postComment } from '../../stores/products/products.actions';
 import {fetchUser} from '../../stores/user/user.actions';
-
 //components
 import BeatComponent from '../../components/Product/BeatComponent/BeatComponent';
 import BeatCommentsInputComponent from '../../components/Product/BeatCommentsInputComponent/BeatCommentsInputComponent';
@@ -13,10 +12,11 @@ import "./product.css";
 
 const Product = ({fetchOneProductEffect, postCommentEffect, fetchUserEffect,  STORE_PRODUCT}) =>{
 
+
   window.scrollTo({
     top: 0,
     left: 0,
-    behavior: 'smooth'
+    behavir: 'smooth'
   });
 
   const { productId } = useParams();
@@ -33,7 +33,7 @@ const Product = ({fetchOneProductEffect, postCommentEffect, fetchUserEffect,  ST
             )
             :(
               <main className="product--main">
-                <BeatComponent product={STORE_PRODUCT.product}/>
+                <BeatComponent product={STORE_PRODUCT.product} />
                
                 <BeatCommentsInputComponent action={postCommentEffect} product={STORE_PRODUCT.product.id}/>
                 

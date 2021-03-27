@@ -1,6 +1,6 @@
-import React from "react";
+import React, {useState, useMemo} from "react";
 import { BrowserRouter, Route, Switch } from "react-router-dom";
-
+import {AudioContext} from './components/musicPlayer/AudioContext';
 //Layouts
 import {
   PagesLayout,
@@ -11,7 +11,7 @@ import {
 
 //Pages
 import Home from "./pages/Home/Home.js";
-
+import MusicPlayer from "./components/musicPlayer/MusicPlayer"
 import Product from "./pages/Product/Product.js";
 import Catalog from "./pages/Catalog/Catalog.js";
 import Form from "./pages/Admin/AdminProducts/AddProduct";
@@ -60,6 +60,7 @@ const App = () => {
         <RouteWrapper exact path="/put/:id" component={PutForm} layout={PagesLayout} />
         <RouteWrapper exact path="/addCategories" component={Categories} layout={AdminLayout} />
         <RouteWrapper exact path="/login" component={Login} layout={LoginLayout} />
+        <RouteWrapper exact path="/player" component={MusicPlayer} layout={LoginLayout} />
         <RouteWrapper exact path="/results/:name" component={Results} layout={PagesLayout} />
         <RouteWrapper exact path="/register" component={Register} layout={LoginLayout} />
         <RouteWrapper exact path="/resetpass" component={ResetPass} layout={LoginLayout} />
@@ -71,7 +72,10 @@ const App = () => {
   );
 };
 function RouteWrapper({ component: Component, layout: Layout, ...rest }) {
+  const [audioList, setAudioList] = useState([])
+  const providerValue = useMemo(()=>({audioList, setAudioList}),[audioList, setAudioList])
   return (
+    <AudioContext.Provider value={providerValue}>
     <Route
       {...rest}
       render={(props) => (
@@ -80,6 +84,7 @@ function RouteWrapper({ component: Component, layout: Layout, ...rest }) {
         </Layout>
       )}
     />
+    </AudioContext.Provider>
   );
 }
 export default App;
