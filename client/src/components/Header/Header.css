@@ -33,7 +33,12 @@
     align-items: center;
     cursor: pointer;
 }
-
+.--newHeader-main-row-col-logo img{
+    width: 70%;
+    margin-left: 50%;
+    transform: translateX(-50%);
+    height: 75px;
+  }
 .--newHeader-main-row-col-menu4{
     display: flex;
     width: 25%;

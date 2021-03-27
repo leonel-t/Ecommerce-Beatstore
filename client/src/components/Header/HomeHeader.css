@@ -35,11 +35,13 @@
     cursor: pointer;
 }
 .--newHeader-main-row-col-logo img{
-  width: 100%;
+  width: 70%;
+  margin-left: 50%;
+  transform: translateX(-50%);
   height: 75px;
 }
 .--newHeader-main-row-col-logo img:hover{
-    width: 101%;
+    width: 71%;
   }
 .--newHeader-main-row-col-menu2{
     width: 16.5%;
