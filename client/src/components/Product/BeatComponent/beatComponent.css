@@ -66,6 +66,7 @@
     color:antiquewhite;
     font-size: 1.3rem;
     text-align: center;
+
 }
 .beatComponent--main-beatActions-col-btn span{
     padding-top: 0px;
@@ -76,8 +77,11 @@
     flex-direction: row;
     justify-content: center;
     padding-top: 5px;
+    width:100%;
 }
-
+.button-cart2{
+    font-size: 1rem;
+}
 .beatComponent--main-beatActions-col-btn:hover{
     height: 60px;
     width: 180px;
@@ -150,12 +154,39 @@
     justify-content: left;
     align-items: center;
 }
+.finger-up{
+    color: white;
+    font-size: 3rem;
+    margin-left: 10px;
+    cursor: pointer;
+}
 .beatComponent--main-beatActions-col-cat{
     margin: 6px;
     padding: 6px;
     background-color: #000000;
     color: #830c71;
     border-radius: 5px;
+}
+.product-likes2{
+    display:flex;
+    width: 100%;
+    align-self:center;
+}
+.product-likes2 p{
+    font-size: 1.3rem;
+}
+.product-likes{
+    align-self:center;
+    background-color: #830c71;
+    color: white;
+    font-size:1.3rem;
+    margin-left:20px;
+    padding-top: 5px;
+    padding-bottom: 5px;
+    padding-left: 10px;
+    padding-right: 10px;
+    border-radius: 100%;
+    
 }
 
 .beatComponent--main-beatActions-col-div{

@@ -161,13 +161,5 @@ server.post(
       }
     );
 
-server.post("/logout",(req, res) => {
-  console.log(req.session)
-        req.logout()   
-        req.session.destroy((err) => {
-            res.clearCookie('sid');  
-        })
-        res.status(200).json('Logged out');
-});
 
 
