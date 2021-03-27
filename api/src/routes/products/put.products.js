@@ -1,5 +1,6 @@
 const server = require("express").Router();
-const {editProduct} = require("../../controllers/products/put.products");
+const {editProduct, editLikes} = require("../../controllers/products/put.products");
+const {Product} = require("../../db")
 const fs = require("fs");
 const path = require("path");
 
@@ -91,6 +92,22 @@ server.put("/", (req, res, next) => {
       res.status(200).json(product);
     }).catch((error) => {
       res.status(400).json(error);
+    });
+});
+
+server.put("/likes", async (req, res, next) => {
+  const {id} = req.body
+  return await Product.findByPk(id).then(async (product)=>{
+    console.log("PRODUCTTTTTTTO UPDATE", product.dataValues.likes)
+    return await Product.update({likes: product.dataValues.likes + 1}, {
+      where:{
+        id:id
+      }
+    }).then((product)=>{
+      return res.status(2)
+    })
+  }).catch((error) => {
+      return error
     });
 });
 
