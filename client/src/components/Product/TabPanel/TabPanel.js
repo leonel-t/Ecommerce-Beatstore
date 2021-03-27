@@ -3,8 +3,9 @@ import CommentCard from "../CommentCard/CommentCard";
 import RelatedTracks from "../RelatedTracks/RelatedTracks";
 import FansCard from "../FansCard/FansCard";
 import "./TabPanel.css";
-
-
+//Internationalization
+import { withTranslation } from 'react-i18next';
+import sound from "../../../assets/audio/tab-sound.ogg"
 const FansMap = [
   {
     username: "pepe",
@@ -52,28 +53,33 @@ const RelatedTrack = [
   },
 ];
 
-const TabPanel = ({ product }) => {
+const TabPanel = ({ t, product }) => {
   const [relatedTrack, setRelatedTrack] = useState(true);
   const [fans, setFans] = useState(false);
   const [comments, setComments] = useState(false);
 
+  const audio = new Audio(sound);
+  audio.volume=0.1;
 
   const handleClick = (param) => {
     switch (param) {
       case "relatedTrack":
         return () => {
+          audio.play()
           setComments(false);
           setRelatedTrack(true);
           setFans(false);
         };
       case "comments":
         return () => {
+          audio.play()
           setRelatedTrack(false);
           setFans(false);
           setComments(true);
         };
       case "fans":
         return () => {
+          audio.play()
           setFans(true);
           setComments(false);
           setRelatedTrack(false);
@@ -92,7 +98,7 @@ const TabPanel = ({ product }) => {
             relatedTrack ? "--TabPanel-div-col-active" : "--TabPanel-div-col"
           }
         >
-          <p>Related Tracks</p>
+          <p>{t("page.product.relatedTracks")}</p>
         </div>
         <div
           onClick={handleClick(comments ? "" : "comments")}
@@ -100,13 +106,13 @@ const TabPanel = ({ product }) => {
             comments ? "--TabPanel-div-col-active" : "--TabPanel-div-col"
           }
         >
-          <p>Comments</p>
+          <p>{t("page.product.comments")}</p>
         </div>
         <div
           onClick={handleClick(fans ? "" : "fans")}
           className={fans ? "--TabPanel-div-col-active" : "--TabPanel-div-col"}
         >
-          <p>Fans</p>
+          <p>{t("page.product.fans")}</p>
         </div>
       </div>
       {/* Containers */}
@@ -171,4 +177,4 @@ const TabPanel = ({ product }) => {
   );
 };
 
-export default TabPanel;
+export default withTranslation()(TabPanel);

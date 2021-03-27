@@ -1,9 +1,10 @@
 .pie{
-    position: relative;
+    position: fixed;
+    bottom: -15px;
     display: flex;
     width: 100%;
     justify-content: center;
-    color: rgb(178, 6, 201);
+    color: rgba(178, 6, 201, 0.356);
     font-size: 0.8rem;
     font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
 }

@@ -1,9 +1,11 @@
 const server = require("express").Router();
 const {createProduct, addCategoryToProduct } = require("../../controllers/products/post.products");
-const {protectorUser} = require("../../middlewares/protector.middleware");
+
+//const {protectorUser} = require("../../middlewares/protector.middleware");
+
 var nJwt = require('njwt');
 
-server.post("/", protectorUser, (req, res, next) => {
+server.post("/", (req, res, next) => {
 
   let { name, description, artist, price, bpm, scale, date } = req.body;
 

@@ -1,9 +1,13 @@
 import React, {useState} from "react"
-import "./ProfileCard.css"
 import profileImg from "../../assets/images/profile-image.jpg"
 import sound from "../../assets/audio/system-shut-down.mp3"
 
-const ProfileCard = ({ name, email }) => {
+//Internationalization
+import { withTranslation } from 'react-i18next';
+
+import "./ProfileCard.css"
+
+const ProfileCard = ({ t,name, email }) => {
 
 const audio = new Audio(sound);
       audio.volume=0.1;
@@ -19,21 +23,21 @@ const audio = new Audio(sound);
     }
     const [trancit, settrancit] = useState(false)
     return (
-        <div className="--profileCard-user">
+        <div className={"--profileCard-user"}>
             <div className={trancit ? "trancition-active" : "trancition"}></div>
-            <div className="--profileCard-user-img">
+            <div className={trancit ? "--profileCard-user--hidden" : "--profileCard-user-img"}>
                 <img alt="profileImage" src={profileImg} />
             </div>
-            <div className="--profileCard-user-info">
+            <div className={trancit ? "--profileCard-user--hidden" : "--profileCard-user-info"}>
                 <p className="--profileCard-user-info-name">{name}</p>
                 <p>{email}</p>
             </div>
-            <div className="--profileCard-user-butons">
-                <button>Edit account</button>
-                <button onClick={handleLogout}>Logout</button>
+            <div className={trancit ? "--profileCard-user--hidden" : "--profileCard-user-butons"}>
+                <button>{t("page.profile.profileCard.editButton")}</button>
+                <button onClick={handleLogout}>{t("page.profile.profileCard.logout")}</button>
             </div>
         </div>
     )
 }
 
-export default ProfileCard;
+export default withTranslation()(ProfileCard);

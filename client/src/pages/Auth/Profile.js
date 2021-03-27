@@ -5,13 +5,16 @@ import { useHistory } from 'react-router-dom'
 
 // import jwt from 'jsonwebtoken'
 
-import './Profile.css'
 import axios from 'axios';
 import ProfileCard from '../../components/ProfileCard/ProfileCard';
 import TabUser from '../../components/Product/TabUser/TabUser';
 
+//Internationalization
+import { withTranslation } from 'react-i18next';
 
-const Profile = ({ fetchUserEffect, STORE_USER }) => {
+import './Profile.css'
+
+const Profile = ({t, fetchUserEffect, STORE_USER }) => {
 
   const history = useHistory();
 
@@ -81,9 +84,9 @@ const Profile = ({ fetchUserEffect, STORE_USER }) => {
                   <div className="profile">
                     <div className="contentProfile">
                       <div className="contentData">
-                        <p className="titule">User Not Found </p>
+                        <p className="titule">{t('page.profile.title')}</p>
                       </div>
-                      <button onClick={handleClick2}>Go to login</button>
+                      <button onClick={handleClick2}>{t('page.profile.button')}</button>
                     </div>
                   </div>
                 </>
@@ -111,4 +114,4 @@ const mapDispatchToProps = (dispatch) => {
 };
 
 
-export default connect(mapStateToProps, mapDispatchToProps)(Profile);
+export default connect(mapStateToProps, mapDispatchToProps)(withTranslation()(Profile));

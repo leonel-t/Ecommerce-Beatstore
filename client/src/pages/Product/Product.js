@@ -13,12 +13,18 @@ import "./product.css";
 
 const Product = ({fetchOneProductEffect, postCommentEffect, fetchUserEffect,  STORE_PRODUCT}) =>{
 
+  window.scrollTo({
+    top: 0,
+    left: 0,
+    behavior: 'smooth'
+  });
+
   const { productId } = useParams();
     useEffect(()=>{
         fetchUserEffect()
         fetchOneProductEffect(productId)
       },[fetchUserEffect, fetchOneProductEffect, productId]);
-      
+
     return (
         <>
           {STORE_PRODUCT.productLoading

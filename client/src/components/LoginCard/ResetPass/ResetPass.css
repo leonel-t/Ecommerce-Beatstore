@@ -1,0 +1,22 @@
+.--ResetPass{
+    display:flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.--RPLabel {
+    color:antiquewhite;
+    font-weight: bold;
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+    padding-bottom: 10px;
+}
+
+.--RPInput{
+    border: none;
+    margin-top:2px;
+    margin-bottom:2px;
+    border-bottom: 2px solid linear-gradient(45deg, rgb(234, 50, 111), rgb(145, 27, 137));
+    background-color: (45deg, rgb(234, 50, 111), rgb(145, 27, 137));
+    color: linear-gradient(45deg, rgb(234, 50, 111), rgb(145, 27, 137));
+}

@@ -3,8 +3,10 @@ import React, { useEffect } from "react";
 import { connect } from "react-redux";
 import { fetchAllProducts, getProductsByCategories } from "../../stores/products/products.actions";
 import CatalogCard from "../../components/Product/Catalog/CatalogCard";
+//Internationalization
+import { withTranslation } from 'react-i18next';
 
-const Catalog = ({ fetchAllProductsEffect, getProductsByCategoriesEffect, STORE_PRODUCTS }) => {
+const Catalog = ({ t, fetchAllProductsEffect, getProductsByCategoriesEffect, STORE_PRODUCTS }) => {
   const allProducts = STORE_PRODUCTS.products;
 
   useEffect(() => {
@@ -17,7 +19,7 @@ const Catalog = ({ fetchAllProductsEffect, getProductsByCategoriesEffect, STORE_
       <div className="catalog--main-row">
         <div className="catalog--main-col-menu">
           <div className="catalog--main-col-menu-box">
-            <h2>Categories</h2>
+            <h2>{t("page.catalog.title")}</h2>
           </div>
         </div>
         <div className="catalog--main-col">
@@ -58,4 +60,4 @@ const mapDispatchToProps = (dispatch) => {
   };
 };
 
-export default connect(mapStateToProps, mapDispatchToProps)(Catalog);
+export default connect(mapStateToProps, mapDispatchToProps)(withTranslation()(Catalog));

@@ -5,8 +5,10 @@ import "./HomeHeader.css"
 import Logo from '../../assets/images/logo.png'
 import { Link } from 'react-router-dom';
 import i18n from '../../i18n';
+//Internationalization
+import { withTranslation } from 'react-i18next';
 
-const HomeHeader = ({fetchUserEffect, STORE_USER}) =>{
+const HomeHeader = ({t,fetchUserEffect, STORE_USER}) =>{
   const changeLanguage = (lng) => {
     i18n.changeLanguage(lng);
   }     
@@ -26,13 +28,13 @@ const HomeHeader = ({fetchUserEffect, STORE_USER}) =>{
               <ul >
                 <li>
                   <Link className="link-li" to="/catalog">
-                    Catalog
+                    {t('headers.homeHeader.catalog')}
                   </Link>
                 </li>
                 </ul>
             </div>
             <div className="--newHeader-main-row-col-logo">
-                <Link to="/"><img src={Logo} alt="BeatShop"></img></Link>
+              <Link to="/"><img src={Logo} alt="BeatShop"></img></Link>
             </div>
           <div className="--newHeader-main-row-col-menu2">
             <div>
@@ -72,8 +74,8 @@ const HomeHeader = ({fetchUserEffect, STORE_USER}) =>{
                         <button className="btn-en" onClick={() => changeLanguage('en')}></button>
                       </li>
                       <li><button className="btn-es" onClick={() => changeLanguage('es')}></button></li>
-                      <li><Link className="link-li" to="/login">Login</Link></li>
-                      <li><Link className="link-li" to="/register">Register</Link></li>
+                      <li><Link className="link-li" to="/login">{t('headers.homeHeader.login')}</Link></li>
+                      <li><Link className="link-li" to="/register">{t('headers.homeHeader.register')}</Link></li>
                       
                     </ul>
                 )
@@ -84,7 +86,7 @@ const HomeHeader = ({fetchUserEffect, STORE_USER}) =>{
             </div>
                <div className="--newHeader-main-row-col-user-icon">
                   <Link to="/profile">
-                   <i class="fas fa-user --user-icon"></i>
+                   <i className="fas fa-user --user-icon"></i>
                   </Link>
                 </div>
           </div>
@@ -107,4 +109,4 @@ const mapStateToProps =  state => {
   };
   
   
-export default connect(mapStateToProps, mapDispatchToProps)(HomeHeader);
+export default connect(mapStateToProps, mapDispatchToProps)(withTranslation()(HomeHeader));

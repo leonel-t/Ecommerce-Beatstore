@@ -1,13 +1,20 @@
 .--profileCard-user{
     display: flex;
     flex-direction: column;
-    width: 275px;
+    position: sticky;
+    top: 120px;
+    width: 206px;
+    height: 383px;
     align-items: center;
     padding: 20px;
     margin: 20px;
     padding-right: 25px;
     background-color: rgb(34, 34, 34);
     border-radius: 10px;
+    margin-top: 80px;
+}
+.--profileCard-user--hidden{
+    display: none;
 }
 .trancition{
     display: none;
@@ -89,6 +96,7 @@
 }
 .--profileCard-user-butons button{
     margin: 5px;
+    width: 100%;
     padding: 5px 10px;
     background: linear-gradient(45deg, rgb(234, 50, 111), rgb(145, 27, 137));
     border: 1px solid black;

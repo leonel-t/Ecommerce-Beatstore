@@ -77,7 +77,7 @@ function useScrollBox(scrollRef) {
         scrollRef.current.onmouseleave = handleDragEnd;
       }
     }
-  }, [scrollWrapperCurrent, clickStartX, isDragging, scrollStartX, handleLastScrollX, lastScrollX]);
+  }, [scrollRef, scrollWrapperCurrent, clickStartX, isDragging, scrollStartX, handleLastScrollX, lastScrollX]);
 
   return { clickStartX, scrollStartX, isDragging, direction, momentum, lastScrollX, speed };
 }

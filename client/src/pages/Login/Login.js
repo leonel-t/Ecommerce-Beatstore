@@ -2,9 +2,10 @@ import React, { useState } from 'react';
 import axios from 'axios'
 import { Link, useHistory } from "react-router-dom";
 import "./Login.css"
+//Internationalization
+import { withTranslation } from 'react-i18next';
 
-
-const Login = () => {
+const Login = ({t}) => {
 
     const [input, setInput] = useState({
         email: "",
@@ -66,44 +67,43 @@ const Login = () => {
     return(
         <div className="--LoginCard">
             <div className="--LoginAllCard">
-            <h2 >Sign in to continue</h2>
+            <h2 >{t("page.login.title")}</h2>
             <form onSubmit={handleSubmit} className="--LoginCard-form">
                 <div className="--LoginCard-form-identification">
-                    <p className="name">Email</p>
+                    <p className="name">{t("page.login.emailTitle")}</p>
                     <input className="--LoginCard-form-input" 
                         type="email" 
-                        placeholder="Type your email"
+                        placeholder={t("page.login.emailPlaceholder")}
                         name="email" 
                         required
                         onChange={handleInputChange} 
                         value={input.email}/>
                 </div>
                 <div className="--LoginCard-form-credential">
-                    <p className="name">Password</p>
+                    <p className="name">{t("page.login.passwordTitle")}</p>
                     <input className="--LoginCard-form-input" 
                         type="password" 
-                        placeholder="Type your password"
+                        placeholder={t("page.login.passwordPlaceholder")}
                         name="password" 
                         required
                         onChange={handleInputChange} 
                         value={input.password}/>
                 </div>
                 <div className="--Submit-buttons">
-                    <button type='submit'>Sign in</button>
+                    <button type='submit'>{t("page.login.signinButton")}</button>
                     <button id="github" onClick={loginGitHub} />
                     <button id='google' onClick={loginGoogle} />
                 </div>
 
             </form>
             <div className="foot">
-                <span>Don't have an account?</span>
-                
-                <Link className="signup" to="/register">Sign up</Link>  
+                <Link to='/register' className='Link'>{t("page.login.dontAcount")}</Link>
+                <Link to ='/resetpass' className='Link'>Forgot your password?</Link>
+                <Link className="signup" to="/register">{t("page.login.signupButton")}</Link>  
             </div>
-            
             </div>
         </div>
     )
 }
 
-export default Login;
+export default withTranslation()(Login);
