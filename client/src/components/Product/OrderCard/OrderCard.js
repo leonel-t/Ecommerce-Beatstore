@@ -15,6 +15,9 @@ const OrderCard = () => {
                     <span>Price: $123</span>
                     <span>Quantity of products: 12</span>
                 </div>
+                <div className="--OrderCard-data-status">
+                    <span>Status: Complete</span>
+                </div>
             </div>
             <div className="--OrderCard-detail-btn">
                 <button>Details</button>
