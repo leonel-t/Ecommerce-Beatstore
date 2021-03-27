@@ -1,7 +1,10 @@
 .--profileCard-user{
     display: flex;
     flex-direction: column;
-    width: 275px;
+    position: sticky;
+    top: 120px;
+    width: 206px;
+    height: 383px;
     align-items: center;
     padding: 20px;
     margin: 20px;
