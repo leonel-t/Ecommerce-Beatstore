@@ -1,19 +1,16 @@
-import React, {useState, useEffect} from 'react';
+import React, {useState} from 'react';
 import Spectrum from '../Spectrum/Spectrum';
 import { connect } from 'react-redux';
 import { addItemToCart } from '../../../stores/user/user.actions';
 import { fetchAddLikeToProduct } from '../../../stores/products/products.actions';
 import { show } from 'js-snackbar';
-
-import axios from 'axios';
-
+//import {AudioContext} from "../../musicPlayer/AudioContext"
+import MusicPlayer from "../../../components/musicPlayer/MusicPlayer"
 import 'js-snackbar/snackbar.css';
 import './beatComponent.css';
-import productsReducers from '../../../stores/products/products.reducers';
 
 const BeatComponent = ({ addItemToCartEffect,fetchAddLikeToProductEffect, product }) => {
-
-
+    //const {audioList, setAudioList} = useContext(AudioContext)
 
     const handleAddToCart = (product)=>{
 
@@ -48,7 +45,8 @@ const BeatComponent = ({ addItemToCartEffect,fetchAddLikeToProductEffect, produc
                         </div>
                         <div className="beatComponent--main-beatActions-col">
                             <div className="beatComponent--main-beatActions-col-div">
-                                <span className="material-icons icons"> play_arrow </span>
+                                <span 
+                                className="material-icons icons"> play_arrow </span>
                                 {product.reproductions}
                             </div>
                             <div className="beatComponent--main-beatActions-col-div">
@@ -109,8 +107,9 @@ const BeatComponent = ({ addItemToCartEffect,fetchAddLikeToProductEffect, produc
                             <p>{product.description}</p> 
                         </div>
                         <div className="spec">
-                            <span className="material-icons icon-size"> play_circle_outline </span>
-                           
+                            <span
+                            className="material-icons icon-size"> play_circle_outline </span>
+                            <MusicPlayer name={product.name} singer={product.artist} cover={`http://localhost:3001/images/${product.image}`} music={`http://localhost:3001/images/${product.audio}`}/>
                             <Spectrum></Spectrum>
                         </div>
                     </div>
