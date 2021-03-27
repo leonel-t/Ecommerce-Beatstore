@@ -6,4 +6,5 @@ module.exports = {
       where: { id: parseInt(id) },
     }).then((product) => product);
   },
+  
 };

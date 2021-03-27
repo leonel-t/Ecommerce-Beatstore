@@ -22,6 +22,8 @@ export const POST_COMMENT_REQUEST = "POST_COMMENT_REQUEST";
 export const POST_COMMENT_SUCCESS = "POST_COMMENT_SUCCESS";
 export const POST_COMMENT_FAILURE = "POST_COMMENT_FAILURE";
 
+
+
 //GET PRODUCT CATEGORI
 export const GET_PRODUCTS_BY_CATEGORY = "GET_PRODUCTS_BY_CATEGORY";
 
@@ -124,6 +126,34 @@ export const getOneProductFailure = (error) => {
         type: GET_ONE_PRODUCT_FAILURE,
         payload: error
     }
+}
+
+//ADD LIKE TO PRODUCT
+export const fetchAddLikeToProduct = (productId, likeNumber) => {
+    var idP = productId;
+    return (dispatch) => {    
+        const options = {
+            method: 'PUT',
+            url: 'http://localhost:3001/products/likes',
+            headers: {
+               ContentType: "application/json",
+               token: localStorage.getItem("token")
+            },
+            data:{
+                id: productId,
+                likes:likeNumber 
+            }
+          };
+
+    try{
+       return  axios.request(options)
+    }catch{
+        return console.log("Error")
+    }finally{
+        return dispatch(fetchOneProduct(productId))
+    }
+        
+     }
 }
 
 //PRUEBA PARA QUE TRAIGA POR NOMBRE

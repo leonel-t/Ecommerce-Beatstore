@@ -37,7 +37,7 @@ module.exports = (sequelize) => {
     likes: {
       type: DataTypes.INTEGER,
       allowNull: true,
-      defaultValue: 0,
+      defaultValue: 0
     },
     date: {
       type: DataTypes.STRING,
