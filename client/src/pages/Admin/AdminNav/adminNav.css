@@ -16,17 +16,15 @@
     margin: 5px;
 }
 
-
 .--admin--main-btn:hover {
     text-decoration: none;
-    color: rgb(0, 0, 0);
-    background-color: rgb(187, 113, 255);
+    background-color: rgb(79, 0, 170);
     padding: 15px;
 }
 
-.--admin--main-btn-active{
+.--admin--main-btn-active {
     text-decoration: none;
     color: rgb(255, 255, 255);
     padding: 15px;
-    background-color: rgb(175, 8, 153);
+    background: linear-gradient(225deg, rgb(234, 50, 111), rgb(79, 0, 170));
 }

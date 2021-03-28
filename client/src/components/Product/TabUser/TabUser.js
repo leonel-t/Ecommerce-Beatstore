@@ -2,6 +2,7 @@ import React, { useState } from "react";
 
 //Internationalization
 import { withTranslation } from 'react-i18next';
+import OrderCard from "../OrderCard/OrderCard";
 
 import "./TabUser.css";
 
@@ -42,9 +43,16 @@ const TabUser = ({t}) => {
             </div>
             <div className="--TabUser-content">
                 <div className={purchases ? "--TabUser-content-active" : "--TabUser-content-inactive"}>
-                    <p>{t('page.profile.tabUser.componentPurchases')}</p>
+                    {/* <p>{t('page.profile.tabUser.componentPurchases')}</p> */}
+                    <OrderCard/>
+                    <OrderCard/>
+                    <OrderCard/>
+                    <OrderCard/>
+                    <OrderCard/>
+                    <OrderCard/>
+                    <OrderCard/>
                 </div>
-                <div className={comments ? "--TabUser-content-active" : "--TabUser-comments-inactive"}>
+                <div className={comments ? "--TabUser-content-active" : "--TabUser-content-inactive"}>
                     <p>{t('page.profile.tabUser.componentComments')}</p>
                 </div>
             </div>

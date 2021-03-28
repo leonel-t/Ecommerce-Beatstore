@@ -1,16 +1,40 @@
-import 'js-snackbar/snackbar.css';
-import './beatComponent.css';
-import React from 'react';
+import React, {useState} from 'react';
 import Spectrum from '../Spectrum/Spectrum';
 import { connect } from 'react-redux';
 import { addItemToCart } from '../../../stores/user/user.actions';
+import { fetchAddLikeToProduct } from '../../../stores/products/products.actions';
 import { show } from 'js-snackbar';
-const BeatComponent = ({ addItemToCartEffect, product }) => {
+//import {AudioContext} from "../../musicPlayer/AudioContext"
+import MusicPlayer from "../../../components/musicPlayer/MusicPlayer"
+import 'js-snackbar/snackbar.css';
+import './beatComponent.css';
 
+const BeatComponent = ({ addItemToCartEffect,fetchAddLikeToProductEffect, product, STORE_USER }) => {
+
+    //USER IDENTIFICATION FOR REDUCER #############################################
+    let userStore = STORE_USER.user && STORE_USER.user.data && STORE_USER.user.data.user ? STORE_USER.user.data.user : null ; 
+    let user = {
+        userStatus: userStore  ? true : false,
+        id: userStore ? userStore.id : 0,
+        orderId: STORE_USER.cartDetaills.id ? STORE_USER.cartDetaills.id : 0
+    }
+    //#############################################################################
     const handleAddToCart = (product)=>{
         show({ text: 'PRODUCT ADDED!', pos:'bottom-center', duration: 5000, });
-        return addItemToCartEffect("user", product)
+        return addItemToCartEffect(user, product)
     }
+
+    const [likeState, setLikeState] = useState(false);
+
+
+    const handleLike = async (e,id,likes) => {
+        e.preventDefault();
+        setLikeState(true)
+        return fetchAddLikeToProductEffect(id, likes);
+        
+    };
+
+
     return (
         <div className="beatComponent--main">
             {product && product.name
@@ -27,7 +51,8 @@ const BeatComponent = ({ addItemToCartEffect, product }) => {
                         </div>
                         <div className="beatComponent--main-beatActions-col">
                             <div className="beatComponent--main-beatActions-col-div">
-                                <span className="material-icons icons"> play_arrow </span>
+                                <span 
+                                className="material-icons icons"> play_arrow </span>
                                 {product.reproductions}
                             </div>
                             <div className="beatComponent--main-beatActions-col-div">
@@ -49,13 +74,26 @@ const BeatComponent = ({ addItemToCartEffect, product }) => {
                                 onClick={()=> {return handleAddToCart(product)}}
                                 className="beatComponent--main-beatActions-col-btn-row">
                                     <div>
-                                        <span className="material-icons">add_shopping_cart</span>
+                                        <span className="material-icons cart-icons">add_shopping_cart</span>
                                     </div>
-                                     <div>
-                                        Buy $ {product.price} 
+                                     <div className="button-cart2">
+                                        Add to cart <br/> $ {product.price} 
                                      </div>
+                                     
                                 </div>
                             </button>
+                            <>
+                            {likeState ?(
+                                <div className="product-likes2">
+                                 <p>¡Thanks for your like!</p>  
+                                </div>  
+                            ):(
+                                 <div className="product-likes2">
+                                    <span className="product-likes"> {product.likes} </span>
+                                    <span class="material-icons finger-up" onClick={(e)=>handleLike(e,product.id)} >thumb_up_off_alt</span>
+                                </div>
+                            )}
+                            </>
                         </div>
                         <div className="beatComponent--main-beatActions-col column">
                             {product.categories && product.categories.length > 0
@@ -71,10 +109,12 @@ const BeatComponent = ({ addItemToCartEffect, product }) => {
                             }
                         </div>
                         <div className="beatComponent--main-beatActions-col column">
-                            <p>{product.description}</p>
+                            <p>{product.description}</p> 
                         </div>
                         <div className="spec">
-                            <span className="material-icons icon-size"> play_circle_outline </span>
+                            <span
+                            className="material-icons icon-size"> play_circle_outline </span>
+                            <MusicPlayer name={product.name} singer={product.artist} cover={`http://localhost:3001/images/${product.image}`} music={`http://localhost:3001/images/${product.audio}`}/>
                             <Spectrum></Spectrum>
                         </div>
                     </div>
@@ -92,16 +132,19 @@ const BeatComponent = ({ addItemToCartEffect, product }) => {
         </div>
 
     )
-}
+};
 
 const mapStateToProps =  state => {
     return {
-      STORE_PRODUCT : state.productsReducers
+      STORE_PRODUCT : state.productsReducers,
+      STORE_USER : state.userReducers
     }
   }
-  const mapDispatchToProps = dispatch =>{
+
+const mapDispatchToProps = dispatch =>{
     return {
-      addItemToCartEffect: (user, product) => dispatch(addItemToCart(user, product))  
+      addItemToCartEffect: (user, product) => dispatch(addItemToCart(user, product)),
+      fetchAddLikeToProductEffect: (productId, likeNumber) => dispatch(fetchAddLikeToProduct(productId, likeNumber))  
     }
   }
   
