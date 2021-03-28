@@ -60,7 +60,7 @@ const ResetPass = () => {
                 <input clasName='--RPButton' type="submit" value="Send" />
             </form>
             <button>
-              <Link to='/inscode'>Already have the Code?</Link>
+              <Link className='Link' to='/inscode'>Already have the Code?</Link>
             </button>
         </div>
     )

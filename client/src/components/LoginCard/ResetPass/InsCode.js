@@ -1,6 +1,6 @@
 import axios from 'axios';
 import React, { useState } from 'react';
-import './insCode.css';
+import './InsCode.css';
 
 const InsCode = () => {
     const [input, setInput] = useState({
