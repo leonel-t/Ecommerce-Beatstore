@@ -27,7 +27,7 @@ const Cart = ({
           }
 
           return fetchCartEffect(user)
-        },1000);
+        },500);
 
       },[fetchCartEffect, userStore, STORE_USER.cartDetaills.id]);    
     
