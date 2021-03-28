@@ -67,7 +67,7 @@ const Cart = ({t,fetchCartEffect, getDiscountCouponEffect, deleteAllItemInCartEf
                         {
                          STORE_CART.map((product, index)=>
                             {
-                              return ()=>{
+                           
                                 if(product.product){
                                   return (
                                     <ItemCard key={index} user_store={STORE_USER}
@@ -78,7 +78,8 @@ const Cart = ({t,fetchCartEffect, getDiscountCouponEffect, deleteAllItemInCartEf
                                 }else{
                                   console.log("EL PRODUCTO SE GUARDO DISTINTO EN EL CART")
                                 }
-                              }
+                                return console.log("MAP ITEMS")
+                           
                             }
                         )
                         }
