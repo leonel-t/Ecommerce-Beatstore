@@ -19,7 +19,6 @@ const BeatComponent = ({ addItemToCartEffect,fetchAddLikeToProductEffect, produc
         orderId: STORE_USER.cartDetaills.id ? STORE_USER.cartDetaills.id : 0
     }
     //#############################################################################
-    console.log(user)
     const handleAddToCart = (product)=>{
         show({ text: 'PRODUCT ADDED!', pos:'bottom-center', duration: 5000, });
         return addItemToCartEffect(user, product)
@@ -86,7 +85,6 @@ const BeatComponent = ({ addItemToCartEffect,fetchAddLikeToProductEffect, produc
                             <>
                             {likeState ?(
                                 <div className="product-likes2">
-                                 <span className="product-likes"> {product.likes} </span>
                                  <p>¡Thanks for your like!</p>  
                                 </div>  
                             ):(
