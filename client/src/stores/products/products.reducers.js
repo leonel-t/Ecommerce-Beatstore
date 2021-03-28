@@ -103,12 +103,17 @@ const productsReducers = (state = initialState, action) => {
             }
 
         case FILTER_BY_GENRE:
+
             let filterProducts = state.products.filter(p => {
+                let productCategories = []
                 if (p.categories.length > 0) {
                     for (let i = 0; i < p.categories.length; i++) {
-                        return p.categories[i].name === action.payload
+                        if (p.categories[i].name == action.payload) {
+                            productCategories.push(action.payload)
+                        }
 
                     }
+                    return productCategories.includes(action.payload)
 
                 }
             });
