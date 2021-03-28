@@ -30,7 +30,7 @@ server.get("/user/:userId", (req, res, next) => {
   const { userId } = req.params;
   const {orderStatus} = req.body;
 
-  return getOrdersByUserID(userId, orderStatus)
+  return getOrdersByUserID(userId, "cart")
     .then((orders) => {
       res.status(200).json(orders);
     })

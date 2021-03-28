@@ -3,20 +3,38 @@ import React, {useEffect} from "react"
 import ItemCard from "../../components/Cart/ItemCard/ItemCard"
 import SummaryCard from "../../components/Cart/SummaryCard/SummaryCard";
 import { connect } from 'react-redux';
-import { fetchCart, deleteItemInCart, getDiscountCoupon } from '../../stores/user/user.actions';
+import { fetchCart, deleteAllItemInCart, getDiscountCoupon } from '../../stores/user/user.actions';
 import swal from 'sweetalert';
 //Internationalization
 import { withTranslation } from 'react-i18next';
 
-const Cart = ({t,fetchCartEffect, deleteItemInCartEffect, getDiscountCouponEffect ,STORE_CART, TOTAL_PRICE, SUBTOTAL_PRICE, DISCOUNT_PRICE}) => {
-    var user = false;
-
+const Cart = ({t,fetchCartEffect, getDiscountCouponEffect, deleteAllItemInCartEffect ,STORE_CART,STORE_USER, TOTAL_PRICE, SUBTOTAL_PRICE, DISCOUNT_PRICE}) => {
+  
+  //USER IDENTIFICATION FOR REDUCER #############################################
+  var userStore = STORE_USER.user && STORE_USER.user.data && STORE_USER.user.data.user ? STORE_USER.user.data.user : null ; 
+  var cartForItemCard = STORE_USER.cart ;
+  //############################################################################################
+  console.log("USUARIO DESDE EL CARRITO", userStore)
     useEffect(()=>{
-        fetchCartEffect(user)
-      },[fetchCartEffect, user]);    
+        setTimeout(()=>{
+          //USER IDENTIFICATION FOR REDUCER #############################################
+          var user = {
+            userState: userStore  ? true : false,
+            id: userStore ? userStore.id : 0,
+            orderId: STORE_USER.cartDetaills.id ? STORE_USER.cartDetaills.id : 0
+          }
+        //#############################################################################
+          fetchCartEffect(user)
+        },1000)
+      },[fetchCartEffect, userStore, STORE_USER.cartDetaills.id]);    
     
-      const handleDelete= (id, state) => {
-        
+      const handleDelete= () => {
+        var user = {
+          userState: userStore  ? true : false,
+          id: userStore ? userStore.id : 0,
+          orderId: STORE_USER.cartDetaills.id ? STORE_USER.cartDetaills.id : 0
+        }
+        console.log(user)
         swal({
             title: t("page.cart.alerts.emptyCart.title"),
             text: t("page.cart.alerts.emptyCart.text"),
@@ -29,15 +47,13 @@ const Cart = ({t,fetchCartEffect, deleteItemInCartEffect, getDiscountCouponEffec
                 icon: "success",
                 timer: 2000
               });
-                      
-              return deleteItemInCartEffect(id, state)
+             return deleteAllItemInCartEffect(user, cartForItemCard[0].orderId)
             } else {
               swal(t("page.cart.alerts.emptyCart.cartSafe"),{
                 timer: 2000
               });
             }
           });
-
     }
     return (
         <div className="--Cart">
@@ -50,13 +66,13 @@ const Cart = ({t,fetchCartEffect, deleteItemInCartEffect, getDiscountCouponEffec
                         <div>
                         {
                          STORE_CART.map((product, index)=>
-                            <ItemCard key={index} id={product.id} img={product.image} name={product.name} autor={product.artist} price={product.price}/>
+                            <ItemCard key={index} user_store={STORE_USER} cartForItemCard={cartForItemCard} id={product.id} img={product.image} name={product.name} autor={product.artist} price={product.price}/>
                         )
                         }
                         </div>
                         <div>
                             <button className="--Cart-deleteCart"
-                            onClick={()=>handleDelete(null, true)}
+                            onClick={()=>handleDelete()}
                             >
                               {t("page.cart.alerts.emptyCart.btn")}
                             </button>
@@ -78,13 +94,14 @@ const mapStateToProps =  state => {
       STORE_CART : state.userReducers.cart,
       TOTAL_PRICE : state.userReducers.totalPrice,
       SUBTOTAL_PRICE : state.userReducers.subtotalPrice,
-      DISCOUNT_PRICE : state.userReducers.coupon
+      DISCOUNT_PRICE : state.userReducers.coupon,
+      STORE_USER : state.userReducers
     }
   }
   const mapDispatchToProps = dispatch =>{
     return {
         fetchCartEffect: (user) => dispatch(fetchCart(user)),
-        deleteItemInCartEffect: (productId, deleteAll) => dispatch(deleteItemInCart(productId, deleteAll)),
+        deleteAllItemInCartEffect: (user, orderId) => dispatch(deleteAllItemInCart(user, orderId)),
         getDiscountCouponEffect: (code) => dispatch(getDiscountCoupon(code)),
     }
   }

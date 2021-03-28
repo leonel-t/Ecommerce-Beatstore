@@ -20,6 +20,7 @@ let initialState = {
     userLoading:true,
     userError:"",
     cart:[],
+    cartDetaills:"",
     totalPrice:0,
     subTotalPrice:0,
     discountPrice:0,
@@ -53,23 +54,21 @@ const userReducers = (state = initialState, action) =>{
                 cartLoading: true
             }
         case GET_CART_SUCCESS:
-            if(action.payload.user){
+            if(action.payload.user.userState){
                 return {
                     ...state,
                     cartLoading: false,
-                    cart: action.payload
+                    cartDetaills: action.payload.cart,
+                    cart: action.payload.cart.orderLines
                     }
             }else{
                 return {
                     ...state,
                     cartLoading: false,
+                    cartDetaills: action.payload.cart,
+                    cart: action.payload.cart
                     }
-            }// eslint-disable-next-line
-            return {
-                ...state,
-                cartLoading: false,
-                cart: action.payload
-                }
+            }
         case GET_CAR_FAILURE:
             return {
                 ...state,
