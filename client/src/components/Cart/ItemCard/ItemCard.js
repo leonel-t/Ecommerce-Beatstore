@@ -27,7 +27,7 @@ const ItemCard = ({deleteItemInCartEffect, t, cartForItemCard,user_store, id, im
         var userStore = user_store.user && user_store.user.data && user_store.user.data.user ? user_store.user.data.user : null ;
         var user = {
           userState: userStore  ? true : false,
-          id: userStore ? userStore.id : 0,
+          id: userStore && userStore.id ? userStore.id : 0,
           orderId: user_store.cartDetaills.id ? user_store.cartDetaills.id : 0
         }
         for (let i = 0; i < cartForItemCard.length; i++) {

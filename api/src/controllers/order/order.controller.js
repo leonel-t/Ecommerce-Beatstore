@@ -33,6 +33,7 @@ module.exports = {
   },
   getOrdersByUserID : async (userId, orderStatus) => {
     var newUserId = userId;
+  
     if(orderStatus === "all"){
       return await Order.findAll({
           where:{
@@ -60,6 +61,7 @@ module.exports = {
           },
         ]
       }).then((order)=>{
+       
         if(order.length < 1){
           let newOrder={
             userId:newUserId,
@@ -70,13 +72,15 @@ module.exports = {
         }
         return order
       }).catch((error)=>{
+        console.log("ACAAAAAAAAAAAAAAAAAAAAA",userId)
         return error
       })
     }else{
+  
       return await Order.findAll({
         where:{
           userId:userId,
-          orderStatus:orderStatus
+          orderStatus:"cart"
         },
         include:[
           {
@@ -84,6 +88,7 @@ module.exports = {
           },
         ]
       }).then((orders)=>{
+       
         return orders
       }).catch((error)=>{
         return error

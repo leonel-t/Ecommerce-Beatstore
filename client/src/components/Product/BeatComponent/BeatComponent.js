@@ -15,7 +15,7 @@ const BeatComponent = ({ addItemToCartEffect,fetchAddLikeToProductEffect, produc
     let userStore = STORE_USER.user && STORE_USER.user.data && STORE_USER.user.data.user ? STORE_USER.user.data.user : null ; 
     let user = {
         userStatus: userStore  ? true : false,
-        id: userStore ? userStore.id : 0,
+        id: userStore && userStore.id ? userStore.id : 0,
         orderId: STORE_USER.cartDetaills.id ? STORE_USER.cartDetaills.id : 0
     }
     //#############################################################################

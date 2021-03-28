@@ -2,6 +2,7 @@ const { OrderLine } = require("../../db");
 
 module.exports = {
   createOrderLine: async (order) => {
+    console.log(order)
     return await OrderLine.create(order).then((order) => order);
   },
   getOrderLines: async () => {
