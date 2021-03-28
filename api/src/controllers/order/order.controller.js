@@ -60,7 +60,6 @@ module.exports = {
           },
         ]
       }).then((order)=>{
-        console.log(order)
         if(order.length < 1){
           let newOrder={
             userId:newUserId,

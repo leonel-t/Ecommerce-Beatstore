@@ -31,7 +31,8 @@ const ItemCard = ({deleteItemInCartEffect, t, cartForItemCard,user_store, id, im
           orderId: user_store.cartDetaills.id ? user_store.cartDetaills.id : 0
         }
         for (let i = 0; i < cartForItemCard.length; i++) {
-          if(cartForItemCard[i].id === id){
+          console.log(cartForItemCard[i])
+          if(cartForItemCard[i].productId === id){
             let idOrder = cartForItemCard[i].id
             deleteItemInCartEffect(idOrder, user);
               };

@@ -145,6 +145,7 @@ export const addItemToCart = (user, product) => {
 
         let previusProduct= {
             productId:product.id,
+            product:product,
             price:product.price,
             subtotal:0,
             orderId:user.orderId
@@ -155,12 +156,7 @@ export const addItemToCart = (user, product) => {
             headers: {
               'Content-Type': 'application/json'
             },
-            data: {
-                productId: previusProduct.productId,
-                price: previusProduct.price,
-                subtotal: 0, 
-                orderId: previusProduct.orderId
-            }
+            data: previusProduct
           };
           
         return axios.request(options).then(function (orderLine) {

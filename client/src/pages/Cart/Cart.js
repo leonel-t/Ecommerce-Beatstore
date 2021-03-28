@@ -66,7 +66,18 @@ const Cart = ({t,fetchCartEffect, getDiscountCouponEffect, deleteAllItemInCartEf
                         <div>
                         {
                          STORE_CART.map((product, index)=>
-                            <ItemCard key={index} user_store={STORE_USER} cartForItemCard={cartForItemCard} id={product.id} img={product.image} name={product.name} autor={product.artist} price={product.price}/>
+                            {
+                              if(product.product){
+                                return (
+                                  <ItemCard key={index} user_store={STORE_USER}
+                                   cartForItemCard={cartForItemCard} id={product.product.id}
+                                   img={product.product.image} name={product.product.name} 
+                                   autor={product.product.artist} price={product.product.price}/>
+                                )
+                              }else{
+                                console.log("EL PRODUCTO SE GUARDO DISTINTO EN EL CART")
+                              }
+                            }
                         )
                         }
                         </div>
