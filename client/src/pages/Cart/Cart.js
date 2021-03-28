@@ -13,14 +13,15 @@ const Cart = ({t,fetchCartEffect, getDiscountCouponEffect, deleteAllItemInCartEf
   //USER IDENTIFICATION FOR REDUCER #############################################
   var userStore = STORE_USER.user && STORE_USER.user.data && STORE_USER.user.data.user ? STORE_USER.user.data.user : null ; 
   var cartForItemCard = STORE_USER.cart ;
+  console.log("usuario",userStore)
   //############################################################################################
-  console.log("USUARIO DESDE EL CARRITO", userStore)
+  console.log("XXXXXXXXXSS", userStore && userStore.id ? userStore.id : "id")
     useEffect(()=>{
         setTimeout(()=>{
           //USER IDENTIFICATION FOR REDUCER #############################################
           var user = {
             userState: userStore  ? true : false,
-            id: userStore ? userStore.id : 0,
+            id: userStore && userStore.id ? userStore.id : 0,
             orderId: STORE_USER.cartDetaills.id ? STORE_USER.cartDetaills.id : 0
           }
         //#############################################################################
@@ -31,10 +32,10 @@ const Cart = ({t,fetchCartEffect, getDiscountCouponEffect, deleteAllItemInCartEf
       const handleDelete= () => {
         var user = {
           userState: userStore  ? true : false,
-          id: userStore ? userStore.id : 0,
+          id: userStore && userStore.id ? userStore.id : 0,
           orderId: STORE_USER.cartDetaills.id ? STORE_USER.cartDetaills.id : 0
         }
-        console.log(user)
+     
         swal({
             title: t("page.cart.alerts.emptyCart.title"),
             text: t("page.cart.alerts.emptyCart.text"),

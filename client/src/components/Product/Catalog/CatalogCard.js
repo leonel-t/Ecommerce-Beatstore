@@ -11,11 +11,12 @@ const CatalogCard = ({addItemToCartEffect,STORE_USER, id, name, autor, image, pr
     let userStore = STORE_USER.user && STORE_USER.user.data && STORE_USER.user.data.user ? STORE_USER.user.data.user : null ; 
     let user = {
         userStatus: userStore  ? true : false,
-        id: userStore ? userStore.id : 0,
+        id: userStore && userStore.id ? userStore.id : 0,
         orderId: STORE_USER.cartDetaills.id ? STORE_USER.cartDetaills.id : 0
     }
     //#############################################################################
     const handleAddToCart = (product)=>{
+        console.log("CATALOG CARD ", user)
         show({ text: 'PRODUCT ADDED!', pos:'bottom-center', duration: 5000, });
         return addItemToCartEffect(user, product)
     }
