@@ -1,6 +1,8 @@
 import React, { useState } from 'react';
 import emailjs from 'emailjs-com';
+import { Link } from 'react-router-dom';
 import './ResetPass.css';
+import axios from 'axios';
 
 const ResetPass = () => {
     
@@ -18,14 +20,14 @@ const ResetPass = () => {
     const [input, setInput] = useState({
         name: "",
         to_name: "",
-        message: ""
+        code: ""
     });
 
     const handleInputChange =(e) => {
         setInput({
              ...input,
              [e.target.name]: e.target.value,
-             message: generateResetCode()
+             code: generateResetCode()
         });
       };
 
@@ -33,11 +35,18 @@ const ResetPass = () => {
         e.preventDefault();
         console.log(input)
         emailjs.send('service_b9mqvzg', 'template_j7o69td', input, 'user_G41cbN7fW7VHqXdcmtBXT')
-        .then((result) => {
-            console.log(result.text);
-        }, (error) => {
-            console.log(error.text);
-        });
+          .then((result) => {
+              console.log(result.text);
+          }, (error) => {
+              console.log(error.text);
+          });
+        axios.put('http://localhost:3001/users/resetcode', input)
+            .then((result) => {
+              console.log(result);
+          }, (error) => {
+              console.log(error);
+          });
+        e.reset()
     }
     
     return( 
@@ -50,6 +59,9 @@ const ResetPass = () => {
                 <input className='--RPInput' onChange={handleInputChange} type="email" name="to_name" />
                 <input clasName='--RPButton' type="submit" value="Send" />
             </form>
+            <button>
+              <Link to='/inscode'>Already have the Code?</Link>
+            </button>
         </div>
     )
 }
