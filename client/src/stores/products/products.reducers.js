@@ -11,7 +11,8 @@ import {
     POST_COMMENT_REQUEST,
     POST_COMMENT_SUCCESS,
     POST_COMMENT_FAILURE,
-    GET_PRODUCTS_BY_CATEGORY
+    GET_PRODUCTS_BY_CATEGORY,
+    FILTER_BY_GENRE
 } from '../products/products.actions';
 
 let initialState = {
@@ -22,6 +23,7 @@ let initialState = {
     Error: '',
     LoadingComment: false,
     productCategories: [],
+    productFilter: []
 }
 
 const productsReducers = (state = initialState, action) => {
@@ -40,7 +42,8 @@ const productsReducers = (state = initialState, action) => {
             return {
                 ...state,
                 Loading: false,
-                products: action.payload
+                products: action.payload,
+                productFilter: action.payload
             }
         case GET_ALL_PRODUCTS_FAILURE:
             return {
@@ -98,6 +101,33 @@ const productsReducers = (state = initialState, action) => {
                 Error: 'error 404',
                 Loading: false
             }
+
+        case FILTER_BY_GENRE:
+
+            let filterProducts = state.products.filter(p => {
+                let productCategories = []
+                if (p.categories.length > 0) {
+                    for (let i = 0; i < p.categories.length; i++) {
+                        if (p.categories[i].name == action.payload) {
+                            productCategories.push(action.payload)
+                        }
+
+                    }
+                    return productCategories.includes(action.payload)
+
+                }
+            });
+
+
+            return {
+
+                ...state,
+                productFilter: filterProducts
+            }
+
+
+
+
         default:
             return state;
     }

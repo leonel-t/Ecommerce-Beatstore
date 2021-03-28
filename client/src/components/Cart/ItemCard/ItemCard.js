@@ -1,69 +1,66 @@
-import "./ItemCard.css"
-import React, {useEffect} from "react"
+import "./ItemCard.css";
+import React from "react";
 import { connect } from 'react-redux';
-import {Link} from "react-router-dom"
+import {Link} from "react-router-dom";
 import { fetchCart, deleteItemInCart } from '../../../stores/user/user.actions';
-import swal from "sweetalert"
-import sound from "../../../assets/audio/trash-click.mp3"
-
-//Internationalization
+import swal from "sweetalert";
+import sound from "../../../assets/audio/trash-click.mp3";
 import { withTranslation } from 'react-i18next';
 
-const ItemCard = ({t, fetchCartEffect, deleteItemInCartEffect, STORE_PRODUCT, id, img, name, autor, price }) => {
+const ItemCard = ({deleteItemInCartEffect, t, cartForItemCard,user_store, id, img, name, autor, price }) => {
   const audio = new Audio(sound);
-        audio.volume=1;
-  var user = false;
+        audio.volume=1;  
 
-    useEffect(()=>{
-        fetchCartEffect(user)
-      },[fetchCartEffect, user]);    
-
-    const handleDelete= (id, state) => {
-        swal({
-            title: t("page.cart.alerts.emptyItem.title"),
-            text: t("page.cart.alerts.emptyItem.text"),
-            icon: "warning",
-            buttons: true,
-          })
-          .then((willDelete) => {
-            if (willDelete) {
-              swal(t("page.cart.alerts.emptyItem.cartEmpty"), {
-                icon: "success",
-                timer: 2000
-              });
-              audio.play();
-              return deleteItemInCartEffect(id, state);
-            } else {
-              swal(t("page.cart.alerts.emptyItem.cartSafe"),{
-                timer: 2000
-              });
-            }
-          });
-
-    }
+  const handleDelete= (id) => {
+    swal({
+      title: t("page.cart.alerts.emptyItem.title"),
+      text: t("page.cart.alerts.emptyItem.text"),
+      icon: "warning",
+      buttons: true,
+    }).then((willDelete) => {
+      if (willDelete) {
+        swal(t("page.cart.alerts.emptyItem.cartEmpty"), {
+          icon: "success",
+          timer: 2000
+        });
+        audio.play();
+        var userStore = user_store.user && user_store.user.data && user_store.user.data.user ? user_store.user.data.user : null ;
+        var user = {
+          userState: userStore  ? true : false,
+          id: userStore && userStore.id ? userStore.id : 0,
+          orderId: user_store.cartDetaills.id ? user_store.cartDetaills.id : 0
+        }
+        for (let i = 0; i < cartForItemCard.length; i++) {
+          console.log(cartForItemCard[i])
+          if(cartForItemCard[i].productId === id){
+            let idOrder = cartForItemCard[i].id
+            deleteItemInCartEffect(idOrder, user);
+              };
+            };
+        }else{
+          swal(t("page.cart.alerts.emptyItem.cartSafe"),{ timer: 2000 });
+         };
+      });
+  }
     return (
         <div className="--ItemCard">
             <div className="--ItemCard-left">
                 <img alt="albumImg" src={`http://localhost:3001/images/${img}`} />
                 <div className="--ItemCard-data">
                     <Link to={`/product/${id}`}><h2>{name}</h2></Link>
-                    
                     <p>{autor}</p>
                 </div>
             </div>
             <div
              className="--ItemCard-right">
                 <span>${price}</span>
-                
-                <span 
-                onClick={()=>handleDelete(id, false)}
-                >
+                <span  onClick={()=>handleDelete(id, false)}>
                   <i class="fas fa-trash-alt --ItemCard-deletItem"></i>
                 </span>
             </div>
         </div>
     )
-}
+};
 const mapStateToProps =  state => {
     return {
       STORE_PRODUCT : state.productsReducers
@@ -72,9 +69,7 @@ const mapStateToProps =  state => {
 const mapDispatchToProps = dispatch =>{
     return {
         fetchCartEffect: (user) => dispatch(fetchCart(user)),
-        deleteItemInCartEffect: (productId, deleteAll) => dispatch(deleteItemInCart(productId, deleteAll))
+        deleteItemInCartEffect: (productId, user) => dispatch(deleteItemInCart(productId, user))
     }
   }
-  
-  
 export default connect(mapStateToProps, mapDispatchToProps)(withTranslation()(ItemCard));

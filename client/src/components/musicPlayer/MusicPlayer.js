@@ -1,9 +1,11 @@
-import React, {useEffect, useState} from 'react';
+import React, {useEffect, useState, createRef} from 'react';
 import ReactJkMusicPlayer from 'react-jinke-music-player';
 import 'react-jinke-music-player/assets/index.css';
 
 const MusicPlayer = (props) =>{
-     
+
+    const AudioPlayerRef = createRef();
+
     const [audioLists, setAudioLists] = useState([ ])
     
       useEffect(() => {
@@ -23,6 +25,7 @@ const MusicPlayer = (props) =>{
         <div>
 
         <ReactJkMusicPlayer 
+         ref={AudioPlayerRef}
          mode='full'
          autoPlay={false}
          toggleMode={true}

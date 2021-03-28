@@ -9,13 +9,19 @@ import MusicPlayer from "../../../components/musicPlayer/MusicPlayer"
 import 'js-snackbar/snackbar.css';
 import './beatComponent.css';
 
-const BeatComponent = ({ addItemToCartEffect,fetchAddLikeToProductEffect, product }) => {
-    //const {audioList, setAudioList} = useContext(AudioContext)
+const BeatComponent = ({ addItemToCartEffect,fetchAddLikeToProductEffect, product, STORE_USER }) => {
 
+    //USER IDENTIFICATION FOR REDUCER #############################################
+    let userStore = STORE_USER.user && STORE_USER.user.data && STORE_USER.user.data.user ? STORE_USER.user.data.user : null ; 
+    let user = {
+        userStatus: userStore  ? true : false,
+        id: userStore && userStore.id ? userStore.id : 0,
+        orderId: STORE_USER.cartDetaills.id ? STORE_USER.cartDetaills.id : 0
+    }
+    //#############################################################################
     const handleAddToCart = (product)=>{
-
         show({ text: 'PRODUCT ADDED!', pos:'bottom-center', duration: 5000, });
-        return addItemToCartEffect("user", product)
+        return addItemToCartEffect(user, product)
     }
 
     const [likeState, setLikeState] = useState(false);
@@ -79,7 +85,6 @@ const BeatComponent = ({ addItemToCartEffect,fetchAddLikeToProductEffect, produc
                             <>
                             {likeState ?(
                                 <div className="product-likes2">
-                                 <span className="product-likes"> {product.likes} </span>
                                  <p>¡Thanks for your like!</p>  
                                 </div>  
                             ):(
@@ -131,7 +136,8 @@ const BeatComponent = ({ addItemToCartEffect,fetchAddLikeToProductEffect, produc
 
 const mapStateToProps =  state => {
     return {
-      STORE_PRODUCT : state.productsReducers
+      STORE_PRODUCT : state.productsReducers,
+      STORE_USER : state.userReducers
     }
   }
 

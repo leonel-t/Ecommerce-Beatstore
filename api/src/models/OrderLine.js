@@ -18,5 +18,9 @@ module.exports = (sequelize) => {
         type: DataTypes.INTEGER,
         allowNull: false,
       },
+      product:{
+        type:DataTypes.JSON,
+        allowNull:true
+      }
   });
 };
