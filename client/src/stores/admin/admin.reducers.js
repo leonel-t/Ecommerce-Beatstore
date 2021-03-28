@@ -46,7 +46,7 @@ let initialState = {
   categoryLoading: true,
   categoryError: "",
   users: [],
-  usersLoading:true,
+  usersLoading: true,
   usersError: ""
 };
 

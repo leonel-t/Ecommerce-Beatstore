@@ -1,18 +1,22 @@
 import "./Catalog.css";
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { connect } from "react-redux";
-import { fetchAllProducts, getProductsByCategories } from "../../stores/products/products.actions";
+import { getProductsByCategories, filterbyGenre, fetchAllProducts } from "../../stores/products/products.actions";
 import CatalogCard from "../../components/Product/Catalog/CatalogCard";
+import { fetchAllCategories } from '../../stores/admin/admin.actions';
 //Internationalization
+import SearchBar from "./SearchBar"
 import { withTranslation } from 'react-i18next';
 
-const Catalog = ({ t, fetchAllProductsEffect, getProductsByCategoriesEffect, STORE_PRODUCTS }) => {
-  const allProducts = STORE_PRODUCTS.products;
+const Catalog = ({ t, fetchAllProductsEffect, getCategoriesEffect, STORE_PRODUCTS, filter_PRODUCTS }) => {
+
 
   useEffect(() => {
-    fetchAllProductsEffect();
-    getProductsByCategoriesEffect(["trap", "rock", "soul"])
-  }, [fetchAllProductsEffect, getProductsByCategoriesEffect]);
+
+    // setProductz(filter_PRODUCTS)
+    getCategoriesEffect()
+    fetchAllProductsEffect()
+  }, [getCategoriesEffect]);
 
   return (
     <main className="catalog--main">
@@ -20,11 +24,12 @@ const Catalog = ({ t, fetchAllProductsEffect, getProductsByCategoriesEffect, STO
         <div className="catalog--main-col-menu">
           <div className="catalog--main-col-menu-box">
             <h2>{t("page.catalog.title")}</h2>
+            <SearchBar />
           </div>
         </div>
         <div className="catalog--main-col">
-          {allProducts && allProducts.length >= 1 ? (
-            allProducts.map((product, index) => {
+          {filter_PRODUCTS && filter_PRODUCTS.length >= 1 ? (
+            filter_PRODUCTS.map((product, index) => {
               return (
                 <CatalogCard
                   key={index}
@@ -49,12 +54,16 @@ const Catalog = ({ t, fetchAllProductsEffect, getProductsByCategoriesEffect, STO
 const mapStateToProps = (state) => {
   return {
     STORE_PRODUCTS: state.productsReducers,
+    filter_PRODUCTS: state.productsReducers.productFilter,
+
   };
 };
 const mapDispatchToProps = (dispatch) => {
   return {
     fetchAllProductsEffect: () => dispatch(fetchAllProducts()),
     getProductsByCategoriesEffect: (payload) => dispatch(getProductsByCategories(payload)),
+    getProductsByGenreEffect: (payload) => dispatch(filterbyGenre(payload)),
+    getCategoriesEffect: () => dispatch(fetchAllCategories()),
 
 
   };
