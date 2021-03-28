@@ -12,7 +12,7 @@ module.exports = (sequelize) => {
         defaultValue:0
       },
     userId:{
-        type: DataTypes.INTEGER,
+        type: DataTypes.STRING,
         allowNull: false,
       },
   });

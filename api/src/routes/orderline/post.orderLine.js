@@ -3,7 +3,6 @@ const { createOrderLine } = require("../../controllers/orderline/orderLine.contr
 
 server.post("/", (req, res, next) => {
   const order = req.body;
-  console.log(order)
   return createOrderLine(order)
     .then((order) => {
       res.status(200).json(order);

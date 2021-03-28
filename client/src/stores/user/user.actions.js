@@ -79,15 +79,16 @@ export const getCalculator = () =>{
 export const fetchCart = (user) => {
 
     return (dispatch) =>{
-
     if(user.userState){
             dispatch(getCartRequest())
             axios.get(`http://localhost:3001/order/user/${user.id}`)
                 .then(cart => {
                     dispatch(getCartSuccess(user, cart.data[0]))
+                    console.log("AHORA USERRRRR",cart)
                 })
                 .catch(error => {
                     dispatch(getCartFailure(error))
+                    console.log("AHORA USERRRRR",error.message)
                 })
         
         }else{
@@ -140,6 +141,7 @@ export const getCartFailure = (error) =>{
 
 //ADD ITEM TO CART
 export const addItemToCart = (user, product) => {
+   
     return (dispatch) =>{
     if(user.userStatus){
 
@@ -150,6 +152,7 @@ export const addItemToCart = (user, product) => {
             subtotal:0,
             orderId:user.orderId
         }
+        
         const options = {
             method: 'POST',
             url: 'http://localhost:3001/orderline/',
