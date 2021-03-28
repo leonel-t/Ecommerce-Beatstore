@@ -5,10 +5,19 @@ import { connect } from "react-redux";
 import { addItemToCart } from "../../../stores/user/user.actions";
 import { show } from 'js-snackbar';
 
-const CatalogCard = ({addItemToCartEffect,STORE_PRODUCTS, id, name, autor, image, price, product}) => {
+const CatalogCard = ({addItemToCartEffect,STORE_USER, id, name, autor, image, price, product}) => {
+
+    //USER IDENTIFICATION FOR REDUCER #############################################
+    let userStore = STORE_USER.user && STORE_USER.user.data && STORE_USER.user.data.user ? STORE_USER.user.data.user : null ; 
+    let user = {
+        userStatus: userStore  ? true : false,
+        id: userStore ? userStore.id : 0,
+        orderId: STORE_USER.cartDetaills.id ? STORE_USER.cartDetaills.id : 0
+    }
+    //#############################################################################
     const handleAddToCart = (product)=>{
         show({ text: 'PRODUCT ADDED!', pos:'bottom-center', duration: 5000, });
-        return addItemToCartEffect("user", product)
+        return addItemToCartEffect(user, product)
     }
     return (
         <div className="--CatalogCard">
@@ -41,6 +50,7 @@ const CatalogCard = ({addItemToCartEffect,STORE_PRODUCTS, id, name, autor, image
 const mapStateToProps = (state) => {
     return {
       STORE_PRODUCTS: state.productsReducers,
+      STORE_USER:state.userReducers
     };
   };
   const mapDispatchToProps = (dispatch) => {

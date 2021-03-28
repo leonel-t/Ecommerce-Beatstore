@@ -36,13 +36,16 @@ export const fetchUser = () => {
           };
         axios.request(options)
             .then(user => {
+                
                 setTimeout(()=>{
                     dispatch(getUserSuccess(user))
+                    dispatch(fetchCart({userState:true, id:user.data.user.id}))
                 },100)
                 
             })
             .catch(error => {
                 dispatch(getUserFailure(error))
+                dispatch(fetchCart({userState:false}))
             })
     }
 }
@@ -74,24 +77,43 @@ export const getCalculator = () =>{
 
 //GET CART
 export const fetchCart = (user) => {
-    if(user){
-        return (dispatch) =>{
+
+    return (dispatch) =>{
+
+    if(user.userState){
             dispatch(getCartRequest())
-            axios.get("https://jsonplaceholder.typicode.com/photos")
+            axios.get(`http://localhost:3001/order/user/${user.id}`)
                 .then(cart => {
-                    dispatch(getCartSuccess(cart))
+                    dispatch(getCartSuccess(user, cart.data[0]))
                 })
                 .catch(error => {
                     dispatch(getCartFailure(error))
                 })
+        
+        }else{
+
+            dispatch(getCartSuccess(user, [{test:"Test"}]))
         }
-    }else{
+    }
+    
+    /*
+    else{
         return (dispatch)=>{
-            dispatch(getCartSuccess(user, false));
+            let testCart =[
+                {
+                    id: 7,
+                    orderStatus: "cart",
+                    total: "0",
+                    userId: 36580834,
+                    orderLines: ["test Cart Local Store"]
+                  }
+            ]
+            dispatch(getCartSuccess(user, testCart));
             dispatch(getCalculator());
             
         }
     }
+    */
 }
 
 export const getCartRequest = () =>{
@@ -118,26 +140,35 @@ export const getCartFailure = (error) =>{
 
 //ADD ITEM TO CART
 export const addItemToCart = (user, product) => {
-    
-    if(!user){
-        return (dispatch) =>{
-/*
-            dispatch(addItemToCartRequest())
-            axios.post("https://jsonplaceholder.typicode.com/photos")
-                .then(cart => {
-                    dispatch(addItemToCartSuccess(cart))
-                })
-                .catch(error => {
-                    dispatch(addItemToCartFailure(error))
-                })
-*/
+    return (dispatch) =>{
+    if(user.userStatus){
+
+        let previusProduct= {
+            productId:product.id,
+            product:product,
+            price:product.price,
+            subtotal:0,
+            orderId:user.orderId
         }
-    }else{
-        return (dispatch)=>{
-            return dispatch(addItemToCartSuccess(product))
+        const options = {
+            method: 'POST',
+            url: 'http://localhost:3001/orderline/',
+            headers: {
+              'Content-Type': 'application/json'
+            },
+            data: previusProduct
+          };
+          
+        return axios.request(options).then(function (orderLine) {
+            dispatch(addItemToCartSuccess(orderLine.data))
+          }).catch(function (error) {
+            dispatch(getCartFailure(error))
+          });
+
+        }else{
+            console.log("USER ANONIMO")
         }
     }
-
 }
 
 export const addItemToCartRequest = () =>{
@@ -160,9 +191,13 @@ export const addItemToCartFailure = (error) =>{
 
 //COUPON CODE
 export const getDiscountCoupon = (code) => {
+    var user = {
+        state:true,
+        id:36580834
+      };
     return (dispatch)=>{
         dispatch(getDiscountCouponAction(code));
-        dispatch(fetchCart());
+        dispatch(fetchCart(user));
     }
 }
 export const getDiscountCouponAction = (code) =>{
@@ -173,10 +208,29 @@ export const getDiscountCouponAction = (code) =>{
 } 
 
 //DELETE ITEM CART
-export const deleteItemInCart = (productId, deleteAll) => {
-    return (dispatch)=>{
-        dispatch(deleteItemCartSuccess(productId, deleteAll));
-        dispatch(fetchCart());
+export const deleteItemInCart = (orderLineId, user) => {
+
+    console.log("USER DELETE PRODUCT",user)
+    return async (dispatch)=>{
+
+        if(user.userState){
+
+            console.log("ORDER LINE ID", orderLineId)
+            const options = {
+                method: 'DELETE',
+                url: `http://localhost:3001/orderline/${orderLineId}`,
+              };
+         return await axios.request(options).then(response => {
+                    console.log("RESPONSE DELETE",response)
+                    dispatch(fetchCart(user));
+                }).catch(error => {
+                    console.log("RESPONSE DELETE",error)
+                    dispatch(getCartFailure(error))
+                })          
+        }else{
+
+        }
+      
     }
 }
 
@@ -202,3 +256,25 @@ export const deleteItemCartFailure = (error) =>{
     }
 } 
 
+//DELETE ALL ITEM CART
+export const deleteAllItemInCart = (user,orderId) => {
+
+    return async (dispatch)=>{
+
+        if(user.userState){
+            const options = {
+                method: 'DELETE',
+                url: `http://localhost:3001/orderline/all/${orderId}`,
+              };
+         return await axios.request(options).then(() => {
+                    dispatch(fetchCart(user));
+                }).catch(error => {
+                    dispatch(getCartFailure(error))
+                })          
+        }else{
+            //ANONIMO
+            console.log("ANONIMO NO DELETE")
+        }
+      
+    }
+}
