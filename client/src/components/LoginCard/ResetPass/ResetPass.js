@@ -31,7 +31,7 @@ const ResetPass = () => {
         });
       };
 
-    const sendEmail = (e) => {
+    const sendEmail = async (e) => {
         e.preventDefault();
         console.log(input)
         emailjs.send('service_b9mqvzg', 'template_j7o69td', input, 'user_G41cbN7fW7VHqXdcmtBXT')
@@ -40,11 +40,11 @@ const ResetPass = () => {
           }, (error) => {
               console.log(error.text);
           });
-        axios.post('http://localhost:3001/users/resetcode/', input)
+        axios.post('http://localhost:3001/users/resetcode', input)
             .then((text) => {
               console.log(text);
           }, (error) => {
-              console.log(error);
+              console.log(error.message);
           });
         // e.reset()
     }
@@ -59,9 +59,7 @@ const ResetPass = () => {
                 <input className='--RPInput' onChange={handleInputChange} type="email" name="email" />
                 <input clasName='--RPButton' type="submit" value="Send" />
             </form>
-            <button>
               <Link className='Link' to='/inscode'>Already have the Code?</Link>
-            </button>
         </div>
     )
 }

@@ -61,7 +61,7 @@ const App = () => {
         <RouteWrapper exact path="/put/:id" component={PutForm} layout={PagesLayout} />
         <RouteWrapper exact path="/addCategories" component={Categories} layout={AdminLayout} />
         <RouteWrapper exact path="/login" component={Login} layout={LoginLayout} />
-        <RouteWrapper exact path="/player" component={MusicPlayer} layout={LoginLayout} />
+        {/* <RouteWrapper exact path="/player" component={MusicPlayer} layout={LoginLayout} /> */}
         <RouteWrapper exact path="/results/:name" component={Results} layout={PagesLayout} />
         <RouteWrapper exact path="/register" component={Register} layout={LoginLayout} />
         <RouteWrapper exact path="/resetpass" component={ResetPass} layout={LoginLayout} />

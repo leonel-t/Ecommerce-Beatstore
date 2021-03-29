@@ -1,4 +1,5 @@
 const { User } = require("../../db");
+const bcrypt = require('bcrypt');
 
 module.exports = {
     addCode: async (code, email) => {
@@ -10,23 +11,9 @@ module.exports = {
                 } 
             });
             existingUser.resetCode = code
-            console.log(existingUser.resetCode)
-            res.json('Password Reset Succesfull')
+            existingUser.save()
         } catch (err) {
-                res.status(400).json(err);
-              };
-    },
-    resetPass: async (code, pass) => {
-        try {
-            const existingUser = await User.findOne({
-                where:{
-                resetCode: code
-                } 
-            });
-            existingUser.password_virtual = pass
-            res.json('Password Reset Succesfull')
-        } catch (err) {
-                res.status(400).json(err);
+                console.log(err)
               };
     }
 }

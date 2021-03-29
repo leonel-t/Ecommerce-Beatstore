@@ -1,5 +1,6 @@
 import axios from 'axios';
 import React, { useState } from 'react';
+import { Link } from 'react-router-dom';
 import './InsCode.css';
 
 const InsCode = () => {
@@ -17,7 +18,8 @@ const InsCode = () => {
 
     const handleSubmit = (e) => {
         e.preventDefault()
-        axios.put('http://localhost:3001/users/resetpass', input)
+        console.log(input)
+        axios.put('http://localhost:3001/users', input)
             .then((result) => {
               console.log(result);
           }, (error) => {
@@ -28,8 +30,8 @@ const InsCode = () => {
 
     return( 
     <div className="--ResetPass">
-        <h2 className='--RPLabel' >To reset your password,</h2>
-        <h2 className='--RPLabel' > we will send you a code to your mail inbox.</h2>
+        <h2 className='--RPLabel' >First, insert you reset code</h2>
+        <h2 className='--RPLabel' >then insert your new password</h2>
         <form className="--ResetPass" onSubmit={handleSubmit}>
             <input type="hidden" name="contact_number" />
             <label className='--RPLabel'>Code</label>
@@ -38,6 +40,7 @@ const InsCode = () => {
             <input className='--RPInput' onChange={handleInputChange} type="password" name="pass" />
             <input clasName='--RPButton' type="submit" value="Send" />
         </form>
+        <Link className='Link' to='/login'>Back to Sing In</Link>
     </div>
   ) 
 }
