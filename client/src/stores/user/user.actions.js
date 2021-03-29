@@ -67,13 +67,6 @@ export const getUserFailure = (error) =>{
     };
 }; 
 
-//GET CALCULATOR TOTAL PRICE
-export const getCalculator = () =>{
-    return {
-        type:GET_CALCULATOR_TOTAL_PRICE,
-    };
-}; 
-
 //GET CART
 export const fetchCart = (user) => {
 
@@ -86,6 +79,7 @@ export const fetchCart = (user) => {
             axios.get(`http://localhost:3001/order/user/${user.id}`)
                 .then(cart => {
                     dispatch(getCartSuccess(user, cart.data[0]));
+                    dispatch(getCalculator())
                 })
                 .catch(error => {
                     dispatch(getCartFailure(error));
@@ -98,6 +92,7 @@ export const fetchCart = (user) => {
             }else{
                 localStorage.setItem('localCart', "[]");
             };
+            dispatch(getCalculator())
         };
     };
 };
@@ -218,17 +213,31 @@ export const addItemToCartFailure = (error) =>{
     };
 };
 
+//GET CALCULATOR TOTAL PRICE
+export const getCalculator = () =>{
+    return {
+        type:GET_CALCULATOR_TOTAL_PRICE,
+    };
+}; 
+
 //COUPON CODE----------------------------------------FALTA USER
-export const getDiscountCoupon = (code) => {
-    var user = {
-        state:true,
-        id:36580834
-      };
-    return (dispatch)=>{
-        dispatch(getDiscountCouponAction(code));
-        dispatch(fetchCart(user));
-    }
+export const getDiscountCoupon = (code, user) => {
+
+    if(user.userStatus){
+
+        return (dispatch)=>{
+            dispatch(getDiscountCouponAction(code));
+            dispatch(fetchCart(user));
+        };
+     }else{
+        return (dispatch)=>{
+            dispatch(getDiscountCouponAction(code));
+            dispatch(fetchCart(user));
+          };
+     }
+
 }
+
 export const getDiscountCouponAction = (code) =>{
     return {
         type: GET_DISCOUNT_COUPON,
