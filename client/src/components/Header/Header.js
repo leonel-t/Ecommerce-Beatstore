@@ -47,30 +47,50 @@ const Header = ({t,fetchUserEffect, STORE_CART, STORE_USER}) =>  {
     return (
       <header className="--newHeader-main" >
           <div className="--newHeader-main-row">
-            <div className="--newHeader-main-row-col-menu4">
-                <ul className="--newHeader-main-row-col-menu-ul">
-                    {/* <li><Link className="--newHeader-main-row-col-menu-link" to="/admin">Admin</Link></li> */}
-                
+            <div className="--newHeader-main-row-col-menu44">
                 <form onSubmit={handleSubmit} className='--newHeader-main-row-col-menu-form'>
                     <div className="--newHeader-main-row-col-menu-form-div">
                         <input onChange={handleChange} name="name" value={name} placeholder={t('headers.header.searchInput')} />
                         <img className="--newHeader-main-row-col-menu-form-div-img" onClick={handleSubmit} src={SearchImg} alt="SearchIcon" />
                     </div>
                 </form>
-
-                </ul>
-
             </div>  
-            <div className="--newHeader-main-row-col-logo">
+            <div className="--newHeader-main-row-col-logo1">
                 <Link to="/"><img src={Logo} alt="BeatShop"></img></Link>
+                <ul>
+                   
+                     <li><Link className="link-licopy" to="/">{t('headers.header.home')}</Link></li>
+                 </ul>                
             </div> 
-            <div className="--newHeader-main-row-col-menu3">
-                <div>
-                    <Link className="--newHeader-main-row-col-menu-link" to="/cart">
-                        <span class="material-icons --cart-icon">
-                            shopping_cart
-                        </span>
-                         <span className="--header-cart-item-length">
+            <div className="--newHeader-main-row-col-user20"> 
+                <div className="--newHeader-main-row-col-user-options">
+                {STORE_USER.user && STORE_USER.user.data
+                ?(
+                    <ul>
+                       <li> <button className="btn-en" onClick={() => changeLanguage('en')}></button></li>
+                        <li> <button className="btn-es" onClick={() => changeLanguage('es')}></button></li>
+                       <li><Link className="link-email" to="/profile">{divName(STORE_USER.user.data.user.name) || STORE_USER.user.data.user.email}</Link></li>
+                    </ul>
+                ):(
+                    <ul>
+                      <li> <button className="btn-en" onClick={() => changeLanguage('en')}></button></li>
+                      <li><button className="btn-es" onClick={() => changeLanguage('es')}></button></li>
+                      <li><Link className="link-licopy" to="/login">{t('headers.header.login')}</Link></li>
+                      <li><Link className="link-licopy" to="/register">{t('headers.header.register')}</Link></li>
+                    </ul>
+                )}
+                </div>
+            </div>
+            <div className="--newHeader-main-row-col-user-icon20">
+                <Link to="/profile">
+                    <span className="material-icons --user-icon20">
+                     account_circle
+                    </span>
+                </Link>
+            </div>
+            <div className="--newHeader-main-row-col-menu33">
+                    <Link className="--newHeader-main-row-col-menu-link2" to="/cart">
+                         <span className="--header-cart-item-length20">
                              {STORE_CART && STORE_CART.length > 0
                              ?(
                                 STORE_CART.length
@@ -78,49 +98,12 @@ const Header = ({t,fetchUserEffect, STORE_CART, STORE_USER}) =>  {
                                  0
                              )
                              }
-                         </span>
+                         </span>                        
+                         <span className="material-icons --cart-icon20">
+                            shopping_cart
+                        </span>
                     </Link>
-                </div>
-            </div>          
-
-            <div className="--newHeader-main-row-col-user">
-                
-                <div className="--newHeader-main-row-col-user-options">
-                {STORE_USER.user && STORE_USER.user.data
-                ?(
-                    <ul>
-                    <li> 
-                       <button className="btn-en" onClick={() => changeLanguage('en')}></button>
-                     </li>
-                     <li>
-                       <button className="btn-es" onClick={() => changeLanguage('es')}></button></li>
-                     <li>
-                       <Link className="link-email" to="/profile">{divName(STORE_USER.user.data.user.name) || STORE_USER.user.data.user.email}</Link>
-                     </li>
-                     <li><Link className="link-licopy" to="/">{t('headers.header.home')}</Link></li>
-                 </ul>
-                ):(
-                    <ul>
-                      <li> 
-                        <button className="btn-en" onClick={() => changeLanguage('en')}></button>
-                      </li>
-                      <li><button className="btn-es" onClick={() => changeLanguage('es')}></button></li>
-                      <li><Link className="link-licopy" to="/">{t('headers.header.home')}</Link></li>
-                      <li><Link className="link-licopy" to="/login">{t('headers.header.login')}</Link></li>
-                      <li><Link className="link-licopy" to="/register">{t('headers.header.register')}</Link></li>
-                    </ul>
-                )
-                    
-                }
-                </div>
-            </div>
-            <div className="--newHeader-main-row-col-user-icon">
-                <Link to="/profile">
-                    <span class="material-icons --user-icon">
-                     account_circle
-                    </span>
-                </Link>
-            </div>
+            </div>   
           </div>
       </header>
     )

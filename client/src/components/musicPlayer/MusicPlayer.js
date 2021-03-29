@@ -1,12 +1,17 @@
-import React, {useEffect, useState, createRef} from 'react';
+import React, {useEffect, useState} from 'react';
 import ReactJkMusicPlayer from 'react-jinke-music-player';
 import 'react-jinke-music-player/assets/index.css';
 
+
+
 const MusicPlayer = (props) =>{
 
-    const AudioPlayerRef = createRef();
-
-    const [audioLists, setAudioLists] = useState([ ])
+   const [audioLists, setAudioLists] = useState({
+      name: '',
+      singer: '',
+      cover: '',
+      musicSrc:'',
+    })
     
       useEffect(() => {
         setTimeout(() => {
@@ -19,13 +24,12 @@ const MusicPlayer = (props) =>{
                   },
                 ])
         }, 2000)
-      }, [setAudioLists, props])
+      }, [setAudioLists, props])      
+
+    
 
     return (
-        <div>
-
         <ReactJkMusicPlayer 
-         ref={AudioPlayerRef}
          mode='full'
          autoPlay={false}
          toggleMode={true}
@@ -33,8 +37,6 @@ const MusicPlayer = (props) =>{
          theme='dark'
          audioLists={audioLists}
         />
-
-        </div>
     )
 }
 
