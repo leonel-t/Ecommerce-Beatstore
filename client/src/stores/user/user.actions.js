@@ -148,73 +148,75 @@ export const getCartFailure = (error) =>{
 export const addItemToCart = (user, product) => {
    
     return (dispatch) =>{
-    if(user.userStatus){
 
-        var previusProduct= {
-            productId:product.id,
-            product:product,
-            price:product.price,
-            subtotal:0,
-            orderId:user.orderId
-        }
-        
-        const options = {
-            method: 'POST',
-            url: 'http://localhost:3001/orderline/',
-            headers: {
-              'Content-Type': 'application/json'
-            },
-            data: previusProduct
-          };
-          
-        return axios.request(options).then(function (orderLine) {
-            dispatch(addItemToCartSuccess(orderLine.data))
-          }).catch(function (error) {
-            dispatch(getCartFailure(error))
-          });
+        if(user.userStatus){
 
-        }else{
-            var auxCart = [];
-            let LocalCart = JSON.parse(localStorage.getItem('localCart'));
-
-            var previusProductAnon= {
+            var previusProduct= {
                 productId:product.id,
                 product:product,
                 price:product.price,
                 subtotal:0,
-                orderId:"anonuser"
-            }
-            if(LocalCart){
+                orderId:user.orderId
+            };
+            
+            const options = {
+                method: 'POST',
+                url: 'http://localhost:3001/orderline/',
+                headers: {
+                'Content-Type': 'application/json'
+                },
+                data: previusProduct
+            };
+            
+            return axios.request(options).then(function (orderLine) {
+                dispatch(addItemToCartSuccess(orderLine.data));
+            }).catch(function (error) {
+                dispatch(getCartFailure(error));
+            });
 
-                if(LocalCart.length > 0){
+            }else{
+                var auxCart = [];
+                let LocalCart = JSON.parse(localStorage.getItem('localCart'));
 
-                    for (let i = 0; i < LocalCart.length; i++) {
-                        auxCart.push(LocalCart[i]);
-                    };
+                var previusProductAnon= {
+                    productId:product.id,
+                    product:product,
+                    price:product.price,
+                    subtotal:0,
+                    orderId:"anonuser"
+                };
 
-                    let repeteProduct;
+                if(LocalCart){
 
-                    for (let j = 0; j < auxCart.length; j++) {
-                        
-                        if(auxCart[j].productId === previusProductAnon.productId){
-                            repeteProduct = true;
-                        };                        
-                    };
+                    if(LocalCart.length > 0){
 
-                    if(!repeteProduct){
+                        for (let i = 0; i < LocalCart.length; i++) {
+                            auxCart.push(LocalCart[i]);
+                        };
+
+                        let repeteProduct;
+
+                        for (let j = 0; j < auxCart.length; j++) {
+                            
+                            if(auxCart[j].productId === previusProductAnon.productId){
+                                repeteProduct = true;
+                            };                        
+                        };
+
+                        if(!repeteProduct){
+                            auxCart.push(previusProductAnon);
+                            localStorage.setItem('localCart', JSON.stringify(auxCart));
+                            dispatch(fetchCart(false));
+                        };
+                    
+                    }else{
                         auxCart.push(previusProductAnon);
                         localStorage.setItem('localCart', JSON.stringify(auxCart));
                         dispatch(fetchCart(false));
                     };
-                   
-                }else{
-                    auxCart.push(previusProductAnon);
-                    localStorage.setItem('localCart', JSON.stringify(auxCart));
-                    dispatch(fetchCart(false));
                 };
-            };
 
-        };
+            };
     };
 };
 
@@ -236,7 +238,7 @@ export const addItemToCartFailure = (error) =>{
     }
 } 
 
-//COUPON CODE
+//COUPON CODE----------------------------------------FALTA USER
 export const getDiscountCoupon = (code) => {
     var user = {
         state:true,
@@ -255,9 +257,8 @@ export const getDiscountCouponAction = (code) =>{
 } 
 
 //DELETE ITEM CART
-export const deleteItemInCart = (orderLineId, user) => {
+export const deleteItemInCart = (orderLineId, user, idProduct) => {
 
-    console.log("USER DELETE PRODUCT",user)
     return async (dispatch)=>{
 
         if(user.userState){
@@ -275,7 +276,27 @@ export const deleteItemInCart = (orderLineId, user) => {
                     dispatch(getCartFailure(error))
                 })          
         }else{
+            var auxCart = [];
+            let LocalCart = JSON.parse(localStorage.getItem('localCart'));
 
+            if(LocalCart){
+
+                if(LocalCart.length > 0){
+
+                    for (let i = 0; i < LocalCart.length; i++) {
+                        if(LocalCart[i].productId === idProduct){
+                            console.log("IGUALES", LocalCart[i].productId, " / ", idProduct)
+ 
+                         }else{
+                              auxCart.push(LocalCart[i]);
+                         }       
+                       
+                    };
+                    localStorage.setItem('localCart', JSON.stringify(auxCart));
+                    dispatch(fetchCart(false));
+                
+                }
+            };
         }
       
     }
@@ -319,8 +340,8 @@ export const deleteAllItemInCart = (user,orderId) => {
                     dispatch(getCartFailure(error))
                 })          
         }else{
-            //ANONIMO
-            console.log("ANONIMO NO DELETE")
+            localStorage.setItem('localCart', JSON.stringify([]));
+            dispatch(fetchCart(false));
         }
       
     }
