@@ -1,28 +1,19 @@
 import "./Catalog.css";
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import { connect } from "react-redux";
 import { filterbyGenre } from "../../stores/products/products.actions";
-
-//Internationalization
 import { withTranslation } from 'react-i18next';
 
-const SearchBar = ({ t, search, fetchAllProductsEffect, categories, getProductsByGenreEffect, STORE_PRODUCTS, filter_PRODUCTS }) => {
+const SearchBar = ({ t, categories, getProductsByGenreEffect }) => {
 
     const [input, setInput] = useState();
 
     const handleSubmit = (e) => {
-        e.preventDefault()
-        console.log(input)
-        getProductsByGenreEffect(input)
+        e.preventDefault();
+        getProductsByGenreEffect(input);
+    };
 
-    }
-    const handleChange = (e) => {
-        setInput(e.target.value)
-
-    }
-    const handleGenre = (e) => {
-        setInput(e.target.name)
-    }
+    const handleGenre = (e) => { setInput(e.target.name);  };
 
 
     return (
@@ -39,8 +30,9 @@ const SearchBar = ({ t, search, fetchAllProductsEffect, categories, getProductsB
                         </button>
                     )
                 }
-
+                return "";
             })}
+
         </form>
     );
 };
@@ -50,15 +42,12 @@ const mapStateToProps = (state) => {
         STORE_PRODUCTS: state.productsReducers,
         filter_PRODUCTS: state.productsReducers.productFilter,
         categories: state.adminReducers.categories
-
     };
 };
+
 const mapDispatchToProps = (dispatch) => {
     return {
-
-        getProductsByGenreEffect: (payload) => dispatch(filterbyGenre(payload)),
-
-
+        getProductsByGenreEffect: (payload) => dispatch(filterbyGenre(payload))
     };
 };
 
