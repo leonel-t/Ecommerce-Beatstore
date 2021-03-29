@@ -13,53 +13,28 @@
     border-bottom-right-radius: 15px ;
 
 }
-.--header-cart-item-length20{
-    background-color: #3e0441c5;
-    padding-left: 6px;
-    padding-right: 6px;
-    border-radius: 100%;
-    font-size: 1.4rem;
-    font-family: 'Oxanium', cursive;
-    float: right;
-}
-.--cart-icon20{
-    font-size: 2.5rem;
-    color: antiquewhite;
-    float: right;
-}
-.--cart-icon20:hover{
-    font-size: 2.6rem;
-    color: antiquewhite;
-}
+
 .--newHeader-main-row{
     width: 100%;
 }
-.--newHeader-main-row-col-logo1{
+.--newHeader-main-row-col-logo10{
     display: flex;
-    width: 35%;
+    width: 33%;
     flex-direction: row;
+    justify-content: center;
     align-items: center;
     cursor: pointer;
-    order: -1
 }
-.--newHeader-main-row-col-logo1 img{
-    width: 100%;
-    margin-left: 50%;
-    transform: translateX(-50%);
-    height: 70px;
-  }
-  .--newHeader-main-row-col-logo1 img:hover{
-    width: 101%;
-  }
-  .--newHeader-main-row-col-logo1 ul{
-    display: flex;
-   text-align: center;
+.--newHeader-main-row-col-logo10 img{
+  width: 70%;
+  margin-left: 50%;
+  transform: translateX(-50%);
+  height: 75px;
 }
-.--newHeader-main-row-col-logo1 li{
-    font-size: 1.4rem;
-    list-style: none;
-    
+.--newHeader-main-row-col-logo10 img:hover{
+    width: 71%;
 }
+
 .--newHeader-main-row-col-menu44{
     display: flex;
     width: 40%;
@@ -73,12 +48,12 @@
     display: flex;
     justify-content: center;
 }
-.--newHeader-main-row-col-menu5{
-    width: 23%;
+.--newHeader-main-row-col-menu55{
+    width: 33%;
     align-self:center;
     order: -1
 }
-.--newHeader-main-row-col-menu5 h2{
+.--newHeader-main-row-col-menu55 h2{
     color:antiquewhite;
     font-family: 'Oxanium', cursive;
     font-size: 1.4rem;
@@ -90,17 +65,22 @@
     width: 25%;  
     align-self: center;
 }
-.--newHeader-main-row-col-user-icon20{
+.--newHeader-main-row-col-user-icon2{
     display: flex;
-    width: 3%;
+    width: 6%;
     align-self: center;
     justify-content: center;
 }
-.--user-icon20{
-    font-size: 2.6rem;
-    width: 100%;
+.--user-icon2{
+    font-size: 2.5rem;
     color: antiquewhite;
     cursor: pointer;
+
+}
+.--user-icon2:hover{
+    font-size: 2.6rem;
+    color: antiquewhite;
+
 }
 .link-email{
     text-decoration: none;
@@ -118,15 +98,7 @@
     float: right;
     width: 100%;
 }
-.--newHeader-main-row-col-user-options p {
 
-    font-size: 1.4em;
-    font-family: 'Oxanium', cursive;
-
-}
-.--newHeader-main-row-col-user-options p:hover {
-    font-size: 1.45rem;
-}
 .--newHeader-main-row-col-menu-form-div{
     display: flex;
     width: 100%;
