@@ -19,7 +19,7 @@ module.exports = {
     return await Review.findAll().then((reviews) => reviews);
   },
   getReviewById: async (idReview) => {
-    return await Review.findByPk(IdReview).then((review) => review);
+    return await Review.findByPk(idReview).then((review) => review);
   },
   editReview: async (idReview, review) => {
     return await Review.update(review, {
