@@ -34,7 +34,7 @@ const ItemCard = ({deleteItemInCartEffect, t, cartForItemCard,user_store, id, im
           console.log(cartForItemCard[i])
           if(cartForItemCard[i].productId === id){
             let idOrder = cartForItemCard[i].id
-            deleteItemInCartEffect(idOrder, user);
+            deleteItemInCartEffect(idOrder, user, id);
               };
             };
         }else{
@@ -69,7 +69,7 @@ const mapStateToProps =  state => {
 const mapDispatchToProps = dispatch =>{
     return {
         fetchCartEffect: (user) => dispatch(fetchCart(user)),
-        deleteItemInCartEffect: (productId, user) => dispatch(deleteItemInCart(productId, user))
+        deleteItemInCartEffect: (productId, user, id) => dispatch(deleteItemInCart(productId, user, id))
     }
   }
 export default connect(mapStateToProps, mapDispatchToProps)(withTranslation()(ItemCard));
