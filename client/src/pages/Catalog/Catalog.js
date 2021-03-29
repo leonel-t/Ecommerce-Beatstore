@@ -1,22 +1,18 @@
 import "./Catalog.css";
-import React, { useEffect, useState } from "react";
+import React, { useEffect } from "react";
 import { connect } from "react-redux";
 import { getProductsByCategories, filterbyGenre, fetchAllProducts } from "../../stores/products/products.actions";
 import CatalogCard from "../../components/Product/Catalog/CatalogCard";
 import { fetchAllCategories } from '../../stores/admin/admin.actions';
-//Internationalization
-import SearchBar from "./SearchBar"
+import SearchBar from "./SearchBar";
 import { withTranslation } from 'react-i18next';
 
-const Catalog = ({ t, fetchAllProductsEffect, getCategoriesEffect, STORE_PRODUCTS, filter_PRODUCTS }) => {
-
+const Catalog = ({ t, fetchAllProductsEffect, getCategoriesEffect, filter_PRODUCTS }) => {
 
   useEffect(() => {
-
-    // setProductz(filter_PRODUCTS)
-    getCategoriesEffect()
-    fetchAllProductsEffect()
-  }, [getCategoriesEffect]);
+    fetchAllProductsEffect();
+    getCategoriesEffect();
+  }, [fetchAllProductsEffect, getCategoriesEffect]);
 
   return (
     <main className="catalog--main">
@@ -54,18 +50,16 @@ const Catalog = ({ t, fetchAllProductsEffect, getCategoriesEffect, STORE_PRODUCT
 const mapStateToProps = (state) => {
   return {
     STORE_PRODUCTS: state.productsReducers,
-    filter_PRODUCTS: state.productsReducers.productFilter,
-
+    filter_PRODUCTS: state.productsReducers.productFilter
   };
 };
+
 const mapDispatchToProps = (dispatch) => {
   return {
     fetchAllProductsEffect: () => dispatch(fetchAllProducts()),
     getProductsByCategoriesEffect: (payload) => dispatch(getProductsByCategories(payload)),
     getProductsByGenreEffect: (payload) => dispatch(filterbyGenre(payload)),
-    getCategoriesEffect: () => dispatch(fetchAllCategories()),
-
-
+    getCategoriesEffect: () => dispatch(fetchAllCategories())
   };
 };
 

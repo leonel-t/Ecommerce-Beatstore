@@ -34,7 +34,6 @@ const BeatComponent = ({ addItemToCartEffect,fetchAddLikeToProductEffect, produc
         
     };
 
-
     return (
         <div className="beatComponent--main">
             {product && product.name
@@ -115,7 +114,7 @@ const BeatComponent = ({ addItemToCartEffect,fetchAddLikeToProductEffect, produc
                             <span
                             className="material-icons icon-size"> play_circle_outline </span>
                             <MusicPlayer name={product.name} singer={product.artist} cover={`http://localhost:3001/images/${product.image}`} music={`http://localhost:3001/images/${product.audio}`}/>
-                            <Spectrum></Spectrum>
+                            <Spectrum/>
                         </div>
                     </div>
     

@@ -8,7 +8,7 @@ import { connect } from 'react-redux';
 import i18n from '../../i18n';
 import { withTranslation } from 'react-i18next';
 
-import "./Header.css"
+import "./AdminHeader.css"
 
 const AdminHeader = ({t,fetchUserEffect,STORE_USER}) =>{
 
@@ -28,10 +28,10 @@ const AdminHeader = ({t,fetchUserEffect,STORE_USER}) =>{
     return (
       <header className="--newHeader-main" >
           <div className="--newHeader-main-row">
-            <div className="--newHeader-main-row-col-logo">
+            <div className="--newHeader-main-row-col-logo10">
                 <Link to="/"><img src={Logo} alt="BeatShop"></img></Link>
             </div>
-            <div className="--newHeader-main-row-col-menu5">
+            <div className="--newHeader-main-row-col-menu55">
                 <h2>  {t('headers.adminHeader.configuration')} </h2>
             </div>
             <div className="--newHeader-main-row-col-user">  
@@ -56,9 +56,9 @@ const AdminHeader = ({t,fetchUserEffect,STORE_USER}) =>{
                 }
                 </div>
             </div>
-            <div className="--newHeader-main-row-col-user-icon">
+            <div className="--newHeader-main-row-col-user-icon2">
                     <Link to="/profile">
-                    <span class="material-icons --user-icon">
+                    <span class="material-icons --user-icon2">
                      account_circle
                     </span>
                     </Link>

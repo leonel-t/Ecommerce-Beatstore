@@ -1,6 +1,6 @@
-import React, {useState, useMemo} from "react";
+import React from "react";
 import { BrowserRouter, Route, Switch } from "react-router-dom";
-import {AudioContext} from './components/musicPlayer/AudioContext';
+
 //Layouts
 import {
   PagesLayout,
@@ -11,7 +11,6 @@ import {
 
 //Pages
 import Home from "./pages/Home/Home.js";
-import MusicPlayer from "./components/musicPlayer/MusicPlayer"
 import Product from "./pages/Product/Product.js";
 import Catalog from "./pages/Catalog/Catalog.js";
 import Form from "./pages/Admin/AdminProducts/AddProduct";
@@ -36,6 +35,7 @@ import InsCode from './components/LoginCard/ResetPass/InsCode';
 
 
 const App = () => {
+
   return (
     <BrowserRouter>
       <Switch>
@@ -74,19 +74,17 @@ const App = () => {
   );
 };
 function RouteWrapper({ component: Component, layout: Layout, ...rest }) {
-  const [audioList, setAudioList] = useState([])
-  const providerValue = useMemo(()=>({audioList, setAudioList}),[audioList, setAudioList])
+
+  
   return (
-    <AudioContext.Provider value={providerValue}>
-    <Route
-      {...rest}
-      render={(props) => (
-        <Layout {...props}>
-          <Component {...props} />
-        </Layout>
-      )}
-    />
-    </AudioContext.Provider>
+      <Route
+        {...rest}
+        render={(props) => (
+          <Layout {...props}>
+            <Component {...props} />
+          </Layout>
+        )}
+      />
   );
 }
 export default App;

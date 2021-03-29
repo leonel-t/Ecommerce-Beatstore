@@ -33,29 +33,32 @@ export const GET_PRODUCTS_BY_CATEGORY = "GET_PRODUCTS_BY_CATEGORY";
 
 export const getProductsByCategories = (cats) => {
     return (dispatch) => {
-        var products = []
-        for (let i = 0; i < cats.length; i++) {
-            axios.get("http://localhost:3001/products/productsbycategories/" + cats[i])
-                .then(p => {
-                    if (p.data.length > 0) {
+        if (cats) {
 
-                        for (let e = 0; e < p.data.length; e++) {
+            var products = []
+            for (let i = 0; i < cats.length; i++) {
+                axios.get("http://localhost:3001/products/productsbycategories/" + cats[i])
+                    .then(p => {
+                        if (p.data.length > 0) {
 
-                            if (p.data[e].products.length > 0) {
-                                for (let j = 0; j < p.data[e].products.length; j++) {
-                                    products.push(p.data[e].products[j])
+                            for (let e = 0; e < p.data.length; e++) {
+
+                                if (p.data[e].products.length > 0) {
+                                    for (let j = 0; j < p.data[e].products.length; j++) {
+                                        products.push(p.data[e].products[j])
+                                    }
+
                                 }
 
                             }
 
                         }
+                    })
+                    .catch(error => {
+                        console.log(error)
+                    })
 
-                    }
-                })
-                .catch(error => {
-                    console.log(error)
-                })
-
+            }
         }
         dispatch(productsToReducers(products))
     }
@@ -103,7 +106,7 @@ export const getAllProductsFailure = (error) => {
 export const fetchOneProduct = (productId) => {
 
     return (dispatch) => {
-        dispatch(getOneProductRequest())
+        //dispatch(getOneProductRequest())
         axios.get(`http://localhost:3001/products/${productId}`)
             .then(product => {
                 dispatch(getOneProductSuccess(product.data))
