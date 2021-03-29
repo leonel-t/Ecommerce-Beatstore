@@ -1,11 +1,14 @@
 import React, { useState } from "react";
 import CommentCard from "../CommentCard/CommentCard";
-import RelatedTracks from "../RelatedTracks/RelatedTracks";
+import RelatedTracks from '../RelatedTracks/RelatedTracks';
 import FansCard from "../FansCard/FansCard";
 import "./TabPanel.css";
 //Internationalization
+import { connect } from "react-redux";
+
 import { withTranslation } from 'react-i18next';
 import sound from "../../../assets/audio/tab-sound.ogg"
+import '../RelatedTracks/RelatedTracks.css';
 const FansMap = [
   {
     username: "pepe",
@@ -25,41 +28,15 @@ const FansMap = [
   },
 ];
 
-const RelatedTrack = [
-  {
-    title: "Musica Ligera",
-    autor: "Gustavo cerati",
-    price: "500",
-  },
-  {
-    title: "En Remolinos",
-    autor: "Gustavo cerati",
-    price: "500 $",
-  },
-  {
-    title: "Signos",
-    autor: "Gustavo cerati",
-    price: "200 $",
-  },
-  {
-    title: "Persiana americana",
-    autor: "Gustavo cerati",
-    price: "500 $",
-  },
-  {
-    title: "Musica Ligera",
-    autor: "Gustavo cerati",
-    price: "500 $",
-  },
-];
 
-const TabPanel = ({ t, product }) => {
-  const [relatedTrack, setRelatedTrack] = useState(true);
+
+const TabPanel = ({ t, product, relatedArtist, related }) => {
+  const [relatedTrack, setRelatedTrack] = useState(false);
   const [fans, setFans] = useState(false);
-  const [comments, setComments] = useState(false);
+  const [comments, setComments] = useState(true);
 
   const audio = new Audio(sound);
-  audio.volume=0.1;
+  audio.volume = 0.1;
 
   const handleClick = (param) => {
     switch (param) {
@@ -91,6 +68,7 @@ const TabPanel = ({ t, product }) => {
 
   return (
     <div className="--TabPanel-div">
+
       <div className="--TabPanel-div-row">
         <div
           onClick={handleClick(relatedTrack ? "" : "relatedTrack")}
@@ -124,16 +102,25 @@ const TabPanel = ({ t, product }) => {
               : "--TabPanel-div-container-col"
           }
         >
-          {RelatedTrack.map((related, index) => {
-            return (
-              <RelatedTracks
-                key={index}
-                title={related.title}
-                author={related.autor}
-                price={related.price}
-              ></RelatedTracks>
-            );
-          })}
+          {
+            related && related.length > 0
+              ? (
+
+                related.map((relate, index) => {
+                  console.log("este es", relate)
+                  return (
+                    <RelatedTracks
+                      id={relate.id}
+                      image={relate.image}
+                      key={index}
+                      title={relate.name}
+                      author={relate.artist}
+                      price={relate.price}
+                    ></RelatedTracks>
+                  );
+                })
+              ) : (<div></div>)
+          }
         </div>
         <div
           className={
@@ -177,4 +164,12 @@ const TabPanel = ({ t, product }) => {
   );
 };
 
-export default withTranslation()(TabPanel);
+
+const mapStateToProps = (state) => {
+  return {
+    relatedArtist: state.productsReducers.productCategories
+
+
+  };
+};
+export default connect(mapStateToProps)(withTranslation()(TabPanel));

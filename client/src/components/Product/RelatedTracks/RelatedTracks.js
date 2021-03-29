@@ -1,9 +1,8 @@
 import React from "react";
 import "./RelatedTracks.css";
-import imgProfile from "./profile-image.png"
-
-const RelatedTracks = ({title, author, price}) => {
-
+import { useHistory } from "react-router-dom"
+const RelatedTracks = ({ title, author, price, image, id }) => {
+    const history = useHistory()
     return (
         <div className="--RelatedTracks-main">
             <div className="--RelatedTracks-main-row">
@@ -13,9 +12,9 @@ const RelatedTracks = ({title, author, price}) => {
                     </span>
                 </div>
                 <div className="--RelatedTracks-main-col-img">
-                    <img src={imgProfile} alt="album"></img>
+                    <img width="100px" src={"http://localhost:3001/images/" + image} alt="album"></img>
                 </div>
-                <div className="--RelatedTracks-main-col-text">
+                <div onClick={() => { history.push("/product/" + id) }} className="--RelatedTracks-main-col-text">
                     <h3>{title}</h3>
                     <p>{author}</p>
                 </div>
