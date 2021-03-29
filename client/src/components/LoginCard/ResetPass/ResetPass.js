@@ -1,6 +1,8 @@
 import React, { useState } from 'react';
 import emailjs from 'emailjs-com';
+import { Link } from 'react-router-dom';
 import './ResetPass.css';
+import axios from 'axios';
 
 const ResetPass = () => {
     
@@ -17,27 +19,34 @@ const ResetPass = () => {
 
     const [input, setInput] = useState({
         name: "",
-        to_name: "",
-        message: ""
+        email: "",
+        code: ""
     });
 
     const handleInputChange =(e) => {
         setInput({
              ...input,
              [e.target.name]: e.target.value,
-             message: generateResetCode()
+             code: generateResetCode()
         });
       };
 
-    const sendEmail = (e) => {
+    const sendEmail = async (e) => {
         e.preventDefault();
         console.log(input)
         emailjs.send('service_b9mqvzg', 'template_j7o69td', input, 'user_G41cbN7fW7VHqXdcmtBXT')
-        .then((result) => {
-            console.log(result.text);
-        }, (error) => {
-            console.log(error.text);
-        });
+          .then((result) => {
+              console.log(result.text);
+          }, (error) => {
+              console.log(error.text);
+          });
+        axios.post('http://localhost:3001/users/resetcode', input)
+            .then((text) => {
+              console.log(text);
+          }, (error) => {
+              console.log(error.message);
+          });
+        // e.reset()
     }
     
     return( 
@@ -47,9 +56,10 @@ const ResetPass = () => {
             <form className="--ResetPass" onSubmit={sendEmail}>
                 <input type="hidden" name="contact_number" />
                 <label className='--RPLabel'>Email</label>
-                <input className='--RPInput' onChange={handleInputChange} type="email" name="to_name" />
+                <input className='--RPInput' onChange={handleInputChange} type="email" name="email" />
                 <input clasName='--RPButton' type="submit" value="Send" />
             </form>
+              <Link className='Link' to='/inscode'>Already have the Code?</Link>
         </div>
     )
 }
