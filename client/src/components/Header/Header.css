@@ -43,13 +43,13 @@
     order: -1
 }
 .--newHeader-main-row-col-logo1 img{
-    width: 100%;
+    width: 85%;
     margin-left: 50%;
     transform: translateX(-50%);
     height: 70px;
   }
   .--newHeader-main-row-col-logo1 img:hover{
-    width: 101%;
+    width: 86%;
   }
   .--newHeader-main-row-col-logo1 ul{
     display: flex;
