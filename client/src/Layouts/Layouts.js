@@ -34,6 +34,14 @@ const PagesLayout = ({ children }) => {
         </div>
     )
 }
+const ProductLayout = ({ children }) => {
+    return (
+        <div>
+            <Header></Header>
+                {children}
+        </div>
+    )
+}
 
 const AdminLayout = ({ children }) => {
     return (
@@ -58,4 +66,4 @@ const LoginLayout = ({ children }) => {
 
 
 
-export { HomeLayout, PagesLayout, LoginLayout, AdminLayout };
+export { HomeLayout, PagesLayout, LoginLayout, AdminLayout, ProductLayout };

@@ -22,12 +22,11 @@
 }
 
 .beatComponent--main-row{
-    padding-top: 100px;
     display:flex;
     flex-direction:column;
     width: 100%;
     height: auto;
-    margin-top: 20px;
+    margin-top: 100px;
 
 }
 
@@ -57,7 +56,7 @@
 }
 .beatComponent--main-beatActions-col-btn{
     height: 60px;
-    width: 180px;
+    width: 250px;
     margin: 5px;
     border: none;
     background-color: #830c71;
@@ -66,14 +65,17 @@
     color:antiquewhite;
     font-size: 1.3rem;
     text-align: center;
+    padding-top: 5px;
 
 }
 .beatComponent--main-beatActions-col-btn span{
     padding-top: 0px;
     margin-right: 5px;
+   
 }
 .beatComponent--main-beatActions-col-btn-row{
     display: flex;
+   
     flex-direction: row;
     justify-content: center;
     padding-top: 5px;
@@ -81,10 +83,11 @@
 }
 .button-cart2{
     font-size: 1rem;
+    padding-top: 5px;
 }
 .beatComponent--main-beatActions-col-btn:hover{
     height: 60px;
-    width: 180px;
+    width: 250px;
     margin: 5px;
     border: none;
     background-color: #d612f0;
@@ -97,7 +100,7 @@
 }
 .beatComponent--main-beatActions-col-btn:active{
     height: 60px;
-    width: 180px;
+    width: 250px;
     margin: 5px;
     border: none;
     background-color: #3a0641;
@@ -110,8 +113,8 @@
 }
 
 .beatComponent--main-beatInfo-col h1{
-    margin:15px;
-    margin-top:10px;
+    margin:5px;
+    padding-top:10px;
     margin-left: 65px;
     font-size:2rem;
     color:var(--beatComponent--main-beatInfo-col-h1);
@@ -137,6 +140,10 @@
     justify-content: center;
     align-items: center;
     align-content:center;
+    margin-left: 65px;
+    color:var(--beatComponent--main-beatInfo-col-author);
+    font-size:1.2rem;
+    padding-bottom: 10px;
 }
 
 .beatComponent--main-beatActions-col{

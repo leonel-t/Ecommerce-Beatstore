@@ -44,6 +44,7 @@ const Product = ({ relatedArtist, ProductsByCategories, postCommentEffect, fetch
             <BeatCommentsInputComponent action={postCommentEffect} product={STORE_PRODUCT.product.id} />
 
             <TabPanel related={relatedArtist} product={STORE_PRODUCT.product} />
+            <div className="divider"></div>
           </main>
 
         )

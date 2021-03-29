@@ -7,6 +7,7 @@ import {
   HomeLayout,
   LoginLayout,
   AdminLayout,
+  ProductLayout
 } from "./Layouts/Layouts";
 
 //Pages
@@ -50,7 +51,7 @@ const App = () => {
           exact
           path="/product/:productId"
           component={Product}
-          layout={PagesLayout}
+          layout={ProductLayout}
         />
         <RouteWrapper exact path="/listproducts" component={ProductList} layout={AdminLayout} />
         <RouteWrapper exact path="/listcat" component={ListCategories} layout={AdminLayout} />

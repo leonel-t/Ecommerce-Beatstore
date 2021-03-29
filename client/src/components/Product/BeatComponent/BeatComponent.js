@@ -20,7 +20,7 @@ const BeatComponent = ({ addItemToCartEffect,fetchAddLikeToProductEffect, produc
     }
     //#############################################################################
     const handleAddToCart = (product)=>{
-        show({ text: 'PRODUCT ADDED!', pos:'bottom-center', duration: 5000, });
+        show({ text: 'PRODUCT ADDED!', pos:'bottom-center', duration: 2000, });
         return addItemToCartEffect(user, product)
     }
 
@@ -44,9 +44,9 @@ const BeatComponent = ({ addItemToCartEffect,fetchAddLikeToProductEffect, produc
                     </div>
                     <div className="beatComponent--main-beatInfo-col">
                         
-                        <h1>{product.name} </h1><p>{product.artist}</p>
+                        <h1>{product.name} </h1>
                         <div className="beatComponent--main-beatInfo-col-author">
-                            
+                           Artist :  {product.artist}
                         </div>
                         <div className="beatComponent--main-beatActions-col">
                             <div className="beatComponent--main-beatActions-col-div">
@@ -76,7 +76,7 @@ const BeatComponent = ({ addItemToCartEffect,fetchAddLikeToProductEffect, produc
                                         <span className="material-icons cart-icons">add_shopping_cart</span>
                                     </div>
                                      <div className="button-cart2">
-                                        Add to cart <br/> $ {product.price} 
+                                        Add to cart $ {product.price} 
                                      </div>
                                      
                                 </div>

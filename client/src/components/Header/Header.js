@@ -50,7 +50,7 @@ const Header = ({t,fetchUserEffect, STORE_CART, STORE_USER}) =>  {
             <div className="--newHeader-main-row-col-menu44">
                 <form onSubmit={handleSubmit} className='--newHeader-main-row-col-menu-form'>
                     <div className="--newHeader-main-row-col-menu-form-div">
-                        <input onChange={handleChange} name="name" value={name} placeholder={t('headers.header.searchInput')} />
+                        <input onChange={handleChange} name="name" autoComplete="off" value={name} placeholder={t('headers.header.searchInput')} />
                         <img className="--newHeader-main-row-col-menu-form-div-img" onClick={handleSubmit} src={SearchImg} alt="SearchIcon" />
                     </div>
                 </form>

@@ -13,8 +13,7 @@ const Container = ({t, STORE_PRODUCTS}) => {
 
     return (
         <div className='Container'>
-            <h1>{t('page.home.sliders.1')}</h1>
-            <Wrapper/>
+            <div className="top-divider"></div>
             <h2>{t('page.home.sliders.2')}</h2>
             {STORE_PRODUCTS && STORE_PRODUCTS.length > 0
                 ?( 
@@ -76,6 +75,8 @@ const Container = ({t, STORE_PRODUCTS}) => {
                         )
                
                 }
+                <h1>{t('page.home.sliders.1')}</h1>
+                <Wrapper/>
                 <div className="divider"></div>
         </div>
         )
