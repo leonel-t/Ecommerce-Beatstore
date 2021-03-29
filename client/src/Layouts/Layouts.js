@@ -55,7 +55,7 @@ const AdminLayout = ({ children }) => {
 
 const LoginLayout = ({ children }) => {
     return (
-        <div>
+        <div className="--Header-Login-bg">
             <div className="--Header-Login-Layout">
                 <Link to="/"><img src={Logo} alt="BeatShop" /></Link>
             </div>
