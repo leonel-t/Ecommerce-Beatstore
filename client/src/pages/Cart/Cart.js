@@ -3,7 +3,7 @@ import React, {useEffect} from "react";
 import ItemCard from "../../components/Cart/ItemCard/ItemCard";
 import SummaryCard from "../../components/Cart/SummaryCard/SummaryCard";
 import { connect } from 'react-redux';
-import { fetchCart, deleteAllItemInCart, getDiscountCoupon } from '../../stores/user/user.actions';
+import { fetchCart, deleteAllItemInCart } from '../../stores/user/user.actions';
 import swal from 'sweetalert';
 import { withTranslation } from 'react-i18next';
 
@@ -103,7 +103,7 @@ const Cart = ({
                 }
             </div>
             <SummaryCard 
-              funtionD={getDiscountCouponEffect} subtotal={SUBTOTAL_PRICE}
+              subtotal={SUBTOTAL_PRICE}
               total={TOTAL_PRICE} discount={DISCOUNT_PRICE}
             />
         </div>
@@ -124,7 +124,6 @@ const mapDispatchToProps = dispatch =>{
     return {
         fetchCartEffect: (user) => dispatch(fetchCart(user)),
         deleteAllItemInCartEffect: (user, orderId) => dispatch(deleteAllItemInCart(user, orderId)),
-        getDiscountCouponEffect: (code) => dispatch(getDiscountCoupon(code)),
     };
   };
   
