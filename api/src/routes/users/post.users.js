@@ -2,7 +2,7 @@ const server = require("express").Router();
 const postControler = require("../../controllers/users/post.users");
 const jwt = require('jsonwebtoken')
 const { User } = require("../../db");
-
+var uniqid = require('uniqid');
 var passport = require('passport')
 require("../../middlewares/passport.middleware").passport
 
@@ -15,7 +15,7 @@ server.post("/",
     var user;
     if(name && password && email){
         user = {
-            id: Date.now() + Math.round(Math.random() * 1E9),
+            id: uniqid.time(),
             name:name.toString(),
             password_virtual:password.toString(),
             email:email.toString()

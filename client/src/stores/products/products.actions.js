@@ -21,11 +21,15 @@ export const SEARCH_PRODUCT_FAILURE = "SEARCH_PRODUCT_FAILURE";
 export const POST_COMMENT_REQUEST = "POST_COMMENT_REQUEST";
 export const POST_COMMENT_SUCCESS = "POST_COMMENT_SUCCESS";
 export const POST_COMMENT_FAILURE = "POST_COMMENT_FAILURE";
-
+//FILTER BY GENRE
+export const FILTER_BY_GENRE = "FILTER_BY_GENRE"
 
 
 //GET PRODUCT CATEGORI
 export const GET_PRODUCTS_BY_CATEGORY = "GET_PRODUCTS_BY_CATEGORY";
+
+
+
 
 export const getProductsByCategories = (cats) => {
     return (dispatch) => {
@@ -131,29 +135,29 @@ export const getOneProductFailure = (error) => {
 //ADD LIKE TO PRODUCT
 export const fetchAddLikeToProduct = (productId, likeNumber) => {
     var idP = productId;
-    return (dispatch) => {    
+    return (dispatch) => {
         const options = {
             method: 'PUT',
             url: 'http://localhost:3001/products/likes',
             headers: {
-               ContentType: "application/json",
-               token: localStorage.getItem("token")
+                ContentType: "application/json",
+                token: localStorage.getItem("token")
             },
-            data:{
+            data: {
                 id: productId,
-                likes:likeNumber 
+                likes: likeNumber
             }
-          };
+        };
 
-    try{
-       return  axios.request(options)
-    }catch{
-        return console.log("Error")
-    }finally{
-        return dispatch(fetchOneProduct(productId))
+        try {
+            return axios.request(options)
+        } catch {
+            return console.log("Error")
+        } finally {
+            return dispatch(fetchOneProduct(productId))
+        }
+
     }
-        
-     }
 }
 
 //PRUEBA PARA QUE TRAIGA POR NOMBRE
@@ -236,4 +240,8 @@ export const postCommentFailure = (error) => {
         type: POST_COMMENT_FAILURE,
         payload: error
     }
+}
+
+export function filterbyGenre(genre) {
+    return { type: FILTER_BY_GENRE, payload: genre }
 }
