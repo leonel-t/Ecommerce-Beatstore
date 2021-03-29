@@ -23,7 +23,7 @@ const InsCode = () => {
           }, (error) => {
               console.log(error);
           });
-        e.reset()
+        // e.reset()
     }
 
     return( 
@@ -33,9 +33,9 @@ const InsCode = () => {
         <form className="--ResetPass" onSubmit={handleSubmit}>
             <input type="hidden" name="contact_number" />
             <label className='--RPLabel'>Code</label>
-            <input className='--RPInput' onChange={handleInputChange} type="email" name="to_name" />
-            <label className='--RPLabel'>Email</label>
-            <input className='--RPInput' onChange={handleInputChange} type="email" name="to_name" />
+            <input className='--RPInput' onChange={handleInputChange} type="text" name="code" />
+            <label className='--RPLabel'>Password</label>
+            <input className='--RPInput' onChange={handleInputChange} type="password" name="pass" />
             <input clasName='--RPButton' type="submit" value="Send" />
         </form>
     </div>

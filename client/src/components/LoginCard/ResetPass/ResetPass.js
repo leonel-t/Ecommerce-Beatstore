@@ -19,7 +19,7 @@ const ResetPass = () => {
 
     const [input, setInput] = useState({
         name: "",
-        to_name: "",
+        email: "",
         code: ""
     });
 
@@ -40,13 +40,13 @@ const ResetPass = () => {
           }, (error) => {
               console.log(error.text);
           });
-        axios.put('http://localhost:3001/users/resetcode', input)
-            .then((result) => {
-              console.log(result);
+        axios.post('http://localhost:3001/users/resetcode/', input)
+            .then((text) => {
+              console.log(text);
           }, (error) => {
               console.log(error);
           });
-        e.reset()
+        // e.reset()
     }
     
     return( 
@@ -56,7 +56,7 @@ const ResetPass = () => {
             <form className="--ResetPass" onSubmit={sendEmail}>
                 <input type="hidden" name="contact_number" />
                 <label className='--RPLabel'>Email</label>
-                <input className='--RPInput' onChange={handleInputChange} type="email" name="to_name" />
+                <input className='--RPInput' onChange={handleInputChange} type="email" name="email" />
                 <input clasName='--RPButton' type="submit" value="Send" />
             </form>
             <button>
