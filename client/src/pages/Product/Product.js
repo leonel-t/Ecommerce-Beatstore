@@ -1,16 +1,17 @@
-import React, {useEffect} from 'react';
+import React, { useEffect } from 'react';
 import { useParams } from "react-router-dom";
 
 import { connect } from 'react-redux';
-import { fetchOneProduct, postComment } from '../../stores/products/products.actions';
-import {fetchUser} from '../../stores/user/user.actions';
+import { fetchOneProduct, postComment, getProductsByCategories } from '../../stores/products/products.actions';
+import { fetchUser } from '../../stores/user/user.actions';
 //components
 import BeatComponent from '../../components/Product/BeatComponent/BeatComponent';
 import BeatCommentsInputComponent from '../../components/Product/BeatCommentsInputComponent/BeatCommentsInputComponent';
 import TabPanel from '../../components/Product/TabPanel/TabPanel';
+import PreLoad from "./PreLoad"
 import "./product.css";
 
-const Product = ({fetchOneProductEffect, postCommentEffect, fetchUserEffect,  STORE_PRODUCT}) =>{
+const Product = ({ relatedArtist, ProductsByCategories, postCommentEffect, fetchUserEffect, STORE_PRODUCT }) => {
 
 
   window.scrollTo({
@@ -20,44 +21,52 @@ const Product = ({fetchOneProductEffect, postCommentEffect, fetchUserEffect,  ST
   });
 
   const { productId } = useParams();
-    useEffect(()=>{
-        fetchUserEffect()
-        fetchOneProductEffect(productId)
-      },[fetchUserEffect, fetchOneProductEffect, productId]);
+  useEffect(() => {
+    fetchUserEffect()
 
-    return (
-        <>
-          {STORE_PRODUCT.productLoading
-            ?(
-              <p>Cargando</p>
-            )
-            :(
-              <main className="product--main">
-                <BeatComponent product={STORE_PRODUCT.product} />
-               
-                <BeatCommentsInputComponent action={postCommentEffect} product={STORE_PRODUCT.product.id}/>
-                
-                <TabPanel  product={STORE_PRODUCT.product}/>
-              </main>
-             
-            )
-          }
-        </>
-    )
+    let categories = STORE_PRODUCT.product.categories?.map(c => c.name)
+    console.log(categories)
+    ProductsByCategories(categories)
+
+  }, [fetchUserEffect, productId, ProductsByCategories, STORE_PRODUCT.product]);
+
+  return (
+    <>
+      {STORE_PRODUCT.productLoading
+        ? (
+          <p>Cargando</p>
+        )
+        : (
+          <main className="product--main">
+            <PreLoad />
+            <BeatComponent product={STORE_PRODUCT.product} />
+
+            <BeatCommentsInputComponent action={postCommentEffect} product={STORE_PRODUCT.product.id} />
+
+            <TabPanel related={relatedArtist} product={STORE_PRODUCT.product} />
+          </main>
+
+        )
+      }
+    </>
+  )
 }
 
-const mapStateToProps =  state => {
-    return {
-      STORE_PRODUCT : state.productsReducers,
-    }
+const mapStateToProps = state => {
+  return {
+    STORE_PRODUCT: state.productsReducers,
+    relatedArtist: state.productsReducers.productCategories
+
   }
-  const mapDispatchToProps = dispatch =>{
-    return {
-      fetchOneProductEffect: (productId) => dispatch(fetchOneProduct(productId)),
-      postCommentEffect: (productId, comment) => dispatch(postComment(productId, comment)),
-      fetchUserEffect: () => dispatch(fetchUser())
-    }
+}
+const mapDispatchToProps = dispatch => {
+  return {
+    fetchOneProductEffect: (productId) => dispatch(fetchOneProduct(productId)),
+    postCommentEffect: (productId, comment) => dispatch(postComment(productId, comment)),
+    fetchUserEffect: () => dispatch(fetchUser()),
+    ProductsByCategories: (categories) => dispatch(getProductsByCategories(categories)),
   }
-  
-  
+}
+
+
 export default connect(mapStateToProps, mapDispatchToProps)(Product);
