@@ -92,8 +92,13 @@ export const fetchCart = (user) => {
                 })
         
         }else{
-
-            dispatch(getCartSuccess(user, [{test:"Test"}]))
+            let localCart =  localStorage.getItem('localCart')
+            if(localCart){
+                dispatch(getCartSuccess(false, JSON.parse(localCart)))
+            }else{
+                localStorage.setItem('localCart', "[]");
+            }
+           // dispatch(getCartSuccess(false, JSON.parse(localCart)))
         }
     }
     
@@ -145,7 +150,7 @@ export const addItemToCart = (user, product) => {
     return (dispatch) =>{
     if(user.userStatus){
 
-        let previusProduct= {
+        var previusProduct= {
             productId:product.id,
             product:product,
             price:product.price,
@@ -169,10 +174,49 @@ export const addItemToCart = (user, product) => {
           });
 
         }else{
-            console.log("USER ANONIMO")
-        }
-    }
-}
+            var auxCart = [];
+            let LocalCart = JSON.parse(localStorage.getItem('localCart'));
+
+            var previusProductAnon= {
+                productId:product.id,
+                product:product,
+                price:product.price,
+                subtotal:0,
+                orderId:"anonuser"
+            }
+            if(LocalCart){
+
+                if(LocalCart.length > 0){
+
+                    for (let i = 0; i < LocalCart.length; i++) {
+                        auxCart.push(LocalCart[i]);
+                    };
+
+                    let repeteProduct;
+
+                    for (let j = 0; j < auxCart.length; j++) {
+                        
+                        if(auxCart[j].productId === previusProductAnon.productId){
+                            repeteProduct = true;
+                        };                        
+                    };
+
+                    if(!repeteProduct){
+                        auxCart.push(previusProductAnon);
+                        localStorage.setItem('localCart', JSON.stringify(auxCart));
+                        dispatch(fetchCart(false));
+                    };
+                   
+                }else{
+                    auxCart.push(previusProductAnon);
+                    localStorage.setItem('localCart', JSON.stringify(auxCart));
+                    dispatch(fetchCart(false));
+                };
+            };
+
+        };
+    };
+};
 
 export const addItemToCartRequest = () =>{
     return {
