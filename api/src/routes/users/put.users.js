@@ -14,3 +14,18 @@ server.put('/:id', (req, res, next) => {
             res.status(400).json(error);
           })
 })
+
+server.put('/',(req, res, next) => {
+  const {code, pass} = req.body;
+  console.log('entre')
+  console.log(code)
+  console.log(pass)
+  usersControler
+      .resetPass(code, pass)
+      .then((success) => {
+          return res.status(200).json(success);
+        })
+        .catch((error) => {
+          return res.status(400).json(error);
+        })
+})

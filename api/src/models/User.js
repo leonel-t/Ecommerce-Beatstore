@@ -41,5 +41,9 @@ module.exports = (sequelize) => {
         }
       }
     },
+    resetCode: {
+      type: DataTypes.STRING,
+      unique: true
+  },
   });
 };

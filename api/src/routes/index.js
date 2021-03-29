@@ -13,6 +13,7 @@ const getUserRouter = require("./users/get.users");
 const postUserRouter = require("./users/post.users");
 const putUserRouter = require("./users/put.users");
 const deleteUserRouter = require("./users/delete.users");
+const resetPassUserRouter = require("./users/resetPass.users")
 
 const githubRouter = require("./githubRoute");
 
@@ -64,6 +65,8 @@ router.use("/users", getUserRouter);
 router.use("/users", postUserRouter);
 router.use("/users", putUserRouter);
 router.use("/users", deleteUserRouter);
+router.use("/users", resetPassUserRouter);
+
 
 router.use("/", promoteRouter);
 router.use("/", githubRouter);
