@@ -73,6 +73,30 @@ export const fetchCart = (user) => {
     return (dispatch) =>{
 
     if(user.userState){
+
+        /*
+                let LocalCart = JSON.parse(localStorage.getItem('localCart'));
+
+        if(LocalCart){
+
+            if(LocalCart.length > 0){
+
+                for (let i = 0; i < LocalCart.length; i++) {
+                    console.log("ADD TIMENTS", LocalCart[i].product )
+                    console.log("ADD ITEM USER", user)
+
+                    return async ()=>{
+                        await addItemToCart(user, LocalCart[i].product )
+                    }
+                    
+                };
+
+                
+            }
+        }
+        localStorage.setItem('localCart', "[]");
+        
+        */
             
         dispatch(getCartRequest());
 

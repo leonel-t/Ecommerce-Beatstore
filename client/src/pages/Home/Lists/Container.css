@@ -6,11 +6,17 @@
     background-size: cover;
     overflow-x: none;
 }
+.top-divider{
+    min-height: 40px;
+    background: linear-gradient(180deg, rgba(169, 4, 128, 0.364), rgba(5, 5, 5, 0));
+}
 .Container h1{
     color: antiquewhite;
+    padding-left: 15px;
 }
 .Container h2{
     color: antiquewhite;
+    padding-left: 15px;
 }
 
 #title1{

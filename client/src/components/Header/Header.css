@@ -151,6 +151,12 @@
     font-family: 'Oxanium', cursive;
     font: 2rem;
 }
+.--newHeader-main-row-col-menu-form-div input:focus{
+    background-color: rgba(43, 2, 41, 0.83);
+    box-shadow: 0px 0px 10px rgb(149, 76, 151);
+    transition: all 0.5s ease-in;
+    
+}
 .--newHeader-main-row-col-menu-form-div-img{
     position: relative;
     width: 25px;

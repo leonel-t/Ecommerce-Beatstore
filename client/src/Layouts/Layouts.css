@@ -2,9 +2,21 @@
     display: flex;
     width: 100%;
     justify-content: center;
-    margin-top: 50px;
-}
 
+}
+.--Header-Login-bg{
+    position: absolute;
+    width: 100%;
+    top:0 !important;
+    bottom: 0 !important;
+    background-image: url("../assets/images/bg-login.jpg");
+    background-position: top left;
+    background-size: 100%;
+    background-repeat: no-repeat;
+}
 .page-layout-main{
     margin-top: 100px;
+}
+.product-layout-main{
+    padding-top: 0px;
 }

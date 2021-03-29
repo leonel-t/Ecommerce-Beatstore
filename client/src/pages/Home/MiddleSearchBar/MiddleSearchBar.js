@@ -42,7 +42,7 @@ const MiddleSearchBar = ({t}) => {
      <form onSubmit={handleSubmit} className='HomeBg'>
          <div className="SearchBarMiddle">
 
-             <input onChange={handleChange} name="name" value={name} placeholder={t("page.home.MiddleSearchBar")} />
+             <input onChange={handleChange} autoComplete="off" name="name" value={name} placeholder={t("page.home.MiddleSearchBar")} />
                  <div className="ContainerImg">
                      <img onClick={handleSubmit} src={SearchImg} alt="SearchIcon" />
                      </div>
