@@ -1,0 +1,187 @@
+.--LoginCard{
+    width: 100%;
+    display: flex;
+    margin-top: 15px;
+}
+.--LoginAllCard{
+    width: 90%;
+    background-color: rgba(86, 9, 175, 0.527);
+    border-radius: 10px;    
+    box-shadow: 0px 0px 10px rgb(137, 76, 206);
+    margin-left: auto;
+    margin-right: auto;
+    padding-bottom: 30px;
+}
+
+.--login-logo{
+    margin-top: 10px;
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+    justify-content: center;
+    font-family: "Goldman";
+    color: antiquewhite;
+    font-size: 1.5rem;
+}
+.--login-logo-col{
+    display: flex;
+    padding-left: 10px;
+    justify-content: center;
+    align-items: center;
+}
+/* @media(max-width: 1100px){
+    .--LoginAllCard{
+        width: 80%;
+    
+    }
+}
+@media(max-width: 860px){
+    .--LoginAllCard{
+        width: 80%;
+    
+    }
+} */
+@media(max-width: 600px){
+    .--LoginAllCard{
+        width: 80%;
+        margin-left:50px;
+        margin-right: 50px;
+    }
+    #google {
+        width: 50%;
+        height: 30px;
+    }
+    #github {
+        width: 50%;
+        height: 30px;
+
+    }
+}
+.--LoginAllCard h2{
+    text-align: center;
+    color: rgb(141, 129, 129);
+    text-shadow: 0px 0px 5px rgb(70, 10, 139);
+
+}
+    input:-webkit-autofill,
+    input:-webkit-autofill:hover, 
+    input:-webkit-autofill:focus,
+    textarea:-webkit-autofill,
+    textarea:-webkit-autofill:hover,
+    textarea:-webkit-autofill:focus,
+    select:-webkit-autofill,
+    select:-webkit-autofill:hover,
+    select:-webkit-autofill:focus {
+    border: 2px solid rgb(70, 10, 139);
+    -webkit-text-fill-color: rgb(230, 230, 231);
+    box-shadow: 0 0 0px 1000px #000 inset;
+    transition: background-color 5000s ease-in-out 0s;
+}
+.--LoginCard-form{
+    width: 75%;
+    margin-left: 50%;
+    transform: translateX(-50%);
+    text-align: center;
+    font-size: 1.1em;
+}
+.name{
+    margin: 5px;
+    text-align: left;
+    color: white;
+    font-family: "Goldman";
+    font-size: 1.2rem;
+}
+.--LoginCard-form-input{
+    width: 98%;
+    height: 40px;
+    margin-bottom: 5px;
+    font-size: 1rem;
+    color: white;
+    border: 1px solid white;
+    border-radius: 5px;
+    padding: 0 0 0 5px;
+    padding-left: 5px;
+}
+.--LoginCard-form-input:active{
+    background-color: white;
+}
+.--LoginCard-form-input:valid{
+    background-color: rgb(19, 18, 18);
+    border: 2px solid rgb(70, 10, 139);
+}
+.--LoginCard-form-input:invalid{
+    background-color: rgb(19, 18, 18);
+    border: 2px solid rgb(136, 18, 128);
+}
+.--LoginCard-form-input::placeholder{
+    text-align: center;
+    color: white;
+}
+
+.--Submit-buttons button{
+    width: 50%;
+    height: 45px;
+    font-size: 1.3rem;
+    margin: 5px 1px 5px ;
+    padding: 0px 12px;
+    background: linear-gradient(45deg, rgb(71, 8, 87), rgb(136, 18, 128));
+    border: 1px solid rgb(81, 7, 141);
+    border-radius: 5px;
+    cursor:pointer;
+    color: white;
+    outline: none;
+    font-family: "Goldman";
+}
+.--Submit-buttons button:hover{
+    background: linear-gradient(45deg, rgb(45, 9, 55), rgb(87, 20, 82));
+}
+.--Submit-buttons button:active{
+   
+    background: linear-gradient(45deg, rgb(26, 3, 32), rgb(42, 11, 40));
+}
+#google {
+    width: 80%;
+    height: 50px;
+    background-image: url('../../../assets/images/LoginWithGoogle.png');
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: 0;
+    border-radius: 10px;
+}
+#github {
+    width: 80%;
+    height: 50px;
+    background-image: url('../../../assets/images/LoginWithGithub.png');
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: 0;
+    border-radius: 10px;
+}
+.foot{
+    width: 100%;
+    text-align: center;
+    margin: 10px 0px ;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+.Link{
+    width: 100%;
+    font-family: "Goldman";
+    font-weight: bold;
+    color: rgb(251, 249, 249);
+    text-shadow: 0px 0px 5px rgb(70, 10, 139);
+    text-decoration: none;
+    padding-bottom: 5px;
+}
+.signup{
+    width:40%;  
+    text-decoration: none;
+    color:white;
+    border: 2px solid rgb(70, 10, 139);
+    border-radius: 5px;
+    padding: 3px;
+    margin-top:8px;
+    padding-bottom: 8px;
+
+}

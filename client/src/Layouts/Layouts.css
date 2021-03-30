@@ -2,13 +2,13 @@
     display: flex;
     width: 100%;
     justify-content: center;
-
 }
 .--Header-Login-bg{
     position: absolute;
     width: 100%;
     top:0 !important;
     bottom: 0 !important;
+    /* background-color: #830c71; */
     background-image: url("../assets/images/bg-login.jpg");
     background-position: top left;
     background-size: 100%;

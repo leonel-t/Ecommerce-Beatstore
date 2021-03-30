@@ -1,0 +1,63 @@
+.--CatalogCard{
+    display: flex;
+    flex-direction: column;
+    width: 10em;
+    height: 14em;
+    padding: 0.5em;
+}
+.--CatalogCard-image img{
+    width: 10em;
+    height: 10em;
+    border-radius: 0.1em;
+}
+.--CatalogCard-info{
+    display: flex;
+    flex-direction: column;
+    max-width: 60%;
+}
+.--CatalogCard-info p{
+    margin: 0px;
+}
+.--CatalogCard-info-song{
+    color: rgb(255, 255, 255);
+    font-size: 1rem;
+}
+.--CatalogCard-info-autor{
+    color: rgb(126, 126, 126);
+    font-size: 0.6rem;
+}
+.--CatalogCard-link{
+    text-decoration: none;
+    color: rgb(255, 255, 255);
+    font-size: 1rem;
+}
+.--CatalogCard-link:hover{
+    text-decoration: none;
+    color: rgb(138, 3, 126);
+}
+.--CatalogCard-details{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    padding: 3px;
+}
+.--CatalogCard-details-shopIcon{
+    color: white;
+    font-size: 1.6rem;
+}
+.--CatalogCard-details-shopIcon:hover{
+    cursor: pointer;
+    color: rgb(255, 0, 234);
+    
+}
+.--CatalogCard-details-price{
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    align-items: center;
+}
+.--CatalogCard-details-price p{
+    color: white;
+    font-size: 1rem;
+
+}

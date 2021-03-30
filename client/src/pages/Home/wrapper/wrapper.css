@@ -6,6 +6,7 @@
     padding: 25px;
     overflow-y: hidden;
     overflow-x: scroll;
+    background-color: black;
     
 }
 .wrapper::-webkit-scrollbar{

@@ -1,9 +1,8 @@
 
 .Container {
     width: 100%;
-    height: 1080px;
+    height: auto;
     background-color: black;
-    background-size: cover;
     overflow-x: none;
 }
 .top-divider{
