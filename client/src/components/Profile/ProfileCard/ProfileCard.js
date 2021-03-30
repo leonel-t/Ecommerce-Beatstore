@@ -1,11 +1,8 @@
-import React, {useState} from "react"
-import profileImg from "../../../assets/images/profile-image.jpg"
-import sound from "../../../assets/audio/system-shut-down.mp3"
-
-//Internationalization
+import "./ProfileCard.css";
+import React, {useState} from "react";
+import profileImg from "../../../assets/images/profile-image.jpg";
+import sound from "../../../assets/audio/system-shut-down.mp3";
 import { withTranslation } from 'react-i18next';
-
-import "./ProfileCard.css"
 
 const ProfileCard = ({ t,name, email }) => {
 

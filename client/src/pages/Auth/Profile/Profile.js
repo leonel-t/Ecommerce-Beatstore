@@ -1,28 +1,16 @@
+import './Profile.css';
 import React, { useEffect } from 'react';
 import { connect } from 'react-redux';
-import { fetchUser } from '../../../stores/user/user.actions'
-import { useHistory } from 'react-router-dom'
-
-// import jwt from 'jsonwebtoken'
-
+import { fetchUser } from '../../../stores/user/user.actions';
+import { useHistory } from 'react-router-dom';
 import axios from 'axios';
 import ProfileCard from '../../../components/Profile/ProfileCard/ProfileCard';
 import TabUser from '../../../components/Profile/TabUser/TabUser';
-
-//Internationalization
 import { withTranslation } from 'react-i18next';
-
-import './Profile.css'
 
 const Profile = ({t, fetchUserEffect, STORE_USER }) => {
 
   const history = useHistory();
-
-  // var token= localStorage.getItem('token')
-  //   if(token){
-  //     var decoded = jwt.verify(token,'$2y$12$GeqnBZJiqMrX9ZN04N9KRe8XzNKLLiuUJ5oC1BYYE3WjRnRoB/HFW');
-  //   }
-  //   console.log(decoded)
 
   useEffect(() => {
     fetchUserEffect();
@@ -33,8 +21,7 @@ const Profile = ({t, fetchUserEffect, STORE_USER }) => {
     e.preventDefault()
     localStorage.clear()
     history.push("/login")
-  }
-
+  };
 
   function generateNewToken() {
     const options = {

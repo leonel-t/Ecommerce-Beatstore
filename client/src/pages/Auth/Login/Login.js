@@ -1,10 +1,10 @@
+import "./Login.css";
 import React, { useState } from 'react';
-import axios from 'axios'
+import axios from 'axios';
 import { Link, useHistory } from "react-router-dom";
-import "./Login.css"
-//Internationalization
 import { withTranslation } from 'react-i18next';
-
+import logoIcon from "../../../assets/images/icon-logo.png"
+import LoginGithubImg from "../../../assets/images/login/github-login.png"
 const Login = ({t}) => {
 
     const [input, setInput] = useState({
@@ -67,12 +67,20 @@ const Login = ({t}) => {
     return(
         <div className="--LoginCard">
             <div className="--LoginAllCard">
-            <h2 >{t("page.login.title")}</h2>
+                <div className="--login-logo">
+                    <div className="--login-logo-col">
+                        <img width="70px" height="60px" src={logoIcon} alt=""></img>
+                    </div>
+                    <div className="--login-logo-col">
+                    <h1>BeatStore</h1>
+                    </div>
+                </div>
             <form onSubmit={handleSubmit} className="--LoginCard-form">
                 <div className="--LoginCard-form-identification">
                     <p className="name">{t("page.login.emailTitle")}</p>
                     <input className="--LoginCard-form-input" 
                         type="email" 
+                       
                         placeholder={t("page.login.emailPlaceholder")}
                         name="email" 
                         required
@@ -91,8 +99,12 @@ const Login = ({t}) => {
                 </div>
                 <div className="--Submit-buttons">
                     <button type='submit'>{t("page.login.signinButton")}</button>
-                    <button id="github" onClick={loginGitHub} />
-                    <button id='google' onClick={loginGoogle} />
+             <div>
+                    <img width="200px" onClick={loginGitHub}  src={LoginGithubImg} alt="GitHub SingIn"></img>
+                    <img width="200px" onClick={loginGoogle} src={LoginGithubImg} alt="GitHub SingIn"></img>
+             </div>
+                    {/* <button id="github" onClick={loginGitHub} />
+                    <button id='google' onClick={loginGoogle} /> */}
                 </div>
 
             </form>

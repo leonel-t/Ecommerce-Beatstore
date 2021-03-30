@@ -24,7 +24,8 @@ const FilterGeneres = ({ t, categories, getProductsByGenreEffect }) => {
                 if (category.name !== "") {
                     return (
                         <button key={index} name={category.name}
-                            onClick={(e) => { handleGenere(e) }} >
+                            onClick={(e) => { handleGenere(e) }} 
+                            className='button-filter'>
                             {category.name}
                         </button>
                     )

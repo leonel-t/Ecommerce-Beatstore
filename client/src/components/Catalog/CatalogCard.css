@@ -1,40 +1,39 @@
 .--CatalogCard{
     display: flex;
     flex-direction: column;
-    width: 200px;
-    height: 270px;
-    padding: 5px;
+    width: 10em;
+    height: 14em;
+    padding: 0.5em;
 }
 .--CatalogCard-image img{
-    width: 200px;
-    height: 200px;
-    border-radius: 4px;
+    width: 10em;
+    height: 10em;
+    border-radius: 0.1em;
 }
 .--CatalogCard-info{
     display: flex;
     flex-direction: column;
-    max-width: 65%;
+    max-width: 60%;
 }
 .--CatalogCard-info p{
     margin: 0px;
 }
 .--CatalogCard-info-song{
     color: rgb(255, 255, 255);
-    font-size: 1.2rem;
+    font-size: 1rem;
 }
 .--CatalogCard-info-autor{
     color: rgb(126, 126, 126);
-    font-size: 0.7rem;
+    font-size: 0.6rem;
 }
 .--CatalogCard-link{
     text-decoration: none;
     color: rgb(255, 255, 255);
-    font-size: 1.2rem;
+    font-size: 1rem;
 }
 .--CatalogCard-link:hover{
     text-decoration: none;
     color: rgb(138, 3, 126);
-    font-size: 1.2rem;
 }
 .--CatalogCard-details{
     display: flex;
@@ -44,7 +43,7 @@
 }
 .--CatalogCard-details-shopIcon{
     color: white;
-    margin-top: 5px;
+    font-size: 1.6rem;
 }
 .--CatalogCard-details-shopIcon:hover{
     cursor: pointer;
@@ -59,7 +58,6 @@
 }
 .--CatalogCard-details-price p{
     color: white;
-    font-size: 0.8rem;
-    margin-right: 5px;
+    font-size: 1rem;
 
 }

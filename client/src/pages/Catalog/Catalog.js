@@ -14,14 +14,18 @@ const Catalog = ({ t, fetchAllProductsEffect, getCategoriesEffect, filter_PRODUC
     getCategoriesEffect();
   }, [fetchAllProductsEffect, getCategoriesEffect]);
 
+  const handleClick = (e) => {
+    e.preventDefault()
+    return fetchAllProductsEffect()
+  }
+
   return (
     <main className="catalog--main">
       <div className="catalog--main-row">
-        <div className="catalog--main-col-menu">
-          <div className="catalog--main-col-menu-box">
+        <div className="catalog--main-col-menu-box">
             <h2>{t("page.catalog.title")}</h2>
+            <button onClick={handleClick} className='button-filter'>All generes</button>
             <FilterGeneres />
-          </div>
         </div>
         <div className="catalog--main-col">
           {filter_PRODUCTS && filter_PRODUCTS.length >= 1 ? (
@@ -42,7 +46,9 @@ const Catalog = ({ t, fetchAllProductsEffect, getCategoriesEffect, filter_PRODUC
             <p>NO PRODUCTS IN DB</p>
           )}
         </div>
+        
       </div>
+      
     </main>
   );
 };
