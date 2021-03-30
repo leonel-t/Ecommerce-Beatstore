@@ -53,7 +53,7 @@ const ItemCard = ({deleteItemInCartEffect, t, cartForItemCard,user_store, id, im
             </div>
             <div
              className="--ItemCard-right">
-                <span>${price}</span>
+                <span className="--ItemCard-right-price">${price}</span>
                 <span  onClick={()=>handleDelete(id, false)}>
                   <i class="fas fa-trash-alt --ItemCard-deletItem"></i>
                 </span>
