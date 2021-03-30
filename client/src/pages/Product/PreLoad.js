@@ -18,7 +18,7 @@ const PreLoad = ({ fetchOneProductEffect }) => {
 
     return (
 
-        <h1>asd</h1>
+        <></>
 
     );
 };

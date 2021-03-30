@@ -36,11 +36,11 @@ export const fetchUser = () => {
           };
 
         axios.request(options).then(user => {
-                
+                 dispatch(getUserSuccess(user));
+                 localStorage.setItem('localCart', "[]");
                 setTimeout(()=>{
-                    dispatch(getUserSuccess(user));
                     dispatch(fetchCart({userState:true, id:user.data.user.id}));
-                },100);
+                },1000);
                 
             }).catch(error => {
                 dispatch(getUserFailure(error));
@@ -73,7 +73,26 @@ export const fetchCart = (user) => {
     return (dispatch) =>{
 
     if(user.userState){
-            
+
+       // let LocalCart = JSON.parse(localStorage.getItem('localCart'));
+
+        // if(LocalCart){
+
+        //     if(LocalCart.length > 0){
+
+        //         for (let i = 0; i < LocalCart.length; i++) {
+        //             console.log("ADD TIMENTS", LocalCart[i].product )
+        //             console.log("ADD ITEM USER",)
+        //             return async ()=>{
+        //                 await addItemToCart(user, LocalCart[i].product )
+        //             }
+                    
+        //         };
+
+               
+        //     }
+        // }
+       
         dispatch(getCartRequest());
 
             axios.get(`http://localhost:3001/order/user/${user.id}`)

@@ -48,19 +48,26 @@ const {
   Comment,
   Order,
   OrderLine,
+  Review
 } = sequelize.models;
 
-// Aca vendrian las relaciones
-// Product.hasMany(Reviews);
-Product.belongsToMany(Categories, { through: 'Products_Categories', as: 'categories' })
-Categories.belongsToMany(Product, { through: 'Products_Categories', as: 'products' })
-//
-Product.belongsToMany(Comment, { through: 'Products_Comments', as: 'comments' })
-Comment.belongsToMany(Product, { through: 'Products_Comments', as: 'comments' })
+// PRODUCTS CATEGORIES
+Product.belongsToMany(Categories, { through: 'Products_Categories', as: 'categories' });
+Categories.belongsToMany(Product, { through: 'Products_Categories', as: 'products' });
 
+// PRODUCTS REVIEWS
+Product.belongsToMany(Review, { through: 'Products_Reviews', as: 'reviews' });
+Review.belongsToMany(Product, { through: 'Products_Reviews', as: 'products' });
+
+// PRODUCTS COMMENTS
+Product.belongsToMany(Comment, { through: 'Products_Comments', as: 'comments' });
+Comment.belongsToMany(Product, { through: 'Products_Comments', as: 'comments' });
+
+// ORDER ORDERLINE
 Order.hasMany(OrderLine, { foreignKey: "orderId" });
 OrderLine.belongsTo(Order);
 
+//BEFORE CREATE QUERY
 User.beforeCreate(async (user) => {
   if (user.password_virtual) {
     const encryptPassword = await bcrypt.hash(user.password_virtual, 10);
