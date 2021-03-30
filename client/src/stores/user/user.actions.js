@@ -36,11 +36,11 @@ export const fetchUser = () => {
           };
 
         axios.request(options).then(user => {
-                
+                 dispatch(getUserSuccess(user));
+                 localStorage.setItem('localCart', "[]");
                 setTimeout(()=>{
-                    dispatch(getUserSuccess(user));
                     dispatch(fetchCart({userState:true, id:user.data.user.id}));
-                },100);
+                },1000);
                 
             }).catch(error => {
                 dispatch(getUserFailure(error));
@@ -67,25 +67,38 @@ export const getUserFailure = (error) =>{
     };
 }; 
 
-//GET CALCULATOR TOTAL PRICE
-export const getCalculator = () =>{
-    return {
-        type:GET_CALCULATOR_TOTAL_PRICE,
-    };
-}; 
-
 //GET CART
 export const fetchCart = (user) => {
 
     return (dispatch) =>{
 
     if(user.userState){
-            
+
+       // let LocalCart = JSON.parse(localStorage.getItem('localCart'));
+
+        // if(LocalCart){
+
+        //     if(LocalCart.length > 0){
+
+        //         for (let i = 0; i < LocalCart.length; i++) {
+        //             console.log("ADD TIMENTS", LocalCart[i].product )
+        //             console.log("ADD ITEM USER",)
+        //             return async ()=>{
+        //                 await addItemToCart(user, LocalCart[i].product )
+        //             }
+                    
+        //         };
+
+               
+        //     }
+        // }
+       
         dispatch(getCartRequest());
 
             axios.get(`http://localhost:3001/order/user/${user.id}`)
                 .then(cart => {
                     dispatch(getCartSuccess(user, cart.data[0]));
+                    dispatch(getCalculator())
                 })
                 .catch(error => {
                     dispatch(getCartFailure(error));
@@ -98,6 +111,7 @@ export const fetchCart = (user) => {
             }else{
                 localStorage.setItem('localCart', "[]");
             };
+            dispatch(getCalculator())
         };
     };
 };
@@ -218,17 +232,31 @@ export const addItemToCartFailure = (error) =>{
     };
 };
 
+//GET CALCULATOR TOTAL PRICE
+export const getCalculator = () =>{
+    return {
+        type:GET_CALCULATOR_TOTAL_PRICE,
+    };
+}; 
+
 //COUPON CODE----------------------------------------FALTA USER
-export const getDiscountCoupon = (code) => {
-    var user = {
-        state:true,
-        id:36580834
-      };
-    return (dispatch)=>{
-        dispatch(getDiscountCouponAction(code));
-        dispatch(fetchCart(user));
-    }
+export const getDiscountCoupon = (code, user) => {
+
+    if(user.userStatus){
+
+        return (dispatch)=>{
+            dispatch(getDiscountCouponAction(code));
+            dispatch(fetchCart(user));
+        };
+     }else{
+        return (dispatch)=>{
+            dispatch(getDiscountCouponAction(code));
+            dispatch(fetchCart(user));
+          };
+     }
+
 }
+
 export const getDiscountCouponAction = (code) =>{
     return {
         type: GET_DISCOUNT_COUPON,

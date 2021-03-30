@@ -1,61 +1,53 @@
+import "./Layouts.css";
 import React from 'react';
-import Logo from "../assets/images/logo.png"
-import "./Layouts.css"
-//Components
-import Header from "../components/Header/Header";
-import HomeHeader from "../components/Header/HomeHeader";
-import AdminHeader from "../components/Header/AdminHeader";
-import PagesFooter from '../components/Footer/PagesFooter.js';
+// import PagesFooter from '../components/Footer/PagesFooter.js';
 import AdminNav from '../pages/Admin/AdminNav/AdminNav';
-import { Link } from 'react-router-dom';
-// import FloatingCard from './components/FloatingCard/FloatingCard.js';
+import HeaderHome from '../components/Header/HeaderHome/HeaderHome';
+import HeaderAdmin from '../components/Header/HeaderAdmin/HeaderAdmin';
+import HeaderPages from '../components/Header/HeaderPages/HeaderPages';
 
 const HomeLayout = ({ children }) => {
-
-
     return (
         <div>
-            <HomeHeader></HomeHeader>
+            <HeaderHome></HeaderHome>
          
             {children}
-            <PagesFooter></PagesFooter>
         </div>
     )
-}
-
+};
 const PagesLayout = ({ children }) => {
     return (
         <div>
-            <Header></Header>
+            <HeaderPages></HeaderPages>
             <div className="page-layout-main">
                 {children}
             </div>
-            <PagesFooter></PagesFooter>
         </div>
     )
-}
-
+};
+const ProductLayout = ({ children }) => {
+    return (
+        <div>
+            <HeaderHome></HeaderHome>
+                {children}
+        </div>
+    )
+};
 const AdminLayout = ({ children }) => {
     return (
         <div>
-            <AdminHeader></AdminHeader>
+            <HeaderAdmin></HeaderAdmin>
             <AdminNav/>
             {children}
         </div>
     )
-}
-
+};
 const LoginLayout = ({ children }) => {
     return (
-        <div>
-            <div className="--Header-Login-Layout">
-                <Link to="/"><img src={Logo} alt="BeatShop" /></Link>
-            </div>
+        <div className="--Header-Login-bg">
             {children}
         </div>
     )
-}
+};
 
-
-
-export { HomeLayout, PagesLayout, LoginLayout, AdminLayout };
+export { HomeLayout, PagesLayout, LoginLayout, AdminLayout, ProductLayout };

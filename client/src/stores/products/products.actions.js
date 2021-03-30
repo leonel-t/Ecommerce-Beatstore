@@ -137,7 +137,6 @@ export const getOneProductFailure = (error) => {
 
 //ADD LIKE TO PRODUCT
 export const fetchAddLikeToProduct = (productId, likeNumber) => {
-    var idP = productId;
     return (dispatch) => {
         const options = {
             method: 'PUT',

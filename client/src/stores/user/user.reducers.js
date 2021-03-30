@@ -118,7 +118,7 @@ const userReducers = (state = initialState, action) =>{
             var total = 0;
             if(state.cart.length > 0){
                 for (let i = 0; i < state.cart.length; i++) {
-                       total = total +  parseInt(state.cart[i].price)               
+                       total = total +  parseInt(state.cart[i].product.price)               
                 }
             }
                 return {

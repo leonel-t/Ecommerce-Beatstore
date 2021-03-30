@@ -7,6 +7,7 @@ import {
   HomeLayout,
   LoginLayout,
   AdminLayout,
+  ProductLayout
 } from "./Layouts/Layouts";
 
 //Pages
@@ -16,8 +17,8 @@ import Catalog from "./pages/Catalog/Catalog.js";
 import Form from "./pages/Admin/AdminProducts/AddProduct";
 import PutForm from "./pages/Admin/AdminProducts/EditProduct";
 import Categories from "./pages/Admin/AdminCategories/AddCategories";
-import Login from "./pages/Login/Login.js";
-import Register from "./pages/Register/Register";
+import Login from "./pages/Auth/Login/Login.js";
+import Register from "./pages/Auth/Register/Register";
 import Results from "./pages/Home/Results/Results.js";
 import Cart from "./pages/Cart/Cart";
 import EditCategories from './pages/Admin/AdminCategories/EditCategories';
@@ -25,8 +26,8 @@ import Admin from './pages/Admin/Admin';
 import AdminListUsers from './pages/Admin/AdminListUsers/AdminListUsers';
 import ProductList from './pages/Admin/AdminProducts/ListProducts';
 
-import Profile from './pages/Auth/Profile'
-import LoginGithub from './pages/Login/LoginGithub'
+import Profile from './pages/Auth/Profile/Profile'
+import LoginGithub from './pages/Auth/Login/LoginGithub'
 import ListCategories from "./pages/Admin/AdminCategories/ListCategories";
 import './pages/Admin/AdminProducts/listProduct.css';
 import ResetPass from './components/LoginCard/ResetPass/ResetPass';
@@ -50,7 +51,7 @@ const App = () => {
           exact
           path="/product/:productId"
           component={Product}
-          layout={PagesLayout}
+          layout={ProductLayout}
         />
         <RouteWrapper exact path="/listproducts" component={ProductList} layout={AdminLayout} />
         <RouteWrapper exact path="/listcat" component={ListCategories} layout={AdminLayout} />
