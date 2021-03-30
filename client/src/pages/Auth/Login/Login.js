@@ -80,7 +80,6 @@ const Login = ({t}) => {
                     <p className="name">{t("page.login.emailTitle")}</p>
                     <input className="--LoginCard-form-input" 
                         type="email" 
-                       
                         placeholder={t("page.login.emailPlaceholder")}
                         name="email" 
                         required
@@ -99,10 +98,10 @@ const Login = ({t}) => {
                 </div>
                 <div className="--Submit-buttons">
                     <button type='submit'>{t("page.login.signinButton")}</button>
-             <div>
+                <div>
                     <img width="200px" onClick={loginGitHub}  src={LoginGithubImg} alt="GitHub SingIn"></img>
                     <img width="200px" onClick={loginGoogle} src={LoginGithubImg} alt="GitHub SingIn"></img>
-             </div>
+                </div>
                     {/* <button id="github" onClick={loginGitHub} />
                     <button id='google' onClick={loginGoogle} /> */}
                 </div>
@@ -111,7 +110,6 @@ const Login = ({t}) => {
             <div className="foot">
                 <Link to='/register' className='Link'>{t("page.login.dontAcount")}</Link>
                 <Link to ='/resetpass' className='Link'>Forgot your password?</Link>
-                <Link className="signup" to="/register">{t("page.login.signupButton")}</Link>  
             </div>
             </div>
         </div>

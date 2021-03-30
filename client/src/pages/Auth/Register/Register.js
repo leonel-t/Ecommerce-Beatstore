@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import "./Register.css"
 import axios from 'axios';
 import { Link, useHistory } from "react-router-dom";
+import logoIcon from "../../../assets/images/icon-logo.png";
 //Internationalization
 import { withTranslation } from 'react-i18next';
 
@@ -80,21 +81,28 @@ const Register = ({t}) => {
     return(
         <div className="--RegisterCard">
             <div className="--RegisterCardAll">
-                <h2>{t("page.register.title")}</h2>
+                <div className="--login-logo">
+                    <div className="--login-logo-col">
+                            <img width="70px" height="60px" src={logoIcon} alt=""></img>
+                    </div>
+                    <div className="--login-logo-col">
+                        <h1>BeatStore</h1>
+                    </div>
+                </div>
             <form onSubmit={handleSubmit} className="--RegisterCard-form">
-
                 <div className="--RegisterCard-form-email">
-                    <p className='--RegisterCard-title'>{t("page.register.emailTitle")}</p>
+                    <p className='name'>{t("page.register.emailTitle")}</p>
                     <input className="--RegisterCard-form-input" 
                         type="text" 
                         placeholder={t("page.register.emailPlaceholder")}
                         name="email" 
                         onChange={handleInputChange} 
-                        value={input.email}/>
+                        value={input.email}
+                        required/>
                     
                     {errors.email && errors.email === 'email aready exist'
                     ?
-                    (<p className="danger">{errors.email}</p> ):
+                    (<p className="alert alert-danger">{errors.email}</p> ):
                     (
                       <p>  </p>
                     )
@@ -102,27 +110,29 @@ const Register = ({t}) => {
                 </div>
 
                 <div className="--RegisterCard-form-username">
-                    <p className='--RegisterCard-title'>{t("page.register.usernameTitle")}</p>
+                    <p className='name'>{t("page.register.usernameTitle")}</p>
                     <input className="--RegisterCard-form-input" 
                         type="text" 
                         placeholder={t("page.register.usernamePlaceholder")}
                         name="username" 
                         onChange={handleInputChange} 
-                        value={input.username}/>
+                        value={input.username}
+                        required/>
                         {/* {errors.username && <p className="danger">{errors.username}</p>} */}
                 </div>
                 <div className="--RegisterCard-form-password">
-                    <p className='--RegisterCard-title'>{t("page.register.passwordTitle")}</p>
+                    <p className='name'>{t("page.register.passwordTitle")}</p>
                     <input className="--RegisterCard-form-input" 
                         type="password" 
                         placeholder={t("page.register.passwordPlaceholder")}
                         name="password" 
                         onChange={handleInputChange} 
-                        value={input.password}/>
+                        value={input.password}
+                        required/>
 
                     {errors.password && errors.password === 'invalid password'
                     ?
-                    (<p className="danger">{errors.password}</p> ):
+                    (<p className="alert alert-danger">{errors.password}</p> ):
                     (
                       <p>  </p>
                     )
@@ -130,7 +140,7 @@ const Register = ({t}) => {
                     
                 </div>
                 <div className="--RegisterCard-form-password-repeat">
-                    <p className='--RegisterCard-title'>{t("page.register.confirmPasswordTitle")}</p>
+                    <p className='name'>{t("page.register.confirmPasswordTitle")}</p>
                     <input className="--RegisterCard-form-input" type="password" placeholder={t("page.register.confirmPasswordPlaceholder")}
                         name="confirmPassword" onChange={handleInputChange} value={input.confirmPassword}/>
                 </div>
@@ -138,7 +148,6 @@ const Register = ({t}) => {
             </form>
             <div className="foots">
                 <Link to='/login' className='Link'>{t("page.register.haveAcount")}</Link>
-                <Link className="signups" to="/login">{t("page.register.signinButton")}</Link>
             </div>
             </div>
             

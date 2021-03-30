@@ -1,7 +1,8 @@
 .--LoginCard{
     width: 100%;
     display: flex;
-    margin-top: 15px;
+    margin-top: 30px;
+    margin-bottom: 30px;
 }
 .--LoginAllCard{
     width: 90%;
@@ -59,7 +60,8 @@
 }
 .--LoginAllCard h2{
     text-align: center;
-    color: rgb(141, 129, 129);
+    font-family: "Goldman";
+    color: white;
     text-shadow: 0px 0px 5px rgb(70, 10, 139);
 
 }
@@ -119,7 +121,7 @@
 }
 
 .--Submit-buttons button{
-    width: 50%;
+    width: 60%;
     height: 45px;
     font-size: 1.3rem;
     margin: 5px 1px 5px ;
@@ -127,6 +129,8 @@
     background: linear-gradient(45deg, rgb(71, 8, 87), rgb(136, 18, 128));
     border: 1px solid rgb(81, 7, 141);
     border-radius: 5px;
+    margin-top:20px;
+    margin-bottom:15px;
     cursor:pointer;
     color: white;
     outline: none;
@@ -160,6 +164,7 @@
 .foot{
     width: 100%;
     text-align: center;
+    justify-content:center;
     margin: 10px 0px ;
     display: flex;
     flex-direction: column;
@@ -173,15 +178,4 @@
     text-shadow: 0px 0px 5px rgb(70, 10, 139);
     text-decoration: none;
     padding-bottom: 5px;
-}
-.signup{
-    width:40%;  
-    text-decoration: none;
-    color:white;
-    border: 2px solid rgb(70, 10, 139);
-    border-radius: 5px;
-    padding: 3px;
-    margin-top:8px;
-    padding-bottom: 8px;
-
 }
