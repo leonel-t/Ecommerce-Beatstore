@@ -2,11 +2,14 @@ import React from 'react';
 import Logo from "../assets/images/logo.png"
 import "./Layouts.css"
 //Components
-import Header from "../components/Header/Header";
-import HomeHeader from "../components/Header/HomeHeader";
-import AdminHeader from "../components/Header/AdminHeader";
+//import Header from "../components/Header/Header";
+//import HomeHeader from "../components/Header/HomeHeader";
+//import AdminHeader from "../components/Header/AdminHeader";
 import PagesFooter from '../components/Footer/PagesFooter.js';
 import AdminNav from '../pages/Admin/AdminNav/AdminNav';
+import HeaderHome from '../components/Header/HeaderHome/HeaderHome';
+import HeaderAdmin from '../components/Header/HeaderAdmin/HeaderAdmin';
+import HeaderPages from '../components/Header/HeaderPages/HeaderPages';
 import { Link } from 'react-router-dom';
 // import FloatingCard from './components/FloatingCard/FloatingCard.js';
 
@@ -15,10 +18,9 @@ const HomeLayout = ({ children }) => {
 
     return (
         <div>
-            <HomeHeader></HomeHeader>
+            <HeaderHome></HeaderHome>
          
             {children}
-            <PagesFooter></PagesFooter>
         </div>
     )
 }
@@ -26,7 +28,7 @@ const HomeLayout = ({ children }) => {
 const PagesLayout = ({ children }) => {
     return (
         <div>
-            <Header></Header>
+            <HeaderPages></HeaderPages>
             <div className="page-layout-main">
                 {children}
             </div>
@@ -37,7 +39,7 @@ const PagesLayout = ({ children }) => {
 const ProductLayout = ({ children }) => {
     return (
         <div>
-            <Header></Header>
+            <HeaderHome></HeaderHome>
                 {children}
         </div>
     )
@@ -46,7 +48,7 @@ const ProductLayout = ({ children }) => {
 const AdminLayout = ({ children }) => {
     return (
         <div>
-            <AdminHeader></AdminHeader>
+            <HeaderAdmin></HeaderAdmin>
             <AdminNav/>
             {children}
         </div>

@@ -1,0 +1,135 @@
+.--suscriptions-main{
+    display: flex;
+    flex-direction: row;
+    width: 95%;
+    min-height: 500px;
+    height: 500px;
+    background-color: rgb(119, 8, 129);
+    margin: auto;
+    border-radius: 10px;
+    justify-content: center;
+    padding: 2em;
+}
+
+.--suscriptions-main-h2{
+    color: antiquewhite;
+    font-family: "Goldman";
+    padding-left: 15px;
+    font-size: 2rem;
+}
+
+.--suscriptions-main--col{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-around;
+    width: 21vw;
+    min-height: 400px;
+    margin: 5px;
+    background-color: rgb(32, 31, 32);
+    border-radius: 15px;
+    box-shadow: 0px 0px 10px rgb(81, 10, 146);
+}
+.--suscriptions-main--col img{
+    filter: invert(100);
+}
+
+.--suscriptions-main--col ul{
+    color: aliceblue;
+    font-size: 0.8rem;
+    font-family: "Goldman";
+    padding: 0;
+   
+}
+.--suscriptions-main--col ul li{
+   padding: 0; 
+   text-align: justify;
+}
+.--suscriptions-main--col h3{
+    color: antiquewhite;
+    font-size: 1.5rem;
+    margin-left: auto;
+    margin-right: auto;
+    font-family: "Oxanium";
+}
+
+.--suscriptions-main--col:hover{
+    margin-top: 0.1em;
+    margin-bottom: 1em;
+    box-shadow: 2px 2px 10px rgb(28, 3, 51);
+    background-color: rgb(17, 45, 78);
+    transition: all 0.5s ease;
+    
+}
+
+.--suscription--button{ 
+    position: sticky;
+    width: 95%;
+    margin-left: auto;
+    margin-right: auto;
+    min-height: 50px;
+    background-color: rgb(17, 65, 119);
+    color: aliceblue;
+    outline: none;
+    border: none;
+    border-radius: 10px;
+    bottom: 2px;
+
+}
+.--suscriptions-main--col:hover button{ 
+    background-color: rgb(119, 8, 129);
+    cursor: pointer;
+}
+
+@media(max-width: "1200px"){
+    .--suscriptions-main{
+        display: flex;
+        flex-direction: column;
+        width: 95%;
+        min-height: 800px;
+        // height: 500px;
+        // background-color: rgb(119, 8, 129);
+        // margin: auto;
+        // border-radius: 10px;
+        // justify-content: center;
+        // padding: 2em;
+    }
+    .--suscriptions-main--col{
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        justify-content: space-around;
+        width: 95%;
+        min-height: 200px;
+        margin: 5px;
+        background-color: rgb(32, 31, 32);
+        border-radius: 15px;
+        box-shadow: 0px 0px 10px rgb(81, 10, 146);
+    }
+    .--suscription--button{ 
+        width: 20%;
+        min-height: 150px;
+        background-color: rgb(17, 65, 119);
+        font-size: 1.5rem;
+        color: aliceblue;
+        outline: none;
+        border: none;
+        border-radius: 10px;
+        right: 2px;
+    
+    }
+    .--suscriptions-main--col img{
+        filter: invert(100);
+        margin-right: 25px;
+    }
+    
+    .--suscriptions-main--col ul{
+        color: aliceblue;
+        font-size: 0.8rem;
+        font-family: "Goldman";       
+    }
+    .--suscriptions-main--col ul li{
+        padding: 2px; 
+        text-align: justify;
+     }
+}

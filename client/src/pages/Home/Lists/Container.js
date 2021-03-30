@@ -5,6 +5,9 @@ import Wrapper from "../wrapper/Wrapper"
 import ColorCard from '../ScrollBox/ColorCard';
 import ScrollBox from '../ScrollBox/ScrollBox';
 
+//COMPONENTS
+import Suscriptions from '../../../components/Home/Suscriptions/Suscriptions';
+import AdsBanner from '../../../components/Home/AdsBanner/AdsBanner';
 //Internationalization
 import { withTranslation } from 'react-i18next';
 
@@ -30,6 +33,7 @@ const Container = ({t, STORE_PRODUCTS}) => {
                 }
                 <h2>{t('page.home.sliders.3')}</h2>
                 <Wrapper/>
+                <Suscriptions></Suscriptions>
                 <h2>{t('page.home.sliders.4')}</h2>
                 {STORE_PRODUCTS && STORE_PRODUCTS.length > 0
                     ?( 
@@ -77,6 +81,7 @@ const Container = ({t, STORE_PRODUCTS}) => {
                 }
                 <h1>{t('page.home.sliders.1')}</h1>
                 <Wrapper/>
+                <AdsBanner></AdsBanner>
                 <div className="divider"></div>
         </div>
         )
