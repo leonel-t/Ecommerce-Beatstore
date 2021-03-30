@@ -7,16 +7,16 @@ import Logo from '../../../assets/images/icon-logo.png'
 //Route
 import {Link} from 'react-router-dom'
 //Internationalization
-import i18n from '../../../i18n';
+//import i18n from '../../../i18n';
 import { withTranslation } from 'react-i18next';
 //CSS
 import './header-home.scss';
 
 const HeaderHome = ({fetchUserEffect, STORE_CART, STORE_USER}) =>{
 
-    const changeLanguage = (lng) => {
-        i18n.changeLanguage(lng);
-      } 
+    // const changeLanguage = (lng) => {
+    //     i18n.changeLanguage(lng);
+    //   } 
 
 
 

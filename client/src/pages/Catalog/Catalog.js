@@ -2,9 +2,9 @@ import "./Catalog.css";
 import React, { useEffect } from "react";
 import { connect } from "react-redux";
 import { getProductsByCategories, filterbyGenre, fetchAllProducts } from "../../stores/products/products.actions";
-import CatalogCard from "../../components/Product/Catalog/CatalogCard";
+import CatalogCard from "../../components/Catalog/CatalogCard";
 import { fetchAllCategories } from '../../stores/admin/admin.actions';
-import SearchBar from "./SearchBar";
+import FilterGeneres from "./FilterGeneres";
 import { withTranslation } from 'react-i18next';
 
 const Catalog = ({ t, fetchAllProductsEffect, getCategoriesEffect, filter_PRODUCTS }) => {
@@ -20,7 +20,7 @@ const Catalog = ({ t, fetchAllProductsEffect, getCategoriesEffect, filter_PRODUC
         <div className="catalog--main-col-menu">
           <div className="catalog--main-col-menu-box">
             <h2>{t("page.catalog.title")}</h2>
-            <SearchBar />
+            <FilterGeneres />
           </div>
         </div>
         <div className="catalog--main-col">

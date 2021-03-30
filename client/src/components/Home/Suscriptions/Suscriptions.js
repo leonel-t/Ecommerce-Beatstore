@@ -25,7 +25,7 @@ const Suscriptions = ()=>{
                     <li>Accept Stripe payments</li>
                    
                 </ul>
-                <button className="--suscription--button">Suscribe</button>
+                <button className="--suscription--button btn-fix">Suscribe</button>
             </div>
             <div className="--suscriptions-main--col">
                 <h3>Monkey Suscription</h3>
