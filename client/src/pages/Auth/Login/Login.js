@@ -69,10 +69,14 @@ const Login = ({t}) => {
             <div className="--LoginAllCard">
                 <div className="--login-logo">
                     <div className="--login-logo-col">
-                        <img width="70px" height="60px" src={logoIcon} alt=""></img>
+                        <Link className="--login-logo-col-link" to='/'>
+                            <img width="60px" height="50px" src={logoIcon} alt=""></img>
+                        </Link>
                     </div>
                     <div className="--login-logo-col">
-                    <h1>BeatStore</h1>
+                        <Link className="--login-logo-col-link" to='/'>
+                            <h1>BeatStore</h1>
+                        </Link>
                     </div>
                 </div>
             <form onSubmit={handleSubmit} className="--LoginCard-form">
@@ -80,7 +84,7 @@ const Login = ({t}) => {
                     <p className="name">{t("page.login.emailTitle")}</p>
                     <input className="--LoginCard-form-input" 
                         type="email" 
-                       
+                        autocomplete="on"
                         placeholder={t("page.login.emailPlaceholder")}
                         name="email" 
                         required
@@ -97,21 +101,17 @@ const Login = ({t}) => {
                         onChange={handleInputChange} 
                         value={input.password}/>
                 </div>
-                <div className="--Submit-buttons">
-                    <button type='submit'>{t("page.login.signinButton")}</button>
-             <div>
-                    <img width="200px" onClick={loginGitHub}  src={LoginGithubImg} alt="GitHub SingIn"></img>
-                    <img width="200px" onClick={loginGoogle} src={LoginGithubImg} alt="GitHub SingIn"></img>
-             </div>
-                    {/* <button id="github" onClick={loginGitHub} />
-                    <button id='google' onClick={loginGoogle} /> */}
+                <div className="--Submit--buttons">
+                    <button id='normal' type='submit'>{t("page.login.signinButton")}</button>
+                    <button id="github" onClick={loginGitHub}> Github </button>
+                    <button id='google' onClick={loginGoogle}> Google </button>
                 </div>
 
             </form>
             <div className="foot">
-                <Link to='/register' className='Link'>{t("page.login.dontAcount")}</Link>
-                <Link to ='/resetpass' className='Link'>Forgot your password?</Link>
-                <Link className="signup" to="/register">{t("page.login.signupButton")}</Link>  
+                <Link to='/register' className='Link-footer'>{t("page.login.dontAcount")}</Link>
+                <Link to ='/resetpass' className='Link-footer'>Forgot your password?</Link>
+                <Link className="signup--footer" to="/register">{t("page.login.signupButton")}</Link>  
             </div>
             </div>
         </div>
