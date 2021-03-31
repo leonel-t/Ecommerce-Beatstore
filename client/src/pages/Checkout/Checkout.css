@@ -1,11 +1,8 @@
 .--Checkout{
     display: flex;
     flex-direction: column;
-    border: 1px solid white;
-    width: 180vh;
-    height: 80vh;
-    margin: 10px;
-    padding: 10px;
+    margin-top: 130px;
+    align-items: center;
 }
 .--Checkout p{
     color: white;
@@ -16,21 +13,71 @@
     justify-content: center;
 }
 .--Checkout-tab p{
+    color: white;
     padding: 5px 10px;
     margin: 5px;
-    border: 1px solid rgb(231, 18, 18);
+    height: 35px;
+    border: 2px solid rgb(212, 0, 255);
+    border-radius: 16px;
+    cursor: pointer;
 }
-.--Checkout-tab-active{}
-.--Checkout-tab-inactive{}
+.--Checkout-tab p:hover{
+    background-color: rgba(212, 0, 255, 0.411);
+}
+.--Checkout-tab p:active{
+    background-color: rgb(81, 18, 153);
+}
+
 .--Checkout-content{
     display: flex;
     flex-direction: column;
-    justify-content: center;
+    margin-top: 30px;
+    width: 50%;
+}
+.--Checkout-content-billing{
+    display: flex;
+    flex-direction: column;
+}
+.--Checkout-content-billing-items{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+.--Checkout-content-billing button{
+    height: 38px;
+    margin: 10px;
+    padding: 0px 12px;
+    background: linear-gradient(45deg, rgb(234, 50, 111), rgb(145, 27, 137));
+    border: 1px solid black;
+    border-radius: 5px;
+    outline: none;
+    box-shadow: -2px 1px 4px rgb(19 19 19);
+    cursor: pointer;
+    color: white;
+}
+.--Checkout-content-billing button:hover{
+    background: linear-gradient(225deg, rgb(234, 50, 111), rgb(145, 27, 137));
+    color: rgb(223, 223, 223);
+}
+.--Checkout-content-billing button:active{
+    background: linear-gradient(45deg, rgba(234, 50, 111, 0.5), rgba(145, 27, 137, 0.5));
+    box-shadow: none;
+    color: rgb(126, 126, 126);
 }
 .--Checkout-content-billing label{
     color: white;
+    margin: 10px;
 }
-.--Checkout-content-active{}
+.--Checkout-content-billing input{
+    margin: 5px;
+    height: 36px;
+    width: 300px;
+    padding-left: 15px;
+    border-radius: 18px;
+    color: white;
+    background-color: rgba(137, 43, 226, 0.185);
+    border: 1px solid blueviolet;
+}
 .--Checkout-content-inactive{
     display: none;
 }

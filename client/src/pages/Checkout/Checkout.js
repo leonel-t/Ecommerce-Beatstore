@@ -53,29 +53,29 @@ const Checkout = () => {
                 <div
                     className={method ? "--Checkout-tab-active" : "--Checkout-tab-inactive"}
                     onClick={handleClick(method ? "" : "method")}>
-                    <p>payment method</p>
+                    <p>Payment method</p>
                 </div>
                 <div
                     className={payout ? "--Checkout-tab-active" : "--Checkout-tab-inactive"}
                     onClick={handleClick(payout ? "" : "payout")}>
-                    <p>payment</p>
+                    <p>Payment</p>
                 </div>
                 <div
                     className={done ? "--Checkout-tab-active" : "--Checkout-tab-inactive"}
                     onClick={handleClick(done ? "" : "done")}>
-                    <p>purchase completed</p>
+                    <p>Purchase completed</p>
                 </div>
             </div>
             <div className="--Checkout-content">
                 <div className={billing ? "--Checkout-content-active" : "--Checkout-content-inactive"}>
                     <form className="--Checkout-content-billing">
-                        <div><label>first name</label><input/></div>
-                        <div><label>last name</label><input/></div>
-                        <div><label>country</label><input/></div>
-                        <div><label>city</label><input/></div>
-                        <div><label>address</label><input/></div>
-                        <div><label>zip code</label><input/></div>
-                        <button>next</button>
+                        <div className="--Checkout-content-billing-items"><label>First name</label><input/></div>
+                        <div className="--Checkout-content-billing-items"><label>Last name</label><input/></div>
+                        <div className="--Checkout-content-billing-items"><label>Country</label><input/></div>
+                        <div className="--Checkout-content-billing-items"><label>City</label><input/></div>
+                        <div className="--Checkout-content-billing-items"><label>Address</label><input/></div>
+                        <div className="--Checkout-content-billing-items"><label>Zip code</label><input/></div>
+                        <button>Next</button>
                     </form>
                 </div>
                 <div className={method ? "--Checkout-content-active" : "--Checkout-content-inactive"}>
