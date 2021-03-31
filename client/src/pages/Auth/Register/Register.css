@@ -1,38 +1,35 @@
 .--RegisterCard{
-    margin-top: 3%;
     width: 100%;
     display: flex;
+    margin-top: 30px;
+    margin-bottom: 30px;
 }
-.--RegisterCard h2{
-    font-size: 1.2em;
+.--RegisterCardAll h2{
     text-align: center;
     color: rgb(141, 129, 129);
     text-shadow: 0px 0px 5px rgb(70, 10, 139);
 }
 
 .--RegisterCardAll{
-    width: 30%;
-    background-color: rgba(22, 22, 22, 1);
+    width: 90%;
+    background-color: rgba(86, 9, 175, 0.527);
     border-radius: 10px;    
     box-shadow: 0px 0px 10px rgb(137, 76, 206);
     margin-left: auto;
     margin-right: auto;
+    padding-bottom: 30px;
 }
 
 .--RegisterCard-form{
-    width: 60%;
-    margin-left: auto;
-    margin-right: auto;
+    width: 75%;
+    margin-left: 50%;
+    transform: translateX(-50%);
     text-align: center;
-}
-.--RegisterCard-title{
-    margin: 5px;
-    color: white;
-    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+    font-size: 1.1em;
 }
 .--RegisterCard-form-input{
     width: 100%;
-    height: 30px;
+    height: 40px;
     margin-bottom: 0px;
     font-size: 12px;
     color: white;
@@ -57,17 +54,20 @@
 }
 
 .--RegisterCard-form button{
-    width: 90%;
-    height: 35px;
-    font-size: 0.9em;
-    margin: 20px 1px 5px ;
+    width: 60%;
+    height: 45px;
+    font-size: 1.3rem;
+    margin: 5px 1px 5px ;
     padding: 0px 12px;
     background: linear-gradient(45deg, rgb(71, 8, 87), rgb(136, 18, 128));
-    border: 1px solid black;
+    border: 1px solid rgb(81, 7, 141);
     border-radius: 5px;
+    margin-top:20px;
+    margin-bottom:5px;
     cursor:pointer;
     color: white;
-    font-family:-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+    outline: none;
+    font-family: "Goldman";
 }
 .--RegisterCard-form button:hover{
     background: linear-gradient(45deg, rgb(45, 9, 55), rgb(87, 20, 82));

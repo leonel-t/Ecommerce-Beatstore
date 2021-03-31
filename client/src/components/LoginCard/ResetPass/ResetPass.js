@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import emailjs from 'emailjs-com';
 import { Link } from 'react-router-dom';
+import logoIcon from "../../../assets/images/icon-logo.png";
 import './ResetPass.css';
 import axios from 'axios';
 
@@ -50,16 +51,27 @@ const ResetPass = () => {
     }
     
     return( 
-        <div className="--ResetPass">
-            <h2 className='--RPLabel' >To reset your password,</h2>
-            <h2 className='--RPLabel' > we will send you a code to your mail inbox.</h2>
+        <div className="--LoginCard">
+          <div className="--LoginAllCard">
+            <div className="--login-logo">
+                  <div className="--login-logo-col">
+                      <img width="70px" height="60px" src={logoIcon} alt=""></img>
+                  </div>
+                  <div className="--login-logo-col">
+                  <h1>BeatStore</h1>
+                  </div>
+            </div>
+            <h2>To reset your password,</h2>
+            <h2> we will send you a code to your mail inbox.</h2>
             <form className="--ResetPass" onSubmit={sendEmail}>
-                <input type="hidden" name="contact_number" />
-                <label className='--RPLabel'>Email</label>
-                <input className='--RPInput' onChange={handleInputChange} type="email" name="email" />
-                <input clasName='--RPButton' type="submit" value="Send" />
+              <label className='name'>Email</label>
+              <input placeholder='Type your Email' className="--RPInput" onChange={handleInputChange} type="email" name="email" required/>
+              <div className="--RPButtons">
+                <button type='submit'>Send Code</button>
+              </div>
             </form>
-              <Link className='Link' to='/inscode'>Already have the Code?</Link>
+            <Link className='Link' to='/inscode'>Already have the Code?</Link>
+          </div>
         </div>
     )
 }

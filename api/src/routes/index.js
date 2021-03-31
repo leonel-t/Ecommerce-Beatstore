@@ -16,7 +16,7 @@ const deleteUserRouter = require("./users/delete.users");
 const resetPassUserRouter = require("./users/resetPass.users")
 
 const githubRouter = require("./githubRoute");
-
+const stripeRouter = require("./stripeRoute")
 const getOrder = require("./order/get.order");
 const postOrder = require("./order/post.order");
 const putOrder = require("./order/put.order");
@@ -70,5 +70,6 @@ router.use("/users", resetPassUserRouter);
 
 router.use("/", promoteRouter);
 router.use("/", githubRouter);
+router.use("/", stripeRouter);
 
 module.exports = router;
