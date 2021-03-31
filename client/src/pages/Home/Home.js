@@ -1,11 +1,11 @@
 import React  from 'react';
 import { connect } from 'react-redux';
 import MiddleSearchBar from './MiddleSearchBar/MiddleSearchBar.js';
-import Container from "./Lists/Container"
-import MusicPlayer from "../../components/musicPlayer/MusicPlayer"
+import Container from "./Lists/Container";
+import MusicPlayer from "../../components/musicPlayer/MusicPlayer";
 import BgVideo from "../../components/Home/BgVideo/BgVideo";
-import deadmau from "../../assets/audio/deadmau5-not-exactly.mp3"
-import imagemau from "../../assets/images/player/352704-admin.jpg"
+import deadmau from "../../assets/audio/feli-music.mp3";
+import imagemau from "../../assets/images/feli-music.png";
 
 const Home = ({STORE_PRODUCTS}) =>{
 
