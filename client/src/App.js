@@ -1,5 +1,6 @@
 import React from "react";
 import { BrowserRouter, Route, Switch } from "react-router-dom";
+import { loadStripe } from "@stripe/stripe-js";
 
 //Layouts
 import {
@@ -25,13 +26,13 @@ import EditCategories from './pages/Admin/AdminCategories/EditCategories';
 import Admin from './pages/Admin/Admin';
 import AdminListUsers from './pages/Admin/AdminListUsers/AdminListUsers';
 import ProductList from './pages/Admin/AdminProducts/ListProducts';
-
 import Profile from './pages/Auth/Profile/Profile'
 import LoginGithub from './pages/Auth/Login/LoginGithub'
 import ListCategories from "./pages/Admin/AdminCategories/ListCategories";
 import './pages/Admin/AdminProducts/listProduct.css';
 import ResetPass from './components/LoginCard/ResetPass/ResetPass';
 import InsCode from './components/LoginCard/ResetPass/InsCode';
+import CheckoutPay from './pages/CheckoutPay/CheckoutPay';
 
 
 
@@ -53,6 +54,7 @@ const App = () => {
           component={Product}
           layout={ProductLayout}
         />
+        <RouteWrapper exact path="/payment" component={CheckoutPay} layout={CheckoutPay} />
         <RouteWrapper exact path="/listproducts" component={ProductList} layout={AdminLayout} />
         <RouteWrapper exact path="/listcat" component={ListCategories} layout={AdminLayout} />
         <RouteWrapper exact path="/editCat/:idCat/:name/:description" component={EditCategories} layout={AdminLayout} />
@@ -76,16 +78,16 @@ const App = () => {
 };
 function RouteWrapper({ component: Component, layout: Layout, ...rest }) {
 
-  
+
   return (
-      <Route
-        {...rest}
-        render={(props) => (
-          <Layout {...props}>
-            <Component {...props} />
-          </Layout>
-        )}
-      />
+    <Route
+      {...rest}
+      render={(props) => (
+        <Layout {...props}>
+          <Component {...props} />
+        </Layout>
+      )}
+    />
   );
 }
 export default App;
