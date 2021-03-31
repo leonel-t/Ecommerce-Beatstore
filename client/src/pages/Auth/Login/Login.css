@@ -146,6 +146,7 @@
 .foot{
     width: 100%;
     text-align: center;
+    justify-content:center;
     margin: 10px 0px ;
     display: flex;
     flex-direction: column;
@@ -197,4 +198,5 @@
     .--LoginAllCard{
         width: 90%;
     }
+
 }

@@ -10,7 +10,24 @@
 .--Cart-items{
     display: flex;
     flex-direction: column;
-    width: 70%;
+    width: 60%;
+    margin-right: auto;
+}
+@media(max-width:1280px){
+    .--Cart-items{
+        display: flex;
+        flex-direction: column;
+        width: 100%;
+        margin-left: auto;
+        margin-right: auto;
+    }
+
+}
+@media(max-width:800px){
+    .--Cart-items{
+        margin-top: 130px;
+    }
+
 }
 .--Cart-items h1{
     color: white;

@@ -1,0 +1,16 @@
+.card-checkout{
+    background-color: rgb(39, 39, 39);
+border-radius: 5px;
+border-color: rgb(255, 34, 34);
+border-width: 4px;
+}
+.card-checkout button{
+    background: blueviolet;
+}
+.container-checkout{
+    display: flex;
+    color: white;
+    justify-content: center;
+background-color: black;
+height: 100%;
+}

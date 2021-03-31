@@ -1,5 +1,5 @@
 const server = require("express").Router();
-const {addCode, resetPass} = require("../../controllers/users/resetPass.users");
+const { addCode } = require("../../controllers/users/resetPass.users");
 module.exports = server;
 
 server.post('/resetcode',(req, res, next) => {

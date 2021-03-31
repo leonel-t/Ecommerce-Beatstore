@@ -84,7 +84,6 @@ const Login = ({t}) => {
                     <p className="name">{t("page.login.emailTitle")}</p>
                     <input className="--LoginCard-form-input" 
                         type="email" 
-                        autocomplete="on"
                         placeholder={t("page.login.emailPlaceholder")}
                         name="email" 
                         required
