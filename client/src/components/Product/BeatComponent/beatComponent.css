@@ -20,7 +20,11 @@
         );
     
 }
-
+.spinnerLoading{
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 25%;
+}
 .beatComponent--main-row{
     display:flex;
     flex-direction:column;
@@ -166,6 +170,12 @@
     margin-left: 10px;
     cursor: pointer;
 }
+.finger-up2{
+    color: blue;
+    font-size: 3rem;
+    margin-left: 10px;
+    cursor: pointer;
+}
 .beatComponent--main-beatActions-col-cat{
     margin: 6px;
     padding: 6px;
@@ -179,7 +189,15 @@
     align-self:center;
 }
 .product-likes2 p{
-    font-size: 1.3rem;
+    font-size: 1rem;
+    padding: 0.5em;
+}
+.likes-numbers{
+    padding: 0.5em;
+    background-color: brown;
+    color: white;
+    font-size: 1rem;
+    border-radius: 1em;
 }
 .product-likes{
     align-self:center;

@@ -1,6 +1,6 @@
 import React, { useState } from "react";
-import "bootswatch/dist/lux/bootstrap.min.css";
-import './checkoutPay.css';
+// import "bootswatch/dist/lux/bootstrap.min.css";
+// import './checkoutPay.css';
 import { loadStripe } from "@stripe/stripe-js";
 import {
     Elements,
