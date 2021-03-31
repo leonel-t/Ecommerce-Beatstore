@@ -33,28 +33,15 @@
 }
 @media(max-width:990px){
     .--ads-banner-main{
-        display: flex;
-        flex-direction: column;
-        justify-content: center;
         width: 75%;
-        background: url("../../../assets/images/Banners/home-banner.jpg");
-        background-position: cover;
-        border-radius: 10px;
         margin-left: 20%;
         transform: translateX(-20%);
     }
     .--ads-banner-main-p{
         width: 90%;
-        height: auto;
         margin-left: auto;
         margin-right: auto;
-        padding: 20px;
         font-size: 1.3rem;
-        color: aliceblue;
-        word-wrap: break-word;
-        background-color: rgba(86, 9, 175, 0.527);
-        border-radius: 10px;
-        backdrop-filter: blur(10px);
     }
     
 }
