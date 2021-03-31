@@ -11,6 +11,7 @@ import {
     POST_COMMENT_REQUEST,
     POST_COMMENT_SUCCESS,
     POST_COMMENT_FAILURE,
+    GET_LIKES_PRODUCT_SUCCESS,
     GET_PRODUCTS_BY_CATEGORY,
     FILTER_BY_GENRE
 } from '../products/products.actions';
@@ -23,7 +24,8 @@ let initialState = {
     Error: '',
     LoadingComment: false,
     productCategories: [],
-    productFilter: []
+    productFilter: [],
+    products_likes: 0
 }
 
 const productsReducers = (state = initialState, action) => {
@@ -45,6 +47,12 @@ const productsReducers = (state = initialState, action) => {
                 products: action.payload,
                 productFilter: action.payload
             }
+            case GET_LIKES_PRODUCT_SUCCESS:
+                return {
+                    ...state,
+                    products_likes: action.payload,
+                }
+
         case GET_ALL_PRODUCTS_FAILURE:
             return {
                 ...state,

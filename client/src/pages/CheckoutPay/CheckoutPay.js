@@ -1,5 +1,4 @@
 import React, { useState } from "react";
-import './checkoutPay.css';
 import { loadStripe } from "@stripe/stripe-js";
 import {
     Elements,
@@ -16,8 +15,12 @@ const stripePromise = loadStripe("pk_test_51IacYXDloipSs6XKbHgrFYdB8siv2riOY2FoI
 function CheckoutPay({ totalPrice }) {
     return (
         <Elements stripe={stripePromise}>
+            <div className="row h-100 container-checkout">
+                <div className="col-md-4 offset-md-4 h-100">
+
             <div className=" container-checkout">
                 <div >
+
                     <CheckoutForm price={totalPrice} />
                 </div>
             </div>

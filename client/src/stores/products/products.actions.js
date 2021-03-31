@@ -11,7 +11,7 @@ export const GET_ALL_PRODUCTS_FAILURE = "GET_ALL_PRODUCTS_FAILURE";
 export const GET_ONE_PRODUCT_REQUEST = "GET_ONE_PRODUCT_REQUEST";
 export const GET_ONE_PRODUCT_SUCCESS = "GET_ONE_PRODUCT_SUCCESS";
 export const GET_ONE_PRODUCT_FAILURE = "GET_ONE_PRODUCT_FAILURE";
-
+export const GET_LIKES_PRODUCT_SUCCESS = "GET_LIKES_PRODUCT_SUCCESS";
 //SEARCH BY NAME
 export const SEARCH_PRODUCT_REQUEST = "SEARCH_PRODUCT_REQUEST";
 export const SEARCH_PRODUCT_SUCCESS = "SEARCH_PRODUCT_SUCCESS";
@@ -106,14 +106,27 @@ export const getAllProductsFailure = (error) => {
 export const fetchOneProduct = (productId) => {
 
     return (dispatch) => {
-        //dispatch(getOneProductRequest())
-        axios.get(`http://localhost:3001/products/${productId}`)
+        dispatch(getOneProductRequest())
+        setTimeout(()=>{
+            axios.get(`http://localhost:3001/products/${productId}`)
             .then(product => {
-                dispatch(getOneProductSuccess(product.data))
+                try{
+                    dispatch(getOneProductSuccess(product.data))
+                    for (let i = 0; i < product.data.likes.length; i++) {
+                        var likes = i 
+                        console.log("likes", i )             
+                    }   
+                }catch(error){
+                    
+                }finally{
+                    return dispatch(getLikes(likes))
+                }
             })
             .catch(error => {
                 dispatch(getOneProductFailure(error))
             })
+        },500)
+        
     }
 }
 
@@ -128,6 +141,12 @@ export const getOneProductSuccess = (product) => {
         payload: product
     }
 }
+export const getLikes = (likes) => {
+    return {
+        type: GET_LIKES_PRODUCT_SUCCESS,
+        payload: likes
+    }
+}
 export const getOneProductFailure = (error) => {
     return {
         type: GET_ONE_PRODUCT_FAILURE,
@@ -136,18 +155,18 @@ export const getOneProductFailure = (error) => {
 }
 
 //ADD LIKE TO PRODUCT
-export const fetchAddLikeToProduct = (productId, likeNumber) => {
+export const fetchAddLikeToProduct = (IdProduct, like, author,idUser) => {
     return (dispatch) => {
         const options = {
-            method: 'PUT',
-            url: 'http://localhost:3001/products/likes',
+            method: 'POST',
+            url: `http://localhost:3001/likes/${IdProduct}`, 
             headers: {
                 ContentType: "application/json",
-                token: localStorage.getItem("token")
             },
             data: {
-                id: productId,
-                likes: likeNumber
+                like: like,
+                author:author,
+                idUser:idUser
             }
         };
 
@@ -156,7 +175,7 @@ export const fetchAddLikeToProduct = (productId, likeNumber) => {
         } catch {
             return console.log("Error")
         } finally {
-            return dispatch(fetchOneProduct(productId))
+            return dispatch(fetchOneProduct(IdProduct))
         }
 
     }
