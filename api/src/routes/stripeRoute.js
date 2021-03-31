@@ -1,15 +1,12 @@
-const express = require("express");
+
 const Stripe = require("stripe");
 require("dotenv").config();
 const { STRIPE_KEY } = process.env;
-
 const stripe = new Stripe(STRIPE_KEY);
+
 const server = require("express").Router();
 
 module.exports = server;
-
-
-//server.use(cors({ origin: "http://localhost:3000" }));
 
 server.post("/api/checkout", async (req, res) => {
   // you can get more data to find in a database, and so on
