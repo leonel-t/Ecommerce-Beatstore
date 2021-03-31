@@ -6,6 +6,7 @@
 }
 .--Checkout p{
     color: white;
+    font-family: 'Oxanium', cursive;
 }
 .--Checkout-tab{
     display: flex;
@@ -54,6 +55,7 @@
     box-shadow: -2px 1px 4px rgb(19 19 19);
     cursor: pointer;
     color: white;
+    font-family: 'Oxanium', cursive;
 }
 .--Checkout-content-billing button:hover{
     background: linear-gradient(225deg, rgb(234, 50, 111), rgb(145, 27, 137));
@@ -67,6 +69,7 @@
 .--Checkout-content-billing label{
     color: white;
     margin: 10px;
+    font-family: 'Oxanium', cursive;
 }
 .--Checkout-content-billing input{
     margin: 5px;
@@ -77,6 +80,7 @@
     color: white;
     background-color: rgba(137, 43, 226, 0.185);
     border: 1px solid blueviolet;
+    font-family: 'Oxanium', cursive;
 }
 .--Checkout-content-inactive{
     display: none;
