@@ -48,7 +48,7 @@ const SummaryCard = ({ t, getDiscountCouponEffect, STORE_USER, subtotal, total, 
                 <span>{t("page.cart.total")}</span>
                 <span>${total}</span>
             </div>
-            <button onClick={() => history.push("/payment")} className="--SummaryCard-buttonout">{t("page.cart.checkout")}</button>
+            <button onClick={() => history.push("/checkout")} className="--SummaryCard-buttonout">{t("page.cart.checkout")}</button>
         </div>
     )
 }

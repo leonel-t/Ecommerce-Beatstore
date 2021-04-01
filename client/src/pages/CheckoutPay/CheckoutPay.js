@@ -12,7 +12,7 @@ import { connect } from "react-redux";
 
 import axios from "axios";
 
-const stripePromise = loadStripe("pk_test_51IacYXDloipSs6XKbHgrFYdB8siv2riOY2FoIz82WGXhlRkGRC5h37tWjeGLPjcZmvbJROADK3nfUblF8B6gwRKm001XPJ1lUM");
+const stripePromise = loadStripe("pk_test_51IbFjrLDJyVvtDkgSdbcQBERHyS60JKwwgP1txRVecZIQaA268HyHtWB9o285SwM1H9A1EhoUL7DMU6iKgIzlqbk00wBHvgczU");
 
 function CheckoutPay({ totalPrice }) {
     return (
