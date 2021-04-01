@@ -134,7 +134,21 @@ const CheckoutForm = ({ price, cart, userReducer, store_orders }) => {
                 </fieldset>
                 <fieldset>
                     <div class="row">
-                        <CardElement />
+                        <CardElement
+                            options={{
+                                style: {
+                                    base: {
+                                        fontSize: '16px',
+                                        color: '#ffffff',
+                                        '::placeholder': {
+                                            color: '#aab7c4',
+                                        },
+                                    },
+                                    invalid: {
+                                        color: '#9e2146',
+                                    },
+                                },
+                            }} />
                     </div>
                 </fieldset>
                 <button type="submit" >Pay ${price}</button>
