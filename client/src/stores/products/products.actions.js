@@ -142,10 +142,18 @@ export const getOneProductSuccess = (product) => {
     }
 }
 export const getLikes = (likes) => {
-    return {
-        type: GET_LIKES_PRODUCT_SUCCESS,
-        payload: likes
+    if(likes >= 0){
+        return {
+            type: GET_LIKES_PRODUCT_SUCCESS,
+            payload: parseInt(likes + 1)
+        }
+    }else{
+            return {
+                type: GET_LIKES_PRODUCT_SUCCESS,
+                payload: 0
+        }
     }
+
 }
 export const getOneProductFailure = (error) => {
     return {

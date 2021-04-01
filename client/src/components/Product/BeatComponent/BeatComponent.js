@@ -62,9 +62,8 @@ const BeatComponent = ({ addItemToCartEffect,fetchAddLikeToProductEffect, produc
             }
         }
         if(userStore && userStore.name && !aux){
-            fetchAddLikeToProductEffect(idProduct, true, author, idUser);
             setLikeState(true)
-            
+            fetchAddLikeToProductEffect(idProduct, true, author, idUser);
         }
     };
 
@@ -129,12 +128,13 @@ const BeatComponent = ({ addItemToCartEffect,fetchAddLikeToProductEffect, produc
                                         </div>
                                     </div>
                                     <>
+                                    
                                     {newLikeState  
                                     ?(
                                         <div className="beatComponent--main-beatActions-col-button-finger"> 
                                             <div className="product-likes2">
                                                     <span className="likes-numbers">
-                                                          {LIKES ? LIKES : 0}
+                                                          {LIKES}
                                                     </span>
                                                 <span className="material-icons finger-up2"
                                                     onClick={(e)=>handleLike(e,product.id)} 
@@ -149,7 +149,7 @@ const BeatComponent = ({ addItemToCartEffect,fetchAddLikeToProductEffect, produc
                                                 ?(  
                                                     <>
                                                     <span className="likes-numbers">
-                                                    {LIKES ? LIKES : 0}
+                                                    {LIKES}
                                                     </span>
                                                     <span className="material-icons finger-up" 
                                                         onClick={(e)=>handleLike(e,product.id)} >
@@ -159,7 +159,7 @@ const BeatComponent = ({ addItemToCartEffect,fetchAddLikeToProductEffect, produc
                                                 ):(
                                                     <>
                                                     <span className="likes-numbers">
-                                                        {LIKES ? LIKES : 0}
+                                                        {LIKES}
                                                     </span>
                                                     <span 
                                                     className="material-icons finger-up-not-user" 
