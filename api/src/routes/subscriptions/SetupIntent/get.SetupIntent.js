@@ -18,7 +18,7 @@ server.get("/", async (req, res, next) => {
 
   return  await stripe.setupIntents.list({
     limit: 10,
-  }).then((setupIntents)=>{
+  }).then((setupIntent)=>{
     return res.status(200).json(setupIntent);
   }).catch((error)=>{
     return res.status(400).json(error);

@@ -1,15 +1,13 @@
-import './adminSuscriptionsproducts.scss';
+import './prices.scss';
 import React from 'react';
 
-//components 
-import ProductsList from './ProductsList/ProductsList';
+
 const SetupIntents = () =>{
 
     return (
         <>
             <main className="admin-setupintents-main">
-                <h1> Admin Subscription Products</h1>
-                <ProductsList/>
+                <h1> Admin Prices</h1>
             </main>
         </>
     )

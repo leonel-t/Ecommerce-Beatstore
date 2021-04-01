@@ -6,9 +6,13 @@ const stripe = new Stripe(STRIPE_KEY);
 
 //CUSTOMERS LIST 
 server.get("/", async (req, res, next) => {
-  const customers = await stripe.customers.list();
-  
-  return res.status(200).json(customers);
+  await stripe.customers.list().then((customer)=>{
+    console.log(customer)
+    return res.status(200).json(customer);
+    }).catch((error)=>{
+    console.log(error)
+    return res.status(400).json(error);
+    });  
     
 });
 

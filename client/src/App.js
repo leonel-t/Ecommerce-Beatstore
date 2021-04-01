@@ -43,6 +43,9 @@ import Customers from './pages/AdminSubscriptions/Customers/Customers';
 import PaymentIntents from './pages/AdminSubscriptions/PaymentIntents/Paymentintents';
 import SetupAttempts from './pages/AdminSubscriptions/SetupAttempts/Setupattempts';
 import SetupIntents from './pages/AdminSubscriptions/SetupIntents/SetupIntents';
+import Subscriptions from './pages/AdminSubscriptions/Subscriptions/Subscriptions';
+import Prices from './pages/AdminSubscriptions/Prices/Prices';
+import Invoices from './pages/AdminSubscriptions/Invoices/Invoices';
 import SuscriptionsProducts from './pages/AdminSubscriptions/AdminSuscriptionsProducts/AdminSuscriptionsProducts';
 const App = () => {
 
@@ -89,6 +92,9 @@ const App = () => {
         <RouteWrapper exact path="/adminsuscriptions/payouts" component={Payouts} layout={AdminSubscriptionsLayout} />
         <RouteWrapper exact path="/adminsuscriptions/setupAttempts" component={SetupAttempts} layout={AdminSubscriptionsLayout} />
         <RouteWrapper exact path="/adminsuscriptions/setupIntets" component={SetupIntents} layout={AdminSubscriptionsLayout} />
+        <RouteWrapper exact path="/adminsuscriptions/subscriptions" component={Subscriptions} layout={AdminSubscriptionsLayout} />
+        <RouteWrapper exact path="/adminsuscriptions/prices" component={Prices} layout={AdminSubscriptionsLayout} />
+        <RouteWrapper exact path="/adminsuscriptions/invoices" component={Invoices} layout={AdminSubscriptionsLayout} />
       </Switch>
     </BrowserRouter>
   );

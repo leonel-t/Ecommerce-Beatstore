@@ -74,6 +74,23 @@ const getSubsProductsRouter = require("./subscriptions/Products/get.products")
 const postSubsProductsRouter = require("./subscriptions/Products/post.products")
 const putSubsProductsRouter = require("./subscriptions/Products/put.products")
 const deleteSubsProductsRouter = require("./subscriptions/Products/delete.products")
+
+const getSubscriptionRouter = require("./subscriptions/Subscriptions/get.subscription")
+const postSubscriptionRouter = require("./subscriptions/Subscriptions/post.subscription")
+const putSubscriptionRouter = require("./subscriptions/Subscriptions/put.subscription")
+const deleteSubscriptionRouter = require("./subscriptions/Subscriptions/delete.subscription")
+
+const getPricesRouter = require("./subscriptions/Prices/get.prices")
+const postPricesRouter = require("./subscriptions/Prices/post.prices")
+const putPricesRouter = require("./subscriptions/Prices/put.prices")
+const deletePricesRouter = require("./subscriptions/Prices/delete.prices")
+
+const getSetupAttemptstRouter = require("./subscriptions/SetupAttempts/get.SetupAttempts")
+
+const getInvoicesRouter = require("./subscriptions/Invoices/get.invoices")
+const postInvoicesRouter = require("./subscriptions/Invoices/post.invoices")
+const putInvoicesRouter = require("./subscriptions/Invoices/put.invoices")
+const deleteInvoicesRouter = require("./subscriptions/Invoices/delete.invoices")
 //#############
 
 const router = Router();
@@ -154,6 +171,24 @@ router.use("/subscriptions/products", getSubsProductsRouter)
 router.use("/subscriptions/products", postSubsProductsRouter)
 router.use("/subscriptions/products", putSubsProductsRouter)
 router.use("/subscriptions/products", deleteSubsProductsRouter)
+
+router.use("/subscriptions", getSubscriptionRouter)
+router.use("/subscriptions", postSubscriptionRouter)
+router.use("/subscriptions", putSubscriptionRouter)
+router.use("/subscriptions", deleteSubscriptionRouter)
+
+router.use("/prices", getPricesRouter)
+router.use("/prices", postPricesRouter)
+router.use("/prices", putPricesRouter)
+router.use("/prices", deletePricesRouter)
+
+router.use("/invoices", getInvoicesRouter)
+router.use("/invoices", postInvoicesRouter)
+router.use("/invoices", putInvoicesRouter)
+router.use("/invoices", deleteInvoicesRouter)
+
+router.use("/setupAttempts", getSetupAttemptstRouter)
+
 //#############
 
 module.exports = router;

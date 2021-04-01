@@ -31,6 +31,18 @@ const AdminSubscriptionsNav = () =>{
                     <Link className="admin-subscriptionsnav-main-link"
                     to="/adminsuscriptions/setupIntets">SetupIntets</Link>
                 </li>
+                <li className="admin-subscriptionsnav-main-li">
+                    <Link className="admin-subscriptionsnav-main-link"
+                    to="/adminsuscriptions/subscriptions">Subscriptions</Link>
+                </li>
+                <li className="admin-subscriptionsnav-main-li">
+                    <Link className="admin-subscriptionsnav-main-link"
+                    to="/adminsuscriptions/prices">Prices</Link>
+                </li>
+                <li className="admin-subscriptionsnav-main-li">
+                    <Link className="admin-subscriptionsnav-main-link"
+                    to="/adminsuscriptions/invoices">Invoices</Link>
+                </li>
             </ul>
         </div>
     )

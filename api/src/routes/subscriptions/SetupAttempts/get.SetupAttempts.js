@@ -5,10 +5,9 @@ const stripe = new Stripe(STRIPE_KEY);
 
 //Retrieves the details of a SetupIntent that has previously been created.
 server.get("/", async (req, res, next) => {
-
-  const setupAttempts = await stripe.setupAttempts.list({
+  await stripe.setupAttempts.list({
     limit: 10,
-  }).then(()=>{
+  }).then((setupAttempts)=>{
        return res.status(200).json(setupAttempts);
   }).catch((error)=>{
     return res.status(400).json(error);

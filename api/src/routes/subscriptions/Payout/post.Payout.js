@@ -6,7 +6,7 @@ const stripe = new Stripe(STRIPE_KEY);
 //CREATE Payout
 server.post("/create", async (req, res, next) => {
 const {amount, currency} = req.body
-  return await stripe.payouts.create({
+  await stripe.payouts.create({
     amount: amount,
     currency: currency, // 'usd'
   }).then((payouts)=>{
