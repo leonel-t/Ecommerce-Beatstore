@@ -71,30 +71,35 @@ const CheckoutForm = ({ price }) => {
     console.log(!stripe || loading);
 
     return (
-        <form className="card card-body card-checkout" onSubmit={handleSubmit}>
-            {/* Product Information */}
-            <img
-                src="https://media-exp1.licdn.com/dms/image/C4D0BAQHm4RX2CV6SFg/company-logo_200_200/0/1614611860377?e=2159024400&v=beta&t=KXTwn9uVt9c7rhHUvgnt_4U8F_mBLWrTpfUW_pO55dU"
-                alt=""
-                className="img-fluid"
-            />
-
-            <h3 className="text-center my-2">Price: {price}$</h3>
-            {/* User Card Input */}
-            <div className="form-group">
-                <CardElement />
-            </div>
-
-            <button disabled={!stripe} className="btn btn-success">
-                {loading ? (
-                    <div className="spinner-border text-light" role="status">
-                        <span className="sr-only">Loading...</span>
+        <div class="cell example example1" id="example-1">
+            {console.log(price)}
+            <form className="formexam" onSubmit={handleSubmit}>
+                <fieldset>
+                    <div class="row">
+                        <label for="example1-name" data-tid="elements_examples.form.name_label">Name</label>
+                        <input id="example1-name" data-tid="elements_examples.form.name_placeholder" type="text" placeholder="Jane Doe" required="" autocomplete="name" />
                     </div>
-                ) : (
-                    "Buy"
-                )}
-            </button>
-        </form>
+                    <div class="row">
+                        <label for="example1-email" data-tid="elements_examples.form.email_label">Email</label>
+                        <input id="example1-email" data-tid="elements_examples.form.email_placeholder" type="email" placeholder="janedoe@gmail.com" required="" autocomplete="email" />
+                    </div>
+                    <div class="row">
+                        <label for="example1-phone" data-tid="elements_examples.form.phone_label">Phone</label>
+                        <input id="example1-phone" data-tid="elements_examples.form.phone_placeholder" type="tel" placeholder="(941) 555-0123" required="" autocomplete="tel" />
+                    </div>
+                </fieldset>
+                <fieldset>
+                    <div class="row">
+                        <CardElement />
+                    </div>
+                </fieldset>
+                <button type="submit" data-tid="elements_examples.form.pay_button">Pay ${price}</button>
+
+            </form>
+        </div>
+
+
+
     );
 };
 
