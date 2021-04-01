@@ -9,25 +9,6 @@ import { connect } from "react-redux";
 import { withTranslation } from 'react-i18next';
 import sound from "../../../assets/audio/tab-sound.ogg"
 import '../RelatedTracks/RelatedTracks.css';
-const FansMap = [
-  {
-    username: "pepe",
-    date: "liked this track 5 days ago",
-  },
-  {
-    username: "pepe",
-    date: "liked this track 5 days ago",
-  },
-  {
-    username: "pepe",
-    date: "liked this track 5 days ago",
-  },
-  {
-    username: "pepe",
-    date: "liked this track 5 days ago",
-  },
-];
-
 
 
 const TabPanel = ({ t, product, relatedArtist, related }) => {
@@ -136,7 +117,7 @@ const TabPanel = ({ t, product, relatedArtist, related }) => {
                   <CommentCard
                     key={index}
                     username={comment.author}
-                    date={"12/10/2001"}
+                    date={comment.createdAt}
                     comment={comment.comment}
                   />
                 );
@@ -153,11 +134,18 @@ const TabPanel = ({ t, product, relatedArtist, related }) => {
               : "--TabPanel-div-container-col"
           }
         >
-          {FansMap.map((fan, index) => {
-            return (
-              <FansCard key={index} username={fan.username} date={fan.date} />
-            );
-          })}
+          {product && product.likes && product.likes.length > 0
+          ?(
+            product.likes.map((fan, index) => {
+              return (
+                <FansCard key={index} username={fan.author} date={fan.createdAt} />
+              );
+            })
+          ):(
+            <p>Not Fans</p>
+          )
+
+          }
         </div>
       </div>
     </div>

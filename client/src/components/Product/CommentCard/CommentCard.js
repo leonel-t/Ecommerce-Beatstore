@@ -1,7 +1,7 @@
 import React from "react";
 import "./CommentCard.css";
 import imgProfile from "./profile-image.png"
-
+import moment from "moment";
 const CommentCard = ({username , date , comment}) => {
 
     return (
@@ -13,7 +13,7 @@ const CommentCard = ({username , date , comment}) => {
                 <div className="--CommentCard-contentDiv-commentInfo">
                     <span className="--CommentCard-contentDiv-commentInfo-userName">{username}</span>
                     <span>  ·  </span>
-                    <span className="--CommentCard-contentDiv-commentInfo-date">{date}</span>
+                    <span className="--CommentCard-contentDiv-commentInfo-date">{moment(date).fromNow()}</span>
                 </div>
                 <div className="--CommentCard-contentDiv-comment">
                     <span>{comment}</span>

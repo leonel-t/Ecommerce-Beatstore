@@ -1,7 +1,7 @@
 import React from "react";
 import "./FansCard.css";
 import imgProfile from "../../../assets/images/profile-image.jpg"
-
+import moment from "moment";
 const FansCard = ({username , date}) => {
 
     return (
@@ -11,7 +11,7 @@ const FansCard = ({username , date}) => {
             </div>
             <div className="--FansCard-content">
                 <p className="--FansCard-content-username">{username}</p>
-                <p className="--FansCard-content-date">{date}</p>
+                <span className="--FansCard-content-date">{moment(date).fromNow()}</span>                
             </div>
         </div>
     )

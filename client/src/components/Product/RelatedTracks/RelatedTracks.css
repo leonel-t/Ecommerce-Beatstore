@@ -2,21 +2,31 @@
     display: flex;
     flex-direction: column;
     flex-wrap: wrap;
-    width: 98%;
+    width: 95%;
     height: auto;
     background: linear-gradient(#2221229f, #8708db62);
-    
     border-radius: 15px;
     margin: 5px;
+    margin-left: auto;
+    margin-right: auto;
 }
 .--RelatedTracks-main:hover{
-    background-color: rgb(31, 29, 29);
+    border-bottom: 2px solid rgb(44, 43, 43);
+    border-left: 2px solid rgb(44, 43, 43);
+    border-right: 2px solid rgb(44, 43, 43);
+    background: linear-gradient(45deg, rgb(234, 50, 111), rgba(86, 9, 175, 0.589));
+    border-radius: 10px;
+    padding: 10px;
+    cursor: crosshair;
+    transition: all  0.2s ease-in;
+    margin-left: auto;
+    margin-right: auto;
 }
 .--RelatedTracks-main-row{
     display: flex;
     flex-direction: row;
     width: 100%;
-    justify-content: space-around;
+    justify-content:flex-start;
 }
 .--RelatedTracks-main-col-play{
     display: flex;
@@ -45,6 +55,7 @@
     align-content: center;
     align-items: left;
     padding-left: 10px;
+    cursor: pointer;
 }
 .--RelatedTracks-main-col-text h3{
     margin: 0;
@@ -55,7 +66,7 @@
 .--RelatedTracks-main-col-text p{
     margin: 0;
     padding: 0;
-    color: rgb(204, 168, 7);
+    color: white;
     font-size: 1.1rem;
 }
 .--RelatedTracks-main-col-menu{

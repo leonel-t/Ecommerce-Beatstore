@@ -39,11 +39,16 @@ const Product = ({ relatedArtist, ProductsByCategories, postCommentEffect, fetch
         : (
           <main className="product--main">
             <PreLoad />
-            <BeatComponent product={STORE_PRODUCT.product} />
+            <div className="product--main-col">
+              <BeatComponent product={STORE_PRODUCT.product} />
+            </div>
+            <div className="product--main-col">
+             <BeatCommentsInputComponent action={postCommentEffect} product={STORE_PRODUCT.product.id} />
+            </div>
 
-            <BeatCommentsInputComponent action={postCommentEffect} product={STORE_PRODUCT.product.id} />
-
-            <TabPanel related={relatedArtist} product={STORE_PRODUCT.product} />
+              <div className="product--main-col">
+                <TabPanel related={relatedArtist} product={STORE_PRODUCT.product} />
+              </div>
             <div className="divider"></div>
           </main>
 

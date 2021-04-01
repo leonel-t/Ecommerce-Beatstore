@@ -30,8 +30,3 @@ code {
   background:rgba(255, 0, 234, 0.342);
 }
 
-.snackbar-pos.bottom-center {
-  top: auto !important;
-  bottom: 50px !important;
-  left: 90% !important;
-  transform: translate(-50%, 0); }
