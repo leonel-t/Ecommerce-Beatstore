@@ -3,7 +3,7 @@ import "./TabBilling.css"
 import {useDispatch , useSelector} from "react-redux"
 import axios from "axios"
 
-const TabBilling = () => {
+const TabBilling = ({f}) => {
     const userId = useSelector(state=>Array.isArray(state.userReducers.user) ? state.userReducers.user : state.userReducers.user.data.user.id)
     const [input, setInput] = useState({
         firstname: "",
@@ -42,6 +42,7 @@ const TabBilling = () => {
                 .catch((err) => console.log(err))
             }
         })
+        return f("method");
     }
 
     return (
