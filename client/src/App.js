@@ -34,7 +34,7 @@ import ResetPass from './components/LoginCard/ResetPass/ResetPass';
 import InsCode from './components/LoginCard/ResetPass/InsCode';
 import Checkout from "./pages/Checkout/Checkout";
 import CheckoutPay from './pages/CheckoutPay/CheckoutPay';
-
+import ListOrder from './pages/Admin/AdminOrders/ListOrder';
 
 
 const App = () => {
@@ -62,6 +62,7 @@ const App = () => {
         <RouteWrapper exact path="/add" component={Form} layout={AdminLayout} />
         <RouteWrapper exact path="/admin" component={Admin} layout={AdminLayout} />
         <RouteWrapper exact path="/admin/ListUsers" component={AdminListUsers} layout={AdminLayout} />
+        <RouteWrapper exact path="/admin/listorders" component={ListOrder} layout={AdminLayout} />
         <RouteWrapper exact path="/put/:id" component={PutForm} layout={PagesLayout} />
         <RouteWrapper exact path="/addCategories" component={Categories} layout={AdminLayout} />
         <RouteWrapper exact path="/login" component={Login} layout={LoginLayout} />
@@ -73,7 +74,7 @@ const App = () => {
         <RouteWrapper exact path="/cart" component={Cart} layout={PagesLayout} />
         <RouteWrapper exact path="/profile" component={Profile} layout={PagesLayout} />
         <RouteWrapper exact path="/login/github/:email/:password" component={LoginGithub} layout={PagesLayout} />
-        <RouteWrapper exact path="/checkout" component={Checkout} layout={PagesLayout}/>
+        <RouteWrapper exact path="/checkout" component={Checkout} layout={PagesLayout} />
       </Switch>
     </BrowserRouter>
   );

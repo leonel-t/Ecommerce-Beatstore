@@ -40,7 +40,42 @@ export const DELETE_CATEGORY_FAILURE = "DELETE_CATEGORY_FAILURE";
 export const GET_ALL_USERS_REQUEST = "GET_ALL_USERS_REQUEST";
 export const GET_ALL_USERS_SUCCESS = "GET_ALL_USERS_SUCCESS";
 export const GET_ALL_USERS_FAILURE = "GET_ALL_USERS_FAILURE";
+//fetch all orders
+export const GET_ALL_ORDERS = "GET_ALL_ORDERS";
+//delete order by id
+export const DELETE_ORDER_BY_ID = "DELETE_ORDER_BY_ID";
 
+
+export const deleteOrderById = (id) => {
+
+    return (dispatch) => {
+        axios.delete("http://localhost:3001/order/" + id)
+            .then(products => {
+                dispatch(getAllOrdersSucess(products.data))
+            })
+            .catch(error => {
+                console.log(error)
+            })
+    }
+}
+export const fetchAllOrders = () => {
+
+    return (dispatch) => {
+        axios.get("http://localhost:3001/order/")
+            .then(products => {
+                dispatch(getAllOrdersSucess(products.data))
+            })
+            .catch(error => {
+                console.log(error)
+            })
+    }
+}
+export const getAllOrdersSucess = (orders) => {
+    return {
+        type: GET_ALL_ORDERS,
+        payload: orders
+    }
+}
 export const fetchAllProducts = () => {
 
     return (dispatch) => {
@@ -82,13 +117,13 @@ export const fetchAllUsers = () => {
             method: 'GET',
             url: 'http://localhost:3001/users/',
             headers: {
-              ContentType: "application/json",
-              token: localStorage.getItem("token")
+                ContentType: "application/json",
+                token: localStorage.getItem("token")
             }
-          };
+        };
         axios.request(options).then(users => {
-                dispatch(getAllUsersSuccess(users.data))
-            })
+            dispatch(getAllUsersSuccess(users.data))
+        })
             .catch(error => {
                 dispatch(getAllUsersFailure(error))
             })
@@ -123,7 +158,7 @@ export const deleteProducts = (id) => {
             headers: {
                 "Content-Type": "application/json",
                 "token": localStorage.getItem("token")
-               },
+            },
         })
             .then(res => dispatch(deleteProductsSuccess()))
             .catch(error => {
@@ -227,7 +262,7 @@ export const putCategoryById = (idCat, category) => {
             headers: {
                 "Content-Type": "application/json",
                 "token": localStorage.getItem("token")
-               },
+            },
             data: category
         };
 
@@ -268,7 +303,7 @@ export const deleteCategory = (id) => {
             headers: {
                 "Content-Type": "application/json",
                 "token": localStorage.getItem("token")
-               },
+            },
         })
             .then(res => {
                 dispatch(deleteCategorySuccess())
