@@ -32,6 +32,11 @@ const postComments = require("./comments/post.comments");
 const putComments = require("./comments/put.comments");
 const deleteComments = require("./comments/delete.comments");
 
+const getLikesRouter = require("./likes/get.likes.js");
+const postLikesRouter = require("./likes/post.likes.js");
+const putLikesRouter = require("./likes/put.likes.js");
+const deleteLikesRouter = require("./likes/delete.likes.js");
+
 const promoteRouter = require("./users/promote.users.js")
 
 const getInfoUser = require("./informationUser/get.info");
@@ -50,6 +55,11 @@ router.use("/comments", getComments);
 router.use("/comments", postComments);
 router.use("/comments", putComments);
 router.use("/comments", deleteComments);
+
+router.use("/likes", getLikesRouter);
+router.use("/likes", postLikesRouter);
+router.use("/likes", putLikesRouter);
+router.use("/likes", deleteLikesRouter);
 
 router.use("/products", getProductsRouter);
 router.use("/products", postProductsRouter);

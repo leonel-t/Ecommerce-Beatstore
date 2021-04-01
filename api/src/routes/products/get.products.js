@@ -17,7 +17,6 @@ server.get("/", (req, res, next) => {
 server.get("/:id", (req, res, next) => {
   const { id } = req.params;
   return findProductById(id).then((product) => {
-    console.log(product)
     res.status(200).json(product);
   }).catch((error) => {
     res.status(400).json(error);

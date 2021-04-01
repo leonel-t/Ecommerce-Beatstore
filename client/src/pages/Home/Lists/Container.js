@@ -79,6 +79,21 @@ const Container = ({t, STORE_PRODUCTS}) => {
                         )
                
                 }
+                <h2>MAS LIKEADOS BABY</h2>
+                {STORE_PRODUCTS && STORE_PRODUCTS.length > 0
+                    ?( 
+                    <ScrollBox>
+                       { STORE_PRODUCTS.map((product, index) => {
+                           return (
+                            <ColorCard product={product} key={index} />
+                            )
+                       })}
+                    </ScrollBox>
+                    ):(
+                        <p>{t("page.home.sliders.noBeats")}</p>
+                        )
+               
+                }
                 <h1>{t('page.home.sliders.1')}</h1>
                 <Wrapper/>
                 <AdsBanner></AdsBanner>
