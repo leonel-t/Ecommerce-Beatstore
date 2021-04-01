@@ -1,5 +1,4 @@
 import React, { useState } from "react";
-
 import './checkoutPay.css';
 import { loadStripe } from "@stripe/stripe-js";
 import {
@@ -12,7 +11,7 @@ import { connect } from "react-redux";
 
 import axios from "axios";
 
-const stripePromise = loadStripe("pk_test_51IbFjrLDJyVvtDkgSdbcQBERHyS60JKwwgP1txRVecZIQaA268HyHtWB9o285SwM1H9A1EhoUL7DMU6iKgIzlqbk00wBHvgczU");
+const stripePromise = loadStripe("pk_test_51IacYXDloipSs6XKbHgrFYdB8siv2riOY2FoIz82WGXhlRkGRC5h37tWjeGLPjcZmvbJROADK3nfUblF8B6gwRKm001XPJ1lUM");
 
 function CheckoutPay({ totalPrice }) {
     return (
@@ -48,7 +47,7 @@ const CheckoutForm = ({ price }) => {
         setLoading(true);
 
         if (!error) {
-            // console.log(paymentMethod)
+            console.log(paymentMethod)
             const { id } = paymentMethod;
             try {
                 const { data } = await axios.post(
