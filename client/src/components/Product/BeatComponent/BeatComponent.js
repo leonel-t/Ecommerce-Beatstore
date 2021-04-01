@@ -131,17 +131,32 @@ const BeatComponent = ({ addItemToCartEffect,fetchAddLikeToProductEffect, produc
                                     
                                     {newLikeState  
                                     ?(
-                                        <div className="beatComponent--main-beatActions-col-button-finger"> 
-                                            <div className="product-likes2">
+                                        <div className="product-likes2">
+                                            {userStore && userStore.id
+                                                ?(  
+                                                    <>
                                                     <span className="likes-numbers">
-                                                          {LIKES}
+                                                    {LIKES}
                                                     </span>
-                                                <span className="material-icons finger-up2"
-                                                    onClick={(e)=>handleLike(e,product.id)} 
-                                                    onClick={()=>handleThanks()}>
-                                                    favorite
-                                                </span>
-                                            </div>  
+                                                    <span className="material-icons finger-up2" 
+                                                        onClick={(e)=>handleLike(e,product.id)} >
+                                                        favorite
+                                                    </span>
+                                                    </>
+                                                ):(
+                                                    <>
+                                                    <span className="likes-numbers">
+                                                        {LIKES}
+                                                    </span>
+                                                    <span 
+                                                    className="material-icons finger-up-not-user" 
+                                                    onClick={(e)=>swal("Login to Like")} >
+                                                        favorite_border
+                                                    </span>
+                                                        
+                                                    </>
+                                                )
+                                            }
                                         </div>
                                     ):(
                                         <div className="product-likes2">
