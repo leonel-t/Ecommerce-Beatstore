@@ -48,7 +48,8 @@ const {
   Comment,
   Order,
   OrderLine,
-  Review
+  Review,
+  InformationUser
 } = sequelize.models;
 
 // PRODUCTS CATEGORIES
@@ -66,6 +67,10 @@ Comment.belongsToMany(Product, { through: 'Products_Comments', as: 'comments' })
 // ORDER ORDERLINE
 Order.hasMany(OrderLine, { foreignKey: "orderId" });
 OrderLine.belongsTo(Order);
+
+//USER INFORMATIONUSER
+User.hasOne(InformationUser, { foreignKey: "userId" });
+InformationUser.belongsTo(User);
 
 //BEFORE CREATE QUERY
 User.beforeCreate(async (user) => {

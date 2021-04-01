@@ -34,7 +34,17 @@ const deleteComments = require("./comments/delete.comments");
 
 const promoteRouter = require("./users/promote.users.js")
 
+const getInfoUser = require("./informationUser/get.info");
+const postInfoUser = require("./informationUser/post.info");
+const putInfoUser = require("./informationUser/put.info");
+const deleteInfoUser = require("./informationUser/delete.info");
+
 const router = Router();
+
+router.use("/infouser", getInfoUser);
+router.use("/infouser", postInfoUser);
+router.use("/infouser", putInfoUser);
+router.use("/infouser", deleteInfoUser);
 
 router.use("/comments", getComments);
 router.use("/comments", postComments);

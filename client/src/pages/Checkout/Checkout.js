@@ -1,4 +1,5 @@
 import React, { useState } from "react"
+import TabBilling from "../../components/CheckoutTabs/TabBilling/TabBilling";
 import "./Checkout.css"
 
 const Checkout = () => {
@@ -68,15 +69,7 @@ const Checkout = () => {
             </div>
             <div className="--Checkout-content">
                 <div className={billing ? "--Checkout-content-active" : "--Checkout-content-inactive"}>
-                    <form className="--Checkout-content-billing">
-                        <div className="--Checkout-content-billing-items"><label>First name</label><input/></div>
-                        <div className="--Checkout-content-billing-items"><label>Last name</label><input/></div>
-                        <div className="--Checkout-content-billing-items"><label>Country</label><input/></div>
-                        <div className="--Checkout-content-billing-items"><label>City</label><input/></div>
-                        <div className="--Checkout-content-billing-items"><label>Address</label><input/></div>
-                        <div className="--Checkout-content-billing-items"><label>Zip code</label><input/></div>
-                        <button>Next</button>
-                    </form>
+                    <TabBilling/>
                 </div>
                 <div className={method ? "--Checkout-content-active" : "--Checkout-content-inactive"}>
                     <p>method</p>
