@@ -44,6 +44,38 @@ const postInfoUser = require("./informationUser/post.info");
 const putInfoUser = require("./informationUser/put.info");
 const deleteInfoUser = require("./informationUser/delete.info");
 
+//STRIPE
+const getCustomerRouter = require("./subscriptions/customers/get.customers")
+const postCustomerRouter = require("./subscriptions/customers/post.customers")
+const putCustomerRouter = require("./subscriptions/customers/put.customers")
+const deleteCustomerRouter = require("./subscriptions/customers/delete.customers")
+
+const getPaymentIntentRouter = require("./subscriptions/PaymentIntent/get.PaymentIntent")
+const postPaymentIntentRouter = require("./subscriptions/PaymentIntent/post.PaymentIntent")
+const putPaymentIntentRouter = require("./subscriptions/PaymentIntent/put.PaymentIntent")
+const deletePaymentIntentRouter = require("./subscriptions/PaymentIntent/delete.PaymentIntent")
+
+const getSetupIntentRouter = require("./subscriptions/SetupIntent/get.SetupIntent")
+const postSetupIntentRouter = require("./subscriptions/SetupIntent/post.SetupIntent")
+const putSetupIntentRouter = require("./subscriptions/SetupIntent/put.SetupIntent")
+const deleteSetupIntentRouter = require("./subscriptions/SetupIntent/delete.SetupIntent")
+
+const getDisputeRouter = require("./subscriptions/Disputes/get.dispute")
+const postDisputeRouter = require("./subscriptions/Disputes/post.dispute")
+const putDisputeRouter = require("./subscriptions/Disputes/put.dispute")
+const deleteDisputeRouter = require("./subscriptions/Disputes/delete.dispute")
+
+const getPayoutRouter = require("./subscriptions/Payout/get.Payout")
+const postPayoutRouter = require("./subscriptions/Payout/post.Payout")
+const putPayoutRouter = require("./subscriptions/Payout/put.Payout")
+const deletePayoutRouter = require("./subscriptions/Payout/delete.Payout")
+
+const getSubsProductsRouter = require("./subscriptions/Products/get.products")
+const postSubsProductsRouter = require("./subscriptions/Products/post.products")
+const putSubsProductsRouter = require("./subscriptions/Products/put.products")
+const deleteSubsProductsRouter = require("./subscriptions/Products/delete.products")
+//#############
+
 const router = Router();
 
 router.use("/infouser", getInfoUser);
@@ -91,5 +123,37 @@ router.use("/users", resetPassUserRouter);
 router.use("/", promoteRouter);
 router.use("/", githubRouter);
 router.use("/", stripeRouter);
+
+//STRIPE
+router.use("/customers", getCustomerRouter)
+router.use("/customers", postCustomerRouter)
+router.use("/customers", putCustomerRouter)
+router.use("/customers", deleteCustomerRouter)
+
+router.use("/paymentIntent", getPaymentIntentRouter)
+router.use("/paymentIntent", postPaymentIntentRouter)
+router.use("/paymentIntent", putPaymentIntentRouter)
+router.use("/paymentIntent", deletePaymentIntentRouter)
+
+router.use("/setupIntent", getSetupIntentRouter)
+router.use("/setupIntent", postSetupIntentRouter)
+router.use("/setupIntent", putSetupIntentRouter)
+router.use("/setupIntent", deleteSetupIntentRouter)
+
+router.use("/dispute", getDisputeRouter)
+router.use("/dispute", postDisputeRouter)
+router.use("/dispute", putDisputeRouter)
+router.use("/dispute", deleteDisputeRouter)
+
+router.use("/payout", getPayoutRouter)
+router.use("/payout", postPayoutRouter)
+router.use("/payout", putPayoutRouter)
+router.use("/payout", deletePayoutRouter)
+
+router.use("/subscriptions/products", getSubsProductsRouter)
+router.use("/subscriptions/products", postSubsProductsRouter)
+router.use("/subscriptions/products", putSubsProductsRouter)
+router.use("/subscriptions/products", deleteSubsProductsRouter)
+//#############
 
 module.exports = router;

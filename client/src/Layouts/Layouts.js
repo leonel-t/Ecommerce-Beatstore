@@ -6,6 +6,10 @@ import HeaderHome from '../components/Header/HeaderHome/HeaderHome';
 import HeaderAdmin from '../components/Header/HeaderAdmin/HeaderAdmin';
 import HeaderPages from '../components/Header/HeaderPages/HeaderPages';
 
+//Components Admin Subscriptions
+import AdminSubscriptionsNav from '../pages/AdminSubscriptions/AdminSubscriptionsNav/AdminSubscriptionsNav';
+
+
 const HomeLayout = ({ children }) => {
     return (
         <div>
@@ -42,6 +46,15 @@ const AdminLayout = ({ children }) => {
         </div>
     )
 };
+const AdminSubscriptionsLayout = ({ children }) => {
+    return (
+        <div>
+            <HeaderAdmin></HeaderAdmin>
+            <AdminSubscriptionsNav/>
+            {children}
+        </div>
+    )
+};
 const LoginLayout = ({ children }) => {
     return (
         <div className="--Header-Login-bg">
@@ -50,4 +63,4 @@ const LoginLayout = ({ children }) => {
     )
 };
 
-export { HomeLayout, PagesLayout, LoginLayout, AdminLayout, ProductLayout };
+export { HomeLayout, PagesLayout, LoginLayout, AdminLayout, ProductLayout, AdminSubscriptionsLayout };

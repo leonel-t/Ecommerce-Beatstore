@@ -8,7 +8,8 @@ import {
   HomeLayout,
   LoginLayout,
   AdminLayout,
-  ProductLayout
+  ProductLayout,
+  AdminSubscriptionsLayout
 } from "./Layouts/Layouts";
 
 //Pages
@@ -35,8 +36,14 @@ import InsCode from './components/LoginCard/ResetPass/InsCode';
 import Checkout from "./pages/Checkout/Checkout";
 import CheckoutPay from './pages/CheckoutPay/CheckoutPay';
 
-
-
+//Subscriptions
+import AdminSubscriptions from './pages/AdminSubscriptions/AdminSubscriptions';
+import Payouts from './pages/AdminSubscriptions/Payouts/Payouts';
+import Customers from './pages/AdminSubscriptions/Customers/Customers';
+import PaymentIntents from './pages/AdminSubscriptions/PaymentIntents/Paymentintents';
+import SetupAttempts from './pages/AdminSubscriptions/SetupAttempts/Setupattempts';
+import SetupIntents from './pages/AdminSubscriptions/SetupIntents/SetupIntents';
+import SuscriptionsProducts from './pages/AdminSubscriptions/AdminSuscriptionsProducts/AdminSuscriptionsProducts';
 const App = () => {
 
   return (
@@ -74,6 +81,14 @@ const App = () => {
         <RouteWrapper exact path="/profile" component={Profile} layout={PagesLayout} />
         <RouteWrapper exact path="/login/github/:email/:password" component={LoginGithub} layout={PagesLayout} />
         <RouteWrapper exact path="/checkout" component={Checkout} layout={PagesLayout}/>
+
+        <RouteWrapper exact path="/adminsubscriptions" component={AdminSubscriptions} layout={AdminSubscriptionsLayout} />
+        <RouteWrapper exact path="/adminsuscriptions/customers" component={Customers} layout={AdminSubscriptionsLayout} />
+        <RouteWrapper exact path="/adminsuscriptions/products" component={SuscriptionsProducts} layout={AdminSubscriptionsLayout} />
+        <RouteWrapper exact path="/adminsuscriptions/paymentintests" component={PaymentIntents} layout={AdminSubscriptionsLayout} />
+        <RouteWrapper exact path="/adminsuscriptions/payouts" component={Payouts} layout={AdminSubscriptionsLayout} />
+        <RouteWrapper exact path="/adminsuscriptions/setupAttempts" component={SetupAttempts} layout={AdminSubscriptionsLayout} />
+        <RouteWrapper exact path="/adminsuscriptions/setupIntets" component={SetupIntents} layout={AdminSubscriptionsLayout} />
       </Switch>
     </BrowserRouter>
   );
