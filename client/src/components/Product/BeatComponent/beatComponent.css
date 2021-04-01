@@ -12,7 +12,7 @@
     position:relative;
     flex-direction: column;
     width: 100%;
-    height: 400px;
+    height: auto;
     padding: 0px;
     background: linear-gradient(
         var(--beatComponent--main--linear-gradient-one),
@@ -59,6 +59,8 @@
     flex-wrap: wrap;
 }
 .beatComponent--main-beatActions-col-btn{
+    display: flex;
+    flex-direction: column;
     height: 60px;
     width: 250px;
     margin: 5px;
@@ -69,16 +71,28 @@
     color:antiquewhite;
     font-size: 1.3rem;
     text-align: center;
+    justify-content: center;
 
+}
+.beatComponent--main-beatActions-col-button{
+    display:flex;
+    width: 100%;
+    flex-direction: column;
+    justify-content: center;
+    padding-left: 15%;
+}
+.beatComponent--main-beatActions-col-button-finger{
+    display:flex;
+    width: 100%;
+    flex-direction: column;
+    justify-content: center;
+    padding-left: 5%;
 }
 .beatComponent--main-beatActions-col-btn span{
     padding-top: 0px;
-    margin-right: 5px;
-   
 }
 .beatComponent--main-beatActions-col-btn-row{
-    display: flex;
-   
+    display: flex; 
     flex-direction: row;
     justify-content: center;
     padding-top: 5px;
@@ -90,7 +104,7 @@
 }
 .beatComponent--main-beatActions-col-btn:hover{
     height: 60px;
-    width: 250px;
+    width: 270px;
     margin: 5px;
     border: none;
     background-color: #d612f0;
@@ -103,7 +117,7 @@
 }
 .beatComponent--main-beatActions-col-btn:active{
     height: 60px;
-    width: 250px;
+    width: 270px;
     margin: 5px;
     border: none;
     background-color: #3a0641;
@@ -118,7 +132,7 @@
 .beatComponent--main-beatInfo-col h1{
     margin:5px;
     padding-top:10px;
-    margin-left: 65px;
+    text-align: center;
     font-size:2rem;
     color:var(--beatComponent--main-beatInfo-col-h1);
 }
@@ -143,7 +157,6 @@
     justify-content: center;
     align-items: center;
     align-content:center;
-    margin-left: 65px;
     color:var(--beatComponent--main-beatInfo-col-author);
     font-size:1.2rem;
     padding-bottom: 10px;
@@ -152,29 +165,34 @@
 .beatComponent--main-beatActions-col{
     display:flex;
     width: 100%;
-    justify-content: left;
-    align-items: center;
-    margin-left: 60px;
-}
-
-.beatComponent--main-beatActions-col .column{
-    display:flex;
-    width: 100%;
-    flex-direction: column;
-    justify-content: left;
+    justify-content: center;
     align-items: center;
 }
-.finger-up{
+.finger-up-not-user{
     color: white;
     font-size: 3rem;
     margin-left: 10px;
     cursor: pointer;
 }
-.finger-up2{
-    color: blue;
+.beatComponent--main-beatActions-col .column{
+    display:flex;
+    width: 100%;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+.finger-up{
+    color: white;
     font-size: 3rem;
-    margin-left: 10px;
+    margin-left: 5px;
     cursor: pointer;
+}
+.finger-up2{
+    color: rgb(60, 7, 121);
+    text-shadow: 0px 0px 10px white;
+    font-size: 3rem;
+    cursor: pointer;
+    margin-left: 5px;
 }
 .beatComponent--main-beatActions-col-cat{
     margin: 6px;
@@ -188,16 +206,21 @@
     width: 100%;
     align-self:center;
 }
-.product-likes2 p{
-    font-size: 1rem;
-    padding: 0.5em;
-}
+
 .likes-numbers{
-    padding: 0.5em;
-    background-color: brown;
+    display: flex;
+    width: 15px;
+    min-width: 15px;
+    height: 15px;
+    padding: 0.7em;
+    background-color: rgb(89, 48, 112);
     color: white;
     font-size: 1rem;
-    border-radius: 1em;
+    border-radius: 100%;
+    justify-content: center;
+    align-items: center;
+    margin-top: 9px;
+    margin-left: 5px;
 }
 .product-likes{
     align-self:center;
@@ -209,27 +232,23 @@
     padding-bottom: 5px;
     padding-left: 10px;
     padding-right: 10px;
-    border-radius: 100%;
-    
+    border-radius: 100%; 
 }
-
 .beatComponent--main-beatActions-col-div{
     display: flex;
     flex-direction: row;
     justify-content: center;
     align-content: center;
     align-items: center;
-    color:var(--beatComponent--main-beatActions-col-div);
-    margin-right: 5px;
-    
+    color:var(--beatComponent--main-beatActions-col-div); 
 }
-
 .beatComponent--main-beatTags-col{
     display:flex;
     width: 100%;
     justify-content: center;
     align-items: center;
 }
+
 
 
 @media(min-width:864px){
@@ -252,9 +271,8 @@
         width: 100%;
         height: auto;
         flex-wrap: wrap;
-        justify-content: left;
-       
-    
+        justify-content: center;
+
     }
     .beatComponent--main-imagen-col{
         display:flex;
@@ -266,6 +284,16 @@
         align-items: center;
     
     }
+
+    .beatComponent--main-beatActions-col-button{
+        display:flex;
+        width: 100%;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        padding-left: 0%;
+    }
+    
     .beatComponent--main-beatInfo-col{
         display:flex;
         width: 50%;
@@ -273,6 +301,9 @@
         justify-content: left;
         align-items: center;
         align-content:center;
+    }    
+    .beatComponent--main-beatInfo-col h1{
+        text-align: center;
     }
     .beatComponent--main-beatInfo-col-author{
         display:flex;
@@ -333,4 +364,12 @@
     opacity: 0;
     border-radius: 5px;
     z-index: 9999;
+}
+@media(min-width:620px){
+
+}
+@media(max-width:480px){
+    .beatComponent--main-beatActions-col-button{
+        padding-left: 12%;
+    }
 }

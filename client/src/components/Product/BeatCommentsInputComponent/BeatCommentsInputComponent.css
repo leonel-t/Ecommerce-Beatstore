@@ -24,15 +24,13 @@
     justify-content: center;
     width: 98%;
     margin-top: 15px;
-    margin-bottom: 50px;
+    margin-bottom: 10px;
 }
 @media(max-width:864px){
     .--BeatCommentsInputComponent-div{
-        position:relative;
         display: flex;
         justify-content: center;
-        width: 98%;
-        margin-top: 100px;
-        margin-bottom: 50px;
+        width: 100%;
+
     }
 }
