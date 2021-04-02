@@ -49,8 +49,10 @@
         }
       },     
        "profile":{
-        "title": "User Not Found",
-        "button": "Go To Login",
+        "title": "¡You not have an account!",
+        "subtitle": "Please register now",
+        "button": "Go to login",
+        "buttonSecond": "Go to register",
         "profileCard": {
           "editButton": "Edit Account",
           "logout": "Logout"

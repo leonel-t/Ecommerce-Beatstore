@@ -16,14 +16,35 @@
     background-size: 200%;
     background-repeat: no-repeat;
 }
-@media(max-width:499px){
-    .--Header-Login-bg{
-        background-size: 250%;
-    }
-}
 .page-layout-main{
     margin-top: 100px;
 }
 .product-layout-main{
     padding-top: 0px;
+}
+.profile-layout-main{
+    position: absolute;
+    width: 100%;
+    top:0 !important;
+    bottom: 0 !important;
+    background-image: url("../assets/images/login/PRODUCTOR-MUSICAL-WAG1MAG.jpg");
+    background-position: top left;
+    background-size: 100%;
+    background-repeat: no-repeat;
+}
+@media(max-width:799px){
+    .profile-layout-main{
+        background-size: 200%;
+        height: 60em;
+
+    }
+}
+@media(max-width:499px){
+    .--Header-Login-bg{
+        background-size: 250%;
+    }
+    .profile-layout-main{
+        background-size: 250%;
+
+    }
 }

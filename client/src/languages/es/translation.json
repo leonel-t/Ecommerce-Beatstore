@@ -45,8 +45,10 @@
         }   
       },      
       "profile":{
-        "title": "Usuario no encontrado",
+        "title": "¡No tienes una cuenta activa!",
+        "subtitle": "Registrate ahora y disfruta",
         "button": "Volver a Inicio",
+        "buttonSecond": "Quiero registrarme",
         "profileCard": {
           "editButton": "Editar Cuenta",
           "logout": "Cerrar Sesion"
