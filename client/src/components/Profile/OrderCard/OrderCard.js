@@ -19,11 +19,16 @@ const OrderCard = ({ id, status, orderLines, createdAt }) => {
                     <span>Order number: {id}</span>
                 </div>
                 <div className="--OrderCard-data-value">
-                    <span>Price: {totalPrice.reduce((accumulator, currentValue) => {
-                        return accumulator + currentValue
-                    })
+                    <span>
 
-                    }</span>
+                        Price: {
+                            totalPrice && totalPrice.length > 0 ? (
+                                totalPrice.reduce((accumulator, currentValue) => {
+                                    return accumulator + currentValue
+                                })
+                            ) : (<span>0</span>)
+
+                        }</span>
                     <span>Quantity of products: {orderLines.length}</span>
                 </div>
                 <div className="--OrderCard-data-status">
