@@ -12,6 +12,7 @@ import {
 import { connect } from "react-redux";
 
 import axios from "axios";
+import swal from "sweetalert";
 
 const stripePromise = loadStripe("pk_test_51IbFjrLDJyVvtDkgSdbcQBERHyS60JKwwgP1txRVecZIQaA268HyHtWB9o285SwM1H9A1EhoUL7DMU6iKgIzlqbk00wBHvgczU");
 
@@ -106,6 +107,9 @@ const CheckoutForm = ({ price, cart, userReducer, store_orders, action }) => {
                         });
                     action();
                     axios.put(`http://localhost:3001/order/${emailData.id}`,{orderStatus: "complete"})
+                }else{
+                    console.log("RAZON:",data.message);
+                    swal(data.message);
                 }
                 elements.getElement(CardElement).clear();
             } catch (error) {
