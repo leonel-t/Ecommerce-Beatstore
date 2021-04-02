@@ -7,7 +7,7 @@ import {
   GET_ONE_PRODUCT_FAILURE,
   SEARCH_PRODUCT_SUCCESS,
   SEARCH_PRODUCT_FAILURE,
-  SEARCH_PRODUCT_REQUEST
+  SEARCH_PRODUCT_REQUEST,
 } from "../products/products.actions";
 import {
   DELETE_PRODUCT_REQUEST,
@@ -24,7 +24,9 @@ import {
   DELETE_CATEGORY_FAILURE,
   GET_ALL_USERS_REQUEST,
   GET_ALL_USERS_SUCCESS,
-  GET_ALL_USERS_FAILURE
+  GET_ALL_USERS_FAILURE,
+  GET_ALL_ORDERS,
+  DELETE_ORDER_BY_ID
 } from "../admin/admin.actions";
 
 let initialState = {
@@ -47,11 +49,22 @@ let initialState = {
   categoryError: "",
   users: [],
   usersLoading: true,
-  usersError: ""
+  usersError: "",
+  orders: []
 };
 
 const adminReducers = (state = initialState, action) => {
   switch (action.type) {
+    case DELETE_ORDER_BY_ID:
+      return {
+        ...state
+      }
+    case GET_ALL_ORDERS:
+      return {
+        ...state,
+        orders: action.payload
+
+      }
     case GET_ALL_USERS_REQUEST:
       return {
         ...state,

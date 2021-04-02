@@ -1,6 +1,5 @@
 import React from "react";
 import { BrowserRouter, Route, Switch } from "react-router-dom";
-import { loadStripe } from "@stripe/stripe-js";
 
 //Layouts
 import {
@@ -47,6 +46,8 @@ import Subscriptions from './pages/AdminSubscriptions/Subscriptions/Subscription
 import Prices from './pages/AdminSubscriptions/Prices/Prices';
 import Invoices from './pages/AdminSubscriptions/Invoices/Invoices';
 import SuscriptionsProducts from './pages/AdminSubscriptions/AdminSuscriptionsProducts/AdminSuscriptionsProducts';
+import ListOrder from './pages/Admin/AdminOrders/ListOrder';
+
 const App = () => {
 
   return (
@@ -72,6 +73,7 @@ const App = () => {
         <RouteWrapper exact path="/add" component={Form} layout={AdminLayout} />
         <RouteWrapper exact path="/admin" component={Admin} layout={AdminLayout} />
         <RouteWrapper exact path="/admin/ListUsers" component={AdminListUsers} layout={AdminLayout} />
+        <RouteWrapper exact path="/admin/listorders" component={ListOrder} layout={AdminLayout} />
         <RouteWrapper exact path="/put/:id" component={PutForm} layout={PagesLayout} />
         <RouteWrapper exact path="/addCategories" component={Categories} layout={AdminLayout} />
         <RouteWrapper exact path="/login" component={Login} layout={LoginLayout} />
