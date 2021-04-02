@@ -36,6 +36,13 @@ import InsCode from './components/LoginCard/ResetPass/InsCode';
 import Checkout from "./pages/Checkout/Checkout";
 import CheckoutPay from './pages/CheckoutPay/CheckoutPay';
 
+//Menu Routes
+import Oferts from "./pages/Oferts/Oferts";
+import Ranking from "./pages/Ranking/Ranking";
+
+import ListOrder from './pages/Admin/AdminOrders/ListOrder';
+import OrderDetails from "./components/Profile/OrderDetails/OrderDetails";
+
 //Subscriptions
 import AdminSubscriptions from './pages/AdminSubscriptions/AdminSubscriptions';
 import Payouts from './pages/AdminSubscriptions/Payouts/Payouts';
@@ -72,6 +79,7 @@ const App = () => {
         <RouteWrapper exact path="/add" component={Form} layout={AdminLayout} />
         <RouteWrapper exact path="/admin" component={Admin} layout={AdminLayout} />
         <RouteWrapper exact path="/admin/ListUsers" component={AdminListUsers} layout={AdminLayout} />
+        <RouteWrapper exact path="/admin/listorders" component={ListOrder} layout={AdminLayout} />
         <RouteWrapper exact path="/put/:id" component={PutForm} layout={PagesLayout} />
         <RouteWrapper exact path="/addCategories" component={Categories} layout={AdminLayout} />
         <RouteWrapper exact path="/login" component={Login} layout={LoginLayout} />
@@ -81,9 +89,10 @@ const App = () => {
         <RouteWrapper exact path="/inscode" component={InsCode} layout={LoginLayout} />
         <RouteWrapper exact path="/cart" component={Cart} layout={PagesLayout} />
         <RouteWrapper exact path="/profile" component={Profile} layout={ProfileLayout} />
+        <RouteWrapper path="/profile/order/:id" component={OrderDetails} layout={PagesLayout} />
         <RouteWrapper exact path="/login/github/:email/:password" component={LoginGithub} layout={PagesLayout} />
-        <RouteWrapper exact path="/checkout" component={Checkout} layout={PagesLayout}/>
-
+        <RouteWrapper exact path="/oferts" component={Oferts} layout={PagesLayout} />
+        <RouteWrapper exact path="/ranking" component={Ranking} layout={PagesLayout} />
         <RouteWrapper exact path="/adminsubscriptions" component={AdminSubscriptions} layout={AdminSubscriptionsLayout} />
         <RouteWrapper exact path="/adminsuscriptions/customers" component={Customers} layout={AdminSubscriptionsLayout} />
         <RouteWrapper exact path="/adminsuscriptions/products" component={SuscriptionsProducts} layout={AdminSubscriptionsLayout} />
@@ -94,6 +103,7 @@ const App = () => {
         <RouteWrapper exact path="/adminsuscriptions/subscriptions" component={Subscriptions} layout={AdminSubscriptionsLayout} />
         <RouteWrapper exact path="/adminsuscriptions/prices" component={Prices} layout={AdminSubscriptionsLayout} />
         <RouteWrapper exact path="/adminsuscriptions/invoices" component={Invoices} layout={AdminSubscriptionsLayout} />
+        <RouteWrapper exact path="/checkout" component={Checkout} layout={PagesLayout} />
       </Switch>
     </BrowserRouter>
   );

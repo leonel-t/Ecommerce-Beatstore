@@ -6,7 +6,7 @@ import OrderCard from "../OrderCard/OrderCard";
 
 import "./TabUser.css";
 
-const TabUser = ({t}) => {
+const TabUser = ({ t, orders }) => {
     const [purchases, setPurchases] = useState(true);
     const [comments, setComments] = useState(false);
 
@@ -31,26 +31,35 @@ const TabUser = ({t}) => {
         <div className="--TabUser">
             <div className="--TabUser-tab">
                 <div
-                className={purchases ? "--TabUser-tab-active" : "--TabUser-tab-inactive"}
-                onClick={handleClick(purchases ? "" : "purchases")}>
+                    className={purchases ? "--TabUser-tab-active" : "--TabUser-tab-inactive"}
+                    onClick={handleClick(purchases ? "" : "purchases")}>
                     <p>{t('page.profile.tabUser.purchases')}</p>
                 </div>
                 <div
-                className={comments ? "--TabUser-tab-active" : "--TabUser-tab-inactive"}
-                onClick={handleClick(comments ? "" : "comments")}>
+                    className={comments ? "--TabUser-tab-active" : "--TabUser-tab-inactive"}
+                    onClick={handleClick(comments ? "" : "comments")}>
                     <p>{t('page.profile.tabUser.coments')}</p>
                 </div>
             </div>
             <div className="--TabUser-content">
                 <div className={purchases ? "--TabUser-content-active" : "--TabUser-content-inactive"}>
-                    {/* <p>{t('page.profile.tabUser.componentPurchases')}</p> */}
-                    <OrderCard/>
-                    <OrderCard/>
-                    <OrderCard/>
-                    <OrderCard/>
-                    <OrderCard/>
-                    <OrderCard/>
-                    <OrderCard/>
+                    {orders && orders.length >= 1 ? (
+                        orders.map((order, index) => {
+                            return (
+                                <OrderCard
+
+                                    key={index}
+                                    id={order.id}
+                                    status={order.orderStatus}
+                                    orderLines={order.orderLines}
+                                    createdAt={order.createdAt}
+
+                                />
+                            );
+                        })
+                    ) : (
+                        <p>NO PRODUCTS IN DB</p>
+                    )}
                 </div>
                 <div className={comments ? "--TabUser-content-active" : "--TabUser-content-inactive"}>
                     <p>{t('page.profile.tabUser.componentComments')}</p>

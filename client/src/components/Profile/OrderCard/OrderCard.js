@@ -1,26 +1,42 @@
 import React from "react";
 import "./OrderCard.css";
+import { useHistory } from "react-router-dom";
+const OrderCard = ({ id, status, orderLines, createdAt }) => {
+    const history = useHistory();
 
-const OrderCard = () => {
+    function handleClick() {
+        history.push(`profile/order/${id}`);
+
+    }
+    const totalPrice = orderLines.map(order => parseFloat(order.price))
     return (
         <div className="--OrderCard">
             <div className="--OrderCard-data">
                 <div className="--OrderCard-data-date">
-                    <span>Date: 12/12/1234</span>
+                    <span>Created at: {createdAt}</span>
                 </div>
                 <div className="--OrderCard-data-number">
-                    <span>Order number: 1234567890</span>
+                    <span>Order number: {id}</span>
                 </div>
                 <div className="--OrderCard-data-value">
-                    <span>Price: $123</span>
-                    <span>Quantity of products: 12</span>
+                    <span>
+
+                        Price: {
+                            totalPrice && totalPrice.length > 0 ? (
+                                totalPrice.reduce((accumulator, currentValue) => {
+                                    return accumulator + currentValue
+                                })
+                            ) : (<span>0</span>)
+
+                        }</span>
+                    <span>Quantity of products: {orderLines.length}</span>
                 </div>
                 <div className="--OrderCard-data-status">
-                    <span>Status: Complete</span>
+                    <span>Status: {status}</span>
                 </div>
             </div>
             <div className="--OrderCard-detail-btn">
-                <button>Details</button>
+                <button onClick={handleClick}>Details</button>
             </div>
         </div>
     )

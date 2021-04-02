@@ -29,8 +29,6 @@ export const FILTER_BY_GENRE = "FILTER_BY_GENRE"
 export const GET_PRODUCTS_BY_CATEGORY = "GET_PRODUCTS_BY_CATEGORY";
 
 
-
-
 export const getProductsByCategories = (cats) => {
     return (dispatch) => {
         if (cats) {
@@ -116,6 +114,7 @@ export const fetchOneProduct = (productId) => {
                         var likes = i 
                         console.log("likes", i )             
                     }   
+                    dispatch(fetchProductReproductions(product.data.id))
                 }catch(error){
                     
                 }finally{
@@ -161,7 +160,29 @@ export const getOneProductFailure = (error) => {
         payload: error
     }
 }
+//UPDATE PRODUCT REPRODUCTIONS
+export const fetchProductReproductions = (IdProduct) => {
 
+    return (dispatch) => {
+        const options = {
+            method: 'PUT',
+            url: `http://localhost:3001/products/reproductions/`, 
+            headers: {
+                ContentType: "application/json",
+            },
+            data: {
+                id: IdProduct,
+            }
+        };
+
+        try {
+            return axios.request(options)
+        } catch {
+            return console.log("Error")
+        } 
+
+    }
+}
 //ADD LIKE TO PRODUCT
 export const fetchAddLikeToProduct = (IdProduct, like, author,idUser) => {
     return (dispatch) => {

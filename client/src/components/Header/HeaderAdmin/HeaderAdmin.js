@@ -9,16 +9,16 @@ import flagSP from "../../../assets/images/espana.png"
 //Route
 import {Link} from 'react-router-dom'
 //Internationalization
-import i18n from '../../../i18n';
+//import i18n from '../../../i18n';
 import { withTranslation } from 'react-i18next';
 //CSS
 import '../HeaderHome/header-home.scss';
 
 const HeaderHome = ({fetchUserEffect, STORE_CART, STORE_USER}) =>{
 
-    const changeLanguage = (lng) => {
-        i18n.changeLanguage(lng);
-      } 
+    // const changeLanguage = (lng) => {
+    //     i18n.changeLanguage(lng);
+    //   } 
 
 
 
@@ -49,8 +49,8 @@ const HeaderHome = ({fetchUserEffect, STORE_CART, STORE_USER}) =>{
             <div className="--header-home-menu">
                 <ul>
                     <Link className='--header-home-link' to='/catalog'><li>Catalog</li></Link>
-                    <Link className='--header-home-link' to='/catalog'><li>Oferts</li></Link>
-                    <Link className='--header-home-link' to='/catalog'><li>Ranking</li></Link>
+                    <Link className='--header-home-link' to='/oferts'><li>Oferts</li></Link>
+                    <Link className='--header-home-link' to='/ranking'><li>Ranking</li></Link>
                     <div
                     onClick={handleDropDown}
                     className='--header-home-dropdown'>

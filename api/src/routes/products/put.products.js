@@ -111,4 +111,19 @@ server.put("/likes", async (req, res, next) => {
     });
 });
 
+server.put("/reproductions", async (req, res, next) => {
+  const {id} = req.body
+  return await Product.findByPk(id).then(async (product)=>{
+    return await Product.update({reproductions: product.dataValues.reproductions + 1}, {
+      where:{
+        id:id
+      }
+    }).then((product)=>{
+      return res.status(200).json(product)
+    })
+  }).catch((error) => {
+      return error
+    });
+});
+
 module.exports = server;

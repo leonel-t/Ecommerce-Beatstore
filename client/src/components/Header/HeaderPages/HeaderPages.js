@@ -10,7 +10,7 @@ import Logo from '../../../assets/images/icon-logo.png'
 import { Link } from 'react-router-dom'
 import { useHistory } from "react-router-dom"
 //Internationalization
-import i18n from '../../../i18n';
+//import i18n from '../../../i18n';
 import { withTranslation } from 'react-i18next';
 import flagEN from "../../../assets/images/estados-unidos.png";
 import flagSP from "../../../assets/images/espana.png"
@@ -20,9 +20,9 @@ import '../HeaderHome/header-home.scss';
 
 const HeaderPages = ({fetchUserEffect, STORE_CART, STORE_USER}) =>{
 
-    const changeLanguage = (lng) => {
-        i18n.changeLanguage(lng);
-      } 
+    // const changeLanguage = (lng) => {
+    //     i18n.changeLanguage(lng);
+    //   } 
     // element.current.addEventListener('scroll', ()=>{
 
     // })
@@ -31,7 +31,7 @@ const HeaderPages = ({fetchUserEffect, STORE_CART, STORE_USER}) =>{
 
       const handleDropDown = ()=>{
         dropDown ? setDropDown(false) : setDropDown(true)
-      }
+       }
 
       const dispatch = useDispatch();
       const history = useHistory();
@@ -126,8 +126,8 @@ const HeaderPages = ({fetchUserEffect, STORE_CART, STORE_USER}) =>{
           <div className={dropDown ? "--header-home-dropdown-menu" : "--header-home-dropdown-menu-hidden"}>
              <div className="--header-home-dropdown-menu-box">
               <Link className='--header-home-link-dropdown' to='/catalog'><li>Catalog</li></Link>
-              <Link className='--header-home-link-dropdown' to='/catalog'><li>Oferts</li></Link>
-              <Link className='--header-home-link-dropdown' to='/catalog'><li>Ranking</li></Link>
+              <Link className='--header-home-link-dropdown' to='/oferts'><li>Oferts</li></Link>
+              <Link className='--header-home-link-dropdown' to='/ranking'><li>Ranking</li></Link>
              </div>
           </div>
 

@@ -4,8 +4,8 @@
 }
 .example.example1 {
     border-radius: 5px;
-    margin-left: 10%;
-    background-color: #9367e5;
+    margin-left: 15%;
+    background-color: #5700fa;
     height: 25rem;
     width: 30rem;
   }
@@ -21,9 +21,8 @@
     margin: 0 15px 20px;
     padding: 0;
     border-style: none;
-    background-color: #7795f8;
-    box-shadow: 0 6px 9px rgba(50, 50, 93, 0.06), 0 2px 5px rgba(0, 0, 0, 0.08),
-      inset 0 1px 0 #829fff;
+    background-color: #1d1d1d;
+   
     border-radius: 4px;
   }
   
@@ -98,7 +97,8 @@
     width: 90%;
     height: 40px;
     margin: 40px 15px 0;
-    background-color: #ac0095;
+    background: linear-gradient(225deg, rgb(234, 50, 111), rgb(79, 0, 170));
+
  
     border-radius: 4px;
     color: #fff;

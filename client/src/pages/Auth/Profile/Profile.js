@@ -1,21 +1,28 @@
 import './Profile.css';
 import React, { useEffect } from 'react';
 import { connect } from 'react-redux';
-import { fetchUser } from '../../../stores/user/user.actions';
 import { useHistory, Link } from 'react-router-dom';
+import { fetchUser, getOrdersByUser } from '../../../stores/user/user.actions';
 import axios from 'axios';
 import ProfileCard from '../../../components/Profile/ProfileCard/ProfileCard';
 import TabUser from '../../../components/Profile/TabUser/TabUser';
 import { withTranslation } from 'react-i18next';
 import logoIcon from "../../../assets/images/icon-logo.png"
 
-const Profile = ({t, fetchUserEffect, STORE_USER }) => {
+const Profile = ({ t, fetchUserEffect, STORE_USER, getOrdersByUserEf }) => {
 
   const history = useHistory();
 
+
   useEffect(() => {
+    let userStore = STORE_USER.user && STORE_USER.user.data && STORE_USER.user.data.user ? STORE_USER.user.data.user : null;
+    if (userStore && userStore.id) {
+      let userId = userStore.id
+
+      getOrdersByUserEf(userId);
+    }
     fetchUserEffect();
-  }, [fetchUserEffect]);
+  }, [fetchUserEffect, getOrdersByUserEf]);
 
 
   const handleClickLogin = (e) => {
@@ -64,16 +71,15 @@ const Profile = ({t, fetchUserEffect, STORE_USER }) => {
             {STORE_USER.user && STORE_USER.user.data
               ? (
                 <>
-                <div className="--Profile">                
-                  <ProfileCard name={STORE_USER.user.data.user.name} email={STORE_USER.user.data.user.email}/>
-                  <TabUser/>
-                </div>
+                  <div className="--Profile">
+                    <ProfileCard name={STORE_USER.user.data.user.name} email={STORE_USER.user.data.user.email} />
+                    <TabUser orders={STORE_USER.orders} />
+                  </div>
                 </>
               ) : (
                 <>
                   {generateNewToken()}
                     <div className="--profile-not-user">
-                      
                       <div className="--profile-margin">
                          <div className="--profile-not-user-container">
                           <div className="--profile-logo">
@@ -111,6 +117,8 @@ const mapStateToProps = state => {
 const mapDispatchToProps = (dispatch) => {
   return {
     fetchUserEffect: () => dispatch(fetchUser()),
+    getOrdersByUserEf: (userId) => dispatch(getOrdersByUser(userId))
+
   };
 };
 
