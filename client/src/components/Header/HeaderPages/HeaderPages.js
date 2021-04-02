@@ -12,11 +12,13 @@ import { useHistory } from "react-router-dom"
 //Internationalization
 import i18n from '../../../i18n';
 import { withTranslation } from 'react-i18next';
+import flagEN from "../../../assets/images/estados-unidos.png";
+import flagSP from "../../../assets/images/espana.png"
 //CSS
 import '../HeaderHome/header-home.scss';
 
 
-const HeaderHome = ({fetchUserEffect, STORE_CART, STORE_USER}) =>{
+const HeaderPages = ({fetchUserEffect, STORE_CART, STORE_USER}) =>{
 
     const changeLanguage = (lng) => {
         i18n.changeLanguage(lng);
@@ -26,6 +28,7 @@ const HeaderHome = ({fetchUserEffect, STORE_CART, STORE_USER}) =>{
     // })
     const [name, setName] = useState("");
     const [dropDown, setDropDown] = useState(false)
+
       const handleDropDown = ()=>{
         dropDown ? setDropDown(false) : setDropDown(true)
       }
@@ -96,9 +99,10 @@ const HeaderHome = ({fetchUserEffect, STORE_CART, STORE_USER}) =>{
                     </ul>
                ):(
                     <ul>
-                        
-                       <li> <Link className='--header-home-link-login' to='/login'> Login</Link> </li>
-                       <Link className='--header-account-link' to='/profile'> <span className="material-icons --user-img"> account_circle </span></Link>
+                        <li className='--header-flags' onClick={() => changeLanguage('en')}><img src={flagEN} alt="flagENGLISH" width="25px" height="25px"/></li>
+                        <li className='--header-flags' onClick={() => changeLanguage('es')}><img src={flagSP}alt="flagSPANISH" width="25px" height="25px"/></li>
+                        <li> <Link className='--header-home-link-login' to='/login'> Login</Link> </li>
+                        <Link className='--header-account-link' to='/profile'> <span className="material-icons --user-img"> account_circle </span></Link>
                         <div className="--header-home-cart">
                         <Link to='/cart'><span className="material-icons --header-home-perfil-icon"> shopping_cart</span></Link>
                                 <span className="--header-home-cart-item-length">
@@ -117,11 +121,6 @@ const HeaderHome = ({fetchUserEffect, STORE_CART, STORE_USER}) =>{
                 )}
                 
             </div>
-                  
-            {/* <div className='--header-flag'>
-              <button className="btn-en" onClick={() => changeLanguage('en')}></button>
-              <button className="btn-es" onClick={() => changeLanguage('es')}></button>
-            </div>     */}
         </div>
 
           <div className={dropDown ? "--header-home-dropdown-menu" : "--header-home-dropdown-menu-hidden"}>
@@ -152,4 +151,4 @@ const mapStateToProps =  state => {
   };
   
   
-export default connect(mapStateToProps, mapDispatchToProps)(withTranslation()(HeaderHome));
+export default connect(mapStateToProps, mapDispatchToProps)(withTranslation()(HeaderPages));
