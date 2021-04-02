@@ -1,6 +1,5 @@
 import React from "react";
 import { BrowserRouter, Route, Switch } from "react-router-dom";
-import { loadStripe } from "@stripe/stripe-js";
 
 //Layouts
 import {
@@ -35,7 +34,7 @@ import InsCode from './components/LoginCard/ResetPass/InsCode';
 import Checkout from "./pages/Checkout/Checkout";
 import CheckoutPay from './pages/CheckoutPay/CheckoutPay';
 import ListOrder from './pages/Admin/AdminOrders/ListOrder';
-
+import OrderDetails from "./components/Profile/OrderDetails/OrderDetails";
 
 const App = () => {
 
@@ -66,13 +65,13 @@ const App = () => {
         <RouteWrapper exact path="/put/:id" component={PutForm} layout={PagesLayout} />
         <RouteWrapper exact path="/addCategories" component={Categories} layout={AdminLayout} />
         <RouteWrapper exact path="/login" component={Login} layout={LoginLayout} />
-        {/* <RouteWrapper exact path="/player" component={MusicPlayer} layout={LoginLayout} /> */}
         <RouteWrapper exact path="/results/:name" component={Results} layout={PagesLayout} />
         <RouteWrapper exact path="/register" component={Register} layout={LoginLayout} />
         <RouteWrapper exact path="/resetpass" component={ResetPass} layout={LoginLayout} />
         <RouteWrapper exact path="/inscode" component={InsCode} layout={LoginLayout} />
         <RouteWrapper exact path="/cart" component={Cart} layout={PagesLayout} />
         <RouteWrapper exact path="/profile" component={Profile} layout={PagesLayout} />
+        <RouteWrapper path="/profile/order/:id" component={OrderDetails} layout={PagesLayout} />
         <RouteWrapper exact path="/login/github/:email/:password" component={LoginGithub} layout={PagesLayout} />
         <RouteWrapper exact path="/checkout" component={Checkout} layout={PagesLayout} />
       </Switch>
