@@ -116,7 +116,7 @@ const productsReducers = (state = initialState, action) => {
                 let productCategories = []
                 if (p.categories.length > 0) {
                     for (let i = 0; i < p.categories.length; i++) {
-                        if (p.categories[i].name == action.payload) {
+                        if (p.categories[i].name === action.payload) {
                             productCategories.push(action.payload)
                         }
 
@@ -124,6 +124,7 @@ const productsReducers = (state = initialState, action) => {
                     return productCategories.includes(action.payload)
 
                 }
+                return ""
             });
 
 

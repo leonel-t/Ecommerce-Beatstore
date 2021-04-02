@@ -7,7 +7,8 @@ import {
   HomeLayout,
   LoginLayout,
   AdminLayout,
-  ProductLayout
+  ProductLayout,
+  AdminSubscriptionsLayout
 } from "./Layouts/Layouts";
 
 //Pages
@@ -33,9 +34,25 @@ import ResetPass from './components/LoginCard/ResetPass/ResetPass';
 import InsCode from './components/LoginCard/ResetPass/InsCode';
 import Checkout from "./pages/Checkout/Checkout";
 import CheckoutPay from './pages/CheckoutPay/CheckoutPay';
+
+//Menu Routes
+import Oferts from "./pages/Oferts/Oferts";
+import Ranking from "./pages/Ranking/Ranking";
+
 import ListOrder from './pages/Admin/AdminOrders/ListOrder';
 import OrderDetails from "./components/Profile/OrderDetails/OrderDetails";
 
+//Subscriptions
+import AdminSubscriptions from './pages/AdminSubscriptions/AdminSubscriptions';
+import Payouts from './pages/AdminSubscriptions/Payouts/Payouts';
+import Customers from './pages/AdminSubscriptions/Customers/Customers';
+import PaymentIntents from './pages/AdminSubscriptions/PaymentIntents/Paymentintents';
+import SetupAttempts from './pages/AdminSubscriptions/SetupAttempts/Setupattempts';
+import SetupIntents from './pages/AdminSubscriptions/SetupIntents/SetupIntents';
+import Subscriptions from './pages/AdminSubscriptions/Subscriptions/Subscriptions';
+import Prices from './pages/AdminSubscriptions/Prices/Prices';
+import Invoices from './pages/AdminSubscriptions/Invoices/Invoices';
+import SuscriptionsProducts from './pages/AdminSubscriptions/AdminSuscriptionsProducts/AdminSuscriptionsProducts';
 const App = () => {
 
   return (
@@ -73,6 +90,18 @@ const App = () => {
         <RouteWrapper exact path="/profile" component={Profile} layout={PagesLayout} />
         <RouteWrapper path="/profile/order/:id" component={OrderDetails} layout={PagesLayout} />
         <RouteWrapper exact path="/login/github/:email/:password" component={LoginGithub} layout={PagesLayout} />
+        <RouteWrapper exact path="/oferts" component={Oferts} layout={PagesLayout} />
+        <RouteWrapper exact path="/ranking" component={Ranking} layout={PagesLayout} />
+        <RouteWrapper exact path="/adminsubscriptions" component={AdminSubscriptions} layout={AdminSubscriptionsLayout} />
+        <RouteWrapper exact path="/adminsuscriptions/customers" component={Customers} layout={AdminSubscriptionsLayout} />
+        <RouteWrapper exact path="/adminsuscriptions/products" component={SuscriptionsProducts} layout={AdminSubscriptionsLayout} />
+        <RouteWrapper exact path="/adminsuscriptions/paymentintests" component={PaymentIntents} layout={AdminSubscriptionsLayout} />
+        <RouteWrapper exact path="/adminsuscriptions/payouts" component={Payouts} layout={AdminSubscriptionsLayout} />
+        <RouteWrapper exact path="/adminsuscriptions/setupAttempts" component={SetupAttempts} layout={AdminSubscriptionsLayout} />
+        <RouteWrapper exact path="/adminsuscriptions/setupIntets" component={SetupIntents} layout={AdminSubscriptionsLayout} />
+        <RouteWrapper exact path="/adminsuscriptions/subscriptions" component={Subscriptions} layout={AdminSubscriptionsLayout} />
+        <RouteWrapper exact path="/adminsuscriptions/prices" component={Prices} layout={AdminSubscriptionsLayout} />
+        <RouteWrapper exact path="/adminsuscriptions/invoices" component={Invoices} layout={AdminSubscriptionsLayout} />
         <RouteWrapper exact path="/checkout" component={Checkout} layout={PagesLayout} />
       </Switch>
     </BrowserRouter>
