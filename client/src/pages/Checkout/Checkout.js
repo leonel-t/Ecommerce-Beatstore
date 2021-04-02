@@ -5,43 +5,36 @@ import "./Checkout.css"
 
 const Checkout = () => {
     const [billing, setBilling] = useState(true);
-    const [method, setMetod] = useState(false);
     const [payout, setPayout] = useState(false);
     const [done, setDone] = useState(false);
 
     const handleClick = (tab) => {
         switch (tab) {
             case "billing":
-                return () => {
                     setBilling(true)
-                    setMetod(false)
                     setPayout(false)
                     setDone(false)
-                }
-            case "method":
-                return () => {
-                    setBilling(false)
-                    setMetod(true)
-                    setPayout(false)
-                    setDone(false)
-                }
+                    break
             case "payout":
-                return () => {
                     setBilling(false)
-                    setMetod(false)
                     setPayout(true)
                     setDone(false)
-                }
+                    break
             case "done":
-                return () => {
                     setBilling(false)
-                    setMetod(false)
                     setPayout(false)
                     setDone(true)
-                }
+                    break
             default:
-                break;
+                break
         }
+    }
+
+    const formBillingComplete = () => {
+        handleClick("payout");
+    }
+    const paymentComplete = () => {
+        handleClick("done");
     }
 
     return (
@@ -49,34 +42,29 @@ const Checkout = () => {
             <div className="--Checkout-tab">
                 <div
                     className={billing ? "--Checkout-tab-active" : "--Checkout-tab-inactive"}
-                    onClick={handleClick(billing ? "" : "billing")}>
+                    onClick={()=>handleClick(billing ? "" : "billing")}>
                     <p>Billing Info</p>
                 </div>
-                {/* <div
-                    className={method ? "--Checkout-tab-active" : "--Checkout-tab-inactive"}
-                    onClick={handleClick(method ? "" : "method")}>
-                    <p>Payment method</p>
-                </div> */}
                 <div
                     className={payout ? "--Checkout-tab-active" : "--Checkout-tab-inactive"}
-                    onClick={handleClick(payout ? "" : "payout")}>
+                    onClick={()=>handleClick(payout ? "" : "payout")}>
                     <p>Payment</p>
                 </div>
                 <div
                     className={done ? "--Checkout-tab-active" : "--Checkout-tab-inactive"}
-                    onClick={handleClick(done ? "" : "done")}>
+                    onClick={()=>handleClick(done ? "" : "done")}>
                     <p>Purchase completed</p>
                 </div>
             </div>
+
+            {/* components */}
+
             <div className="--Checkout-content">
                 <div className={billing ? "--Checkout-content-active" : "--Checkout-content-inactive"}>
-                    <TabBilling f={handleClick}/>
+                    <TabBilling f={formBillingComplete}/>
                 </div>
-                {/* <div className={method ? "--Checkout-content-active" : "--Checkout-content-inactive"}>
-                    <p>method</p>
-                </div> */}
                 <div className={payout ? "--Checkout-content-active" : "--Checkout-content-inactive"}>
-                    <CheckoutPay/>
+                    <CheckoutPay action={paymentComplete}/>
                 </div>
                 <div className={done ? "--Checkout-content-active" : "--Checkout-content-inactive"}>
                     <p>thank you for your purchase, you will soon receive an email</p>

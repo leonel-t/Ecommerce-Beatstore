@@ -13,9 +13,9 @@ import { connect } from "react-redux";
 
 import axios from "axios";
 
-const stripePromise = loadStripe("pk_test_51IacYXDloipSs6XKbHgrFYdB8siv2riOY2FoIz82WGXhlRkGRC5h37tWjeGLPjcZmvbJROADK3nfUblF8B6gwRKm001XPJ1lUM");
+const stripePromise = loadStripe("pk_test_51IbFjrLDJyVvtDkgSdbcQBERHyS60JKwwgP1txRVecZIQaA268HyHtWB9o285SwM1H9A1EhoUL7DMU6iKgIzlqbk00wBHvgczU");
 
-function CheckoutPay({ totalPrice, cart, userReducer, store_orders, fetchAllOrders }) {
+function CheckoutPay({ totalPrice, cart, userReducer, store_orders, fetchAllOrders, action }) {
     useEffect(() => {
         fetchAllOrders()
     }, [fetchAllOrders]);
@@ -23,7 +23,7 @@ function CheckoutPay({ totalPrice, cart, userReducer, store_orders, fetchAllOrde
         <Elements stripe={stripePromise}>
             <div className="row h-100 container-checkout">
                 <div className="col-md-4 offset-md-4 h-100">
-                    <CheckoutForm price={totalPrice} cart={cart} userReducer={userReducer} store_orders={store_orders} />
+                    <CheckoutForm price={totalPrice} cart={cart} userReducer={userReducer} store_orders={store_orders} action={action} />
                 </div>
             </div>
 
@@ -41,7 +41,7 @@ const mapStateToProps = (state) => {
 };
 export default connect(mapStateToProps, { fetchAllOrders })(CheckoutPay);
 
-const CheckoutForm = ({ price, cart, userReducer, store_orders }) => {
+const CheckoutForm = ({ price, cart, userReducer, store_orders, action }) => {
     const stripe = useStripe();
     const elements = useElements();
 
