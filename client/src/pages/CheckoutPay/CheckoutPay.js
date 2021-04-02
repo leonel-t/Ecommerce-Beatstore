@@ -49,7 +49,6 @@ const CheckoutForm = ({ price, cart, userReducer, store_orders }) => {
     const [input, setInput] = useState({
         name: "",
         email: "",
-        phone: ""
 
     })
 
@@ -92,19 +91,19 @@ const CheckoutForm = ({ price, cart, userReducer, store_orders }) => {
                     price: userReducer.totalPrice,
                     products: products
                 }
-                // let myHtml = {
-                //     myHtml: "<h1>prueba</h1>",
-                //     email: input.email
-                // }
-                //email js
+
                 if (data.message === 'Successful Payment') {
+                    //send email
                     emailjs.send('service_b9mqvzg', 'template_lw3aj8d', emailData, 'user_G41cbN7fW7VHqXdcmtBXT')
                         .then((result) => {
                             console.log(result.text);
                         }, (error) => {
                             console.log(error.text);
                         });
+
+
                 }
+                //clear input
                 elements.getElement(CardElement).clear();
             } catch (error) {
                 console.log(error);
@@ -150,7 +149,11 @@ const CheckoutForm = ({ price, cart, userReducer, store_orders }) => {
                             }} />
                     </div>
                 </fieldset>
-                <button type="submit" >Pay ${price}</button>
+                <button type="submit" >{
+                    loading ? (
+                        <img height="30" src={"https://lh3.googleusercontent.com/proxy/YA4TWKDP8m82sY7h9YEkX6tTQ5FpAs4TC7Bn9h47KhOmwhA-peTg1wNUuLpd8KzuB6ms-gPa5orF1q-CXntUWp_NULkr27tAK-GVgM28C-K4E_Dt9duV8GY1eGdzqDZP__dYh2_e_bRHD0tBZYiJLAy1lj9RMi_dxKxPEg"} />
+                    ) : price > 0 ? (`Pay $${price}`) : ""
+                }</button>
 
             </form>
         </div>
