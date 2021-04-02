@@ -35,6 +35,10 @@ import InsCode from './components/LoginCard/ResetPass/InsCode';
 import Checkout from "./pages/Checkout/Checkout";
 import CheckoutPay from './pages/CheckoutPay/CheckoutPay';
 
+//Menu Routes
+import Oferts from "./pages/Oferts/Oferts";
+import Ranking from "./pages/Ranking/Ranking";
+
 //Subscriptions
 import AdminSubscriptions from './pages/AdminSubscriptions/AdminSubscriptions';
 import Payouts from './pages/AdminSubscriptions/Payouts/Payouts';
@@ -82,6 +86,9 @@ const App = () => {
         <RouteWrapper exact path="/profile" component={Profile} layout={PagesLayout} />
         <RouteWrapper exact path="/login/github/:email/:password" component={LoginGithub} layout={PagesLayout} />
         <RouteWrapper exact path="/checkout" component={Checkout} layout={PagesLayout}/>
+
+        <RouteWrapper exact path="/oferts" component={Oferts} layout={PagesLayout} />
+        <RouteWrapper exact path="/ranking" component={Ranking} layout={PagesLayout} />
 
         <RouteWrapper exact path="/adminsubscriptions" component={AdminSubscriptions} layout={AdminSubscriptionsLayout} />
         <RouteWrapper exact path="/adminsuscriptions/customers" component={Customers} layout={AdminSubscriptionsLayout} />

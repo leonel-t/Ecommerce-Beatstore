@@ -47,8 +47,8 @@ const HeaderHome = ({fetchUserEffect, STORE_CART, STORE_USER}) =>{
             <div className="--header-home-menu">
                 <ul>
                     <Link className='--header-home-link' to='/catalog'><li>Catalog</li></Link>
-                    <Link className='--header-home-link' to='/catalog'><li>Oferts</li></Link>
-                    <Link className='--header-home-link' to='/catalog'><li>Ranking</li></Link>
+                    <Link className='--header-home-link' to='/oferts'><li>Oferts</li></Link>
+                    <Link className='--header-home-link' to='/ranking'><li>Ranking</li></Link>
                     <div
                     onClick={handleDropDown}
                     className='--header-home-dropdown'>
