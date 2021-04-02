@@ -7,6 +7,10 @@ const AdminSubscriptionsNav = () =>{
     return (
         <div className="admin-subscriptionsnav-main">
             <ul className="admin-subscriptionsnav-main-ul">
+            <li className="admin-subscriptionsnav-main-li">
+                    <Link className="admin-subscriptionsnav-main-link"
+                     to="/adminsubscriptions/">Dashboard</Link>
+                </li>
                 <li className="admin-subscriptionsnav-main-li">
                     <Link className="admin-subscriptionsnav-main-link"
                      to="/adminsuscriptions/customers">Customers</Link>

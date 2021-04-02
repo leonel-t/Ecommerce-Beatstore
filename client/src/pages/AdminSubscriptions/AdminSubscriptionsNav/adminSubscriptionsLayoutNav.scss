@@ -10,17 +10,23 @@
 }
 .admin-subscriptionsnav-main-li{
     display:inline-block;
-    padding: 2em;
+    padding: 0.5em;
 }
 .admin-subscriptionsnav-main-link{
     text-decoration: none;
     color: white;
-    font-size: 1.2rem;
-    padding:7px;
+    font-size: 1rem;
+    padding:5px;
     border-radius: 10px;
 }
 
 .admin-subscriptionsnav-main-link:hover{
+    background-color:rgb(120, 4, 124);
+    transition: all 0.5s ease-in;
+    
+}
+
+.admin-subscriptionsnav-main-link:focus{
     background-color:rgb(120, 4, 124);
     transition: all 0.5s ease-in;
     
