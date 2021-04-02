@@ -41,15 +41,28 @@ const OrderDetails = ({ order }) => {
                                         </div>
                                     );
                                 })}
-                                <h1 className="total">Total price: {totalPrice.reduce((accumulator, currentValue) => {
-                                    return accumulator + currentValue
-                                })}</h1>
+
+                                <h1 className="total">Total price:
+                                    {
+                                        totalPrice && totalPrice.length > 0 ? (
+                                            totalPrice.reduce((accumulator, currentValue) => {
+                                                return accumulator + currentValue
+                                            })
+
+                                        ) : (
+                                            <div> </div>
+                                        )
+
+                                    }
+
+                                </h1>
+
                             </div>
-                            <div></div>
                         </>
                     ) : (
                         <p className="empty-cart">Empty Cart</p>
-                    )}
+                    )
+                    }
                 </div>
             </div>
         </div>

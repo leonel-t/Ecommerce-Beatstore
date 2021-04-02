@@ -15,7 +15,6 @@ const ListOrder = ({ fetchAllOrdersEffect, store_orders, deleteOrderByIdEffect }
     const handleClickDelete = (id) => {
         try {
             deleteOrderByIdEffect(id);
-            fetchAllOrdersEffect()
 
         } catch (error) {
             console.log(error)
