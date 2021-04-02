@@ -102,6 +102,10 @@ const CheckoutForm = ({ price, cart, userReducer, store_orders, action }) => {
                         });
 
 
+
+
+                    action();
+                    axios.put(`http://localhost:3001/order/${emailData.id}`, { orderStatus: "complete" })
                 }
                 //clear input
                 elements.getElement(CardElement).clear();
