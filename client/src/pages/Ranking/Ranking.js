@@ -1,9 +1,10 @@
 import React, { useEffect } from 'react';
 import { connect } from 'react-redux';
-
+import {fetchAllProducts} from '../../stores/products/products.actions';
 import "./ranking.scss";
-import RankingItem from "./RankingItem/RankingItem"
-const Ranking = ({ STORE_PRODUCTS }) => {
+import RankingItem from "./RankingItem/RankingItem";
+import Spinner from "../../assets/images/Spin-1s-200px.svg"
+const Ranking = ({ STORE_PRODUCTS, fetchAllProductsEffect }) => {
 
 
   window.scrollTo({
@@ -13,16 +14,17 @@ const Ranking = ({ STORE_PRODUCTS }) => {
   });
 
   useEffect(() => {
-
-
-  }, []);
+    fetchAllProductsEffect()
+  }, [fetchAllProductsEffect]);
 
   return (
     <>
-        {!STORE_PRODUCTS
+        {STORE_PRODUCTS.products.Loading
             ?(
                 <>
-                    <p>Cargando</p>
+                    <div>
+                        <img src={Spinner} alt="loading..."></img>
+                    </div>
                 </>
             ):(
                 <>
@@ -71,5 +73,10 @@ const mapStateToProps = state => {
     STORE_PRODUCTS: state.productsReducers,
   }
 }
+const mapDispatchToProps = (dispatch) => {
+    return {
+        fetchAllProductsEffect: () => {dispatch(fetchAllProducts())}
+    };
+  }
 
-export default connect(mapStateToProps)(Ranking);
+export default connect(mapStateToProps, mapDispatchToProps)(Ranking);

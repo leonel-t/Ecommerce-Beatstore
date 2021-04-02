@@ -8,8 +8,17 @@
     display: flex;
     width: 100%;
     flex-direction: row;
+    margin-left: 5%;
+    margin-right: 5%;
 }
-
+.--ranking-item-article:hover{
+    background: linear-gradient(45deg, rgb(234, 50, 111), rgba(86, 9, 175, 0.589));
+    cursor: pointer;
+}
+.--ranking-item-article-img-div{
+    display: flex;
+    justify-content: flex-end;
+}
 .--ranking-item-article-img{
     margin-top: 0.3em;
     width: 200px;
@@ -26,10 +35,13 @@
 
 }
 .--ranking-item-article-details h3{
+    margin-left: 1em;
     padding: 0;
     color:aliceblue;
     font-size: 2rem;
-    text-align: center;
+    text-align: left;
+    align-items: baseline;
+    align-self: baseline;
 }
 .--ranking-item-article-reproductions{
     position: relative;
@@ -40,12 +52,14 @@
 .--ranking-item-article-details-artist{
     display: flex;
     font-size: 1.5rem;
-    justify-content: center;
+    justify-content: left;
+    margin-left: 1em;
 }
 .--ranking-item-article-details-description{
     display: flex;
     font-size: 1rem;
-    justify-content: center;
+    justify-content: left;
+    margin-left: 1.5em;
 }
 
 .--ranking-item-article-reproductions p{
@@ -107,6 +121,7 @@
         color:aliceblue;
         font-size: 1.7rem;
         text-align: center;
+        margin-left: 0;
     }
     .--ranking-item-article-reproductions{
         position: relative;

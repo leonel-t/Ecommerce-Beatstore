@@ -1,5 +1,5 @@
 
-import React, { useEffect, useLayoutEffect } from 'react';
+import React, { useEffect } from 'react';
 import { connect } from 'react-redux'
 import { useParams } from "react-router-dom"
 import ResultCard from '../../../components/ResultCard/ResultCard';
