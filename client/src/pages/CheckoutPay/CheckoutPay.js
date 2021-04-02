@@ -2,7 +2,6 @@ import React, { useState, useEffect } from "react";
 import './checkoutPay.css';
 import emailjs from 'emailjs-com';
 import { loadStripe } from "@stripe/stripe-js";
-// import emailTemplate from "./template.js"
 import { fetchAllOrders } from '../../stores/admin/admin.actions';
 import {
     Elements,
@@ -117,15 +116,15 @@ const CheckoutForm = ({ price, cart, userReducer, store_orders }) => {
     console.log(!stripe || loading);
 
     return (
-        <div class="cell example example1" id="example-1">
+        <div className="cell example example1" id="example-1">
             {console.log(price)}
             <form className="formexam" onSubmit={handleSubmit}>
                 <fieldset>
-                    <div class="row">
-                        <label for="example1-name" data-tid="elements_examples.form.name_label">Name</label>
+                    <div className="row">
+                        <label for="example1-name" >Name</label>
                         <input name="name" onChange={handleInputChange} id="example1-name" type="text" autocomplete="name" />
                     </div>
-                    <div class="row">
+                    <div className="row">
                         <label for="example1-email" >Email</label>
                         <input onChange={handleInputChange}
                             name="email" type="email" required="" autocomplete="email" />
@@ -133,7 +132,7 @@ const CheckoutForm = ({ price, cart, userReducer, store_orders }) => {
 
                 </fieldset>
                 <fieldset>
-                    <div class="row">
+                    <div className="row">
                         <CardElement
                             options={{
                                 style: {

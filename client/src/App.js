@@ -40,7 +40,7 @@ import Oferts from "./pages/Oferts/Oferts";
 import Ranking from "./pages/Ranking/Ranking";
 
 import ListOrder from './pages/Admin/AdminOrders/ListOrder';
-
+import OrderDetails from "./components/Profile/OrderDetails/OrderDetails";
 
 //Subscriptions
 import AdminSubscriptions from './pages/AdminSubscriptions/AdminSubscriptions';
@@ -88,6 +88,7 @@ const App = () => {
         <RouteWrapper exact path="/inscode" component={InsCode} layout={LoginLayout} />
         <RouteWrapper exact path="/cart" component={Cart} layout={PagesLayout} />
         <RouteWrapper exact path="/profile" component={Profile} layout={PagesLayout} />
+        <RouteWrapper path="/profile/order/:id" component={OrderDetails} layout={PagesLayout} />
         <RouteWrapper exact path="/login/github/:email/:password" component={LoginGithub} layout={PagesLayout} />
         <RouteWrapper exact path="/oferts" component={Oferts} layout={PagesLayout} />
         <RouteWrapper exact path="/ranking" component={Ranking} layout={PagesLayout} />
