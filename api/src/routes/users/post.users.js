@@ -47,7 +47,7 @@ server.post("/",
 
   });
 function generateToken(user){
-    return jwt.sign({id: user.id, rol: user.rol}, ACCESS_TOKEN_SECRET,{expiresIn: "10m"});
+    return jwt.sign({id: user.id, rol: user.rol}, ACCESS_TOKEN_SECRET,{expiresIn: "20m"});
 }
 
 server.post('/token', function(req, res, next){
