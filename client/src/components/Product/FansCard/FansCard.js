@@ -10,7 +10,7 @@ const FansCard = ({username , idAuthor, user,  date}) => {
     const handleLike = ()=>{
 
         swal({
-            text: `Reply to ${idAuthor}`,
+            text: `Reply to ${username}`,
             content: "input",
             button: {
               text: "Write Your Message!",
