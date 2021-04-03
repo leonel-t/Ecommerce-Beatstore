@@ -380,11 +380,6 @@ export const deleteAllItemInCart = (user, orderId) => {
     };
 };
 
-<<<<<<< HEAD
-=======
-
->>>>>>> d76e159a84902760138777c4f2c20c97b570c4ac
-
 //GET USER BY ID
 export const fetchUserInBox = (idUser) => {
 
@@ -426,16 +421,8 @@ export const fetchUserInBoxFailure = (error) => {
         payload: error
     };
 };
-<<<<<<< HEAD
-=======
-
->>>>>>> d76e159a84902760138777c4f2c20c97b570c4ac
 export const cleanCart = () => {
     return {
         type: CLEAN_CART
     };
 }
-<<<<<<< HEAD
-=======
-
->>>>>>> d76e159a84902760138777c4f2c20c97b570c4ac
