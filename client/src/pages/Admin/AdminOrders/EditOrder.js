@@ -6,6 +6,7 @@ import Select from "react-select";
 import axios from "axios";
 import swal from 'sweetalert';
 import { useHistory } from "react-router-dom";
+import emailjs from 'emailjs-com';
 
 function EditOrders({ orders }) {
     const [orderStatus, setOrderStatus] = React.useState([])
@@ -16,11 +17,11 @@ function EditOrders({ orders }) {
         control: (base, state) => ({
             ...base,
             color: "white",
-            margin: "12px",
+            marginBottom: "12px",
             // match with the menu
             borderRadius: state.isFocused ? "3px 3px 0 0" : 3,
             // Overwrittes the different states of border
-            borderColor: state.isFocused ? "yellow" : "green",
+            borderColor: state.isFocused ? "blue" : "purple",
             // Removes weird border around container
             boxShadow: state.isFocused ? null : null,
             background: "black",
@@ -46,11 +47,12 @@ function EditOrders({ orders }) {
         menuList: base => ({
             ...base,
             // kill the white space on first and last option
+            color: "black",
             padding: 0,
-            background: "black",
+            background: "white",
             "&:hover": {
                 // Overwrittes the different states of border
-                background: "black"
+                background: "grey"
             }
 
         }),
@@ -95,13 +97,37 @@ function EditOrders({ orders }) {
         e.preventDefault()
         try {
 
-
+            let data = {
+                name: order.userName,
+                email: order.userEmail,
+                status: orderStatus.value,
+                id: order.id
+            }
             await axios.put(`http://localhost:3001/order/${id}`, { orderStatus: orderStatus.value })
-            swal({
-                title: "Order " + id + " set to " + orderStatus.value,
-                icon: "success",
-                //buttons: true,
-            })
+            if (order.userEmail) {
+
+                emailjs.send('service_wh6ybz2', 'template_adk9g6f', data, 'user_TgPSia94H5R5iet7h197p')
+                    .then((result) => {
+                        console.log(result.text);
+                    }, (error) => {
+                        console.log(error.text);
+                    });
+                swal({
+                    title: "Order " + id + " set to " + orderStatus.value + " an email was sent to user acount",
+                    icon: "success",
+                    //buttons: true,
+                })
+            } else {
+
+                swal({
+                    title: "Order N° " + id + " set to " + orderStatus.value,
+                    icon: "success",
+                    //buttons: true,
+                })
+            }
+
+
+
             history.push(`/admin/listorders`);
 
         } catch (error) {
@@ -116,6 +142,15 @@ function EditOrders({ orders }) {
                 <form className="catAdd" onSubmit={(e) => handleSubmit(e)}>
 
                     <h1> Order id: {order.id}</h1>
+                    {order.userName ? (
+                        <div>
+                            <h1>username: {order.userName}</h1>
+                        </div>
+                    ) : (
+
+                        <div></div>
+                    )
+                    }
                     <h1> User id: {order.userId}</h1>
                     <h1> Total: ${order.total}</h1>
                     <h1> Order status: {order.orderStatus}</h1>

@@ -42,8 +42,19 @@ const ListOrder = ({ fetchAllOrdersEffect, filtered_orders, deleteOrderByIdEffec
                                             <div className="--ItemCard-left">
                                                 <div className="--ItemCard-data">
                                                     <h1>user id: {order.userId}</h1>
+                                                    {order.userName && order.userEmail ? (
+                                                        <div>
+                                                            <h2>username: {order.userName}</h2>
+                                                            <h2>email: {order.userEmail}</h2>
+                                                        </div>
+                                                    ) : (
+
+                                                        <div></div>
+                                                    )
+                                                    }
                                                     <h2>order status: {order.orderStatus}</h2>
                                                     <h2>total: ${order.total}</h2>
+
                                                 </div>
                                             </div>
                                             <div className="--ItemCard-right">
