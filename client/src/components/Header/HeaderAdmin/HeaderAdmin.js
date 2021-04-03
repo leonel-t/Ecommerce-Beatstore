@@ -49,7 +49,7 @@ const HeaderHome = ({t,fetchUserEffect, STORE_CART, STORE_USER}) =>{
                     <div
                     onClick={handleDropDown}
                     className='--header-home-dropdown'>
-                      Menu <i class="fas fa-sort-down"></i>
+                      Menu <i className="fas fa-sort-down"></i>
                     </div>
 
                 </ul>

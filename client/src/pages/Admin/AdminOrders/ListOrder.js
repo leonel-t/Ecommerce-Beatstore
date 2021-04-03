@@ -2,6 +2,7 @@
 import React, { useEffect } from "react";
 import { useHistory } from "react-router-dom";
 import { connect } from "react-redux";
+import AdminNav from "../AdminNav/AdminNav";
 import { fetchAllOrders, deleteOrderById } from "../../../stores/admin/admin.actions";
 const ListOrder = ({ fetchAllOrdersEffect, store_orders, deleteOrderByIdEffect }) => {
     let history = useHistory();
@@ -28,6 +29,8 @@ const ListOrder = ({ fetchAllOrdersEffect, store_orders, deleteOrderByIdEffect }
 
     }
     return (
+        <>
+        <AdminNav></AdminNav>
         <div className="list-users-main">
             <div className="--Cart">
                 <div className="--Cart-items">
@@ -64,6 +67,7 @@ const ListOrder = ({ fetchAllOrdersEffect, store_orders, deleteOrderByIdEffect }
                 </div>
             </div>
         </div>
+        </>
     );
 };
 const mapStateToProps = (state) => {

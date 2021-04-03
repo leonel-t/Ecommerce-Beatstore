@@ -43,7 +43,7 @@ const BeatComponent = ({
     if (product && product.likes && product.likes.length > 0) {
       for (var i = 0; i < product.likes.length; i++) {
         if (userStore.id === product.likes[i].idUser) {
-          console.log("YALEDIOLIKE");
+        //  console.log("YALEDIOLIKE");
           if (!newLikeState) {
             setNewLikeState(true);
           }
@@ -186,9 +186,9 @@ const BeatComponent = ({
                 </div>
                 <div className="beatComponent--main-beatActions-col column">
                   {product.categories && product.categories.length > 0 ? (
-                    product.categories.map((categorie) => {
+                    product.categories.map((categorie, index) => {
                       return (
-                        <span className="beatComponent--main-beatActions-col-cat">
+                        <span key={index} className="beatComponent--main-beatActions-col-cat">
                           {categorie.name}
                         </span>
                       );

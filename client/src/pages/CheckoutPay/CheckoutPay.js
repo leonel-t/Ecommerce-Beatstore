@@ -3,14 +3,14 @@ import './checkoutPay.css';
 import emailjs from 'emailjs-com';
 import { loadStripe } from "@stripe/stripe-js";
 import { fetchAllOrders } from '../../stores/admin/admin.actions';
-import { cleanCart } from '../../stores/user/user.actions';
+// import { cleanCart } from '../../stores/user/user.actions';
 import {
     Elements,
     CardElement,
     useStripe,
     useElements,
 } from "@stripe/react-stripe-js";
-import { connect, useDispatch } from "react-redux";
+import { connect } from "react-redux";
 
 import axios from "axios";
 import swal from "sweetalert";
@@ -44,7 +44,6 @@ const mapStateToProps = (state) => {
 export default connect(mapStateToProps, { fetchAllOrders })(CheckoutPay);
 
 const CheckoutForm = ({ price, cart, userReducer, store_orders, action }) => {
-    const dispatch = useDispatch()
     const stripe = useStripe();
     const elements = useElements();
 
@@ -166,7 +165,7 @@ const CheckoutForm = ({ price, cart, userReducer, store_orders, action }) => {
                 </fieldset>
                 <button type="submit" >{
                     loading ? (
-                        <img height="30" src={"https://lh3.googleusercontent.com/proxy/YA4TWKDP8m82sY7h9YEkX6tTQ5FpAs4TC7Bn9h47KhOmwhA-peTg1wNUuLpd8KzuB6ms-gPa5orF1q-CXntUWp_NULkr27tAK-GVgM28C-K4E_Dt9duV8GY1eGdzqDZP__dYh2_e_bRHD0tBZYiJLAy1lj9RMi_dxKxPEg"} />
+                        <img height="30" alt='spinner' src={"https://lh3.googleusercontent.com/proxy/YA4TWKDP8m82sY7h9YEkX6tTQ5FpAs4TC7Bn9h47KhOmwhA-peTg1wNUuLpd8KzuB6ms-gPa5orF1q-CXntUWp_NULkr27tAK-GVgM28C-K4E_Dt9duV8GY1eGdzqDZP__dYh2_e_bRHD0tBZYiJLAy1lj9RMi_dxKxPEg"} />
                     ) : price > 0 ? (`Pay $${price}`) : ""
                 }</button>
 

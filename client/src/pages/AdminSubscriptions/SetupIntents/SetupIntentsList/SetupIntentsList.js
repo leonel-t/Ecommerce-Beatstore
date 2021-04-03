@@ -1,6 +1,6 @@
 import './setupintentslist.scss';
 import React, {useEffect} from 'react';
-import axios from "axios";
+// import axios from "axios";
 import { connect } from "react-redux";
 import { getSetupIntents } from "../../../../stores/AdminSubscriptions/adminSubscriptions.actions";
 

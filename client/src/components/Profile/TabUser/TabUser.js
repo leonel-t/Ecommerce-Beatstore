@@ -1,23 +1,17 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 
 //Internationalization
 import { withTranslation } from 'react-i18next';
 import ComentCard from "../ComentCard/ComentCard";
 import OrderCard from "../OrderCard/OrderCard";
-import axios from "axios"
 
 import "./TabUser.css";
 
 const TabUser = ({ t, orders }) => {
     const [purchases, setPurchases] = useState(true);
     const [comments, setComments] = useState(false);
-    const [userComents, setUserComents] = useState([]);
-
-    // useEffect(async ()=>{
-    //     const email = localStorage.getItem("email")
-    //     const cmts = await axios.get(`http://localhost:3001/comments/email/${email}`)
-    //     setUserComents(cmts.data)
-    // },[])
+    // eslint-disable-next-line
+    const [userComents] = useState([]);
 
     
 

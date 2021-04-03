@@ -21,7 +21,7 @@ const Profile = ({ t, fetchUserEffect, STORE_USER, getOrdersByUserEf }) => {
 
       getOrdersByUserEf(userId);
     }
-    fetchUserEffect();
+    fetchUserEffect();// eslint-disable-next-line
   }, [fetchUserEffect, getOrdersByUserEf]);
 
 

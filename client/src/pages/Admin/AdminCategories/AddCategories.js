@@ -2,7 +2,7 @@ import React from "react";
 
 //Internationalization
 import { withTranslation } from 'react-i18next';
-
+import AdminNav from '../../../pages/Admin/AdminNav/AdminNav';
 import "./addCategories.css";
 
 function AddCategories({t}) {
@@ -52,6 +52,8 @@ function AddCategories({t}) {
     fetch("http://localhost:3001/categories", requestOptions);
   };
   return (
+    <>
+    <AdminNav></AdminNav>
   <div className="--cat-all">
         <form className="catAdd" onSubmit={(e) => handleSubmit(e)}>
       <h1>{t("page.admin.forms.addGen.addGenre")}</h1>
@@ -86,7 +88,7 @@ function AddCategories({t}) {
       </div>
     </form>
   </div>
-
+</>
   );
 }
 export default withTranslation()(AddCategories);

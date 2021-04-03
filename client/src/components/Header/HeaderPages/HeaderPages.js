@@ -27,11 +27,6 @@ const HeaderPages = ({t,fetchUserEffect, STORE_CART, STORE_USER}) =>{
 
     // })
     const [name, setName] = useState("");
-    const [dropDown, setDropDown] = useState(false)
-
-      const handleDropDown = ()=>{
-        dropDown ? setDropDown(false) : setDropDown(true)
-       }
 
       const dispatch = useDispatch();
       const history = useHistory();
@@ -102,7 +97,7 @@ const HeaderPages = ({t,fetchUserEffect, STORE_CART, STORE_USER}) =>{
                     <ul>
                         <li className='--header-flags' onClick={() => changeLanguage('en')}><img src={flagEN} alt="flagENGLISH" width="25px" height="25px"/></li>
                         <li className='--header-flags' onClick={() => changeLanguage('es')}><img src={flagSP}alt="flagSPANISH" width="25px" height="25px"/></li>
-                        <li> <Link className='--header-home-link-login' to='/login'> {t('headers.headerPages.login')} <span class="material-icons">chevron_right</span></Link> </li>
+                        <li> <Link className='--header-home-link-login' to='/login'> {t('headers.headerPages.login')} <span className="material-icons">chevron_right</span></Link> </li>
                         <Link className='--header-account-link' to='/profile'> <span className="material-icons --user-img"> account_circle </span></Link>
                         <div className="--header-home-cart">
                         <Link to='/cart'><span className="material-icons --header-home-perfil-icon"> shopping_cart</span></Link>
@@ -124,7 +119,7 @@ const HeaderPages = ({t,fetchUserEffect, STORE_CART, STORE_USER}) =>{
             </div>
         </div>
 
-          <div className={dropDown ? "--header-home-dropdown-menu" : "--header-home-dropdown-menu-hidden"}>
+          <div className="--header-home-dropdown-menu">
              <div className="--header-home-dropdown-menu-box">
               <Link className='--header-home-link-dropdown' to='/catalog'><li>{t('headers.headerPages.catalog')}</li></Link>
               <Link className='--header-home-link-dropdown' to='/oferts'><li>{t('headers.headerPages.oferts')}</li></Link>

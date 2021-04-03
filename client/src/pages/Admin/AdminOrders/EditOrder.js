@@ -4,6 +4,7 @@ import { useParams } from "react-router-dom";
 import { putCategoryById } from "../../../stores/admin/admin.actions";
 import Select from "react-select";
 import axios from "axios";
+import AdminNav from '../../../pages/Admin/AdminNav/AdminNav';
 
 function EditOrders({ orders }) {
     const [orderStatus, setOrderStatus] = React.useState([])
@@ -88,7 +89,7 @@ function EditOrders({ orders }) {
         label: "Complete"
     },
     ]
-    let order = orders.find(order => order.id == id)
+    let order = orders.find(order => order.id === id)
     const handleSubmit = async (e) => {
         e.preventDefault()
         try {
@@ -102,7 +103,8 @@ function EditOrders({ orders }) {
 
     }
     return (
-
+        <>
+        <AdminNav></AdminNav>
         <div>
             {orders && orders.length > 0 ? (
                 <form className="catAdd" onSubmit={(e) => handleSubmit(e)}>
@@ -127,6 +129,7 @@ function EditOrders({ orders }) {
 
             ) : (<div>no anda</div>)}
         </div>
+        </>
     );
 }
 

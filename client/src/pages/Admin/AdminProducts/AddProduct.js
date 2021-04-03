@@ -5,7 +5,7 @@ import laserSound from "../../../assets/audio/tab-sound.ogg"
 //Internationalization
 import { withTranslation } from 'react-i18next';
 import swal from 'sweetalert';
-
+import AdminNav from "../AdminNav/AdminNav";
 import "./form.css";
 
 const Form = ({ t }) => {
@@ -242,6 +242,8 @@ const Form = ({ t }) => {
   }
 
   return (
+    <>
+    <AdminNav></AdminNav>
     <div className="subContainer">
       <h2>{t("page.admin.forms.addBeats.title")}</h2>
       <form
@@ -390,6 +392,7 @@ const Form = ({ t }) => {
       </form>
       <div className="divider"></div>
     </div>
+    </>
   );
 }
 export default withTranslation()(Form)

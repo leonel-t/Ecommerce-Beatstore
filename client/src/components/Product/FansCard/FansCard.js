@@ -64,7 +64,7 @@ const FansCard = ({username , idAuthor, user,  date}) => {
             ?(
                 <span 
                 onClick={()=> handleLike()}
-                class="material-icons --FansCard-content-reply-icon"> reply </span>
+                className="material-icons --FansCard-content-reply-icon"> reply </span>
                   
             ):(
                 <span></span>
