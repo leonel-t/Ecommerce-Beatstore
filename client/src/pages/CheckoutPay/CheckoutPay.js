@@ -3,17 +3,18 @@ import './checkoutPay.css';
 import emailjs from 'emailjs-com';
 import { loadStripe } from "@stripe/stripe-js";
 import { fetchAllOrders } from '../../stores/admin/admin.actions';
-import { cleanCart } from '../../stores/user/user.actions';
+// import { cleanCart } from '../../stores/user/user.actions';
 import {
     Elements,
     CardElement,
     useStripe,
     useElements,
 } from "@stripe/react-stripe-js";
-import { connect, useDispatch } from "react-redux";
+import { connect } from "react-redux";
 
 import axios from "axios";
 import swal from "sweetalert";
+import {serverUrl} from '../../auxiliar/variables';
 
 const stripePromise = loadStripe("pk_test_51IacYXDloipSs6XKbHgrFYdB8siv2riOY2FoIz82WGXhlRkGRC5h37tWjeGLPjcZmvbJROADK3nfUblF8B6gwRKm001XPJ1lUM");
 
@@ -44,7 +45,6 @@ const mapStateToProps = (state) => {
 export default connect(mapStateToProps, { fetchAllOrders })(CheckoutPay);
 
 const CheckoutForm = ({ price, cart, userReducer, store_orders, action }) => {
-    const dispatch = useDispatch()
     const stripe = useStripe();
     const elements = useElements();
 
@@ -77,7 +77,7 @@ const CheckoutForm = ({ price, cart, userReducer, store_orders, action }) => {
             console.log(id)
             try {
                 const { data } = await axios.post(
-                    "http://localhost:3001/api/checkout",
+                    `${serverUrl}/api/checkout`,
                     {
                         id,
                         amount: price * 100, //cents
@@ -106,9 +106,9 @@ const CheckoutForm = ({ price, cart, userReducer, store_orders, action }) => {
 
 
 
-                    
+
                     action();
-                    axios.put(`http://localhost:3001/order/${emailData.id}`,{orderStatus: "complete"})
+                    axios.put(`${serverUrl}/order/${emailData.id}`,{orderStatus: "complete"})
                     .then(()=>{
                         setTimeout(()=>{
                             window.location.assign("./")
@@ -116,6 +116,14 @@ const CheckoutForm = ({ price, cart, userReducer, store_orders, action }) => {
                     })
                 }else{
                     console.log("RAZON:",data.message);
+                    axios.put(`http://localhost:3001/order/${emailData.id}`, { orderStatus: "complete" })
+                        .then(() => {
+                            setTimeout(() => {
+                                window.location.assign("./")
+                            }, 2000)
+                        })
+                } else {
+                    console.log("RAZON:", data.message);
                     swal(data.message);
                 }
                 //clear input
@@ -166,7 +174,7 @@ const CheckoutForm = ({ price, cart, userReducer, store_orders, action }) => {
                 </fieldset>
                 <button type="submit" >{
                     loading ? (
-                        <img height="30" src={"https://lh3.googleusercontent.com/proxy/YA4TWKDP8m82sY7h9YEkX6tTQ5FpAs4TC7Bn9h47KhOmwhA-peTg1wNUuLpd8KzuB6ms-gPa5orF1q-CXntUWp_NULkr27tAK-GVgM28C-K4E_Dt9duV8GY1eGdzqDZP__dYh2_e_bRHD0tBZYiJLAy1lj9RMi_dxKxPEg"} />
+                        <img height="30" alt='spinner' src={"https://lh3.googleusercontent.com/proxy/YA4TWKDP8m82sY7h9YEkX6tTQ5FpAs4TC7Bn9h47KhOmwhA-peTg1wNUuLpd8KzuB6ms-gPa5orF1q-CXntUWp_NULkr27tAK-GVgM28C-K4E_Dt9duV8GY1eGdzqDZP__dYh2_e_bRHD0tBZYiJLAy1lj9RMi_dxKxPEg"} />
                     ) : price > 0 ? (`Pay $${price}`) : ""
                 }</button>
 

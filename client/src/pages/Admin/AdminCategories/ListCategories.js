@@ -2,6 +2,7 @@ import "./listCat.css";
 import React, { useEffect } from "react";
 import { useHistory } from "react-router-dom";
 import { connect } from "react-redux";
+import AdminNav from "../AdminNav/AdminNav";
 import { deleteCategory, fetchAllCategories } from "../../../stores/admin/admin.actions";
 const ListCategories = ({ fetchAllCategoriesEffect, deleteCategoryEffect, STORE_CATS }) => {
   const history = useHistory();
@@ -22,6 +23,8 @@ const ListCategories = ({ fetchAllCategoriesEffect, deleteCategoryEffect, STORE_
 
   }
   return (
+    <>
+    <AdminNav></AdminNav>
     <div className="list-users-main">
       <div className="--Cart">
         <div className="--Cart-items">
@@ -57,6 +60,7 @@ const ListCategories = ({ fetchAllCategoriesEffect, deleteCategoryEffect, STORE_
         </div>
       </div>
     </div>
+    </>
   );
 };
 const mapStateToProps = (state) => {

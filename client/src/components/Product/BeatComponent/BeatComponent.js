@@ -9,7 +9,7 @@ import "./beatComponent.css";
 import spinner from "../../../assets/images/Spin-1s-200px.svg";
 import swal from "sweetalert";
 import { withTranslation } from "react-i18next";
-
+import {serverUrl} from '../../../auxiliar/variables';
 const BeatComponent = ({
   t,
   addItemToCartEffect,
@@ -43,7 +43,7 @@ const BeatComponent = ({
     if (product && product.likes && product.likes.length > 0) {
       for (var i = 0; i < product.likes.length; i++) {
         if (userStore.id === product.likes[i].idUser) {
-          console.log("YALEDIOLIKE");
+        //  console.log("YALEDIOLIKE");
           if (!newLikeState) {
             setNewLikeState(true);
           }
@@ -82,7 +82,7 @@ const BeatComponent = ({
               <div className="beatComponent--main-imagen-col">
                 <img
                   alt="album"
-                  src={`http://localhost:3001/images/${product.image}`}
+                  src={`${serverUrl}/images/${product.image}`}
                 ></img>
               </div>
               <div className="beatComponent--main-beatInfo-col">
@@ -186,9 +186,9 @@ const BeatComponent = ({
                 </div>
                 <div className="beatComponent--main-beatActions-col column">
                   {product.categories && product.categories.length > 0 ? (
-                    product.categories.map((categorie) => {
+                    product.categories.map((categorie, index) => {
                       return (
-                        <span className="beatComponent--main-beatActions-col-cat">
+                        <span key={index} className="beatComponent--main-beatActions-col-cat">
                           {categorie.name}
                         </span>
                       );
@@ -204,8 +204,8 @@ const BeatComponent = ({
                   <MusicPlayer
                     name={product.name}
                     singer={product.artist}
-                    cover={`http://localhost:3001/images/${product.image}`}
-                    music={`http://localhost:3001/images/${product.audio}`}
+                    cover={`${serverUrl}/images/${product.image}`}
+                    music={`${serverUrl}/images/${product.audio}`}
                   />
                 </div>
               </div>

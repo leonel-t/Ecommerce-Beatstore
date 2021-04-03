@@ -4,6 +4,7 @@ import profileImg from "../../../assets/images/profile-image.jpg";
 import sound from "../../../assets/audio/system-shut-down.mp3";
 import { withTranslation } from 'react-i18next';
 import {Link} from 'react-router-dom';
+import {serverUrl} from '../../../auxiliar/variables'
 const ProfileCard = ({ t,name, email }) => {
 
 const audio = new Audio(sound);
@@ -15,7 +16,7 @@ const audio = new Audio(sound);
         settrancit(true)
         localStorage.clear()
        setTimeout(()=>{
-        return window.location.replace("http://localhost:3001/logout")
+        return window.location.replace(`${serverUrl}/logout`)
        },1500)
     }
     const [trancit, settrancit] = useState(false)

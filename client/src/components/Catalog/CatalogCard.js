@@ -4,7 +4,7 @@ import {Link} from 'react-router-dom';
 import { connect } from "react-redux";
 import { addItemToCart } from "../../stores/user/user.actions";
 import { show } from 'js-snackbar';
-
+import { serverUrl } from '../../auxiliar/variables';
 const CatalogCard = ({addItemToCartEffect,STORE_USER, id, name, autor, image, price, product}) => {
 
     //USER IDENTIFICATION FOR REDUCER #############################################
@@ -23,7 +23,7 @@ const CatalogCard = ({addItemToCartEffect,STORE_USER, id, name, autor, image, pr
     return (
         <div className="--CatalogCard">
             <div className="--CatalogCard-image">
-                <img alt="albumimage" src={`http://localhost:3001/images/${image}`}/>
+                <img alt="albumimage" src={`${serverUrl}/images/${image}`}/>
             </div>
             <div className="--CatalogCard-details">
                 <div className="--CatalogCard-info">

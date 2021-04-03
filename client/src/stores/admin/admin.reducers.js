@@ -26,7 +26,8 @@ import {
   GET_ALL_USERS_SUCCESS,
   GET_ALL_USERS_FAILURE,
   GET_ALL_ORDERS,
-  DELETE_ORDER_BY_ID
+  DELETE_ORDER_BY_ID,
+  FILTER_ORDER_BY_STATUS
 } from "../admin/admin.actions";
 
 let initialState = {
@@ -50,11 +51,20 @@ let initialState = {
   users: [],
   usersLoading: true,
   usersError: "",
-  orders: []
+  orders: [],
+  ordersFiltered: []
 };
 
 const adminReducers = (state = initialState, action) => {
   switch (action.type) {
+    case FILTER_ORDER_BY_STATUS:
+      let filtered = state.orders.filter(order => {
+        return order.orderStatus == action.payload
+      })
+      return {
+        ...state,
+        ordersFiltered: filtered
+      }
     case DELETE_ORDER_BY_ID:
       return {
         ...state
@@ -62,7 +72,8 @@ const adminReducers = (state = initialState, action) => {
     case GET_ALL_ORDERS:
       return {
         ...state,
-        orders: action.payload
+        orders: action.payload,
+        ordersFiltered: action.payload
 
       }
     case GET_ALL_USERS_REQUEST:

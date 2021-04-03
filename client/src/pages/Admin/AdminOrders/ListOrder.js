@@ -1,9 +1,11 @@
-// import "./listCat.css";
+import "./listOrder.css";
 import React, { useEffect } from "react";
 import { useHistory } from "react-router-dom";
 import { connect } from "react-redux";
+import AdminNav from "../AdminNav/AdminNav";
+import FilterOrder from "./FilterOrder"
 import { fetchAllOrders, deleteOrderById } from "../../../stores/admin/admin.actions";
-const ListOrder = ({ fetchAllOrdersEffect, store_orders, deleteOrderByIdEffect }) => {
+const ListOrder = ({ fetchAllOrdersEffect, filtered_orders, deleteOrderByIdEffect }) => {
     let history = useHistory();
 
     useEffect(() => {
@@ -28,13 +30,16 @@ const ListOrder = ({ fetchAllOrdersEffect, store_orders, deleteOrderByIdEffect }
 
     }
     return (
+        <>
+        <AdminNav></AdminNav>
         <div className="list-users-main">
             <div className="--Cart">
                 <div className="--Cart-items">
-                    {store_orders && store_orders.length > 0 ? (
+                    {filtered_orders && filtered_orders.length > 0 ? (
                         <>
                             <div>
-                                {store_orders.map((order, index) => {
+                                <h1 className="title-super">filter by status:</h1> <FilterOrder />
+                                {filtered_orders.map((order, index) => {
                                     return (
                                         <div key={index} className="--ItemCard">
                                             <div className="--ItemCard-left">
@@ -59,16 +64,17 @@ const ListOrder = ({ fetchAllOrdersEffect, store_orders, deleteOrderByIdEffect }
                             <div></div>
                         </>
                     ) : (
-                        <p className="empy-cart">Empy Cart</p>
+                        <p className="empy-cart">There are no results</p>
                     )}
                 </div>
             </div>
         </div>
+        </>
     );
 };
 const mapStateToProps = (state) => {
     return {
-        store_orders: state.adminReducers.orders,
+        filtered_orders: state.adminReducers.ordersFiltered,
     };
 };
 const mapDispatchToProps = (dispatch) => {

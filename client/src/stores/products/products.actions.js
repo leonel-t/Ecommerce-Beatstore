@@ -1,5 +1,4 @@
 import axios from 'axios';
-import '../../auxiliar/variables.js';
 import { serverUrl } from '../../auxiliar/variables.js';
 
 //FETCH ALL PRODUCTS FROM THE SERVER WITCH THUNK
@@ -35,7 +34,7 @@ export const getProductsByCategories = (cats) => {
 
             var products = []
             for (let i = 0; i < cats.length; i++) {
-                axios.get("http://localhost:3001/products/productsbycategories/" + cats[i])
+                axios.get(`${serverUrl}/products/productsbycategories/${cats[i]}`)
                     .then(p => {
                         if (p.data.length > 0) {
 
@@ -72,7 +71,7 @@ export const fetchAllProducts = () => {
 
     return (dispatch) => {
         dispatch(getAllProductsRequest())
-        axios.get("http://localhost:3001/products/")
+        axios.get(`${serverUrl}/products/`)
             .then(products => {
                 dispatch(getAllProductsSuccess(products.data))
             })
@@ -106,13 +105,12 @@ export const fetchOneProduct = (productId) => {
     return (dispatch) => {
         dispatch(getOneProductRequest())
         setTimeout(()=>{
-            axios.get(`http://localhost:3001/products/${productId}`)
+            axios.get(`${serverUrl}/products/${productId}`)
             .then(product => {
                 try{
                     dispatch(getOneProductSuccess(product.data))
                     for (let i = 0; i < product.data.likes.length; i++) {
-                        var likes = i 
-                        console.log("likes", i )             
+                        var likes = i              
                     }   
                     dispatch(fetchProductReproductions(product.data.id))
                 }catch(error){
@@ -166,7 +164,7 @@ export const fetchProductReproductions = (IdProduct) => {
     return (dispatch) => {
         const options = {
             method: 'PUT',
-            url: `http://localhost:3001/products/reproductions/`, 
+            url: `${serverUrl}/products/reproductions/`, 
             headers: {
                 ContentType: "application/json",
             },
@@ -188,7 +186,7 @@ export const fetchAddLikeToProduct = (IdProduct, like, author,idUser) => {
     return (dispatch) => {
         const options = {
             method: 'POST',
-            url: `http://localhost:3001/likes/${IdProduct}`, 
+            url: `${serverUrl}/likes/${IdProduct}`, 
             headers: {
                 ContentType: "application/json",
             },
@@ -251,7 +249,7 @@ export const postComment = (productId, comment) => {
         dispatch(postCommentRequest())
         const options = {
             method: "POST",
-            url: "http://localhost:3001/comments",
+            url: `${serverUrl}/comments`,
             headers: {
                 "Content-Type": "application/json",
                 "token": localStorage.getItem("token")

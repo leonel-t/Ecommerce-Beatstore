@@ -2,7 +2,10 @@ import "./listProduct.css";
 import React, { useEffect } from "react";
 import { useHistory } from "react-router-dom";
 import { connect } from "react-redux";
+import AdminNav from "../AdminNav/AdminNav";
 import { fetchAllProducts, deleteProducts } from "../../../stores/admin/admin.actions";
+import {serverUrl} from '../../../auxiliar/variables';
+
 const Edit = ({ fetchCartEffect, fetchAllProductsEffect, deleteProductsEffect, STORE_CART }) => {
   var user = false;
   const history = useHistory();
@@ -20,6 +23,8 @@ const Edit = ({ fetchCartEffect, fetchAllProductsEffect, deleteProductsEffect, S
     fetchAllProductsEffect()
   }
   return (
+    <>
+    <AdminNav></AdminNav>
     <div className="--Cart">
       <div className="--Cart-items">
         {STORE_CART && STORE_CART.length > 0 ? (
@@ -31,7 +36,7 @@ const Edit = ({ fetchCartEffect, fetchAllProductsEffect, deleteProductsEffect, S
                     <div className="--ItemCard-left">
                       <img
                         alt="albumImg"
-                        src={`http://localhost:3001/images/${product.image}`}
+                        src={`${serverUrl}/images/${product.image}`}
                       />
                       <div className="--ItemCard-data">
                         <h2>{product.name}</h2>
@@ -40,10 +45,10 @@ const Edit = ({ fetchCartEffect, fetchAllProductsEffect, deleteProductsEffect, S
                     </div>
                     <div className="--ItemCard-right">
                       <span onClick={() => handleClickEdit(product.id)}>
-                        <i class="far fa-edit --ItemCard-editItem"></i>
+                        <i className="far fa-edit --ItemCard-editItem"></i>
                       </span>
                       <span onClick={() => handleClickDelete(product.id)}>
-                        <i class="fas fa-trash-alt --ItemCard-deletItem"></i>
+                        <i className="fas fa-trash-alt --ItemCard-deletItem"></i>
                       </span>
                     </div>
                   </div>
@@ -57,7 +62,7 @@ const Edit = ({ fetchCartEffect, fetchAllProductsEffect, deleteProductsEffect, S
         )}
       </div>
     </div>
-
+</>
   );
 };
 const mapStateToProps = (state) => {

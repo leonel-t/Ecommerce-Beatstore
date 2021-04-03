@@ -1,7 +1,6 @@
 import "./Layouts.css";
 import React from 'react';
 // import PagesFooter from '../components/Footer/PagesFooter.js';
-import AdminNav from '../pages/Admin/AdminNav/AdminNav';
 import HeaderHome from '../components/Header/HeaderHome/HeaderHome';
 import HeaderAdmin from '../components/Header/HeaderAdmin/HeaderAdmin';
 import HeaderPages from '../components/Header/HeaderPages/HeaderPages';
@@ -53,7 +52,6 @@ const AdminLayout = ({ children }) => {
     return (
         <div>
             <HeaderAdmin></HeaderAdmin>
-            <AdminNav/>
             {children}
         </div>
     )

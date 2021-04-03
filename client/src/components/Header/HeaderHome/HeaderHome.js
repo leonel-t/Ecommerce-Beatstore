@@ -49,7 +49,7 @@ const HeaderHome = ({t,fetchUserEffect, STORE_CART, STORE_USER}) =>{
                     <div
                     onClick={handleDropDown}
                     className='--header-home-dropdown'>
-                    {t('headers.homeHeader.menu')}<i class="fas fa-sort-down"></i>
+                    {t('headers.homeHeader.menu')}<i className="fas fa-sort-down"></i>
                     </div>
 
                 </ul>
@@ -59,13 +59,18 @@ const HeaderHome = ({t,fetchUserEffect, STORE_CART, STORE_USER}) =>{
             {STORE_USER.user && STORE_USER.user.data
                 ?(
                     <ul>
-                          <li className='--header-flags' onClick={() => changeLanguage('en')}><img src={flagEN} alt="flagENGLISH" width="25px" height="25px"/></li>
-                          <li className='--header-flags' onClick={() => changeLanguage('es')}><img src={flagSP}alt="flagSPANISH" width="25px" height="25px"/></li>  
-                         <li>
-                         <Link className='--header-home-link-login' to='/profile'>
+                        <li className='--header-flags' onClick={() => changeLanguage('en')}><img src={flagEN} alt="flagENGLISH" width="25px" height="25px"/></li>
+                        <li className='--header-flags' onClick={() => changeLanguage('es')}><img src={flagSP}alt="flagSPANISH" width="25px" height="25px"/></li>  
+                        <li>
+                        <Link className='--header-home-link-login' to='/profile'>
                          {shortenText(STORE_USER.user.data.user.name) || STORE_USER.user.data.user.email}
-                         </Link>
+                        </Link>
                          </li>
+                           {STORE_USER.user && STORE_USER.user.data.user && STORE_USER.user.data.user.rol === 'admin' ?(
+                            <span className="material-icons icon-admin-user">admin_panel_settings</span>                  
+                          ):(
+                            <p></p>
+                          )} 
                          <Link className='--header-account-link' to='/profile'>  <span className="material-icons --user-img"> account_circle </span></Link>
                             <div className="--header-home-cart">
                             <Link to='/cart'><span className="material-icons --header-home-perfil-icon"> shopping_cart</span></Link>
@@ -84,7 +89,7 @@ const HeaderHome = ({t,fetchUserEffect, STORE_CART, STORE_USER}) =>{
                     <ul>
                       <li className='--header-flags' onClick={() => changeLanguage('en')}><img src={flagEN} alt="flagENGLISH" width="25px" height="25px"/></li>
                         <li className='--header-flags' onClick={() => changeLanguage('es')}><img src={flagSP}alt="flagSPANISH" width="25px" height="25px"/></li>
-                       <li> <Link className='--header-home-link-login' to='/login'> {t('headers.homeHeader.login')} <span class="material-icons">chevron_right</span></Link> </li>
+                       <li> <Link className='--header-home-link-login' to='/login'> {t('headers.homeHeader.login')} <span className="material-icons">chevron_right</span></Link> </li>
                        <Link className='--header-account-link' to='/profile'> <span className="material-icons --user-img"> account_circle </span></Link>
                         <div className="--header-home-cart">
                         <Link to='/cart'><span className="material-icons --header-home-perfil-icon"> shopping_cart</span></Link>

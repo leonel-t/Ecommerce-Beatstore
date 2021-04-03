@@ -7,12 +7,12 @@ import { createStore, applyMiddleware } from 'redux';
 import { composeWithDevTools } from 'redux-devtools-extension';
 import thunk from 'redux-thunk';
 import { Provider } from 'react-redux';
-import logger from 'redux-logger';
+//import logger from 'redux-logger';
 import reducers from './stores/index';
 import './i18n';
 const store = createStore(
   reducers,
-  composeWithDevTools(applyMiddleware(logger, thunk))
+  composeWithDevTools(applyMiddleware(thunk))
 );
 
 ReactDOM.render(

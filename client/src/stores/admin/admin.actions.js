@@ -1,5 +1,5 @@
 import axios from 'axios';
-import '../../auxiliar/variables.js';
+import { serverUrl } from '../../auxiliar/variables.js';
 
 //FETCH ALL PRODUCTS FROM THE SERVER WITCH THUNK
 export const GET_ALL_PRODUCTS_REQUEST = "GET_ALL_PRODUCTS_REQUEST";
@@ -44,12 +44,15 @@ export const GET_ALL_USERS_FAILURE = "GET_ALL_USERS_FAILURE";
 export const GET_ALL_ORDERS = "GET_ALL_ORDERS";
 //delete order by id
 export const DELETE_ORDER_BY_ID = "DELETE_ORDER_BY_ID";
-
-
+//filter order by status
+export const FILTER_ORDER_BY_STATUS = "FILTER_ORDER_BY_STATUS";
+export function filterOrderByStatus(status) {
+    return { type: FILTER_ORDER_BY_STATUS, payload: status }
+}
 export const deleteOrderById = (id) => {
 
     return (dispatch) => {
-        axios.delete("http://localhost:3001/order/" + id)
+        axios.delete(`${serverUrl}/order/${id}`)
             .then(products => {
                 dispatch({
                     type: DELETE_ORDER_BY_ID
@@ -63,7 +66,7 @@ export const deleteOrderById = (id) => {
 export const fetchAllOrders = () => {
 
     return (dispatch) => {
-        axios.get("http://localhost:3001/order/")
+        axios.get(`${serverUrl}/order/`)
             .then(products => {
                 dispatch(getAllOrdersSucess(products.data))
             })
@@ -82,7 +85,7 @@ export const fetchAllProducts = () => {
 
     return (dispatch) => {
         dispatch(getAllProductsRequest())
-        axios.get("http://localhost:3001/products/")
+        axios.get(`${serverUrl}/products/`)
             .then(products => {
                 dispatch(getAllProductsSuccess(products.data))
             })
@@ -117,7 +120,7 @@ export const fetchAllUsers = () => {
         dispatch(getAllUsersRequest())
         const options = {
             method: 'GET',
-            url: 'http://localhost:3001/users/',
+            url: `${serverUrl}/users/`,
             headers: {
                 ContentType: "application/json",
                 token: localStorage.getItem("token")
@@ -152,10 +155,9 @@ export const getAllUsersFailure = (error) => {
 
 //DELETE PRODUCT
 export const deleteProducts = (id) => {
-    console.log("ESTE ES EL IDDDDDDDDDDDDDDDDDDDDD", id)
     return (dispatch) => {
         dispatch(deleteProductsRequest())
-        fetch(`http://localhost:3001/products/${id}`, {
+        fetch(`${serverUrl}/products/${id}`, {
             method: 'DELETE',
             headers: {
                 "Content-Type": "application/json",
@@ -191,7 +193,7 @@ export const fetchOneProduct = (productId) => {
 
     return (dispatch) => {
         dispatch(getOneProductRequest())
-        axios.get(`http://localhost:3001/products/${productId}`)
+        axios.get(`${serverUrl}/products/${productId}`)
             .then(product => {
                 dispatch(getOneProductSuccess(product.data))
             })
@@ -224,7 +226,7 @@ export const fetchAllCategories = () => {
 
     return (dispatch) => {
         dispatch(fetchAllCategoriesRequest())
-        axios.get("http://localhost:3001/categories/")
+        axios.get(`${serverUrl}/categories/`)
             .then(categories => {
                 dispatch(fetchAllCategoriesSuccess(categories.data))
             })
@@ -260,7 +262,7 @@ export const putCategoryById = (idCat, category) => {
         dispatch(putCategoryByIdRequest())
         const options = {
             method: 'PUT',
-            url: `http://localhost:3001/categories/${idCat}`,
+            url: `${serverUrl}/categories/${idCat}`,
             headers: {
                 "Content-Type": "application/json",
                 "token": localStorage.getItem("token")
@@ -300,7 +302,7 @@ export const putCategoryByIdFailure = (error) => {
 export const deleteCategory = (id) => {
     return (dispatch) => {
         dispatch(deleteCategoryRequest())
-        fetch(`http://localhost:3001/categories/${id}`, {
+        fetch(`${serverUrl}/categories/${id}`, {
             method: 'DELETE',
             headers: {
                 "Content-Type": "application/json",

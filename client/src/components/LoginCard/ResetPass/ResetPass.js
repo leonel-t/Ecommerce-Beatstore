@@ -6,10 +6,11 @@ import axios from 'axios';
 //import images
 import logoIcon from "../../../assets/images/icon-logo.png";
 import flagEN from "../../../assets/images/estados-unidos.png";
-import flagSP from "../../../assets/images/espana.png"
+import flagSP from "../../../assets/images/espana.png";
 //Internationalization
 import i18n from '../../../i18n';
 import { withTranslation } from 'react-i18next';
+import {serverUrl} from '../../../auxiliar/variables';
 
 const ResetPass = ({t}) => {
 
@@ -51,7 +52,7 @@ const ResetPass = ({t}) => {
           }, (error) => {
               console.log(error.text);
           });
-        axios.post('http://localhost:3001/users/resetcode', input)
+        axios.post(`${serverUrl}/users/resetcode`, input)
             .then((text) => {
               console.log(text);
           }, (error) => {

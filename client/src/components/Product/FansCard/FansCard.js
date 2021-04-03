@@ -1,16 +1,16 @@
 import React from "react";
 import "./FansCard.css";
-import imgProfile from "../../../assets/images/profile-image.jpg"
+import imgProfile from "../../../assets/images/profile-image.jpg";
 import moment from "moment";
 import swal from 'sweetalert';
 import axios from 'axios';
-
+import {serverUrl} from '../../../auxiliar/variables';
 const FansCard = ({username , idAuthor, user,  date}) => {
 
     const handleLike = ()=>{
 
         swal({
-            text: `Reply to ${idAuthor}`,
+            text: `Reply to ${username}`,
             content: "input",
             button: {
               text: "Write Your Message!",
@@ -23,7 +23,7 @@ const FansCard = ({username , idAuthor, user,  date}) => {
      
                 const options = {
                     method: 'POST',
-                    url: 'http://localhost:3001/messages/',
+                    url: `${serverUrl}/messages/`,
                     headers: {
                       'Content-Type': 'application/json'
                     },
@@ -64,7 +64,7 @@ const FansCard = ({username , idAuthor, user,  date}) => {
             ?(
                 <span 
                 onClick={()=> handleLike()}
-                class="material-icons --FansCard-content-reply-icon"> reply </span>
+                className="material-icons --FansCard-content-reply-icon"> reply </span>
                   
             ):(
                 <span></span>

@@ -1,15 +1,52 @@
 import React from "react";
 import "./admin.css";
-//Internationalization
+import {connect} from "react-redux";
 import { withTranslation } from 'react-i18next';
-const Admin = ({t}) => {
+import AdminNav from '../../pages/Admin/AdminNav/AdminNav';
+
+const Admin = ({t, STORE_USER}) => {
+   //USER IDENTIFICATION FOR REDUCER #############################################
+   let userStore =
+   STORE_USER.user && STORE_USER.user.data && STORE_USER.user.data.user
+     ? STORE_USER.user.data.user
+     : null;
+ let user = {
+   userStatus: userStore ? true : false,
+   id: userStore && userStore.id ? userStore.id : 0,
+   orderId: STORE_USER.cartDetaills.id ? STORE_USER.cartDetaills.id : 0,
+   rol: userStore && userStore.rol ? userStore.rol : 0,
+ };
+ //#############################################################################
+
   return (
     <>
+    
+    {user && user.rol === "admin"
+      ?(
     <main className="--admin--main-panel">
-        <h1>{t("page.admin.title")}</h1>
-    </main>
+      <AdminNav></AdminNav>
+            <h1>{t("page.admin.title")}</h1>
+        </main>
+      ):(
+        <div className="--admin--main-panel" >
+          <h1>Acceso Denegado Only Admin Can Be See This Page</h1>
+        </div>
+      )
+    }
     </>
   );
 };
 
-export default withTranslation()(Admin);
+const mapStateToProps = (state) => {
+  return {
+    STORE_USER: state.userReducers
+  };
+};
+const mapDispatchToProps = (dispatch) => {
+  return {
+      //fetchUserInBoxEffect: (idUser) => dispatch(fetchUserInBox(idUser)),
+  };
+};
+
+
+export default connect(mapStateToProps, mapDispatchToProps)(withTranslation()(Admin));
