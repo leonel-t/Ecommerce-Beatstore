@@ -57,7 +57,7 @@ const userReducers = (state = initialState, action) => {
                 ...state,
                 userInBoxLoading: false,
                 userInBoxError: action.payload
-            }//
+            }
         case CLEAN_CART:
             return {
                 ...state,
