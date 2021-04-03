@@ -6,6 +6,7 @@ import { fetchCart, deleteItemInCart } from '../../../stores/user/user.actions';
 import swal from "sweetalert";
 import sound from "../../../assets/audio/trash-click.mp3";
 import { withTranslation } from 'react-i18next';
+import { serverUrl } from '../../../auxiliar/variables';
 
 const ItemCard = ({deleteItemInCartEffect, t, cartForItemCard,user_store, id, img, name, autor, price }) => {
   const audio = new Audio(sound);
@@ -45,7 +46,7 @@ const ItemCard = ({deleteItemInCartEffect, t, cartForItemCard,user_store, id, im
     return (
         <div className="--ItemCard">
             <div className="--ItemCard-left">
-                <img alt="albumImg" src={`http://localhost:3001/images/${img}`} />
+                <img alt="albumImg" src={`${serverUrl}/images/${img}`} />
                 <div className="--ItemCard-data">
                     <Link to={`/product/${id}`}><h2>{name}</h2></Link>
                     <p>{autor}</p>

@@ -2,9 +2,9 @@ import React from "react";
 
 //Internationalization
 import { withTranslation } from 'react-i18next';
-
+import AdminNav from '../../../pages/Admin/AdminNav/AdminNav';
 import "./addCategories.css";
-
+import {serverUrl} from '../../../auxiliar/variables';
 function AddCategories({t}) {
   const [input, setInput] = React.useState({
     name: "",
@@ -49,9 +49,11 @@ function AddCategories({t}) {
       }),
     };
     console.log(requestOptions.body);
-    fetch("http://localhost:3001/categories", requestOptions);
+    fetch(`${serverUrl}/categories`, requestOptions);
   };
   return (
+    <>
+    <AdminNav></AdminNav>
   <div className="--cat-all">
         <form className="catAdd" onSubmit={(e) => handleSubmit(e)}>
       <h1>{t("page.admin.forms.addGen.addGenre")}</h1>
@@ -86,7 +88,7 @@ function AddCategories({t}) {
       </div>
     </form>
   </div>
-
+</>
   );
 }
 export default withTranslation()(AddCategories);

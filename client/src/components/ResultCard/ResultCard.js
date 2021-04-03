@@ -5,6 +5,7 @@ import "./ResultCard.css"
 import { connect } from "react-redux";
 import { addItemToCart } from "../../stores/user/user.actions";
 import { show } from 'js-snackbar';
+import {serverUrl} from '../../auxiliar/variables';
 
 const ResultCard = ({ product , addItemToCartEffect, STORE_USER }) => {
     
@@ -25,7 +26,7 @@ const ResultCard = ({ product , addItemToCartEffect, STORE_USER }) => {
         <div className="--ResultCard">
             <div className="--ResultCard-content">
                 <div className="--ResultCard-img">
-                    <img src={`http://localhost:3001/images/${product.image}`} alt='productImage' />
+                    <img src={`${serverUrl}/images/${product.image}`} alt='productImage' />
                 </div>
                 <div className="--ResultCard-info">
                     <div className="--ResultCard-info-name">

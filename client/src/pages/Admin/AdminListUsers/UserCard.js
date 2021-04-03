@@ -1,6 +1,7 @@
 import React, {useState} from "react";
 import axios from 'axios';
 import "./adminListUser.css";
+import {serverUrl} from '../../../auxiliar/variables';
 
 const UserCard = ({user})=>{
 
@@ -12,7 +13,7 @@ const UserCard = ({user})=>{
         e.preventDefault();
         const options = {
             method: 'PUT',
-            url: 'http://localhost:3001/promote/',
+            url: `${serverUrl}/promote/`,
             headers: {
                ContentType: "application/json",
                token: localStorage.getItem("token")

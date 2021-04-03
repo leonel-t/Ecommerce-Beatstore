@@ -6,12 +6,7 @@ import 'react-jinke-music-player/assets/index.css';
 
 const MusicPlayer = (props) =>{
 
-   const [audioLists, setAudioLists] = useState({
-      name: '',
-      singer: '',
-      cover: '',
-      musicSrc:'',
-    })
+   const [audioLists, setAudioLists] = useState([])
     
       useEffect(() => {
         setTimeout(() => {

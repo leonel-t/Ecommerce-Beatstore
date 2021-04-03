@@ -3,7 +3,7 @@ import "./addCategories.css";
 import { connect } from 'react-redux';
 import { useParams } from "react-router-dom";
 import { putCategoryById } from "../../../stores/admin/admin.actions";
-
+import AdminNav from '../../../pages/Admin/AdminNav/AdminNav';
 function EditCategories({ putCategoryByIdEffect }) {
   const [input, setInput] = React.useState({
     name: "",
@@ -45,6 +45,8 @@ function EditCategories({ putCategoryByIdEffect }) {
     }))
   };
   return (
+    <>
+    <AdminNav></AdminNav>
     <form className="catAdd" onSubmit={(e) => handleSubmit(e)}>
       <h1>Add Category:</h1>
       <div>
@@ -78,6 +80,7 @@ function EditCategories({ putCategoryByIdEffect }) {
         </button>
       </div>
     </form>
+    </>
   );
 }
 

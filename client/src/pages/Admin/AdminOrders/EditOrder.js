@@ -4,8 +4,11 @@ import { useParams } from "react-router-dom";
 import { putCategoryById } from "../../../stores/admin/admin.actions";
 import Select from "react-select";
 import axios from "axios";
+import AdminNav from '../../../pages/Admin/AdminNav/AdminNav';
+import {serverUrl} from '../../../auxiliar/variables';
 import swal from 'sweetalert';
 import { useHistory } from "react-router-dom";
+
 
 function EditOrders({ orders }) {
     const [orderStatus, setOrderStatus] = React.useState([])
@@ -90,13 +93,14 @@ function EditOrders({ orders }) {
         label: "Complete"
     },
     ]
-    let order = orders.find(order => order.id == id)
+    let order = orders.find(order => order.id === id)
     const handleSubmit = async (e) => {
         e.preventDefault()
         try {
 
 
-            await axios.put(`http://localhost:3001/order/${id}`, { orderStatus: orderStatus.value })
+
+            await axios.put(`${serverUrl}/order/${id}`, { orderStatus: orderStatus.value })
             swal({
                 title: "Order " + id + " set to " + orderStatus.value,
                 icon: "success",
@@ -110,7 +114,8 @@ function EditOrders({ orders }) {
 
     }
     return (
-
+        <>
+        <AdminNav></AdminNav>
         <div>
             {orders && orders.length > 0 ? (
                 <form className="catAdd" onSubmit={(e) => handleSubmit(e)}>
@@ -134,6 +139,7 @@ function EditOrders({ orders }) {
 
             ) : (<div>no anda</div>)}
         </div>
+        </>
     );
 }
 

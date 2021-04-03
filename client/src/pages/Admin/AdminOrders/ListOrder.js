@@ -2,6 +2,7 @@ import "./listOrder.css";
 import React, { useEffect } from "react";
 import { useHistory } from "react-router-dom";
 import { connect } from "react-redux";
+import AdminNav from "../AdminNav/AdminNav";
 import FilterOrder from "./FilterOrder"
 import { fetchAllOrders, deleteOrderById } from "../../../stores/admin/admin.actions";
 const ListOrder = ({ fetchAllOrdersEffect, filtered_orders, deleteOrderByIdEffect }) => {
@@ -29,6 +30,8 @@ const ListOrder = ({ fetchAllOrdersEffect, filtered_orders, deleteOrderByIdEffec
 
     }
     return (
+        <>
+        <AdminNav></AdminNav>
         <div className="list-users-main">
             <div className="--Cart">
                 <div className="--Cart-items">
@@ -66,6 +69,7 @@ const ListOrder = ({ fetchAllOrdersEffect, filtered_orders, deleteOrderByIdEffec
                 </div>
             </div>
         </div>
+        </>
     );
 };
 const mapStateToProps = (state) => {

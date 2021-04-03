@@ -5,8 +5,9 @@ import laserSound from "../../../assets/audio/tab-sound.ogg"
 //Internationalization
 import { withTranslation } from 'react-i18next';
 import swal from 'sweetalert';
-
+import AdminNav from "../AdminNav/AdminNav";
 import "./form.css";
+import {serverUrl} from '../../../auxiliar/variables';
 
 const Form = ({ t }) => {
   const customStyles = {
@@ -95,7 +96,7 @@ const Form = ({ t }) => {
   }
   useEffect(() => {
     const datos = async () => {
-      return await fetch("http://localhost:3001/categories")
+      return await fetch(`${serverUrl}/categories`)
         .then((response) => response.json())
         .then((optionCategories) => {
           return setCat(optionCategories);
@@ -124,7 +125,7 @@ const Form = ({ t }) => {
       form.append("files", audio[0]);
       const options = {
         method: "POST",
-        url: "http://localhost:3001/products/",
+        url: `${serverUrl}/products/`,
         headers: {
           "Content-Type": "multipart/form-data", "Cross-Origin-Opener-Policy": "same-origin",
           "token": localStorage.getItem("token")
@@ -136,7 +137,7 @@ const Form = ({ t }) => {
       axios.request(options).then(function (response) {
         idProduct = response.data.id;
         categories.forEach((element) => {
-          axios.post(`http://localhost:3001/products/${idProduct}/category/${element.value}`).then((res) => console.log(res));
+          axios.post(`${serverUrl}/products/${idProduct}/category/${element.value}`).then((res) => console.log(res));
         });
       });
       swal({
@@ -242,6 +243,8 @@ const Form = ({ t }) => {
   }
 
   return (
+    <>
+    <AdminNav></AdminNav>
     <div className="subContainer">
       <h2>{t("page.admin.forms.addBeats.title")}</h2>
       <form
@@ -390,6 +393,7 @@ const Form = ({ t }) => {
       </form>
       <div className="divider"></div>
     </div>
+    </>
   );
 }
 export default withTranslation()(Form)

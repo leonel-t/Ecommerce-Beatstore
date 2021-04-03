@@ -1,5 +1,5 @@
 import axios from 'axios';
-
+import { serverUrl } from '../../auxiliar/variables.js';
 //GET CUSTOMERS
 export const GET_CUSTOMERS_REQUEST = "GET_CUSTOMERS_REQUEST";
 export const GET_CUSTOMERS_SUCCESS = "GET_CUSTOMERS_SUCCESS";
@@ -37,7 +37,7 @@ export const getCustomers =  () => {
         dispatch(getCustomersRequest())
         const options = {
             method: 'GET',
-            url: 'http://localhost:3001/customers/',
+            url: `${serverUrl}/customers/`,
           };
 
         axios.request(options).then(customers => {
@@ -74,7 +74,7 @@ export const getProducts =  () => {
         dispatch(getProductsRequest())
         const options = {
             method: 'GET',
-            url: 'http://localhost:3001/subscriptions/products',
+            url: `${serverUrl}/subscriptions/products`,
           };
 
         axios.request(options).then(products => {
@@ -112,7 +112,7 @@ export const getPaymentIntent =  () => {
         dispatch(getPaymentIntentRequest())
         const options = {
             method: 'GET',
-            url: 'http://localhost:3001/subscriptions/products',
+            url: `${serverUrl}/subscriptions/products`,
           };
 
         axios.request(options).then(paymentIntents => {
@@ -149,7 +149,7 @@ export const getPayouts =  () => {
         dispatch(getPayoutsRequest())
         const options = {
             method: 'GET',
-            url: 'http://localhost:3001/payout',
+            url: `${serverUrl}/payout`,
           };
 
         axios.request(options).then(payouts => {
@@ -187,7 +187,7 @@ export const getSetupIntents =  () => {
         dispatch(getSetupIntentsRequest())
         const options = {
             method: 'GET',
-            url: 'http://localhost:3001/setupIntent',
+            url: `${serverUrl}/setupIntent`,
           };
 
         axios.request(options).then(setupIntent => {
@@ -224,7 +224,7 @@ export const getSubscriptions =  () => {
         dispatch(getSubscriptionsRequest())
         const options = {
             method: 'GET',
-            url: 'http://localhost:3001/subscriptions',
+            url: `${serverUrl}/subscriptions`,
           };
 
         axios.request(options).then(subscriptions => {
@@ -261,7 +261,7 @@ export const getInvoices =  () => {
         dispatch(getInvoicesRequest())
         const options = {
             method: 'GET',
-            url: 'http://localhost:3001/invoices/',
+            url: `${serverUrl}/invoices/`,
           };
 
         axios.request(options).then(invoices => {

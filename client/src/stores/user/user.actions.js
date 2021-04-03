@@ -1,4 +1,5 @@
 import axios from 'axios';
+import { serverUrl } from '../../auxiliar/variables.js';
 //FETCH USER 
 export const GET_USER_REQUEST = "GET_USER_REQUEST";
 export const GET_USER_SUCCESS = "GET_USER_SUCCESS";
@@ -25,14 +26,14 @@ export const GET_DISCOUNT_COUPON = "GET_DISCOUNT_COUPON";
 //CLEAN CART
 export const CLEAN_CART = "CLEAN_CART";
 
-//orders by user
+//orders by user${serverUrl}
 export const GET_ORDERS_BY_USER = "GET_ORDERS_BY_USER";
 
 export const getOrdersByUser = (userId) => {
 
 
     return (dispatch) => {
-        axios.get("http://localhost:3001/order/user/all/" + userId)
+        axios.get(`${serverUrl}/order/user/all/${userId}`)
             .then(orders => {
                 dispatch(OrdersByUser(orders.data))
             })
@@ -55,7 +56,7 @@ export const fetchUser = () => {
         dispatch(getUserRequest())
         const options = {
             method: 'GET',
-            url: 'http://localhost:3001/profile',
+            url: `${serverUrl}/profile`,
             params: {
                 secret_token: localStorage.getItem('token'),
                 email: localStorage.getItem('email')
@@ -124,7 +125,7 @@ export const fetchCart = (user) => {
 
             dispatch(getCartRequest());
 
-            axios.get(`http://localhost:3001/order/user/${user.id}`)
+            axios.get(`${serverUrl}/order/user/${user.id}`)
                 .then(cart => {
                     dispatch(getCartSuccess(user, cart.data[0]));
                     dispatch(getCalculator())
@@ -184,7 +185,7 @@ export const addItemToCart = (user, product) => {
 
             const options = {
                 method: 'POST',
-                url: 'http://localhost:3001/orderline/',
+                url: `${serverUrl}/orderline/`,
                 headers: {
                     'Content-Type': 'application/json'
                 },
@@ -303,7 +304,7 @@ export const deleteItemInCart = (orderLineId, user, idProduct) => {
             console.log("ORDER LINE ID", orderLineId)
             const options = {
                 method: 'DELETE',
-                url: `http://localhost:3001/orderline/${orderLineId}`,
+                url: `${serverUrl}/orderline/${orderLineId}`,
             };
             return await axios.request(options).then(response => {
                 dispatch(fetchCart(user));
@@ -366,7 +367,7 @@ export const deleteAllItemInCart = (user, orderId) => {
         if (user.userState) {
             const options = {
                 method: 'DELETE',
-                url: `http://localhost:3001/orderline/all/${orderId}`,
+                url: `${serverUrl}/orderline/all/${orderId}`,
             };
             return await axios.request(options).then(() => {
                 dispatch(fetchCart(user));
@@ -380,8 +381,6 @@ export const deleteAllItemInCart = (user, orderId) => {
     };
 };
 
-
-
 //GET USER BY ID
 export const fetchUserInBox = (idUser) => {
 
@@ -390,7 +389,7 @@ export const fetchUserInBox = (idUser) => {
         dispatch(fetchUserInBoxRequest())
         const options = {
             method: 'GET',
-            url: `http://localhost:3001/users/${idUser}`,
+            url: `${serverUrl}/users/${idUser}`,
             params: {
                 secret_token: localStorage.getItem('token'),
                 email: localStorage.getItem('email')
@@ -423,10 +422,8 @@ export const fetchUserInBoxFailure = (error) => {
         payload: error
     };
 };
-
 export const cleanCart = () => {
     return {
         type: CLEAN_CART
     };
 }
-

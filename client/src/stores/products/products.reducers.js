@@ -126,17 +126,10 @@ const productsReducers = (state = initialState, action) => {
                 }
                 return ""
             });
-
-
             return {
-
                 ...state,
                 productFilter: filterProducts
             }
-
-
-
-
         default:
             return state;
     }
