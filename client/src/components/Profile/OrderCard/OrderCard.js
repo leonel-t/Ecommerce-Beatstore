@@ -1,27 +1,31 @@
-import React from "react";
 import "./OrderCard.css";
+import React from "react";
 import { useHistory } from "react-router-dom";
-const OrderCard = ({ id, status, orderLines, createdAt }) => {
+//Internationalization
+import { withTranslation } from 'react-i18next';
+
+const OrderCard = ({t, id, status, orderLines, createdAt }) => {
+
     const history = useHistory();
 
     function handleClick() {
         history.push(`profile/order/${id}`);
-
     }
+
     const totalPrice = orderLines.map(order => parseFloat(order.price))
     return (
         <div className="--OrderCard">
             <div className="--OrderCard-data">
                 <div className="--OrderCard-data-date">
-                    <span>Created at: {createdAt}</span>
+                    <span>{t('components.profile.orderCard.created')}{createdAt}</span>
                 </div>
                 <div className="--OrderCard-data-number">
-                    <span>Order number: {id}</span>
+                    <span>{t('components.profile.orderCard.order')} {id}</span>
                 </div>
                 <div className="--OrderCard-data-value">
                     <span>
 
-                        Price: {
+                    {t('components.profile.orderCard.price')} ${
                             totalPrice && totalPrice.length > 0 ? (
                                 totalPrice.reduce((accumulator, currentValue) => {
                                     return accumulator + currentValue
@@ -29,17 +33,18 @@ const OrderCard = ({ id, status, orderLines, createdAt }) => {
                             ) : (<span>0</span>)
 
                         }</span>
-                    <span>Quantity of products: {orderLines.length}</span>
+                    <br/>
+                    <span>{t('components.profile.orderCard.quantity')} {orderLines.length}</span>
                 </div>
                 <div className="--OrderCard-data-status">
-                    <span>Status: {status}</span>
+                    <span>{t('components.profile.orderCard.status')} {status}</span>
                 </div>
             </div>
             <div className="--OrderCard-detail-btn">
-                <button onClick={handleClick}>Details</button>
+                <button onClick={handleClick}>{t('components.profile.button')}</button>
             </div>
         </div>
     )
 };
 
-export default OrderCard;
+export default withTranslation()(OrderCard);

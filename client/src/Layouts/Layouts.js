@@ -29,6 +29,18 @@ const PagesLayout = ({ children }) => {
         </div>
     )
 };
+
+const ProfileLayout = ({ children }) => {
+    return (
+        <div>
+            <HeaderPages></HeaderPages>
+            <div className="profile-layout-main">
+                {children}
+            </div>
+        </div>
+    )
+};
+
 const ProductLayout = ({ children }) => {
     return (
         <div>
@@ -63,4 +75,4 @@ const LoginLayout = ({ children }) => {
     )
 };
 
-export { HomeLayout, PagesLayout, LoginLayout, AdminLayout, ProductLayout, AdminSubscriptionsLayout };
+export { HomeLayout, PagesLayout, LoginLayout, AdminLayout, ProductLayout, AdminSubscriptionsLayout,ProfileLayout };

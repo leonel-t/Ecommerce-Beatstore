@@ -8,7 +8,8 @@ import {
   LoginLayout,
   AdminLayout,
   ProductLayout,
-  AdminSubscriptionsLayout
+  AdminSubscriptionsLayout,
+  ProfileLayout
 } from "./Layouts/Layouts";
 
 //Pages
@@ -38,6 +39,9 @@ import EditOrders from "./pages/Admin/AdminOrders/EditOrder"
 //Menu Routes
 import Oferts from "./pages/Oferts/Oferts";
 import Ranking from "./pages/Ranking/Ranking";
+
+//User Routes
+import Messages from "./pages/Messages/Messages";
 
 import ListOrder from './pages/Admin/AdminOrders/ListOrder';
 import OrderDetails from "./components/Profile/OrderDetails/OrderDetails";
@@ -88,7 +92,7 @@ const App = () => {
         <RouteWrapper exact path="/resetpass" component={ResetPass} layout={LoginLayout} />
         <RouteWrapper exact path="/inscode" component={InsCode} layout={LoginLayout} />
         <RouteWrapper exact path="/cart" component={Cart} layout={PagesLayout} />
-        <RouteWrapper exact path="/profile" component={Profile} layout={PagesLayout} />
+        <RouteWrapper exact path="/profile" component={Profile} layout={ProfileLayout} />
         <RouteWrapper path="/profile/order/:id" component={OrderDetails} layout={PagesLayout} />
         <RouteWrapper exact path="/login/github/:email/:password" component={LoginGithub} layout={PagesLayout} />
         <RouteWrapper exact path="/oferts" component={Oferts} layout={PagesLayout} />
@@ -104,6 +108,7 @@ const App = () => {
         <RouteWrapper exact path="/adminsuscriptions/prices" component={Prices} layout={AdminSubscriptionsLayout} />
         <RouteWrapper exact path="/adminsuscriptions/invoices" component={Invoices} layout={AdminSubscriptionsLayout} />
         <RouteWrapper exact path="/checkout" component={Checkout} layout={PagesLayout} />
+        <RouteWrapper exact path="/profile/messages" component={Messages} layout={PagesLayout} />
       </Switch>
     </BrowserRouter>
   );

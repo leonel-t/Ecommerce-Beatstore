@@ -3,7 +3,7 @@ import React, {useState} from "react";
 import profileImg from "../../../assets/images/profile-image.jpg";
 import sound from "../../../assets/audio/system-shut-down.mp3";
 import { withTranslation } from 'react-i18next';
-
+import {Link} from 'react-router-dom';
 const ProfileCard = ({ t,name, email }) => {
 
 const audio = new Audio(sound);
@@ -27,7 +27,11 @@ const audio = new Audio(sound);
             </div>
             <div className={trancit ? "--profileCard-user--hidden" : "--profileCard-user-info"}>
                 <p className="--profileCard-user-info-name">{name}</p>
-                <p>{email}</p>
+                <p className="--profileCard-user-info-name">{email}</p>
+            </div>
+            <div className={trancit ? "--profileCard-user--hidden" : "--profileCard-user-info"}>
+                <span className="material-icons --profileCard-user-inbox-icon">  markunread_mailbox </span>
+                <Link className="--profileCard-user-inbox" to="/profile/messages/">Inbox</Link>
             </div>
             <div className={trancit ? "--profileCard-user--hidden" : "--profileCard-user-butons"}>
                 <button>{t("page.profile.profileCard.editButton")}</button>

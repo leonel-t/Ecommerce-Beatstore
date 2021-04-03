@@ -8,8 +8,9 @@ import 'js-snackbar/snackbar.css';
 import './beatComponent.css';
 import spinner from '../../../assets/images/Spin-1s-200px.svg'
 import swal from 'sweetalert';
+import { withTranslation } from 'react-i18next';
 
-const BeatComponent = ({ addItemToCartEffect,fetchAddLikeToProductEffect, product, STORE_USER,LIKES,productLoading }) => {
+const BeatComponent = ({t, addItemToCartEffect,fetchAddLikeToProductEffect, product, STORE_USER,LIKES,productLoading }) => {
 
     //USER IDENTIFICATION FOR REDUCER #############################################
     let userStore = STORE_USER.user && STORE_USER.user.data && STORE_USER.user.data.user ? STORE_USER.user.data.user : null ; 
@@ -26,7 +27,7 @@ const BeatComponent = ({ addItemToCartEffect,fetchAddLikeToProductEffect, produc
     }
     const options = {
         pos: 'bottom-right',
-        text: 'Thanks for you like!'
+        text: '¡Thanks for you like!'
       }
 
     const handleThanks = () =>{
@@ -86,7 +87,7 @@ const BeatComponent = ({ addItemToCartEffect,fetchAddLikeToProductEffect, produc
                                 
                                 <h1>{product.name} </h1>
                                 <div className="beatComponent--main-beatInfo-col-author">
-                                Artist :  {product.artist}
+                                {t('components.beatComponent.artist')}{product.artist}
                                 </div>
                                 <div className="beatComponent--main-beatActions-col">
                                     <div className="beatComponent--main-beatActions-col-div">
@@ -121,7 +122,7 @@ const BeatComponent = ({ addItemToCartEffect,fetchAddLikeToProductEffect, produc
                                                         </span>
                                                     </div>
                                                     <div className="button-cart2">
-                                                        Add to cart $ {product.price} 
+                                                    {t('components.beatComponent.buttonCart')}{product.price} 
                                                     </div>
                                                 </div>
                                             </button>
@@ -139,7 +140,8 @@ const BeatComponent = ({ addItemToCartEffect,fetchAddLikeToProductEffect, produc
                                                     {LIKES}
                                                     </span>
                                                     <span className="material-icons finger-up2" 
-                                                        onClick={(e)=>handleLike(e,product.id)} >
+                                                        onClick={(e)=>handleLike(e,product.id)}
+                                                        onClick={()=>handleThanks} >
                                                         favorite
                                                     </span>
                                                     </>
@@ -167,7 +169,8 @@ const BeatComponent = ({ addItemToCartEffect,fetchAddLikeToProductEffect, produc
                                                     {LIKES}
                                                     </span>
                                                     <span className="material-icons finger-up" 
-                                                        onClick={(e)=>handleLike(e,product.id)} >
+                                                        onClick={(e)=>handleLike(e,product.id)}
+                                                        onClick={()=>handleThanks} >
                                                         favorite_border
                                                     </span>
                                                     </>
@@ -215,7 +218,7 @@ const BeatComponent = ({ addItemToCartEffect,fetchAddLikeToProductEffect, produc
                     </div>
                     )
                     :(
-                        <p>No se encuentra el producto</p>
+                        <p>{t("components.beatComponent.p")}</p>
                     )
                 }
                 </div>
@@ -243,5 +246,5 @@ const mapDispatchToProps = dispatch =>{
 }
   
   
-export default connect(mapStateToProps, mapDispatchToProps)(BeatComponent);
+export default connect(mapStateToProps, mapDispatchToProps)(withTranslation()(BeatComponent));
 

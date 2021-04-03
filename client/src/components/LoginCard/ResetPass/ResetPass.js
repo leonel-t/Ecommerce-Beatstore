@@ -1,11 +1,21 @@
+import './ResetPass.css';
 import React, { useState } from 'react';
 import emailjs from 'emailjs-com';
 import { Link } from 'react-router-dom';
-import logoIcon from "../../../assets/images/icon-logo.png";
-import './ResetPass.css';
 import axios from 'axios';
+//import images
+import logoIcon from "../../../assets/images/icon-logo.png";
+import flagEN from "../../../assets/images/estados-unidos.png";
+import flagSP from "../../../assets/images/espana.png"
+//Internationalization
+import i18n from '../../../i18n';
+import { withTranslation } from 'react-i18next';
 
-const ResetPass = () => {
+const ResetPass = ({t}) => {
+
+  const changeLanguage = (lng) => {
+    i18n.changeLanguage(lng);
+  } 
     
     function generateResetCode() {
         let length = 9,
@@ -51,23 +61,39 @@ const ResetPass = () => {
     }
     
     return( 
-        <div className="--LoginCard">
-          <div className="--LoginAllCard">
-            <div className="--login-logo">
-                  <div className="--login-logo-col">
-                      <img width="70px" height="60px" src={logoIcon} alt=""></img>
+        <div className="--ResetCard">
+          <div className="--ResetAllCard">
+            <div className="--Reset-logo">
+              <div className='--Reset-flags' onClick={() => changeLanguage('en')}>
+                        <img src={flagEN} alt="flagENGLISH" width="25px" height="25px"/>
+                    </div>
+                  <div className="--Reset-logo-col">
+                  <Link className="--Reset-link" to='/'>
+                      <img width="60px" height="50px" src={logoIcon} alt=""></img>
+                  </Link>
                   </div>
-                  <div className="--login-logo-col">
-                  <h1>BeatStore</h1>
+                  <div className="--Reset-logo-col">
+                  <Link className="--Reset-link" to='/'>
+                    <h1>BeatStore</h1>
+                  </Link>
                   </div>
+                  <div className='--Reset-flags' onClick={() => changeLanguage('es')}>
+                        <img src={flagSP}alt="flagSPANISH" width="25px" height="25px"/>
+                    </div>
             </div>
-            <h2>To reset your password,</h2>
-            <h2> we will send you a code to your mail inbox.</h2>
+            <h2>{t('page.resetPass.line1')}</h2>
+            <h2>{t('page.resetPass.line2')}</h2>
+            <h2>{t('page.resetPass.line3')}</h2>
             <form className="--ResetPass" onSubmit={sendEmail}>
               <label className='name'>Email</label>
-              <input placeholder='Type your Email' className="--RPInput" onChange={handleInputChange} type="email" name="email" required/>
+              <input 
+                placeholder={t('page.resetPass.email.placeholder')}
+                className="--RPInput" 
+                onChange={handleInputChange} 
+                type="email" 
+                name="email" required/>
               <div className="--RPButtons">
-                <button type='submit'>Send Code</button>
+                <button type='submit'>{t('page.resetPass.code')}</button>
               </div>
             </form>
             <Link className='Link' to='/inscode'>Already have the Code?</Link>
@@ -76,4 +102,4 @@ const ResetPass = () => {
     )
 }
 
-export default ResetPass;
+export default withTranslation()(ResetPass);
