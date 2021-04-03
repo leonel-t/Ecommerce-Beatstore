@@ -1,6 +1,8 @@
 import React from 'react';
 import "./rankingitem.scss";
-import Spinner from "../../../assets/images/Spin-1s-200px.svg"
+import Spinner from "../../../assets/images/Spin-1s-200px.svg";
+import {serverUrl} from '../../../auxiliar/variables';
+
 const RankingItem = ({ position, id, name, artist, description, reproductions, image  }) => {
 
   return (
@@ -18,7 +20,7 @@ const RankingItem = ({ position, id, name, artist, description, reproductions, i
               </div>
               <div className="--ranking-item-article-img-div">
                   <img className="--ranking-item-article-img"
-                    src={`http://localhost:3001/images/${image}`}
+                    src={`${serverUrl}/images/${image}`}
                     alt="Album...">
                   </img>
               </div>

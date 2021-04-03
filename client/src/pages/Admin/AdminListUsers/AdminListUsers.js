@@ -2,7 +2,7 @@ import React,{useEffect} from "react";
 import {connect} from 'react-redux';
 import {fetchAllUsers} from '../../../stores/admin/admin.actions';
 import UserCard from './UserCard.js' 
-
+import AdminNav from '../../../pages/Admin/AdminNav/AdminNav';
 import "./adminListUser.css";
 
 const Admin = ({fetchAllUsersEffect,GET_ALL_USERS}) => {
@@ -14,7 +14,9 @@ const Admin = ({fetchAllUsersEffect,GET_ALL_USERS}) => {
   
   return (
     <>
+     <AdminNav></AdminNav>
     <main className="--adminListUsers--main-panel">
+     
       <div className="--adminListUsers--main-div">        
         {GET_ALL_USERS && GET_ALL_USERS.length > 0
             ?(

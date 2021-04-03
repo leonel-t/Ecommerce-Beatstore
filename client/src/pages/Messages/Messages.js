@@ -1,4 +1,4 @@
-import React, {useEffect, useState} from 'react';
+import React, {useState} from 'react';
 import './messages.scss';
 import { connect } from 'react-redux';
 import { withTranslation } from 'react-i18next';
@@ -8,6 +8,7 @@ import {Link} from 'react-router-dom';
 import axios from 'axios';
 import {fetchUserInBox} from '../../stores/user/user.actions';
 import swal from 'sweetalert';
+import {serverUrl} from '../../auxiliar/variables';
 
 const Messages = ({t, USER_INBOX, fetchUserInBoxEffect})=>{
 
@@ -31,16 +32,16 @@ const Messages = ({t, USER_INBOX, fetchUserInBoxEffect})=>{
             try {
                 const options = {
                     method: 'DELETE',
-                    url: `http://localhost:3001/messages/${messageId}`,
+                    url: `${serverUrl}/messages/${messageId}`,
                     headers: {
                       'Content-Type': 'application/json'
                     }
                   };
                   
                   axios.request(options).then(function (response) {
-                      console.log("ESTE USER", )
-                    fetchUserInBoxEffect(userId)
-                    setDeleteMessage(false)
+                   return fetchUserInBoxEffect(userId)
+                  }).then(()=>{
+                   return setDeleteMessage(false)
                   }).catch(function (error) {
                     console.error(error);
                   });
@@ -61,7 +62,7 @@ const Messages = ({t, USER_INBOX, fetchUserInBoxEffect})=>{
         try {
             const options = {
                 method: 'POST',
-                url: 'http://localhost:3001/messages/',
+                url: `${serverUrl}/messages/`,
                 headers: {
                   'Content-Type': 'application/json'
                 },
@@ -101,7 +102,7 @@ const Messages = ({t, USER_INBOX, fetchUserInBoxEffect})=>{
            {USER_INBOX.userInBoxLoading && deleteMessage
             ?(
                 <div className="--messages-loading">
-                    <img src={spinner}></img>
+                    <img src={spinner} alt="loading..."></img>
                 </div>
             ):(
                 USER_INBOX.userInBox.map((message, index)=>{
@@ -152,7 +153,7 @@ const Messages = ({t, USER_INBOX, fetchUserInBoxEffect})=>{
                                         name="textarea"
                                         rows="5"
                                         cols="50"
-                                        maxlength="240" 
+                                        maxLength="240" 
                                         placeholder="Write your reply"
                                     >
                                     

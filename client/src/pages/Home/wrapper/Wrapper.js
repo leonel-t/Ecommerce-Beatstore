@@ -4,7 +4,7 @@ import { useScroll  } from "react-use-gesture"
 import { connect } from 'react-redux';
 import {useHistory} from 'react-router-dom';
 import { fetchAllProducts } from '../../../stores/products/products.actions';
-
+import {serverUrl} from '../../../auxiliar/variables';
 import "./wrapper.css";
 
 const Wrapper = ({fetchAllProductsEffect,  PRODUCTS}) =>{
@@ -55,7 +55,7 @@ const Wrapper = ({fetchAllProductsEffect,  PRODUCTS}) =>{
                         className="wrapper">
                             {
                                 PRODUCTS.map((product, index)=>{
-                                    let bg = `http://localhost:3001/images/${product.image}`
+                                    let bg = `${serverUrl}/images/${product.image}`
                                     return (
                                     <animated.div 
                                     key={index}

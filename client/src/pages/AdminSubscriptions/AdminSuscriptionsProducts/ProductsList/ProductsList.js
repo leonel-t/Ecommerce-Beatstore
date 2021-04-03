@@ -1,6 +1,5 @@
 import './productslist.scss';
 import React, {useEffect} from 'react';
-import axios from "axios";
 import { connect } from "react-redux";
 import { getProducts } from "../../../../stores/AdminSubscriptions/adminSubscriptions.actions";
 const CustomersList = ({PRODUCTS, getProductsEffect}) =>{

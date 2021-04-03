@@ -11,9 +11,19 @@ import TabPanel from '../../components/Product/TabPanel/TabPanel';
 import PreLoad from "./PreLoad"
 import "./product.css";
 
-const Product = ({ relatedArtist, ProductsByCategories, postCommentEffect, fetchUserEffect, STORE_PRODUCT }) => {
+const Product = ({ relatedArtist, STORE_USER, ProductsByCategories, postCommentEffect, fetchUserEffect, STORE_PRODUCT }) => {
 
-
+  //USER IDENTIFICATION FOR REDUCER #############################################
+  let userStore =
+    STORE_USER.user && STORE_USER.user.data && STORE_USER.user.data.user
+      ? STORE_USER.user.data.user
+      : null;
+  let user = {
+    userStatus: userStore ? true : false,
+    id: userStore && userStore.id ? userStore.id : 0,
+    orderId: STORE_USER.cartDetaills.id ? STORE_USER.cartDetaills.id : 0,
+  };
+  //#############################################################################
   window.scrollTo({
     top: 0,
     left: 0,
@@ -25,7 +35,7 @@ const Product = ({ relatedArtist, ProductsByCategories, postCommentEffect, fetch
     fetchUserEffect()
 
     let categories = STORE_PRODUCT.product.categories?.map(c => c.name)
-    console.log(categories)
+
     ProductsByCategories(categories)
 
   }, [fetchUserEffect, productId, ProductsByCategories, STORE_PRODUCT.product]);
@@ -47,7 +57,7 @@ const Product = ({ relatedArtist, ProductsByCategories, postCommentEffect, fetch
             </div>
 
               <div className="product--main-col">
-                <TabPanel related={relatedArtist} product={STORE_PRODUCT.product} />
+                <TabPanel related={relatedArtist} user={user} product={STORE_PRODUCT.product} />
               </div>
             <div className="divider"></div>
           </main>
@@ -61,8 +71,8 @@ const Product = ({ relatedArtist, ProductsByCategories, postCommentEffect, fetch
 const mapStateToProps = state => {
   return {
     STORE_PRODUCT: state.productsReducers,
-    relatedArtist: state.productsReducers.productCategories
-
+    relatedArtist: state.productsReducers.productCategories,
+    STORE_USER: state.userReducers
   }
 }
 const mapDispatchToProps = dispatch => {

@@ -12,7 +12,6 @@ import AdsBanner from '../../../components/Home/AdsBanner/AdsBanner';
 import { withTranslation } from 'react-i18next';
 
 const Container = ({t, STORE_PRODUCTS}) => {
-    console.log(STORE_PRODUCTS)
 
     return (
         <div className='Container'>
@@ -68,7 +67,6 @@ const Container = ({t, STORE_PRODUCTS}) => {
                     ?( 
                     <ScrollBox>
                        { STORE_PRODUCTS.map((product, index) => {
-                           console.log("ESTOSSS", product)
                            return (
                             <ColorCard product={product} key={index} />
                             )

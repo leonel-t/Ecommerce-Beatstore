@@ -80,7 +80,7 @@ const App = () => {
           layout={ProductLayout}
         />
         <RouteWrapper exact path="/payment" component={CheckoutPay} layout={CheckoutPay} />
-        <RouteWrapper exact path="/listproducts" component={ProductList} layout={AdminLayout} />
+        <RouteWrapper exact path="/admin/listproducts" component={ProductList} layout={AdminLayout} />
         <RouteWrapper exact path="/listcat" component={ListCategories} layout={AdminLayout} />
         <RouteWrapper exact path="/editCat/:idCat/:name/:description" component={EditCategories} layout={AdminLayout} />
         <RouteWrapper exact path="/add" component={Form} layout={AdminLayout} />

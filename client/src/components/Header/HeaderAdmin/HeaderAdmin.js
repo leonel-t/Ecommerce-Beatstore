@@ -49,7 +49,7 @@ const HeaderHome = ({t,fetchUserEffect, STORE_CART, STORE_USER}) =>{
                     <div
                     onClick={handleDropDown}
                     className='--header-home-dropdown'>
-                      Menu <i class="fas fa-sort-down"></i>
+                      Menu <i className="fas fa-sort-down"></i>
                     </div>
 
                 </ul>
@@ -66,6 +66,11 @@ const HeaderHome = ({t,fetchUserEffect, STORE_CART, STORE_USER}) =>{
                          {shortenText(STORE_USER.user.data.user.name) || STORE_USER.user.data.user.email}
                          </Link>
                          </li>
+                         {STORE_USER.user && STORE_USER.user.data.user && STORE_USER.user.data.user.rol === 'admin' ?(
+                           <Link className='--header-home-link-admin' to="/admin"><span className="material-icons icon-admin-user">admin_panel_settings</span>   </Link>                    
+                          ):(
+                            <p></p>
+                          )} 
                          <Link className='--header-account-link' to='/profile'>  <span className="material-icons --user-img"> account_circle </span></Link>
                             <div className="--header-home-cart">
                             <Link to='/cart'><span className="material-icons --header-home-perfil-icon"> shopping_cart</span></Link>

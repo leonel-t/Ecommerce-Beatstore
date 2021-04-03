@@ -3,18 +3,23 @@ import './checkoutPay.css';
 import emailjs from 'emailjs-com';
 import { loadStripe } from "@stripe/stripe-js";
 import { fetchAllOrders } from '../../stores/admin/admin.actions';
+// import { cleanCart } from '../../stores/user/user.actions';
 import {
     Elements,
     CardElement,
     useStripe,
     useElements,
 } from "@stripe/react-stripe-js";
+
 import Loader from "../../../src/assets/images/loader.gif"
 
 import { connect, useDispatch } from "react-redux";
 
+
+
 import axios from "axios";
 import swal from "sweetalert";
+import {serverUrl} from '../../auxiliar/variables';
 
 const stripePromise = loadStripe("pk_test_51IacYXDloipSs6XKbHgrFYdB8siv2riOY2FoIz82WGXhlRkGRC5h37tWjeGLPjcZmvbJROADK3nfUblF8B6gwRKm001XPJ1lUM");
 
@@ -42,7 +47,6 @@ const mapStateToProps = (state) => {
 export default connect(mapStateToProps, { fetchAllOrders })(CheckoutPay);
 
 const CheckoutForm = ({ price, cart, userReducer, store_orders, action }) => {
-    const dispatch = useDispatch()
     const stripe = useStripe();
     const elements = useElements();
 
@@ -75,7 +79,7 @@ const CheckoutForm = ({ price, cart, userReducer, store_orders, action }) => {
             console.log(id)
             try {
                 const { data } = await axios.post(
-                    "http://localhost:3001/api/checkout",
+                    `${serverUrl}/api/checkout`,
                     {
                         id,
                         amount: price * 100, //cents
@@ -102,22 +106,29 @@ const CheckoutForm = ({ price, cart, userReducer, store_orders, action }) => {
                             console.log(error.text);
                         });
 
-
-
-
                     action();
-                    axios.put(`http://localhost:3001/order/${emailData.id}`, {
+                  
+                    axios.put(`${serverUrl}/order/${emailData.id}`, {
                         orderStatus: "complete",
                         userName: input.name,
                         userEmail: input.email,
                         total: userReducer.totalPrice
                     })
+                    .then(()=>{
+                        setTimeout(()=>{
+                            window.location.assign("./")
+                        },2000)
+                    })
+                }else if (data.message !== 'Successful Payment'){
+                    console.log("RAZON:",data.message);
+                    axios.put(`${serverUrl}/order/${emailData.id}`, { orderStatus: "complete" })
+
                         .then(() => {
                             setTimeout(() => {
                                 window.location.assign("./")
                             }, 2000)
                         })
-                } else {
+                }else{
                     console.log("RAZON:", data.message);
                     swal(data.message);
                 }
@@ -170,6 +181,7 @@ const CheckoutForm = ({ price, cart, userReducer, store_orders, action }) => {
                 <button type="submit" >{
                     loading ? (
                         <img height="30" src={Loader} />
+
                     ) : price > 0 ? (`Pay $${price}`) : ""
                 }</button>
 

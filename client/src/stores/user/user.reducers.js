@@ -41,7 +41,6 @@ let initialState = {
 
 const userReducers = (state = initialState, action) => {
     switch (action.type) {
-
         case GET_USER_INBOX_REQUEST:
             return {
                 ...state,
@@ -58,8 +57,7 @@ const userReducers = (state = initialState, action) => {
                 ...state,
                 userInBoxLoading: false,
                 userInBoxError: action.payload
-            }//
-
+            }
         case CLEAN_CART:
             return {
                 ...state,

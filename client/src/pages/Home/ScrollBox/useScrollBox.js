@@ -14,12 +14,14 @@ function useScrollBox(scrollRef) {
   const [speed, setSpeed] = useState(0);
 
   const scrollWrapperCurrent = scrollRef.current;
+  // eslint-disable-next-line
   const handleLastScrollX = useCallback(
     throttle(screenX => {
       setLastScrollX(screenX);
     }, timing),
     []
   );
+  // eslint-disable-next-line
   const handleMomentum = useCallback(
     throttle(nextMomentum => {
       setMomentum(nextMomentum);

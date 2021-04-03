@@ -7,7 +7,7 @@ import axios from "axios";
 import "../../Product/product.css";
 import { fetchOneProduct } from "../../../stores/admin/admin.actions";
 import AdminNav from "../AdminNav/AdminNav";
-
+import {serverUrl} from '../../../auxiliar/variables';
 const PutForm = ({ STORE_ADMIN, fetchProduct }) => {
   const storeProduct = STORE_ADMIN.product;
 
@@ -25,7 +25,7 @@ const PutForm = ({ STORE_ADMIN, fetchProduct }) => {
   const [tone, setTone] = React.useState({})
   useEffect(() => {
     const datos = async () => {
-      return await fetch("http://localhost:3001/categories")
+      return await fetch(`${serverUrl}/categories`)
         .then((response) => response.json())
         .then((optionCategories) => {
           return setCat(optionCategories);
@@ -83,7 +83,7 @@ const PutForm = ({ STORE_ADMIN, fetchProduct }) => {
 
     const options = {
       method: "POST",
-      url: "http://localhost:3001/products/",
+      url: `${serverUrl}/products/`,
       headers: {
         "Content-Type": "multipart/form-data", "Cross-Origin-Opener-Policy": "same-origin"
       },
@@ -98,7 +98,7 @@ const PutForm = ({ STORE_ADMIN, fetchProduct }) => {
         console.log(element);
         axios
           .post(
-            `http://localhost:3001/products/${idProduct}/category/${element.value}`
+            `${serverUrl}/products/${idProduct}/category/${element.value}`
           )
           .then((res) => console.log(res));
       });

@@ -54,3 +54,13 @@
     padding-left: 15px;
     color: var(--FansCard-content-info-p);
 }
+
+.--FansCard-content-reply-icon{
+    color: white;
+    font-size: 1.8rem;
+}
+.--FansCard-content-reply-icon:hover{
+    color: rgb(116, 112, 116);
+    font-size: 2rem;
+    cursor:pointer;
+}
