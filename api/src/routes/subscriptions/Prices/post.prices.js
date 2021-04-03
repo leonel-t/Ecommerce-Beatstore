@@ -8,9 +8,9 @@ server.post("/create/:idProduct", async (req, res, next) => {
     const {idProduct} = req.params
     const {unit_amount, currency,recurring} = req.body
     await stripe.prices.create({
-        unit_amount: unit_amount,
-        currency: currency,
-        recurring: recurring,
+        unit_amount: unit_amount, //"1234"
+        currency: currency, //"usd"
+        recurring: recurring, // "{interval: 'month'}"
         product: idProduct,
       }).then((price)=>{
         return res.status(200).json(price);

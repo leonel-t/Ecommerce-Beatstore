@@ -11,7 +11,7 @@ import sound from "../../../assets/audio/tab-sound.ogg"
 import '../RelatedTracks/RelatedTracks.css';
 
 
-const TabPanel = ({ t, product, relatedArtist, related }) => {
+const TabPanel = ({ t, product, relatedArtist, related, nameProduct }) => {
   const [relatedTrack, setRelatedTrack] = useState(false);
   const [fans, setFans] = useState(false);
   const [comments, setComments] = useState(true);
@@ -86,19 +86,19 @@ const TabPanel = ({ t, product, relatedArtist, related }) => {
           {
             related && related.length > 0
               ? (
-
                 related.map((relate, index) => {
-                  console.log("este es", relate)
-                  return (
-                    <RelatedTracks
-                      id={relate.id}
-                      image={relate.image}
-                      key={index}
-                      title={relate.name}
-                      author={relate.artist}
-                      price={relate.price}
-                    ></RelatedTracks>
-                  );
+                  if (relate.name !== nameProduct) {
+                    return (
+                      <RelatedTracks
+                        id={relate.id}
+                        image={relate.image}
+                        key={index}
+                        title={relate.name}
+                        author={relate.artist}
+                        price={relate.price}
+                      ></RelatedTracks>
+                    );
+                  }
                 })
               ) : (<div></div>)
           }
@@ -135,15 +135,15 @@ const TabPanel = ({ t, product, relatedArtist, related }) => {
           }
         >
           {product && product.likes && product.likes.length > 0
-          ?(
-            product.likes.map((fan, index) => {
-              return (
-                <FansCard key={index} username={fan.author} date={fan.createdAt} />
-              );
-            })
-          ):(
-            <p>Not Fans</p>
-          )
+            ? (
+              product.likes.map((fan, index) => {
+                return (
+                  <FansCard key={index} username={fan.author} date={fan.createdAt} />
+                );
+              })
+            ) : (
+              <p>Not Fans</p>
+            )
 
           }
         </div>
@@ -155,7 +155,8 @@ const TabPanel = ({ t, product, relatedArtist, related }) => {
 
 const mapStateToProps = (state) => {
   return {
-    relatedArtist: state.productsReducers.productCategories
+    relatedArtist: state.productsReducers.productCategories,
+    nameProduct: state.productsReducers.product.name
 
 
   };

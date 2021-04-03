@@ -1,6 +1,7 @@
 import React from "react";
 import './video.css'
 import bgVideoSrc from "../../../assets/videos/bg-home-smaller.mp4";
+import bgVideoSrc2 from "../../../assets/videos/pexels-cottonbro-7351364.mp4"
 
 
 

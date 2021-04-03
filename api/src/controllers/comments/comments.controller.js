@@ -18,6 +18,12 @@ module.exports = {
   getComments: async () => {
     return await Comment.findAll().then((comments) => comments);
   },
+  getCommentsByEmail: async (email) => {
+    return await Comment.findAll({
+      where:{author:email},
+      include:[{model: Product,attributes:["name", "artist", "id"]}]
+    }).then((comments) => comments)
+  },
   getCommentById: async (idComment) => {
     return await Comment.findByPk(idComment).then((comment) => comment);
   },

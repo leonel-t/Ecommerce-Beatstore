@@ -1,9 +1,13 @@
-import React, { useState } from 'react';
 import "./Register.css"
-import axios from 'axios';
+import React, { useState } from 'react';
 import { Link, useHistory } from "react-router-dom";
+import axios from 'axios';
+//import images
 import logoIcon from "../../../assets/images/icon-logo.png";
+import flagEN from "../../../assets/images/estados-unidos.png";
+import flagSP from "../../../assets/images/espana.png"
 //Internationalization
+import i18n from '../../../i18n';
 import { withTranslation } from 'react-i18next';
 
 const Register = ({t}) => {
@@ -15,6 +19,10 @@ const Register = ({t}) => {
         confirmPassword:"",
         email:"",
     });
+
+    const changeLanguage = (lng) => {
+        i18n.changeLanguage(lng);
+      } 
 
     const handleInputChange =(e) => {
         setInput({
@@ -82,11 +90,17 @@ const Register = ({t}) => {
         <div className="--RegisterCard">
             <div className="--RegisterCardAll">
                 <div className="--login-logo">
-                    <div className="--login-logo-col">
-                            <img width="70px" height="60px" src={logoIcon} alt=""></img>
+                    <div className='--register-flags' onClick={() => changeLanguage('en')}>
+                        <img src={flagEN} alt="flagENGLISH" width="25px" height="25px"/>
                     </div>
                     <div className="--login-logo-col">
-                        <h1>BeatStore</h1>
+                        <Link className="--register-Link" to="/"> <img width="60px" height="50px" src={logoIcon} alt=""></img> </Link>
+                    </div>
+                    <div className="--login-logo-col">
+                       <Link className="--register-Link" to="/"> <h1>BeatStore</h1> </Link>
+                    </div>
+                    <div className='--register-flags' onClick={() => changeLanguage('es')}>
+                        <img src={flagSP}alt="flagSPANISH" width="25px" height="25px"/>
                     </div>
                 </div>
             <form onSubmit={handleSubmit} className="--RegisterCard-form">

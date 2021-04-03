@@ -1,7 +1,8 @@
 import React, {useState} from 'react';
+import { withTranslation } from 'react-i18next';
 import './BeatCommentsInputComponent.css';
 
-const BeatCommentsInputComponent = ({action, product}) =>{
+const BeatCommentsInputComponent = ({t,action, product}) =>{
 
     const [comment, setComment] = useState();
     const [visibleInput, setVisibleInput] = useState(true)
@@ -35,7 +36,7 @@ const BeatCommentsInputComponent = ({action, product}) =>{
                            </input>
                         ):(
                             <p className="--BeatCommentsInputComponent-div-comment-added">
-                                Sign in to leave a comment
+                                {t('components.beatComponentInput.commentAdd')}
                             </p>
                         )
 
@@ -52,4 +53,4 @@ const BeatCommentsInputComponent = ({action, product}) =>{
     )
 }
 
-export default BeatCommentsInputComponent;
+export default withTranslation()(BeatCommentsInputComponent);

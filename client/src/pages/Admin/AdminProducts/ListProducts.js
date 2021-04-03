@@ -16,49 +16,48 @@ const Edit = ({ fetchCartEffect, fetchAllProductsEffect, deleteProductsEffect, S
   };
   const handleClickDelete = (id) => {
     console.log(id)
-    deleteProductsEffect(id)
+    id ? deleteProductsEffect(id) : console.log("no hay id")
     fetchAllProductsEffect()
   }
   return (
-    <div>
-      <div className="--Cart">
-        <div className="--Cart-items">
-          {STORE_CART && STORE_CART.length > 0 ? (
-            <>
-              <div>
-                {STORE_CART.map((product, index) => {
-                  return (
-                    <div key={index} className="--ItemCard">
-                      <div className="--ItemCard-left">
-                        <img
-                          alt="albumImg"
-                          src={`http://localhost:3001/images/${product.image}`}
-                        />
-                        <div className="--ItemCard-data">
-                          <h2>{product.name}</h2>
-                          <p>{product.autor}</p>
-                        </div>
-                      </div>
-                      <div className="--ItemCard-right">
-                        <span onClick={() => handleClickEdit(product.id)}>
-                          <i class="far fa-edit --ItemCard-editItem"></i>
-                        </span>
-                        <span onClick={() => handleClickDelete(product.id)}>
-                          <i class="fas fa-trash-alt --ItemCard-deletItem"></i>
-                        </span>
+    <div className="--Cart">
+      <div className="--Cart-items">
+        {STORE_CART && STORE_CART.length > 0 ? (
+          <>
+            <div>
+              {STORE_CART.map((product, index) => {
+                return (
+                  <div key={index} className="--ItemCard">
+                    <div className="--ItemCard-left">
+                      <img
+                        alt="albumImg"
+                        src={`http://localhost:3001/images/${product.image}`}
+                      />
+                      <div className="--ItemCard-data">
+                        <h2>{product.name}</h2>
+                        <p>{product.autor}</p>
                       </div>
                     </div>
-                  );
-                })}
-              </div>
-              <div></div>
-            </>
-          ) : (
-            <p className="empty-cart">Empty Cart</p>
-          )}
-        </div>
+                    <div className="--ItemCard-right">
+                      <span onClick={() => handleClickEdit(product.id)}>
+                        <i class="far fa-edit --ItemCard-editItem"></i>
+                      </span>
+                      <span onClick={() => handleClickDelete(product.id)}>
+                        <i class="fas fa-trash-alt --ItemCard-deletItem"></i>
+                      </span>
+                    </div>
+                  </div>
+                );
+              })}
+            </div>
+            <div></div>
+          </>
+        ) : (
+          <p className="empty-cart">Empty Cart</p>
+        )}
       </div>
     </div>
+
   );
 };
 const mapStateToProps = (state) => {

@@ -50,7 +50,8 @@ const {
   OrderLine,
   Review,
   InformationUser,
-  Likes
+  Likes,
+  Messages
 } = sequelize.models;
 
 // PRODUCTS CATEGORIES
@@ -62,8 +63,8 @@ Product.belongsToMany(Review, { through: 'Products_Reviews', as: 'reviews' });
 Review.belongsToMany(Product, { through: 'Products_Reviews', as: 'products' });
 
 // PRODUCTS COMMENTS
-Product.belongsToMany(Comment, { through: 'Products_Comments', as: 'comments' });
-Comment.belongsToMany(Product, { through: 'Products_Comments', as: 'products' });
+Product.hasMany(Comment, {foreignKey: "productId"});
+Comment.belongsTo(Product);
 
 
 // PRODUCTS LIKES
@@ -73,6 +74,10 @@ Likes.belongsToMany(Product, { through: 'Products_Likes', as: 'products' });
 // ORDER ORDERLINE
 Order.hasMany(OrderLine, { foreignKey: "orderId" });
 OrderLine.belongsTo(Order);
+
+// USERS MESSAGES
+User.belongsToMany(Messages, { through: 'User_Messages', as: 'messages' });
+Messages.belongsToMany(User, { through: 'User_Messages', as: 'users' });
 
 //USER INFORMATIONUSER
 User.hasOne(InformationUser, { foreignKey: "userId" });

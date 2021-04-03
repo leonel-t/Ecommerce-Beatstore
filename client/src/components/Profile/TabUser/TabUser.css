@@ -34,3 +34,8 @@
 .--TabUser-content-inactive{
     display: none;
 }
+@media(max-width:799px){
+    .--TabUser{
+        margin-top: 0;
+    }
+}

@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect } from "react";
 import { connect } from "react-redux";
 import { fetchOneProduct } from "../../stores/products/products.actions";
 import { useParams } from "react-router-dom";

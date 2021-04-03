@@ -4,20 +4,27 @@
     "catalog":"Catalogo",
     "headers":{
       "homeHeader":{
+        "title": "BeatStore",
         "catalog":"Catalogo",
+        "oferts":"Ofertas",
+        "ranking": "Ranking",
         "login":"Ingresar",
-        "register":"Registrarse"
+        "menu":"Menu"
       },
-      "header":{
+      "headerPages":{
         "home":"Inicio",
         "catalog":"Catalogo",
         "login":"Ingresar",
+        "oferts":"Ofertas",
+        "ranking": "Ranking",
         "register":"Registrarse",
         "searchInput":"Buscar"
       },
       "adminHeader":{
         "catalog":"Catalogo",
         "home":"Inicio",
+        "oferts":"Ofertas",
+        "ranking": "Ranking",
         "configuration":"Ajustes",
         "adminNav": {
           "adminDashboard": "Menu de Administrador",
@@ -25,7 +32,8 @@
           "addBeats": "Agregar Canciones",
           "listGenre": "Lista de Generos Musicales",
           "addGenre": "Agregar Genero",
-          "listUsers": "Lista de Usuarios"
+          "listUsers": "Lista de Usuarios",
+          "orderList": "Lista de ordenes"    
         }
 
       }
@@ -42,11 +50,61 @@
           "6":"Lo mejor del Rock & Roll",
           "7":"Beats Musica Alternativa ",
           "noBeats":"No hay Sonidos"
+        },
+        "subscriptions":{
+          "title":"Sección de subscripciones",
+          "rat":{
+            "title":"Subscripcion Rat",
+            "list":{
+              "1":"Gratuita",
+              "2":"1 Beats Gratis",
+              "3":"Subir Beats: No",
+              "4":"Monetizacion de Beats: No ",
+              "5":"Accept PayPal payments: No",
+              "6":"Accept Stripe payments: No"
+            }
+          },
+          "monkey":{
+            "title":"Subscripcion Monkey",
+            "list":{
+              "1":"Costo Mensual: 5 $us",
+              "2":"Caracteristicas Extras:",
+              "3":"15 Beats Gratuitos",
+              "4":"20 Menssages privados al mes",
+              "5":"Vender 5 Beats mensuales",
+              "6":"Cobrar por Stripe"
+            }
+          },
+          "cougar":{
+            "title":" Subscripcion Cougar",
+            "list":{
+              "1":"Costo Mensual: 5 $us",
+              "2":"100% of Revenue to Seller",
+              "3":"25 Beats Gratuitos",
+              "4":"Menssages privados sin limite",
+              "5":"2 Submissions per Opportunity",
+              "6":"Sell Custom Services"
+            }
+          },
+          "lion":{
+            "title":"Subscripcion Lion",
+            "list":{
+              "1":"All Monkey features",
+              "2":"100% of Revenue to Seller",
+              "3":"Unlimited Private Messages",
+              "4":"Unlimited Number of License",
+              "5":"2 Submissions per Opportunity",
+              "6":"Sell Custom Services"
+            }
+          },
+          "button":"Subscribite"
         }   
       },      
       "profile":{
-        "title": "Usuario no encontrado",
+        "title": "¡No tienes una cuenta activa!",
+        "subtitle": "Registrate ahora y disfruta",
         "button": "Volver a Inicio",
+        "buttonSecond": "Quiero registrarme",
         "profileCard": {
           "editButton": "Editar Cuenta",
           "logout": "Cerrar Sesion"
@@ -103,6 +161,7 @@
         "passwordPlaceholder":"Escribe tu contraseña",
         "signinButton":"Ingresar",
         "dontAcount":"¿No tienes una cuenta?",
+        "forgotPassword":"¿Olvidaste tu contraseña?",
         "signupButton":"Crear Cuenta"
       },
       "register":{
@@ -118,6 +177,30 @@
         "signupButton":"Crear Cuenta",
         "haveAcount":"¿Ya tienes una cuenta?",
         "signinButton":"Ingresar con tu cuenta"
+      },
+      "resetPass":{
+        "line1": "Para reiniciar tu contraseña",
+        "line2": "BeatStore te genera un codigo",
+        "line3": "y te lo envia a tu correo",
+        "email":{
+          "title": "Email",
+          "placeholder": "Escribe tu correo aqui"
+        },
+        "code": "Enviar codigo"
+      },
+      "Code":{
+        "line1": "Primero, ingrese su codigo de reinicio",
+        "line2": "Luego, ingrese su nueva contraseña",
+        "titleLabel": "Codigo de reinicio",
+        "password1": "Nueva contraseña",
+        "confirm1": "Confirma tu contraseña",
+        "placeholder":{
+          "reset": "Escribe tu codigo aqui",
+          "password2": "Escribe tu nueva contraseña aqui",
+          "confirm2": "Confirma tu nueva contraseña"
+        },
+        "password3": "Reiniciar contraseña",
+        "back": "Volver para iniciar sesion"
       },
       "admin":{
         "title":"Administracion",
@@ -167,6 +250,28 @@
           }
       }
     }
-
+  },
+  "components":{
+    "beatComponent":{
+      "buttonCart": "Agregar al carrito $",
+      "artist": "Artista: ",
+      "p": "No se encuentra el producto",
+      "option":{
+        "text": "¡Gracias por tu apoyo!"
+      }
+    },
+    "beatComponentInput":{
+      "commentAdd": "Inicia sesion para dejar tu comentario"
+    },
+    "profile":{
+      "orderCard":{
+        "created":"Fecha de compra: ",
+        "order": "Numero de orden: ",
+        "price": "Precio :",
+        "quantity": "Cantidad productos: ",
+        "status": "Estado: "
+      },
+      "button": "Detalles"
     }
   }
+}
