@@ -1,4 +1,4 @@
-const { User } = require("../../db");
+const { User, Messages } = require("../../db");
 
 module.exports = {
     findAllUsers() {
@@ -7,7 +7,15 @@ module.exports = {
 
      findUserById(id) {
         return User.findOne({
-          where: { id: id }
+          where: {
+            id: id
+          },
+          include: [
+            {
+              model: Messages,
+              as: "messages",
+            },
+          ],
         });
       },
      findByEmail(email){

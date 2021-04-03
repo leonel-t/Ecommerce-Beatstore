@@ -7,17 +7,17 @@ import { useParams } from 'react-router';
 const OrderDetails = ({ order }) => {
     const { id } = useParams();
     console.log("la id es" + id)
-    const totalPrice = order[id - 1].orderLines.map(order => parseFloat(order.price))
+    const totalPrice = order[0].orderLines.map(order => parseFloat(order.price))
 
 
     return (
         <div>
-            <div className="--Cart">
-                <div className="--Cart-items">
+            <div className="--Orders">
+                <div className="--Orders">
                     {order && order.length > 0 ? (
                         <>
                             <div>
-                                {order[id - 1].orderLines.map((product, index) => {
+                                {order[0].orderLines.map((product, index) => {
                                     return (
                                         <div key={index} className="--ItemCard">
                                             <div className="--ItemCard-left">

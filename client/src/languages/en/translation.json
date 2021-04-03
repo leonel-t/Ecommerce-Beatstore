@@ -9,20 +9,27 @@
     },
     "headers":{
       "homeHeader":{
+        "title": "BeatStore",
         "catalog":"Catalog",
+        "oferts":"Oferts",
+        "ranking": "Ranking",
         "login":"Login",
-        "register":"Register"
+        "menu":"Menu"
       },
-      "header":{
+      "headerPages":{
         "home":"Home",
         "catalog":"Catalog",
         "login":"Login",
+        "oferts":"Oferts",
+        "ranking": "Ranking",
         "register":"Register",
         "searchInput":"Search"
       },
       "adminHeader":{
         "configuration":"Configuration",
         "catalog":"Catalog",
+        "oferts":"Oferts",
+        "ranking": "Ranking",
         "home":"Home",
         "adminNav": {
           "adminDashboard": "Admin Dashboard",
@@ -30,7 +37,8 @@
           "addBeats": "Add Beats",
           "listGenre": "List Musical Genres",
           "addGenre": "Add Genres",
-          "listUsers": "List Users"
+          "listUsers": "List Users",
+          "orderList": " Order List"         
         }
       }
     },
@@ -46,11 +54,62 @@
           "6":"The Best Of Rock & Roll",
           "7":"Alternative Beats",
           "noBeats":"No Beats"
-        }
+        }, 
+        "subscriptions":{
+          "title":"Subscriptions Section",
+          "rat":{
+            "title":"Rat Subscription",
+            "list":{
+              "1":"Free",
+              "2":"Up to 10 tracks",
+              "3":"Upload Track Stems",
+              "4":"Instant Payments",
+              "5":"Accept PayPal payments",
+              "6":"Accept Stripe payments"
+            }
+          },
+          "monkey":{
+            "title":"Monkey Subscription",
+            "list":{
+              "1":"All free features",
+              "2":"plus feactures:",
+              "3":"Unlimited tracks",
+              "4":"20 Monthly Private Messages",
+              "5":"Sell Sound Kits",
+              "6":"Sell Custom Services"
+            }
+          },
+          "cougar":{
+            "title":"Cougar Subscription",
+            "list":{
+              "1":"All Monkey features",
+              "2":"100% of Revenue to Seller",
+              "3":"Unlimited Private Messages",
+              "4":"Unlimited Number of License",
+              "5":"2 Submissions per Opportunity",
+              "6":"Sell Custom Services"
+            }
+          },
+          "lion":{
+            "title":"Lion Subscription",
+            "list":{
+              "1":"All Monkey features",
+              "2":"100% of Revenue to Seller",
+              "3":"Unlimited Private Messages",
+              "4":"Unlimited Number of License",
+              "5":"2 Submissions per Opportunity",
+              "6":"Sell Custom Services"
+            }
+            
+          },
+          "button":"Subscribe"
+        }  
       },     
        "profile":{
-        "title": "User Not Found",
-        "button": "Go To Login",
+        "title": "¡You not have an account!",
+        "subtitle": "Please register now",
+        "button": "Go to login",
+        "buttonSecond": "Go to register",
         "profileCard": {
           "editButton": "Edit Account",
           "logout": "Logout"
@@ -108,6 +167,7 @@
         "passwordPlaceholder":"Type You Password",
         "signinButton":"Sign In",
         "dontAcount":"Don't have an account?",
+        "forgotPassword":"¿Forgot your password?",
         "signupButton":"Sign Up"
       },
       "register":{
@@ -123,6 +183,30 @@
         "signupButton":"Sign Up",
         "haveAcount":"Already have an account?",
         "signinButton":"SignIn"
+      },
+      "resetPass":{
+        "line1": "To reset your password",
+        "line2": "we will send you a code",
+        "line3": "to your mail inbox",
+        "email":{
+          "title": "Email",
+          "placeholder": "Type your Email"
+        },
+        "code": "Send code"
+      },
+      "Code":{
+        "line1": "First, insert your reset code",
+        "line2": "then, insert your new password",
+        "titleLabel": "Reset Code",
+        "password1": "New password",
+        "confirm1": "Confirm password",
+        "placeholder":{
+          "reset": "Type your code",
+          "password2": "Type your new password",
+          "confirm2": "Confirm your new password"
+        },
+        "password3": "Reset password",
+        "back": "Back to sing in"
       },
       "admin":{
         "title":"Administration",
@@ -172,5 +256,29 @@
         }
         }
       }
-    }
-  }
+    }, 
+    "components":{
+      "beatComponent":{
+        "buttonCart": "Add to Cart $",
+        "artist": "Artist: ",
+        "p": "Product not found",
+        "option":{
+          "text": "¡Thanks for you like!"
+        }
+      },
+      "beatComponentInput":{
+        "commentAdd": "Sign in to leave a comment"
+      },
+      "profile":{
+        "orderCard":{
+          "created":"Created: ",
+          "order": "Order number: ",
+          "price": "Price :",
+          "quantity": "Products: ",
+          "status": "Status: "
+        },
+        "button": "Details"
+      }
+
+    } 
+}

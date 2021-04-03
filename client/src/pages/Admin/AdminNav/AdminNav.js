@@ -49,7 +49,7 @@ const AdminNav = ({ t }) => {
       <Link
         onClick={() => handleClickActiveState("List Orders")}
         className={activeState === "List Orders" ? "--admin--main-btn --admin--main-btn-active" : "--admin--main-btn"} to="/admin/listorders">
-        Order List
+                {t('headers.adminHeader.adminNav.orderList')}
       </Link>
     </main>
   );

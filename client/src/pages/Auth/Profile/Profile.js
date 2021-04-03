@@ -1,12 +1,13 @@
 import './Profile.css';
 import React, { useEffect } from 'react';
 import { connect } from 'react-redux';
+import { useHistory, Link } from 'react-router-dom';
 import { fetchUser, getOrdersByUser } from '../../../stores/user/user.actions';
-import { useHistory } from 'react-router-dom';
 import axios from 'axios';
 import ProfileCard from '../../../components/Profile/ProfileCard/ProfileCard';
 import TabUser from '../../../components/Profile/TabUser/TabUser';
 import { withTranslation } from 'react-i18next';
+import logoIcon from "../../../assets/images/icon-logo.png"
 
 const Profile = ({ t, fetchUserEffect, STORE_USER, getOrdersByUserEf }) => {
 
@@ -24,10 +25,15 @@ const Profile = ({ t, fetchUserEffect, STORE_USER, getOrdersByUserEf }) => {
   }, [fetchUserEffect, getOrdersByUserEf]);
 
 
-  const handleClick2 = (e) => {
+  const handleClickLogin = (e) => {
     e.preventDefault()
     localStorage.clear()
     history.push("/login")
+  };
+  const handleClickRegister = (e) => {
+    e.preventDefault()
+    localStorage.clear()
+    history.push("/register")
   };
 
   function generateNewToken() {
@@ -61,12 +67,11 @@ const Profile = ({ t, fetchUserEffect, STORE_USER, getOrdersByUserEf }) => {
             <div className="loader"></div>
           </div>
         ) : (
-          <div>
+          <div className="--profile-all">
             {STORE_USER.user && STORE_USER.user.data
               ? (
                 <>
                   <div className="--Profile">
-
                     <ProfileCard name={STORE_USER.user.data.user.name} email={STORE_USER.user.data.user.email} />
                     <TabUser orders={STORE_USER.orders} />
                   </div>
@@ -74,13 +79,22 @@ const Profile = ({ t, fetchUserEffect, STORE_USER, getOrdersByUserEf }) => {
               ) : (
                 <>
                   {generateNewToken()}
-                  <div className="profile">
-                    <div className="contentProfile">
-                      <div className="contentData">
-                        <p className="titule">{t('page.profile.title')}</p>
+                    <div className="--profile-not-user">
+                      <div className="--profile-margin">
+                         <div className="--profile-not-user-container">
+                          <div className="--profile-logo">
+                            <Link className="--profile-logo-link" to='/'>
+                                <img width="60px" height="50px" src={logoIcon} alt="beatstore"></img>
+                            </Link>
+                          </div>  
+                          <h2>{t('page.profile.title')}</h2>
+                          <h3>{t('page.profile.subtitle')}</h3>
+                          <button onClick={handleClickRegister}>{t('page.profile.buttonSecond')}</button>
+                          <p>or</p>
+                          <button onClick={handleClickLogin}>{t('page.profile.button')}</button>
                       </div>
-                      <button onClick={handleClick2}>{t('page.profile.button')}</button>
-                    </div>
+                      </div>
+                     
                   </div>
                 </>
               )

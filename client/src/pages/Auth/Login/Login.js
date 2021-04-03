@@ -1,16 +1,25 @@
 import "./Login.css";
 import React, { useState } from 'react';
-import axios from 'axios';
 import { Link, useHistory } from "react-router-dom";
-import { withTranslation } from 'react-i18next';
+import axios from 'axios';
+//import images
 import logoIcon from "../../../assets/images/icon-logo.png"
-import LoginGithubImg from "../../../assets/images/login/github-login.png"
+import flagEN from "../../../assets/images/estados-unidos.png";
+import flagSP from "../../../assets/images/espana.png"
+//Internationalization
+import i18n from '../../../i18n';
+import { withTranslation } from 'react-i18next';
+
 const Login = ({t}) => {
 
     const [input, setInput] = useState({
         email: "",
         password:""
     });
+
+    const changeLanguage = (lng) => {
+        i18n.changeLanguage(lng);
+      } 
 
     const history = useHistory();
     var tokenVerify = localStorage.getItem("token")
@@ -69,6 +78,9 @@ const Login = ({t}) => {
             <div className="--LoginAllCard">
                 <div className="--login-logo">
                     <div className="--login-logo-col">
+                    <div className='--login-flags' onClick={() => changeLanguage('en')}>
+                        <img className='--flag-en' src={flagEN} alt="flagENGLISH" width="25px" height="25px"/>
+                    </div>
                         <Link className="--login-logo-col-link" to='/'>
                             <img width="60px" height="50px" src={logoIcon} alt=""></img>
                         </Link>
@@ -76,7 +88,10 @@ const Login = ({t}) => {
                     <div className="--login-logo-col">
                         <Link className="--login-logo-col-link" to='/'>
                             <h1>BeatStore</h1>
-                        </Link>
+                        </Link>                          
+                    <div className='--login-flags' onClick={() => changeLanguage('es')}>
+                        <img className='--flag-es' src={flagSP}alt="flagSPANISH" width="25px" height="25px"/>
+                    </div>
                     </div>
                 </div>
             <form onSubmit={handleSubmit} className="--LoginCard-form">
@@ -109,7 +124,7 @@ const Login = ({t}) => {
             </form>
             <div className="foot">
                 <Link to='/register' className='Link-footer'>{t("page.login.dontAcount")}</Link>
-                <Link to ='/resetpass' className='Link-footer'>Forgot your password?</Link>
+                <Link to ='/resetpass' className='Link-footer'>{t("page.login.forgotPassword")}</Link>
                 <Link className="signup--footer" to="/register">{t("page.login.signupButton")}</Link>  
             </div>
             </div>
