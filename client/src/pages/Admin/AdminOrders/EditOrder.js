@@ -4,17 +4,19 @@ import { useParams } from "react-router-dom";
 import { putCategoryById } from "../../../stores/admin/admin.actions";
 import Select from "react-select";
 import axios from "axios";
+import swal from 'sweetalert';
+import { useHistory } from "react-router-dom";
 
 function EditOrders({ orders }) {
     const [orderStatus, setOrderStatus] = React.useState([])
     const { id } = useParams();
+    const history = useHistory();
 
     const customStyles = {
         control: (base, state) => ({
             ...base,
             color: "white",
-
-            width: "200px",
+            margin: "12px",
             // match with the menu
             borderRadius: state.isFocused ? "3px 3px 0 0" : 3,
             // Overwrittes the different states of border
@@ -25,7 +27,7 @@ function EditOrders({ orders }) {
             "&:hover": {
                 // Overwrittes the different states of border
                 borderColor: state.isFocused ? "red" : "blue",
-                background: "red"
+                background: "purple"
             }
         }),
         menu: (base, state) => ({
@@ -46,7 +48,10 @@ function EditOrders({ orders }) {
             // kill the white space on first and last option
             padding: 0,
             background: "black",
-
+            "&:hover": {
+                // Overwrittes the different states of border
+                background: "black"
+            }
 
         }),
         menuPortal: base => ({
@@ -71,10 +76,7 @@ function EditOrders({ orders }) {
             color: "black"
         })
     };
-    const optionTone = [{
-        value: "complete",
-        label: "Completed"
-    }, {
+    const optionStatus = [{
         value: "process",
         label: "Process"
     }, {
@@ -95,6 +97,12 @@ function EditOrders({ orders }) {
 
 
             await axios.put(`http://localhost:3001/order/${id}`, { orderStatus: orderStatus.value })
+            swal({
+                title: "Order " + id + " set to " + orderStatus.value,
+                icon: "success",
+                //buttons: true,
+            })
+            history.push(`/admin/listorders`);
 
         } catch (error) {
 
@@ -113,11 +121,10 @@ function EditOrders({ orders }) {
                     <h1> Order status: {order.orderStatus}</h1>
                     <label>Set order status to:</label>
                     <Select
-                        name="selectTone"
-                        options={optionTone}
+                        name="selectStatus"
+                        options={optionStatus}
                         onChange={setOrderStatus}
                         styles={customStyles}
-                        width='max-width'
                     />
 
                     <button className="--submitbuton" type="submit">
