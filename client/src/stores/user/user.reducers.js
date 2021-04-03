@@ -16,7 +16,9 @@ import {
     GET_ORDERS_BY_USER,
     GET_USER_INBOX_REQUEST,
     GET_USER_INBOX_SUCCESS,
-    GET_USER_INBOX_FAILURE
+    GET_USER_INBOX_FAILURE,
+    CLEAN_CART
+
 } from './user.actions';
 
 let initialState = {
@@ -56,6 +58,12 @@ const userReducers = (state = initialState, action) => {
                 userInBoxLoading: false,
                 userInBoxError: action.payload
             }//
+        case CLEAN_CART:
+            return {
+                ...state,
+                cart: []
+            }
+
         case GET_ORDERS_BY_USER:
             return {
                 ...state,

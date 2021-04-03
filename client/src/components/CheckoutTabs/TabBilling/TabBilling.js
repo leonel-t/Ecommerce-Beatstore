@@ -42,7 +42,7 @@ const TabBilling = ({f}) => {
                 .catch((err) => console.log(err))
             }
         })
-        return f("method");
+        f();
     }
 
     return (

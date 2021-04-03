@@ -16,7 +16,7 @@ server.post("/api/checkout", async (req, res) => {
     const payment = await stripe.paymentIntents.create({
       amount,
       currency: "USD",
-      description: "Gaming Keyboard",
+      description: "Beat Content",
       payment_method: id,
       confirm: true, //confirm the payment at the same time
     });

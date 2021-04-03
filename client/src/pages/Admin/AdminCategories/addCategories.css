@@ -1,78 +1,86 @@
-.--cat-all{
-    width:100%
+.--cat-all {
+    width: 100%
 }
-.catAdd{    
+
+.catAdd {
+    padding: 3%;
+    justify-content: center;
     width: 30%;
-    align-items: center;
+    align-items: left;
     display: flex;
     flex-direction: column;
     color: white;
     margin-left: auto;
     margin-right: auto;
-    margin-top:5%;
-    padding: 30px;
-    background-color: rgb(22, 22, 22);
+    margin-top: 5%;
+    background-color: rgb(107, 4, 241);
     border: 2px solid rgb(79, 0, 170);
     border-radius: 15px;
 }
-.catAdd h1{
-  font-family: 'Oxanium', cursive; 
-  font-size: 1.5rem; 
+
+.catAdd h1 {
+    font-family: 'Oxanium', cursive;
+    font-size: 1.5rem;
 }
-.input-name{
-    width:100%;
+
+.input-name {
+    width: 100%;
     font-family: 'Oxanium', cursive;
     font-size: 1.2rem;
-    text-align: center;
-    padding-top:10px;
-    padding-bottom:10px;
+    text-align: left;
+    padding-top: 10px;
+    padding-bottom: 10px;
 }
-.input-description{
+
+.input-description {
     font-family: 'Oxanium', cursive;
-    width:100%;
+    width: 100%;
     font-size: 1.2rem;
-    text-align: center;
-    padding-top:10px;
-    padding-bottom:10px;
+    text-align: left;
+    padding-top: 10px;
+    padding-bottom: 10px;
 }
-.input-name input::placeholder{
+
+.input-name input::placeholder {
     text-align: center;
     font-size: 1rem;
     font-family: 'Oxanium', cursive;
 }
-.input-description textarea::placeholder{
+
+.input-description textarea::placeholder {
     text-align: center;
     font-size: 1rem;
     font-family: 'Oxanium', cursive;
 }
-.button-submit{
+
+.button-submit {
     width: 100%;
     margin-top: 8%;
     align-items: center;
 }
 
-.catAdd input,textarea{
-    color: rgb(128, 128, 128);
+.catAdd input, textarea {
+    text-align: center;
+    color: rgb(255, 255, 255);
     width: 100%;
     background: transparent;
     border: none;
     border-bottom: 1px solid #777777;
     display: block;
-}   
-.--submitbuton{
+}
+
+.--submitbuton {
     color: white;
-    width: 80%;
+    width: 100%;
     border-radius: 4px;
-    margin-left: 50%;
-    transform: translateX(-50%);
     border: none;
     outline: none;
     padding: 15px;
     font-size: 1.3rem;
     font-family: 'Oxanium', cursive;
-    background: linear-gradient(45deg, violet, purple);
-
+    background: linear-gradient(225deg, rgb(234, 50, 111), rgb(79, 0, 170));
 }
-.--submitbuton:hover{
+
+.--submitbuton:hover {
     background-color: red;
 }
