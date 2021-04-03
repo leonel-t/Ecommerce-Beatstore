@@ -3,19 +3,21 @@ import './checkoutPay.css';
 import emailjs from 'emailjs-com';
 import { loadStripe } from "@stripe/stripe-js";
 import { fetchAllOrders } from '../../stores/admin/admin.actions';
+import { cleanCart } from '../../stores/user/user.actions';
 import {
     Elements,
     CardElement,
     useStripe,
     useElements,
 } from "@stripe/react-stripe-js";
-import { connect } from "react-redux";
+import { connect, useDispatch } from "react-redux";
 
 import axios from "axios";
+import swal from "sweetalert";
 
 const stripePromise = loadStripe("pk_test_51IacYXDloipSs6XKbHgrFYdB8siv2riOY2FoIz82WGXhlRkGRC5h37tWjeGLPjcZmvbJROADK3nfUblF8B6gwRKm001XPJ1lUM");
 
-function CheckoutPay({ totalPrice, cart, userReducer, store_orders, fetchAllOrders }) {
+function CheckoutPay({ totalPrice, cart, userReducer, store_orders, fetchAllOrders, action }) {
     useEffect(() => {
         fetchAllOrders()
     }, [fetchAllOrders]);
@@ -23,7 +25,7 @@ function CheckoutPay({ totalPrice, cart, userReducer, store_orders, fetchAllOrde
         <Elements stripe={stripePromise}>
             <div className="row h-100 container-checkout">
                 <div className="col-md-4 offset-md-4 h-100">
-                    <CheckoutForm price={totalPrice} cart={cart} userReducer={userReducer} store_orders={store_orders} />
+                    <CheckoutForm price={totalPrice} cart={cart} userReducer={userReducer} store_orders={store_orders} action={action} />
                 </div>
             </div>
 
@@ -41,7 +43,8 @@ const mapStateToProps = (state) => {
 };
 export default connect(mapStateToProps, { fetchAllOrders })(CheckoutPay);
 
-const CheckoutForm = ({ price, cart, userReducer, store_orders }) => {
+const CheckoutForm = ({ price, cart, userReducer, store_orders, action }) => {
+    const dispatch = useDispatch()
     const stripe = useStripe();
     const elements = useElements();
 
@@ -49,7 +52,6 @@ const CheckoutForm = ({ price, cart, userReducer, store_orders }) => {
     const [input, setInput] = useState({
         name: "",
         email: "",
-        phone: ""
 
     })
 
@@ -92,19 +94,31 @@ const CheckoutForm = ({ price, cart, userReducer, store_orders }) => {
                     price: userReducer.totalPrice,
                     products: products
                 }
-                // let myHtml = {
-                //     myHtml: "<h1>prueba</h1>",
-                //     email: input.email
-                // }
-                //email js
+
                 if (data.message === 'Successful Payment') {
-                    emailjs.send('service_b9mqvzg', 'template_lw3aj8d', emailData, 'user_G41cbN7fW7VHqXdcmtBXT')
+                    //send email
+                    emailjs.send('service_b9mqvzg', 'template_lw3aj8d', emailData, 'user_TgPSia94H5R5iet7h197p')
                         .then((result) => {
                             console.log(result.text);
                         }, (error) => {
                             console.log(error.text);
                         });
+
+
+
+                    
+                    action();
+                    axios.put(`http://localhost:3001/order/${emailData.id}`,{orderStatus: "complete"})
+                    .then(()=>{
+                        setTimeout(()=>{
+                            window.location.assign("./")
+                        },2000)
+                    })
+                }else{
+                    console.log("RAZON:",data.message);
+                    swal(data.message);
                 }
+                //clear input
                 elements.getElement(CardElement).clear();
             } catch (error) {
                 console.log(error);
@@ -150,7 +164,11 @@ const CheckoutForm = ({ price, cart, userReducer, store_orders }) => {
                             }} />
                     </div>
                 </fieldset>
-                <button type="submit" >Pay ${price}</button>
+                <button type="submit" >{
+                    loading ? (
+                        <img height="30" src={"https://lh3.googleusercontent.com/proxy/YA4TWKDP8m82sY7h9YEkX6tTQ5FpAs4TC7Bn9h47KhOmwhA-peTg1wNUuLpd8KzuB6ms-gPa5orF1q-CXntUWp_NULkr27tAK-GVgM28C-K4E_Dt9duV8GY1eGdzqDZP__dYh2_e_bRHD0tBZYiJLAy1lj9RMi_dxKxPEg"} />
+                    ) : price > 0 ? (`Pay $${price}`) : ""
+                }</button>
 
             </form>
         </div>

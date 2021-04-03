@@ -35,7 +35,7 @@ import ResetPass from './components/LoginCard/ResetPass/ResetPass';
 import InsCode from './components/LoginCard/ResetPass/InsCode';
 import Checkout from "./pages/Checkout/Checkout";
 import CheckoutPay from './pages/CheckoutPay/CheckoutPay';
-
+import EditOrders from "./pages/Admin/AdminOrders/EditOrder"
 //Menu Routes
 import Oferts from "./pages/Oferts/Oferts";
 import Ranking from "./pages/Ranking/Ranking";
@@ -83,6 +83,7 @@ const App = () => {
         <RouteWrapper exact path="/admin" component={Admin} layout={AdminLayout} />
         <RouteWrapper exact path="/admin/ListUsers" component={AdminListUsers} layout={AdminLayout} />
         <RouteWrapper exact path="/admin/listorders" component={ListOrder} layout={AdminLayout} />
+        <RouteWrapper path="/admin/listorders/:id" component={EditOrders} layout={AdminLayout} />
         <RouteWrapper exact path="/put/:id" component={PutForm} layout={PagesLayout} />
         <RouteWrapper exact path="/addCategories" component={Categories} layout={AdminLayout} />
         <RouteWrapper exact path="/login" component={Login} layout={LoginLayout} />

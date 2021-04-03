@@ -14,9 +14,13 @@ import {
     GET_CALCULATOR_TOTAL_PRICE,
     GET_DISCOUNT_COUPON,
     GET_ORDERS_BY_USER,
+
     GET_USER_INBOX_REQUEST,
     GET_USER_INBOX_SUCCESS,
     GET_USER_INBOX_FAILURE
+
+    CLEAN_CART
+
 } from './user.actions';
 
 let initialState = {
@@ -39,6 +43,7 @@ let initialState = {
 
 const userReducers = (state = initialState, action) => {
     switch (action.type) {
+
         case GET_USER_INBOX_REQUEST:
             return {
                 ...state,
@@ -56,6 +61,13 @@ const userReducers = (state = initialState, action) => {
                 userInBoxLoading: false,
                 userInBoxError: action.payload
             }//
+
+        case CLEAN_CART:
+            return {
+                ...state,
+                cart: []
+            }
+
         case GET_ORDERS_BY_USER:
             return {
                 ...state,

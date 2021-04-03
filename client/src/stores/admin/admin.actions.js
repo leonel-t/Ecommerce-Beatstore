@@ -51,7 +51,9 @@ export const deleteOrderById = (id) => {
     return (dispatch) => {
         axios.delete("http://localhost:3001/order/" + id)
             .then(products => {
-                dispatch(getAllOrdersSucess(products.data))
+                dispatch({
+                    type: DELETE_ORDER_BY_ID
+                })
             })
             .catch(error => {
                 console.log(error)
