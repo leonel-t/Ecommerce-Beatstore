@@ -114,7 +114,7 @@ const CheckoutForm = ({ price, cart, userReducer, store_orders, action }) => {
                             window.location.assign("./")
                         },2000)
                     })
-                }else{
+                }else if (data.message !== 'Successful Payment'){
                     console.log("RAZON:",data.message);
                     axios.put(`http://localhost:3001/order/${emailData.id}`, { orderStatus: "complete" })
                         .then(() => {
@@ -122,7 +122,7 @@ const CheckoutForm = ({ price, cart, userReducer, store_orders, action }) => {
                                 window.location.assign("./")
                             }, 2000)
                         })
-                } else {
+                }else{
                     console.log("RAZON:", data.message);
                     swal(data.message);
                 }
