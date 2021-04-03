@@ -140,8 +140,7 @@ const BeatComponent = ({t, addItemToCartEffect,fetchAddLikeToProductEffect, prod
                                                     {LIKES}
                                                     </span>
                                                     <span className="material-icons finger-up2" 
-                                                        onClick={(e)=>handleLike(e,product.id)}
-                                                        onClick={()=>handleThanks} >
+                                                        onClick={(e)=>handleLike(e,product.id)} >
                                                         favorite
                                                     </span>
                                                     </>
@@ -169,8 +168,7 @@ const BeatComponent = ({t, addItemToCartEffect,fetchAddLikeToProductEffect, prod
                                                     {LIKES}
                                                     </span>
                                                     <span className="material-icons finger-up" 
-                                                        onClick={(e)=>handleLike(e,product.id)}
-                                                        onClick={()=>handleThanks} >
+                                                        onClick={(e)=>handleLike(e,product.id)} >
                                                         favorite_border
                                                     </span>
                                                     </>
