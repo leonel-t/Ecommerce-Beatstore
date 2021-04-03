@@ -13,7 +13,7 @@ import { connect } from "react-redux";
 
 import axios from "axios";
 
-const stripePromise = loadStripe("pk_test_51IbFjrLDJyVvtDkgSdbcQBERHyS60JKwwgP1txRVecZIQaA268HyHtWB9o285SwM1H9A1EhoUL7DMU6iKgIzlqbk00wBHvgczU");
+const stripePromise = loadStripe("pk_test_51IacYXDloipSs6XKbHgrFYdB8siv2riOY2FoIz82WGXhlRkGRC5h37tWjeGLPjcZmvbJROADK3nfUblF8B6gwRKm001XPJ1lUM");
 
 function CheckoutPay({ totalPrice, cart, userReducer, store_orders, fetchAllOrders, action }) {
     useEffect(() => {
@@ -94,7 +94,7 @@ const CheckoutForm = ({ price, cart, userReducer, store_orders, action }) => {
 
                 if (data.message === 'Successful Payment') {
                     //send email
-                    emailjs.send('service_b9mqvzg', 'template_lw3aj8d', emailData, 'user_G41cbN7fW7VHqXdcmtBXT')
+                    emailjs.send('service_b9mqvzg', 'template_lw3aj8d', emailData, 'user_TgPSia94H5R5iet7h197p')
                         .then((result) => {
                             console.log(result.text);
                         }, (error) => {
