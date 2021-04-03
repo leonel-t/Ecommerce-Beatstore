@@ -84,7 +84,7 @@
    
         background-color: rgba(43, 2, 41, 0.83);
         box-shadow: 0px 0px 10px rgb(149, 76, 151);
-        transition: all 0.5s ease-in;
+        transition: all 0.3s ease-in;
     
 }
 .--header-home-menu ul{
@@ -124,9 +124,17 @@
     font-size: 2rem;
     position: relative;
     right: 1em;
+    bottom: 0.15em;
+    text-shadow: 0px 0px 5px rgb(84, 21, 157);
+    color: rgba(255, 255, 255, 0.5);
+}
+.--header-home-link-admin{
+    text-decoration: none;
+    color:$h1-color;   
+}
+.--header-home-link-admin:hover{
+    position: relative;
     bottom: 0.1em;
-    color: rgba(160, 53, 20, 0.7);
-
 }
 
 //PERFIL ##################################################################
@@ -164,7 +172,7 @@
 .--header-home-link:hover{
     border: 0.1em solid rgba(146, 46, 133, 0.7);
     border-radius: 0.4em;
-    transition: border 0.5s ease-in;
+    transition: border 0.3s ease-in;
 }
 .--header-home-link:active{
     border: 0.1em solid rgba(146, 46, 133, 0);
@@ -198,7 +206,7 @@
 .--header-home-perfil li:hover {
     border: 0.1em solid rgba(146, 46, 133, 0.7);
     border-radius: 0.4em;
-    transition: border 0.5s ease-in ;
+    transition: border 0.3s ease-in ;
     
 }
 .--header-home-perfil li:active {
@@ -307,7 +315,7 @@
 .--header-home-link-dropdown:hover{
     border: 0.1em solid rgba(146, 46, 133, 0.7);
     border-radius: 0.4em;
-    transition: border 0.5s ease-in;
+    transition: border 0.3s ease-in;
 }
 .--header-home-dropdown-menu-box{
     display: flex;
@@ -320,7 +328,7 @@
 .--header-home-menu li:hover {
     border: 0.1em solid rgba(146, 46, 133, 0.7);
     border-radius: 0.4em;
-    transition: border 0.5s ease-in ;
+    transition: border 0.3s ease-in ;
 }
 }
 @media(max-width:799px){

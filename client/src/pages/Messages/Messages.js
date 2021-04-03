@@ -153,7 +153,7 @@ const Messages = ({t, USER_INBOX, fetchUserInBoxEffect})=>{
                                         name="textarea"
                                         rows="5"
                                         cols="50"
-                                        maxlength="240" 
+                                        maxLength="240" 
                                         placeholder="Write your reply"
                                     >
                                     

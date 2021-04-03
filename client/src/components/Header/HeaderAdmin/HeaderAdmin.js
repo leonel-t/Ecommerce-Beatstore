@@ -67,7 +67,7 @@ const HeaderHome = ({t,fetchUserEffect, STORE_CART, STORE_USER}) =>{
                          </Link>
                          </li>
                          {STORE_USER.user && STORE_USER.user.data.user && STORE_USER.user.data.user.rol === 'admin' ?(
-                            <span className="material-icons icon-admin-user">admin_panel_settings</span>                  
+                           <Link className='--header-home-link-admin' to="/admin"><span className="material-icons icon-admin-user">admin_panel_settings</span>   </Link>                    
                           ):(
                             <p></p>
                           )} 
