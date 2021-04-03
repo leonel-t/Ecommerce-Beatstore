@@ -62,8 +62,8 @@ Product.belongsToMany(Review, { through: 'Products_Reviews', as: 'reviews' });
 Review.belongsToMany(Product, { through: 'Products_Reviews', as: 'products' });
 
 // PRODUCTS COMMENTS
-Product.belongsToMany(Comment, { through: 'Products_Comments', as: 'comments' });
-Comment.belongsToMany(Product, { through: 'Products_Comments', as: 'products' });
+Product.hasMany(Comment, {foreignKey: "productId"});
+Comment.belongsTo(Product);
 
 
 // PRODUCTS LIKES

@@ -3,13 +3,14 @@ import './checkoutPay.css';
 import emailjs from 'emailjs-com';
 import { loadStripe } from "@stripe/stripe-js";
 import { fetchAllOrders } from '../../stores/admin/admin.actions';
+import { cleanCart } from '../../stores/user/user.actions';
 import {
     Elements,
     CardElement,
     useStripe,
     useElements,
 } from "@stripe/react-stripe-js";
-import { connect } from "react-redux";
+import { connect, useDispatch } from "react-redux";
 
 import axios from "axios";
 import swal from "sweetalert";
@@ -43,6 +44,7 @@ const mapStateToProps = (state) => {
 export default connect(mapStateToProps, { fetchAllOrders })(CheckoutPay);
 
 const CheckoutForm = ({ price, cart, userReducer, store_orders, action }) => {
+    const dispatch = useDispatch()
     const stripe = useStripe();
     const elements = useElements();
 
@@ -104,9 +106,14 @@ const CheckoutForm = ({ price, cart, userReducer, store_orders, action }) => {
 
 
 
-
+                    
                     action();
                     axios.put(`http://localhost:3001/order/${emailData.id}`,{orderStatus: "complete"})
+                    .then(()=>{
+                        setTimeout(()=>{
+                            window.location.assign("./")
+                        },2000)
+                    })
                 }else{
                     console.log("RAZON:",data.message);
                     swal(data.message);

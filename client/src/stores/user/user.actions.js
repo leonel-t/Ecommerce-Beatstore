@@ -18,6 +18,8 @@ export const DELETE_ITEM_CART_FAILURE = "DELETE_ITEM_CART_FAILURE";
 //DISCOUNT
 export const GET_CALCULATOR_TOTAL_PRICE = "GET_CALCULATOR_TOTAL_PRICE";
 export const GET_DISCOUNT_COUPON = "GET_DISCOUNT_COUPON";
+//CLEAN CART
+export const CLEAN_CART = "CLEAN_CART";
 
 //orders by user
 export const GET_ORDERS_BY_USER = "GET_ORDERS_BY_USER";
@@ -372,3 +374,9 @@ export const deleteAllItemInCart = (user, orderId) => {
         };
     };
 };
+
+export const cleanCart = () => {
+    return {
+        type: CLEAN_CART
+    };
+}

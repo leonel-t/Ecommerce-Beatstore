@@ -76,6 +76,7 @@ const Checkout = () => {
                 </div>
                 <div className={done ? "--Checkout-content-active" : "--Checkout-content-inactive"}>
                     <p>thank you for your purchase, you will soon receive an email</p>
+                    <p>you will be redirected to home in two seconds</p>
                 </div>
             </div>
         </div>
