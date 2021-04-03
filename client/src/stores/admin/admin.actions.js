@@ -44,8 +44,11 @@ export const GET_ALL_USERS_FAILURE = "GET_ALL_USERS_FAILURE";
 export const GET_ALL_ORDERS = "GET_ALL_ORDERS";
 //delete order by id
 export const DELETE_ORDER_BY_ID = "DELETE_ORDER_BY_ID";
-
-
+//filter order by status
+export const FILTER_ORDER_BY_STATUS = "FILTER_ORDER_BY_STATUS";
+export function filterOrderByStatus(status) {
+    return { type: FILTER_ORDER_BY_STATUS, payload: status }
+}
 export const deleteOrderById = (id) => {
 
     return (dispatch) => {

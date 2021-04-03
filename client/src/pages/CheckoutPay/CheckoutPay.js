@@ -106,7 +106,7 @@ const CheckoutForm = ({ price, cart, userReducer, store_orders, action }) => {
 
 
 
-                    
+
                     action();
                     axios.put(`${serverUrl}/order/${emailData.id}`,{orderStatus: "complete"})
                     .then(()=>{
@@ -116,6 +116,14 @@ const CheckoutForm = ({ price, cart, userReducer, store_orders, action }) => {
                     })
                 }else{
                     console.log("RAZON:",data.message);
+                    axios.put(`http://localhost:3001/order/${emailData.id}`, { orderStatus: "complete" })
+                        .then(() => {
+                            setTimeout(() => {
+                                window.location.assign("./")
+                            }, 2000)
+                        })
+                } else {
+                    console.log("RAZON:", data.message);
                     swal(data.message);
                 }
                 //clear input
