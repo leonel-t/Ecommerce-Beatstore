@@ -168,6 +168,14 @@
 .--header-home-link-login{
     text-decoration: none;
     color:$h1-color;   
+    display: flex;
+}
+.--header-home-link-login span{
+    margin-top: 3px;
+}
+.--header-home-link-login span:hover{
+    position: relative;
+    left: 3px;
 }
 .--header-home-perfil li {
      display: inline-block;
@@ -234,26 +242,6 @@
     right: 30px;
 }
 
-.btn-en{
-    width: 50px;
-    min-height: 30px;
-    height: auto;
-    outline: none;
-    background-image: url("../../../assets/images/langs/en.png");
-    background-position: top left;
-    background-size: 100%;
-    cursor: pointer;
-}
-.btn-es{
-    width: 50px;
-    min-height: 30px;
-    height: auto;
-    outline: none;
-    background-image: url("../../../assets/images/langs/es.png");
-    background-position: top left;
-    background-size: 100%;
-    cursor: pointer;
-}
 .--header-home-dropdown-menu-hidden {
     display:none;
     padding-top: 15px;

@@ -76,7 +76,6 @@
 .--Profile{
     width: 100%;
     display: flex;
-    flex-direction: row;
     padding-top: 5em;   
 }
 .--profile-not-user{
@@ -130,5 +129,11 @@
   .--profile-margin{
     padding-top: 5em;
   }
+  .--Profile{
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    padding-top: 5em;   
+}
 }
 

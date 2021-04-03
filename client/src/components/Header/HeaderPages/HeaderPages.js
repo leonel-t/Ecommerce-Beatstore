@@ -10,7 +10,7 @@ import Logo from '../../../assets/images/icon-logo.png'
 import { Link } from 'react-router-dom'
 import { useHistory } from "react-router-dom"
 //Internationalization
-//import i18n from '../../../i18n';
+import i18n from '../../../i18n';
 import { withTranslation } from 'react-i18next';
 import flagEN from "../../../assets/images/estados-unidos.png";
 import flagSP from "../../../assets/images/espana.png"
@@ -18,11 +18,11 @@ import flagSP from "../../../assets/images/espana.png"
 import '../HeaderHome/header-home.scss';
 
 
-const HeaderPages = ({fetchUserEffect, STORE_CART, STORE_USER}) =>{
+const HeaderPages = ({t,fetchUserEffect, STORE_CART, STORE_USER}) =>{
 
-    // const changeLanguage = (lng) => {
-    //     i18n.changeLanguage(lng);
-    //   } 
+    const changeLanguage = (lng) => {
+        i18n.changeLanguage(lng);
+      } 
     // element.current.addEventListener('scroll', ()=>{
 
     // })
@@ -60,7 +60,7 @@ const HeaderPages = ({fetchUserEffect, STORE_CART, STORE_USER}) =>{
         <div className="--header-home-main">
             <div className="--header-home-logo">
             <Link  to='/'><img src={Logo} alt="BeatShop"></img></Link>
-            <Link className='--header-h1-link' to='/'><h1>BeatStore </h1></Link>   
+            <Link className='--header-h1-link' to='/'><h1>BeatStore</h1></Link>   
             </div>
             <div className="--header-home-menu">
             <form onSubmit={handleSubmit}>
@@ -68,7 +68,7 @@ const HeaderPages = ({fetchUserEffect, STORE_CART, STORE_USER}) =>{
                         <input onChange={handleChange} 
                         name="name" autoComplete="off" 
                         value={name} 
-                        placeholder='search'
+                        placeholder={t('headers.headerPages.searchInput')}
                         />
                     </div>
                 </form>
@@ -77,7 +77,8 @@ const HeaderPages = ({fetchUserEffect, STORE_CART, STORE_USER}) =>{
             {STORE_USER.user && STORE_USER.user.data
                 ?(
                     <ul> 
-                        
+                        <li className='--header-flags' onClick={() => changeLanguage('en')}><img src={flagEN} alt="flagENGLISH" width="25px" height="25px"/></li>
+                        <li className='--header-flags' onClick={() => changeLanguage('es')}><img src={flagSP}alt="flagSPANISH" width="25px" height="25px"/></li> 
                        <li>
                          <Link className='--header-home-link-login' to='/profile'>
                          {shortenText(STORE_USER.user.data.user.name) || STORE_USER.user.data.user.email}
@@ -101,7 +102,7 @@ const HeaderPages = ({fetchUserEffect, STORE_CART, STORE_USER}) =>{
                     <ul>
                         <li className='--header-flags' onClick={() => changeLanguage('en')}><img src={flagEN} alt="flagENGLISH" width="25px" height="25px"/></li>
                         <li className='--header-flags' onClick={() => changeLanguage('es')}><img src={flagSP}alt="flagSPANISH" width="25px" height="25px"/></li>
-                        <li> <Link className='--header-home-link-login' to='/login'> Login</Link> </li>
+                        <li> <Link className='--header-home-link-login' to='/login'> {t('headers.headerPages.login')} <span class="material-icons">chevron_right</span></Link> </li>
                         <Link className='--header-account-link' to='/profile'> <span className="material-icons --user-img"> account_circle </span></Link>
                         <div className="--header-home-cart">
                         <Link to='/cart'><span className="material-icons --header-home-perfil-icon"> shopping_cart</span></Link>
@@ -125,9 +126,9 @@ const HeaderPages = ({fetchUserEffect, STORE_CART, STORE_USER}) =>{
 
           <div className={dropDown ? "--header-home-dropdown-menu" : "--header-home-dropdown-menu-hidden"}>
              <div className="--header-home-dropdown-menu-box">
-              <Link className='--header-home-link-dropdown' to='/catalog'><li>Catalog</li></Link>
-              <Link className='--header-home-link-dropdown' to='/oferts'><li>Oferts</li></Link>
-              <Link className='--header-home-link-dropdown' to='/ranking'><li>Ranking</li></Link>
+              <Link className='--header-home-link-dropdown' to='/catalog'><li>{t('headers.headerPages.catalog')}</li></Link>
+              <Link className='--header-home-link-dropdown' to='/oferts'><li>{t('headers.headerPages.oferts')}</li></Link>
+              <Link className='--header-home-link-dropdown' to='/ranking'><li>{t('headers.headerPages.ranking')}</li></Link>
              </div>
           </div>
 

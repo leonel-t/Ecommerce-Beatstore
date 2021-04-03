@@ -3,6 +3,10 @@ import axios from 'axios';
 export const GET_USER_REQUEST = "GET_USER_REQUEST";
 export const GET_USER_SUCCESS = "GET_USER_SUCCESS";
 export const GET_USER_FAILURE = "GET_USER_FAILURE";
+//FETCH USER BY ID
+export const GET_USER_INBOX_REQUEST = "GET_USER_INBOX_REQUEST";
+export const GET_USER_INBOX_SUCCESS = "GET_USER_INBOX_SUCCESS";
+export const GET_USER_INBOX_FAILURE = "GET_USER_INBOX_FAILURE";
 //FETCH CART 
 export const GET_CART_REQUEST = "GET_CART_REQUEST";
 export const GET_CART_SUCCESS = "GET_CART_SUCCESS";
@@ -60,6 +64,7 @@ export const fetchUser = () => {
         axios.request(options).then(user => {
             dispatch(getUserSuccess(user));
             localStorage.setItem('localCart', "[]");
+            dispatch(fetchUserInBox(user.data.user.id))
             setTimeout(() => {
                 dispatch(fetchCart({ userState: true, id: user.data.user.id }));
             }, 1000);
@@ -370,5 +375,48 @@ export const deleteAllItemInCart = (user, orderId) => {
             localStorage.setItem('localCart', JSON.stringify([]));
             dispatch(fetchCart(false));
         };
+    };
+};
+
+
+//GET USER BY ID
+export const fetchUserInBox = (idUser) => {
+
+    return (dispatch) => {
+
+        dispatch(fetchUserInBoxRequest())
+        const options = {
+            method: 'GET',
+            url: `http://localhost:3001/users/${idUser}`,
+            params: {
+                secret_token: localStorage.getItem('token'),
+                email: localStorage.getItem('email')
+            },
+            headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+        };
+
+        axios.request(options).then(response => {
+            dispatch(fetchUserInBoxSuccess(response.data.messages));
+        }).catch(error => {
+            dispatch(fetchUserInBoxFailure(error));
+        });
+    };
+};
+
+export const fetchUserInBoxRequest = () => {
+    return {
+        type: GET_USER_INBOX_REQUEST,
+    };
+};
+export const fetchUserInBoxSuccess = (userInbox) => {
+    return {
+        type: GET_USER_INBOX_SUCCESS,
+        payload: userInbox
+    };
+};
+export const fetchUserInBoxFailure = (error) => {
+    return {
+        type: GET_USER_INBOX_FAILURE,
+        payload: error
     };
 };

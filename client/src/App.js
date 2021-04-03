@@ -40,6 +40,9 @@ import CheckoutPay from './pages/CheckoutPay/CheckoutPay';
 import Oferts from "./pages/Oferts/Oferts";
 import Ranking from "./pages/Ranking/Ranking";
 
+//User Routes
+import Messages from "./pages/Messages/Messages";
+
 import ListOrder from './pages/Admin/AdminOrders/ListOrder';
 import OrderDetails from "./components/Profile/OrderDetails/OrderDetails";
 
@@ -104,6 +107,7 @@ const App = () => {
         <RouteWrapper exact path="/adminsuscriptions/prices" component={Prices} layout={AdminSubscriptionsLayout} />
         <RouteWrapper exact path="/adminsuscriptions/invoices" component={Invoices} layout={AdminSubscriptionsLayout} />
         <RouteWrapper exact path="/checkout" component={Checkout} layout={PagesLayout} />
+        <RouteWrapper exact path="/profile/messages" component={Messages} layout={PagesLayout} />
       </Switch>
     </BrowserRouter>
   );

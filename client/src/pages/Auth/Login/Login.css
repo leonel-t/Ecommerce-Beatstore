@@ -9,15 +9,13 @@
     box-shadow: 0 0 0px 1000px rgb(5, 5, 5) inset;
     transition: background-color 5000s ease-in-out 0s;   
 }
-
 .--LoginCard{
     width: 100%;
     display: flex;
-    margin-top: 2em;
-    margin-bottom: 2em ;
+    height: 40em;
 }
 .--LoginAllCard{
-    width: 50%;
+    width: 30em;
     background-color: rgba(86, 9, 175, 0.527);
     border-radius: 10px;    
     box-shadow: 0px 0px 10px rgb(137, 76, 206);
@@ -37,12 +35,23 @@
     justify-content: center;
     font-family: "Goldman";
     color: antiquewhite;
-}
+    align-self: center;
+
+}    
 .--login-logo-col{
     display: flex;
     padding-left: 10px;
     justify-content: center;
     align-items: center;
+}
+.--login-flags{
+    padding-right: 2em;
+    padding-left: 2em;
+    cursor: pointer;
+}
+.--login-flags:hover{
+    position: relative;
+    bottom: 2px;
 }
 .--login-logo-col-link{         
     text-decoration: none;
@@ -159,7 +168,7 @@
     color: rgb(251, 249, 249);
     text-shadow: 0px 0px 5px rgb(70, 10, 139);
     text-decoration: none;
-    padding-bottom: 5px;
+    padding-bottom: 0.5em;
 }
 .Link-footer:hover{
     color: gray ;
@@ -179,24 +188,42 @@
 .signup--footer:hover{
     background-color: rgb(42, 18, 107);
 }
-@media(max-width:899px){
-    .--LoginAllCard{
-        width: 60%;
-    }
-}
-@media(max-width:799px){
-    .--LoginAllCard{
-        width: 70%;
-    }
-}
 @media(max-width:499px){
     .--LoginAllCard{
-        width: 100%;
-    }
-}
-@media(max-width:699px){
-    .--LoginAllCard{
         width: 90%;
+        
+    }
+    .--LoginCard-form-input{
+        width: 100%;
+        font-size: 1.1rem; 
+    }
+    .--login-flags{
+        padding-left: 1em;
+        padding-right: 1em;
+    }
+    .--login-flags img{
+        width:30px;
+        height: 30px;
+    }
+    .--login-logo-col h1{
+        font-size: 1.6rem;
+    }
+    .--login-logo-col-link img{
+        width: 45px;
+        height: 35px;
+    }
+    .--Submit--buttons button{
+        width: 80%;
+        font-size: 1.2rem; 
+    }
+    .signup--footer{
+        display: none;
+    }
+    .--LoginCard-form p{
+        font-size: 1.3rem;
+    }
+    .Link-footer{
+        font-size: 1.1rem;
     }
 
 }
