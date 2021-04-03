@@ -11,7 +11,7 @@ import sound from "../../../assets/audio/tab-sound.ogg"
 import '../RelatedTracks/RelatedTracks.css';
 
 
-const TabPanel = ({ t, product, relatedArtist, related, nameProduct }) => {
+const TabPanel = ({ t, product,user, relatedArtist, related, nameProduct }) => {
   const [relatedTrack, setRelatedTrack] = useState(false);
   const [fans, setFans] = useState(false);
   const [comments, setComments] = useState(true);
@@ -98,6 +98,8 @@ const TabPanel = ({ t, product, relatedArtist, related, nameProduct }) => {
                         price={relate.price}
                       ></RelatedTracks>
                     );
+                  }else{
+                    return ""
                   }
                 })
               ) : (<div></div>)
@@ -138,7 +140,7 @@ const TabPanel = ({ t, product, relatedArtist, related, nameProduct }) => {
             ? (
               product.likes.map((fan, index) => {
                 return (
-                  <FansCard key={index} username={fan.author} date={fan.createdAt} />
+                  <FansCard key={index} user={user} idAuthor={fan.idUser} username={fan.author} date={fan.createdAt} />
                 );
               })
             ) : (
