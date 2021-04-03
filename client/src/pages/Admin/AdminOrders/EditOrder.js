@@ -89,11 +89,23 @@ function EditOrders({ orders }) {
     },
     ]
     let order = orders.find(order => order.id == id)
+    const handleSubmit = async (e) => {
+        e.preventDefault()
+        try {
+
+
+            await axios.put(`http://localhost:3001/order/${id}`, { orderStatus: orderStatus.value })
+
+        } catch (error) {
+
+        }
+
+    }
     return (
 
         <div>
             {orders && orders.length > 0 ? (
-                <form className="catAdd" onSubmit={() => { putCategoryById(12, { orderStatus: "complete" }) }}>
+                <form className="catAdd" onSubmit={(e) => handleSubmit(e)}>
 
                     <h1> Order id: {order.id}</h1>
                     <h1> User id: {order.userId}</h1>
