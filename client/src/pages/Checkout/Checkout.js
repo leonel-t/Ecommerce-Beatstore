@@ -8,6 +8,10 @@ const Checkout = () => {
     const [payout, setPayout] = useState(false);
     const [done, setDone] = useState(false);
 
+    const [activeBilling, setActiveBilling] = useState(true);
+    const [activePayout, setActivePayout] = useState(false);
+    const [activeDone, setActiveDone] = useState(false);
+
     const handleClick = (tab) => {
         switch (tab) {
             case "billing":
@@ -32,31 +36,35 @@ const Checkout = () => {
 
     const formBillingComplete = () => {
         handleClick("payout");
+        setActivePayout(true);
     }
     const paymentComplete = () => {
         handleClick("done");
+        setActivePayout(false);
+        setActiveBilling(false);
+        setActiveDone(true);
     }
 
     return (
         <div className="--Checkout">
             <div className="--Checkout-tab">
                 <div
-                    className={billing ? "--Checkout-tab-active" : "--Checkout-tab-inactive"}
+
+                    className={activeBilling ? (billing ? "--Checkout-tab-active" : "--Checkout-tab-inactive") : "--Checkout-tab-disable"}
                     onClick={()=>handleClick(billing ? "" : "billing")}>
                     <p>Billing Info</p>
                 </div>
                 <div
-                    className={payout ? "--Checkout-tab-active" : "--Checkout-tab-inactive"}
+                    className={activePayout ? (payout ? "--Checkout-tab-active" : "--Checkout-tab-inactive") : "--Checkout-tab-disable"}
                     onClick={()=>handleClick(payout ? "" : "payout")}>
                     <p>Payment</p>
                 </div>
                 <div
-                    className={done ? "--Checkout-tab-active" : "--Checkout-tab-inactive"}
+                    className={activeDone ? (done ? "--Checkout-tab-active" : "--Checkout-tab-inactive") : "--Checkout-tab-disable"}
                     onClick={()=>handleClick(done ? "" : "done")}>
                     <p>Purchase completed</p>
                 </div>
             </div>
-
             {/* components */}
 
             <div className="--Checkout-content">
@@ -68,6 +76,7 @@ const Checkout = () => {
                 </div>
                 <div className={done ? "--Checkout-content-active" : "--Checkout-content-inactive"}>
                     <p>thank you for your purchase, you will soon receive an email</p>
+                    <p>you will be redirected to home in two seconds</p>
                 </div>
             </div>
         </div>

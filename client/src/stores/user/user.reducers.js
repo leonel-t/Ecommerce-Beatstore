@@ -13,7 +13,8 @@ import {
     DELETE_ITEM_CART_FAILURE,
     GET_CALCULATOR_TOTAL_PRICE,
     GET_DISCOUNT_COUPON,
-    GET_ORDERS_BY_USER
+    GET_ORDERS_BY_USER,
+    CLEAN_CART
 } from './user.actions';
 
 let initialState = {
@@ -33,6 +34,11 @@ let initialState = {
 
 const userReducers = (state = initialState, action) => {
     switch (action.type) {
+        case CLEAN_CART:
+            return {
+                ...state,
+                cart: []
+            }
         case GET_ORDERS_BY_USER:
             return {
                 ...state,
