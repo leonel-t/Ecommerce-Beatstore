@@ -19,7 +19,6 @@ const Home = ({STORE_PRODUCTS}) =>{
                 <MiddleSearchBar/>
                 <Container/> 
                 <MusicPlayer name="Not exactly" singer="Deadmau 5" cover={imagemau} music={deadmau}/>
-                {/* <MusicPlayer name={STORE_PRODUCTS.product.name} singer={STORE_PRODUCTS.product.artist} cover={`http://localhost:3001/images/${STORE_PRODUCTS.product.image}`} music={`http://localhost:3001/images/${STORE_PRODUCTS.product.audio}`}/> */}
                </> 
               ):(
                 <>

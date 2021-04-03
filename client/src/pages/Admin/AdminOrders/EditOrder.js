@@ -5,6 +5,7 @@ import { putCategoryById } from "../../../stores/admin/admin.actions";
 import Select from "react-select";
 import axios from "axios";
 import AdminNav from '../../../pages/Admin/AdminNav/AdminNav';
+import {serverUrl} from '../../../auxiliar/variables';
 
 function EditOrders({ orders }) {
     const [orderStatus, setOrderStatus] = React.useState([])
@@ -95,7 +96,7 @@ function EditOrders({ orders }) {
         try {
 
 
-            await axios.put(`http://localhost:3001/order/${id}`, { orderStatus: orderStatus.value })
+            await axios.put(`${serverUrl}/order/${id}`, { orderStatus: orderStatus.value })
 
         } catch (error) {
 

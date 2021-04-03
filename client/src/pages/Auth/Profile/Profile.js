@@ -7,8 +7,8 @@ import axios from 'axios';
 import ProfileCard from '../../../components/Profile/ProfileCard/ProfileCard';
 import TabUser from '../../../components/Profile/TabUser/TabUser';
 import { withTranslation } from 'react-i18next';
-import logoIcon from "../../../assets/images/icon-logo.png"
-
+import logoIcon from "../../../assets/images/icon-logo.png";
+import {serverUrl} from '../../../auxiliar/variables';
 const Profile = ({ t, fetchUserEffect, STORE_USER, getOrdersByUserEf }) => {
 
   const history = useHistory();
@@ -39,7 +39,7 @@ const Profile = ({ t, fetchUserEffect, STORE_USER, getOrdersByUserEf }) => {
   function generateNewToken() {
     const options = {
       method: 'POST',
-      url: 'http://localhost:3001/users/token/',
+      url: `${serverUrl}/users/token/`,
       headers: {
         'Content-Type': 'application/json',
         token: localStorage.getItem("refreshToken")

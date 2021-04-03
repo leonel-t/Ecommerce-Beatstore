@@ -9,7 +9,7 @@ import flagSP from "../../../assets/images/espana.png"
 //Internationalization
 import i18n from '../../../i18n';
 import { withTranslation } from 'react-i18next';
-
+import {serverUrl} from '../../../auxiliar/variables';
 const Login = ({t}) => {
 
     const [input, setInput] = useState({
@@ -42,7 +42,7 @@ const Login = ({t}) => {
              password: input.password,
             }
        
-        await axios.post('http://localhost:3001/users/login', newUser)
+        await axios.post(`${serverUrl}/users/login`, newUser)
         .then((user)=>{            
 
             let email = JSON.parse(user.config.data)
@@ -64,13 +64,13 @@ const Login = ({t}) => {
     }
     const loginGitHub = async (e) => {
         e.preventDefault();  
-        window.open('http://localhost:3001/auth/github/', "_self")
+        window.open(`${serverUrl}/auth/github/`, "_self")
 
     }
 
     const loginGoogle = async (e) => {
         e.preventDefault();
-        window.open('http://localhost:3001/auth/google/', "_self")
+        window.open(`${serverUrl}/auth/google/`, "_self")
     }
 
     return(

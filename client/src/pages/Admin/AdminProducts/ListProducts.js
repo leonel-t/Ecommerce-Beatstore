@@ -4,6 +4,8 @@ import { useHistory } from "react-router-dom";
 import { connect } from "react-redux";
 import AdminNav from "../AdminNav/AdminNav";
 import { fetchAllProducts, deleteProducts } from "../../../stores/admin/admin.actions";
+import {serverUrl} from '../../../auxiliar/variables';
+
 const Edit = ({ fetchCartEffect, fetchAllProductsEffect, deleteProductsEffect, STORE_CART }) => {
   var user = false;
   const history = useHistory();
@@ -34,7 +36,7 @@ const Edit = ({ fetchCartEffect, fetchAllProductsEffect, deleteProductsEffect, S
                     <div className="--ItemCard-left">
                       <img
                         alt="albumImg"
-                        src={`http://localhost:3001/images/${product.image}`}
+                        src={`${serverUrl}/images/${product.image}`}
                       />
                       <div className="--ItemCard-data">
                         <h2>{product.name}</h2>

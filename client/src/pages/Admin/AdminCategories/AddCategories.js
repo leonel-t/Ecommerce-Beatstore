@@ -4,7 +4,7 @@ import React from "react";
 import { withTranslation } from 'react-i18next';
 import AdminNav from '../../../pages/Admin/AdminNav/AdminNav';
 import "./addCategories.css";
-
+import {serverUrl} from '../../../auxiliar/variables';
 function AddCategories({t}) {
   const [input, setInput] = React.useState({
     name: "",
@@ -49,7 +49,7 @@ function AddCategories({t}) {
       }),
     };
     console.log(requestOptions.body);
-    fetch("http://localhost:3001/categories", requestOptions);
+    fetch(`${serverUrl}/categories`, requestOptions);
   };
   return (
     <>

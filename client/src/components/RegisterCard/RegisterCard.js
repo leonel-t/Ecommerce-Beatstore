@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import "./RegisterCard.css"
 import axios from 'axios';
 import { useHistory } from "react-router-dom";
-
+import {serverUrl} from '../../auxiliar/variables';
 
 const RegisterCard = () => {
     const history = useHistory();
@@ -47,13 +47,12 @@ const RegisterCard = () => {
 
     const handleSubmit = async (e) => {
         e.preventDefault();
-        console.log('Esto me trae el input', input)
         let newUser = {
             name:input.username,
              password: input.password,
              email: input.email
             }
-       const user = await axios.post('http://localhost:3001/users', newUser)
+       const user = await axios.post(`${serverUrl}/users`, newUser)
        .then((user)=>{
            if(user.data.msg === 'email aready exist'){
             setErrors({

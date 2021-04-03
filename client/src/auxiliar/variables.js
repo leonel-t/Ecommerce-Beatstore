@@ -1,3 +1,1 @@
-export const 
-    serverUrl = "http://localhost:3001",
-    otraVariable = ""
+export const serverUrl = "http://localhost:3001"

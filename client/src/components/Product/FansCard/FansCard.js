@@ -1,10 +1,10 @@
 import React from "react";
 import "./FansCard.css";
-import imgProfile from "../../../assets/images/profile-image.jpg"
+import imgProfile from "../../../assets/images/profile-image.jpg";
 import moment from "moment";
 import swal from 'sweetalert';
 import axios from 'axios';
-
+import {serverUrl} from '../../../auxiliar/variables';
 const FansCard = ({username , idAuthor, user,  date}) => {
 
     const handleLike = ()=>{
@@ -23,7 +23,7 @@ const FansCard = ({username , idAuthor, user,  date}) => {
      
                 const options = {
                     method: 'POST',
-                    url: 'http://localhost:3001/messages/',
+                    url: `${serverUrl}/messages/`,
                     headers: {
                       'Content-Type': 'application/json'
                     },

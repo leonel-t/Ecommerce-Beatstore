@@ -8,6 +8,7 @@ import {Link} from 'react-router-dom';
 import axios from 'axios';
 import {fetchUserInBox} from '../../stores/user/user.actions';
 import swal from 'sweetalert';
+import {serverUrl} from '../../auxiliar/variables';
 
 const Messages = ({t, USER_INBOX, fetchUserInBoxEffect})=>{
 
@@ -31,7 +32,7 @@ const Messages = ({t, USER_INBOX, fetchUserInBoxEffect})=>{
             try {
                 const options = {
                     method: 'DELETE',
-                    url: `http://localhost:3001/messages/${messageId}`,
+                    url: `${serverUrl}/messages/${messageId}`,
                     headers: {
                       'Content-Type': 'application/json'
                     }
@@ -61,7 +62,7 @@ const Messages = ({t, USER_INBOX, fetchUserInBoxEffect})=>{
         try {
             const options = {
                 method: 'POST',
-                url: 'http://localhost:3001/messages/',
+                url: `${serverUrl}/messages/`,
                 headers: {
                   'Content-Type': 'application/json'
                 },

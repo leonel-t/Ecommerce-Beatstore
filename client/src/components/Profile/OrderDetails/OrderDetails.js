@@ -3,6 +3,7 @@ import React from "react";
 
 import { connect } from "react-redux";
 import { useParams } from 'react-router';
+import {serverUrl} from '../../../auxiliar/variables';
 
 const OrderDetails = ({ order }) => {
     const { id } = useParams();
@@ -23,7 +24,7 @@ const OrderDetails = ({ order }) => {
                                             <div className="--ItemCard-left">
                                                 <img
                                                     alt="albumImg"
-                                                    src={`http://localhost:3001/images/${product.product.image}`}
+                                                    src={`${serverUrl}/images/${product.product.image}`}
                                                 />
                                                 <div className="--ItemCard-data">
                                                     <h2>{product.product.name}</h2>

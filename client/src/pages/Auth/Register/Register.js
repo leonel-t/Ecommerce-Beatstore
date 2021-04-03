@@ -2,6 +2,8 @@ import "./Register.css"
 import React, { useState } from 'react';
 import { Link, useHistory } from "react-router-dom";
 import axios from 'axios';
+import swal from "sweetalert";
+import {serverUrl} from "../../../auxiliar/variables"
 //import images
 import logoIcon from "../../../assets/images/icon-logo.png";
 import flagEN from "../../../assets/images/estados-unidos.png";
@@ -62,7 +64,7 @@ const Register = ({t}) => {
              password: input.password,
              email: input.email
             }
-       await axios.post('http://localhost:3001/users', newUser)
+       await axios.post(serverUrl, newUser)
        .then((user)=>{
            if(user.data.msg === 'email aready exist'){
             setErrors({
@@ -84,6 +86,12 @@ const Register = ({t}) => {
        .catch((error)=>{
             console.log(error)
         })
+    }
+    const handleThanksReg = () =>{
+           swal("¡Thanks for register,start listen sweet beats!") 
+        setTimeout(()=>{
+            history.push('/login')
+        },4000)
     }
 
     return(
@@ -158,7 +166,10 @@ const Register = ({t}) => {
                     <input className="--RegisterCard-form-input" type="password" placeholder={t("page.register.confirmPasswordPlaceholder")}
                         name="confirmPassword" onChange={handleInputChange} value={input.confirmPassword}/>
                 </div>
-                <button type="submit">{t("page.register.signupButton")}</button>
+                <button 
+                type="submit"
+                onClick={handleThanksReg}
+                >{t("page.register.signupButton")}</button>
             </form>
             <div className="foots">
                 <Link to='/login' className='Link'>{t("page.register.haveAcount")}</Link>

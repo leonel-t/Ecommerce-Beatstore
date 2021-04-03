@@ -35,7 +35,7 @@ const Product = ({ relatedArtist, STORE_USER, ProductsByCategories, postCommentE
     fetchUserEffect()
 
     let categories = STORE_PRODUCT.product.categories?.map(c => c.name)
-    console.log(categories)
+
     ProductsByCategories(categories)
 
   }, [fetchUserEffect, productId, ProductsByCategories, STORE_PRODUCT.product]);

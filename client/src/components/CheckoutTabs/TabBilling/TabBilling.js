@@ -2,7 +2,7 @@ import React, { useState } from "react"
 import "./TabBilling.css"
 import {useSelector} from "react-redux"
 import axios from "axios"
-
+import { serverUrl } from '../../../auxiliar/variables';
 const TabBilling = ({f}) => {
     const userId = useSelector(state=>Array.isArray(state.userReducers.user) ? state.userReducers.user : state.userReducers.user.data.user.id)
     const [input, setInput] = useState({
@@ -30,14 +30,14 @@ const TabBilling = ({f}) => {
             zipCode: input.zipcode,
             userId: userId
         }
-        await axios.get(`http://localhost:3001/infouser/${userId}`)
+        await axios.get(`${serverUrl}/infouser/${userId}`)
         .then(res=>{
             if(!res.data){
-                axios.post("http://localhost:3001/infouser",data)
+                axios.post(`${serverUrl}/infouser`,data)
                 .then((res) => console.log(res))
                 .catch((err) => console.log(err))
             }else{
-                axios.put(`http://localhost:3001/infouser/${userId}`,data)
+                axios.put(`${serverUrl}/infouser/${userId}`,data)
                 .then((res) => console.log(res))
                 .catch((err) => console.log(err))
             }

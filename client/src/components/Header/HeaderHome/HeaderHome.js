@@ -65,14 +65,12 @@ const HeaderHome = ({t,fetchUserEffect, STORE_CART, STORE_USER}) =>{
                         <Link className='--header-home-link-login' to='/profile'>
                          {shortenText(STORE_USER.user.data.user.name) || STORE_USER.user.data.user.email}
                         </Link>
-                          {STORE_USER.user && STORE_USER.user.data.user && STORE_USER.user.data.user.rol === 'admin' ?(
-                            <span className="material-icons-outlined">
-                            admin_panel_settings
-                            </span>                   
+                         </li>
+                           {STORE_USER.user && STORE_USER.user.data.user && STORE_USER.user.data.user.rol === 'admin' ?(
+                            <span className="material-icons icon-admin-user">admin_panel_settings</span>                  
                           ):(
                             <p></p>
-                          )}
-                         </li>
+                          )} 
                          <Link className='--header-account-link' to='/profile'>  <span className="material-icons --user-img"> account_circle </span></Link>
                             <div className="--header-home-cart">
                             <Link to='/cart'><span className="material-icons --header-home-perfil-icon"> shopping_cart</span></Link>

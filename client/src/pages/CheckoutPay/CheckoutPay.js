@@ -14,6 +14,7 @@ import { connect } from "react-redux";
 
 import axios from "axios";
 import swal from "sweetalert";
+import {serverUrl} from '../../auxiliar/variables';
 
 const stripePromise = loadStripe("pk_test_51IacYXDloipSs6XKbHgrFYdB8siv2riOY2FoIz82WGXhlRkGRC5h37tWjeGLPjcZmvbJROADK3nfUblF8B6gwRKm001XPJ1lUM");
 
@@ -76,7 +77,7 @@ const CheckoutForm = ({ price, cart, userReducer, store_orders, action }) => {
             console.log(id)
             try {
                 const { data } = await axios.post(
-                    "http://localhost:3001/api/checkout",
+                    `${serverUrl}/api/checkout`,
                     {
                         id,
                         amount: price * 100, //cents
@@ -107,7 +108,7 @@ const CheckoutForm = ({ price, cart, userReducer, store_orders, action }) => {
 
                     
                     action();
-                    axios.put(`http://localhost:3001/order/${emailData.id}`,{orderStatus: "complete"})
+                    axios.put(`${serverUrl}/order/${emailData.id}`,{orderStatus: "complete"})
                     .then(()=>{
                         setTimeout(()=>{
                             window.location.assign("./")
