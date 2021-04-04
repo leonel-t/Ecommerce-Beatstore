@@ -38,9 +38,10 @@ const HeaderHome = ({t,fetchUserEffect, STORE_CART, STORE_USER}) =>{
       <>
         <div className="--header-home-main">
             <div className="--header-home-logo">
-            <Link  to='/'><img src={Logo} alt="BeatShop"></img></Link>
-            <Link className='--header-h1-link' to='/'><h1>BeatStore </h1></Link>   
-            </div>
+            <Link  to='/'><img className="--header-home-logo-image" src={Logo} alt="BeatShop"></img></Link>
+            <Link className='--header-h1-link' to='/'><h1>BeatStore </h1></Link>
+            </div> 
+            
             <div className="--header-home-menu">
                 <ul>
                     <Link className='--header-home-link' to='/catalog'><li>{t('headers.adminHeader.catalog')}</li></Link>
@@ -59,8 +60,8 @@ const HeaderHome = ({t,fetchUserEffect, STORE_CART, STORE_USER}) =>{
             {STORE_USER.user && STORE_USER.user.data
                 ?(
                     <ul> 
-                        <li className='--header-flags' onClick={() => changeLanguage('en')}><img src={flagEN} alt="flagENGLISH" width="25px" height="25px"/></li>
-                        <li className='--header-flags' onClick={() => changeLanguage('es')}><img src={flagSP}alt="flagSPANISH" width="25px" height="25px"/></li> 
+                        <span className='--header-flags' onClick={() => changeLanguage('en')}><img src={flagEN} alt="flagENGLISH" width="25px" height="25px"/></span>
+                        <span className='--header-flags' onClick={() => changeLanguage('es')}><img src={flagSP}alt="flagSPANISH" width="25px" height="25px"/></span> 
                        <li>
                          <Link className='--header-home-link-login' to='/profile'>
                          {shortenText(STORE_USER.user.data.user.name) || STORE_USER.user.data.user.email}
@@ -79,7 +80,7 @@ const HeaderHome = ({t,fetchUserEffect, STORE_CART, STORE_USER}) =>{
                                   ?(
                                       STORE_CART.length
                                   ):(
-                                      0
+                                      0 
                                     )
                                    }
                                 </span>
@@ -87,8 +88,8 @@ const HeaderHome = ({t,fetchUserEffect, STORE_CART, STORE_USER}) =>{
                     </ul>
                ):(
                     <ul>
-                        <li className='--header-flags' onClick={() => changeLanguage('en')}><img src={flagEN} alt="flagENGLISH" width="25px" height="25px"/></li>
-                        <li className='--header-flags' onClick={() => changeLanguage('es')}><img src={flagSP}alt="flagSPANISH" width="25px" height="25px"/></li>
+                        <span className='--header-flags' onClick={() => changeLanguage('en')}><img src={flagEN} alt="flagENGLISH" width="25px" height="25px"/></span>
+                        <span className='--header-flags' onClick={() => changeLanguage('es')}><img src={flagSP}alt="flagSPANISH" width="25px" height="25px"/></span>
                        <Link className='--header-account-link' to='/profile'> <span className="material-icons --user-img"> account_circle </span></Link>
                         <div className="--header-home-cart">
                         <Link to='/cart'><span className="material-icons --header-home-perfil-icon"> shopping_cart</span></Link>

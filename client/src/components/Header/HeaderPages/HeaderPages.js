@@ -72,8 +72,8 @@ const HeaderPages = ({t,fetchUserEffect, STORE_CART, STORE_USER}) =>{
             {STORE_USER.user && STORE_USER.user.data
                 ?(
                     <ul> 
-                        <li className='--header-flags' onClick={() => changeLanguage('en')}><img src={flagEN} alt="flagENGLISH" width="25px" height="25px"/></li>
-                        <li className='--header-flags' onClick={() => changeLanguage('es')}><img src={flagSP}alt="flagSPANISH" width="25px" height="25px"/></li> 
+                        <span className='--header-flags' onClick={() => changeLanguage('en')}><img src={flagEN} alt="flagENGLISH" width="25px" height="25px"/></span>
+                        <span className='--header-flags' onClick={() => changeLanguage('es')}><img src={flagSP}alt="flagSPANISH" width="25px" height="25px"/></span> 
                        <li>
                          <Link className='--header-home-link-login' to='/profile'>
                          {shortenText(STORE_USER.user.data.user.name) || STORE_USER.user.data.user.email}
