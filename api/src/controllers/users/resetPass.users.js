@@ -1,5 +1,4 @@
 const { User } = require("../../db");
-const bcrypt = require('bcrypt');
 
 module.exports = {
     addCode: async (code, email) => {

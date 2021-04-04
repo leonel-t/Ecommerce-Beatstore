@@ -32,20 +32,21 @@ const ResetPass = ({t}) => {
     const [input, setInput] = useState({
         name: "",
         email: "",
-        code: ""
+        code: "",
+        subscription: "Rat"
     });
 
     const handleInputChange =(e) => {
         setInput({
              ...input,
              [e.target.name]: e.target.value,
-             code: generateResetCode()
+             code: generateResetCode(),
+             action_url: 'http://localhost:3000/inscode'
         });
       };
 
     const sendEmail = async (e) => {
         e.preventDefault();
-        console.log(input)
         emailjs.send('service_b9mqvzg', 'template_j7o69td', input, 'user_G41cbN7fW7VHqXdcmtBXT')
           .then((result) => {
               console.log(result.text);
@@ -58,7 +59,6 @@ const ResetPass = ({t}) => {
           }, (error) => {
               console.log(error.message);
           });
-        // e.reset()
     }
     
     return( 
