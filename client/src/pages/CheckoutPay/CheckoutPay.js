@@ -10,7 +10,12 @@ import {
     useStripe,
     useElements,
 } from "@stripe/react-stripe-js";
-import { connect } from "react-redux";
+
+import Loader from "../../../src/assets/images/loader.gif"
+
+import { connect, useDispatch } from "react-redux";
+
+
 
 import axios from "axios";
 import swal from "sweetalert";
@@ -24,12 +29,9 @@ function CheckoutPay({ totalPrice, cart, userReducer, store_orders, fetchAllOrde
     }, [fetchAllOrders]);
     return (
         <Elements stripe={stripePromise}>
-            <div className="row h-100 container-checkout">
-                <div className="col-md-4 offset-md-4 h-100">
-                    <CheckoutForm price={totalPrice} cart={cart} userReducer={userReducer} store_orders={store_orders} action={action} />
-                </div>
+            <div className="container-pay">
+                <CheckoutForm price={totalPrice} cart={cart} userReducer={userReducer} store_orders={store_orders} action={action} />
             </div>
-
         </Elements>
     );
 }
@@ -97,18 +99,21 @@ const CheckoutForm = ({ price, cart, userReducer, store_orders, action }) => {
 
                 if (data.message === 'Successful Payment') {
                     //send email
-                    emailjs.send('service_b9mqvzg', 'template_lw3aj8d', emailData, 'user_TgPSia94H5R5iet7h197p')
+                    emailjs.send('service_wh6ybz2', 'template_jhy0w4e', emailData, 'user_TgPSia94H5R5iet7h197p')
                         .then((result) => {
                             console.log(result.text);
                         }, (error) => {
                             console.log(error.text);
                         });
 
-
-
-
                     action();
-                    axios.put(`${serverUrl}/order/${emailData.id}`,{orderStatus: "complete"})
+                  
+                    axios.put(`${serverUrl}/order/${emailData.id}`, {
+                        orderStatus: "complete",
+                        userName: input.name,
+                        userEmail: input.email,
+                        total: userReducer.totalPrice
+                    })
                     .then(()=>{
                         setTimeout(()=>{
                             window.location.assign("./")
@@ -116,7 +121,8 @@ const CheckoutForm = ({ price, cart, userReducer, store_orders, action }) => {
                     })
                 }else if (data.message !== 'Successful Payment'){
                     console.log("RAZON:",data.message);
-                    axios.put(`http://localhost:3001/order/${emailData.id}`, { orderStatus: "complete" })
+                    axios.put(`${serverUrl}/order/${emailData.id}`, { orderStatus: "complete" })
+
                         .then(() => {
                             setTimeout(() => {
                                 window.location.assign("./")
@@ -138,9 +144,9 @@ const CheckoutForm = ({ price, cart, userReducer, store_orders, action }) => {
     console.log(!stripe || loading);
 
     return (
-        <div className="cell example example1" id="example-1">
+        <div className="example example1" >
             {console.log(price)}
-            <form className="formexam" onSubmit={handleSubmit}>
+            <form onSubmit={handleSubmit}>
                 <fieldset>
                     <div className="row">
                         <label for="example1-name" >Name</label>
@@ -174,7 +180,8 @@ const CheckoutForm = ({ price, cart, userReducer, store_orders, action }) => {
                 </fieldset>
                 <button type="submit" >{
                     loading ? (
-                        <img height="30" alt='spinner' src={"https://lh3.googleusercontent.com/proxy/YA4TWKDP8m82sY7h9YEkX6tTQ5FpAs4TC7Bn9h47KhOmwhA-peTg1wNUuLpd8KzuB6ms-gPa5orF1q-CXntUWp_NULkr27tAK-GVgM28C-K4E_Dt9duV8GY1eGdzqDZP__dYh2_e_bRHD0tBZYiJLAy1lj9RMi_dxKxPEg"} />
+                        <img height="30" src={Loader} />
+
                     ) : price > 0 ? (`Pay $${price}`) : ""
                 }</button>
 
