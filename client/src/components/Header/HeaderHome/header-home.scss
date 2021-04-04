@@ -148,7 +148,16 @@
     padding-top:0.3em;
 }
 .--header-flags img{
+    width: 1.8em;
+    height: 1.8em;
     cursor:pointer;
+}
+.--header-flags {
+    padding-left: 0.6em;
+    padding-right: 0.6em;
+}
+.--header-flags:hover{
+    padding-bottom: 0.15em;
 }
 .--header-h1-link{
     text-decoration: none;
@@ -194,7 +203,7 @@
 }
 .--header-home-perfil li {
      display: inline-block;
-     font-family: 'Oxanium', cursive;
+     font-family: 'Oxanium', 'cursive';
      font-size: 1.5rem;
      padding: 0.3em;
      padding-top: 0.4em;

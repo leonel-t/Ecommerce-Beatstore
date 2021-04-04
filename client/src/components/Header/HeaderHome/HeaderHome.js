@@ -59,8 +59,8 @@ const HeaderHome = ({t,fetchUserEffect, STORE_CART, STORE_USER}) =>{
             {STORE_USER.user && STORE_USER.user.data
                 ?(
                     <ul>
-                        <li className='--header-flags' onClick={() => changeLanguage('en')}><img src={flagEN} alt="flagENGLISH" width="25px" height="25px"/></li>
-                        <li className='--header-flags' onClick={() => changeLanguage('es')}><img src={flagSP}alt="flagSPANISH" width="25px" height="25px"/></li>  
+                        <span className='--header-flags' onClick={() => changeLanguage('en')}><img src={flagEN} alt="flagENGLISH" width="25px" height="25px"/></span>
+                        <span className='--header-flags' onClick={() => changeLanguage('es')}><img src={flagSP}alt="flagSPANISH" width="25px" height="25px"/></span>  
                         <li>
                         <Link className='--header-home-link-login' to='/profile'>
                          {shortenText(STORE_USER.user.data.user.name) || STORE_USER.user.data.user.email}
@@ -87,8 +87,8 @@ const HeaderHome = ({t,fetchUserEffect, STORE_CART, STORE_USER}) =>{
                     </ul>
                ):(
                     <ul>
-                      <li className='--header-flags' onClick={() => changeLanguage('en')}><img src={flagEN} alt="flagENGLISH" width="25px" height="25px"/></li>
-                        <li className='--header-flags' onClick={() => changeLanguage('es')}><img src={flagSP}alt="flagSPANISH" width="25px" height="25px"/></li>
+                      <span className='--header-flags' onClick={() => changeLanguage('en')}><img src={flagEN} alt="flagENGLISH" width="25px" height="25px"/></span>
+                        <span className='--header-flags' onClick={() => changeLanguage('es')}><img src={flagSP}alt="flagSPANISH" width="25px" height="25px"/></span>
                        <li> <Link className='--header-home-link-login' to='/login'> {t('headers.homeHeader.login')} <span className="material-icons">chevron_right</span></Link> </li>
                        <Link className='--header-account-link' to='/profile'> <span className="material-icons --user-img"> account_circle </span></Link>
                         <div className="--header-home-cart">
