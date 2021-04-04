@@ -27,12 +27,12 @@ const Profile = ({ t, fetchUserEffect, STORE_USER, getOrdersByUserEf }) => {
 
   const handleClickLogin = (e) => {
     e.preventDefault()
-    localStorage.clear()
+    // localStorage.clear()
     history.push("/login")
   };
   const handleClickRegister = (e) => {
     e.preventDefault()
-    localStorage.clear()
+    // localStorage.clear()
     history.push("/register")
   };
 

@@ -13,7 +13,7 @@ import {
 
 import Loader from "../../../src/assets/images/loader.gif"
 
-import { connect, useDispatch } from "react-redux";
+import { connect } from "react-redux";
 
 
 
@@ -180,7 +180,7 @@ const CheckoutForm = ({ price, cart, userReducer, store_orders, action }) => {
                 </fieldset>
                 <button type="submit" >{
                     loading ? (
-                        <img height="30" src={Loader} />
+                        <img alt="imagerandom" height="30" src={Loader} />
 
                     ) : price > 0 ? (`Pay $${price}`) : ""
                 }</button>

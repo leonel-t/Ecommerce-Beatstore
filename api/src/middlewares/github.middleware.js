@@ -18,7 +18,7 @@ passport.use(new GitHubStrategy({
     var newUser = {
       id : profile.id,
       githubId: profile.id,
-      name: profile.displayName,
+      name: profile.displayName || "anon",
       email: profile.username +"@gmail.com",
       password_virtual: "12345678"
     }
