@@ -1,6 +1,5 @@
 const server = require("express").Router();
 const { addCode } = require("../../controllers/users/resetPass.users");
-module.exports = server;
 
 server.post('/resetcode',(req, res, next) => {
     const { code, email } = req.body;
@@ -11,5 +10,7 @@ server.post('/resetcode',(req, res, next) => {
           return res.status(400).json(error.message);
         });
 })
+
+module.exports = server;
 
 
