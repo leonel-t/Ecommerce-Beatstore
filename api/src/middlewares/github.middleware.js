@@ -5,14 +5,14 @@ const { User } = require("../db");
 
 require('../middlewares/cors.middleware')
 
-const {GITHUB_ID,GITHUB_SECRET} = process.env;
+const {GITHUB_ID,GITHUB_SECRET,SERVER_URL} = process.env;
 
 //------------------------GITHUB-------------------------------
 
 passport.use(new GitHubStrategy({
     clientID: GITHUB_ID,
     clientSecret: GITHUB_SECRET,
-    callbackURL: "http://localhost:3001/auth/github/callback"
+    callbackURL: `${SERVER_URL}/auth/github/callback`
   },
   function(accessToken, refreshToken, profile, cb) {
     var newUser = {
