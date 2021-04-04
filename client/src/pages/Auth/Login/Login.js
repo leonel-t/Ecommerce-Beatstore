@@ -42,7 +42,7 @@ const Login = ({t}) => {
              password: input.password,
             }
        
-        await axios.post(`${serverUrl}/users/login`, newUser)
+        return await axios.post(`${serverUrl}/users/login`, newUser)
         .then((user)=>{            
 
             let email = JSON.parse(user.config.data)
