@@ -32,33 +32,48 @@ const ResetPass = ({t}) => {
     const [input, setInput] = useState({
         name: "",
         email: "",
-        code: ""
+        code: "",
     });
 
     const handleInputChange =(e) => {
         setInput({
              ...input,
              [e.target.name]: e.target.value,
-             code: generateResetCode()
+             code: generateResetCode(),
         });
       };
 
     const sendEmail = async (e) => {
         e.preventDefault();
-        console.log(input)
-        emailjs.send('service_b9mqvzg', 'template_j7o69td', input, 'user_G41cbN7fW7VHqXdcmtBXT')
+        try {
+            await axios.get(`${serverUrl}/getname/${input.email}`)
+              .then((user) => { 
+                setInput({
+                  ...input,
+                  name: user.data.name,
+                  action_url: 'http://localhost:3000/inscode',
+                  subscription: user.data.subscription,
+              })
+            }, (error) => {
+                console.log(error.message);
+            });
+             
+        } catch(err){
+          console.log(err.message)
+        } finally {
+          await emailjs.send('service_b9mqvzg', 'template_j7o69td', input, 'user_G41cbN7fW7VHqXdcmtBXT')
           .then((result) => {
-              console.log(result.text);
+            console.log(result.text);
           }, (error) => {
               console.log(error.text);
           });
-        axios.post(`${serverUrl}/users/resetcode`, input)
-            .then((text) => {
-              console.log(text);
-          }, (error) => {
-              console.log(error.message);
-          });
-        // e.reset()
+          await axios.post(`${serverUrl}/users/resetcode`, input)
+              .then((text) => {
+                console.log(text);
+            }, (error) => {
+                console.log(error.message);
+            });
+        }
     }
     
     return( 

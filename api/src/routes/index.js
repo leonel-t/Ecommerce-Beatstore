@@ -15,6 +15,7 @@ const postUserRouter = require("./users/post.users");
 const putUserRouter = require("./users/put.users");
 const deleteUserRouter = require("./users/delete.users");
 const resetPassUserRouter = require("./users/resetPass.users");
+const getUsersByEmail = require("./users/get.users.by.email");
 
 const githubRouter = require("./githubRoute");
 const stripeRouter = require("./stripeRoute");
@@ -147,6 +148,7 @@ router.use("/users", postUserRouter);
 router.use("/users", putUserRouter);
 router.use("/users", deleteUserRouter);
 router.use("/users", resetPassUserRouter);
+router.use("/getname", getUsersByEmail);
 
 
 router.use("/", promoteRouter);
