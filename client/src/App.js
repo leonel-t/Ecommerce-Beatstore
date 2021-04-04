@@ -36,6 +36,7 @@ import InsCode from './components/LoginCard/ResetPass/InsCode';
 import Checkout from "./pages/Checkout/Checkout";
 import CheckoutPay from './pages/CheckoutPay/CheckoutPay';
 
+
 import EditOrders from "./pages/Admin/AdminOrders/EditOrder"
 //Menu Routes
 import Oferts from "./pages/Oferts/Oferts";
@@ -43,6 +44,7 @@ import Ranking from "./pages/Ranking/Ranking";
 
 //User Routes
 import Messages from "./pages/Messages/Messages";
+import EditUserProfile from "./pages/Auth/Profile/EditUserProfile/EditUserProfile";
 
 import ListOrder from './pages/Admin/AdminOrders/ListOrder';
 import OrderDetails from "./components/Profile/OrderDetails/OrderDetails";
@@ -97,6 +99,7 @@ const App = () => {
         <RouteWrapper exact path="/inscode" component={InsCode} layout={LoginLayout} />
         <RouteWrapper exact path="/cart" component={Cart} layout={PagesLayout} />
         <RouteWrapper exact path="/profile" component={Profile} layout={ProfileLayout} />
+        <RouteWrapper exact path="/profile/edit" component={EditUserProfile} layout={ProfileLayout} />
         <RouteWrapper path="/profile/order/:id" component={OrderDetails} layout={PagesLayout} />
         <RouteWrapper exact path="/login/github/:email/:password" component={LoginGithub} layout={PagesLayout} />
 

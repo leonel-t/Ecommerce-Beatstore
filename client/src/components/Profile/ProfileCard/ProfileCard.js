@@ -1,6 +1,5 @@
 import "./ProfileCard.css";
 import React, {useState} from "react";
-import profileImg from "../../../assets/images/profile-image.jpg";
 import sound from "../../../assets/audio/system-shut-down.mp3";
 import { withTranslation } from 'react-i18next';
 import {Link} from 'react-router-dom';
@@ -35,7 +34,7 @@ const audio = new Audio(sound);
                 <Link className="--profileCard-user-inbox" to="/profile/messages/">Inbox</Link>
             </div>
             <div className={trancit ? "--profileCard-user--hidden" : "--profileCard-user-butons"}>
-                <button>{t("page.profile.profileCard.editButton")}</button>
+                <Link to="/profile/edit">{t("page.profile.profileCard.editButton")}</Link>
                 <button onClick={handleLogout}>{t("page.profile.profileCard.logout")}</button>
             </div>
         </div>
