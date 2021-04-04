@@ -31,55 +31,54 @@ const ListOrder = ({ fetchAllOrdersEffect, filtered_orders, deleteOrderByIdEffec
     }
     return (
         <>
-        <AdminNav></AdminNav>
-        <div className="list-users-main">
-            <div className="--Cart">
-                <div className="--Cart-items">
-                    {filtered_orders && filtered_orders.length > 0 ? (
-                        <>
-                            <div>
-                                <h1 className="title-super">filter by status:</h1> <FilterOrder />
-                                {filtered_orders.map((order, index) => {
-                                    return (
-                                        <div key={index} className="--ItemCard">
-                                            <div className="--ItemCard-left">
-                                                <div className="--ItemCard-data">
-                                                    <h1>user id: {order.userId}</h1>
-                                                    {order.userName && order.userEmail ? (
-                                                        <div>
-                                                            <h2>username: {order.userName}</h2>
-                                                            <h2>email: {order.userEmail}</h2>
-                                                        </div>
-                                                    ) : (
+            <AdminNav></AdminNav>
+            <div className="list-users-main">
+                <div className="--Cart">
+                    <div className="--Cart-items">
+                        {filtered_orders && filtered_orders.length > 0 ? (
+                            <>
+                                <div>
+                                    <h1 className="title-super">filter by status:</h1> <FilterOrder />
+                                    {filtered_orders.map((order, index) => {
+                                        return (
+                                            <div key={index} className="--ItemCard">
+                                                <div className="--ItemCard-left">
+                                                    <div className="--ItemCard-data">
+                                                        <h1>user: {order.userName ? order.userName : "Guest"}</h1>
+                                                        {order.userName && order.userEmail ? (
+                                                            <div>
+                                                                <h2>email: {order.userEmail}</h2>
+                                                            </div>
+                                                        ) : (
 
-                                                        <div></div>
-                                                    )
-                                                    }
-                                                    <h2>order status: {order.orderStatus}</h2>
-                                                    <h2>total: ${order.total}</h2>
+                                                            <div></div>
+                                                        )
+                                                        }
+                                                        <h2>order status: {order.orderStatus}</h2>
+                                                        <h2>total: ${order.total}</h2>
 
+                                                    </div>
+                                                </div>
+                                                <div className="--ItemCard-right">
+                                                    <span onClick={() => handleClickEdit(order.id)}>
+                                                        <i class="far fa-edit --ItemCard-editItem"></i>
+                                                    </span>
+                                                    <span onClick={() => handleClickDelete(order.id)}>
+                                                        <i class="fas fa-trash-alt --ItemCard-deletItem"></i>
+                                                    </span>
                                                 </div>
                                             </div>
-                                            <div className="--ItemCard-right">
-                                                <span onClick={() => handleClickEdit(order.id)}>
-                                                    <i class="far fa-edit --ItemCard-editItem"></i>
-                                                </span>
-                                                <span onClick={() => handleClickDelete(order.id)}>
-                                                    <i class="fas fa-trash-alt --ItemCard-deletItem"></i>
-                                                </span>
-                                            </div>
-                                        </div>
-                                    );
-                                })}
-                            </div>
-                            <div></div>
-                        </>
-                    ) : (
-                        <p className="empy-cart">There are no results</p>
-                    )}
+                                        );
+                                    })}
+                                </div>
+                                <div></div>
+                            </>
+                        ) : (
+                            <p className="empy-cart">There are no results</p>
+                        )}
+                    </div>
                 </div>
             </div>
-        </div>
         </>
     );
 };
