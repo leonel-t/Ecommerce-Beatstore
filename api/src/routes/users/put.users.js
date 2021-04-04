@@ -29,3 +29,20 @@ server.put('/',(req, res, next) => {
           return res.status(400).json(error);
         })
 })
+
+server.put('/update/feli',(req, res, next) => {
+
+  let user = {
+    id: req.body.id,
+    name: req.body.name,
+    email: req.body.email,
+    image: req.files[0].filename
+  }
+  usersControler.editUserProfile(user).then((user)=>{
+      res.status(200).json(user)
+  }).catch((error)=>{
+    res.status(400).json(error)
+  })
+
+
+})

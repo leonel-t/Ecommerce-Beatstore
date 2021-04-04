@@ -19,6 +19,20 @@ module.exports = {
             res.status(400).json(err);
           };
     },
+    editUserProfile: async (user) => {
+        try {
+            return await User.update(user,{
+                where:{
+                id: user.id
+                } 
+            }).then((user)=>{
+                return user;
+            })
+        }
+        catch (err) {
+            res.status(400).json(err);
+          };
+    },
     resetPass: async (code, pass) => {
         try {
             const existingUser = await User.findOne({
