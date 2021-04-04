@@ -72,7 +72,6 @@ module.exports = {
         }
         return order
       }).catch((error)=>{
-        console.log("ACAAAAAAAAAAAAAAAAAAAAA",userId)
         return error
       })
     }else{
