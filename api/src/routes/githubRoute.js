@@ -4,6 +4,7 @@ var passport = require('passport')
 require("../middlewares/github.middleware")
 require("../middlewares/google.middleware")
 
+const {CLIENT_URL} = process.env
 
 module.exports = server;
 
@@ -13,10 +14,10 @@ server.get('/auth/github',
   passport.authenticate('github',{ session: false, scope: ['profile'] }));
 
 server.get('/auth/github/callback', 
-  passport.authenticate('github', { failureRedirect: 'http://localhost:3000/login' }),
+  passport.authenticate('github', { failureRedirect: `${CLIENT_URL}/login` }),
   function (req, res) {   
           console.log(req.user)
-          res.redirect(`http://localhost:3000/login/github/${req.user.username}@gmail.com/12345678`);
+          res.redirect(`${CLIENT_URL}/login/github/${req.user.username}@gmail.com/12345678`);
   });
 
 
@@ -25,11 +26,11 @@ server.get('/auth/google',
   passport.authenticate('google',{ session: false, scope: ['profile'] }));
 
 server.get('/auth/google/callback', 
-  passport.authenticate('google', { failureRedirect: 'http://localhost:3000/login' }),
+  passport.authenticate('google', { failureRedirect: `${CLIENT_URL}/login` }),
   function(req, res) {
     // Successful authentication, redirect home.
     console.log(req.user)
-    res.redirect(`http://localhost:3000/login/github/${req.user.name.familyName}@gmail.com/12345678`);
+    res.redirect(`${CLIENT_URL}/login/github/${req.user.name.familyName}@gmail.com/12345678`);
   });
 
 
@@ -50,6 +51,6 @@ server.get('/logout', (req, res) => {
       path: '/'
     });
     req.session.destroy(function (err) {
-      res.redirect('http://localhost:3000/');
+      res.redirect(CLIENT_URL);
     });
 });

@@ -16,7 +16,8 @@ const secureRoute = require('./routes/secureRoutes');
 
 
 require('./db.js');
-const {ACCESS_TOKEN_SECRET} = process.env;
+const {ACCESS_TOKEN_SECRET,CLIENT_URL} = process.env;
+
 
 const server = express();
 
@@ -27,7 +28,7 @@ server.use(bodyParser.json({ limit: '50mb' }));
 server.use(cookieParser(ACCESS_TOKEN_SECRET));
 server.use(morgan('dev'));
 server.use((req, res, next) => {
-  res.header('Access-Control-Allow-Origin', 'http://localhost:3000'); 
+  res.header('Access-Control-Allow-Origin', CLIENT_URL); 
   res.header('Access-Control-Allow-Credentials', 'true');
   res.header('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content-Type, Accept');
   next();
