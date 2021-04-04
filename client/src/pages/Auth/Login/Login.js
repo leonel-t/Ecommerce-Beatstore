@@ -10,7 +10,13 @@ import flagSP from "../../../assets/images/espana.png"
 import i18n from '../../../i18n';
 import { withTranslation } from 'react-i18next';
 import {serverUrl} from '../../../auxiliar/variables';
+
+import { useDispatch } from 'react-redux'
+import {addItemToCart} from "../../../stores/user/user.actions";
+
 const Login = ({t}) => {
+
+    const dispatch = useDispatch();
 
     const [input, setInput] = useState({
         email: "",
@@ -46,12 +52,18 @@ const Login = ({t}) => {
         .then((user)=>{            
 
             let email = JSON.parse(user.config.data)
-            console.log(user.data)
             localStorage.setItem("token",user.data.token)
             localStorage.setItem("refreshToken",user.data.refreshToken)
             localStorage.setItem("email", email.email)
             
             if(user.data.token){
+                JSON.parse(localStorage.getItem("localCart")).forEach((product)=>{
+                    const dataUser = {
+                        userStatus: true,
+                        orderId: user.data.user.orderId
+                    }
+                    dispatch(addItemToCart(dataUser, product.product))
+                })
                 return history.push('/profile')
             }else{
                 console.log("Error de inicio de sesion")

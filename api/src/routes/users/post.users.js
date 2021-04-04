@@ -5,6 +5,7 @@ const { User } = require("../../db");
 var uniqid = require('uniqid');
 var passport = require('passport')
 require("../../middlewares/passport.middleware").passport
+const {getOrdersByUserID} = require("../../controllers/order/order.controller")
 
 module.exports = server;
 const {ACCESS_TOKEN_SECRET, REFRESH_TOKEN_SECRET} = process.env;
@@ -88,17 +89,10 @@ server.post(
         function (err, user, info) {
         if (err) return next(err);
         if (!user) return next(info);
-          req.logIn(user, { session: false }, function (err) {
+          req.logIn(user, { session: false }, async function (err) {
             if (err) return next(err);
             const token = generateToken(user)
             const refreshToken = jwt.sign({id: user.id,rol: "refreshToken"}, REFRESH_TOKEN_SECRET);
-            const dataUser = {
-              id: user.id,
-              email: user.email,
-              name: user.name,
-              rol: user.rol,
-            };
-            const data = { msg: "Login successful", user: dataUser, token, refreshToken };
             User.update({
               refresToken:refreshToken
             },{
@@ -108,6 +102,15 @@ server.post(
             }).catch((err)=>{
               console.log(error)
             })
+            const dbCart = await getOrdersByUserID(user.id,"cart")
+            const dataUser = {
+              id: user.id,
+              orderId: dbCart[0].dataValues.id,
+              email: user.email,
+              name: user.name,
+              rol: user.rol,
+            };
+            const data = { msg: "Login successful", user: dataUser, token, refreshToken };
             return res.status(200).json(data);
           });
         }
