@@ -11,6 +11,10 @@ module.exports = (sequelize) => {
       type: DataTypes.STRING,
       allowNull: false,
     },
+    image: {
+      type: DataTypes.STRING,
+      defaultValue: "default.jpg",
+    },
     subscription: {
       type: DataTypes.ENUM("rat", "monkey", "cougar", "lion"),
       defaultValue: "rat"
