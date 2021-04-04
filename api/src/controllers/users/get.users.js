@@ -28,7 +28,11 @@ module.exports = {
            id:user.id,
            name: user.name,
            email: user.email,
-           rol: user.rol
+           rol: user.rol,
+           subscription: user.subscription,
+           online: user.online,
+           freeBeats: user.freeBeats,
+           image:user.image
          }
          return userInfo
        }).catch(err=>{err.message})

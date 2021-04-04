@@ -72,7 +72,7 @@ const Profile = ({ t, fetchUserEffect, STORE_USER, getOrdersByUserEf }) => {
               ? (
                 <>
                   <div className="--Profile">
-                    <ProfileCard name={STORE_USER.user.data.user.name} email={STORE_USER.user.data.user.email} />
+                    <ProfileCard name={STORE_USER.user.data.user.name} image={STORE_USER.user.data.user.image} email={STORE_USER.user.data.user.email} />
                     <TabUser orders={STORE_USER.orders} />
                   </div>
                 </>
