@@ -10,7 +10,7 @@ const EditUserProfile = ({t,STORE_USER })=>{
  const [photo, setPhoto] = useState("FIRST");
  const [upload, setUpload] = useState();
  const [name, setName] = useState();
- const [email, setEmail] = useState();
+//  const [email, setEmail] = useState();
 
   //USER IDENTIFICATION FOR REDUCER #############################################
   let userStore =
@@ -66,7 +66,7 @@ const EditUserProfile = ({t,STORE_USER })=>{
 
     const handleEmail = (e)=>{
         console.log(e.target.value);
-        setEmail(e.target.value);
+        // setEmail(e.target.value);
     };
 
     return (

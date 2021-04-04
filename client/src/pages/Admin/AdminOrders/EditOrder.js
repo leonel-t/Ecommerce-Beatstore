@@ -95,7 +95,7 @@ function EditOrders({ orders }) {
         label: "Complete"
     },
     ]
-    let order = orders.find(order => order.id == id)
+    let order = orders.find(order => order.id === parseInt(id))
     const handleSubmit = async (e) => {
         e.preventDefault()
         try {
