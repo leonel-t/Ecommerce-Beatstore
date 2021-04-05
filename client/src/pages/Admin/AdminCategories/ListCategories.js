@@ -26,7 +26,10 @@ const ListCategories = ({ fetchAllCategoriesEffect, deleteCategoryEffect, STORE_
     <>
     <AdminNav></AdminNav>
     <div className="list-users-main">
-      <div className="--Cart">
+      <div className="--Cart-categorie">
+        <div className="--Cart-title">
+          <h1>Categories list</h1>
+        </div>
         <div className="--Cart-items">
           {STORE_CATS && STORE_CATS.length > 0 ? (
             <>
@@ -42,10 +45,10 @@ const ListCategories = ({ fetchAllCategoriesEffect, deleteCategoryEffect, STORE_
                       </div>
                       <div className="--ItemCard-right">
                         <span onClick={() => handleClickEdit(category.id, category.name, category.description)}>
-                          <i class="far fa-edit --ItemCard-editItem"></i>
+                          <i className="far fa-edit --ItemCard-editItem"></i>
                         </span>
                         <span onClick={() => handleClickDelete(category.id)}>
-                          <i class="fas fa-trash-alt --ItemCard-deletItem"></i>
+                          <i className="fas fa-trash-alt --ItemCard-deletItem"></i>
                         </span>
                       </div>
                     </div>
