@@ -21,7 +21,8 @@ const Newsletter = ()=>{
         e.preventDefault()
         await axios.post('http://localhost:3001/newsletter', input)
             .then((text) => {
-                if(text !== 'You are already suscribed')
+                console.log(text)
+                if(text.data === 'You are already suscribed')
                 {
                     return swal('You are already suscribed')
                 }
