@@ -71,18 +71,8 @@ const App = () => {
     <BrowserRouter>
       <Switch>
         <RouteWrapper exact path="/" component={Home} layout={HomeLayout} />
-        <RouteWrapper
-          exact
-          path="/catalog"
-          component={Catalog}
-          layout={PagesLayout}
-        />
-        <RouteWrapper
-          exact
-          path="/product/:productId"
-          component={Product}
-          layout={ProductLayout}
-        />
+        <RouteWrapper exact path="/catalog" component={Catalog} layout={PagesLayout}/>
+        <RouteWrapper exact path="/product/:productId" component={Product} layout={ProductLayout}/>
         <RouteWrapper exact path="/payment" component={CheckoutPay} layout={CheckoutPay} />
         <RouteWrapper exact path="/admin/listproducts" component={ProductList} layout={AdminLayout} />
         <RouteWrapper exact path="/listcat" component={ListCategories} layout={AdminLayout} />
@@ -104,10 +94,7 @@ const App = () => {
         <RouteWrapper exact path="/profile/edit" component={EditUserProfile} layout={ProfileLayout} />
         <RouteWrapper path="/profile/order/:id" component={OrderDetails} layout={PagesLayout} />
         <RouteWrapper exact path="/login/github/:email/:password" component={LoginGithub} layout={PagesLayout} />
-
         <RouteWrapper exact path="/checkout" component={Checkout} layout={PagesLayout}/>
-
-
         <RouteWrapper exact path="/oferts" component={Oferts} layout={PagesLayout} />
         <RouteWrapper exact path="/ranking" component={Ranking} layout={PagesLayout} />
         
