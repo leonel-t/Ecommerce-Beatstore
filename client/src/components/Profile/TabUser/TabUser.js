@@ -2,7 +2,6 @@ import React, { useState } from "react";
 
 //Internationalization
 import { withTranslation } from "react-i18next";
-import ComentCard from "../ComentCard/ComentCard";
 import OrderCard from "../OrderCard/OrderCard";
 import moment from "moment";
 import "./TabUser.css";
@@ -101,13 +100,18 @@ const TabUser = ({ t, orders, favorites }) => {
                     <div className="likeContainerMain">
                         {favorites && favorites.length > 0 ? (
                             favorites.map((lik) => {
+
                                 return (
+                                    <>
+                                {lik.products[0]
+                                        ?(
                                     <div className="likeContainer"
                                         onClick={() =>
                                             history.push("/product/" + lik.products[0].id)
                                         }
                                     >
                                         <div className="likeContainerImg">
+                                            
                                             <img
                                                 alt="albumimage"
                                                 src={`${serverUrl}/images/${lik.products[0].image}`}
@@ -124,11 +128,17 @@ const TabUser = ({ t, orders, favorites }) => {
                                             <div className="likeAuthor"> {lik.author}</div>
                                             <div className="likeDate">
                                                 {" "}
-                        liked {moment(lik.createdAt).fromNow()}
+                                                    liked {moment(lik.createdAt).fromNow()}
                                             </div>
                                         </div>
                                     </div>
-                                );
+                                        ):(
+                                            <div></div>
+                                        )
+                                        }
+                                    </>
+                                )
+                                    
                             })
                         ) : (
                             <p>No comments found.</p>
