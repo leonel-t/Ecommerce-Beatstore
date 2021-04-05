@@ -165,16 +165,16 @@ const Form = ({ t, STORE_USER }) => {
     }
   }
   const optionTone = [{
-    value: "C",
+    value: "none",
     label: t("page.admin.forms.addBeats.notes.c")
   }, {
-    value: "D",
+    value: "week",
     label: t("page.admin.forms.addBeats.notes.d")
   }, {
-    value: "E",
+    value: "month",
     label: t("page.admin.forms.addBeats.notes.e")
   }, {
-    value: "F",
+    value: "year",
     label: t("page.admin.forms.addBeats.notes.f")
   }, {
     value: "G",

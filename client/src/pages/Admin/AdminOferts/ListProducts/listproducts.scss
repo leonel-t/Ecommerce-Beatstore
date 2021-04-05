@@ -1,0 +1,22 @@
+.--admin-list-main p{
+    color:white;
+}
+
+.--admin-list-main {
+    display: flex;
+    flex-direction: row;
+    justify-content: left;
+    margin: 0.5em;
+    padding: 0.5em;
+    
+}
+.--admin-list-main-img {
+    display: flex;
+   justify-content: center;
+   align-content: center;
+   padding: 1em;
+}
+.--admin-list-main-details{
+    display: flex;
+    flex-direction: column;
+}

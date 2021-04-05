@@ -1,7 +1,7 @@
 const { Oferts, Product } = require("../../db");
 
 module.exports = {
-  createOfert: async (idProduct,ofert) => {
+  addOfertToProduct: async (idProduct,ofert) => {
     return await Oferts.create(ofert).then((ofert) => {
       return Product.findByPk(idProduct).then((Product) => {
         Oferts.findByPk(ofert.id).then((newOfert) => {
@@ -14,6 +14,9 @@ module.exports = {
           });
        })
     });
+  },
+  createOfert: async (ofert) => {
+    return await Oferts.create(ofert).then((ofert)=> ofert);
   },
   getOferts: async () => {
     return await Oferts.findAll().then((oferts) => oferts);
@@ -28,7 +31,7 @@ module.exports = {
       },
     }).then((ofert) => ofert);
   },
-  deleteComment: async (ofertId) => {
+  deleteOfert: async (ofertId) => {
     return await Oferts.destroy({
       where: {
         id: ofertId,

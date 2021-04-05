@@ -27,7 +27,10 @@ import {
   GET_ALL_USERS_FAILURE,
   GET_ALL_ORDERS,
   DELETE_ORDER_BY_ID,
-  FILTER_ORDER_BY_STATUS
+  FILTER_ORDER_BY_STATUS,
+  GET_ALL_OFERTS_REQUEST,
+  GET_ALL_OFERTS_SUCCESS,
+  GET_ALL_OFERTS_FAILURE
 } from "../admin/admin.actions";
 
 let initialState = {
@@ -52,11 +55,31 @@ let initialState = {
   usersLoading: true,
   usersError: "",
   orders: [],
-  ordersFiltered: []
+  ordersFiltered: [],
+  oferts: [],
+  ofertsLoading: true,
+  ofertsError: "",
 };
 
 const adminReducers = (state = initialState, action) => {
   switch (action.type) {
+    case GET_ALL_OFERTS_REQUEST:
+      return {
+        ...state,
+        ofertsLoading: true,
+      };
+    case GET_ALL_OFERTS_SUCCESS:
+      return {
+        ...state,
+        ofertsError: false,
+        oferts: action.payload,
+      };
+    case GET_ALL_OFERTS_FAILURE:
+      return {
+        ...state,
+        ofertsError: "error 404",
+        ofertsLoading: false,
+      };
     case FILTER_ORDER_BY_STATUS:
       let filtered = state.orders.filter(order => {
         return order.orderStatus == action.payload
