@@ -8,8 +8,10 @@ import ScrollBox from '../ScrollBox/ScrollBox';
 //COMPONENTS
 import Suscriptions from '../../../components/Home/Suscriptions/Suscriptions';
 import AdsBanner from '../../../components/Home/AdsBanner/AdsBanner';
+import Newsletter from '../../../components/Home/Newsletter/Newsletter';
 //Internationalization
 import { withTranslation } from 'react-i18next';
+
 
 const Container = ({t, STORE_PRODUCTS}) => {
 
@@ -99,6 +101,7 @@ const Container = ({t, STORE_PRODUCTS}) => {
                 }
                 <h1>{t('page.home.sliders.1')}</h1>
                 <Wrapper/>
+                <Newsletter></Newsletter>
                 <AdsBanner></AdsBanner>
                 <div className="divider"></div>
         </div>

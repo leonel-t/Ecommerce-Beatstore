@@ -2,14 +2,14 @@ import './Profile.css';
 import React, { useEffect } from 'react';
 import { connect } from 'react-redux';
 import { useHistory, Link } from 'react-router-dom';
-import { fetchUser, getOrdersByUser } from '../../../stores/user/user.actions';
+import { fetchUser, getOrdersByUser,getLikesByUser } from '../../../stores/user/user.actions';
 import axios from 'axios';
 import ProfileCard from '../../../components/Profile/ProfileCard/ProfileCard';
 import TabUser from '../../../components/Profile/TabUser/TabUser';
 import { withTranslation } from 'react-i18next';
 import logoIcon from "../../../assets/images/icon-logo.png";
 import {serverUrl} from '../../../auxiliar/variables';
-const Profile = ({ t, fetchUserEffect, STORE_USER, getOrdersByUserEf }) => {
+const Profile = ({ t, getLikesByUserFx,fetchUserEffect, STORE_USER, getOrdersByUserEf }) => {
 
   const history = useHistory();
 
@@ -18,21 +18,22 @@ const Profile = ({ t, fetchUserEffect, STORE_USER, getOrdersByUserEf }) => {
     let userStore = STORE_USER.user && STORE_USER.user.data && STORE_USER.user.data.user ? STORE_USER.user.data.user : null;
     if (userStore && userStore.id) {
       let userId = userStore.id
-
-      getOrdersByUserEf(userId);
+      console.log(userId)
+      getOrdersByUserEf(userId)
+      getLikesByUserFx(userId)
     }
     fetchUserEffect();// eslint-disable-next-line
-  }, [fetchUserEffect, getOrdersByUserEf]);
+  }, [fetchUserEffect, getOrdersByUserEf,getLikesByUserFx]);
 
 
   const handleClickLogin = (e) => {
     e.preventDefault()
-    localStorage.clear()
+    // localStorage.clear()
     history.push("/login")
   };
   const handleClickRegister = (e) => {
     e.preventDefault()
-    localStorage.clear()
+    // localStorage.clear()
     history.push("/register")
   };
 
@@ -72,8 +73,8 @@ const Profile = ({ t, fetchUserEffect, STORE_USER, getOrdersByUserEf }) => {
               ? (
                 <>
                   <div className="--Profile">
-                    <ProfileCard name={STORE_USER.user.data.user.name} email={STORE_USER.user.data.user.email} />
-                    <TabUser orders={STORE_USER.orders} />
+                    <ProfileCard name={STORE_USER.user.data.user.name} image={STORE_USER.user.data.user.image} email={STORE_USER.user.data.user.email} />
+                    <TabUser favorites={STORE_USER.userLikes} orders={STORE_USER.orders} />
                   </div>
                 </>
               ) : (
@@ -117,8 +118,8 @@ const mapStateToProps = state => {
 const mapDispatchToProps = (dispatch) => {
   return {
     fetchUserEffect: () => dispatch(fetchUser()),
-    getOrdersByUserEf: (userId) => dispatch(getOrdersByUser(userId))
-
+    getOrdersByUserEf: (userId) => dispatch(getOrdersByUser(userId)),
+    getLikesByUserFx:(userId) => dispatch(getLikesByUser(userId))
   };
 };
 

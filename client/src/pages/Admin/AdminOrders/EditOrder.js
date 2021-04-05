@@ -5,7 +5,7 @@ import { putCategoryById } from "../../../stores/admin/admin.actions";
 import Select from "react-select";
 import axios from "axios";
 import AdminNav from '../../../pages/Admin/AdminNav/AdminNav';
-import {serverUrl} from '../../../auxiliar/variables';
+import { serverUrl } from '../../../auxiliar/variables';
 import swal from 'sweetalert';
 import { useHistory } from "react-router-dom";
 import emailjs from 'emailjs-com';
@@ -95,7 +95,7 @@ function EditOrders({ orders }) {
         label: "Complete"
     },
     ]
-    let order = orders.find(order => order.id === id)
+    let order = orders.find(order => order.id === parseInt(id))
     const handleSubmit = async (e) => {
         e.preventDefault()
         try {
@@ -138,39 +138,39 @@ function EditOrders({ orders }) {
     }
     return (
         <>
-        <AdminNav></AdminNav>
-        <div>
-            {orders && orders.length > 0 ? (
-                <form className="catAdd" onSubmit={(e) => handleSubmit(e)}>
+            <AdminNav></AdminNav>
+            <div>
+                {orders && orders.length > 0 ? (
+                    <form className="catAdd" onSubmit={(e) => handleSubmit(e)}>
 
-                    <h1> Order id: {order.id}</h1>
-                    {order.userName ? (
-                        <div>
-                            <h1>username: {order.userName}</h1>
-                        </div>
-                    ) : (
+                        <h1> Order id: {order.id}</h1>
+                        {order.userName ? (
+                            <div>
+                                <h1>username: {order.userName}</h1>
+                            </div>
+                        ) : (
 
-                        <div></div>
-                    )
-                    }
-                    <h1> User id: {order.userId}</h1>
-                    <h1> Total: ${order.total}</h1>
-                    <h1> Order status: {order.orderStatus}</h1>
-                    <label>Set order status to:</label>
-                    <Select
-                        name="selectStatus"
-                        options={optionStatus}
-                        onChange={setOrderStatus}
-                        styles={customStyles}
-                    />
+                            <div></div>
+                        )
+                        }
+                        <h1> User id: {order.userId}</h1>
+                        <h1> Total: ${order.total}</h1>
+                        <h1> Order status: {order.orderStatus}</h1>
+                        <label>Set order status to:</label>
+                        <Select
+                            name="selectStatus"
+                            options={optionStatus}
+                            onChange={setOrderStatus}
+                            styles={customStyles}
+                        />
 
-                    <button className="--submitbuton" type="submit">
-                        Submit
+                        <button className="--submitbuton" type="submit">
+                            Submit
                 </button>
-                </form>
+                    </form>
 
-            ) : (<div>no anda</div>)}
-        </div>
+                ) : (<div>no anda</div>)}
+            </div>
         </>
     );
 }

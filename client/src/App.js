@@ -25,6 +25,8 @@ import Results from "./pages/Home/Results/Results.js";
 import Cart from "./pages/Cart/Cart";
 import EditCategories from './pages/Admin/AdminCategories/EditCategories';
 import Admin from './pages/Admin/Admin';
+import AdminOferts from './pages/Admin/AdminOferts/AdminOferts';
+import AdminAddOferts from './pages/Admin/AdminOferts/AddOferts/AddOferts';
 import AdminListUsers from './pages/Admin/AdminListUsers/AdminListUsers';
 import ProductList from './pages/Admin/AdminProducts/ListProducts';
 import Profile from './pages/Auth/Profile/Profile'
@@ -36,6 +38,7 @@ import InsCode from './components/LoginCard/ResetPass/InsCode';
 import Checkout from "./pages/Checkout/Checkout";
 import CheckoutPay from './pages/CheckoutPay/CheckoutPay';
 
+
 import EditOrders from "./pages/Admin/AdminOrders/EditOrder"
 //Menu Routes
 import Oferts from "./pages/Oferts/Oferts";
@@ -43,6 +46,7 @@ import Ranking from "./pages/Ranking/Ranking";
 
 //User Routes
 import Messages from "./pages/Messages/Messages";
+import EditUserProfile from "./pages/Auth/Profile/EditUserProfile/EditUserProfile";
 
 import ListOrder from './pages/Admin/AdminOrders/ListOrder';
 import OrderDetails from "./components/Profile/OrderDetails/OrderDetails";
@@ -67,18 +71,8 @@ const App = () => {
     <BrowserRouter>
       <Switch>
         <RouteWrapper exact path="/" component={Home} layout={HomeLayout} />
-        <RouteWrapper
-          exact
-          path="/catalog"
-          component={Catalog}
-          layout={PagesLayout}
-        />
-        <RouteWrapper
-          exact
-          path="/product/:productId"
-          component={Product}
-          layout={ProductLayout}
-        />
+        <RouteWrapper exact path="/catalog" component={Catalog} layout={PagesLayout}/>
+        <RouteWrapper exact path="/product/:productId" component={Product} layout={ProductLayout}/>
         <RouteWrapper exact path="/payment" component={CheckoutPay} layout={CheckoutPay} />
         <RouteWrapper exact path="/admin/listproducts" component={ProductList} layout={AdminLayout} />
         <RouteWrapper exact path="/listcat" component={ListCategories} layout={AdminLayout} />
@@ -97,14 +91,15 @@ const App = () => {
         <RouteWrapper exact path="/inscode" component={InsCode} layout={LoginLayout} />
         <RouteWrapper exact path="/cart" component={Cart} layout={PagesLayout} />
         <RouteWrapper exact path="/profile" component={Profile} layout={ProfileLayout} />
+        <RouteWrapper exact path="/profile/edit" component={EditUserProfile} layout={ProfileLayout} />
         <RouteWrapper path="/profile/order/:id" component={OrderDetails} layout={PagesLayout} />
         <RouteWrapper exact path="/login/github/:email/:password" component={LoginGithub} layout={PagesLayout} />
-
         <RouteWrapper exact path="/checkout" component={Checkout} layout={PagesLayout}/>
-
-
         <RouteWrapper exact path="/oferts" component={Oferts} layout={PagesLayout} />
         <RouteWrapper exact path="/ranking" component={Ranking} layout={PagesLayout} />
+        
+        <RouteWrapper exact path="/admin/oferts" component={AdminOferts} layout={AdminLayout} />
+        <RouteWrapper exact path="/admin/oferts/add" component={AdminAddOferts} layout={AdminLayout} />
 
         <RouteWrapper exact path="/adminsubscriptions" component={AdminSubscriptions} layout={AdminSubscriptionsLayout} />
         <RouteWrapper exact path="/adminsuscriptions/customers" component={Customers} layout={AdminSubscriptionsLayout} />

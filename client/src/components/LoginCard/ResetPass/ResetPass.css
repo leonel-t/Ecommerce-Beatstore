@@ -45,7 +45,7 @@
 }
 .--ResetAllCard h2{
     text-align: center;
-    font-family: 'Oxanium' 'cursive';
+    font-family: "Goldman";
     font-size: 1.2rem;
     color: white;
 }
@@ -59,28 +59,40 @@
 }
 .--RPInput{
     width: 100%;
-    height: 2.5em;
+    min-height: 2.5em;
     margin-bottom: 5px;
     font-size: 1.1rem;
     color: white;
     border: 1px solid white;
-    border-radius: 5px;
+    border-radius: 0.3em;
+}
+.--RPInput::placeholder{
+    text-align: center;
+    font-family: 'Oxanium', cursive;
+    color: white;
 }
 .--RPInput:active{
-    background-color: white;
+    border: 2px solid rgb(70, 10, 139);
+    min-height: 2.5em;
+    color: white;
 }
 .--RPInput:valid{
     background-color: rgb(19, 18, 18);
     border: 2px solid rgb(70, 10, 139);
+    min-height: 2.5em;
+    color: white;
 }
 .--RPInput:invalid{
     background-color: rgb(19, 18, 18);
     border: 2px solid rgb(136, 18, 128);
+    color: white;
 }
 .--RPInput::placeholder{
     text-align: center;
     color: gray;
+    color: white;
 }
+
 
 .--RPButtons{
     display:flex;
@@ -156,3 +168,38 @@
 
 }
 
+.--RPInput-num{
+    width: 100%;
+    min-height: 2.5em;
+    margin-bottom: 5px;
+    font-size: 1.1rem;
+    color: white;
+    border: 1px solid white;
+    border-radius: 0.3em;
+}
+.--RPInput-num::placeholder{
+    text-align: center;
+    font-family: 'Oxanium', cursive;
+    color: white;
+}
+.--RPInput-num:active{
+    border: 2px solid rgb(70, 10, 139);
+    min-height: 2.5em;
+    color: white;
+}
+.--RPInput-num:valid{
+    background-color: rgb(19, 18, 18);
+    border: 2px solid rgb(70, 10, 139);
+    min-height: 2.5em;
+    color: white;
+}
+.--RPInput-num:invalid{
+    background-color: rgb(19, 18, 18);
+    border: 2px solid rgb(136, 18, 128);
+    color: white;
+}
+.--RPInput-num::placeholder{
+    text-align: center;
+    color: gray;
+    color: white;
+}

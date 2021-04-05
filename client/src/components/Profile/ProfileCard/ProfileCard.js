@@ -1,11 +1,10 @@
 import "./ProfileCard.css";
 import React, {useState} from "react";
-import profileImg from "../../../assets/images/profile-image.jpg";
 import sound from "../../../assets/audio/system-shut-down.mp3";
 import { withTranslation } from 'react-i18next';
 import {Link} from 'react-router-dom';
 import {serverUrl} from '../../../auxiliar/variables'
-const ProfileCard = ({ t,name, email }) => {
+const ProfileCard = ({ t,name, email, image }) => {
 
 const audio = new Audio(sound);
       audio.volume=0.1;
@@ -24,7 +23,7 @@ const audio = new Audio(sound);
         <div className={"--profileCard-user"}>
             <div className={trancit ? "trancition-active" : "trancition"}></div>
             <div className={trancit ? "--profileCard-user--hidden" : "--profileCard-user-img"}>
-                <img alt="profileImage" src={profileImg} />
+                <img alt="profileImage" src={`${serverUrl}/images/${image}`} />
             </div>
             <div className={trancit ? "--profileCard-user--hidden" : "--profileCard-user-info"}>
                 <p className="--profileCard-user-info-name">{name}</p>
@@ -35,7 +34,12 @@ const audio = new Audio(sound);
                 <Link className="--profileCard-user-inbox" to="/profile/messages/">Inbox</Link>
             </div>
             <div className={trancit ? "--profileCard-user--hidden" : "--profileCard-user-butons"}>
-                <button>{t("page.profile.profileCard.editButton")}</button>
+                <button>
+                    <Link 
+                        className="--profileCard-user-button-edit" 
+                        to="/profile/edit">{t("page.profile.profileCard.editButton")}
+                    </Link>
+                </button>
                 <button onClick={handleLogout}>{t("page.profile.profileCard.logout")}</button>
             </div>
         </div>

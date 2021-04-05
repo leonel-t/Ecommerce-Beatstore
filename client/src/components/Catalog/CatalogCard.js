@@ -16,7 +16,6 @@ const CatalogCard = ({addItemToCartEffect,STORE_USER, id, name, autor, image, pr
     }
     //#############################################################################
     const handleAddToCart = (product)=>{
-        console.log("CATALOG CARD ", user)
         show({ text: 'PRODUCT ADDED!', pos:'bottom-right', duration: 2000, });
         return addItemToCartEffect(user, product)
     }

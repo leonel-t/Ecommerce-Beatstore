@@ -11,6 +11,22 @@ module.exports = (sequelize) => {
       type: DataTypes.STRING,
       allowNull: false,
     },
+    image: {
+      type: DataTypes.STRING,
+      defaultValue: "default.jpg",
+    },
+    subscription: {
+      type: DataTypes.ENUM("rat", "monkey", "cougar", "lion"),
+      defaultValue: "rat"
+    },
+    online: {
+      type: DataTypes.BOOLEAN,
+      defaultValue: false
+    },
+    freeBeats: {
+      type: DataTypes.INTEGER,
+      defaultValue: 5
+    },
     password: {
       type: DataTypes.STRING,
     },

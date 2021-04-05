@@ -6,7 +6,6 @@ const {ACCESS_TOKEN_SECRET} = process.env;
 
   server.get('/', (req, res, next) => {
       let email = req.query.email
-      console.log('este es el email', req.query)
       var decoded = jwt.verify(req.query.secret_token, ACCESS_TOKEN_SECRET);
       console.log(decoded)
 

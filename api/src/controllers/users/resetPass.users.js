@@ -1,10 +1,8 @@
 const { User } = require("../../db");
-const bcrypt = require('bcrypt');
 
 module.exports = {
     addCode: async (code, email) => {
         try {
-            console.log('entre')
             const existingUser = await User.findOne({
                 where:{
                 email: email 
@@ -15,5 +13,19 @@ module.exports = {
         } catch (err) {
                 console.log(err)
               };
+    },
+    getUserByEmail: async (email) => {
+        try {
+            return await User.findOne({
+                where: {
+                    email: email
+                }
+            }).then(user => {
+                console.log('USEEEERRRRR', user)
+                return user;
+            })
+        } catch (err) {
+            console.log(err)
+          };
     }
 }

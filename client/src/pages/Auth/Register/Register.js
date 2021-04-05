@@ -11,7 +11,7 @@ import flagSP from "../../../assets/images/espana.png"
 //Internationalization
 import i18n from '../../../i18n';
 import { withTranslation } from 'react-i18next';
-
+import emailjs from 'emailjs-com';
 const Register = ({t}) => {
     const history = useHistory();
     const [errors, setErrors] = useState({});
@@ -88,7 +88,18 @@ const Register = ({t}) => {
         })
     }
     const handleThanksReg = () =>{
-           swal("¡Thanks for register,start listen sweet beats!") 
+           swal("Thanks for register,an email was sent to your acount!") 
+           let mail = {
+            name:input.username,
+             password: input.password,
+             email: input.email
+            }
+        emailjs.send('service_wh6ybz2', 'template_jhy0w4e', mail, 'user_TgPSia94H5R5iet7h197p')
+                    .then((result) => {
+                        console.log(result.text);
+                    }, (error) => {
+                        console.log(error.text);
+                    });
         setTimeout(()=>{
             history.push('/login')
         },4000)

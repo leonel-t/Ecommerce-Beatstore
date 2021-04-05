@@ -1,11 +1,15 @@
 .--adminListUsers--main-panel{
     width: 100%;
     display: flex;
+    flex-direction: column;
     font-family: 'Oxanium', cursive;
 }
 .--adminListUsers--main-div{
-    width: 100%;
-    margin:30px;
+    display: flex;
+    flex-direction: column;
+    width: 70%;
+    margin-left: auto;
+    margin-right: auto;
 }
 .--adminListUsers--main-panel h1{
     padding: 15px;
