@@ -12,7 +12,7 @@ const TabUser = ({ t, orders, favorites }) => {
     const [purchases, setPurchases] = useState(true);
     const [comments, setComments] = useState(false);
     const [likes, setLikes] = useState(false);
-    console.log(favorites);
+    // console.log(favorites);
     // eslint-disable-next-line
     const [userComents] = useState([]);
     const history = useHistory();

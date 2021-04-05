@@ -21,7 +21,7 @@ import axios from "axios";
 import swal from "sweetalert";
 import {serverUrl} from '../../auxiliar/variables';
 
-const stripePromise = loadStripe("pk_test_51Icg9cADTx0pd3FBysK2HLURpyLXLZ6e76DqoGyHAqrIMmzN47GicTKI36JNV82th2uhIDkpRNUu8T0wYOzRai0q00tcTHA1VQ");
+const stripePromise = loadStripe("pk_test_51IbFjrLDJyVvtDkgSdbcQBERHyS60JKwwgP1txRVecZIQaA268HyHtWB9o285SwM1H9A1EhoUL7DMU6iKgIzlqbk00wBHvgczU");
 
 function CheckoutPay({ totalPrice, cart, userReducer, store_orders, fetchAllOrders, action }) {
     useEffect(() => {
@@ -123,30 +123,26 @@ const CheckoutForm = ({ price, cart, userReducer, store_orders, action }) => {
 
                     action();
                   
-                    axios.put(`${serverUrl}/order/${emailData.id}`, {
+                    await axios.put(`${serverUrl}/order/${emailData.id}`, {
                         orderStatus: "complete",
                         userName: input.name,
                         userEmail: input.email,
                         total: userReducer.totalPrice
                     })
-                    // .then(()=>{
-                    //     setTimeout(()=>{
-                    //         window.location.assign("./")
-                    //     },2000)
-                    // })
+                    .then(()=>{
+                        setTimeout(()=>{
+                            window.location.assign("./")
+                        },2000)
+                    })
 
-                }else if (data.message !== 'Successful Payment'){
+                }else{
                     console.log("RAZON:",data.message);
-                    axios.put(`${serverUrl}/order/${emailData.id}`, { orderStatus: "complete" })
-
+                    swal(data.message);
                         // .then(() => {
                         //     setTimeout(() => {
                         //         window.location.assign("./")
                         //     }, 2000)
                         // })
-                }else{
-                    console.log("RAZON:", data.message);
-                    swal(data.message);
                 }
                 //clear input
                 elements.getElement(CardElement).clear();
