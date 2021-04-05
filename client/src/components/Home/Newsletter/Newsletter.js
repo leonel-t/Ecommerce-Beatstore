@@ -2,11 +2,15 @@ import axios from 'axios';
 import React, { useState } from 'react';
 import swal from 'sweetalert';
 import './newsletter.scss';
+import emailjs from 'emailjs-com';
 
 const Newsletter = ()=>{
 
     const [input, setInput] = useState({
-        email: ""
+        email: "",
+        name: "",
+        code: "couponTwo"
+        
     })
 
     const handleInputChange = async (e) => {
@@ -19,12 +23,20 @@ const Newsletter = ()=>{
     const handleSubmit = async (e) => {
         console.log(input)
         e.preventDefault()
+        e.target.reset()
         await axios.post('http://localhost:3001/newsletter', input)
-            .then((text) => {
+            .then(async (text) => {
                 console.log(text)
                 if(text.data === 'You are already suscribed')
                 {
+                    await emailjs.send('service_dltd1f5', 'template_0mfi7c2', input, 'user_xlZ5TJyGl03KbieKyEwWL')
+                    .then((result) => {
+                        console.log(result.text);
+                    }, (error) => {
+                        console.log(error.text);
+                    })
                     return swal('You are already suscribed')
+                    
                 }
                 return swal('Succesfully subscribed to the Newsletter')
             })
@@ -36,14 +48,22 @@ const Newsletter = ()=>{
             <form className="--Newsletter-form" onSubmit={handleSubmit}>
                 <label className='name'></label>
                     <input 
+                        placeholder='Type your Name'
+                        className="--RPInput" 
+                        onChange={handleInputChange} 
+                        type="name" 
+                        name="name" 
+                        required/>
+                <label className='name'></label>
+                    <input 
                         placeholder='Type your Email'
                         className="--RPInput" 
                         onChange={handleInputChange} 
                         type="email" 
                         name="email" 
                         required/>
-                <div className="--RPButtons">
-                    <button type='submit'>Suscribe</button>
+                <div>
+                    <button className="--NewsletterButton" type='submit'>Suscribe</button>
                 </div>
             </form>
         </div>
