@@ -2,14 +2,27 @@ import React, {useState} from 'react';
 import { withTranslation } from 'react-i18next';
 import './BeatCommentsInputComponent.css';
 
-const BeatCommentsInputComponent = ({t,action, product}) =>{
+const BeatCommentsInputComponent = ({t,action, product, STORE_USER}) =>{
+
+      //USER IDENTIFICATION FOR REDUCER #############################################
+        let userStore =
+        STORE_USER.user && STORE_USER.user.data && STORE_USER.user.data.user
+            ? STORE_USER.user.data.user
+            : null;
+        let user = {
+        userStatus: userStore ? true : false,
+        id: userStore && userStore.id ? userStore.id : 0,
+        name: userStore && userStore.name ? userStore.name : "anon",
+        orderId: STORE_USER.cartDetaills.id ? STORE_USER.cartDetaills.id : 0,
+        };
+     //#############################################################################
 
     const [comment, setComment] = useState();
     const [visibleInput, setVisibleInput] = useState(true)
-    const isUser = localStorage.getItem("email")
+
     const handleKeyPress = (event) => {
         let obj = {
-            author: localStorage.getItem("email"),
+            author: user.name,
             text: comment
         }
         if(event.key === 'Enter'){
@@ -23,7 +36,7 @@ const BeatCommentsInputComponent = ({t,action, product}) =>{
             {visibleInput 
                 ?(
                     <div className="--BeatCommentsInputComponent-div">
-                    {isUser
+                    {user && user.id
                         ?(
                             <input
                             onChange={(e)=> setComment(e.target.value)}
