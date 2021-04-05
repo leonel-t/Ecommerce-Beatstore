@@ -25,7 +25,10 @@ const Edit = ({ fetchCartEffect, fetchAllProductsEffect, deleteProductsEffect, S
   return (
     <>
     <AdminNav></AdminNav>
-    <div className="--Cart">
+    <div className="--Cart-product">
+      <div className="--Cart-title">
+        <h1>Beats list</h1>
+      </div>
       <div className="--Cart-items">
         {STORE_CART && STORE_CART.length > 0 ? (
           <>

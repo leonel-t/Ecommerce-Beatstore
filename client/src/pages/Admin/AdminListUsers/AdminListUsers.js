@@ -16,7 +16,9 @@ const Admin = ({fetchAllUsersEffect,GET_ALL_USERS, USER_STATE}) => {
     <>
      <AdminNav></AdminNav>
     <main className="--adminListUsers--main-panel">
-     
+      <div className="--Cart-title">
+        <h1>User list</h1>
+      </div>
       <div className="--adminListUsers--main-div">        
         {GET_ALL_USERS && GET_ALL_USERS.length > 0
             ?(

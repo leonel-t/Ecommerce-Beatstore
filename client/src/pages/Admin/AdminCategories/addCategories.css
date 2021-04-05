@@ -5,17 +5,22 @@
 .catAdd {
     padding: 3%;
     justify-content: center;
-    width: 30%;
+    width: 40%;
     align-items: left;
     display: flex;
     flex-direction: column;
     color: white;
     margin-left: auto;
     margin-right: auto;
-    margin-top: 5%;
+    margin-top: 2%;
     background-color: rgb(107, 4, 241);
     border: 2px solid rgb(79, 0, 170);
     border-radius: 15px;
+}
+@media (max-width: 800px) {
+    .catAdd {
+        width: 70%;
+    }
 }
 
 .catAdd h1 {
@@ -42,6 +47,8 @@
 }
 
 .input-name input::placeholder {
+    color: white;
+    min-height: 40px;
     text-align: center;
     font-size: 1rem;
     font-family: 'Oxanium', cursive;
@@ -50,6 +57,8 @@
 .input-description textarea::placeholder {
     text-align: center;
     font-size: 1rem;
+    color: white;
+    min-height: 40px;
     font-family: 'Oxanium', cursive;
 }
 
@@ -63,10 +72,13 @@
     text-align: center;
     color: rgb(255, 255, 255);
     width: 100%;
+    min-height: 40px;
+    font-size: 1.1rem;
     background: transparent;
     border: none;
     border-bottom: 1px solid #777777;
     display: block;
+    font-family: 'Oxanium', cursive;
 }
 
 .--submitbuton {
