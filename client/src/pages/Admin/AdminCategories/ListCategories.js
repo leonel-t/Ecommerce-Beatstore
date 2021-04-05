@@ -3,6 +3,7 @@ import React, { useEffect } from "react";
 import { useHistory } from "react-router-dom";
 import { connect } from "react-redux";
 import AdminNav from "../AdminNav/AdminNav";
+import swal from 'sweetalert';
 import { deleteCategory, fetchAllCategories } from "../../../stores/admin/admin.actions";
 const ListCategories = ({ fetchAllCategoriesEffect, deleteCategoryEffect, STORE_CATS }) => {
   const history = useHistory();
@@ -15,11 +16,24 @@ const ListCategories = ({ fetchAllCategoriesEffect, deleteCategoryEffect, STORE_
     history.push(`/editCat/${categoryId}/${name}/${description}`);
   };
   const handleClickDelete = (id) => {
-    try {
-      return deleteCategoryEffect(id);
-    } catch (error) {
-      console.log(error)
-    }
+    swal({
+      title: "Are you sure?",
+      text: "Once deleted, you will not be able to recover this category!",
+      icon: "warning",
+      buttons: true,
+      dangerMode: true,
+    })
+    .then((willDelete) => {
+      if (willDelete) {
+        swal(" the category has been deleted!", {
+          icon: "success",
+        });
+         deleteCategoryEffect(id);
+      } else {
+        swal("the category is safe!");
+      }
+    });
+ 
 
   }
   return (
