@@ -5,6 +5,7 @@ import { withTranslation } from 'react-i18next';
 import AdminNav from '../../../pages/Admin/AdminNav/AdminNav';
 import "./addCategories.css";
 import {serverUrl} from '../../../auxiliar/variables';
+import swal from 'sweetalert';
 function AddCategories({t}) {
   const [input, setInput] = React.useState({
     name: "",
@@ -50,6 +51,10 @@ function AddCategories({t}) {
     };
     console.log(requestOptions.body);
     fetch(`${serverUrl}/categories`, requestOptions);
+    swal({
+      title: "category added",
+      icon: "success",
+    })
   };
   return (
     <>

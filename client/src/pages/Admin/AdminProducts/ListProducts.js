@@ -2,6 +2,7 @@ import "./listProduct.css";
 import React, { useEffect } from "react";
 import { useHistory } from "react-router-dom";
 import { connect } from "react-redux";
+import swal from 'sweetalert';
 import AdminNav from "../AdminNav/AdminNav";
 import { fetchAllProducts, deleteProducts } from "../../../stores/admin/admin.actions";
 import {serverUrl} from '../../../auxiliar/variables';
@@ -19,8 +20,24 @@ const Edit = ({ fetchCartEffect, fetchAllProductsEffect, deleteProductsEffect, S
   };
   const handleClickDelete = (id) => {
     console.log(id)
-    id ? deleteProductsEffect(id) : console.log("no hay id")
-    fetchAllProductsEffect()
+    swal({
+      title: "Are you sure?",
+      text: "Once deleted, you will not be able to recover this product!",
+      icon: "warning",
+      buttons: true,
+      dangerMode: true,
+    })
+    .then((willDelete) => {
+      if (willDelete) {
+        id ? deleteProductsEffect(id) : console.log("no hay id")
+        swal(" the product has been deleted!", {
+          icon: "success",
+        });
+      } else {
+        swal("the product is safe!");
+      }
+      fetchAllProductsEffect()
+    });
   }
   return (
     <>

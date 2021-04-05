@@ -3,7 +3,7 @@ const {deleteCategory} = require("../../controllers/categories/delete.categories
 const {protectorAdmin} = require("../../middlewares/protector.middleware");
 
 
-server.delete('/:id',  protectorAdmin, (req, res, next) => {
+server.delete('/:id', (req, res, next) => {
     const { id } = req.params;
     return deleteCategory(id).then((category) => {
       return res.status(202).json(category);

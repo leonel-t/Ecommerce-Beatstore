@@ -25,6 +25,8 @@ import Results from "./pages/Home/Results/Results.js";
 import Cart from "./pages/Cart/Cart";
 import EditCategories from './pages/Admin/AdminCategories/EditCategories';
 import Admin from './pages/Admin/Admin';
+import AdminOferts from './pages/Admin/AdminOferts/AdminOferts';
+import AdminAddOferts from './pages/Admin/AdminOferts/AddOferts/AddOferts';
 import AdminListUsers from './pages/Admin/AdminListUsers/AdminListUsers';
 import ProductList from './pages/Admin/AdminProducts/ListProducts';
 import Profile from './pages/Auth/Profile/Profile'
@@ -96,6 +98,9 @@ const App = () => {
         <RouteWrapper exact path="/oferts" component={Oferts} layout={PagesLayout} />
         <RouteWrapper exact path="/ranking" component={Ranking} layout={PagesLayout} />
         
+        <RouteWrapper exact path="/admin/oferts" component={AdminOferts} layout={AdminLayout} />
+        <RouteWrapper exact path="/admin/oferts/add" component={AdminAddOferts} layout={AdminLayout} />
+
         <RouteWrapper exact path="/adminsubscriptions" component={AdminSubscriptions} layout={AdminSubscriptionsLayout} />
         <RouteWrapper exact path="/adminsuscriptions/customers" component={Customers} layout={AdminSubscriptionsLayout} />
         <RouteWrapper exact path="/adminsuscriptions/products" component={SuscriptionsProducts} layout={AdminSubscriptionsLayout} />
