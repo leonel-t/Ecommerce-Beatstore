@@ -29,7 +29,16 @@ const AdminNav = ({ t }) => {
         className={activeState === "Add Product" ? "--admin--main-btn --admin--main-btn-active" : "--admin--main-btn"} to="/add">
         {t('headers.adminHeader.adminNav.addBeats')}
       </Link>
-
+      <Link
+        onClick={() => handleClickActiveState("Add Oferts")}
+        className={activeState === "Add Oferts" ? "--admin--main-btn --admin--main-btn-active" : "--admin--main-btn"} to="/admin/oferts">
+        List Oferts
+      </Link>
+      <Link
+        onClick={() => handleClickActiveState("Add Oferts")}
+        className={activeState === "Add Oferts" ? "--admin--main-btn --admin--main-btn-active" : "--admin--main-btn"} to="/admin/oferts/add">
+        Add Oferts
+      </Link>
       <Link
         onClick={() => handleClickActiveState("List Categories")}
         className={activeState === "List Categories" ? "--admin--main-btn --admin--main-btn-active" : "--admin--main-btn"} to="/listcat">

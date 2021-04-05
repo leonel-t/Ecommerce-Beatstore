@@ -103,6 +103,11 @@ const postInvoicesRouter = require("./subscriptions/Invoices/post.invoices");
 const putInvoicesRouter = require("./subscriptions/Invoices/put.invoices");
 const deleteInvoicesRouter = require("./subscriptions/Invoices/delete.invoices");
 
+const getOfertsRouter = require("./oferts/get.oferts");
+const postOfertsRouter = require("./oferts/post.oferts");
+const putOfertsRouter = require("./oferts/put.oferts");
+const deleteOfertsRouter = require("./oferts/delete.oferts");
+
 //#############
 
 const router = Router();
@@ -146,6 +151,11 @@ router.use("/orderline", getOrderLine);
 router.use("/orderline", postOrderLine);
 router.use("/orderline", putOrderLine);
 router.use("/orderline", deleteOrderLine);
+
+router.use("/oferts", getOfertsRouter);
+router.use("/oferts", postOfertsRouter);
+router.use("/oferts", putOfertsRouter);
+router.use("/oferts", deleteOfertsRouter);
 
 router.use("/users", getUserRouter);
 router.use("/users", postUserRouter);
