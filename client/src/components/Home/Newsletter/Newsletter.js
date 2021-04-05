@@ -43,30 +43,33 @@ const Newsletter = ()=>{
     }
 
     return (
-        <div className='--Newsletter-main'>
-            <h2 className='--Newsletter-main-h2'>Join our monthly Newsletter and get 10% off your next Purchase!</h2>
-            <form className="--Newsletter-form" onSubmit={handleSubmit}>
-                <label className='name'></label>
-                    <input 
-                        placeholder='Type your Name'
-                        className="--RPInput" 
-                        onChange={handleInputChange} 
-                        type="name" 
-                        name="name" 
-                        required/>
-                <label className='name'></label>
-                    <input 
-                        placeholder='Type your Email'
-                        className="--RPInput" 
-                        onChange={handleInputChange} 
-                        type="email" 
-                        name="email" 
-                        required/>
-                <div>
-                    <button className="--NewsletterButton" type='submit'>Suscribe</button>
-                </div>
-            </form>
+        <div className='--Newsletter-main-head'>
+            <div className='--Newsletter-main'>
+                <h2>Join our monthly Newsletter and get 10% off your next Purchase!</h2>
+                <form className="--Newsletter-form" onSubmit={handleSubmit}>
+                    <label className='name'></label>
+                        <input 
+                            placeholder='Type your Name'
+                            className="--RPInput" 
+                            onChange={handleInputChange} 
+                            type="name" 
+                            name="name" 
+                            required/>
+                    <label className='name'></label>
+                        <input 
+                            placeholder='Type your Email'
+                            className="--RPInput" 
+                            onChange={handleInputChange} 
+                            type="email" 
+                            name="email" 
+                            required/>
+                    <div className="--NewsletterButton">
+                        <button type='submit'>Subscribe</button>
+                    </div>
+                </form>
+            </div>
         </div>
+        
     )
 };
 

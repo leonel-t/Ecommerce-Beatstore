@@ -281,6 +281,13 @@
 .--user-img{
     font-size:2.8rem;
 }
+.--user-imgProfile{
+    width: 4em;
+}
+.--user-imgProfile img{
+    width: 100%;
+    border-radius: 50%;
+}
 .--header-home-cart-item-length{
     position: relative;
     background-color: rgba(28, 8, 75, 0.7);
@@ -491,6 +498,10 @@
         display: block;
         order: 1;
         width: 5%;
+    }
+    .--user-imgProfile{
+        width: 3em;
+        margin-top: 0.5em;
     }
     .--header-home-menu-page{
         display: block;

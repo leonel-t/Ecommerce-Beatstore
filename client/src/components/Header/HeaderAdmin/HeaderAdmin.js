@@ -73,19 +73,28 @@ const HeaderHome = ({t,fetchUserEffect, STORE_CART, STORE_USER}) =>{
                           ):(
                             <p></p>
                           )} 
-                         <Link className='--header-account-link' to='/profile'>  <span className="material-icons --user-img"> account_circle </span></Link>
-                            <div className="--header-home-cart">
+
+                         <div className="--header-home-cart">
+                            {STORE_USER.user.data.user.image ?(
+                              <span className="--user-imgProfile"> <img src={`http://localhost:3001/images/${STORE_USER.user.data.user.image}`} alt='imageProfile'/>  </span>
+                            ):(
+                              <Link className='--header-account-link' to='/profile'>
+                                <span className="material-icons --user-img"> account_circle </span>
+                              </Link>
+                            )}
+                         
+                            
                             <Link to='/cart'><span className="material-icons --header-home-perfil-icon"> shopping_cart</span></Link>
                                 <span className="--header-home-cart-item-length">
                                   {STORE_CART && STORE_CART.length > 0
                                   ?(
                                       STORE_CART.length
                                   ):(
-                                      0 
+                                      0
                                     )
                                    }
                                 </span>
-                        </div>     
+                        </div>   
                     </ul>
                ):(
                     <ul>
@@ -116,6 +125,7 @@ const HeaderHome = ({t,fetchUserEffect, STORE_CART, STORE_USER}) =>{
           <div className={dropDown ? "--header-home-dropdown-menu" : "--header-home-dropdown-menu-hidden"}>
              <div className="--header-home-dropdown-menu-box">
               <Link className='--header-home-link-dropdown' to='/catalog'><li>{t('headers.adminHeader.catalog')}</li></Link>
+              <Link className='--header-home-link-dropdown' to='/oferts'><li>{t('headers.adminHeader.oferts')}</li></Link>
               <Link className='--header-home-link-dropdown' to='/catalog'><li>{t('headers.adminHeader.ranking')}</li></Link>
              </div>
           </div>
