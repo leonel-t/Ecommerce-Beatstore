@@ -51,6 +51,10 @@ const postInfoUser = require("./informationUser/post.info");
 const putInfoUser = require("./informationUser/put.info");
 const deleteInfoUser = require("./informationUser/delete.info");
 
+const getNewsletterEmailsRouter = require("./newsletter/get.newsletter");
+const postNewsletterEmailsRouter = require("./newsletter/post.newsletter");
+const deleteNewsletterEmailsRouter = require("./newsletter/delete.newsletter");
+
 //STRIPE
 const getCustomerRouter = require("./subscriptions/customers/get.customers");
 const postCustomerRouter = require("./subscriptions/customers/post.customers");
@@ -150,6 +154,9 @@ router.use("/users", deleteUserRouter);
 router.use("/users", resetPassUserRouter);
 router.use("/getname", getUsersByEmail);
 
+router.use("/newsletter", getNewsletterEmailsRouter)
+router.use("/newsletter", postNewsletterEmailsRouter)
+router.use("/newsletter", deleteNewsletterEmailsRouter)
 
 router.use("/", promoteRouter);
 router.use("/", githubRouter);
