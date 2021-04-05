@@ -34,7 +34,12 @@ const audio = new Audio(sound);
                 <Link className="--profileCard-user-inbox" to="/profile/messages/">Inbox</Link>
             </div>
             <div className={trancit ? "--profileCard-user--hidden" : "--profileCard-user-butons"}>
-                <Link to="/profile/edit">{t("page.profile.profileCard.editButton")}</Link>
+                <button>
+                    <Link 
+                        className="--profileCard-user-button-edit" 
+                        to="/profile/edit">{t("page.profile.profileCard.editButton")}
+                    </Link>
+                </button>
                 <button onClick={handleLogout}>{t("page.profile.profileCard.logout")}</button>
             </div>
         </div>
