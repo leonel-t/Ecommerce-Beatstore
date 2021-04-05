@@ -20,7 +20,6 @@ const Admin = ({t, STORE_USER}) => {
 
   return (
     <>
-    
     {user && user.rol === "admin"
       ?(
     <main className="--admin--main-panel">

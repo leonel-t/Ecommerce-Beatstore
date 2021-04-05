@@ -1,4 +1,5 @@
 import React, { useEffect } from "react";
+import {connect} from "react-redux";
 import Select from "react-select";
 import axios from "axios";
 import laserSound from "../../../assets/audio/tab-sound.ogg"
@@ -7,9 +8,21 @@ import { withTranslation } from 'react-i18next';
 import swal from 'sweetalert';
 import AdminNav from "../AdminNav/AdminNav";
 import "./form.css";
-import {serverUrl} from '../../../auxiliar/variables';
+import { serverUrl } from '../../../auxiliar/variables';
 
-const Form = ({ t }) => {
+const Form = ({ t, STORE_USER }) => {
+  //USER IDENTIFICATION FOR REDUCER #############################################
+  let userStore =
+    STORE_USER.user && STORE_USER.user.data && STORE_USER.user.data.user
+      ? STORE_USER.user.data.user
+      : null;
+  let user = {
+    userStatus: userStore ? true : false,
+    id: userStore && userStore.id ? userStore.id : 0,
+    orderId: STORE_USER.cartDetaills.id ? STORE_USER.cartDetaills.id : 0,
+    rol: userStore && userStore.rol ? userStore.rol : 0,
+  };
+  //#############################################################################
   const customStyles = {
     control: (base, state) => ({
       ...base,
@@ -244,156 +257,172 @@ const Form = ({ t }) => {
 
   return (
     <>
-    <AdminNav></AdminNav>
-    <div className="subContainer">
-      <h2>{t("page.admin.forms.addBeats.title")}</h2>
-      <form
-        onSubmit={(e) => handleSubmit(e)}
-      >
-        <div className="container formAdd"
-        >
 
-          <div className="column-1 box">
-            <label>{t("page.admin.forms.addBeats.name")}</label>
-            {errors.name && <p className="danger">{errors.name}</p>}
+      {user && user.rol === "admin"
+        ? (
+          <>
+            <AdminNav></AdminNav>
+            <div className="subContainer">
+              <h2>{t("page.admin.forms.addBeats.title")}</h2>
+              <form
+                onSubmit={(e) => handleSubmit(e)}
+              >
+                <div className="container formAdd"
+                >
 
-            <input
-              className={`${errors.name && "danger"}`}
-              name="name"
-              onChange={(e) => {
-                handleInputChange(e);
-              }}
-            />
-            <label>{t("page.admin.forms.addBeats.description")}</label>
+                  <div className="column-1 box">
+                    <label>{t("page.admin.forms.addBeats.name")}</label>
+                    {errors.name && <p className="danger">{errors.name}</p>}
 
-            {errors.description && <p className="danger">{errors.description}</p>}
-            <textarea
-              className={`${errors.description && "danger"}`}
-              name="description"
-              onChange={(e) => {
-                handleInputChange(e);
-              }}
-            ></textarea>
-            <label>{t("page.admin.forms.addBeats.artist")}</label>
-            {errors.artist && <p className="danger">{errors.artist}</p>}
+                    <input
+                      className={`${errors.name && "danger"}`}
+                      name="name"
+                      onChange={(e) => {
+                        handleInputChange(e);
+                      }}
+                    />
+                    <label>{t("page.admin.forms.addBeats.description")}</label>
 
-            <input
-              className={`${errors.artist && "danger"}`}
-              name="artist"
-              onChange={(e) => {
-                handleInputChange(e);
-              }}
-            ></input>
+                    {errors.description && <p className="danger">{errors.description}</p>}
+                    <textarea
+                      className={`${errors.description && "danger"}`}
+                      name="description"
+                      onChange={(e) => {
+                        handleInputChange(e);
+                      }}
+                    ></textarea>
+                    <label>{t("page.admin.forms.addBeats.artist")}</label>
+                    {errors.artist && <p className="danger">{errors.artist}</p>}
 
-            <label>{t("page.admin.forms.addBeats.price")}</label>
-            {errors.price && <p className="danger">{errors.price}</p>}
+                    <input
+                      className={`${errors.artist && "danger"}`}
+                      name="artist"
+                      onChange={(e) => {
+                        handleInputChange(e);
+                      }}
+                    ></input>
 
-            <input
-              className={`${errors.price && "danger"}`}
-              name="price"
-              type="number"
-              onChange={(e) => {
-                handleInputChange(e);
-              }}
-            ></input>
+                    <label>{t("page.admin.forms.addBeats.price")}</label>
+                    {errors.price && <p className="danger">{errors.price}</p>}
 
-            <label>{t("page.admin.forms.addBeats.bpm")}</label>
-            {errors.bpm && <p className="danger">{errors.bpm}</p>}
+                    <input
+                      className={`${errors.price && "danger"}`}
+                      name="price"
+                      type="number"
+                      onChange={(e) => {
+                        handleInputChange(e);
+                      }}
+                    ></input>
 
-            <input
-              className={`${errors.bpm && "danger"}`}
-              name="bpm"
-              type="number"
-              onChange={(e) => {
-                handleInputChange(e);
-              }}
-            ></input>
-          </div>
-          <div className="column-2 box">
-            <label>{t("page.admin.forms.addBeats.tone")}</label>
-            {errors.tone && <p className="danger">{errors.tone}</p>}
+                    <label>{t("page.admin.forms.addBeats.bpm")}</label>
+                    {errors.bpm && <p className="danger">{errors.bpm}</p>}
+
+                    <input
+                      className={`${errors.bpm && "danger"}`}
+                      name="bpm"
+                      type="number"
+                      onChange={(e) => {
+                        handleInputChange(e);
+                      }}
+                    ></input>
+                  </div>
+                  <div className="column-2 box">
+                    <label>{t("page.admin.forms.addBeats.tone")}</label>
+                    {errors.tone && <p className="danger">{errors.tone}</p>}
 
 
-            <Select
-              name="selectTone"
-              options={optionTone}
-              onChange={setTone}
-              styles={customStyles}
-            />
-            <div className="radioTone">
-              <div className="radioColumn" >
-                <label for="indoor">natural</label>
-                <input type="radio" name="radName" value="" />
-              </div>
-              <div className="radioColumn" >
-                <label for="indoor"># </label>
-                <input type="radio" name="radName" value="#" onChange={handleAlt} />
-              </div>
-              <div className="radioColumn">
-                <label >b</label>
-                <input type="radio" name="radName" value="b" onChange={handleAlt} />
-              </div>
+                    <Select
+                      name="selectTone"
+                      options={optionTone}
+                      onChange={setTone}
+                      styles={customStyles}
+                    />
+                    <div className="radioTone">
+                      <div className="radioColumn" >
+                        <label for="indoor">natural</label>
+                        <input type="radio" name="radName" value="" />
+                      </div>
+                      <div className="radioColumn" >
+                        <label for="indoor"># </label>
+                        <input type="radio" name="radName" value="#" onChange={handleAlt} />
+                      </div>
+                      <div className="radioColumn">
+                        <label >b</label>
+                        <input type="radio" name="radName" value="b" onChange={handleAlt} />
+                      </div>
+                    </div>
+                    <label>{t("page.admin.forms.addBeats.date")}</label>
+                    {errors.date && <p className="danger">{errors.date}</p>}
+
+                    <input
+                      id="dateClass"
+                      className={` ${errors.date && "danger"}`}
+                      type="date"
+                      name="date"
+                      onChange={(e) => {
+                        handleInputChange(e);
+                      }}
+                    ></input>
+
+                    <label>{t("page.admin.forms.addBeats.image")}</label>
+
+                    <input
+                      className="buttonInput"
+                      type="file"
+                      name="image"
+                      onChange={(e) => {
+                        handleInputChange(e);
+                      }}
+                    ></input>
+                    <label>{t("page.admin.forms.addBeats.audio")}</label>
+
+                    <input
+                      className="buttonInput"
+                      type="file"
+                      name="audio"
+                      onChange={(e) => {
+                        handleInputChange(e);
+                      }}
+                    ></input>
+                    <label>{t("page.admin.forms.addBeats.categories")}</label>
+
+                    <Select
+                      isMulti
+                      name="selectCat"
+                      options={option}
+                      onChange={setCategories}
+                      styles={customStyles}
+                    />
+                  </div>
+                </div>
+                <div className="divButton">
+
+                  <button
+                    className="submitbuton"
+                    type="submit"
+                    onChange={(e) => {
+                      handleInputChange(e);
+                    }}
+                  >
+                    {t("page.admin.forms.addBeats.addBeatButton")}
+                  </button>
+                </div>
+              </form>
+              <div className="divider"></div>
             </div>
-            <label>{t("page.admin.forms.addBeats.date")}</label>
-            {errors.date && <p className="danger">{errors.date}</p>}
-
-            <input
-              id="dateClass"
-              className={` ${errors.date && "danger"}`}
-              type="date"
-              name="date"
-              onChange={(e) => {
-                handleInputChange(e);
-              }}
-            ></input>
-
-            <label>{t("page.admin.forms.addBeats.image")}</label>
-
-            <input
-              className="buttonInput"
-              type="file"
-              name="image"
-              onChange={(e) => {
-                handleInputChange(e);
-              }}
-            ></input>
-            <label>{t("page.admin.forms.addBeats.audio")}</label>
-
-            <input
-              className="buttonInput"
-              type="file"
-              name="audio"
-              onChange={(e) => {
-                handleInputChange(e);
-              }}
-            ></input>
-            <label>{t("page.admin.forms.addBeats.categories")}</label>
-
-            <Select
-              isMulti
-              name="selectCat"
-              options={option}
-              onChange={setCategories}
-              styles={customStyles}
-            />
+          </>) : (
+          <div className="--admin--main-panel" >
+            <h1>Acceso Denegado Only Admin Can Be See This Page</h1>
           </div>
-        </div>
-        <div className="divButton">
-
-          <button
-            className="submitbuton"
-            type="submit"
-            onChange={(e) => {
-              handleInputChange(e);
-            }}
-          >
-            {t("page.admin.forms.addBeats.addBeatButton")}
-          </button>
-        </div>
-      </form>
-      <div className="divider"></div>
-    </div>
+        )
+      }
     </>
   );
 }
-export default withTranslation()(Form)
+
+const mapStateToProps = (state) => {
+  return {
+    STORE_USER: state.userReducers
+  };
+};
+export default connect(mapStateToProps)(withTranslation()(Form));

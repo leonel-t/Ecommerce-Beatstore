@@ -90,6 +90,10 @@ const FilterOrder = ({ t, categories, filterOrderByStatus }) => {
         value: "complete",
         label: "Complete"
     },
+    {
+        value: "cart",
+        label: "Cart"
+    },
     ]
     return (
 
