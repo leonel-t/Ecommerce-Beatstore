@@ -48,10 +48,10 @@ const ListOrder = ({ fetchAllOrdersEffect, filtered_orders, deleteOrderByIdEffec
                     <div className="list-users-main">
                         <div className="--Cart">
                             <div className="--Cart-items">
+                            <h1 className="title-super">filter by status:</h1> <FilterOrder />
                                 {filtered_orders && filtered_orders.length > 0 ? (
                                     <>
                                         <div>
-                                            <h1 className="title-super">filter by status:</h1> <FilterOrder />
                                             {filtered_orders.map((order, index) => {
                                                 return (
                                                     <div key={index} className="--ItemCard">
@@ -87,7 +87,7 @@ const ListOrder = ({ fetchAllOrdersEffect, filtered_orders, deleteOrderByIdEffec
                                         <div></div>
                                     </>
                                 ) : (
-                                    <p className="empy-cart">There are no results</p>
+                                    <h1 className="empy-cart">There are no results</h1>
                                 )}
                             </div>
                         </div>
