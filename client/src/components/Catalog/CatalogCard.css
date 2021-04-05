@@ -1,14 +1,20 @@
 .--CatalogCard{
     display: flex;
     flex-direction: column;
-    width: 10em;
+    justify-content: center;
+    width: 11em;
     height: 14em;
-    padding: 0.5em;
+    padding: 1em;
+    border: 2px solid rgb(80, 14, 100);
+    border-radius: 1em;
+    margin-left: 0.7em;
+    margin-right: 0.7em;
+    margin-bottom: 0.9em;
+    background-color:  rgba(66, 11, 92, 0.6);
 }
 .--CatalogCard-image img{
-    width: 10em;
-    height: 10em;
-    border-radius: 0.1em;
+    width:  100%;
+    border-radius: 1em;
 }
 .--CatalogCard-info{
     display: flex;
@@ -23,8 +29,8 @@
     font-size: 1rem;
 }
 .--CatalogCard-info-autor{
-    color: rgb(126, 126, 126);
-    font-size: 0.6rem;
+    color: rgb(255, 255, 255);
+    font-size: 0.7rem;
 }
 .--CatalogCard-link{
     text-decoration: none;

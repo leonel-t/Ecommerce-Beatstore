@@ -29,9 +29,9 @@ const CatalogCard = ({addItemToCartEffect,STORE_USER, id, name, autor, image, pr
                 <div className="--CatalogCard-info">
                     <p className="--CatalogCard-info-song">
                         <Link className="--CatalogCard-link" to={`/product/${id}`}>
-                            {name.length > 20
+                            {name.length > 12
                                 ?(
-                                    name.slice(0,20) + "..."
+                                    name.slice(0,12) + "..."
                                 ):(
                                     name
                                 )

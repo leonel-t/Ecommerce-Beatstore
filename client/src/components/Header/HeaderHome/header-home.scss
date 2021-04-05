@@ -44,20 +44,64 @@
     padding-left: 0.7em;;
     font-family: $primary-font;
 }
+//HEADER PAGE ########################################################
+.--header-homePage-logo{
+    width: 16.5vw;
+    display: flex;
+    align-items: center;    
+}
+.--header-home-menu-page-responsive{
+    display: none;
+}
+.--header-menu-page-div input{
+    background-color: rgba(0,0,0,0.840);
+    background-image: url('./Search.png');
+    background-position: 97%;
+    background-size: 6.5%;
+    background-repeat: no-repeat;
+    border-radius: 0.3em;
+    width:100%; 
+    border: none;    
+    text-align:center;
+    font-family: $primary-font;
+    font-size: 2em;
+    outline: none;
+    color: #ba0bc0;
+    box-shadow: 0px 0px 10px rgb(148, 4, 153);
+}
+.--header-menu-page-div input::placeholder{
+    color: #ba0bc0;
+}
+.--header-menu-page-div input:focus{
+   
+    background-color: rgba(43, 2, 41, 0.83);
+    box-shadow: 0px 0px 10px rgb(149, 76, 151);
+    transition: all 0.3s ease-in;
+    
+}
+.--header-homePage-menu form{
+    width: 100%;
+    align-self: center;
+}
+
 //MENU ####################################################################
 .--header-home-menu{
     display: flex;
     width: 33vw; 
     color: $menu-text-color;
-    align-items: center;   
-    
+    align-items: center;    
     justify-content: center;
     padding-top: 3px;
 }
-.--header-home-menu form{
-    width: 100%;
-    align-self: center;
+.--header-home-menu-page{
+    display: flex;
+    width: 33vw; 
+    color: $menu-text-color;
+    align-items: center;    
+    justify-content: center;
+    padding-top: 3px;
 }
+
 .--header-page-div input{
     background-color: rgba(0,0,0,0.840);
     background-image: url('./Search.png');
@@ -127,14 +171,10 @@
     bottom: 0.15em;
     text-shadow: 0px 0px 5px rgb(84, 21, 157);
     color: rgba(255, 255, 255, 0.5);
+    cursor: pointer;
 }
-.--header-home-link-admin{
-    text-decoration: none;
-    color:$h1-color;   
-}
-.--header-home-link-admin:hover{
-    position: relative;
-    bottom: 0.1em;
+.icon-admin-user:hover{
+    bottom: 0.2em;
 }
 
 //PERFIL ##################################################################
@@ -226,13 +266,14 @@
     
 }
 .--header-home-perfil-icon{
-    padding: 0.3em;
+    padding: 0.4em;
     font-size: 2rem;
     color: aliceblue;
 }
 .--header-home-cart{
-    display: inline-block;
-    width: 100%;
+    display: flex;
+    flex-direction: row;
+
 }
 .--header-home-perfil-icon:hover{
     color:rgb(119, 33, 108)
@@ -244,10 +285,9 @@
     position: relative;
     background-color: rgba(28, 8, 75, 0.7);
     border-radius: 25%;
-    padding: 5px;
-    padding-top: 2px;
-    padding-bottom: 2px;
-    top: -15px;
+    padding: 0.3em;
+    align-self: top;
+    height: 1.3em;
     right: 20px;
     font-size: 1.1rem;
     color: rgb(255, 255, 255);
@@ -328,10 +368,10 @@
 }
 .--header-home-dropdown-menu-box{
     display: flex;
-    padding-top: 20px;
+    margin-top: 1em;
     flex-direction: column;
     align-self: center;
-    width: 20%;
+    width: 100%;
 
 }
 .--header-home-menu li:hover {
@@ -339,36 +379,61 @@
     border-radius: 0.4em;
     transition: border 0.3s ease-in ;
 }
+.--header-home-dropdown-menu-box{
+    display: none;
 }
+}
+@media(max-width:640px){
+    .--header-home-logo img{
+        display: none;
+    }
+    .--header-home-dropdown-menu-box{
+        display: none;
+   }
+}
+
 @media(max-width:799px){
 //MAIN
 .--header-home-main{
-    position: fixed;
-    top: 0;
-    width:100vw;
-    bottom: auto !important;
     display: flex;
-    flex-direction: column;
-    flex-wrap: nowrap;
-    background: linear-gradient($bg-nav-top, $bg-nav-bottom);
-    z-index: 999;
+    flex-direction: row;
+
 }
 .--header-home-logo{
     display:flex;
-    width: 100vw;
+    width: 50vw;
     justify-content: center; 
 }
 .--header-home-logo img{
-    width:60px;
-    height: 50px;
-    padding-left: 0.7em; 
+    width:50px;
+    height: 40px;
+    padding-left: 1em; 
 }
 .--header-home-logo h1{
-    font-size:3rem;
+    font-size:2.5rem;
+    margin: 0;
+    padding-left: 0.3em;
 }
+.--header-home-perfil li {
+    padding-left: 0.6em;
+    margin-left: 0em;
+    margin-right: 0em;
 
+}
+.icon-admin-user{
+    font-size: 2rem;
+    position: relative;
+    right: 0.5em;
+    bottom: 0.15em;
+    text-shadow: 0px 0px 5px rgb(84, 21, 157);
+    color: rgba(255, 255, 255, 0.5);
+    cursor: pointer;
+}
 .--header-home-menu{
-    width: 100vw; 
+    display: none; 
+}
+.--header-home-menu-page{
+    display: none;
 }
 .--header-page-div input{
     width:80%; 
@@ -381,11 +446,107 @@
 
 .--header-home-perfil{
     width: 100vw;    
-    order:-1
 }
 .--header-home-dropdown-menu-box{
     margin-top: 150px;
 }
+.--header-home-dropdown-menu-box{
+    display: none;
+}
+.--header-home-menu-page-responsive{
+    display: block;
+    position: relative;
+    width: 100%;
+    top: 4.5em;
+}
+.--header-menu-page-div{
+    width: 80%;
+    margin-left: auto;
+    margin-right: auto;
+}
 }
 
+@media(max-width:480px){
+    .--header-home-main{
+        display: flex;
+        flex-direction: row;
+    }
+    .--header-home-logo{
+        display:flex;
+        width: 15%;
+        justify-content: center; 
+    }
+
+    .--header-home-logo img{
+        display: block;
+        width:60px;
+        height: 50px;
+        margin-top: 0.5em;
+        padding-left: 0.7em; 
+    }
+    .--header-home-logo h1{
+        display: none;
+    }
+    .--header-home-menu{
+        display: block;
+        order: 1;
+        width: 5%;
+    }
+    .--header-home-menu-page{
+        display: block;
+        order: 1;
+        width: 5%;
+    }
+    .--header-page-div input{
+        display: none;
+    }
+    
+    .--header-page-div input{
+        width:80%; 
+        margin-left: 50%;
+        transform: translateX(-50%);
+    }
+    .--header-page-div input{
+        background-size: 5%;  
+    }
+    
+    .--header-home-perfil{
+        width: 80%;    
+        padding: 0;
+        order:0
+    }
+    .--header-home-link-admin{
+        display: flex;
+    }
+    .--user-img{
+        display: none;
+    }
+    .--header-home-dropdown img{
+        position: relative;
+        right: 50%;
+        margin-top: 0.4em;
+        filter: invert(100);
+    }
+    .--header-home-dropdown-menu-box{
+        display: flex;
+        flex-direction: row;
+        justify-content: center;
+        margin-top: 0.1em;
+    }
+    .--header-page-div{
+        margin-top: 0.1em;
+    }
+    .--header-home-menu-page-responsive{
+        display: block;
+        position: relative;
+        width: 100%;
+        top: 7.5em;
+    }
+    .--header-menu-page-div{
+        width: 80%;
+        margin-left: auto;
+        margin-right: auto;
+    }
+
+}
 

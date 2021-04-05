@@ -1,3 +1,4 @@
+import './Home.css'
 import React  from 'react';
 import { connect } from 'react-redux';
 import MiddleSearchBar from './MiddleSearchBar/MiddleSearchBar.js';
@@ -14,17 +15,17 @@ const Home = ({STORE_PRODUCTS}) =>{
           <>
             {STORE_PRODUCTS.product
               ?(
-               <>
+               <div className='BackgroundHome'>
                 <BgVideo></BgVideo>
                 <MiddleSearchBar/>
                 <Container/> 
-                <MusicPlayer name="Not exactly" singer="Deadmau 5" cover={imagemau} music={deadmau}/>
-               </> 
+                <MusicPlayer  name="El azar" singer="Felipe Traina" cover={imagemau} music={deadmau}/>
+               </div> 
               ):(
-                <>
+                <div className='BackgroundHome'>
                 <MiddleSearchBar/>
                 <Container/>
-               </> 
+               </div> 
               )}
          </>
     )

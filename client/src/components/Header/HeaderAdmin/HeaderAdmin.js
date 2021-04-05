@@ -6,6 +6,7 @@ import {fetchUser} from '../../../stores/user/user.actions';
 import Logo from '../../../assets/images/icon-logo.png'
 import flagEN from "../../../assets/images/estados-unidos.png";
 import flagSP from "../../../assets/images/espana.png"
+import menu from "../HeaderHome/menu.png"
 //Route
 import {Link} from 'react-router-dom'
 //Internationalization
@@ -50,7 +51,7 @@ const HeaderHome = ({t,fetchUserEffect, STORE_CART, STORE_USER}) =>{
                     <div
                     onClick={handleDropDown}
                     className='--header-home-dropdown'>
-                      Menu <i className="fas fa-sort-down"></i>
+                      <img src={menu} alt='menu' />
                     </div>
 
                 </ul>
@@ -115,7 +116,6 @@ const HeaderHome = ({t,fetchUserEffect, STORE_CART, STORE_USER}) =>{
           <div className={dropDown ? "--header-home-dropdown-menu" : "--header-home-dropdown-menu-hidden"}>
              <div className="--header-home-dropdown-menu-box">
               <Link className='--header-home-link-dropdown' to='/catalog'><li>{t('headers.adminHeader.catalog')}</li></Link>
-              <Link className='--header-home-link-dropdown' to='/catalog'><li>{t('headers.adminHeader.oferts')}</li></Link>
               <Link className='--header-home-link-dropdown' to='/catalog'><li>{t('headers.adminHeader.ranking')}</li></Link>
              </div>
           </div>
