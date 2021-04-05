@@ -78,9 +78,11 @@ const CheckoutForm = ({ price, cart, userReducer, store_orders, action }) => {
         setLoading(true);
 
         if (!error) {
+
             console.log(paymentMethod)
             const { id } = paymentMethod;
             console.log(id)
+
             try {
                 const { data } = await axios.post(
                     `${serverUrl}/api/checkout`,
@@ -89,27 +91,30 @@ const CheckoutForm = ({ price, cart, userReducer, store_orders, action }) => {
                         amount: price * 100, //cents
                     }
                 );
-                console.log(data);
-                console.log(input);
-                let products = cart.map(prod => prod.product.name).join(", ")
 
+                let products = cart.map(prod => prod.product.name).join(", ")
+                console.log(userReducer)
+                const userId = userReducer.user.data.user.id;
+                const userForms = await axios.get(`${serverUrl}/infouser`)
+                const userForm = userForms.data.filter(user => user.userId === userId)
                 let emailData = {
-                    name: input.name,
                     email: input.email,
                     id: store_orders[store_orders.length - 1].id,
                     price: userReducer.totalPrice,
                     products: products,
-                    fname: 'lalalala',
-                    lname: 'lalalala',
-                    country: 'lalalala',
-                    city: 'lalalala',
-                    adress: 'lalalala',
-                    zipcode: 'lalalala'
+                    date: input.date,
+                    fname: userForm[userForm.length - 1].firstName,
+                    lname: userForm[userForm.length - 1].lastName,
+                    country: userForm[userForm.length - 1].country,
+                    city: userForm[userForm.length - 1].city,
+                    address: userForm[userForm.length - 1].address,
+                    zipcode: userForm[userForm.length - 1].zipCode
                 }
+                console.log(userId)
                 console.log(emailData)
                 if (data.message === 'Successful Payment') {
                     // send email
-                    emailjs.send('service_wh6ybz2', 'template_jhy0w4e', emailData, 'user_TgPSia94H5R5iet7h197p')
+                    emailjs.send('service_b9mqvzg', 'template_lw3aj8d', emailData, 'user_G41cbN7fW7VHqXdcmtBXT')
                         .then((result) => {
                             console.log(result.text);
                         }, (error) => {
@@ -129,6 +134,7 @@ const CheckoutForm = ({ price, cart, userReducer, store_orders, action }) => {
                     //         window.location.assign("./")
                     //     },2000)
                     // })
+
                 }else if (data.message !== 'Successful Payment'){
                     console.log("RAZON:",data.message);
                     axios.put(`${serverUrl}/order/${emailData.id}`, { orderStatus: "complete" })
