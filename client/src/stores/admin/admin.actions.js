@@ -40,6 +40,12 @@ export const DELETE_CATEGORY_FAILURE = "DELETE_CATEGORY_FAILURE";
 export const GET_ALL_USERS_REQUEST = "GET_ALL_USERS_REQUEST";
 export const GET_ALL_USERS_SUCCESS = "GET_ALL_USERS_SUCCESS";
 export const GET_ALL_USERS_FAILURE = "GET_ALL_USERS_FAILURE";
+
+//FETCH ALL USERS FROM THE SERVER WITH THUNK
+export const GET_ALL_OFERTS_REQUEST = "GET_ALL_OFERTS_REQUEST";
+export const GET_ALL_OFERTS_SUCCESS = "GET_ALL_OFERTS_SUCCESS";
+export const GET_ALL_OFERTS_FAILURE = "GET_ALL_OFERTS_FAILURE";
+
 //fetch all orders
 export const GET_ALL_ORDERS = "GET_ALL_ORDERS";
 //delete order by id
@@ -332,6 +338,40 @@ export const deleteCategorySuccess = () => {
 export const deleteCategoryFailure = (error) => {
     return {
         type: DELETE_CATEGORY_FAILURE,
+        payload: error
+    }
+}
+
+//ADMIN DashBoar
+
+export const fetchAllOferts = () => {
+
+    return (dispatch) => {
+        dispatch(fetchAllOfertsRequest())
+        axios.get(`${serverUrl}/oferts/`)
+            .then(oferts => {
+                dispatch(fetchAllOfertsSuccess(oferts.data))
+            })
+            .catch(error => {
+                dispatch(fetchAllOfertsFailure(error))
+            })
+    }
+}
+
+export const fetchAllOfertsRequest = () => {
+    return {
+        type: GET_ALL_OFERTS_REQUEST,
+    }
+}
+export const fetchAllOfertsSuccess = (oferts) => {
+    return {
+        type: GET_ALL_OFERTS_SUCCESS,
+        payload: oferts
+    }
+}
+export const fetchAllOfertsFailure = (error) => {
+    return {
+        type: GET_ALL_OFERTS_FAILURE,
         payload: error
     }
 }
