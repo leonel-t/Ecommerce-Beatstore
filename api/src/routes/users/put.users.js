@@ -32,11 +32,13 @@ server.put('/',(req, res, next) => {
 
 server.put('/update/feli',(req, res, next) => {
 
+
+
   let user = {
     id: req.body.id,
     name: req.body.name,
     email: req.body.email,
-    image: req.files[0] ? req.files[0].filename : "default.jpg"
+    image: req.files[0] ? req.files[0].filename : req.body.files
   }
   usersControler.editUserProfile(user).then((user)=>{
       res.status(200).json(user)

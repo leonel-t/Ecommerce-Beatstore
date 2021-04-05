@@ -6,6 +6,7 @@ import { getDiscountCoupon } from '../../../stores/user/user.actions';
 //Internationalization
 import { withTranslation } from 'react-i18next';
 import { useHistory } from "react-router-dom"
+import swal from "sweetalert";
 
 const SummaryCard = ({ t, getDiscountCouponEffect, STORE_USER, subtotal, total, discount }) => {
     const history = useHistory()
@@ -48,7 +49,19 @@ const SummaryCard = ({ t, getDiscountCouponEffect, STORE_USER, subtotal, total, 
                 <span>{t("page.cart.total")}</span>
                 <span>${total}</span>
             </div>
-            <button onClick={() => history.push("/checkout")} className="--SummaryCard-buttonout">{t("page.cart.checkout")}</button>
+            { user && user.id
+                ?(
+                <button onClick={() => history.push("/checkout")} className="--SummaryCard-buttonout">{t("page.cart.checkout")}</button>
+                ):(
+                <button onClick={() => {
+                    return swal('To complete checkout you must login or create an account')
+                        .then(setTimeout(() => {
+                          history.push("/login")     
+                        },1000))
+                    
+                }} className="--SummaryCard-buttonout">{t("page.cart.checkout")}</button>
+                )
+            }
         </div>
     )
 }

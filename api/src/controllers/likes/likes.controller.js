@@ -22,7 +22,22 @@ newCreateLike: async (idProduct,like, author, idUser) => {
 getLikes: async () => {
   return await Likes.findAll().then((likes) => likes);
 },
-
+getLikesByUserId: async (userID) => {
+    return await Likes.findAll({
+      where: {
+        idUser: userID
+      },
+      include: [
+        {
+          model: Product,
+          as:"products"
+        },
+        
+      ],
+  
+    
+  }).then((likes) => likes);
+},
 //LIKES BY ID
 getLikeById: async (idLikes) => {
   return await Likes.findByPk(idLikes).then((likes) => likes);

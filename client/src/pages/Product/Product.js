@@ -53,7 +53,7 @@ const Product = ({ relatedArtist, STORE_USER, ProductsByCategories, postCommentE
               <BeatComponent product={STORE_PRODUCT.product} />
             </div>
             <div className="product--main-col">
-             <BeatCommentsInputComponent action={postCommentEffect} product={STORE_PRODUCT.product.id} />
+             <BeatCommentsInputComponent action={postCommentEffect} product={STORE_PRODUCT.product.id}  STORE_USER={STORE_USER} />
             </div>
 
               <div className="product--main-col">
