@@ -49,30 +49,40 @@ const Wrapper = ({fetchAllProductsEffect,  PRODUCTS}) =>{
             ):(
                 <>
                 {PRODUCTS && PRODUCTS.length > 0
-                    ?(
-                        <div 
-                        {...bind()}
-                        className="wrapper">
-                            {
-                                PRODUCTS.map((product, index)=>{
-                                    let bg = `${serverUrl}/images/${product.image}`
-                                    return (
-                                    <animated.div 
-                                    key={index}
-                                    onClick={()=> handleClick(product.id)}
-                                    style={ {
-                                        ...styles,
-                                        cursor:`pointer`,
-                                        backgroundImage:`url(${bg})`}
-                                     }
-                                    className="item"> 
-                                      
-                                      
-                                    </animated.div>
-                                    )
-                                })
-                            }
+                    ?(  
+                        <div className='allWrapper'>
+                            <div 
+                            {...bind()}
+                            className="wrapper">
+                                {
+                                    PRODUCTS.map((product, index)=>{
+                                        let bg = `${serverUrl}/images/${product.image}`
+                                        return (
+                                        <animated.div 
+                                        key={index}
+                                        onClick={()=> handleClick(product.id)}
+                                        style={ {
+                                            ...styles,
+                                            cursor:`pointer`,
+                                            backgroundImage:`url(${bg})`,
+                                            }}
+                                        className="item"> 
+                                        <div className='--item-detail'>
+                                            <div className='--item-texto'>
+                                                <p><strong>Name:</strong> {product.name.slice(0,20)}...</p>  
+                                                <p>{product.description.slice(0,25)}...</p>
+                                                <p><strong>Artist:</strong> {product.artist}</p>   
+                                            </div>
+                                        </div>
+                                        
+                                        
+                                        </animated.div>
+                                        )
+                                    })
+                                }
+                            </div>
                         </div>
+                        
                     ):(
                         <div className="load">
                     

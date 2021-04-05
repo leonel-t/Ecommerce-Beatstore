@@ -6,6 +6,7 @@ import { useDispatch } from 'react-redux';
 import { searchProducts } from '../../../stores/products/products.actions';
 //Image import
 import Logo from '../../../assets/images/icon-logo.png'
+import menu from "../HeaderHome/menu.png"
 //Route
 import { Link } from 'react-router-dom'
 import { useHistory } from "react-router-dom"
@@ -27,6 +28,10 @@ const HeaderPages = ({t,fetchUserEffect, STORE_CART, STORE_USER}) =>{
 
     // })
     const [name, setName] = useState("");
+    const [dropDown, setDropDown] = useState(false)
+    const handleDropDown = ()=>{
+      dropDown ? setDropDown(false) : setDropDown(true)
+    }
 
       const dispatch = useDispatch();
       const history = useHistory();
@@ -57,7 +62,7 @@ const HeaderPages = ({t,fetchUserEffect, STORE_CART, STORE_USER}) =>{
             <Link  to='/'><img src={Logo} alt="BeatShop"></img></Link>
             <Link className='--header-h1-link' to='/'><h1>BeatStore</h1></Link>   
             </div>
-            <div className="--header-home-menu">
+            <div className="--header-home-menu-page">
             <form onSubmit={handleSubmit}>
                     <div className="--header-page-div">
                         <input onChange={handleChange} 
@@ -67,6 +72,11 @@ const HeaderPages = ({t,fetchUserEffect, STORE_CART, STORE_USER}) =>{
                         />
                     </div>
                 </form>
+                <div
+                    onClick={handleDropDown}
+                    className='--header-home-dropdown'>
+                      <img src={menu} alt='menu' />
+                    </div>
             </div>           
             <div className="--header-home-perfil">
             {STORE_USER.user && STORE_USER.user.data
@@ -84,8 +94,16 @@ const HeaderPages = ({t,fetchUserEffect, STORE_CART, STORE_USER}) =>{
                           ):(
                             <p></p>
                           )} 
-                         <Link className='--header-account-link' to='/profile'>  <span className="material-icons --user-img"> account_circle </span></Link>
-                            <div className="--header-home-cart">
+                          <div className="--header-home-cart">
+                            {STORE_USER.user.data.user.image ?(
+                              <span className="--user-imgProfile"> <img src={`http://localhost:3001/images/${STORE_USER.user.data.user.image}`} alt='imageProfile'/>  </span>
+                            ):(
+                              <Link className='--header-account-link' to='/profile'>
+                                <span className="material-icons --user-img"> account_circle </span>
+                              </Link>
+                            )}
+                         
+                            
                             <Link to='/cart'><span className="material-icons --header-home-perfil-icon"> shopping_cart</span></Link>
                                 <span className="--header-home-cart-item-length">
                                   {STORE_CART && STORE_CART.length > 0
@@ -96,7 +114,7 @@ const HeaderPages = ({t,fetchUserEffect, STORE_CART, STORE_USER}) =>{
                                     )
                                    }
                                 </span>
-                        </div>     
+                        </div>  
                     </ul>
                ):(
                     <ul>
@@ -124,13 +142,24 @@ const HeaderPages = ({t,fetchUserEffect, STORE_CART, STORE_USER}) =>{
             </div>
         </div>
 
-          <div className="--header-home-dropdown-menu">
+          <div className={dropDown ? "--header-home-dropdown-menu" : "--header-home-dropdown-menu-hidden"}>
              <div className="--header-home-dropdown-menu-box">
               <Link className='--header-home-link-dropdown' to='/catalog'><li>{t('headers.headerPages.catalog')}</li></Link>
-              <Link className='--header-home-link-dropdown' to='/oferts'><li>{t('headers.headerPages.oferts')}</li></Link>
+              <Link className='--header-home-link-dropdown' to='/oferts'><li>{t('headers.adminHeader.oferts')}</li></Link>
               <Link className='--header-home-link-dropdown' to='/ranking'><li>{t('headers.headerPages.ranking')}</li></Link>
              </div>
           </div>
+          <div className="--header-home-menu-page-responsive">
+            <form onSubmit={handleSubmit}>
+                    <div className="--header-menu-page-div">
+                        <input onChange={handleChange} 
+                        name="name" autoComplete="off" 
+                        value={name} 
+                        placeholder={t('headers.headerPages.searchInput')}
+                        />
+                    </div>
+                </form>
+            </div>  
 
         </>
     )

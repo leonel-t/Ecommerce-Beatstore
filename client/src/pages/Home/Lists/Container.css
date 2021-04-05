@@ -12,68 +12,19 @@
 }
 .Container h1{
     color: antiquewhite;
-    padding-left: 15px;
+    font-family: 'Oxanium', 'cursive';
+    padding-left: 1em;
 }
 .Container h2{
     color: antiquewhite;
-    padding-left: 15px;
+    font-family: 'Oxanium', 'cursive';
+    padding-left: 1em;
 }
-
-#title1{
-    background-color: transparent;
-    color: white;
-    font-family:Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
-    font-size: 3rem;
-    font-weight: 400;
-    height: auto;
-    left: 175px;
-    letter-spacing: 0.00px;
-    line-height: 50px;
-    position: absolute;
-    text-align: left;
-}
-
-#title2{
-    background-color: transparent;
-    color: white;
-    font-family:Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
-    font-size: 3rem;
-    font-weight: 400;
-    height: auto;
-    left: 175px;
-    letter-spacing: 0.00px;
-    line-height: 50px;
-    position: absolute;
-    text-align: left;
-    top: 1400px;
-    width: 672px;
-}
-
-/* para 980px o menos */
-@media screen and (max-width:980px) {
-    .Container {
-        width: 980px;
-    }
-}
-
-/* para 700px o menos */
-@media screen and (max-width:700px) {
-    .Container {
-        width: 700px;
-    }
-
-}
-
-/* para 480px o menos */
-@media screen and (max-width:480px) {
-    .Container {
-        width: 480px;
-    }
-    #title1{
-    display: none;
-    }
-    
-    #title2{
-    display: none;
+@media(max-width:480px){
+    .Container h2{
+        text-align: center;
+        font-size: 1.3rem;
+        margin-top: 1em;
+        margin-bottom: 2em;
     }
 }
