@@ -6,5 +6,9 @@ module.exports = (sequelize) => {
         type: DataTypes.ENUM("none", "day", "week", "month", "season", "holiday"),
         defaultValue: "none"
       },
+    discount: {
+        type: DataTypes.DECIMAL,
+        defaultValue:0
+      },
   });
 }; 
