@@ -5,7 +5,7 @@ import UserCard from './UserCard.js'
 import AdminNav from '../../../pages/Admin/AdminNav/AdminNav';
 import "./adminListUser.css";
 
-const Admin = ({fetchAllUsersEffect,GET_ALL_USERS}) => {
+const Admin = ({fetchAllUsersEffect,GET_ALL_USERS, USER_STATE}) => {
   
     useEffect(()=>{
         fetchAllUsersEffect()
@@ -23,7 +23,7 @@ const Admin = ({fetchAllUsersEffect,GET_ALL_USERS}) => {
                 <>
                 {GET_ALL_USERS.map((user, index)=>{
                     return (
-                        <UserCard key={index} user={user}></UserCard>
+                        <UserCard key={index} user={user} action={fetchAllUsersEffect} admin={USER_STATE}></UserCard>
                     )
                 })}
                 </>
@@ -40,7 +40,8 @@ const Admin = ({fetchAllUsersEffect,GET_ALL_USERS}) => {
 
 const mapStateToProps = state => {
   return {
-    GET_ALL_USERS: state.adminReducers.users
+    GET_ALL_USERS: state.adminReducers.users,
+    USER_STATE: state.userReducers
   }
 }
 
