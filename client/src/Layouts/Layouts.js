@@ -7,6 +7,7 @@ import HeaderPages from '../components/Header/HeaderPages/HeaderPages';
 
 //Components Admin Subscriptions
 import AdminSubscriptionsNav from '../pages/AdminSubscriptions/AdminSubscriptionsNav/AdminSubscriptionsNav';
+import HeaderPrint from "../components/Header/HeaderPrint/HeaderPrint";
 
 
 const HomeLayout = ({ children }) => {
@@ -73,4 +74,15 @@ const LoginLayout = ({ children }) => {
     )
 };
 
-export { HomeLayout, PagesLayout, LoginLayout, AdminLayout, ProductLayout, AdminSubscriptionsLayout,ProfileLayout };
+const PrintLayout = ({ children }) => {
+    return (
+        <div>
+            <HeaderPrint/>
+            <div className="page-layout-main">
+                {children}
+            </div>
+        </div>
+    )
+};
+
+export { HomeLayout, PagesLayout, LoginLayout, AdminLayout, ProductLayout, AdminSubscriptionsLayout,ProfileLayout,PrintLayout };
