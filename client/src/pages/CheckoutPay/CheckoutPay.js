@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import './checkoutPay.css';
 import emailjs from 'emailjs-com';
 import { loadStripe } from "@stripe/stripe-js";
-import { fetchAllOrders } from '../../stores/admin/admin.actions';
+import { fetchAllOrders, getAllProductsRequest } from '../../stores/admin/admin.actions';
 // import { cleanCart } from '../../stores/user/user.actions';
 import {
     Elements,
@@ -21,7 +21,7 @@ import axios from "axios";
 import swal from "sweetalert";
 import {serverUrl} from '../../auxiliar/variables';
 
-const stripePromise = loadStripe("pk_test_51IacYXDloipSs6XKbHgrFYdB8siv2riOY2FoIz82WGXhlRkGRC5h37tWjeGLPjcZmvbJROADK3nfUblF8B6gwRKm001XPJ1lUM");
+const stripePromise = loadStripe("pk_test_51Icg9cADTx0pd3FBysK2HLURpyLXLZ6e76DqoGyHAqrIMmzN47GicTKI36JNV82th2uhIDkpRNUu8T0wYOzRai0q00tcTHA1VQ");
 
 function CheckoutPay({ totalPrice, cart, userReducer, store_orders, fetchAllOrders, action }) {
     useEffect(() => {
@@ -50,11 +50,15 @@ const CheckoutForm = ({ price, cart, userReducer, store_orders, action }) => {
     const stripe = useStripe();
     const elements = useElements();
 
+    const today = new Date(),
+    date = today.getFullYear() + '-' + (today.getMonth() + 1) + '-' + today.getDate();
+    console.log(today)
+
     const [loading, setLoading] = useState(false);
     const [input, setInput] = useState({
         name: "",
         email: "",
-
+        date: today
     })
 
     const handleInputChange = async (e) => {
@@ -94,11 +98,17 @@ const CheckoutForm = ({ price, cart, userReducer, store_orders, action }) => {
                     email: input.email,
                     id: store_orders[store_orders.length - 1].id,
                     price: userReducer.totalPrice,
-                    products: products
+                    products: products,
+                    fname: 'lalalala',
+                    lname: 'lalalala',
+                    country: 'lalalala',
+                    city: 'lalalala',
+                    adress: 'lalalala',
+                    zipcode: 'lalalala'
                 }
-
+                console.log(emailData)
                 if (data.message === 'Successful Payment') {
-                    //send email
+                    // send email
                     emailjs.send('service_wh6ybz2', 'template_jhy0w4e', emailData, 'user_TgPSia94H5R5iet7h197p')
                         .then((result) => {
                             console.log(result.text);
@@ -114,20 +124,20 @@ const CheckoutForm = ({ price, cart, userReducer, store_orders, action }) => {
                         userEmail: input.email,
                         total: userReducer.totalPrice
                     })
-                    .then(()=>{
-                        setTimeout(()=>{
-                            window.location.assign("./")
-                        },2000)
-                    })
+                    // .then(()=>{
+                    //     setTimeout(()=>{
+                    //         window.location.assign("./")
+                    //     },2000)
+                    // })
                 }else if (data.message !== 'Successful Payment'){
                     console.log("RAZON:",data.message);
                     axios.put(`${serverUrl}/order/${emailData.id}`, { orderStatus: "complete" })
 
-                        .then(() => {
-                            setTimeout(() => {
-                                window.location.assign("./")
-                            }, 2000)
-                        })
+                        // .then(() => {
+                        //     setTimeout(() => {
+                        //         window.location.assign("./")
+                        //     }, 2000)
+                        // })
                 }else{
                     console.log("RAZON:", data.message);
                     swal(data.message);
