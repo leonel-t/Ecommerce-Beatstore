@@ -28,7 +28,29 @@ export const CLEAN_CART = "CLEAN_CART";
 
 //orders by user${serverUrl}
 export const GET_ORDERS_BY_USER = "GET_ORDERS_BY_USER";
+//user likes
+export const GET_LIKES_BY_USER = "GET_LIKES_BY_USER";
 
+export const getLikesByUser = (userId) => {
+
+
+    return (dispatch) => {
+        axios.get(`${serverUrl}/likes/user/${userId}`)
+            .then(orders => {
+                   dispatch(likesByUser(orders.data))
+
+            })
+            .catch(error => {
+                console.log(error)
+            })
+    }
+}
+export const likesByUser = (orders) => {
+    return {
+        type: GET_LIKES_BY_USER,
+        payload: orders
+    };
+};
 export const getOrdersByUser = (userId) => {
 
 
