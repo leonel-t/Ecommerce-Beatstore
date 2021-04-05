@@ -12,6 +12,10 @@
     margin-top: 80px;
 
 }
+.--profileCard-user-button-edit{
+    text-decoration: none;
+    color: antiquewhite;
+}
 .--profileCard-user-img{
     width: 100%;    
     display: flex;
@@ -144,6 +148,9 @@
     font-size: 1em;
     outline: none;
 }
+.--profileCard-user-button-edit{
+    text-decoration: none;
+}
 .--profileCard-user-butons button:hover{
     background: linear-gradient(225deg, rgb(234, 50, 111), rgb(145, 27, 137));
 }
@@ -183,6 +190,9 @@
         height: 3em;
         font-size: 1rem;
     }
+    .--profileCard-user-button-edit{
+        text-decoration: none;
+    }
     .--profileCard-user-img img{
         width: 170px;
         height: 160px;
@@ -219,6 +229,9 @@
         border-radius: 50%;
         filter: contrast(1.3);
 
+    }
+    .--profileCard-user-button-edit{
+        text-decoration: none;
     }
     .--profileCard-user-info-name{
         padding-left: 0;

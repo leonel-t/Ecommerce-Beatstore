@@ -3,10 +3,12 @@ import './edituserprofile.scss';
 import {connect} from 'react-redux';
 import { withTranslation } from 'react-i18next';
 import {serverUrl} from "../../../../auxiliar/variables";
+import {useHistory} from "react-router-dom";
+
 import axios from "axios";
 
 const EditUserProfile = ({t,STORE_USER })=>{
-
+ const history = useHistory()
  const [photo, setPhoto] = useState("FIRST");
  const [upload, setUpload] = useState();
  const [name, setName] = useState();
@@ -35,9 +37,9 @@ const EditUserProfile = ({t,STORE_USER })=>{
         try {
             const form = new FormData();
                   form.append("id", user.id);
-                  form.append("name", name);
+                  form.append("name", name || user.name);
                   form.append("email", user.email);
-                  form.append("files", upload);
+                  form.append("files", upload || userStore.image);
       
             const options = {
               method: "PUT",
@@ -51,6 +53,7 @@ const EditUserProfile = ({t,STORE_USER })=>{
       
           await axios.request(options).then(function (response) {
                 console.log(response.data);
+                history.push("/profile")
             })
         }
         catch(e){
@@ -67,6 +70,9 @@ const EditUserProfile = ({t,STORE_USER })=>{
     const handleEmail = (e)=>{
         console.log(e.target.value);
         // setEmail(e.target.value);
+    };
+    const handleCansel = (e)=>{
+        history.push("/profile")
     };
 
     return (
@@ -95,6 +101,7 @@ const EditUserProfile = ({t,STORE_USER })=>{
                             }
                         </label>
                         <input
+                      
                         onChange={(e)=> handleImage(e)}
                         id="inp-file" name="inp-file" type="file"></input>
                     </div>
@@ -102,6 +109,7 @@ const EditUserProfile = ({t,STORE_USER })=>{
                 <div className="--edit-profile-main-input">
                     <label>Name</label>
                     <input
+                    className="--edit-profile-main-inputs"
                     placeholder={user.name}
                     onChange={(e)=> handleName(e)}
                     type="text"></input>
@@ -109,14 +117,19 @@ const EditUserProfile = ({t,STORE_USER })=>{
                 <div className="--edit-profile-main-input">
                     <label>Email</label>
                     <input 
+                      className="--edit-profile-main-inputs"
                     placeholder={user.email}
                     disabled
                     onChange={(e)=> handleEmail(e)}
                     type="text"></input>
                 </div>
                 <div className="--edit-profile-main-buttons">
-                    <button>Cancel</button>
                     <button
+                    onClick={handleCansel}
+                    className="--edit-profile-main-buttons-cancel"
+                    >Cancel</button>
+                    <button
+                    className="--edit-profile-main-buttons-save"
                     onClick={(e)=> handleUpdate(e)}
                     >Save</button>
                 </div>
