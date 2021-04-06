@@ -6,8 +6,10 @@ $complete-color:rgb(11, 141, 87);
 
 @mixin --order-widget-col($color) {
     display: flex;
+    flex-direction: column;
     width: 100%;
-    margin: 0.5em;
+    margin: 0.2em;
+    padding: 0.2em;
     background-color: $color;
     border-radius: 15px;
     min-height: 100px;
