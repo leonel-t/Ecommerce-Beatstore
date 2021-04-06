@@ -123,30 +123,26 @@ const CheckoutForm = ({ price, cart, userReducer, store_orders, action }) => {
 
                     action();
                   
-                    axios.put(`${serverUrl}/order/${emailData.id}`, {
+                    await axios.put(`${serverUrl}/order/${emailData.id}`, {
                         orderStatus: "complete",
                         userName: input.name,
                         userEmail: input.email,
                         total: userReducer.totalPrice
                     })
-                    // .then(()=>{
-                    //     setTimeout(()=>{
-                    //         window.location.assign("./")
-                    //     },2000)
-                    // })
+                    .then(()=>{
+                        setTimeout(()=>{
+                            window.location.assign("./")
+                        },2000)
+                    })
 
-                }else if (data.message !== 'Successful Payment'){
+                }else{
                     console.log("RAZON:",data.message);
-                    axios.put(`${serverUrl}/order/${emailData.id}`, { orderStatus: "complete" })
-
+                    swal(data.message);
                         // .then(() => {
                         //     setTimeout(() => {
                         //         window.location.assign("./")
                         //     }, 2000)
                         // })
-                }else{
-                    console.log("RAZON:", data.message);
-                    swal(data.message);
                 }
                 //clear input
                 elements.getElement(CardElement).clear();
