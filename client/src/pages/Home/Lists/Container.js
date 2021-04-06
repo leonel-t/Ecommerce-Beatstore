@@ -18,7 +18,7 @@ const Container = ({t, STORE_PRODUCTS}) => {
     return (
         <div className='Container'>
             <div className="top-divider"></div>
-            <h2>{t('page.home.sliders.2')}</h2>
+            <h1>{t('page.home.sliders.2')}</h1>
             {STORE_PRODUCTS && STORE_PRODUCTS.length > 0
                 ?( 
                     <ScrollBox>
@@ -43,7 +43,7 @@ const Container = ({t, STORE_PRODUCTS}) => {
                        )           
                 }
                 <h2>{t('page.home.sliders.3')}</h2>
-                <Wrapper/>
+                <Wrapper categoryName="beat"/>
                 <Suscriptions></Suscriptions>
                 <h2>{t('page.home.sliders.4')}</h2>
                 {STORE_PRODUCTS && STORE_PRODUCTS.length > 0
@@ -55,7 +55,7 @@ const Container = ({t, STORE_PRODUCTS}) => {
                     //         )
                     //    })}
                     // </ScrollBox>
-                    <Wrapper/>
+                    <Wrapper categoryName="Blues"/>
                     ):(
                         <p>{t("page.home.sliders.noBeats")}</p>
                         )
@@ -70,7 +70,7 @@ const Container = ({t, STORE_PRODUCTS}) => {
                     //         )
                     //    })}
                     // </ScrollBox>
-                    <Wrapper/>
+                    <Wrapper categoryName="rock"/>
                     ):(
                         <p>{t("page.home.sliders.noBeats")}</p>
                         )
@@ -87,13 +87,13 @@ const Container = ({t, STORE_PRODUCTS}) => {
                     //         )
                     //    })}
                     // </ScrollBox>
-                    <Wrapper/>
+                    <Wrapper categoryName="Dance"/>
                     ):(
                         <p>{t("page.home.sliders.noBeats")}</p>
                         )
                
                 }
-                <h2>MAS LIKEADOS BABY</h2>
+                <h2>{t("page.home.sliders.7")}</h2>
                 {STORE_PRODUCTS && STORE_PRODUCTS.length > 0
                     ?( 
                     // <ScrollBox>
@@ -103,14 +103,14 @@ const Container = ({t, STORE_PRODUCTS}) => {
                     //         )
                     //    })}
                     // </ScrollBox>
-                    <Wrapper/>
+                    <Wrapper categoryName="house"/>
                     ):(
                         <p>{t("page.home.sliders.noBeats")}</p>
                         )
                
                 }
-                <h1>{t('page.home.sliders.1')}</h1>
-                <Wrapper/>
+                <h2>{t('page.home.sliders.1')}</h2>
+                <Wrapper categoryName="all"/>
                 
                 <AdsBanner></AdsBanner>
                 <div className="divider"></div>

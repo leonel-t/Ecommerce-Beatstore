@@ -16,18 +16,25 @@ function ColorCard({ product }) {
     }
   }
 
+
   return (
     <>
     {product && product.artist
       ?(
-        <div onMouseOver={()=>audio.play()} onMouseOut={()=>{
+        <div onMouseOver={()=>{
+          audio.play()
+          setTimeout(()=>{ 
+            return audio.pause()
+            },5000)}
+          }
+          onMouseOut={()=>{
           audio.pause()
           audio.currentTime=0}} 
           className="color-card" 
           style={{ background:`url(${serverUrl}/images/${product.image})`, 
           backgroundRepeat:"no-repeat", 
           backgroundSize:"100% 100%"}}>
-            
+
           <div className="color-card__code" onClick={handleColorCopy}>
             {product.name.slice(0,16).toLowerCase()}
           </div>

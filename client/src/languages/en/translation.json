@@ -46,13 +46,13 @@
       "home":{
         "MiddleSearchBar":"Search",
         "sliders":{
-          "1":"Best Beats",
+          "1":"All beats",
           "2":"The most views ones",
-          "3":"Best Hi-Fi Beats",
-          "4":"Blues Top Beats",
-          "5":"Rap & Trap Top Beats ",
-          "6":"The Best Of Rock & Roll",
-          "7":"Alternative Beats",
+          "3":"Beat Beat",
+          "4":"Smug Blues",
+          "5":"The most of Rock",
+          "6":"Don't stop the music Dance",
+          "7":"Shuffle House",
           "noBeats":"No Beats"
         }, 
         "subscriptions":{
