@@ -18,23 +18,32 @@ const Container = ({t, STORE_PRODUCTS}) => {
     return (
         <div className='Container'>
             <div className="top-divider"></div>
-            <h2>{t('page.home.sliders.2')}</h2>
+            <h1>{t('page.home.sliders.2')}</h1>
             {STORE_PRODUCTS && STORE_PRODUCTS.length > 0
                 ?( 
-                    // <ScrollBox>
-                    //    { STORE_PRODUCTS.map((product, index) => {
-                    //        return (
-                    //         <ColorCard product={product} key={index} />
-                    //         )
-                    //    })}
-                    // </ScrollBox>
-                    <Wrapper/>
+                    <ScrollBox>
+                        {STORE_PRODUCTS.sort(function (a, b) {
+                            if (a.reproductions < b.reproductions) {
+                                return 1;
+                            }
+                            if (a.reproductions > b.reproductions) {
+                                return -1;
+                            }
+                            // a must be equal to b
+                            return 0;
+                            }).map((product, index)=>{
+                           return (
+                            <ColorCard product={product} key={index} />
+                            )
+                       })}
+                    </ScrollBox>
+                    // <Wrapper/>
                     ):(
                         <p>{t("page.home.sliders.noBeats")}</p>
                        )           
                 }
                 <h2>{t('page.home.sliders.3')}</h2>
-                <Wrapper/>
+                <Wrapper categoryName="beat"/>
                 <Suscriptions></Suscriptions>
                 <h2>{t('page.home.sliders.4')}</h2>
                 {STORE_PRODUCTS && STORE_PRODUCTS.length > 0
@@ -46,7 +55,7 @@ const Container = ({t, STORE_PRODUCTS}) => {
                     //         )
                     //    })}
                     // </ScrollBox>
-                    <Wrapper/>
+                    <Wrapper categoryName="Blues"/>
                     ):(
                         <p>{t("page.home.sliders.noBeats")}</p>
                         )
@@ -61,12 +70,13 @@ const Container = ({t, STORE_PRODUCTS}) => {
                     //         )
                     //    })}
                     // </ScrollBox>
-                    <Wrapper/>
+                    <Wrapper categoryName="rock"/>
                     ):(
                         <p>{t("page.home.sliders.noBeats")}</p>
                         )
                
                 }
+                <Newsletter></Newsletter>
                 <h2>{t("page.home.sliders.6")}</h2>
                 {STORE_PRODUCTS && STORE_PRODUCTS.length > 0
                     ?( 
@@ -77,13 +87,13 @@ const Container = ({t, STORE_PRODUCTS}) => {
                     //         )
                     //    })}
                     // </ScrollBox>
-                    <Wrapper/>
+                    <Wrapper categoryName="Dance"/>
                     ):(
                         <p>{t("page.home.sliders.noBeats")}</p>
                         )
                
                 }
-                <h2>MAS LIKEADOS BABY</h2>
+                <h2>{t("page.home.sliders.7")}</h2>
                 {STORE_PRODUCTS && STORE_PRODUCTS.length > 0
                     ?( 
                     // <ScrollBox>
@@ -93,17 +103,39 @@ const Container = ({t, STORE_PRODUCTS}) => {
                     //         )
                     //    })}
                     // </ScrollBox>
-                    <Wrapper/>
+                    <Wrapper categoryName="house"/>
                     ):(
                         <p>{t("page.home.sliders.noBeats")}</p>
                         )
                
                 }
-                <h1>{t('page.home.sliders.1')}</h1>
-                <Wrapper/>
-                <Newsletter></Newsletter>
+                <h2>{t('page.home.sliders.1')}</h2>
+                <Wrapper categoryName="all"/>
+                
                 <AdsBanner></AdsBanner>
-                <div className="divider"></div>
+                {STORE_PRODUCTS && STORE_PRODUCTS.length > 0
+                ?( 
+                    <ScrollBox>
+                        {STORE_PRODUCTS.sort(function (a, b) {
+                            if (a.reproductions < b.reproductions) {
+                                return 1;
+                            }
+                            if (a.reproductions > b.reproductions) {
+                                return -1;
+                            }
+                            // a must be equal to b
+                            return 0;
+                            }).map((product, index)=>{
+                           return (
+                            <ColorCard product={product} key={index} />
+                            )
+                       })}
+                    </ScrollBox>
+                    // <Wrapper/>
+                    ):(
+                        <p>{t("page.home.sliders.noBeats")}</p>
+                       )           
+                }
         </div>
         )
 }

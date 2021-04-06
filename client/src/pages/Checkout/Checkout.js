@@ -28,6 +28,7 @@ const Checkout = () => {
                     setBilling(false)
                     setPayout(false)
                     setDone(true)
+                    
                     break
             default:
                 break

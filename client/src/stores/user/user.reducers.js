@@ -21,7 +21,10 @@ import {
     GET_LIKES_BY_USER,
     GET_USER_ID_REQUEST,
     GET_USER_ID_SUCCESS,
-    GET_USER_ID_FAILURE
+    GET_USER_ID_FAILURE,
+    GET_ORDER_CHECKOUT_REQUEST,
+    GET_ORDER_CHECKOUT_SUCCESS,
+    GET_ORDER_CHECKOUT_FAILURE,
 
 } from './user.actions';
 
@@ -44,7 +47,10 @@ let initialState = {
     userLikes:[],
     userPublic:[],
     userPublicLoading:true,
-    userPublicError:""
+    userPublicError:"",
+    orderCheckout:{},
+    orderCheckoutLoading:true,
+    orderCheckoutError:"",
 }
 
 const userReducers = (state = initialState, action) => {
@@ -65,6 +71,23 @@ const userReducers = (state = initialState, action) => {
                 ...state,
                 userPublicLoading: false,
                 userPublicError: action.payload
+            }
+        case GET_ORDER_CHECKOUT_REQUEST:
+            return {
+                ...state,
+                orderCheckoutLoading: true
+            }
+        case GET_ORDER_CHECKOUT_SUCCESS:
+            return {
+                ...state,
+                orderCheckoutLoading: false,
+                orderCheckout: action.payload
+            }
+        case GET_ORDER_CHECKOUT_FAILURE:
+            return {
+                ...state,
+                orderCheckoutLoading: false,
+                orderCheckoutError: action.payload
             }
         case GET_LIKES_BY_USER:
             return {
