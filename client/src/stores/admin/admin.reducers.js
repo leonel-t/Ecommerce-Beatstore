@@ -25,7 +25,9 @@ import {
   GET_ALL_USERS_REQUEST,
   GET_ALL_USERS_SUCCESS,
   GET_ALL_USERS_FAILURE,
-  GET_ALL_ORDERS,
+  GET_ALL_ORDERS_REQUEST,
+  GET_ALL_ORDERS_SUCCESS,
+  GET_ALL_ORDERS_FAILURE,
   DELETE_ORDER_BY_ID,
   FILTER_ORDER_BY_STATUS,
   GET_ALL_OFERTS_REQUEST,
@@ -54,7 +56,9 @@ let initialState = {
   users: [],
   usersLoading: true,
   usersError: "",
+  ordersLoading:true,
   orders: [],
+  ordersError:"",
   ordersFiltered: [],
   oferts: [],
   ofertsLoading: true,
@@ -92,13 +96,25 @@ const adminReducers = (state = initialState, action) => {
       return {
         ...state
       }
-    case GET_ALL_ORDERS:
+    case GET_ALL_ORDERS_REQUEST:
+        return {
+          ...state,
+          ordersLoading: true,
+        };
+    case GET_ALL_ORDERS_SUCCESS:
       return {
         ...state,
+        ordersLoading:false,
         orders: action.payload,
         ordersFiltered: action.payload
 
       }
+      case GET_ALL_ORDERS_FAILURE:
+        return {
+          ...state,
+          ordersError: "error 404",
+          ordersLoading: false,
+        };
     case GET_ALL_USERS_REQUEST:
       return {
         ...state,

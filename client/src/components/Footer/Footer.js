@@ -1,13 +1,13 @@
 import React from 'react';
 import "./Footer.scss";
 
-import FacebookIcon from "../../assets/images/social-icons/facebook.png";
+//import FacebookIcon from "../../assets/images/social-icons/facebook.png";
 import TwitterIcon from "../../assets/images/social-icons/gorjeo.png";
-import YoutubeIcon from "../../assets/images/social-icons/youtube.png";
-import TikTokIcon from "../../assets/images/social-icons/tik-tok.png";
-import InstagramIcon from "../../assets/images/social-icons/instagram.png";
+//import YoutubeIcon from "../../assets/images/social-icons/youtube.png";
+//import TikTokIcon from "../../assets/images/social-icons/tik-tok.png";
+//import InstagramIcon from "../../assets/images/social-icons/instagram.png";
 import LinkedinIcon from "../../assets/images/social-icons/linkedin.png";
-import TwitchIcon from "../../assets/images/social-icons/twitch.png";
+//import TwitchIcon from "../../assets/images/social-icons/twitch.png";
 import WhatsappIcon from "../../assets/images/social-icons/whatsapp.png";
 
 //Nosotros
@@ -19,7 +19,10 @@ import LucasIcon from "../../assets/images/nosotros/lucas.png";
 import FeliIcon from "../../assets/images/nosotros/feli.jpeg";
 
 //waves
-import Waves from "../../assets/images/nosotros/wave.svg"
+import Waves from "../../assets/images/nosotros/wave.svg";
+
+//Henry Logo
+import Henry from "../../assets/images/henry.png";
 
 const Footer = () =>{
 
@@ -159,6 +162,14 @@ const Footer = () =>{
         </div>
         <div className="waves">
           <img width="100%" src={Waves} alt="waves"></img>
+        </div>
+        <div className="henry-footer">
+         <div>
+          <h6>Henry E-commers Proyect 06/04/2021</h6>
+         </div>
+         <div>
+          <img width="150px" src={Henry} alt="waves"></img>
+         </div>
         </div>
         </>
     )

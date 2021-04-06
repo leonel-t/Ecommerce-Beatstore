@@ -113,7 +113,29 @@ const Container = ({t, STORE_PRODUCTS}) => {
                 <Wrapper categoryName="all"/>
                 
                 <AdsBanner></AdsBanner>
-                <div className="divider"></div>
+                {STORE_PRODUCTS && STORE_PRODUCTS.length > 0
+                ?( 
+                    <ScrollBox>
+                        {STORE_PRODUCTS.sort(function (a, b) {
+                            if (a.reproductions < b.reproductions) {
+                                return 1;
+                            }
+                            if (a.reproductions > b.reproductions) {
+                                return -1;
+                            }
+                            // a must be equal to b
+                            return 0;
+                            }).map((product, index)=>{
+                           return (
+                            <ColorCard product={product} key={index} />
+                            )
+                       })}
+                    </ScrollBox>
+                    // <Wrapper/>
+                    ):(
+                        <p>{t("page.home.sliders.noBeats")}</p>
+                       )           
+                }
         </div>
         )
 }
