@@ -4,6 +4,10 @@ import {connect} from "react-redux";
 import { withTranslation } from 'react-i18next';
 import AdminNav from '../../pages/Admin/AdminNav/AdminNav';
 
+//components
+import OrderWidget from "./AdminDashboard/OrdersWidget/OrdersWidget";
+import ProductsWidget from "./AdminDashboard/ProductsWidget/ProductsWidget";
+
 const Admin = ({t, STORE_USER}) => {
    //USER IDENTIFICATION FOR REDUCER #############################################
    let userStore =
@@ -23,9 +27,10 @@ const Admin = ({t, STORE_USER}) => {
     {user && user.rol === "admin"
       ?(
     <main className="--admin--main-panel">
-      <AdminNav></AdminNav>
-            <h1>{t("page.admin.title")}</h1>
-        </main>
+      <AdminNav/>
+      <OrderWidget/>
+      <ProductsWidget/>
+    </main>
       ):(
         <div className="--admin--main-panel" >
           <h1>Acceso Denegado Only Admin Can Be See This Page</h1>
