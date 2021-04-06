@@ -89,15 +89,18 @@ const HeaderPages = ({t,fetchUserEffect, STORE_CART, STORE_USER}) =>{
                          {shortenText(STORE_USER.user.data.user.name) || STORE_USER.user.data.user.email}
                          </Link>
                          </li>
-                         {STORE_USER.user && STORE_USER.user.data.user && STORE_USER.user.data.user.rol === 'admin' ?(
-                            <Link className='--header-home-link-admin' to="/admin"><span className="material-icons icon-admin-user">admin_panel_settings</span>   </Link>               
-                          ):(
-                            <p></p>
-                          )} 
+
                           <div className="--header-home-cart">
                             {STORE_USER.user.data.user.image ?(
+                              <>
                               <span className="--user-imgProfile"> <img src={`http://localhost:3001/images/${STORE_USER.user.data.user.image}`} alt='imageProfile'/>  </span>
-                            ):(
+                              {STORE_USER.user && STORE_USER.user.data.user && STORE_USER.user.data.user.rol === 'admin' ?(
+                                <Link className='--header-home-link-admin' to="/admin"><span className="material-icons icon-admin-user">admin_panel_settings</span>   </Link>               
+                              ):(
+                                <p></p>
+                              )} 
+                              </>
+                              ):(
                               <Link className='--header-account-link' to='/profile'>
                                 <span className="material-icons --user-img"> account_circle </span>
                               </Link>
