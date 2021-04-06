@@ -18,7 +18,10 @@ import {
     GET_USER_INBOX_SUCCESS,
     GET_USER_INBOX_FAILURE,
     CLEAN_CART,
-    GET_LIKES_BY_USER
+    GET_LIKES_BY_USER,
+    GET_USER_ID_REQUEST,
+    GET_USER_ID_SUCCESS,
+    GET_USER_ID_FAILURE
 
 } from './user.actions';
 
@@ -38,11 +41,31 @@ let initialState = {
     userInBox: [],
     userInBoxLoading: true,
     userInBoxError: "",
-    userLikes:[]
+    userLikes:[],
+    userPublic:[],
+    userPublicLoading:true,
+    userPublicError:""
 }
 
 const userReducers = (state = initialState, action) => {
     switch (action.type) {
+        case GET_USER_ID_REQUEST:
+            return {
+                ...state,
+                userPublicLoading: true
+            }
+        case GET_USER_ID_SUCCESS:
+            return {
+                ...state,
+                userPublicLoading: false,
+                userPublic: action.payload
+            }
+        case GET_USER_ID_FAILURE:
+            return {
+                ...state,
+                userPublicLoading: false,
+                userPublicError: action.payload
+            }
         case GET_LIKES_BY_USER:
             return {
                 ...state,
