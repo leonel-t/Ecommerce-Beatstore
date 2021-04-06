@@ -21,6 +21,7 @@ let initialState = {
     product: {},
     searchResults: [],
     Loading: true,
+    likeLoading: true,
     Error: '',
     LoadingComment: false,
     productCategories: [],
@@ -78,19 +79,22 @@ const productsReducers = (state = initialState, action) => {
         case GET_ONE_PRODUCT_REQUEST:
             return {
                 ...state,
-                Loading: true
+                Loading: true,
+                likeLoading:true
             }
         case GET_ONE_PRODUCT_SUCCESS:
             return {
                 ...state,
                 Loading: false,
+                likeLoading:false,
                 product: action.payload
             }
         case GET_ONE_PRODUCT_FAILURE:
             return {
                 ...state,
                 Error: 'error 404',
-                Loading: false
+                Loading: false,
+                likeLoading:false
             }
         case SEARCH_PRODUCT_REQUEST:
             return {

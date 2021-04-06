@@ -75,13 +75,8 @@
         width: 98%;
     }
 }
-
-@media(max-width: 787px){
-    .catalog--main-col-menu-box{
-        margin-top: 10em;
+@media(max-width:480px){
+    .catalog--main{
+    margin-top: 9em;
     }
-    .catalog--main-col{
-        margin-top: 10em;
-    }
-
 }

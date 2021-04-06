@@ -1,11 +1,13 @@
-.--Cart {
-    margin-top: 100px;
+.--Cart-categorie {
+    margin-top: 10px;
     margin-bottom: 100px;
     display: flex;
     flex-direction: row;
     flex-wrap: wrap;
     justify-content: space-around;
 }
+
+
 
 .--Cart-items {
     display: flex;

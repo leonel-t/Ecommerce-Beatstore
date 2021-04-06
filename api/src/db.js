@@ -51,7 +51,8 @@ const {
   Review,
   InformationUser,
   Likes,
-  Messages
+  Messages,
+  Oferts
 } = sequelize.models;
 
 // PRODUCTS CATEGORIES
@@ -78,6 +79,10 @@ OrderLine.belongsTo(Order);
 // USERS MESSAGES
 User.belongsToMany(Messages, { through: 'User_Messages', as: 'messages' });
 Messages.belongsToMany(User, { through: 'User_Messages', as: 'users' });
+
+// USERS MESSAGES
+Product.belongsToMany(Oferts, { through: 'Product_Oferts', as: 'oferts' });
+Oferts.belongsToMany(Product, { through: 'Product_Oferts', as: 'products' });
 
 //USER INFORMATIONUSER
 User.hasOne(InformationUser, { foreignKey: "userId" });

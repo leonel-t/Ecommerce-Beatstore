@@ -8,8 +8,10 @@ import ScrollBox from '../ScrollBox/ScrollBox';
 //COMPONENTS
 import Suscriptions from '../../../components/Home/Suscriptions/Suscriptions';
 import AdsBanner from '../../../components/Home/AdsBanner/AdsBanner';
+import Newsletter from '../../../components/Home/Newsletter/Newsletter';
 //Internationalization
 import { withTranslation } from 'react-i18next';
+
 
 const Container = ({t, STORE_PRODUCTS}) => {
 
@@ -19,13 +21,14 @@ const Container = ({t, STORE_PRODUCTS}) => {
             <h2>{t('page.home.sliders.2')}</h2>
             {STORE_PRODUCTS && STORE_PRODUCTS.length > 0
                 ?( 
-                    <ScrollBox>
-                       { STORE_PRODUCTS.map((product, index) => {
-                           return (
-                            <ColorCard product={product} key={index} />
-                            )
-                       })}
-                    </ScrollBox>
+                    // <ScrollBox>
+                    //    { STORE_PRODUCTS.map((product, index) => {
+                    //        return (
+                    //         <ColorCard product={product} key={index} />
+                    //         )
+                    //    })}
+                    // </ScrollBox>
+                    <Wrapper/>
                     ):(
                         <p>{t("page.home.sliders.noBeats")}</p>
                        )           
@@ -36,13 +39,14 @@ const Container = ({t, STORE_PRODUCTS}) => {
                 <h2>{t('page.home.sliders.4')}</h2>
                 {STORE_PRODUCTS && STORE_PRODUCTS.length > 0
                     ?( 
-                    <ScrollBox>
-                       { STORE_PRODUCTS.map((product, index) => {
-                           return (
-                            <ColorCard product={product} key={index} />
-                            )
-                       })}
-                    </ScrollBox>
+                    // <ScrollBox>
+                    //    { STORE_PRODUCTS.map((product, index) => {
+                    //        return (
+                    //         <ColorCard product={product} key={index} />
+                    //         )
+                    //    })}
+                    // </ScrollBox>
+                    <Wrapper/>
                     ):(
                         <p>{t("page.home.sliders.noBeats")}</p>
                         )
@@ -50,13 +54,14 @@ const Container = ({t, STORE_PRODUCTS}) => {
                 <h2>{t('page.home.sliders.5')}</h2>
                 {STORE_PRODUCTS && STORE_PRODUCTS.length > 0
                     ?( 
-                    <ScrollBox>
-                       { STORE_PRODUCTS.map((product, index) => {
-                           return (
-                            <ColorCard product={product} key={index} />
-                            )
-                       })}
-                    </ScrollBox>
+                    // <ScrollBox>
+                    //    { STORE_PRODUCTS.map((product, index) => {
+                    //        return (
+                    //         <ColorCard product={product} key={index} />
+                    //         )
+                    //    })}
+                    // </ScrollBox>
+                    <Wrapper/>
                     ):(
                         <p>{t("page.home.sliders.noBeats")}</p>
                         )
@@ -65,13 +70,14 @@ const Container = ({t, STORE_PRODUCTS}) => {
                 <h2>{t("page.home.sliders.6")}</h2>
                 {STORE_PRODUCTS && STORE_PRODUCTS.length > 0
                     ?( 
-                    <ScrollBox>
-                       { STORE_PRODUCTS.map((product, index) => {
-                           return (
-                            <ColorCard product={product} key={index} />
-                            )
-                       })}
-                    </ScrollBox>
+                    // <ScrollBox>
+                    //    { STORE_PRODUCTS.map((product, index) => {
+                    //        return (
+                    //         <ColorCard product={product} key={index} />
+                    //         )
+                    //    })}
+                    // </ScrollBox>
+                    <Wrapper/>
                     ):(
                         <p>{t("page.home.sliders.noBeats")}</p>
                         )
@@ -80,13 +86,14 @@ const Container = ({t, STORE_PRODUCTS}) => {
                 <h2>MAS LIKEADOS BABY</h2>
                 {STORE_PRODUCTS && STORE_PRODUCTS.length > 0
                     ?( 
-                    <ScrollBox>
-                       { STORE_PRODUCTS.map((product, index) => {
-                           return (
-                            <ColorCard product={product} key={index} />
-                            )
-                       })}
-                    </ScrollBox>
+                    // <ScrollBox>
+                    //    { STORE_PRODUCTS.map((product, index) => {
+                    //        return (
+                    //         <ColorCard product={product} key={index} />
+                    //         )
+                    //    })}
+                    // </ScrollBox>
+                    <Wrapper/>
                     ):(
                         <p>{t("page.home.sliders.noBeats")}</p>
                         )
@@ -94,6 +101,7 @@ const Container = ({t, STORE_PRODUCTS}) => {
                 }
                 <h1>{t('page.home.sliders.1')}</h1>
                 <Wrapper/>
+                <Newsletter></Newsletter>
                 <AdsBanner></AdsBanner>
                 <div className="divider"></div>
         </div>
