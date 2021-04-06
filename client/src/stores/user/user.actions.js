@@ -31,6 +31,11 @@ export const GET_ORDERS_BY_USER = "GET_ORDERS_BY_USER";
 //user likes
 export const GET_LIKES_BY_USER = "GET_LIKES_BY_USER";
 
+//GET ORDER BY ID CHECKOUT
+export const GET_ORDER_CHECKOUT_REQUEST = "GET_ORDER_CHECKOUT_REQUEST";
+export const GET_ORDER_CHECKOUT_SUCCESS = "GET_ORDER_CHECKOUT_SUCCESS";
+export const GET_ORDER_CHECKOUT_FAILURE = "GET_ORDER_CHECKOUT_FAILURE";
+
 export const getLikesByUser = (userId) => {
 
 
@@ -449,3 +454,44 @@ export const cleanCart = () => {
         type: CLEAN_CART
     };
 }
+//GET ORDER BY ID CHECKOUT
+export const getOrderByCheckoutId = (orderId) => {
+
+    return (dispatch) => {
+
+        dispatch(getOrderByCheckoutIdRequest())
+        const options = {
+            method: 'GET',
+            url: `${serverUrl}/order/${orderId}`,
+            params: {
+                secret_token: localStorage.getItem('token'),
+                email: localStorage.getItem('email')
+            },
+            headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+        };
+
+        axios.request(options).then(order => {
+            dispatch(getOrderByCheckoutIdSuccess(order.data));
+        }).catch(error => {
+            dispatch(getOrderByCheckoutIdFailure(error));
+        });
+    };
+};
+
+export const getOrderByCheckoutIdRequest = () => {
+    return {
+        type: GET_ORDER_CHECKOUT_REQUEST,
+    };
+};
+export const getOrderByCheckoutIdSuccess = (order) => {
+    return {
+        type: GET_ORDER_CHECKOUT_SUCCESS,
+        payload: order
+    };
+};
+export const getOrderByCheckoutIdFailure = (error) => {
+    return {
+        type: GET_ORDER_CHECKOUT_FAILURE,
+        payload: error
+    };
+};

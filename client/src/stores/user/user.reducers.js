@@ -18,7 +18,10 @@ import {
     GET_USER_INBOX_SUCCESS,
     GET_USER_INBOX_FAILURE,
     CLEAN_CART,
-    GET_LIKES_BY_USER
+    GET_LIKES_BY_USER,
+    GET_ORDER_CHECKOUT_REQUEST,
+    GET_ORDER_CHECKOUT_SUCCESS,
+    GET_ORDER_CHECKOUT_FAILURE,
 
 } from './user.actions';
 
@@ -38,11 +41,31 @@ let initialState = {
     userInBox: [],
     userInBoxLoading: true,
     userInBoxError: "",
-    userLikes:[]
+    userLikes:[],
+    orderCheckout:{},
+    orderCheckoutLoading:true,
+    orderCheckoutError:"",
 }
 
 const userReducers = (state = initialState, action) => {
     switch (action.type) {
+        case GET_ORDER_CHECKOUT_REQUEST:
+            return {
+                ...state,
+                orderCheckoutLoading: true
+            }
+        case GET_ORDER_CHECKOUT_SUCCESS:
+            return {
+                ...state,
+                orderCheckoutLoading: false,
+                orderCheckout: action.payload
+            }
+        case GET_ORDER_CHECKOUT_FAILURE:
+            return {
+                ...state,
+                orderCheckoutLoading: false,
+                orderCheckoutError: action.payload
+            }
         case GET_LIKES_BY_USER:
             return {
                 ...state,

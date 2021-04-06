@@ -42,14 +42,14 @@
       "home":{
         "MiddleSearchBar":"Buscar",
         "sliders":{
-          "1":"Los Beats mas populares",
-          "2":"Los mejores Beats de la musica Pop",
-          "3":"Los Hi-Fi Beats mas populares",
-          "4":"Blues Beats",
-          "5":"Rap & Trap Beats mas populares",
-          "6":"Lo mejor del Rock & Roll",
-          "7":"Beats Musica Alternativa ",
-          "noBeats":"No hay Sonidos"
+          "1":"Todos los beats",
+          "2":"Los mas vistos",
+          "3":"Beat Beat",
+          "4":"Smug Blues",
+          "5":"Lo mejor del Rock",
+          "6":"No pares de bailar Dance",
+          "7":"Shuffle House",
+          "noBeats":"No Beats"
         },
         "subscriptions":{
           "title":"Sección de subscripciones",

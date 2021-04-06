@@ -7,7 +7,7 @@ import { fetchAllProducts } from '../../../stores/products/products.actions';
 import {serverUrl} from '../../../auxiliar/variables';
 import "./wrapper.css";
 
-const Wrapper = ({fetchAllProductsEffect,  PRODUCTS}) =>{
+const Wrapper = ({fetchAllProductsEffect,  PRODUCTS, categoryName}) =>{
 
     const history = useHistory()
     useEffect(()=>{
@@ -55,7 +55,15 @@ const Wrapper = ({fetchAllProductsEffect,  PRODUCTS}) =>{
                             {...bind()}
                             className="wrapper">
                                 {
-                                    PRODUCTS.map((product, index)=>{
+                                    PRODUCTS.filter((product)=>{
+
+                                        for (let i = 0; i < product.categories.length; i++) {
+                                            if(categoryName === "all") return product
+                                            return product.categories[i].name === categoryName
+                                            
+                                        }
+
+                                        }).map((product, index)=>{
                                         let bg = `${serverUrl}/images/${product.image}`
                                         return (
                                         <animated.div 

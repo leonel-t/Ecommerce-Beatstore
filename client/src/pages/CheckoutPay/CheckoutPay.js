@@ -21,7 +21,7 @@ import axios from "axios";
 import swal from "sweetalert";
 import {serverUrl} from '../../auxiliar/variables';
 
-const stripePromise = loadStripe("pk_test_51IbFjrLDJyVvtDkgSdbcQBERHyS60JKwwgP1txRVecZIQaA268HyHtWB9o285SwM1H9A1EhoUL7DMU6iKgIzlqbk00wBHvgczU");
+const stripePromise = loadStripe("pk_test_51IbJG9HsbRhSA9TewWUVPgvsZyy1SmXmzNRf4cPFbZPICMgdGU1fXVJVkxkk91ub1hHNuGngboml2pSJDWcmJGzG00a4ZMNpWN");
 
 function CheckoutPay({ totalPrice, cart, userReducer, store_orders, fetchAllOrders, action }) {
     useEffect(() => {
@@ -131,7 +131,7 @@ const CheckoutForm = ({ price, cart, userReducer, store_orders, action }) => {
                     })
                     .then(()=>{
                         setTimeout(()=>{
-                            window.location.assign("./")
+                            window.location.assign(`./checkout/order/${userReducer.cartDetaills.id}`)
                         },2000)
                     })
 
