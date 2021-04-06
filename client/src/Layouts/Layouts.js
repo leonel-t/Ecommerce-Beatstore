@@ -1,6 +1,6 @@
 import "./Layouts.css";
 import React from 'react';
-// import PagesFooter from '../components/Footer/PagesFooter.js';
+import Footer from '../components/Footer/Footer';
 import HeaderHome from '../components/Header/HeaderHome/HeaderHome';
 import HeaderAdmin from '../components/Header/HeaderAdmin/HeaderAdmin';
 import HeaderPages from '../components/Header/HeaderPages/HeaderPages';
@@ -13,9 +13,9 @@ import HeaderPrint from "../components/Header/HeaderPrint/HeaderPrint";
 const HomeLayout = ({ children }) => {
     return (
         <div>
-            <HeaderHome></HeaderHome>
-         
-            {children}
+            <HeaderHome/>
+                {children}
+            <Footer/>
         </div>
     )
 };
