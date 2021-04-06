@@ -22,7 +22,16 @@ const Container = ({t, STORE_PRODUCTS}) => {
             {STORE_PRODUCTS && STORE_PRODUCTS.length > 0
                 ?( 
                     <ScrollBox>
-                       { STORE_PRODUCTS.map((product, index) => {
+                        {STORE_PRODUCTS.sort(function (a, b) {
+                            if (a.reproductions < b.reproductions) {
+                                return 1;
+                            }
+                            if (a.reproductions > b.reproductions) {
+                                return -1;
+                            }
+                            // a must be equal to b
+                            return 0;
+                            }).map((product, index)=>{
                            return (
                             <ColorCard product={product} key={index} />
                             )
