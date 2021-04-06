@@ -1,98 +1,92 @@
 .--cat-all {
-    width: 100%
-}
+    width: 100%;
 
+}
+.--Cart-title h1{
+    font-size: 1.6rem;
+    padding: 0;
+    margin: 0;
+    margin-top:2.5em;
+    font-family: 'Goldman';
+}
+.--cat-all-form{
+    width: 25em;    
+    margin-left: auto;
+    margin-right: auto;    
+    height: 20em;   
+    margin-top: 1em; 
+    background-color: #2E0230;
+    border: 2px solid rgb(28, 4, 54);    
+    border-radius: 0.5em;
+}
 .catAdd {
-    padding: 3%;
     justify-content: center;
-    width: 40%;
-    align-items: left;
+    width: 100%;
     display: flex;
     flex-direction: column;
     color: white;
-    margin-left: auto;
-    margin-right: auto;
-    margin-top: 2%;
-    background-color: rgb(107, 4, 241);
-    border: 2px solid rgb(79, 0, 170);
-    border-radius: 15px;
 }
-@media (max-width: 800px) {
-    .catAdd {
-        width: 70%;
-    }
-}
-
 .catAdd h1 {
     font-family: 'Oxanium', cursive;
-    font-size: 1.5rem;
+    text-align: center;
+    font-size: 1.3rem;
 }
-
-.input-name {
-    width: 100%;
+.input-name, .input-description {
+    width: 100%; 
+    padding-top: 1em;
+    padding-bottom: 1em;  
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+.input-name p, .input-description p{
+    margin: 0;    
+    text-align: center;
     font-family: 'Goldman', cursive;
     font-size: 1.2rem;
-    text-align: left;
-    padding-top: 10px;
-    padding-bottom: 10px;
+    padding-bottom: 1em;
+}
+.input-name input, .input-description input{
+    width: 80%;
+    outline: none;
+    margin-left: auto;
+    margin-right: auto;
+    background-color: transparent;
+    border: none;
+    border-bottom: 1px solid rgb(253, 253, 253);
 }
 
-.input-description {
-    font-family: 'Oxanium', cursive;
-    width: 100%;
-    font-size: 1.2rem;
-    text-align: left;
-    padding-top: 10px;
-    padding-bottom: 10px;
-}
-
-.input-name input::placeholder {
+.input-name input::placeholder, .input-description input::placeholder {
     color: white;
-    min-height: 40px;
     text-align: center;
-    font-size: 1rem;
+    font-size: 0.9rem;
     font-family: 'Oxanium', cursive;
 }
-
-.input-description textarea::placeholder {
-    text-align: center;
-    font-size: 1rem;
-    color: white;
-    min-height: 40px;
-    font-family: 'Oxanium', cursive;
-}
-
 .button-submit {
-    width: 100%;
-    margin-top: 8%;
+    width:40%;
+    margin-top: 1em;
+    margin-left: auto;
+    margin-right: auto;
     align-items: center;
 }
-
-.catAdd input, textarea {
-    text-align: center;
-    color: rgb(255, 255, 255);
-    width: 100%;
-    min-height: 40px;
-    font-size: 1.1rem;
-    background: transparent;
-    border: none;
-    border-bottom: 1px solid #777777;
-    display: block;
-    font-family: 'Oxanium', cursive;
-}
-
 .--submitbuton {
     color: white;
     width: 100%;
     border-radius: 4px;
-    border: none;
+    background-color: rgba(51, 3, 45, 0.3);
+    box-shadow: 2px 2px 5px black;
+    border: 3px solid rgb(88, 14, 66);
     outline: none;
-    padding: 15px;
-    font-size: 1.3rem;
+    padding: 0.2em;
+    font-size: 1.2rem;
     font-family: 'Oxanium', cursive;
-    background: linear-gradient(225deg, rgb(234, 50, 111), rgb(79, 0, 170));
+    cursor: pointer;
 }
 
 .--submitbuton:hover {
-    background: rgb(252, 59, 123);
+    border-color: rgb(63, 21, 73);
+    background-color: transparent;
+}
+.--submitbuton:active {
+    box-shadow: none;
 }

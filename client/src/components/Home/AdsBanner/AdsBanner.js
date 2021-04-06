@@ -7,7 +7,7 @@ const AdsBanner = ()=>{
             <div className="--ads-banner-main">
                 <div className="--ads-banner-main-container">
                     <h1>
-                        BeatStore is the best option to creator of content
+                        The best option for content creators
                     </h1>
                     <p >
                         Make your live easy with BeatStore Suscriptions onsectetur adipisicing elit. Libero similique et accusamus enim alias 

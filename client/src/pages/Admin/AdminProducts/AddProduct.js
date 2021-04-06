@@ -26,6 +26,14 @@ const Form = ({ t, STORE_USER }) => {
   const customStyles = {
     control: (base, state) => ({
       ...base,
+      width:"80%",
+      height:"2.5em",
+      marginTop: "0.2em",
+      marginLeft:"auto",
+      marginRight:"auto",
+      background: "white",
+      display:"flex",
+      justifyContent:"center",
       // match with the menu
       borderRadius: state.isFocused ? "3px 3px 0 0" : 3,
       // Overwrittes the different states of border
@@ -35,15 +43,20 @@ const Form = ({ t, STORE_USER }) => {
       "&:hover": {
         // Overwrittes the different states of border
         borderColor: state.isFocused ? "red" : "blue",
-        background: "white"
+        
+        
       }
     }),
     menu: (base, state) => ({
       ...base,
+      width:"80%",
+      marginLeft:"auto",
+      marginRight:"auto",
       // override border radius to match the box
       borderRadius: 0,
       // kill the gap
       marginTop: 0,
+      position:"relative",     
       background: state.isFocused ? "yellow" : "green",
       "&:hover": {
         // Overwrittes the different states of border
@@ -55,6 +68,9 @@ const Form = ({ t, STORE_USER }) => {
       // kill the white space on first and last option
       padding: 0,
       background: "white",
+      display:"flex",
+      flexDirection:"column",
+      justifyContent:"center",
 
     }),
     menuPortal: base => ({
@@ -67,14 +83,13 @@ const Form = ({ t, STORE_USER }) => {
     multiValueLabel: base => ({
       background: "rgb(106,31,174)",
       color: "white",
-      padding: "5px",
       borderRadius: "5px",
       outline: "none",
     }),
     multiValueRemove: base => ({
       background: "red",
       color: "white",
-      padding: "4x",
+      padding: "4px",
       marginBottom: "10px",
       borderRadius: "5px"
     }),
@@ -264,11 +279,9 @@ const Form = ({ t, STORE_USER }) => {
             <AdminNav></AdminNav>
             <div className="subContainer">
               <h2>{t("page.admin.forms.addBeats.title")}</h2>
-              <form
-                onSubmit={(e) => handleSubmit(e)}
-              >
-                <div className="container formAdd"
-                >
+              <div className="all--container-form" >
+                <form onSubmit={(e) => handleSubmit(e)}>
+                <div className="container formAdd" >
 
                   <div className="column-1 box">
                     <label>{t("page.admin.forms.addBeats.name")}</label>
@@ -284,59 +297,59 @@ const Form = ({ t, STORE_USER }) => {
                     <label>{t("page.admin.forms.addBeats.description")}</label>
 
                     {errors.description && <p className="danger">{errors.description}</p>}
-                    <textarea
-                      className={`${errors.description && "danger"}`}
-                      name="description"
-                      onChange={(e) => {
-                        handleInputChange(e);
-                      }}
-                    ></textarea>
+                      <textarea
+                        className={`${errors.description && "danger"}`}
+                        name="description"
+                        onChange={(e) => {
+                          handleInputChange(e);
+                        }}
+                      ></textarea>
                     <label>{t("page.admin.forms.addBeats.artist")}</label>
                     {errors.artist && <p className="danger">{errors.artist}</p>}
 
-                    <input
-                      className={`${errors.artist && "danger"}`}
-                      name="artist"
-                      onChange={(e) => {
-                        handleInputChange(e);
-                      }}
-                    ></input>
+                      <input
+                        className={`${errors.artist && "danger"}`}
+                        name="artist"
+                        onChange={(e) => {
+                          handleInputChange(e);
+                        }}
+                      ></input>
 
                     <label>{t("page.admin.forms.addBeats.price")}</label>
                     {errors.price && <p className="danger">{errors.price}</p>}
 
-                    <input
-                      className={`${errors.price && "danger"}`}
-                      name="price"
-                      type="number"
-                      onChange={(e) => {
-                        handleInputChange(e);
-                      }}
-                    ></input>
+                      <input
+                        className={`${errors.price && "danger"}`}
+                        name="price"
+                        type="number"
+                        onChange={(e) => {
+                          handleInputChange(e);
+                        }}
+                      ></input>
 
                     <label>{t("page.admin.forms.addBeats.bpm")}</label>
                     {errors.bpm && <p className="danger">{errors.bpm}</p>}
 
-                    <input
-                      className={`${errors.bpm && "danger"}`}
-                      name="bpm"
-                      type="number"
-                      onChange={(e) => {
-                        handleInputChange(e);
-                      }}
-                    ></input>
-                  </div>
-                  <div className="column-2 box">
-                    <label>{t("page.admin.forms.addBeats.tone")}</label>
-                    {errors.tone && <p className="danger">{errors.tone}</p>}
-
-
+                      <input
+                        className={`${errors.bpm && "danger"}`}
+                        name="bpm"
+                        type="number"
+                        onChange={(e) => {
+                          handleInputChange(e);
+                        }}
+                      ></input>
+                  
+                  <label>{t("page.admin.forms.addBeats.categories")}</label>    
                     <Select
-                      name="selectTone"
-                      options={optionTone}
-                      onChange={setTone}
+                      isMulti
+                      name="selectCat"
+                      options={option}
+                      onChange={setCategories}
                       styles={customStyles}
                     />
+                  </div>
+                  <div className="column-2 box">
+                    
                     <div className="radioTone">
                       <div className="radioColumn" >
                         <label for="indoor">natural</label>
@@ -364,7 +377,7 @@ const Form = ({ t, STORE_USER }) => {
                       }}
                     ></input>
 
-                    <label>{t("page.admin.forms.addBeats.image")}</label>
+                    <label className='--labelImage'>{t("page.admin.forms.addBeats.image")}</label>
 
                     <input
                       className="buttonInput"
@@ -374,7 +387,7 @@ const Form = ({ t, STORE_USER }) => {
                         handleInputChange(e);
                       }}
                     ></input>
-                    <label>{t("page.admin.forms.addBeats.audio")}</label>
+                    <label className='--labelAudio'>{t("page.admin.forms.addBeats.audio")}</label>
 
                     <input
                       className="buttonInput"
@@ -384,17 +397,19 @@ const Form = ({ t, STORE_USER }) => {
                         handleInputChange(e);
                       }}
                     ></input>
-                    <label>{t("page.admin.forms.addBeats.categories")}</label>
+                    <label>{t("page.admin.forms.addBeats.tone")}</label>
+                    {errors.tone && <p className="danger">{errors.tone}</p>}
 
                     <Select
-                      isMulti
-                      name="selectCat"
-                      options={option}
-                      onChange={setCategories}
+                      name="selectTone"
+                      options={optionTone}
+                      onChange={setTone}
                       styles={customStyles}
                     />
+
                   </div>
                 </div>
+                
                 <div className="divButton">
 
                   <button
@@ -408,7 +423,7 @@ const Form = ({ t, STORE_USER }) => {
                   </button>
                 </div>
               </form>
-              <div className="divider"></div>
+              </div>
             </div>
           </>) : (
           <div className="--admin--main-panel" >
