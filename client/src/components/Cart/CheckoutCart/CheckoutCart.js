@@ -1,6 +1,6 @@
-import React, { useEffect, useState } from "react"
+import React, { useEffect, useState  } from "react"
 import { connect } from "react-redux"
-import { Link } from "react-router-dom"
+import { Link, useParams } from "react-router-dom"
 import { getOrderByCheckoutId } from "../../../stores/user/user.actions"
 import { withTranslation } from "react-i18next"
 import spiner from "../../../assets/images/Spin-1s-200px.svg"
@@ -8,8 +8,11 @@ import moment from "moment"
 import "./CheckoutCart.scss"
 
 const CheckoutCart = ({ STORE_USER, getOrderByCheckoutIdEffect }) => {
+
+    const {orderId} = useParams()
+
     useEffect(() => {
-        getOrderByCheckoutIdEffect("4")
+        getOrderByCheckoutIdEffect(orderId)
     }, [getOrderByCheckoutIdEffect])
     const products = STORE_USER.orderCheckout.orderLines
 
@@ -41,7 +44,7 @@ const CheckoutCart = ({ STORE_USER, getOrderByCheckoutIdEffect }) => {
                                 <h2>Order details: </h2>
                             </div>
                             <div className="--CheckoutCart-main-detail-col">
-                                <span class="material-icons" onClick={handlePrint}> print </span>
+                                <i className="fas fa-print" onClick={handlePrint}></i>
                             </div>
                         </div>
                         <div className="--CheckoutCart-main-total">

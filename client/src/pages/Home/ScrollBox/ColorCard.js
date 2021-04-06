@@ -15,9 +15,9 @@ function ColorCard({ product }) {
     {product && product.artist
       ?(
         <div className="color-card" style={{ background:`url(${serverUrl}/images/${product.image})`, backgroundRepeat:"no-repeat", backgroundSize:"100% 100%"}}>
-        <button className="color-card__code" onClick={handleColorCopy}>
-          {product.name.slice(0,16)}
-        </button>
+          <div className="color-card__code" onClick={handleColorCopy}>
+            {product.name.slice(0,16)}
+          </div>
        </div>
       ):(
         <div className="color-card" style={{ backgroundColor:"white"  }}>

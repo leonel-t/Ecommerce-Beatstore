@@ -21,14 +21,14 @@ const Container = ({t, STORE_PRODUCTS}) => {
             <h2>{t('page.home.sliders.2')}</h2>
             {STORE_PRODUCTS && STORE_PRODUCTS.length > 0
                 ?( 
-                    // <ScrollBox>
-                    //    { STORE_PRODUCTS.map((product, index) => {
-                    //        return (
-                    //         <ColorCard product={product} key={index} />
-                    //         )
-                    //    })}
-                    // </ScrollBox>
-                    <Wrapper/>
+                    <ScrollBox>
+                       { STORE_PRODUCTS.map((product, index) => {
+                           return (
+                            <ColorCard product={product} key={index} />
+                            )
+                       })}
+                    </ScrollBox>
+                    // <Wrapper/>
                     ):(
                         <p>{t("page.home.sliders.noBeats")}</p>
                        )           
@@ -67,6 +67,7 @@ const Container = ({t, STORE_PRODUCTS}) => {
                         )
                
                 }
+                <Newsletter></Newsletter>
                 <h2>{t("page.home.sliders.6")}</h2>
                 {STORE_PRODUCTS && STORE_PRODUCTS.length > 0
                     ?( 
@@ -101,7 +102,7 @@ const Container = ({t, STORE_PRODUCTS}) => {
                 }
                 <h1>{t('page.home.sliders.1')}</h1>
                 <Wrapper/>
-                <Newsletter></Newsletter>
+                
                 <AdsBanner></AdsBanner>
                 <div className="divider"></div>
         </div>

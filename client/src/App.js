@@ -112,7 +112,7 @@ const App = () => {
         <RouteWrapper exact path="/adminsuscriptions/prices" component={Prices} layout={AdminSubscriptionsLayout} />
         <RouteWrapper exact path="/adminsuscriptions/invoices" component={Invoices} layout={AdminSubscriptionsLayout} />
         <RouteWrapper exact path="/profile/messages" component={Messages} layout={PagesLayout} />
-        <RouteWrapper exact path="/checkout/order" component={CheckoutCart} layout={PrintLayout}/>
+        <RouteWrapper exact path="/checkout/order/:orderId" component={CheckoutCart} layout={PrintLayout}/>
       </Switch>
     </BrowserRouter>
   );

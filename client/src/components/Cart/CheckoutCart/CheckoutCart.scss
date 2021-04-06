@@ -49,8 +49,13 @@ $text-color-secondary: rgb(197, 7, 150);
     @include container($container-row);
     justify-content: space-between;
     align-items: center;
-    span {
+    i {
+        color:$text-color-primary;
+        font-size: 1.6rem;
         cursor: pointer;
+        &:hover{
+            color:$text-color-secondary;
+        }
     }
 }
 .--CheckoutCart-main-item{
