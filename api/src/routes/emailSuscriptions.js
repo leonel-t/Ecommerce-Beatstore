@@ -1,4 +1,3 @@
-
 require('dotenv').config();
 const { Newsletter } = require("../db");
 const nodemailer = require('nodemailer');
