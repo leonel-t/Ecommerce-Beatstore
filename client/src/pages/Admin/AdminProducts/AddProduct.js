@@ -8,8 +8,10 @@ import swal from 'sweetalert';
 import { serverUrl } from '../../../auxiliar/variables';
 import AdminNav from "../AdminNav/AdminNav";
 import laserSound from "../../../assets/audio/tab-sound.ogg";
+import {useHistory} from "react-router-dom";
 
 const Form = ({ t, STORE_USER }) => {
+const history = useHistory();
 
   const customStyles = {
     option: (provided, state) => ({
@@ -128,7 +130,9 @@ const Form = ({ t, STORE_USER }) => {
           title: "item added",
           icon: "success",
           //buttons: true,
-        });
+        }).then(()=>{
+          history.push("/admin/listproducts")
+        })
 
       });
     } catch (error) {
@@ -323,7 +327,53 @@ const Form = ({ t, STORE_USER }) => {
                           
                       </div>
                       <div className="--add-product-newform-col-1-interna-2">
-                        
+                      <div className="--add-product-newform-category">
+                            <label>{t("page.admin.forms.addBeats.categories")}</label>    
+                            <Select
+                              isMulti
+                              name="selectCat"
+                              options={option}
+                              onChange={setCategories}
+                              styles={customStyles}
+                            />
+                          </div>
+                          <div className="--add-product-newform-radioTone">
+
+<div className="--add-product-newform-radioTone-radioColumn" >
+  <label>natural</label>
+  <input type="radio" name="radName" value="" />
+</div>
+<div className="--add-product-newform-radioTone-radioColumn" >
+  <label># </label>
+  <input 
+    type="radio"
+    name="radName"
+    value="#"
+    onChange={handleAlt} />
+
+</div>
+<div className="--add-product-newform-radioTone-radioColumn">
+  <label >b</label>
+  <input
+    type="radio"
+    name="radName"
+    value="b"
+    onChange={handleAlt} 
+  />
+</div>
+</div>
+
+<div  className="--add-product-newform-radioTone-select-tone">
+<label>{t("page.admin.forms.addBeats.tone")}</label>
+{errors.tone && <p className="--colum-helper-danger">{errors.tone}</p>}
+  <Select
+    name="selectTone"
+    options={optionTone}
+    onChange={setTone}
+    styles={customStyles}
+   
+  />
+</div>
                         <div className="--colum-helper --add-product-newform-input">
                           <label>{t("page.admin.forms.addBeats.date")}</label>
                           {errors.date && <p className="--colum-helper-danger">{errors.date}</p>}
@@ -357,53 +407,8 @@ const Form = ({ t, STORE_USER }) => {
 
                         </div>
 
-                        <div className="--add-product-newform-radioTone">
 
-                            <div className="--add-product-newform-radioTone-radioColumn" >
-                              <label>natural</label>
-                              <input type="radio" name="radName" value="" />
-                            </div>
-                            <div className="--add-product-newform-radioTone-radioColumn" >
-                              <label># </label>
-                              <input 
-                                type="radio"
-                                name="radName"
-                                value="#"
-                                onChange={handleAlt} />
 
-                            </div>
-                            <div className="--add-product-newform-radioTone-radioColumn">
-                              <label >b</label>
-                              <input
-                                type="radio"
-                                name="radName"
-                                value="b"
-                                onChange={handleAlt} 
-                              />
-                            </div>
-                        </div>
-                        
-                        <div  className="--add-product-newform-radioTone-select-tone">
-                          <label>{t("page.admin.forms.addBeats.tone")}</label>
-                          {errors.tone && <p className="--colum-helper-danger">{errors.tone}</p>}
-                              <Select
-                                name="selectTone"
-                                options={optionTone}
-                                onChange={setTone}
-                                styles={customStyles}
-                               
-                              />
-                         </div>
-                         <div className="--add-product-newform-category">
-                            <label>{t("page.admin.forms.addBeats.categories")}</label>    
-                            <Select
-                              isMulti
-                              name="selectCat"
-                              options={option}
-                              onChange={setCategories}
-                              styles={customStyles}
-                            />
-                          </div>
                      </div>
                 </div>
 
