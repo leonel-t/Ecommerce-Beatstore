@@ -84,7 +84,7 @@ const App = () => {
         <RouteWrapper exact path="/admin/ListUsers" component={AdminListUsers} layout={AdminLayout} />
         <RouteWrapper exact path="/admin/listorders" component={ListOrder} layout={AdminLayout} />
         <RouteWrapper path="/admin/listorders/:id" component={EditOrders} layout={AdminLayout} />
-        <RouteWrapper exact path="/put/:id" component={PutForm} layout={PagesLayout} />
+        <RouteWrapper exact path="/admin/products/edit/:idProducts" component={PutForm} layout={PagesLayout} />
         <RouteWrapper exact path="/addCategories" component={Categories} layout={AdminLayout} />
         <RouteWrapper exact path="/login" component={Login} layout={LoginLayout} />
         <RouteWrapper exact path="/results/:name" component={Results} layout={PagesLayout} />

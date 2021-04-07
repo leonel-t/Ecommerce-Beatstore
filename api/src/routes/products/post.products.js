@@ -6,7 +6,7 @@ const {createProduct, addCategoryToProduct } = require("../../controllers/produc
 var nJwt = require('njwt');
 
 server.post("/", (req, res, next) => {
-
+  console.log(req.body);
   let { name, description, artist, price, bpm, scale, date } = req.body;
 
   let files = req.files;

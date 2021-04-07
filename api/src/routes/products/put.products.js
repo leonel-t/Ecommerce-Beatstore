@@ -4,14 +4,15 @@ const {Product} = require("../../db")
 const fs = require("fs");
 const path = require("path");
 
-server.put("/", (req, res, next) => {
-  
+server.put("/:id", (req, res, next) => {
+  const {id} = req.params
   const { 
-    id, name, description, artist,
+    name, description, artist,
     price, bpm, scale, date, oldImage,
     oldAudio, editFiles, editImage,
     editAudio } = req.body;
-
+console.log("ESTO ES BODY PUT",req.body)
+console.log("ESTO ES PARAMS PUT",req.params)
   var product;
 
   if (editFiles === "edit") {

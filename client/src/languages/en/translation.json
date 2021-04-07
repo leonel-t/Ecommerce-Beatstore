@@ -224,6 +224,7 @@
             "audio":"Select Audio",
             "categories":"Categories",
             "addBeatButton":"Add Beat",
+            "saveBeatButton":"Save Beat",
             "notes":{
               "c":"C",
               "d":"D",

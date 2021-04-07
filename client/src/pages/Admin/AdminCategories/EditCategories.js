@@ -163,7 +163,6 @@ const postCategorie = async (category)=>{
 
 const mapStateToProps = state => {
   return {
-    STORE_PRODUCT: state.productsReducers,
     STORE_USER: state.userReducers
   }
 }
