@@ -13,8 +13,9 @@ server.post("/addofert", (req, res, next) => {
 });
 
 server.post("/", (req, res, next) => {
-  const {ofertStatus, discount} = req.body;
+  const {name, ofertStatus, discount} = req.body;
   let ofert = {
+    name,
     ofertStatus,
     discount
   }

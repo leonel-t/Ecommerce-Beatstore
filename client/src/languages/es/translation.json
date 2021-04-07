@@ -241,12 +241,35 @@
             }                   
           },
           "addGen":{
-            "addGenre": "Agregar Genero Musical",
+            "title": "Agregar Genero Musical",
             "name": "Nombre",
             "description": "Descripcion",
             "submit": "Agregar Genero",
+            "errorName": "el nombre es requerido",
+            "errorDescription":"la descripcion es requerida",
             "placeholderOne": "nombre del tipo de genero",
             "placeholderTwo": "descripcion sobre el genero"
+          },
+          "addOfert":{
+            "title": "Agregar Oferta",
+            "name": "Nombre",
+            "discount": "Descuento",
+            "submit": "Agregar oferta",
+            "mode":{
+              "title":"Modo de oferta",
+              "1":"ninguno",
+              "2":"dia",
+              "3":"semana",
+              "4":"mes",
+              "5":"temporada",
+              "6":"para siempre" 
+            },
+            "error":{
+              "name":"el nombre es requerido",
+              "discount":"el campo descuento es requerido"
+            },
+            "placeholderOne": "nombre del tipo de oferta",
+            "placeholderTwo": "descuento de la oferta"
           }
       }
     }

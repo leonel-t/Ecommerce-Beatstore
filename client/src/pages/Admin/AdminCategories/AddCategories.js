@@ -54,14 +54,22 @@ function AddCategoriesNew({ t, STORE_USER }) {
         data: {name: category.name , description: category.description }
       };
 
-     return await axios.request(options).then(function (response) {
+     return await axios.request(options).then(response => {
         
         setTimeout(()=>{
           return setPostLoading(false);
         },1000);
-        
+
+        //errors back handles
         if(response.data.original && response.data.original.code === "23505"){
-          swal(`Ya existe esa categoria`);
+          swal(`The genre already exists`);
+        }else if(response.data.original){
+          swal(`Error Genres dont added`);
+        }else if(response.data.errors && response.data.errors[0].message === "invalid category name length"){
+          swal(`invalid category name length`);
+        }else{
+          //category added
+          swal(`Add Genres Successful`);
         };
 
       }).catch(error => {
@@ -77,7 +85,7 @@ function AddCategoriesNew({ t, STORE_USER }) {
           <>
             <AdminNav/>
             <div className="--add-categories-main">
-                  <h1>Add Genres</h1>
+                  <h1>{t("page.admin.forms.addGen.title")}</h1>
               <div className="--add-categories-form">
                 <form onSubmit={handleSubmit(onSubmit)}>
                     <div>
@@ -91,10 +99,13 @@ function AddCategoriesNew({ t, STORE_USER }) {
                         autoComplete="off"
                         placeholder={t("page.admin.forms.addGen.placeholderOne")}
                         className="--add-categories-form-input-name"
-                        {...register("categorieName", { required: true }, { min: 2, max: 12 })}
+                        {...register("categorieName", { required: true }, { minLength: 2, maxLength: 12 })}
                         type="text"/>
                         {/* errors will return when field validation fails  */}
-                        {errors.categorieName && <span>The name is required</span>}
+                        {errors.categorieName && <span>{t("page.admin.forms.addGen.errorName")}</span>}
+                        {errors.categorieName && errors.categorieName.type === 'minLength' && (
+                        <span>This is field required min lengh</span>)}
+                        
                     </div>
                     <div>
                         {/* INPUT CATEGORIE DESCRIPTION  */}
@@ -110,7 +121,7 @@ function AddCategoriesNew({ t, STORE_USER }) {
                         {...register("categorieDescription", { required: true })}
                         type="text"/>
                         {/* errors will return when field validation fails  */}
-                        {errors.categorieDescription && <span>The description is required</span>}
+                        {errors.categorieDescription && <span>{t("page.admin.forms.addGen.errorDescription")}</span>}
                     </div>
                     <div>
                       <button type="submit">

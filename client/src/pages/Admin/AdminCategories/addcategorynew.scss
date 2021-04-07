@@ -66,18 +66,32 @@ $placeholder-size: 0.9rem;
                 color: rgb(255, 21, 21);
                 -webkit-animation: tiembla 0.2s;
                 animation: tiembla 0.2s;
-            }    
+            }
+            select{
+                width: 60%;
+                height: 2em;
+                font-size: $font-size-label;
+                color: $title-color;
+                font-family: $font-label;
+                outline: none;
+                cursor: pointer;
+                margin-left: 50%;
+                transform: translateX(-50%);
+                background-color: rgba(28, 5, 49, 0.4);
+                border:2px solid black;
+                border-radius: 0.3em;
+            }      
         }
 
     }
     button{
-        width:8em;
+        width:9em;
         margin-top: 2em;
         margin-left:50%;
         transform: translateX(-50%);
         font-family: $font-label;
         color: $title-color;
-        font-size: 1.2rem;
+        font-size: 1.1rem;
         outline: none;
         background-color: transparent;
         border: 2px solid black;
@@ -101,7 +115,8 @@ $placeholder-size: 0.9rem;
     0%  { -webkit-transform:rotateZ(-5deg); }
     50% { -webkit-transform:rotateZ( 0deg) scale(.8); }
     100%{ -webkit-transform:rotateZ( 5deg); }
-}  
+}
+
 .--add-categories-homer{
     position: fixed;
     bottom: -350px;
