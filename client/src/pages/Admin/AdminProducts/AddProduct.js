@@ -339,41 +339,41 @@ const history = useHistory();
                           </div>
                           <div className="--add-product-newform-radioTone">
 
-<div className="--add-product-newform-radioTone-radioColumn" >
-  <label>natural</label>
-  <input type="radio" name="radName" value="" />
-</div>
-<div className="--add-product-newform-radioTone-radioColumn" >
-  <label># </label>
-  <input 
-    type="radio"
-    name="radName"
-    value="#"
-    onChange={handleAlt} />
+                          <div className="--add-product-newform-radioTone-radioColumn" >
+                            <label>natural</label>
+                            <input type="radio" name="radName" value="" />
+                          </div>
+                          <div className="--add-product-newform-radioTone-radioColumn" >
+                            <label># </label>
+                            <input 
+                              type="radio"
+                              name="radName"
+                              value="#"
+                              onChange={handleAlt} />
 
-</div>
-<div className="--add-product-newform-radioTone-radioColumn">
-  <label >b</label>
-  <input
-    type="radio"
-    name="radName"
-    value="b"
-    onChange={handleAlt} 
-  />
-</div>
-</div>
+                          </div>
+                          <div className="--add-product-newform-radioTone-radioColumn">
+                            <label >b</label>
+                            <input
+                              type="radio"
+                              name="radName"
+                              value="b"
+                              onChange={handleAlt} 
+                            />
+                          </div>
+                          </div>
 
-<div  className="--add-product-newform-radioTone-select-tone">
-<label>{t("page.admin.forms.addBeats.tone")}</label>
-{errors.tone && <p className="--colum-helper-danger">{errors.tone}</p>}
-  <Select
-    name="selectTone"
-    options={optionTone}
-    onChange={setTone}
-    styles={customStyles}
-   
-  />
-</div>
+                          <div  className="--add-product-newform-radioTone-select-tone">
+                          <label>{t("page.admin.forms.addBeats.tone")}</label>
+                          {errors.tone && <p className="--colum-helper-danger">{errors.tone}</p>}
+                            <Select
+                              name="selectTone"
+                              options={optionTone}
+                              onChange={setTone}
+                              styles={customStyles}
+                            
+                            />
+                          </div>
                         <div className="--colum-helper --add-product-newform-input">
                           <label>{t("page.admin.forms.addBeats.date")}</label>
                           {errors.date && <p className="--colum-helper-danger">{errors.date}</p>}
