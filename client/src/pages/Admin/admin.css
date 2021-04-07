@@ -10,3 +10,14 @@
 .usercard-col-1 h3{
     color:white;
 }
+
+.--admin--main-panel{
+    margin-top: 100px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+.--admin--main-panel img{
+    width: 500px;
+}

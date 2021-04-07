@@ -5,16 +5,21 @@ import "./form.css";
 import Select from "react-select";
 import axios from "axios";
 import "../../Product/product.css";
+//Internationalization
+import { withTranslation } from 'react-i18next';
 import { fetchOneProduct } from "../../../stores/admin/admin.actions";
 import AdminNav from "../AdminNav/AdminNav";
 import {serverUrl} from '../../../auxiliar/variables';
-const PutForm = ({ STORE_ADMIN, fetchProduct }) => {
+
+const PutForm = ({t, STORE_ADMIN, fetchProduct }) => {
+
   const storeProduct = STORE_ADMIN.product;
 
-  const { id } = useParams();
+  const { idProducts } = useParams();
+
   useEffect(() => {
-    fetchProduct(id);
-  }, [fetchProduct, id]);
+    fetchProduct(idProducts);
+  }, [fetchProduct, idProducts]);
 
   const [categories, setCategories] = React.useState([]);
   const [image, setImage] = React.useState({});
@@ -23,6 +28,7 @@ const PutForm = ({ STORE_ADMIN, fetchProduct }) => {
   const [cat, setCat] = React.useState([]);
   const [alt, setAlt] = React.useState({})
   const [tone, setTone] = React.useState({})
+
   useEffect(() => {
     const datos = async () => {
       return await fetch(`${serverUrl}/categories`)
@@ -35,6 +41,7 @@ const PutForm = ({ STORE_ADMIN, fetchProduct }) => {
     datos();
   }, []);
   var product = {};
+
   if (storeProduct.name) {
     product = {
       name: storeProduct.name,
@@ -56,7 +63,16 @@ const PutForm = ({ STORE_ADMIN, fetchProduct }) => {
       date: "No Product",
     };
   }
-  const [input, setInput] = React.useState({});
+  const [input, setInput] = React.useState({
+    name:"",
+    description:"",
+    artis:"",
+    price:"",
+    bpm:"",
+    scale:"",
+    date:""
+  });
+
   const handleAlt = (e) => {
     setAlt({
       ...alt,
@@ -64,10 +80,11 @@ const PutForm = ({ STORE_ADMIN, fetchProduct }) => {
     })
 
   }
-  let idProduct;
-  function handleSubmit(e) {
-    e.preventDefault();
 
+  let idProduct;
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    console.log("ESTO ES IMAGE:",JSON.stringify(tone))
     const form = new FormData();
     form.append("name", input.name);
     form.append("description", input.description);
@@ -76,14 +93,13 @@ const PutForm = ({ STORE_ADMIN, fetchProduct }) => {
     form.append("bpm", input.bpm);
     form.append("scale", tone.value + alt.radName);
     form.append("date", input.date);
-    // form.append("selectCat", cat.selectCat);
-
+    form.append("selectCat", cat.selectCat);
     form.append("files", image[0]);
     form.append("files", audio[0]);
 
     const options = {
-      method: "POST",
-      url: `${serverUrl}/products/`,
+      method: "PUT",
+      url: `${serverUrl}/products/${idProducts}`,
       headers: {
         "Content-Type": "multipart/form-data", "Cross-Origin-Opener-Policy": "same-origin"
       },
@@ -91,19 +107,16 @@ const PutForm = ({ STORE_ADMIN, fetchProduct }) => {
 
     };
 
-    axios.request(options).then(function (response) {
-      idProduct = response.data.id;
+    return await axios.request(options).then( async (response) =>{
+      console.log("ESTE EL ID DEL PRODUCTO SIN VAR:",response.data)
       console.log(categories);
-      categories.forEach((element) => {
-        console.log(element);
-        axios
-          .post(
-            `${serverUrl}/products/${idProduct}/category/${element.value}`
-          )
-          .then((res) => console.log(res));
-      });
-    });
-  }
+      categories.forEach(async(element) => {
+        return await axios.post(`${serverUrl}/products/${idProducts}/category/${element.value}`).then((res) => console.log(res));});
+         });     
+        
+      }
+          
+      
   const optionTone = [{
     value: "C",
     label: "C"
@@ -126,6 +139,7 @@ const PutForm = ({ STORE_ADMIN, fetchProduct }) => {
     value: "B",
     label: "B"
   }]
+
   const handleInputChange = (event) => {
     if (event.target.name === "image") {
       setImage(event.target.files);
@@ -173,9 +187,6 @@ const PutForm = ({ STORE_ADMIN, fetchProduct }) => {
     msecsProduct > msecsToday
       ? (errors.date = "insert a valid date!")
       : console.log("ok");
-    if (!tone.value) {
-      errors.tone = "tone is required";
-    }
     if (!image) {
       errors.image = "image is required";
     }
@@ -195,165 +206,166 @@ const PutForm = ({ STORE_ADMIN, fetchProduct }) => {
     });
   }
   return (
-    <div className="subContainer">
-      {console.log(product)}
-      <AdminNav />
-      <h2>Complete product data:</h2>
-      <form
-        onSubmit={(e) => handleSubmit(e)}
-      >
-        <div className="container formAdd"
-        >
+    <>
+            <AdminNav></AdminNav>
+            <div className="subContainer">
+              <h2>{t("page.admin.forms.addBeats.title")}</h2>
+              <div className="all--container-form" >
+                <form className="formAdd" onSubmit={(e) => handleSubmit(e)}>
+                <div className="container formAdd" >
 
-          <div className="column-1 box">
-            <label>Name</label>
-            {errors.name && <p className="danger">{errors.name}</p>}
+                 <div className="column-1 box">
+                  <label>{t("page.admin.forms.addBeats.name")}</label>
+                  {errors.name && <p className="danger">{errors.name}</p>}
+                    <input
+                      placeholder={product.name}
+                      value={input.name}
+                      className={`${errors.name && "danger"}`}
+                      name="name"
+                      onChange={(e) => {
+                      handleInputChange(e);
+                      }}
+                    />
+                  <label>{t("page.admin.forms.addBeats.description")}</label>
 
-            <input
-              placeholder={product.name}
-              className={`${errors.name && "danger"}`}
-              name="name"
-              onChange={(e) => {
-                handleInputChange(e);
-              }}
-            />
-            <label>Description</label>
+                  {errors.description && <p className="danger">{errors.description}</p>}
+                  <textarea
+                    placeholder={product.description}
+                    value={input.description}
+                    className={`${errors.description && "danger"}`}
+                    name="description"
+                    onChange={(e) => {
+                      handleInputChange(e);
+                    }}
+                  ></textarea>
+                  <label>{t("page.admin.forms.addBeats.artist")}</label>
+                  {errors.artist && <p className="danger">{errors.artist}</p>}
 
-            {errors.description && <p className="danger">{errors.description}</p>}
-            <textarea
-              placeholder={product.description}
-              className={`${errors.description && "danger"}`}
-              name="description"
-              onChange={(e) => {
-                handleInputChange(e);
-              }}
-            ></textarea>
-            <label>Artist</label>
-            {errors.artist && <p className="danger">{errors.artist}</p>}
+                  <input
+                    placeholder={product.artist}
+                    value={input.artist}
+                    className={`${errors.artist && "danger"}`}
+                    name="artist"
+                    onChange={(e) => {
+                      handleInputChange(e);
+                    }}
+                  ></input>
 
-            <input
-              placeholder={product.artist}
-              className={`${errors.artist && "danger"}`}
-              name="artist"
-              onChange={(e) => {
-                handleInputChange(e);
-              }}
-            ></input>
+                  <label>{t("page.admin.forms.addBeats.price")}</label>
+                  {errors.price && <p className="danger">{errors.price}</p>}
 
-            <label>Price</label>
-            {errors.price && <p className="danger">{errors.price}</p>}
+                  <input
+                    placeholder={product.price}
+                    value={input.price}
+                    className={`${errors.price && "danger"}`}
+                    name="price"
+                    type="number"
+                    onChange={(e) => {
+                      handleInputChange(e);
+                    }}
+                  ></input>
 
-            <input
-              placeholder={product.price}
-              className={`${errors.price && "danger"}`}
-              name="price"
-              type="number"
-              onChange={(e) => {
-                handleInputChange(e);
-              }}
-            ></input>
+                  <label>BPM</label>
+                  {errors.bpm && <p className="danger">{errors.bpm}</p>}
 
-            <label>BPM</label>
-            {errors.bpm && <p className="danger">{errors.bpm}</p>}
-
-            <input
-              placeholder={product.bpm}
-              className={`${errors.bpm && "danger"}`}
-              name="bpm"
-              type="number"
-              onChange={(e) => {
-                handleInputChange(e);
-              }}
-            ></input>
-          </div>
-          <div className="column-2 box">
-            <label>Tone</label>
-            {errors.tone && <p className="danger">{errors.tone}</p>}
-
-
-            <Select
-              placeholder={product.scale}
-
-              name="selectTone"
-              options={optionTone}
-              onChange={setTone}
-            // styles={customStyles}
-            />
-            <div className="radioTone">
-              <div className="radioColumn" >
-                <label for="indoor">natural</label>
-                <input type="radio" name="radName" value="" />
+                  <input
+                    placeholder={product.bpm}
+                    value={input.bpm}
+                    className={`${errors.bpm && "danger"}`}
+                    name="bpm"
+                    type="number"
+                    onChange={(e) => {
+                      handleInputChange(e);
+                    }}
+                  ></input>
+                    <label className='--edit-categories-label'>{t("page.admin.forms.addBeats.categories")}</label>
+                    <Select
+                      placeholder={product.categories}
+                      value={input.categories}
+                      isMulti
+                      name="selectCat"
+                      options={option}
+                      onChange={setCategories}
+                    />
+                </div>
+                <div className="column-2 box">
+              <div className="radioTone">
+                <div className="radioColumn" >
+                  <label for="indoor">natural</label>
+                  <input type="radio" name="radName" value="" />
+                </div>
+                <div className="radioColumn" >
+                  <label for="indoor"># </label>
+                  <input type="radio" name="radName" value="#" onChange={handleAlt} />
+                </div>
+                <div className="radioColumn">
+                  <label >b</label>
+                  <input type="radio" name="radName" value="b" onChange={handleAlt} />
+                </div>
               </div>
-              <div className="radioColumn" >
-                <label for="indoor"># </label>
-                <input type="radio" name="radName" value="#" onChange={handleAlt} />
-              </div>
-              <div className="radioColumn">
-                <label >b</label>
-                <input type="radio" name="radName" value="b" onChange={handleAlt} />
+              <label>{t("page.admin.forms.addBeats.date")}</label>
+              {errors.date && <p className="danger">{errors.date}</p>}
+
+              <input
+                placeholder={product.date}
+                value={input.date}
+                id="dateClass"
+                className={` ${errors.date && "danger"}`}
+                type="date"
+                name="date"
+                onChange={(e) => {
+                  handleInputChange(e);
+                }}
+              ></input>
+
+              <label className='--edit-image-label'>{t("page.admin.forms.addBeats.image")}</label>
+
+              <input
+                className="buttonInput"
+                type="file"
+                name="image"
+                onChange={(e) => {
+                  handleInputChange(e);
+                }}
+              ></input>
+              <label className='--edit-audio-label'>{t("page.admin.forms.addBeats.audio")}</label>
+
+              <input
+                className="buttonInput"
+                type="file"
+                name="audio"
+                onChange={(e) => {
+                  handleInputChange(e);
+                }}
+              ></input>
+              <label className='--edit-tone-label'>{t("page.admin.forms.addBeats.tone")}</label>
+              {errors.tone && <p className="danger">{errors.tone}</p>}
+
+
+              <Select
+                placeholder={product.scale}
+                value={tone}
+                name="selectTone"
+                options={ optionTone }
+                onChange={setTone}
+              />
+
+            </div>
+                </div>
+                
+                <button
+                      className="--edit-submitbuton"
+                      type="submit"
+                      onChange={(e) => {
+                        handleInputChange(e);
+                      }}
+                    >
+                      {t("page.admin.forms.addBeats.saveBeatButton")}
+                    </button>
+              </form>
               </div>
             </div>
-            <label>Date</label>
-            {errors.date && <p className="danger">{errors.date}</p>}
-
-            <input
-              placeholder={product.date}
-
-              id="dateClass"
-              className={` ${errors.date && "danger"}`}
-              type="date"
-              name="date"
-              onChange={(e) => {
-                handleInputChange(e);
-              }}
-            ></input>
-
-            <label>Image file</label>
-
-            <input
-              className="buttonInput"
-              type="file"
-              name="image"
-              onChange={(e) => {
-                handleInputChange(e);
-              }}
-            ></input>
-            <label>Audio file</label>
-
-            <input
-              className="buttonInput"
-              type="file"
-              name="audio"
-              onChange={(e) => {
-                handleInputChange(e);
-              }}
-            ></input>
-            <label>Categories</label>
-
-            <Select
-              placeholder={product.categories}
-              isMulti
-              name="selectCat"
-              options={option}
-              onChange={setCategories}
-            />
-          </div>
-        </div>
-        <div className="divButton">
-
-          <button
-            className="submitbuton"
-            type="submit"
-            onChange={(e) => {
-              handleInputChange(e);
-            }}
-          >
-            Save beat
-          </button>
-        </div>
-      </form>
-      <div className="divider"></div>
-    </div>
+          </>
   );
 }
 
@@ -367,4 +379,4 @@ const mapDispatchToProps = (dispatch) => {
     fetchProduct: (id) => dispatch(fetchOneProduct(id)),
   };
 };
-export default connect(mapStateToProps, mapDispatchToProps)(PutForm);
+export default connect(mapStateToProps, mapDispatchToProps)(withTranslation()(PutForm));

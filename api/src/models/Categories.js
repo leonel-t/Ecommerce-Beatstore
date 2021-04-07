@@ -5,7 +5,13 @@ module.exports = (sequelize) => {
         name: {
             type: DataTypes.STRING,
             allowNull: false,
-            unique: true
+            unique: true,
+            validate: {
+              len:{
+                args: [2,12],
+                msg: 'invalid category name length'
+              }
+            }
           },
           description: {
             type: DataTypes.TEXT,
