@@ -52,7 +52,8 @@ const {
   InformationUser,
   Likes,
   Messages,
-  Oferts
+  Oferts,
+  Newsletter
 } = sequelize.models;
 
 // PRODUCTS CATEGORIES
@@ -64,7 +65,7 @@ Product.belongsToMany(Review, { through: 'Products_Reviews', as: 'reviews' });
 Review.belongsToMany(Product, { through: 'Products_Reviews', as: 'products' });
 
 // PRODUCTS COMMENTS
-Product.hasMany(Comment, {foreignKey: "productId"});
+Product.hasMany(Comment, { foreignKey: "productId" });
 Comment.belongsTo(Product);
 
 
