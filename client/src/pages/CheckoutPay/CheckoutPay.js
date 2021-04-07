@@ -11,17 +11,14 @@ import {
     useElements,
 } from "@stripe/react-stripe-js";
 
-import Loader from "../../../src/assets/images/loader.gif"
-
+import Loader from "../../../src/assets/images/loader.gif";
 import { connect } from "react-redux";
-
-
-
 import axios from "axios";
 import swal from "sweetalert";
-import {serverUrl} from '../../auxiliar/variables';
+import {serverUrl,STRIPE_KEY} from '../../auxiliar/variables';
 
-const stripePromise = loadStripe("pk_test_51IbJG9HsbRhSA9TewWUVPgvsZyy1SmXmzNRf4cPFbZPICMgdGU1fXVJVkxkk91ub1hHNuGngboml2pSJDWcmJGzG00a4ZMNpWN");
+
+const stripePromise = loadStripe(STRIPE_KEY);
 
 function CheckoutPay({ totalPrice, cart, userReducer, store_orders, fetchAllOrders, action }) {
     useEffect(() => {
