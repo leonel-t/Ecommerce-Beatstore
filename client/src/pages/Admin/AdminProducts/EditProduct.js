@@ -91,7 +91,7 @@ const PutForm = ({t, STORE_ADMIN, fetchProduct }) => {
     form.append("artist", input.artist);
     form.append("price", input.price);
     form.append("bpm", input.bpm);
-    form.append("scale", tone.value + alt.radName);
+    form.append("scale", alt.radName === undefined ? tone.value : tone.value + alt.radName);
     form.append("date", input.date);
     form.append("selectCat", cat.selectCat);
     form.append("files", image[0]);

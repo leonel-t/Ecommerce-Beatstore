@@ -2,12 +2,12 @@ import "./addcategorynew.scss";
 import React, {useState} from "react";
 import { useForm } from "react-hook-form";
 import {connect} from "react-redux";
-import axios from "axios";
 import { withTranslation } from 'react-i18next';
 import { serverUrl } from '../../../auxiliar/variables';
-import spinner from "../../../assets/images/Spin-1s-200px.svg";
-import swal from 'sweetalert';
 import AdminNav from '../../../pages/Admin/AdminNav/AdminNav';
+import swal from 'sweetalert';
+import axios from "axios";
+import spinner from "../../../assets/images/Spin-1s-200px.svg";
 
 //Homeros
 import HomerMonito from "../../../assets/images/spiners-homers/homero-monito.gif"
