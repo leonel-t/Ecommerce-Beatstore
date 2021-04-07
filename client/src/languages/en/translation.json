@@ -248,6 +248,8 @@
           },
           "addGen":{
             "title": "Complete form",
+            "titleEdit":"Edit Genre",
+            "submitEdit":"Edit Genre",
             "name": "Name",
             "description": "Description",
             "submit": "Add Genre",

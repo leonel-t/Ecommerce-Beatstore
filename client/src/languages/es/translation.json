@@ -242,6 +242,8 @@
           },
           "addGen":{
             "title": "Agregar Genero Musical",
+            "titleEdit":"Edita el Genero",
+            "submitEdit":"Editar Genero",
             "name": "Nombre",
             "description": "Descripcion",
             "submit": "Agregar Genero",
