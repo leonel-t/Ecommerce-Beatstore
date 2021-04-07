@@ -1,15 +1,20 @@
-import React from "react";
+import "./addcategorynew.scss";
+import React, {useState} from "react";
+import { useForm } from "react-hook-form";
 import {connect} from "react-redux";
-//Internationalization
+import axios from "axios";
 import { withTranslation } from 'react-i18next';
-import AdminNav from '../../../pages/Admin/AdminNav/AdminNav';
-import "./addCategories.css";
 import { serverUrl } from '../../../auxiliar/variables';
+import spinner from "../../../assets/images/Spin-1s-200px.svg";
 import swal from 'sweetalert';
-function AddCategories({ t, STORE_USER }) {
-  //USER IDENTIFICATION FOR REDUCER #############################################
-  let userStore =
-    STORE_USER.user && STORE_USER.user.data && STORE_USER.user.data.user
+import AdminNav from '../../../pages/Admin/AdminNav/AdminNav';
+
+//Homeros
+import HomerMonito from "../../../assets/images/spiners-homers/homero-monito.gif"
+function AddCategoriesNew({ t, STORE_USER }) {
+
+  //USER IDENTIFICATION #########################################################################
+  let userStore = STORE_USER.user && STORE_USER.user.data && STORE_USER.user.data.user
       ? STORE_USER.user.data.user
       : null;
   let user = {
@@ -18,104 +23,122 @@ function AddCategories({ t, STORE_USER }) {
     orderId: STORE_USER.cartDetaills.id ? STORE_USER.cartDetaills.id : 0,
     rol: userStore && userStore.rol ? userStore.rol : 0,
   };
-  //#############################################################################
-  const [input, setInput] = React.useState({
-    name: "",
-    description: "",
-  });
-  const [errors, setErrors] = React.useState({});
-  function validate(input) {
-    let errors = {};
-    if (!input.name) {
-      errors.name = "name is required";
-    }
-    if (!input.description) {
-      errors.description = "description is required";
-    }
 
-    return errors;
-  }
+  // HOOK useForm ###############################################################################
+  const { register, handleSubmit, formState: { errors } } = useForm();
+  const [postLoading, setPostLoading] = useState(false);
+  
+  // FUNCTION  onSubmit #########################################################################
+  const onSubmit = (data) => {
 
-  const handleInputChange = function (e) {
-    setInput({
-      ...input,
-      [e.target.name]: e.target.value,
-    });
-
-    setErrors(
-      validate({
-        ...input,
-        [e.target.name]: e.target.value,
-      })
-    );
-  };
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    const requestOptions = {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-        "token": localStorage.getItem("token")
-      },
-      body: JSON.stringify({
-        ...input,
-      }),
+    let category = {
+      name: data.categorieName,
+      description: data.categorieDescription
     };
-    console.log(requestOptions.body);
-    fetch(`${serverUrl}/categories`, requestOptions);
-    swal({
-      title: "category added",
-      icon: "success",
-    })
+
+     return postCategorie(category);
   };
+
+  // FUNCTION postCategorie ####################################################################
+  const postCategorie = async (category)=>{
+
+      setPostLoading(true);
+
+      const options = {
+        method: 'POST',
+        url: `${serverUrl}/categories`,
+        headers: {
+          'Content-Type': 'application/json',
+          'token': localStorage.getItem("token")
+        },
+        data: {name: category.name , description: category.description }
+      };
+
+     return await axios.request(options).then(function (response) {
+        
+        setTimeout(()=>{
+          return setPostLoading(false);
+        },1000);
+        
+        if(response.data.original && response.data.original.code === "23505"){
+          swal(`Ya existe esa categoria`);
+        };
+
+      }).catch(error => {
+        swal(`${error}`);
+      });
+  };
+
+
   return (
     <>
       {user && user.rol === "admin"
         ? (
           <>
-            <AdminNav></AdminNav>
-            <div className="--Cart-title">
-              <h1>Add genre</h1>
-            </div>
-            <div className="--cat-all">
-              <div className="--cat-all-form">
-                <form className="catAdd" onSubmit={(e) => handleSubmit(e)}>
-                  <h1>{t("page.admin.forms.addGen.addGenre")}</h1>
-                  <div className="input-name">
-                    <p>{t("page.admin.forms.addGen.name")}</p>
-                    <input
-                      placeholder={t("page.admin.forms.addGen.placeholderOne")}
-                      className={`${errors.name && "danger"}`}
-                      type="text"
-                      name="name"
-                      onChange={handleInputChange}
-                      value={input.name}
-                    />
-                  </div>
-                  <div className="input-description">
-                    {errors.username && <p className="danger">{errors.username}</p>}
-                    <p>{t("page.admin.forms.addGen.description")}</p>
-                    <input
-                      placeholder={t("page.admin.forms.addGen.placeholderTwo")}
-                      className={`${errors.description && "danger"}`}
-                      type="text"
-                      name="description"
-                      onChange={handleInputChange}
-                      value={input.description}
-                    />
-                  </div>
-                  <div className="button-submit">
-                    {errors.description && <p className="danger">{errors.password}</p>}
-                    <button className="--submitbuton" type="submit">
-                      {t("page.admin.forms.addGen.submit")}
-                    </button>
-                  </div>
+            <AdminNav/>
+            <div className="--add-categories-main">
+                  <h1>Add Genres</h1>
+              <div className="--add-categories-form">
+                <form onSubmit={handleSubmit(onSubmit)}>
+                    <div>
+                        {/* INPUT CATEGORIE NAME  */}
+                        <label 
+                          name="--add-categories-form-categorie-name">
+                          {t("page.admin.forms.addGen.name")}
+                        </label>
+                        <input 
+                        name="categorieName"
+                        autoComplete="off"
+                        placeholder={t("page.admin.forms.addGen.placeholderOne")}
+                        className="--add-categories-form-input-name"
+                        {...register("categorieName", { required: true }, { min: 2, max: 12 })}
+                        type="text"/>
+                        {/* errors will return when field validation fails  */}
+                        {errors.categorieName && <span>The name is required</span>}
+                    </div>
+                    <div>
+                        {/* INPUT CATEGORIE DESCRIPTION  */}
+                        <label 
+                          name="--add-categories-form-categorie-description">
+                            {t("page.admin.forms.addGen.description")}
+                        </label>
+                        <input 
+                        name="categorieDescription"
+                        autoComplete="off"
+                        placeholder={t("page.admin.forms.addGen.placeholderTwo")}
+                        className="--add-categories-form-input-description"
+                        {...register("categorieDescription", { required: true })}
+                        type="text"/>
+                        {/* errors will return when field validation fails  */}
+                        {errors.categorieDescription && <span>The description is required</span>}
+                    </div>
+                    <div>
+                      <button type="submit">
+                        {postLoading
+                          ?(
+                            <img src={spinner} alt="spiner"></img>
+                          ):(
+                            t("page.admin.forms.addGen.submit")
+                          )
+                        }  
+                      </button>  
+                    </div>                
                 </form>
               </div>
-              
+              <div className={"--add-categories-homer"}>
+                {errors.categorieDescription || errors.categorieName
+                ?(
+                  <img
+                  src={HomerMonito} alt="homer error"></img>
+                ):(
+                  ""
+                )
+                }
+              </div>
             </div>
-          </>) : (
-          <div className="--admin--main-panel" >
+          </>
+          ) : (
+          <div>
             <h1>Acceso Denegado Only Admin Can Be See This Page</h1>
           </div>
         )
@@ -130,4 +153,4 @@ const mapStateToProps = (state) => {
   };
 };
 
-export default connect(mapStateToProps)(withTranslation()(AddCategories));
+export default connect(mapStateToProps)(withTranslation()(AddCategoriesNew));

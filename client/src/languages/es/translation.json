@@ -244,7 +244,7 @@
             "addGenre": "Agregar Genero Musical",
             "name": "Nombre",
             "description": "Descripcion",
-            "submit": "Enviar",
+            "submit": "Agregar Genero",
             "placeholderOne": "nombre del tipo de genero",
             "placeholderTwo": "descripcion sobre el genero"
           }

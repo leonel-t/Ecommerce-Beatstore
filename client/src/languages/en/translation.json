@@ -250,7 +250,7 @@
             "addGenre": "Complete form",
             "name": "Name",
             "description": "Description",
-            "submit": "Submit",
+            "submit": "Add Genre",
             "placeholderOne": "type the category name",
             "placeholderTwo": "type the description here"
         }
