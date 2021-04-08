@@ -32,11 +32,6 @@ const AdminNav = ({ t }) => {
       <Link
         onClick={() => handleClickActiveState("List Oferts")}
         className={activeState === "List Oferts" ? "--admin--main-btn --admin--main-btn-active" : "--admin--main-btn"} to="/admin/oferts">
-        List Oferts
-      </Link>
-      <Link
-        onClick={() => handleClickActiveState("Add Oferts")}
-        className={activeState === "Add Oferts" ? "--admin--main-btn --admin--main-btn-active" : "--admin--main-btn"} to="/admin/oferts/add">
         Add Oferts
       </Link>
       <Link

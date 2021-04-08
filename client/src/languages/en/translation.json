@@ -43,6 +43,14 @@
       }
     },
     "page":{
+      "oferts":{
+        "title": "Oferts",
+        "day": "offers of the day",
+        "week": "deals of the week",
+        "month": "offers of the month",
+        "season": "seasonal offers",
+        "holiday": "vacation deals"
+      },
       "home":{
         "MiddleSearchBar":"Search",
         "sliders":{

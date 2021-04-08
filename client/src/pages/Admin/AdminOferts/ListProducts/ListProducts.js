@@ -1,11 +1,15 @@
 import React from "react";
+import {useHistory} from "react-router-dom"
 import "./listproducts.scss";
 import {serverUrl} from "../../../../auxiliar/variables";
 
 
 const ListProducts = ({id, name, image, artist, description, addOfert})=>{
 
+    const history = useHistory();
+    
     const handleClick = ()=>{
+        history.push(`/admin/oferts/add/${id}`)
         return addOfert(id)
     }
     

@@ -39,6 +39,14 @@
       }
     },
     "page":{
+      "oferts":{
+        "title": "Ofertas",
+        "day":"Ofertas del dia",
+        "week":"Ofertas de la semana",
+        "month": "Ofertas del Mes",
+        "season": "Ofertas de temporada",
+        "holiday":"Ofertas de vacaciones"
+      },
       "home":{
         "MiddleSearchBar":"Buscar",
         "sliders":{
@@ -276,6 +284,7 @@
           }
       }
     }
+
   },
   "components":{
     "beatComponent":{

@@ -8,11 +8,12 @@ import { serverUrl } from '../../../../auxiliar/variables';
 import spinner from "../../../../assets/images/Spin-1s-200px.svg";
 import swal from 'sweetalert';
 import AdminNav from '../../../../pages/Admin/AdminNav/AdminNav';
-
 //Homeros
 import HomerRebotin from "../../../../assets/images/spiners-homers/homero-rebotin.gif"
-function AddCategoriesNew({ t, STORE_USER }) {
+import { useParams } from "react-router-dom";
 
+function AddCategoriesNew({ t, STORE_USER }) {
+  const {idProduct} = useParams();
   //USER IDENTIFICATION #########################################################################
   let userStore = STORE_USER.user && STORE_USER.user.data && STORE_USER.user.data.user
       ? STORE_USER.user.data.user
@@ -32,7 +33,7 @@ function AddCategoriesNew({ t, STORE_USER }) {
   const onSubmit = (data) => {
     let ofert = {
       name: data.ofertName,
-      description: data.ofertDiscount,
+      discount: data.ofertDiscount,
       ofertStatus: data.ofertStatus
     };
 
@@ -46,7 +47,7 @@ function AddCategoriesNew({ t, STORE_USER }) {
 
       const options = {
         method: 'POST',
-        url: `${serverUrl}/oferts`,
+        url: `${serverUrl}/oferts/${idProduct}`,
         headers: {
           'Content-Type': 'application/json',
           'token': localStorage.getItem("token")
