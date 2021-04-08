@@ -16,15 +16,18 @@ const history = useHistory();
   const customStyles = {
     option: (provided, state) => ({
       ...provided,
+      position:'relative',
       borderBottom: '1px dotted pink',
       color: state.isSelected ? 'red' : 'violet',
       background:'black',
       fontWeight: 800,
-      padding: 20,
+      padding: 10,
     }),
     control: () => ({
       // none of react-select's styles are passed to <Control />
-      width: 200,
+      width: '80%',
+      marginLeft: 'auto',
+      marginRight: 'auto',
     }),
     singleValue: (provided, state) => {
       const opacity = state.isDisabled ? 0.5 : 1;
@@ -258,173 +261,179 @@ const history = useHistory();
         ? (
           <>
             <AdminNav></AdminNav>
+              <div  className="--add-product-newform-col-0">
+                <h2>{t("page.admin.forms.addBeats.title")}</h2>
+              </div>
+              <div className="--all-container-form">
+               <div className="--add-product-new-container"> 
+                  <form encType="multipart/form-data"  className=".--add-product-newform" onSubmit={(e) => handleSubmit(e)}>
+                    <div className="--add-product-newform-container">
+                    
+                      <div className="--add-product-newform-col-1">
+                          <div className="--add-product-newform-col-1-interna-1">
 
-            <div className="--add-product-new-container"> 
-              <form encType="multipart/form-data"  className=".--add-product-newform" onSubmit={(e) => handleSubmit(e)}>
-                <div className="--add-product-newform-container">
-                <div  className="--add-product-newform-col-0">
-                    <h2>{t("page.admin.forms.addBeats.title")}</h2>
-                  </div>
-                  <div className="--add-product-newform-col-1">
-                      <div className="--add-product-newform-col-1-interna-1">
+                              <div className="--colum-helper --add-product-newform-input">
+                                <label>
+                                  {t("page.admin.forms.addBeats.name")} </label>
+                                  <input
+                                    autoComplete="off"
+                                    placeholder={errors.name ?(errors.name):("")}
+                                    className={`${errors.name && "--colum-helper-danger"}`}
+                                    name="name"
+                                    onChange={(e) => { handleInputChange(e); }}
+                                  />
+                                 
+                              </div>
+                              <div className="--colum-helper --add-product-newform-input">
+                                <label>{t("page.admin.forms.addBeats.artist")}</label>
+                                  <input
+                                    autoComplete="off"
+                                    placeholder={errors.artist?(errors.artist):("") }
+                                    className={`${errors.artist && "--colum-helper-danger"}`}
+                                    name="artist"
+                                    onChange={(e) => { handleInputChange(e); }}
+                                  ></input>
+                              </div>
 
-                          <div className="--colum-helper --add-product-newform-input">
-                            <label>{t("page.admin.forms.addBeats.name")}</label>
-                              {errors.name && <p className="--colum-helper-danger">{errors.name}</p>}
+                              <div className="--colum-helper-doble --add-product-newform-input-doble">
+                                    <div>
+                                      <label>{t("page.admin.forms.addBeats.price")}</label>
+                                      {errors.price && <p className="--colum-helper-danger">{errors.price}</p>}
+                                        <input
+                                          autoComplete="off"
+                                          className={`${errors.price && "--colum-helper-danger"}`}
+                                          name="price"
+                                          type="number"
+                                          onChange={(e) => { handleInputChange(e) }}
+                                        ></input>
+                                    </div>
+                                    <div>
+                                    <label>{t("page.admin.forms.addBeats.bpm")}</label>
+                                    {errors.bpm && <p className="--colum-helper-danger">{errors.bpm}</p>}
+                                      <input
+                                        autoComplete="off"
+                                      
+                                        className={`${errors.bpm && "--colum-helper-danger"}`}
+                                        name="bpm"
+                                        type="number"
+                                        onChange={(e) => { handleInputChange(e) }}
+                                      ></input>
+                                    </div>
+                                    
+                              </div>
+
+                              <div className="--colum-helper --add-product-newform-input">
+                              <label className='--labelImage'>{t("page.admin.forms.addBeats.image")}</label>
                               <input
-                                autoComplete="off"
-                                className={`${errors.name && "--colum-helper-danger"}`}
-                                name="name"
-                                onChange={(e) => { handleInputChange(e); }}
-                              />
+                                className="buttonInput"
+                                type="file"
+                                name="image"
+                                onChange={(e) => handleInputChange(e) }
+                              ></input>
+                            </div>
+                              <div  className="--add-product-newform-radioTone-select-tone">
+                              <label>{t("page.admin.forms.addBeats.tone")}</label>
+                                <Select
+                                  name="selectTone"
+                                  className="--select"
+                                  placeholder={errors.tone?(errors.tone):("Select...")}
+                                  options={optionTone}
+                                  onChange={setTone}
+                                  styles={customStyles}
+                                
+                                />
+                              </div>
+                              
                           </div>
-
+                          <div className="--add-product-newform-col-1-interna-2">
                           <div className=" --colum-helper --add-product-newform-input">
-                            <label>{t("page.admin.forms.addBeats.description")}</label>
-                            {errors.description && <p className="--colum-helper-danger">{errors.description}</p>}
-                              <textarea
-                                className={`${errors.description && "--colum-helper-danger"}`}
-                                name="description"
-                                onChange={(e) => { handleInputChange(e) }}
-                              ></textarea>
-                          </div>
-                          
-                          <div className="--colum-helper --add-product-newform-input">
-                            <label>{t("page.admin.forms.addBeats.artist")}</label>
-                            {errors.artist && <p className="--colum-helper-danger">{errors.artist}</p>}
-                              <input
-                                autoComplete="off"
-                                className={`${errors.artist && "--colum-helper-danger"}`}
-                                name="artist"
-                                onChange={(e) => { handleInputChange(e); }}
-                              ></input>
-                          </div>
+                                <label>{t("page.admin.forms.addBeats.description")}</label>
+                                  <textarea
+                                    placeholder={errors.description?(errors.description):("")}
+                                    className={`${errors.description && "--colum-helper-danger"}`}
+                                    name="description"
+                                    onChange={(e) => { handleInputChange(e) }}
+                                  ></textarea>
+                              </div>
+                              <div className="--add-product-newform-radioTone">
 
-                          <div className="--colum-helper --add-product-newform-input">
-                            <label>{t("page.admin.forms.addBeats.price")}</label>
-                              {errors.price && <p className="--colum-helper-danger">{errors.price}</p>}
+                              <div className="--add-product-newform-radioTone-radioColumn" >
+                                <label>natural</label>
+                                <input type="radio" name="radName" value="" />
+                              </div>
+                              <div className="--add-product-newform-radioTone-radioColumn" >
+                                <label># </label>
+                                <input 
+                                  type="radio"
+                                  name="radName"
+                                  value="#"
+                                  onChange={handleAlt} />
+
+                              </div>
+                              <div className="--add-product-newform-radioTone-radioColumn">
+                                <label >b</label>
                                 <input
-                                  autoComplete="off"
-                                  className={`${errors.price && "--colum-helper-danger"}`}
-                                  name="price"
-                                  type="number"
-                                  onChange={(e) => { handleInputChange(e) }}
-                                ></input>
-                          </div>
+                                  type="radio"
+                                  name="radName"
+                                  value="b"
+                                  onChange={handleAlt} 
+                                />
+                              </div>
+                              </div>
 
-                          <div className="--colum-helper --add-product-newform-input">
-                            <label>{t("page.admin.forms.addBeats.bpm")}</label>
-                            {errors.bpm && <p className="--colum-helper-danger">{errors.bpm}</p>}
 
+                            <div className="--colum-helper --add-product-newform-input">
+                              <label>{t("page.admin.forms.addBeats.date")}</label>
+                              {errors.date && <p className="--colum-helper-danger">{errors.date}</p>}
                               <input
                                 autoComplete="off"
-                                className={`${errors.bpm && "--colum-helper-danger"}`}
-                                name="bpm"
-                                type="number"
-                                onChange={(e) => { handleInputChange(e) }}
+                                placeholder={errors.date?(errors.date):("")}
+                                className={` ${errors.date && "--colum-helper-danger"}`}
+                                type="date"
+                                name="date"
+                                onChange={(e) => handleInputChange(e) }
                               ></input>
-                          </div>
-                          
+                            </div>
+
+                            <div className="--colum-helper --add-product-newform-input">
+                              <label className='--labelAudio'>{t("page.admin.forms.addBeats.audio")}</label>
+                              <input
+                                className="buttonInput"
+                                type="file"
+                                name="audio"
+                                onChange={(e) => handleInputChange(e) }
+                              ></input>
+
+                            </div>
+                            <div className="--add-product-newform-category">
+                                <label>{t("page.admin.forms.addBeats.categories")}</label>    
+                                <Select
+                                  isMulti
+                                  name="selectCat"
+                                  options={option}
+                                  onChange={setCategories}
+                                  styles={customStyles}
+                                />
+                              </div>
+
+
+                        </div>
+                    </div>
+
+                      <div  className="--add-product-newform-col-2">
+                        <button
+                          type="submit"
+                          onChange={(e) => { handleInputChange(e)  }}
+                        >
+                          {t("page.admin.forms.addBeats.addBeatButton")}
+                        </button>
                       </div>
-                      <div className="--add-product-newform-col-1-interna-2">
-                      <div className="--add-product-newform-category">
-                            <label>{t("page.admin.forms.addBeats.categories")}</label>    
-                            <Select
-                              isMulti
-                              name="selectCat"
-                              options={option}
-                              onChange={setCategories}
-                              styles={customStyles}
-                            />
-                          </div>
-                          <div className="--add-product-newform-radioTone">
 
-                          <div className="--add-product-newform-radioTone-radioColumn" >
-                            <label>natural</label>
-                            <input type="radio" name="radName" value="" />
-                          </div>
-                          <div className="--add-product-newform-radioTone-radioColumn" >
-                            <label># </label>
-                            <input 
-                              type="radio"
-                              name="radName"
-                              value="#"
-                              onChange={handleAlt} />
-
-                          </div>
-                          <div className="--add-product-newform-radioTone-radioColumn">
-                            <label >b</label>
-                            <input
-                              type="radio"
-                              name="radName"
-                              value="b"
-                              onChange={handleAlt} 
-                            />
-                          </div>
-                          </div>
-
-                          <div  className="--add-product-newform-radioTone-select-tone">
-                          <label>{t("page.admin.forms.addBeats.tone")}</label>
-                          {errors.tone && <p className="--colum-helper-danger">{errors.tone}</p>}
-                            <Select
-                              name="selectTone"
-                              options={optionTone}
-                              onChange={setTone}
-                              styles={customStyles}
-                            
-                            />
-                          </div>
-                        <div className="--colum-helper --add-product-newform-input">
-                          <label>{t("page.admin.forms.addBeats.date")}</label>
-                          {errors.date && <p className="--colum-helper-danger">{errors.date}</p>}
-                          <input
-                            autoComplete="off"
-                            className={` ${errors.date && "--colum-helper-danger"}`}
-                            type="date"
-                            name="date"
-                            onChange={(e) => handleInputChange(e) }
-                          ></input>
-                        </div>
-
-                        <div className="--colum-helper --add-product-newform-input">
-                          <label className='--labelImage'>{t("page.admin.forms.addBeats.image")}</label>
-                          <input
-                            className="buttonInput"
-                            type="file"
-                            name="image"
-                            onChange={(e) => handleInputChange(e) }
-                          ></input>
-                        </div>
-
-                        <div className="--colum-helper --add-product-newform-input">
-                          <label className='--labelAudio'>{t("page.admin.forms.addBeats.audio")}</label>
-                          <input
-                            className="buttonInput"
-                            type="file"
-                            name="audio"
-                            onChange={(e) => handleInputChange(e) }
-                          ></input>
-
-                        </div>
-
-
-
-                     </div>
+                    </div>
+                  </form>
                 </div>
-
-                  <div  className="--add-product-newform-col-2">
-                    <button
-                      className="submitbuton"
-                      type="submit"
-                      onChange={(e) => { handleInputChange(e)  }}
-                    >
-                      {t("page.admin.forms.addBeats.addBeatButton")}
-                    </button>
-                  </div>
-
-                </div>
-              </form>
-            </div>
+              </div>
+            
 
           </>) : (
           <div className="--admin--main-panel" >
