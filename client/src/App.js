@@ -68,6 +68,8 @@ import Prices from './pages/AdminSubscriptions/Prices/Prices';
 import Invoices from './pages/AdminSubscriptions/Invoices/Invoices';
 import SuscriptionsProducts from './pages/AdminSubscriptions/AdminSuscriptionsProducts/AdminSuscriptionsProducts';
 import CheckoutCart from "./components/Cart/CheckoutCart/CheckoutCart";
+import AddCoupons from "./pages/Admin/AdminCoupons/AddCoupons/AddCoupons";
+import ListCoupons from "./pages/Admin/AdminCoupons/ListCoupon/ListCoupons";
 
 
 const App = () => {
@@ -104,7 +106,8 @@ const App = () => {
         <RouteWrapper exact path="/ranking" component={Ranking} layout={PagesLayout} />
         <RouteWrapper exact path="/admin/oferts" component={AdminOferts} layout={AdminLayout} />
         <RouteWrapper exact path="/admin/oferts/listoferts" component={ListOferts} layout={AdminLayout} />
-
+        <RouteWrapper exact path="/admin/coupons/add" component={AddCoupons} layout={AdminLayout} />
+        <RouteWrapper exact path="/admin/coupons/list" component={ListCoupons} layout={AdminLayout} />
         <RouteWrapper exact path="/admin/oferts/add/:idProduct" component={AdminAddOferts} layout={AdminLayout} />
         <RouteWrapper exact path="/adminsubscriptions" component={AdminSubscriptions} layout={AdminSubscriptionsLayout} />
         <RouteWrapper exact path="/adminsuscriptions/customers" component={Customers} layout={AdminSubscriptionsLayout} />

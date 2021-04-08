@@ -35,6 +35,16 @@ const AdminNav = ({ t }) => {
         Add Oferts
       </Link>
       <Link
+        onClick={() => handleClickActiveState("List Coupons")}
+        className={activeState === "List Coupons" ? "--admin--main-btn --admin--main-btn-active" : "--admin--main-btn"} to="/admin/coupons/list">
+        List Coupons
+      </Link>
+      <Link
+        onClick={() => handleClickActiveState("Add Coupons")}
+        className={activeState === "Add Coupons" ? "--admin--main-btn --admin--main-btn-active" : "--admin--main-btn"} to="/admin/coupons/add">
+        Add Coupons
+      </Link>
+      <Link
         onClick={() => handleClickActiveState("List Categories")}
         className={activeState === "List Categories" ? "--admin--main-btn --admin--main-btn-active" : "--admin--main-btn"} to="/listcat">
         {t('headers.adminHeader.adminNav.listGenre')}
