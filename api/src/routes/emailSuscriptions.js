@@ -39,7 +39,7 @@ module.exports = {
                 from: 'beatstars@mail.com', // TODO: email sender
                 to: emailList, // TODO: email receiver
                 subject: 'Beatstore',
-                template: 'index',
+                template: 'Template_for_Nesletter',
                 text: "here are the newsletters",
                 context: {
                     name: 'beatstars'
@@ -54,7 +54,12 @@ module.exports = {
                     filename: 'bg-login.jpg', 
                     path: path.join(__dirname,'../../uploads/bg-login.jpg'),
                     cid: 'login'
-                } 
+                },
+                { 
+                    filename: '1616179549514-505916721-500x500.jpg', 
+                    path: path.join(__dirname,'../../uploads/1616179549514-505916721-500x500.jpg'),
+                    cid: 'letsGo'
+                }  
                 
             ],
             };
