@@ -10,6 +10,12 @@ const postCategoriesRouter = require("./categories/post.categories");
 const putCategoriesRouter = require("./categories/put.categories");
 const deleteCategoriesRouter = require("./categories/delete.categories");
 
+const getCouponsRouter = require("./coupons/get.coupons");
+const postCouponsRouter = require("./coupons/post.coupons");
+const putCouponsRouter = require("./coupons/put.coupons");
+const deleteCouponsRouter = require("./coupons/delete.coupons");
+
+
 const getUserRouter = require("./users/get.users");
 const postUserRouter = require("./users/post.users");
 const putUserRouter = require("./users/put.users");
@@ -121,6 +127,11 @@ router.use("/comments", getComments);
 router.use("/comments", postComments);
 router.use("/comments", putComments);
 router.use("/comments", deleteComments);
+
+router.use("/coupons", getCouponsRouter);
+router.use("/coupons", postCouponsRouter);
+router.use("/coupons", putCouponsRouter);
+router.use("/coupons", deleteCouponsRouter);
 
 router.use("/messages", getMessages);
 router.use("/messages", postMessages);
