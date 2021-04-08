@@ -4,6 +4,8 @@ import { connect } from "react-redux";
 import { useHistory } from "react-router-dom"
 
 import {searchProducts} from "../../../stores/products/products.actions"
+import {searchUser} from "../../../stores/user/user.actions"
+
 // import Filter from "./Filter"
 
 //Internationalization
@@ -34,6 +36,7 @@ const MiddleSearchBar = ({t}) => {
     const handleSubmit = (e) => {
         e.preventDefault();
         dispatch(searchProducts(input.name));
+        dispatch(searchUser(input.name));
         history.push(`/results/${input.name}`)
 
     }

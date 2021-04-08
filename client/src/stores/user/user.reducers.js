@@ -28,13 +28,18 @@ import {
     GET_ORDER_CHECKOUT_REQUEST,
     GET_ORDER_CHECKOUT_SUCCESS,
     GET_ORDER_CHECKOUT_FAILURE,
-
+    SEARCH_USER_REQUEST,
+    SEARCH_USER_SUCCESS,
+    SEARCH_USER_FAILURE,
 } from './user.actions';
 
 let initialState = {
     user: [],
     userLoading: true,
     userError: "",
+    searchResultsUser: [],
+    searchLoading: true,
+    searchError: "",
     cart: [],
     cartDetaills: "",
     totalPrice: 0,
@@ -61,6 +66,23 @@ let initialState = {
 
 const userReducers = (state = initialState, action) => {
     switch (action.type) {
+        case SEARCH_USER_REQUEST:
+            return {
+                ...state,
+                searchLoading: true
+            }
+        case SEARCH_USER_SUCCESS:
+            return {
+                ...state,
+                searchLoading: false,
+                searchResultsUser: action.payload
+            }
+        case SEARCH_USER_FAILURE:
+            return {
+                ...state,
+                searchError: 'error 404',
+                searchLoading: false
+            }
         case GET_CONVERSATION_REQUEST:
             return {
                 ...state,

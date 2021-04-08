@@ -6,21 +6,23 @@ import './publicProfile.scss';
 import BoxMessage from './BoxMessage';
 import HistoryMessages from './Historymessages';
 import swal from 'sweetalert';
+import { useParams } from "react-router-dom"
 
-const PublicProfile = (userId) => {
 
+const PublicProfile = () => {
+
+  const {idUser} = useParams();
+  
+  const userFrom = useSelector(state => state.userReducers.user)
+  const dispatch =  useDispatch();
+  
  
- const userFrom = useSelector(state => state.userReducers.user)
-  const idAutor = "kn4wmxm0";
-  const date = "2021-04-07";
-
- const dispatch =  useDispatch();
   useEffect(() => {
-     dispatch(getUserById("kn4wmxm0"))
+     dispatch(getUserById(idUser))
  }, [])
- console.log("ESTO ES FROM",userFrom)
+ 
  const user = useSelector(state => state.userReducers.userPublic)
- console.log("ESTO ES USER",user)
+ 
  const handleLike =  ()=>{
 
     swal("Login for send message!");
@@ -30,21 +32,29 @@ const PublicProfile = (userId) => {
 
  return (
     <div className="userMain">
+        <div className="userHead">
         <div className="userName"><h1>{user.name}</h1></div> 
         <div className="imgProfileContainer"> 
             <img alt="profileImage" className="profileImage" src={`${serverUrl}/images/${user.image}`}/>
         </div>
-        {userFrom && userFrom.length!== 0 ?(
+        </div>
+        
+        { !user
+                ? ( <div>
+                CARGANDO...
+            </div>
+        ) : (
+            user.id && userFrom && userFrom.length!== 0 ?(
         <div>
             <div className="userMail">
-            <BoxMessage username={user.name} idFrom={userFrom.data.user.id} idTo={user.id}  date={date}/>
+            <BoxMessage username={user.name} idFrom={userFrom.data.user.id} idTo={idUser} />
         </div>
         <div>
-            <HistoryMessages usernameFrom={userFrom.data.user.name} idFrom={userFrom.data.user.id} idTo={user.id} username={user.name}/>
+            <HistoryMessages usernameFrom={userFrom.data.user.name} idFrom={userFrom.data.user.id} idTo={idUser} username={user.name}/>
         </div>
         </div>
         ):(
-            <div>
+            <div className="userHead">
                 <div className="userMail">
                 <span 
                 onClick={()=> handleLike()}
@@ -56,6 +66,7 @@ const PublicProfile = (userId) => {
             </div>
             </div>
             
+        )
         )}
         <div>
             

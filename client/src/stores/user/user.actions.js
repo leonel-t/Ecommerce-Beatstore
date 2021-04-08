@@ -46,6 +46,12 @@ export const GET_ORDER_CHECKOUT_REQUEST = "GET_ORDER_CHECKOUT_REQUEST";
 export const GET_ORDER_CHECKOUT_SUCCESS = "GET_ORDER_CHECKOUT_SUCCESS";
 export const GET_ORDER_CHECKOUT_FAILURE = "GET_ORDER_CHECKOUT_FAILURE";
 
+//SEARCH USER
+export const SEARCH_USER_REQUEST = "SEARCH_USER_REQUEST";
+export const SEARCH_USER_SUCCESS = "SEARCH_USER_SUCCESS";
+export const SEARCH_USER_FAILURE = "SEARCH_USER_FAILURE";
+
+
 export const getLikesByUser = (userId) => {
 
 
@@ -553,3 +559,27 @@ export const getOrderByCheckoutIdFailure = (error) => {
         payload: error
     };
 };
+
+ //SEARCHUSER
+
+ export const searchUser = (user) => async (dispatch) => {
+    try {
+      dispatch({ type: SEARCH_USER_REQUEST });
+      
+      
+      const { data } = await axios.get(`${serverUrl}/users/search/${user}`);
+      
+      dispatch({
+        type: SEARCH_USER_SUCCESS,
+        payload: data,
+      });
+    } catch (error) {
+      dispatch({
+        type: SEARCH_USER_FAILURE,
+        payload:
+          error.response && error.response.data.message
+            ? error.response.data.message
+            : error.message,
+      });
+    }
+  };
