@@ -19,7 +19,15 @@ module.exports = {
     return await Oferts.create(ofert).then((ofert)=> ofert);
   },
   getOferts: async () => {
-    return await Oferts.findAll().then((oferts) => oferts);
+    return await Oferts.findAll({
+      include: [
+        {
+          model: Product,
+          as:"products"
+        },
+        
+      ],
+    }).then((oferts) => oferts);
   },
   getOfertById: async (ofertId) => {
     return await Oferts.findByPk(ofertId).then((ofert) => ofert);
