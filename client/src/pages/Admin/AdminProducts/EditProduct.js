@@ -1,5 +1,4 @@
 import React, { useEffect} from "react";
-import { useForm }from 'react-hook-form'
 import { useParams } from "react-router-dom";
 import { connect } from "react-redux";
 import "./form.css";
@@ -14,9 +13,6 @@ import {serverUrl} from '../../../auxiliar/variables';
 
 const PutForm = ({t, STORE_ADMIN, fetchProduct }) => {
 
-  const { register, handleSubmit, formState: { errors } } = useForm();
-  const onSubmit = data => console.log(data);
-
   const storeProduct = STORE_ADMIN.product;
 
   const { idProducts } = useParams();
@@ -26,12 +22,18 @@ const PutForm = ({t, STORE_ADMIN, fetchProduct }) => {
   }, [fetchProduct, idProducts]);
 
   const [categories, setCategories] = React.useState([]);
+  const [oldImage, setOldImage] = React.useState({});
+  const [oldAudio, setOldAudio] = React.useState();
+  const [editAudio, setEditAudio] = React.useState("");
+  const [editImage, setEditImage] = React.useState("");
+  const [editFiles, setEditFiles] = React.useState("");
   const [image, setImage] = React.useState({});
   const [audio, setAudio] = React.useState();
   const [error, setError] = React.useState({});
   const [cat, setCat] = React.useState([]);
   const [alt, setAlt] = React.useState({})
   const [tone, setTone] = React.useState({})
+
 
   useEffect(() => {
     const datos = async () => {
@@ -77,6 +79,7 @@ const PutForm = ({t, STORE_ADMIN, fetchProduct }) => {
     date:""
   });
 
+
   const handleAlt = (e) => {
     setAlt({
       ...alt,
@@ -84,9 +87,7 @@ const PutForm = ({t, STORE_ADMIN, fetchProduct }) => {
     })
 
   }
-
-  let idProduct;
-  const handleSubmit2 = async (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
     console.log("ESTO ES IMAGE:",JSON.stringify(tone))
     const form = new FormData();
@@ -98,8 +99,13 @@ const PutForm = ({t, STORE_ADMIN, fetchProduct }) => {
     form.append("scale", alt.radName === undefined ? tone.value : tone.value + alt.radName);
     form.append("date", input.date);
     form.append("selectCat", cat.selectCat);
-    form.append("files", image[0]);
-    form.append("files", audio[0]);
+    form.append("files", image && image[0]? image[0]: "");
+    form.append("files", audio && audio[0]? audio[0]: "");
+    form.append("oldImage", oldImage);
+    form.append("oldAudio", oldAudio);
+    form.append("editImage", editImage);
+    form.append("editAudio", editAudio);
+    form.append("editFiles", editFiles);
 
     const options = {
       method: "PUT",
@@ -112,7 +118,6 @@ const PutForm = ({t, STORE_ADMIN, fetchProduct }) => {
     };
 
     return await axios.request(options).then( async (response) =>{
-      console.log("ESTE EL ID DEL PRODUCTO SIN VAR:",response.data)
       console.log(categories);
       categories.forEach(async(element) => {
         return await axios.post(`${serverUrl}/products/${idProducts}/category/${element.value}`).then((res) => console.log(res));});
@@ -146,9 +151,22 @@ const PutForm = ({t, STORE_ADMIN, fetchProduct }) => {
 
   const handleInputChange = (event) => {
     if (event.target.name === "image") {
+      
+    if(storeProduct && storeProduct.image){
+      setOldImage(storeProduct.image)
+      console.log(storeProduct.image)
+    }
       setImage(event.target.files);
+      setEditImage("edit")
+      setEditFiles("edit")
     } else if (event.target.name === "audio") {
+      if(storeProduct && storeProduct.audio){
+        setOldAudio(storeProduct.audio)
+        console.log(storeProduct.audio)
+      }
       setAudio(event.target.files);
+      setEditAudio("edit")
+      setEditFiles("edit")
     } else {
       setInput({
         ...input,
@@ -215,7 +233,7 @@ const PutForm = ({t, STORE_ADMIN, fetchProduct }) => {
             <div className="subContainer">
               <h2>{t("page.admin.forms.addBeats.title")}</h2>
               <div className="all--container-form" >
-                <form className="formAdd" onSubmit={(e) => handleSubmit2(e), handleSubmit(onSubmit)}>
+                <form className="formAdd" onSubmit={(e) => handleSubmit(e)}>
                 <div className="container formAdd" >
 
                  <div className="column-1 box">
@@ -295,11 +313,11 @@ const PutForm = ({t, STORE_ADMIN, fetchProduct }) => {
                 <div className="column-2 box">
               <div className="radioTone">
                 <div className="radioColumn" >
-                  <label for="indoor">natural</label>
+                  <label >natural</label>
                   <input type="radio" name="radName" value="" />
                 </div>
                 <div className="radioColumn" >
-                  <label for="indoor"># </label>
+                  <label ># </label>
                   <input type="radio" name="radName" value="#" onChange={handleAlt} />
                 </div>
                 <div className="radioColumn">
@@ -338,15 +356,12 @@ const PutForm = ({t, STORE_ADMIN, fetchProduct }) => {
                 className="buttonInput"
                 type="file"
                 name="audio"
-                {...register("audio", { required: true })}
                 onChange={(e) => {
                   handleInputChange(e);
                 }}
               ></input>
-              {errors.audio && <span>This camp audio is required</span>}
               <label className='--edit-tone-label'>{t("page.admin.forms.addBeats.tone")}</label>
               {error.tone && <p className="danger">{error.tone}</p>}
-
 
               <Select
                 placeholder={product.scale}
