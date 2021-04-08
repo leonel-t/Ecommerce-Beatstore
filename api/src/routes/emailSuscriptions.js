@@ -34,10 +34,11 @@ module.exports = {
         }).then(list => {
             emailList = list.map(email => email.email)
             log(emailList)
+            
             let mailOptions = {
-                from: 'asdf', // TODO: email sender
+                from: 'beatstars@mail.com', // TODO: email sender
                 to: emailList, // TODO: email receiver
-                subject: 'Nodemailer - Test',
+                subject: 'Beatstore',
                 template: 'index',
                 text: "here are the newsletters",
                 context: {
@@ -45,11 +46,17 @@ module.exports = {
                 },
                 attachments: [
                     { 
-                    filename: '1616179549514-505916721-500x500.jpg', 
-                    path: path.join(__dirname,'../../uploads/1616179549514-505916721-500x500.jpg'),
-                    cid: 'canta'
-                } // TODO: replace it with your own image
-                ],
+                    filename: 'logo.png', 
+                    path: path.join(__dirname,'../../uploads/logo.png'),
+                    cid: 'logo'
+                },
+                { 
+                    filename: 'bg-login.jpg', 
+                    path: path.join(__dirname,'../../uploads/bg-login.jpg'),
+                    cid: 'login'
+                } 
+                
+            ],
             };
 
             // Step 3
