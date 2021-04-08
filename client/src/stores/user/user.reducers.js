@@ -195,27 +195,13 @@ const userReducers = (state = initialState, action) => {
                 subtotalPrice: total
             }
         case GET_DISCOUNT_COUPON:
-            var discount = 0;
-            let coupons = {
-                couponOne: {
-                    name: "couponOne",
-                    value: 10
-                },
-                couponTwo: {
-                    name: "couponTwo",
-                    value: 20
+            if(action.payload){
+                return {
+                    ...state,
+                    coupon: action.payload.discount
                 }
             }
-            if (action.payload === coupons.couponOne.name) {
-                discount = 10
-            }
-            if (action.payload === coupons.couponTwo.name) {
-                discount = 20
-            }
-            return {
-                ...state,
-                coupon: discount
-            }
+            return state
         case DELETE_ITEM_CART_REQUEST:
             return {
                 ...state,
