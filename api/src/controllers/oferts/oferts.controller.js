@@ -1,25 +1,31 @@
 const { Oferts, Product } = require("../../db");
 
 module.exports = {
-  addOfertToProduct: async (idProduct,ofert) => {
-    return await Oferts.create(ofert).then((ofert) => {
-      return Product.findByPk(idProduct).then((Product) => {
-        Oferts.findByPk(ofert.id).then((newOfert) => {
-          var ofertAdded = newOfert;
-            return Product.addOfert(newOfert).then(()=>{
-              return ofertAdded.dataValues;
-            });            
-          }).catch((error) => {
-            return res.json(error);
-          });
-       })
+
+ addOfertToProduct: async (idProduct, ofert) => { 
+
+  return await Oferts.create(ofert).then(async(ofert) => {
+    return await Product.findByPk(idProduct).then(async(oneProduct) => {
+      return await Oferts.findByPk(ofert.id).then((newOfert) => {
+        oneProduct.addOfert(newOfert);
+        return newOfert;
+      });
     });
-  },
+  });  
+},
   createOfert: async (ofert) => {
     return await Oferts.create(ofert).then((ofert)=> ofert);
   },
   getOferts: async () => {
-    return await Oferts.findAll().then((oferts) => oferts);
+    return await Oferts.findAll({
+      include: [
+        {
+          model: Product,
+          as:"products"
+        },
+        
+      ],
+    }).then((oferts) => oferts);
   },
   getOfertById: async (ofertId) => {
     return await Oferts.findByPk(ofertId).then((ofert) => ofert);

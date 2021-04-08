@@ -7,16 +7,27 @@ const path = require("path");
 server.put("/:id", (req, res, next) => {
   const {id} = req.params
   const { 
-    name, description, artist,
-    price, bpm, scale, date, oldImage,
-    oldAudio, editFiles, editImage,
-    editAudio } = req.body;
-console.log("ESTO ES BODY PUT",req.body)
-console.log("ESTO ES PARAMS PUT",req.params)
+    name,
+    description,
+    artist,
+    price,
+    bpm, 
+    scale, 
+    date, 
+    oldImage,
+    oldAudio, 
+    editFiles, 
+    editImage,
+    editAudio,
+  } = req.body;
+  console.log(req.body)
   var product;
 
+
   if (editFiles === "edit") {
-    if(editImage === "edit"){
+
+    if(editImage === "edit" &&  editAudio !== "edit"){
+
       let url = path.join(__dirname, "../../../uploads/");
       let img = oldImage;
       let imgPath = url + img;
@@ -29,8 +40,8 @@ console.log("ESTO ES PARAMS PUT",req.params)
             console.log("FILE DELETE", aux[i])
           }
   
-          const files = req.files;
-          const imgToDb = files[0].filename;
+          let files = req.files;
+          let imgToDb = files[0].filename;
   
           product = {
             name: name,
@@ -43,7 +54,8 @@ console.log("ESTO ES PARAMS PUT",req.params)
             image: imgToDb,
           };
     }
-    if(editAudio === "edit"){
+    if(editAudio === "edit" && editImage !== "edit"){
+
       let url = path.join(__dirname, "../../../uploads/");
       let audio = oldAudio;
       let audioPath = url + audio;
@@ -56,8 +68,10 @@ console.log("ESTO ES PARAMS PUT",req.params)
             console.log("FILE DELETE", aux[i])
           }
   
-          const files = req.files;
-          var audioToDb
+          let files = req.files;
+
+          let audioToDb;
+
           if(editImage === "edit"){
              audioToDb = files[1].filename;
           }else{
@@ -75,6 +89,43 @@ console.log("ESTO ES PARAMS PUT",req.params)
             audio: audioToDb,
           };
     }
+    if(editImage === "edit" && editAudio === "edit"){
+
+      let url = path.join(__dirname, "../../../uploads/");
+      let audio = oldAudio;
+      let audioPath = url + audio;
+      let img = oldImage;
+      let imgPath = url + img;
+
+      let aux = [];
+          aux.push(audioPath)
+          aux.push(imgPath)
+      
+          for (let i = 0; i < aux.length; i++) {
+            console.log("DELET FILES")
+            fs.unlinkSync(aux[i])
+            console.log("FILE DELETE", aux[i])
+          }
+  
+          var files = req.files;
+
+          var imgToDb = files[0].filename;
+          var audioToDb = files[1].filename;
+
+
+      product = {
+        name: name,
+        description: description,
+        artist: artist,
+        price: price,
+        bpm: bpm,
+        scale: scale,
+        date: date,
+        image: imgToDb,
+        audio: audioToDb,
+      }
+    }
+
   }else{
 
     product = {
@@ -112,12 +163,12 @@ server.put("/likes", async (req, res, next) => {
     });
 });
 
-server.put("/reproductions", async (req, res, next) => {
-  const {id} = req.body
-  return await Product.findByPk(id).then(async (product)=>{
+server.put("/reproductions/:IdProduct", async (req, res, next) => {
+  const {IdProduct} = req.params
+  return await Product.findByPk(IdProduct).then(async (product)=>{
     return await Product.update({reproductions: product.dataValues.reproductions + 1}, {
       where:{
-        id:id
+        id:IdProduct,
       }
     }).then((product)=>{
       return res.status(200).json(product)

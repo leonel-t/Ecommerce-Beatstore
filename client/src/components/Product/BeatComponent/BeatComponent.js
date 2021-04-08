@@ -32,7 +32,7 @@ const BeatComponent = ({
   //#############################################################################
 
   const handleAddToCart = (product) => {
-    show({ text: "PRODUCT ADDED!", pos: "bottom-right", duration: 2000 });
+    show({ text: "PRODUCT ADDED!", pos: "relative", duration: 2000 });
     return addItemToCartEffect(user, product);
   };
 

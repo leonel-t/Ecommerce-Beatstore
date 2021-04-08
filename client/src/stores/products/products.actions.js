@@ -164,7 +164,7 @@ export const fetchProductReproductions = (IdProduct) => {
     return (dispatch) => {
         const options = {
             method: 'PUT',
-            url: `${serverUrl}/products/reproductions/`, 
+            url: `${serverUrl}/products/reproductions/${IdProduct}`, 
             headers: {
                 ContentType: "application/json",
             },
@@ -177,7 +177,7 @@ export const fetchProductReproductions = (IdProduct) => {
             return axios.request(options)
         } catch {
             return console.log("Error")
-        } 
+        }
 
     }
 }
