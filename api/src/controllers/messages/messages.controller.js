@@ -1,25 +1,7 @@
 const { User, Messages } = require("../../db");
 
 module.exports = {
-//   createMessages: async (idTo, idFrom, message) => { 
-//     let newMessageDos = {
-//         from:idFrom,
-//         to:idTo,
-//         data:message
-//     }
-//     return await Messages.create(newMessageDos).then((message) => {
-//       return User.findByPk(idTo).then((user) => {
-//         Messages.findByPk(message.id).then((newMessage) => {
-//           var messageAdded = newMessage;
-//             return user.addMessages(messageAdded).then(()=>{
-//               return messageAdded.dataValues;
-//             });            
-//           }).catch((error) => {
-//             return error
-//           });
-//        })
-//     });
-//   },
+
 createMessages: async (idTo, idFrom, message) => { 
     let newMessageDos = {
         from:idFrom,
@@ -37,6 +19,22 @@ createMessages: async (idTo, idFrom, message) => {
  },
   getMessages: async () => {
     return await Messages.findAll().then((messages) => messages);
+  },
+  getMessagesConversation: async (idFrom, idTo) => {
+    return await Messages.findAll({
+      where: {
+        from: idFrom,
+        to: idTo
+      }
+    }).then((messages) => messages);
+  },
+  getMessagesConversationreturn: async (idFrom, idTo) => {
+    return await Messages.findAll({
+      where: {
+        from: idTo,
+        to: idFrom
+      }
+    }).then((messages) => messages);
   },
   getMessageById: async (idComment) => {
     return await Messages.findByPk(idMessage).then((message) => message);

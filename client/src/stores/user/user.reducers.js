@@ -21,7 +21,10 @@ import {
     GET_LIKES_BY_USER,
     GET_USER_ID_REQUEST,
     GET_USER_ID_SUCCESS,
-    GET_USER_ID_FAILURE
+    GET_USER_ID_FAILURE,
+    GET_CONVERSATION_REQUEST,
+    GET_CONVERSATION_SUCCESS,
+    GET_CONVERSATION_FAILURE 
 
 } from './user.actions';
 
@@ -44,11 +47,31 @@ let initialState = {
     userLikes:[],
     userPublic:[],
     userPublicLoading:true,
-    userPublicError:""
+    userPublicError:"",
+    conversation:[],
+    conversationLoading:true,
+    conversationError:""
 }
 
 const userReducers = (state = initialState, action) => {
     switch (action.type) {
+        case GET_CONVERSATION_REQUEST:
+            return {
+                ...state,
+                conversationLoading: true
+            }
+        case GET_CONVERSATION_SUCCESS:
+            return {
+                ...state,
+                conversationLoading: false,
+                conversation: action.payload
+            }
+        case GET_CONVERSATION_FAILURE:
+            return {
+                ...state,
+                conversationLoading: false,
+                conversationError: action.payload
+            }
         case GET_USER_ID_REQUEST:
             return {
                 ...state,

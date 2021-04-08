@@ -31,6 +31,11 @@ export const GET_USER_ID_REQUEST = "GET_USER_ID_REQUEST";
 export const GET_USER_ID_SUCCESS = "GET_USER_ID_SUCCESS";
 export const GET_USER_ID_FAILURE = "GET_USER_ID_FAILURE";
 
+//CONVERSATION
+export const GET_CONVERSATION_REQUEST = "GET_CONVERSATION_REQUEST";
+export const GET_CONVERSATION_SUCCESS = "GET_CONVERSATION_SUCCESS";
+export const GET_CONVERSATION_FAILURE = "GET_CONVERSATION_FAILURE";
+
 //orders by user${serverUrl}
 export const GET_ORDERS_BY_USER = "GET_ORDERS_BY_USER";
 //user likes
@@ -471,6 +476,30 @@ export const getUserById = (id) => async (dispatch) => {
     } catch (error) {
       dispatch({
         type: GET_USER_ID_FAILURE,
+        payload:
+          error.response && error.response.data.message
+            ? error.response.data.message
+            : error.message,
+      });
+    }
+  };
+
+  //getMessagesConversation
+
+  export const getMessagesConversation = (idFrom, idTo) => async (dispatch) => {
+    try {
+      dispatch({ type: GET_CONVERSATION_REQUEST });
+      
+      console.log("IDTO",idTo)
+      const { data } = await axios.get(`${serverUrl}/messages/${idFrom}/conversation/${idTo}`);
+      
+      dispatch({
+        type: GET_CONVERSATION_SUCCESS,
+        payload: data,
+      });
+    } catch (error) {
+      dispatch({
+        type: GET_CONVERSATION_FAILURE,
         payload:
           error.response && error.response.data.message
             ? error.response.data.message
