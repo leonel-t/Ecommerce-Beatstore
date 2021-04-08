@@ -163,12 +163,12 @@ server.put("/likes", async (req, res, next) => {
     });
 });
 
-server.put("/reproductions", async (req, res, next) => {
-  const {id} = req.body
-  return await Product.findByPk(id).then(async (product)=>{
+server.put("/reproductions/:IdProduct", async (req, res, next) => {
+  const {IdProduct} = req.params
+  return await Product.findByPk(IdProduct).then(async (product)=>{
     return await Product.update({reproductions: product.dataValues.reproductions + 1}, {
       where:{
-        id:id
+        id:IdProduct,
       }
     }).then((product)=>{
       return res.status(200).json(product)
