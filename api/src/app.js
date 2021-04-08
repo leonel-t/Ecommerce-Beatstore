@@ -56,8 +56,8 @@ server.use((err, req, res, next) => { // eslint-disable-line no-unused-vars
   res.status(status).send(message);
 });
 
-// cron.schedule('0 24 23 * * Tuesday', () => {
-//   //tuesday 23:24:00
-//   emailSuscriptions.sendMail()
-// });
+cron.schedule('0 24 23 * * Tuesday', () => {
+  //tuesday 23:24:00
+  emailSuscriptions.sendMail()
+});
 module.exports = server;

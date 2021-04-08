@@ -1,9 +1,9 @@
-<html >
+<html>
 
 <head>
     <title>top oferts</title>
-    <style type="text/css" rel="stylesheet" media="all">
-        .card {
+    <style>
+    .card {
             display: flex;
             max-width: fit-content;
             max-height: fit-content;
@@ -15,8 +15,8 @@
         }
 
         .photo img {
+            display: block;
             padding: 5px;
-            height: 100px;
             border-radius: 6px;
         }
 
@@ -33,9 +33,10 @@
 
         }
 
-        .button-code button {
+        .button-code a {
+            
             background-color: #1b29ec;
-            /* Green */
+            width: 300px;
             border: none;
             color: white;
             padding: 5px;
@@ -44,7 +45,7 @@
             display: inline-block;
             font-size: 16px;
         }
-        .button-code button:hover {
+        .button-code a:hover {
             background-color: #3844e9;
 
         }
@@ -57,25 +58,50 @@
             text-align: center;
             padding: 9px;
         }
+         #logo{
+            text-align: center;
+        }
+        .paragraph{
+            padding-left: 35px;
+            font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        #flex{
+            display: flex;
+            justify-content: center;
+        }
     </style>
-   
+
 </head>
 
 <body>
-    <div class="card">
-        <div class="photo">
-            <img src="cid:canta">
-            <div class='epigraph'>Save 20%</div>
+    <div id="main--">
+
+        <div id="logo">
+            <img height="45px" src='cid:logo'/></img>
         </div>
-        <div class='info'>
-            <div class='data'>20% off on this artist</div>
-            <div class='button-code'>
-                <button >Discount code:</button>
-                <span >24343kj4k34</span>
-            </div>
-            <div id='danger'>expire in 7 days</div>
-        </div>
-    </div>
+        <div class="paragraph">
+        <p>Thanks you, for suscribing,here it is a free discount coupon
+            the secret key is DISCOUNT-COUPON
+        </p>
+        <h1>
+            BeatStars  Newsletter
+
+        </h1>
+        <p>
+
+    
+This month's newsletter is bringing you insight into our latest product updates, upcoming live shows you won't want to miss, and the opportunity to sign up for vital, exclusive content every week. 
+<img width="600px" src="cid:login">
+BeatStars is proud to introduce over 50 new genres that encourage creators to explore a diverse and wide-range of genres. With the addition of genres like Reggaeton, Latin, and UK grime, artists on BeatStars have more creative options than ever before!
+
+In addition, we're dedicated to making BeatStars a secure and professional platform for all creators. We aim to deter those who conduct harmful or un-honest business practices on our platform. With the added option to report users, tracks, and services, users can help make BeatStars a safe community for everyone.
+     
+             <div id='flex'>
+
+           <div class='button-code'>
+               <a href="http://localhost:3000/login" >login</a>
+            </div> 
+        </div> 
 </body>
 
 </html>
