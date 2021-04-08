@@ -15,8 +15,8 @@
         }
 
         .photo img {
+            display: block;
             padding: 5px;
-            height: 100px;
             border-radius: 6px;
         }
 
@@ -34,8 +34,9 @@
         }
 
         .button-code a {
+            
             background-color: #1b29ec;
-            width: 200px;
+            width: 300px;
             border: none;
             color: white;
             padding: 5px;
@@ -64,6 +65,10 @@
             padding-left: 35px;
             font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
         }
+        #flex{
+            display: flex;
+            justify-content: center;
+        }
     </style>
 
 </head>
@@ -75,7 +80,6 @@
             <img height="45px" src='cid:logo'/></img>
         </div>
         <div class="paragraph">
-        <p1>Hey, {{name}}</p1>
         <p>Thanks you, for suscribing,here it is a free discount coupon
             the secret key is DISCOUNT-COUPON
         </p>
@@ -87,13 +91,17 @@
 
     
 This month's newsletter is bringing you insight into our latest product updates, upcoming live shows you won't want to miss, and the opportunity to sign up for vital, exclusive content every week. 
-<img width="300px" src="cid:login">
+<img width="600px" src="cid:login">
 BeatStars is proud to introduce over 50 new genres that encourage creators to explore a diverse and wide-range of genres. With the addition of genres like Reggaeton, Latin, and UK grime, artists on BeatStars have more creative options than ever before!
 
 In addition, we're dedicated to making BeatStars a secure and professional platform for all creators. We aim to deter those who conduct harmful or un-honest business practices on our platform. With the added option to report users, tracks, and services, users can help make BeatStars a safe community for everyone.
-        <div class='button-code'>
-                    <a href="http://localhost:3000/login" >login</a>
+     
+             <div id='flex'>
+
+           <div class='button-code'>
+               <a href="http://localhost:3000/login" >login</a>
             </div> 
+        </div> 
 </body>
 
 </html>
