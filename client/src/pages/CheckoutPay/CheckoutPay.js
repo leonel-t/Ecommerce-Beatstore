@@ -17,7 +17,6 @@ import axios from "axios";
 import swal from "sweetalert";
 import {serverUrl,STRIPE_KEY} from '../../auxiliar/variables';
 
-
 const stripePromise = loadStripe(STRIPE_KEY);
 
 function CheckoutPay({ totalPrice, cart, userReducer, store_orders, fetchAllOrders, action }) {
