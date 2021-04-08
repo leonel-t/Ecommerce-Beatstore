@@ -11,15 +11,11 @@ import {
     useElements,
 } from "@stripe/react-stripe-js";
 
-import Loader from "../../../src/assets/images/loader.gif"
-
+import Loader from "../../../src/assets/images/loader.gif";
 import { connect } from "react-redux";
-
-
-
 import axios from "axios";
 import swal from "sweetalert";
-import {serverUrl} from '../../auxiliar/variables';
+import {serverUrl,STRIPE_KEY} from '../../auxiliar/variables';
 
 const stripePromise = loadStripe("pk_test_51Ich3gJj5Ba2PSuVziIbEEjBGj2n8aLWrt1c8ZlBI8tvCgklYIWofFSlFMZVB0hMr0wqenC4odKgVZGX1UwQO5Nu00qRE8vaJM");
 

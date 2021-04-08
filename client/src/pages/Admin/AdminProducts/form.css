@@ -50,7 +50,7 @@ rgb(79, 0, 170) violeta */
   text-align: center;
   font-family: 'Oxanium', cursive;
 }
-.all--container-form input, textarea {
+.all--container-form input{
   outline: none;
   color:white;
   background-color: transparent;
@@ -61,12 +61,24 @@ rgb(79, 0, 170) violeta */
   width: 80%;
   height: 2em;
 }
+.all--container-form textarea {
+  outline: none;
+  color:white;
+  background-color: transparent;
+  border: none;
+  margin-left: auto;
+  margin-right: auto;
+  border-bottom: 1px solid #777777;
+  width: 80%;
+  height: 4em;
+}
 .all--container-form input::placeholder, textarea::placeholder{
-  position: relative;
-  top: 0.5em;
-  color:red;
+  color:rgb(228, 140, 140);
+  font-size: 0.8rem;
   font-family: 'Oxanium';
-  font-size: 0.9rem;
+  text-align: center;
+  -webkit-animation: tiembla 0.2s;
+  animation: tiembla 0.2s;
 }
 .column-2 {
   display: flex;
@@ -103,44 +115,36 @@ rgb(79, 0, 170) violeta */
   outline: none;
   background: rgb(79, 0, 170);
 }
-.--edit-submitbuton{
+.--price--bpm{
   display: flex;
-  justify-content: center;
-  align-items: center;
-  position: relative;
-  bottom: 1.1em;
-  outline: none;
-  width: 30%;
-  background: linear-gradient(225deg, rgb(234, 50, 111), rgb(79, 0, 170));
-  color: white;
-  padding: 1em;
-  margin-bottom: 2em;
-  margin-left: auto;
-  margin-right: auto;
-  border: none;
-  border-radius: 4px;
-  cursor: pointer;
+  flex-direction: row;
 }
-.--edit-submitbuton:hover{
-  background: linear-gradient(25deg, rgb(234, 50, 111), rgb(79, 0, 170));
+.--price--bpm div{
+  width: 50%;
+  display: flex;
+  flex-direction: column;
 }
-.--edit-submitbuton:active {
-  outline: none;
-  background: rgb(79, 0, 170);
+
+.--edit-submitbuton-new:active {
+  box-shadow: none;
 }
 p.danger {
+  color:rgb(228, 140, 140);
+  font-size: 0.8rem;
   font-family: 'Oxanium';
-  display: inline;
-  color:  rgb(255, 0, 0);
-  font-size: 1rem;
   text-align: center;
+  -webkit-animation: tiembla 0.2s;
+  animation: tiembla 0.2s;
 }
 input.danger textarea.danger {
+  color:rgb(228, 140, 140);
+  font-size: 0.8rem;
   font-family: 'Oxanium';
-  background: transparent;
-  border: none;
-  border-bottom: 1px solid #6a2cce;
+  text-align: center;
+  -webkit-animation: tiembla 0.2s;
+  animation: tiembla 0.2s;
 }
+
 .--labelImage, .--labelAudio{
   margin-bottom: 1em;
 }
@@ -205,6 +209,10 @@ input[type="select"] {
 .radioColumn input{
   width: 1em;
   height: 1em;
+  border-radius: 5px;
+  outline: none;
+  border: none;
+  border-bottom: 2px solid white;
 }
 
 .divButton {
@@ -228,12 +236,44 @@ input[type="select"] {
   font-family: 'Oxanium', cursive;
   cursor: pointer;
 }
-.--edit-tone-label, .--edit-categories-label{
+.--edit-submitbuton-new{
+    margin-left: 50%;
+    transform: translateX(-50%);
+    position: relative;
+    bottom:1em;
+    width:11em;
+    height: 2em;
+    color: white;
+    font-size: 1.1rem;
+    font-family: 'Oxanium';
+    outline: none;
+    background-color: transparent;
+    border-radius: 0.3em;
+    border: 2px solid black;
+    box-shadow: 2px 2px 5px black;
+    cursor: pointer;
+}
+
+.--edit-tone-label{
   padding-bottom: 1em;
+}
+.--edit-categories-label{
+  padding-bottom: 1em;
+  padding-top: 3em;
 }
 
 .--edit-audio-label, .--edit-image-label{
   margin-bottom: 1em;
+}
+@-webkit-keyframes tiembla {
+  0%  { -webkit-transform:rotateZ(-5deg); }
+  50% { -webkit-transform:rotateZ( 0deg) scale(.8); }
+  100%{ -webkit-transform:rotateZ( 5deg); }
+}  
+@keyframes tiembla {
+  0%  { -webkit-transform:rotateZ(-5deg); }
+  50% { -webkit-transform:rotateZ( 0deg) scale(.8); }
+  100%{ -webkit-transform:rotateZ( 5deg); }
 }
 @media(max-width:600px){
   .all--container-form{

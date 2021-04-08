@@ -1,4 +1,4 @@
-import React, {useEffect, useState} from "react";
+import React, {useEffect} from "react";
 import "./adminoferts.scss";
 import AdminNav from "../AdminNav/AdminNav";
 import {connect} from "react-redux";
@@ -6,12 +6,12 @@ import {fetchAllProducts} from "../../../stores/products/products.actions";
 import {fetchAllOferts} from "../../../stores/admin/admin.actions";
 import ListProducts from "./ListProducts/ListProducts";
 import swal from "sweetalert";
-import Select from "react-select";
+//import Select from "react-select";
 
-const AdminOferts = ({fetchAllProductsEffect,fetchAllOfertsEffect, STORE_PRODUCTS, STORE_OFERTS})=>{
+const ListOferts = ({fetchAllProductsEffect,fetchAllOfertsEffect, STORE_PRODUCTS, STORE_OFERTS})=>{
    
-    const [oferts, setOferts] = useState([])
-
+  //  const [oferts, setOferts] = useState([])
+      
     useEffect(() => {
         fetchAllProductsEffect();
         fetchAllOfertsEffect();
@@ -19,19 +19,21 @@ const AdminOferts = ({fetchAllProductsEffect,fetchAllOfertsEffect, STORE_PRODUCT
 
     const handleAddOfert = (idProduct)=>{
         console.log(idProduct)
-        let aux = []
-        if(STORE_OFERTS && STORE_OFERTS.length >0 ){
-            for (let i = 0; i < STORE_OFERTS.length; i++) {
-                let obj = {
-                    value: STORE_OFERTS[i].ofertStatus,
-                    discount: STORE_OFERTS[i].discount
-                }
-                aux.push(obj)
-            }
-        }
-        setOferts(aux)
-        console.log(oferts)
-        swal(` Id Product ${oferts}`)
+        // let aux = []
+        // if(STORE_OFERTS && STORE_OFERTS.length >0 ){
+        //     for (let i = 0; i < STORE_OFERTS.length; i++) {
+        //         let obj = {
+        //             value: STORE_OFERTS[i].ofertStatus,
+        //             discount: STORE_OFERTS[i].discount
+        //         }
+        //         aux.push(obj)
+        //     }
+        // }
+        //setOferts(aux)
+        console.log(idProduct)
+        swal(` 
+        Id Product ${idProduct}
+        `)
     }
 
 
@@ -86,5 +88,5 @@ const mapDispatchToProps = (dispatch) => {
         fetchAllOfertsEffect: () => dispatch(fetchAllOferts())
     };
 };
-export default connect(mapStateToProps, mapDispatchToProps)(AdminOferts);
+export default connect(mapStateToProps, mapDispatchToProps)(ListOferts);
 

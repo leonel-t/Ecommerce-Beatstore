@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect} from "react";
 import { useParams } from "react-router-dom";
 import { connect } from "react-redux";
 import "./form.css";
@@ -22,12 +22,18 @@ const PutForm = ({t, STORE_ADMIN, fetchProduct }) => {
   }, [fetchProduct, idProducts]);
 
   const [categories, setCategories] = React.useState([]);
+  const [oldImage, setOldImage] = React.useState({});
+  const [oldAudio, setOldAudio] = React.useState();
+  const [editAudio, setEditAudio] = React.useState("");
+  const [editImage, setEditImage] = React.useState("");
+  const [editFiles, setEditFiles] = React.useState("");
   const [image, setImage] = React.useState({});
   const [audio, setAudio] = React.useState();
-  const [errors, setErrors] = React.useState({});
+  const [error, setError] = React.useState({});
   const [cat, setCat] = React.useState([]);
   const [alt, setAlt] = React.useState({})
   const [tone, setTone] = React.useState({})
+
 
   useEffect(() => {
     const datos = async () => {
@@ -73,6 +79,7 @@ const PutForm = ({t, STORE_ADMIN, fetchProduct }) => {
     date:""
   });
 
+
   const handleAlt = (e) => {
     setAlt({
       ...alt,
@@ -80,22 +87,25 @@ const PutForm = ({t, STORE_ADMIN, fetchProduct }) => {
     })
 
   }
-
-  let idProduct;
   const handleSubmit = async (e) => {
     e.preventDefault();
     console.log("ESTO ES IMAGE:",JSON.stringify(tone))
     const form = new FormData();
-    form.append("name", input.name);
-    form.append("description", input.description);
-    form.append("artist", input.artist);
-    form.append("price", input.price);
-    form.append("bpm", input.bpm);
-    form.append("scale", alt.radName === undefined ? tone.value : tone.value + alt.radName);
-    form.append("date", input.date);
-    form.append("selectCat", cat.selectCat);
-    form.append("files", image[0]);
-    form.append("files", audio[0]);
+    form.append("name", input.name ? input.name : storeProduct.name);
+    form.append("description", input.description ? input.description : storeProduct.description);
+    form.append("artist", input.artist ? input.artist : storeProduct.artist);
+    form.append("price", input.price ? input.price : storeProduct.price);
+    form.append("bpm", input.bpm ? input.bpm : storeProduct.bpm);
+    form.append("scale", tone.value ? tone.value + (alt.radName ? alt.radName : " " ) : "NO SET");
+    form.append("date", input.date ? input.date : storeProduct.date);
+    form.append("selectCat", cat.selectCat ? cat.selectCat : storeProduct.categories );
+    form.append("files", image && image[0]? image[0]: "");
+    form.append("files", audio && audio[0]? audio[0]: "");
+    form.append("oldImage", oldImage);
+    form.append("oldAudio", oldAudio);
+    form.append("editImage", editImage);
+    form.append("editAudio", editAudio);
+    form.append("editFiles", editFiles);
 
     const options = {
       method: "PUT",
@@ -108,7 +118,6 @@ const PutForm = ({t, STORE_ADMIN, fetchProduct }) => {
     };
 
     return await axios.request(options).then( async (response) =>{
-      console.log("ESTE EL ID DEL PRODUCTO SIN VAR:",response.data)
       console.log(categories);
       categories.forEach(async(element) => {
         return await axios.post(`${serverUrl}/products/${idProducts}/category/${element.value}`).then((res) => console.log(res));});
@@ -142,16 +151,29 @@ const PutForm = ({t, STORE_ADMIN, fetchProduct }) => {
 
   const handleInputChange = (event) => {
     if (event.target.name === "image") {
+      
+    if(storeProduct && storeProduct.image){
+      setOldImage(storeProduct.image)
+      console.log(storeProduct.image)
+    }
       setImage(event.target.files);
+      setEditImage("edit")
+      setEditFiles("edit")
     } else if (event.target.name === "audio") {
+      if(storeProduct && storeProduct.audio){
+        setOldAudio(storeProduct.audio)
+        console.log(storeProduct.audio)
+      }
       setAudio(event.target.files);
+      setEditAudio("edit")
+      setEditFiles("edit")
     } else {
       setInput({
         ...input,
         [event.target.name]: event.target.value,
       });
     }
-    setErrors(
+    setError(
       validate({
         ...input,
         [event.target.name]: event.target.value,
@@ -160,40 +182,40 @@ const PutForm = ({t, STORE_ADMIN, fetchProduct }) => {
   };
 
   function validate(input) {
-    let errors = {};
+    let error = {};
 
     if (!input.name) {
-      errors.name = "name is required";
+      error.name = "name is required";
     }
     if (!input.description) {
-      errors.description = "description is required";
+      error.description = "description is required";
     }
     if (!input.artist) {
-      errors.artist = "artist is required";
+      error.artist = "artist is required";
     }
     if (!input.price) {
-      errors.price = "price is required";
+      error.price = "price is required";
     }
     if (!input.bpm) {
-      errors.bpm = "bpm is required";
+      error.bpm = "bpm is required";
     }
 
     if (!input.date) {
-      errors.date = "date is required";
+      error.date = "date is required";
     }
     var today = new Date();
     let msecsToday = today.getTime();
     var msecsProduct = Date.parse(input.date);
     msecsProduct > msecsToday
-      ? (errors.date = "insert a valid date!")
+      ? (error.date = "insert a valid date!")
       : console.log("ok");
     if (!image) {
-      errors.image = "image is required";
+      error.image = "image is required";
     }
     if (!audio) {
-      errors.audio = "audio is required";
+      error.audio = "audio is required";
     }
-    return errors;
+    return error;
   }
   var option;
 
@@ -216,68 +238,61 @@ const PutForm = ({t, STORE_ADMIN, fetchProduct }) => {
 
                  <div className="column-1 box">
                   <label>{t("page.admin.forms.addBeats.name")}</label>
-                  {errors.name && <p className="danger">{errors.name}</p>}
                     <input
-                      placeholder={product.name}
+                      placeholder={error.name?(error.name):(product.name)}
                       value={input.name}
-                      className={`${errors.name && "danger"}`}
+                      className={`${error.name && "danger"}`}
                       name="name"
                       onChange={(e) => {
                       handleInputChange(e);
                       }}
                     />
                   <label>{t("page.admin.forms.addBeats.description")}</label>
-
-                  {errors.description && <p className="danger">{errors.description}</p>}
                   <textarea
-                    placeholder={product.description}
+                    placeholder={error.description?(error.description):(product.description)}
                     value={input.description}
-                    className={`${errors.description && "danger"}`}
                     name="description"
                     onChange={(e) => {
                       handleInputChange(e);
                     }}
                   ></textarea>
                   <label>{t("page.admin.forms.addBeats.artist")}</label>
-                  {errors.artist && <p className="danger">{errors.artist}</p>}
-
                   <input
-                    placeholder={product.artist}
+                    placeholder={error.artist?(error.artist):(product.artist)}
                     value={input.artist}
-                    className={`${errors.artist && "danger"}`}
                     name="artist"
                     onChange={(e) => {
                       handleInputChange(e);
                     }}
                   ></input>
+                  <div className='--price--bpm' >
+                    <div>
+                      <label>{t("page.admin.forms.addBeats.price")}</label>
 
-                  <label>{t("page.admin.forms.addBeats.price")}</label>
-                  {errors.price && <p className="danger">{errors.price}</p>}
-
-                  <input
-                    placeholder={product.price}
-                    value={input.price}
-                    className={`${errors.price && "danger"}`}
-                    name="price"
-                    type="number"
-                    onChange={(e) => {
-                      handleInputChange(e);
-                    }}
-                  ></input>
-
-                  <label>BPM</label>
-                  {errors.bpm && <p className="danger">{errors.bpm}</p>}
-
-                  <input
-                    placeholder={product.bpm}
-                    value={input.bpm}
-                    className={`${errors.bpm && "danger"}`}
-                    name="bpm"
-                    type="number"
-                    onChange={(e) => {
-                      handleInputChange(e);
-                    }}
-                  ></input>
+                    <input
+                      placeholder={product.price}
+                      value={input.price}
+                      name="price"
+                      type="number"
+                      onChange={(e) => {
+                        handleInputChange(e);
+                      }}
+                    ></input>
+                    </div>
+                    <div>
+                      <label>BPM</label>
+                    <input
+                      placeholder={product.bpm}
+                      value={input.bpm}
+                      name="bpm"
+                      type="number"
+                      onChange={(e) => {
+                        handleInputChange(e);
+                      }}
+                    ></input>
+                    </div>
+                    
+                  </div>
                     <label className='--edit-categories-label'>{t("page.admin.forms.addBeats.categories")}</label>
                     <Select
                       placeholder={product.categories}
@@ -291,11 +306,11 @@ const PutForm = ({t, STORE_ADMIN, fetchProduct }) => {
                 <div className="column-2 box">
               <div className="radioTone">
                 <div className="radioColumn" >
-                  <label for="indoor">natural</label>
+                  <label >natural</label>
                   <input type="radio" name="radName" value="" />
                 </div>
                 <div className="radioColumn" >
-                  <label for="indoor"># </label>
+                  <label ># </label>
                   <input type="radio" name="radName" value="#" onChange={handleAlt} />
                 </div>
                 <div className="radioColumn">
@@ -304,13 +319,10 @@ const PutForm = ({t, STORE_ADMIN, fetchProduct }) => {
                 </div>
               </div>
               <label>{t("page.admin.forms.addBeats.date")}</label>
-              {errors.date && <p className="danger">{errors.date}</p>}
-
               <input
                 placeholder={product.date}
                 value={input.date}
                 id="dateClass"
-                className={` ${errors.date && "danger"}`}
                 type="date"
                 name="date"
                 onChange={(e) => {
@@ -339,9 +351,6 @@ const PutForm = ({t, STORE_ADMIN, fetchProduct }) => {
                 }}
               ></input>
               <label className='--edit-tone-label'>{t("page.admin.forms.addBeats.tone")}</label>
-              {errors.tone && <p className="danger">{errors.tone}</p>}
-
-
               <Select
                 placeholder={product.scale}
                 value={tone}
@@ -354,7 +363,7 @@ const PutForm = ({t, STORE_ADMIN, fetchProduct }) => {
                 </div>
                 
                 <button
-                      className="--edit-submitbuton"
+                      className="--edit-submitbuton-new"
                       type="submit"
                       onChange={(e) => {
                         handleInputChange(e);

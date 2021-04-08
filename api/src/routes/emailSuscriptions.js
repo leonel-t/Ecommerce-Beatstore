@@ -27,7 +27,7 @@ transporter.use('compile', hbs(
 module.exports = {
 
     sendMail: async function () {
-
+        console.log(__dirname+'\images')
         await Newsletter.findAll({
             attributes: ["email"],
             raw: true
@@ -42,7 +42,14 @@ module.exports = {
                 text: "here are the newsletters",
                 context: {
                     name: 'beatstars'
-                }
+                },
+                attachments: [
+                    { 
+                    filename: '1616179549514-505916721-500x500.jpg', 
+                    path: path.join(__dirname,'../../uploads/1616179549514-505916721-500x500.jpg'),
+                    cid: 'canta'
+                } // TODO: replace it with your own image
+                ],
             };
 
             // Step 3
