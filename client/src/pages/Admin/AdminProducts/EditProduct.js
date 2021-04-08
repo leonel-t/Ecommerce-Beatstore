@@ -91,14 +91,14 @@ const PutForm = ({t, STORE_ADMIN, fetchProduct }) => {
     e.preventDefault();
     console.log("ESTO ES IMAGE:",JSON.stringify(tone))
     const form = new FormData();
-    form.append("name", input.name);
-    form.append("description", input.description);
-    form.append("artist", input.artist);
-    form.append("price", input.price);
-    form.append("bpm", input.bpm);
-    form.append("scale", alt.radName === undefined ? tone.value : tone.value + alt.radName);
-    form.append("date", input.date);
-    form.append("selectCat", cat.selectCat);
+    form.append("name", input.name ? input.name : storeProduct.name);
+    form.append("description", input.description ? input.description : storeProduct.description);
+    form.append("artist", input.artist ? input.artist : storeProduct.artist);
+    form.append("price", input.price ? input.price : storeProduct.price);
+    form.append("bpm", input.bpm ? input.bpm : storeProduct.bpm);
+    form.append("scale", tone.value ? tone.value + (alt.radName ? alt.radName : " " ) : "NO SET");
+    form.append("date", input.date ? input.date : storeProduct.date);
+    form.append("selectCat", cat.selectCat ? cat.selectCat : storeProduct.categories );
     form.append("files", image && image[0]? image[0]: "");
     form.append("files", audio && audio[0]? audio[0]: "");
     form.append("oldImage", oldImage);
@@ -251,7 +251,6 @@ const PutForm = ({t, STORE_ADMIN, fetchProduct }) => {
                   <textarea
                     placeholder={error.description?(error.description):(product.description)}
                     value={input.description}
-                    className={`${error.description && "danger"}`}
                     name="description"
                     onChange={(e) => {
                       handleInputChange(e);
@@ -261,7 +260,6 @@ const PutForm = ({t, STORE_ADMIN, fetchProduct }) => {
                   <input
                     placeholder={error.artist?(error.artist):(product.artist)}
                     value={input.artist}
-                    className={`${error.artist && "danger"}`}
                     name="artist"
                     onChange={(e) => {
                       handleInputChange(e);
@@ -270,12 +268,10 @@ const PutForm = ({t, STORE_ADMIN, fetchProduct }) => {
                   <div className='--price--bpm' >
                     <div>
                       <label>{t("page.admin.forms.addBeats.price")}</label>
-                    {error.price && <p className="danger">{error.price}</p>}
 
                     <input
                       placeholder={product.price}
                       value={input.price}
-                      className={`${error.price && "danger"}`}
                       name="price"
                       type="number"
                       onChange={(e) => {
@@ -285,12 +281,9 @@ const PutForm = ({t, STORE_ADMIN, fetchProduct }) => {
                     </div>
                     <div>
                       <label>BPM</label>
-                    {error.bpm && <p className="danger">{error.bpm}</p>}
-
                     <input
                       placeholder={product.bpm}
                       value={input.bpm}
-                      className={`${error.bpm && "danger"}`}
                       name="bpm"
                       type="number"
                       onChange={(e) => {
@@ -326,13 +319,10 @@ const PutForm = ({t, STORE_ADMIN, fetchProduct }) => {
                 </div>
               </div>
               <label>{t("page.admin.forms.addBeats.date")}</label>
-              {error.date && <p className="danger">{error.date}</p>}
-
               <input
                 placeholder={product.date}
                 value={input.date}
                 id="dateClass"
-                className={` ${error.date && "danger"}`}
                 type="date"
                 name="date"
                 onChange={(e) => {
@@ -361,8 +351,6 @@ const PutForm = ({t, STORE_ADMIN, fetchProduct }) => {
                 }}
               ></input>
               <label className='--edit-tone-label'>{t("page.admin.forms.addBeats.tone")}</label>
-              {error.tone && <p className="danger">{error.tone}</p>}
-
               <Select
                 placeholder={product.scale}
                 value={tone}
