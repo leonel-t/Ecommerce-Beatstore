@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 
 import "../../AdminCategories/listCat.css"
-import { useHistory } from "react-router-dom";
+// import { useHistory } from "react-router-dom";
 import { connect } from "react-redux";
 import AdminNav from "../../AdminNav/AdminNav";
 import swal from 'sweetalert';
@@ -21,7 +21,7 @@ const ListCoupons = ({ STORE_USER }) => {
         rol: userStore && userStore.rol ? userStore.rol : 0,
     };
     //#############################################################################
-    const history = useHistory();
+    // const history = useHistory();
 
     const [coupons, setCoupons] = useState([])
 
@@ -58,7 +58,7 @@ const ListCoupons = ({ STORE_USER }) => {
                                     setCoupons(coupons.data)
                                 })
                         })
-                        .catch((err)=>{
+                        .catch(()=>{
                             swal("An error has occurred", {
                                 icon: "error",
                             });

@@ -32,7 +32,7 @@ const OrderDetails = ({ order }) => {
                                                 </div>
                                             </div>
                                             <div className="--ItemCard-right">
-                                                <h1 >
+                                                <h1 style={{color: "white",fontFamily: 'Oxanium',fontSize:"1.5rem"}}>
                                                     ${product.product.price}
                                                 </h1>
                                                 <span >
@@ -43,7 +43,7 @@ const OrderDetails = ({ order }) => {
                                     );
                                 })}
 
-                                <h1 className="total">Total price:
+                                <h1 className="total" style={{color: "white",fontFamily: 'Oxanium'}}>Total price:
                                     {
                                         totalPrice && totalPrice.length > 0 ? (
                                             totalPrice.reduce((accumulator, currentValue) => {
