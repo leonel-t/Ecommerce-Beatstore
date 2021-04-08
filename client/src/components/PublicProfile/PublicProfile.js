@@ -19,14 +19,14 @@ const PublicProfile = () => {
  
   useEffect(() => {
      dispatch(getUserById(idUser))
- }, [])
+ }, [dispatch, idUser])
  
  const user = useSelector(state => state.userReducers.userPublic)
  
  const handleLike =  ()=>{
 
     swal("Login for send message!");
-
+    
 }
 
 
@@ -35,7 +35,7 @@ const PublicProfile = () => {
         <div className="userHead">
         <div className="userName"><h1>{user.name}</h1></div> 
         <div className="imgProfileContainer"> 
-            <img alt="profileImage" className="profileImage" src={`${serverUrl}/images/${user.image}`}/>
+            <img width="150px" height="140px" alt="profileImage" className="profileImage" src={`${serverUrl}/images/${user.image}`}/>
         </div>
         </div>
         

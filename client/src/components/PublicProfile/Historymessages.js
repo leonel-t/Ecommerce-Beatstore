@@ -8,8 +8,10 @@ const HistoryMessages =  ({usernameFrom,idFrom, idTo,username}) => {
   const [messages, setMessages] = useState([])
   const dispatch = useDispatch();
   useEffect( () => {
+    
       dispatch(getMessagesConversation(idFrom,idTo))
-   }, []) 
+
+   }, [dispatch, idFrom,idTo ]) 
   const conversation = useSelector(state => state.userReducers)
   const conver = conversation.conversation;
 
@@ -19,7 +21,7 @@ const HistoryMessages =  ({usernameFrom,idFrom, idTo,username}) => {
   })
   useEffect( () => {
     setMessages(orden)
- }, [])
+ }, [orden])
     
     return (
         <div>

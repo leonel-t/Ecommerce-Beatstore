@@ -4,7 +4,7 @@ import swal from 'sweetalert';
 import axios from 'axios';
 import {serverUrl} from '../../auxiliar/variables';
 const BoxMessage = ({username , idFrom, idTo,  date}) => {
-
+ 
     const handleLike = ()=>{
 
         swal({
@@ -34,6 +34,7 @@ const BoxMessage = ({username , idFrom, idTo,  date}) => {
                   
                 return await axios.request(options).then(()=>{
                     return swal("Mensaje Enviado!");
+                   
                 })
 
       

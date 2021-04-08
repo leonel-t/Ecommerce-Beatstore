@@ -3,10 +3,10 @@
     
 }
 .userHead{
-    background: linear-gradient(0deg, rgba(105, 1, 105, 0.479) 0%, rgb(114, 4, 98) 35%, rgba(218, 53, 193, 0.795) 100%);
+   
 }
 .userMail{
-    background: linear-gradient(0deg, rgba(68, 0, 68,0.3) 0%, rgba(68, 0, 68,0.3) 35%, rgba(105, 1, 105, 0.479) 100%);
+  
 }
 .imgProfileContainer{
     width: 100%;
@@ -31,4 +31,5 @@
 }
 .userMail span{
     font-size: 4rem;
+    cursor: pointer;
 }
