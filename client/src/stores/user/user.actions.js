@@ -42,7 +42,7 @@ export const getLikesByUser = (userId) => {
     return (dispatch) => {
         axios.get(`${serverUrl}/likes/user/${userId}`)
             .then(orders => {
-                   dispatch(likesByUser(orders.data))
+                dispatch(likesByUser(orders.data))
 
             })
             .catch(error => {
@@ -298,20 +298,18 @@ export const getCalculator = () => {
 
 //COUPON CODE----------------------------------------FALTA USER
 export const getDiscountCoupon = (code, user) => {
-
-    if (user.userStatus) {
-
-        return (dispatch) => {
-            dispatch(getDiscountCouponAction(code));
-            dispatch(fetchCart(user));
-        };
-    } else {
-        return (dispatch) => {
-            dispatch(getDiscountCouponAction(code));
-            dispatch(fetchCart(user));
-        };
+    return (dispatch) => {
+        return axios.get(`${serverUrl}/coupons`)
+            .then((coupons) => {
+                if (coupons.data.length > 0) {
+                    const result = coupons.data.find((coupon) => coupon.coupon === code)
+                    if (result) {
+                        dispatch(getDiscountCouponAction(result));
+                        dispatch(fetchCart(user));
+                    }
+                }
+            })
     }
-
 }
 
 export const getDiscountCouponAction = (code) => {
