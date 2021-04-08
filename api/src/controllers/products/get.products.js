@@ -1,4 +1,4 @@
-const { Product, Categories, Comment, Likes } = require("../../db");
+const { Product, Categories, Comment, Likes, Oferts } = require("../../db");
 const Sequelize = require("sequelize");
 const Op = Sequelize.Op;
 
@@ -17,6 +17,10 @@ module.exports = {
         {
           model: Likes,
           as: "likes",
+        },
+        {
+          model: Oferts,
+          as: "oferts",
         },
       ],
     });
@@ -50,6 +54,10 @@ module.exports = {
         {
           model: Likes,
           as: "likes",
+        },
+        {
+          model: Oferts,
+          as: "oferts",
         },
       ],
     });

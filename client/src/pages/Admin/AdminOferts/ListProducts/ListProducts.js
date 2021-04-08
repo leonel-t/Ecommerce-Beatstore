@@ -8,6 +8,7 @@ const ListProducts = ({id, name, image, artist, description, addOfert})=>{
     const handleClick = ()=>{
         return addOfert(id)
     }
+    
     return (
         <>
         <div className="--admin-list-main">

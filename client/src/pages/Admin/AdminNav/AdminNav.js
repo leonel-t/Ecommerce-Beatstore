@@ -30,8 +30,8 @@ const AdminNav = ({ t }) => {
         {t('headers.adminHeader.adminNav.addBeats')}
       </Link>
       <Link
-        onClick={() => handleClickActiveState("Add Oferts")}
-        className={activeState === "Add Oferts" ? "--admin--main-btn --admin--main-btn-active" : "--admin--main-btn"} to="/admin/oferts">
+        onClick={() => handleClickActiveState("List Oferts")}
+        className={activeState === "List Oferts" ? "--admin--main-btn --admin--main-btn-active" : "--admin--main-btn"} to="/admin/oferts">
         List Oferts
       </Link>
       <Link
