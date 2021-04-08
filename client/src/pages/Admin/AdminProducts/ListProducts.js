@@ -28,7 +28,7 @@ const Edit = ({ fetchCartEffect, fetchAllProductsEffect, deleteProductsEffect, S
     fetchAllProductsEffect()
   }, [fetchCartEffect, fetchAllProductsEffect, user]);
   const handleClickEdit = (productId) => {
-    history.push(`/put/${productId}`);
+    history.push(`/admin/products/edit/${productId}`);
   };
   const handleClickDelete = (id) => {
     console.log(id)
