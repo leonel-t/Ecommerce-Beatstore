@@ -6,6 +6,7 @@ import {fetchAllProducts} from "../../../stores/products/products.actions";
 import {fetchAllOferts} from "../../../stores/admin/admin.actions";
 import ListProducts from "./ListProducts/ListProducts";
 import swal from "sweetalert";
+import Select from "react-select";
 
 const AdminOferts = ({fetchAllProductsEffect,fetchAllOfertsEffect, STORE_PRODUCTS, STORE_OFERTS})=>{
    
@@ -26,7 +27,6 @@ const AdminOferts = ({fetchAllProductsEffect,fetchAllOfertsEffect, STORE_PRODUCT
                     discount: STORE_OFERTS[i].discount
                 }
                 aux.push(obj)
-                
             }
         }
         setOferts(aux)
@@ -61,7 +61,9 @@ const AdminOferts = ({fetchAllProductsEffect,fetchAllOfertsEffect, STORE_PRODUCT
 
                         }
                     </div>
-                   
+                   <div className="ofert-select">
+                      
+                   </div>
                    
                 </div>
                 ):(

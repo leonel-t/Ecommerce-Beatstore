@@ -7,6 +7,8 @@ module.exports = {
         description,
       }).then(category =>{
         return category;
-      });       
+      }).catch(error =>{
+        return error
+      })      
     },
 }; 

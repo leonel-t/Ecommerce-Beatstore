@@ -4,13 +4,42 @@ import Select from "react-select";
 import axios from "axios";
 import laserSound from "../../../assets/audio/tab-sound.ogg"
 //Internationalization
+import './newform.scss';
+import React, { useEffect, useState } from "react";
+import {connect} from "react-redux";
 import { withTranslation } from 'react-i18next';
+import axios from "axios";
+import Select from "react-select";
 import swal from 'sweetalert';
-import AdminNav from "../AdminNav/AdminNav";
-import "./form.css";
 import { serverUrl } from '../../../auxiliar/variables';
+import AdminNav from "../AdminNav/AdminNav";
+import laserSound from "../../../assets/audio/tab-sound.ogg";
+import {useHistory} from "react-router-dom";
 
 const Form = ({ t, STORE_USER }) => {
+const history = useHistory();
+
+  const customStyles = {
+    option: (provided, state) => ({
+      ...provided,
+      borderBottom: '1px dotted pink',
+      color: state.isSelected ? 'red' : 'violet',
+      background:'black',
+      fontWeight: 800,
+      padding: 20,
+    }),
+    control: () => ({
+      // none of react-select's styles are passed to <Control />
+      width: 200,
+    }),
+    singleValue: (provided, state) => {
+      const opacity = state.isDisabled ? 0.5 : 1;
+      const transition = 'opacity 300ms';
+      const font = "fontWeight 800";
+      return { ...provided, opacity, transition, font };
+    }
+  }
+
   //USER IDENTIFICATION FOR REDUCER #############################################
   let userStore =
     STORE_USER.user && STORE_USER.user.data && STORE_USER.user.data.user
@@ -23,90 +52,31 @@ const Form = ({ t, STORE_USER }) => {
     rol: userStore && userStore.rol ? userStore.rol : 0,
   };
   //#############################################################################
-  const customStyles = {
-    control: (base, state) => ({
-      ...base,
-      // match with the menu
-      borderRadius: state.isFocused ? "3px 3px 0 0" : 3,
-      // Overwrittes the different states of border
-      borderColor: state.isFocused ? "yellow" : "green",
-      // Removes weird border around container
-      boxShadow: state.isFocused ? null : null,
-      "&:hover": {
-        // Overwrittes the different states of border
-        borderColor: state.isFocused ? "red" : "blue",
-        background: "white"
-      }
-    }),
-    menu: (base, state) => ({
-      ...base,
-      // override border radius to match the box
-      borderRadius: 0,
-      // kill the gap
-      marginTop: 0,
-      background: state.isFocused ? "yellow" : "green",
-      "&:hover": {
-        // Overwrittes the different states of border
-        background: "blue"
-      }
-    }),
-    menuList: base => ({
-      ...base,
-      // kill the white space on first and last option
-      padding: 0,
-      background: "white",
 
-    }),
-    menuPortal: base => ({
-      background: "red",
-      "&:hover": {
-        // Overwrittes the different states of border
-        background: "blue"
-      }
-    }),
-    multiValueLabel: base => ({
-      background: "rgb(106,31,174)",
-      color: "white",
-      padding: "5px",
-      borderRadius: "5px",
-      outline: "none",
-    }),
-    multiValueRemove: base => ({
-      background: "red",
-      color: "white",
-      padding: "4x",
-      marginBottom: "10px",
-      borderRadius: "5px"
-    }),
-    singleValue: base => ({
-      background: "yellow",
-      color: "black",
-      "&:hover": {
-        // Overwrittes the different states of border
-        background: "blue"
-      }
-    }),
-    group: base => ({
-      background: "yellow",
-      color: "black"
-    })
-  };
 
-  const [categories, setCategories] = React.useState([]);
-  const [image, setImage] = React.useState({});
-  const [audio, setAudio] = React.useState();
-  const [errors, setErrors] = React.useState({});
-  const [input, setInput] = React.useState({});
-  const [cat, setCat] = React.useState([]);
-  const [alt, setAlt] = React.useState({})
-  const [tone, setTone] = React.useState({})
+  //Audio Error
+  const audioErr = new Audio(laserSound)
+
+  const [categories, setCategories] = useState([]);
+  const [image, setImage] = useState({});
+  const [audio, setAudio] = useState();
+  const [errors, setErrors] = useState({});
+  const [input, setInput] = useState({});
+  const [cat, setCat] = useState([]);
+  const [alt, setAlt] = useState({});
+  const [tone, setTone] = useState({});
+
   const handleAlt = (e) => {
+    
+    console.log("handleAlt", e.target.value)
+    
     setAlt({
       ...alt,
       [e.target.name]: e.target.value
-    })
+    });
 
-  }
+  };
+
   useEffect(() => {
     const datos = async () => {
       return await fetch(`${serverUrl}/categories`)
@@ -115,66 +85,83 @@ const Form = ({ t, STORE_USER }) => {
           return setCat(optionCategories);
         });
     };
-
     datos();
   }, []);
-  const audioErr = new Audio(laserSound)
-  let idProduct;
-  function handleSubmit(e) {
+
+  const handleSubmit = async (e)=> {
     e.preventDefault();
+    // let formInputs = {
+    //   name: input.name,
+    //   description: input.description,
+    //   artist:input.artist,
+    //   price:input.price,
+    //   bpm:input.bpm,
+    //   scale: alt.radName === undefined ? tone.value : tone.value + alt.radName,
+    //   date:input.date,
+    //   image:image[0],
+    //   audio:audio[0]
+    // }
+    // console.log(formInputs)
+
     try {
-      const form = new FormData();
 
-      form.append("name", input.name);
-      form.append("description", input.description);
-      form.append("artist", input.artist);
-      form.append("price", input.price);
-      form.append("bpm", input.bpm);
-      form.append("scale", alt.radName === undefined ? tone.value : tone.value + alt.radName);
-      form.append("date", input.date);
-      form.append("selectCat", cat.selectCat);
+      var form = new FormData();
+          form.append("name", input.name);
+          form.append("description", input.description);
+          form.append("artist", input.artist);
+          form.append("price", input.price);
+          form.append("bpm", input.bpm);
+          form.append("scale", alt.radName === undefined ? tone.value : tone.value + alt.radName);
+          form.append("date", input.date);
+          form.append("selectCat", cat.selectCat);
+          form.append("files", image[0]);
+          form.append("files", audio[0]);
 
-      form.append("files", image[0]);
-      form.append("files", audio[0]);
       const options = {
         method: "POST",
         url: `${serverUrl}/products/`,
         headers: {
-          "Content-Type": "multipart/form-data", "Cross-Origin-Opener-Policy": "same-origin",
+          "Content-Type": "multipart/form-data", 
           "token": localStorage.getItem("token")
         },
         data: form,
-
       };
 
-      axios.request(options).then(function (response) {
-        idProduct = response.data.id;
-        categories.forEach((element) => {
-          axios.post(`${serverUrl}/products/${idProduct}/category/${element.value}`).then((res) => console.log(res));
-        });
-      });
-      swal({
-        title: "item added",
-        icon: "success",
-        //buttons: true,
-      })
+      return await axios.request(options).then(response => {
+        categories.forEach(async (element) => {
+          return await axios.post(`${serverUrl}/products/${response.data.id}/category/${element.value}`).then((res) => console.log(res));
+        })
 
+        swal({
+          title: "item added",
+          icon: "success",
+          //buttons: true,
+        }).then(()=>{
+          history.push("/admin/listproducts")
+        })
+
+      });
     } catch (error) {
-      audioErr.play()
-      console.log("faltan inputs")
+      audioErr.play();
+      swal({
+        title: "Error Beat Dont Added",
+        icon: "danger",
+        //buttons: true,
+      });
     }
-  }
+  };
+
   const optionTone = [{
-    value: "none",
+    value: "c",
     label: t("page.admin.forms.addBeats.notes.c")
   }, {
-    value: "week",
+    value: "d",
     label: t("page.admin.forms.addBeats.notes.d")
   }, {
-    value: "month",
+    value: "e",
     label: t("page.admin.forms.addBeats.notes.e")
   }, {
-    value: "year",
+    value: "f",
     label: t("page.admin.forms.addBeats.notes.f")
   }, {
     value: "G",
@@ -185,10 +172,15 @@ const Form = ({ t, STORE_USER }) => {
   }, {
     value: "B",
     label: t("page.admin.forms.addBeats.notes.b")
-  }]
+  }];
+
   const handleInputChange = (event) => {
+
+    console.log("handleInputChangue", event.target.value)
+
     if (event.target.name === "image") {
       setImage(event.target.files);
+
     } else if (event.target.name === "audio") {
       setAudio(event.target.files);
     } else {
@@ -196,16 +188,19 @@ const Form = ({ t, STORE_USER }) => {
         ...input,
         [event.target.name]: event.target.value,
       });
-    }
+    };
+
     setErrors(
       validate({
         ...input,
         [event.target.name]: event.target.value,
       })
     );
+
   };
 
   function validate(input) {
+
     let errors = {};
 
     if (!input.name) {
@@ -227,12 +222,17 @@ const Form = ({ t, STORE_USER }) => {
     if (!input.date) {
       errors.date = t("page.admin.forms.addBeats.errors.inpDate");
     }
+
     var today = new Date();
-    let msecsToday = today.getTime();
+    var msecsToday = today.getTime();
     var msecsProduct = Date.parse(input.date);
-    msecsProduct > msecsToday
-      ? (errors.date = t("page.admin.forms.addBeats.errors.inpValidDate"))
-      : console.log("ok");
+
+    if(msecsProduct > msecsToday){
+      (errors.date = t("page.admin.forms.addBeats.errors.inpValidDate"))
+    }else{
+      console.log("msec product es menor que msec today");
+    }
+
     if (!tone.value) {
       errors.tone = t("page.admin.forms.addBeats.errors.inpTone");
     }
@@ -242,8 +242,10 @@ const Form = ({ t, STORE_USER }) => {
     if (!audio) {
       errors.audio = t("page.admin.forms.addBeats.errors.inpAudio");
     }
+
     return errors;
   }
+
   var option;
 
   if (cat && cat.length > 0) {
@@ -253,7 +255,7 @@ const Form = ({ t, STORE_USER }) => {
         label: c.name,
       };
     });
-  }
+  };
 
   return (
     <>
@@ -262,154 +264,174 @@ const Form = ({ t, STORE_USER }) => {
         ? (
           <>
             <AdminNav></AdminNav>
-            <div className="subContainer">
-              <h2>{t("page.admin.forms.addBeats.title")}</h2>
-              <form
-                onSubmit={(e) => handleSubmit(e)}
-              >
-                <div className="container formAdd"
-                >
 
-                  <div className="column-1 box">
-                    <label>{t("page.admin.forms.addBeats.name")}</label>
-                    {errors.name && <p className="danger">{errors.name}</p>}
-
-                    <input
-                      className={`${errors.name && "danger"}`}
-                      name="name"
-                      onChange={(e) => {
-                        handleInputChange(e);
-                      }}
-                    />
-                    <label>{t("page.admin.forms.addBeats.description")}</label>
-
-                    {errors.description && <p className="danger">{errors.description}</p>}
-                    <textarea
-                      className={`${errors.description && "danger"}`}
-                      name="description"
-                      onChange={(e) => {
-                        handleInputChange(e);
-                      }}
-                    ></textarea>
-                    <label>{t("page.admin.forms.addBeats.artist")}</label>
-                    {errors.artist && <p className="danger">{errors.artist}</p>}
-
-                    <input
-                      className={`${errors.artist && "danger"}`}
-                      name="artist"
-                      onChange={(e) => {
-                        handleInputChange(e);
-                      }}
-                    ></input>
-
-                    <label>{t("page.admin.forms.addBeats.price")}</label>
-                    {errors.price && <p className="danger">{errors.price}</p>}
-
-                    <input
-                      className={`${errors.price && "danger"}`}
-                      name="price"
-                      type="number"
-                      onChange={(e) => {
-                        handleInputChange(e);
-                      }}
-                    ></input>
-
-                    <label>{t("page.admin.forms.addBeats.bpm")}</label>
-                    {errors.bpm && <p className="danger">{errors.bpm}</p>}
-
-                    <input
-                      className={`${errors.bpm && "danger"}`}
-                      name="bpm"
-                      type="number"
-                      onChange={(e) => {
-                        handleInputChange(e);
-                      }}
-                    ></input>
+            <div className="--add-product-new-container"> 
+              <form encType="multipart/form-data"  className=".--add-product-newform" onSubmit={(e) => handleSubmit(e)}>
+                <div className="--add-product-newform-container">
+                <div  className="--add-product-newform-col-0">
+                    <h2>{t("page.admin.forms.addBeats.title")}</h2>
                   </div>
-                  <div className="column-2 box">
-                    <label>{t("page.admin.forms.addBeats.tone")}</label>
-                    {errors.tone && <p className="danger">{errors.tone}</p>}
+                  <div className="--add-product-newform-col-1">
+                      <div className="--add-product-newform-col-1-interna-1">
 
+                          <div className="--colum-helper --add-product-newform-input">
+                            <label>{t("page.admin.forms.addBeats.name")}</label>
+                              {errors.name && <p className="--colum-helper-danger">{errors.name}</p>}
+                              <input
+                                autoComplete="off"
+                                className={`${errors.name && "--colum-helper-danger"}`}
+                                name="name"
+                                onChange={(e) => { handleInputChange(e); }}
+                              />
+                          </div>
 
-                    <Select
-                      name="selectTone"
-                      options={optionTone}
-                      onChange={setTone}
-                      styles={customStyles}
-                    />
-                    <div className="radioTone">
-                      <div className="radioColumn" >
-                        <label for="indoor">natural</label>
-                        <input type="radio" name="radName" value="" />
+                          <div className=" --colum-helper --add-product-newform-input">
+                            <label>{t("page.admin.forms.addBeats.description")}</label>
+                            {errors.description && <p className="--colum-helper-danger">{errors.description}</p>}
+                              <textarea
+                                className={`${errors.description && "--colum-helper-danger"}`}
+                                name="description"
+                                onChange={(e) => { handleInputChange(e) }}
+                              ></textarea>
+                          </div>
+                          
+                          <div className="--colum-helper --add-product-newform-input">
+                            <label>{t("page.admin.forms.addBeats.artist")}</label>
+                            {errors.artist && <p className="--colum-helper-danger">{errors.artist}</p>}
+                              <input
+                                autoComplete="off"
+                                className={`${errors.artist && "--colum-helper-danger"}`}
+                                name="artist"
+                                onChange={(e) => { handleInputChange(e); }}
+                              ></input>
+                          </div>
+
+                          <div className="--colum-helper --add-product-newform-input">
+                            <label>{t("page.admin.forms.addBeats.price")}</label>
+                              {errors.price && <p className="--colum-helper-danger">{errors.price}</p>}
+                                <input
+                                  autoComplete="off"
+                                  className={`${errors.price && "--colum-helper-danger"}`}
+                                  name="price"
+                                  type="number"
+                                  onChange={(e) => { handleInputChange(e) }}
+                                ></input>
+                          </div>
+
+                          <div className="--colum-helper --add-product-newform-input">
+                            <label>{t("page.admin.forms.addBeats.bpm")}</label>
+                            {errors.bpm && <p className="--colum-helper-danger">{errors.bpm}</p>}
+
+                              <input
+                                autoComplete="off"
+                                className={`${errors.bpm && "--colum-helper-danger"}`}
+                                name="bpm"
+                                type="number"
+                                onChange={(e) => { handleInputChange(e) }}
+                              ></input>
+                          </div>
+                          
                       </div>
-                      <div className="radioColumn" >
-                        <label for="indoor"># </label>
-                        <input type="radio" name="radName" value="#" onChange={handleAlt} />
-                      </div>
-                      <div className="radioColumn">
-                        <label >b</label>
-                        <input type="radio" name="radName" value="b" onChange={handleAlt} />
-                      </div>
-                    </div>
-                    <label>{t("page.admin.forms.addBeats.date")}</label>
-                    {errors.date && <p className="danger">{errors.date}</p>}
+                      <div className="--add-product-newform-col-1-interna-2">
+                      <div className="--add-product-newform-category">
+                            <label>{t("page.admin.forms.addBeats.categories")}</label>    
+                            <Select
+                              isMulti
+                              name="selectCat"
+                              options={option}
+                              onChange={setCategories}
+                              styles={customStyles}
+                            />
+                          </div>
+                          <div className="--add-product-newform-radioTone">
 
-                    <input
-                      id="dateClass"
-                      className={` ${errors.date && "danger"}`}
-                      type="date"
-                      name="date"
-                      onChange={(e) => {
-                        handleInputChange(e);
-                      }}
-                    ></input>
+                          <div className="--add-product-newform-radioTone-radioColumn" >
+                            <label>natural</label>
+                            <input type="radio" name="radName" value="" />
+                          </div>
+                          <div className="--add-product-newform-radioTone-radioColumn" >
+                            <label># </label>
+                            <input 
+                              type="radio"
+                              name="radName"
+                              value="#"
+                              onChange={handleAlt} />
 
-                    <label>{t("page.admin.forms.addBeats.image")}</label>
+                          </div>
+                          <div className="--add-product-newform-radioTone-radioColumn">
+                            <label >b</label>
+                            <input
+                              type="radio"
+                              name="radName"
+                              value="b"
+                              onChange={handleAlt} 
+                            />
+                          </div>
+                          </div>
 
-                    <input
-                      className="buttonInput"
-                      type="file"
-                      name="image"
-                      onChange={(e) => {
-                        handleInputChange(e);
-                      }}
-                    ></input>
-                    <label>{t("page.admin.forms.addBeats.audio")}</label>
+                          <div  className="--add-product-newform-radioTone-select-tone">
+                          <label>{t("page.admin.forms.addBeats.tone")}</label>
+                          {errors.tone && <p className="--colum-helper-danger">{errors.tone}</p>}
+                            <Select
+                              name="selectTone"
+                              options={optionTone}
+                              onChange={setTone}
+                              styles={customStyles}
+                            
+                            />
+                          </div>
+                        <div className="--colum-helper --add-product-newform-input">
+                          <label>{t("page.admin.forms.addBeats.date")}</label>
+                          {errors.date && <p className="--colum-helper-danger">{errors.date}</p>}
+                          <input
+                            autoComplete="off"
+                            className={` ${errors.date && "--colum-helper-danger"}`}
+                            type="date"
+                            name="date"
+                            onChange={(e) => handleInputChange(e) }
+                          ></input>
+                        </div>
 
-                    <input
-                      className="buttonInput"
-                      type="file"
-                      name="audio"
-                      onChange={(e) => {
-                        handleInputChange(e);
-                      }}
-                    ></input>
-                    <label>{t("page.admin.forms.addBeats.categories")}</label>
+                        <div className="--colum-helper --add-product-newform-input">
+                          <label className='--labelImage'>{t("page.admin.forms.addBeats.image")}</label>
+                          <input
+                            className="buttonInput"
+                            type="file"
+                            name="image"
+                            onChange={(e) => handleInputChange(e) }
+                          ></input>
+                        </div>
 
-                    <Select
-                      isMulti
-                      name="selectCat"
-                      options={option}
-                      onChange={setCategories}
-                      styles={customStyles}
-                    />
-                  </div>
+                        <div className="--colum-helper --add-product-newform-input">
+                          <label className='--labelAudio'>{t("page.admin.forms.addBeats.audio")}</label>
+                          <input
+                            className="buttonInput"
+                            type="file"
+                            name="audio"
+                            onChange={(e) => handleInputChange(e) }
+                          ></input>
+
+                        </div>
+
+
+
+                     </div>
                 </div>
-                <div className="divButton">
 
-                  <button
-                    className="submitbuton"
-                    type="submit"
-                    onChange={(e) => {
-                      handleInputChange(e);
-                    }}
-                  >
-                    {t("page.admin.forms.addBeats.addBeatButton")}
-                  </button>
+                  <div  className="--add-product-newform-col-2">
+                    <button
+                      className="submitbuton"
+                      type="submit"
+                      onChange={(e) => { handleInputChange(e)  }}
+                    >
+                      {t("page.admin.forms.addBeats.addBeatButton")}
+                    </button>
+                  </div>
+
                 </div>
               </form>
-              <div className="divider"></div>
             </div>
+
           </>) : (
           <div className="--admin--main-panel" >
             <h1>Acceso Denegado Only Admin Can Be See This Page</h1>

@@ -131,7 +131,7 @@ const CheckoutForm = ({ price, cart, userReducer, store_orders, action }) => {
                     })
                     .then(()=>{
                         setTimeout(()=>{
-                            window.location.assign("./")
+                            window.location.assign(`./checkout/order/${userReducer.cartDetaills.id}`)
                         },2000)
                     })
 

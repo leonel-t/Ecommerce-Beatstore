@@ -47,7 +47,10 @@ export const GET_ALL_OFERTS_SUCCESS = "GET_ALL_OFERTS_SUCCESS";
 export const GET_ALL_OFERTS_FAILURE = "GET_ALL_OFERTS_FAILURE";
 
 //fetch all orders
-export const GET_ALL_ORDERS = "GET_ALL_ORDERS";
+export const GET_ALL_ORDERS_REQUEST = "GET_ALL_ORDERS_REQUEST";
+export const GET_ALL_ORDERS_SUCCESS = "GET_ALL_ORDERS_SUCCESS";
+export const GET_ALL_ORDERS_FAILURE = "GET_ALL_ORDERS_FAILURE";
+
 //delete order by id
 export const DELETE_ORDER_BY_ID = "DELETE_ORDER_BY_ID";
 //filter order by status
@@ -72,21 +75,34 @@ export const deleteOrderById = (id) => {
 export const fetchAllOrders = () => {
 
     return (dispatch) => {
+        dispatch(fetchAllOrdersRequest())
         axios.get(`${serverUrl}/order/`)
-            .then(products => {
-                dispatch(getAllOrdersSucess(products.data))
+            .then(orders => {
+                dispatch(fetchAllOrdersSuccess(orders.data))
             })
             .catch(error => {
-                console.log(error)
+                dispatch(fetchAllOrdersFailure())
             })
     }
 }
-export const getAllOrdersSucess = (orders) => {
+export const fetchAllOrdersRequest = () => {
     return {
-        type: GET_ALL_ORDERS,
+        type: GET_ALL_ORDERS_REQUEST,
+    }
+}
+export const fetchAllOrdersSuccess = (orders) => {
+    return {
+        type: GET_ALL_ORDERS_SUCCESS,
         payload: orders
     }
 }
+export const fetchAllOrdersFailure = (error) => {
+    return {
+        type: GET_ALL_ORDERS_FAILURE,
+        payload: error
+    }
+}
+//
 export const fetchAllProducts = () => {
 
     return (dispatch) => {

@@ -1,20 +1,21 @@
 import "./Layouts.css";
 import React from 'react';
-// import PagesFooter from '../components/Footer/PagesFooter.js';
+import Footer from '../components/Footer/Footer';
 import HeaderHome from '../components/Header/HeaderHome/HeaderHome';
 import HeaderAdmin from '../components/Header/HeaderAdmin/HeaderAdmin';
 import HeaderPages from '../components/Header/HeaderPages/HeaderPages';
 
 //Components Admin Subscriptions
 import AdminSubscriptionsNav from '../pages/AdminSubscriptions/AdminSubscriptionsNav/AdminSubscriptionsNav';
+import HeaderPrint from "../components/Header/HeaderPrint/HeaderPrint";
 
 
 const HomeLayout = ({ children }) => {
     return (
         <div>
-            <HeaderHome></HeaderHome>
-         
-            {children}
+            <HeaderHome/>
+                {children}
+            <Footer/>
         </div>
     )
 };
@@ -73,4 +74,15 @@ const LoginLayout = ({ children }) => {
     )
 };
 
-export { HomeLayout, PagesLayout, LoginLayout, AdminLayout, ProductLayout, AdminSubscriptionsLayout,ProfileLayout };
+const PrintLayout = ({ children }) => {
+    return (
+        <div>
+            <HeaderPrint/>
+            <div className="page-layout-main">
+                {children}
+            </div>
+        </div>
+    )
+};
+
+export { HomeLayout, PagesLayout, LoginLayout, AdminLayout, ProductLayout, AdminSubscriptionsLayout,ProfileLayout,PrintLayout };

@@ -46,13 +46,13 @@
       "home":{
         "MiddleSearchBar":"Search",
         "sliders":{
-          "1":"Best Beats",
-          "2":"Best Beats Of Pop",
-          "3":"Best Hi-Fi Beats",
-          "4":"Blues Top Beats",
-          "5":"Rap & Trap Top Beats ",
-          "6":"The Best Of Rock & Roll",
-          "7":"Alternative Beats",
+          "1":"All beats",
+          "2":"The most views ones",
+          "3":"Beat Beat",
+          "4":"Smug Blues",
+          "5":"The most of Rock",
+          "6":"Don't stop the music Dance",
+          "7":"Shuffle House",
           "noBeats":"No Beats"
         }, 
         "subscriptions":{
@@ -224,6 +224,7 @@
             "audio":"Select Audio",
             "categories":"Categories",
             "addBeatButton":"Add Beat",
+            "saveBeatButton":"Save Beat",
             "notes":{
               "c":"C",
               "d":"D",
@@ -247,12 +248,37 @@
             }
           },
           "addGen":{
-            "addGenre": "Complete form",
+            "title": "Complete form",
+            "titleEdit":"Edit Genre",
+            "submitEdit":"Edit Genre",
             "name": "Name",
             "description": "Description",
-            "submit": "Submit",
+            "submit": "Add Genre",
+            "errorName": "the name is required",
+            "errorDescription":"the description is required",
             "placeholderOne": "type the category name",
             "placeholderTwo": "type the description here"
+        },
+        "addOfert":{
+          "title": "Add Ofert",
+          "name": "Name",
+          "discount": "Discount",
+          "submit": "Add ofert",
+          "mode":{
+            "title":"Ofert mode",
+            "1":"none",
+            "2":"day",
+            "3":"week",
+            "4":"month",
+            "5":"season",
+            "6":"holiday" 
+          },
+          "error":{
+            "name":"the name is required",
+            "discount":"the camp discount is required"
+          },
+          "placeholderOne": "name ofert here",
+          "placeholderTwo": "discount ofert here"
         }
         }
       }

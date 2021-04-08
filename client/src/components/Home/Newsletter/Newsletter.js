@@ -45,8 +45,9 @@ const Newsletter = ()=>{
     return (
         <div className='--Newsletter-main-head'>
             <div className='--Newsletter-main'>
-                <h2>Join our monthly Newsletter and get 10% off your next Purchase!</h2>
+                
                 <form className="--Newsletter-form" onSubmit={handleSubmit}>
+                <h2>Join our monthly Newsletter and get 10% off your next Purchase!</h2>
                     <label className='name'></label>
                         <input 
                             placeholder='Type your Name'

@@ -3,6 +3,7 @@
     width: 100%;
     height: auto;
     margin-top: 2em;
+    margin-bottom: 2em;
 
 }
 .--ads-banner-main{
@@ -15,7 +16,12 @@
     margin-right: auto;
     border-radius: 1em;
 }
-
+.--ads-banner-main-container{
+    background-color: rgba(86, 9, 175, 0.527);
+    border-radius: 10px;
+    backdrop-filter: blur(5px);
+    margin: 3em;
+}
 .--ads-banner-main-container h1{
     padding: 0px;
     color: rgb(255, 255, 255);
@@ -27,13 +33,10 @@
 }
 .--ads-banner-main-container p{
     font-size: 1.2rem;
-    margin: 2em;
     padding: 2em;
     color: aliceblue;
     font-family: 'Oxanium', 'cursive';
-    background-color: rgba(86, 9, 175, 0.527);
-    border-radius: 10px;
-    backdrop-filter: blur(10px);
+
 }
 
 @media(max-width:899px){

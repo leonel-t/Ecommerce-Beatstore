@@ -1,6 +1,6 @@
 import React, {useEffect, useState} from 'react';
 import ReactJkMusicPlayer from 'react-jinke-music-player';
-import 'react-jinke-music-player/assets/index.css';
+import '../../assets/player/index.css';
 
 
 
