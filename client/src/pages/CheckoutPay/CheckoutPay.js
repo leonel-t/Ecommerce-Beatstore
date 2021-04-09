@@ -23,13 +23,13 @@ function CheckoutPay({ totalPrice, cart, userReducer, store_orders, fetchAllOrde
     useEffect(() => {
         fetchAllOrders()
     }, [fetchAllOrders]);
-    console.log("cart",cart)
+    
     let ofertsDiscount = 0
     
     cart.forEach(element => {
-        console.log("HOLA",element.product.oferts)
+        
         if(element.product.oferts.length > 0){
-          console.log("OFERTS",element.product.oferts)
+          
           ofertsDiscount = ofertsDiscount + parseInt(element.product.oferts[0].discount)
         }
         
