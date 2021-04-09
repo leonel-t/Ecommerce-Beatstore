@@ -66,14 +66,16 @@ const Cart = ({
     };
     //console.log("PRODUCT",STORE_CART)
     let ofertsDiscount = 0
-    
-     STORE_CART.forEach(element => {
+     if(STORE_CART.length > 0){
+      STORE_CART.forEach(element => {
         console.log("HOLA",element.product.oferts)
         if(element.product && element.product.oferts && element.product.oferts.length > 0){
           console.log("OFERTS",element.product.oferts)
           ofertsDiscount = ofertsDiscount + parseInt(element.product.oferts[0].discount)
         } 
       });
+     }
+     
     
       
     return (
