@@ -18,19 +18,7 @@ const ListOferts = ({fetchAllProductsEffect,fetchAllOfertsEffect, STORE_PRODUCTS
     }, [fetchAllOfertsEffect, fetchAllProductsEffect])
 
     const handleAddOfert = (idProduct)=>{
-        console.log(idProduct)
-        // let aux = []
-        // if(STORE_OFERTS && STORE_OFERTS.length >0 ){
-        //     for (let i = 0; i < STORE_OFERTS.length; i++) {
-        //         let obj = {
-        //             value: STORE_OFERTS[i].ofertStatus,
-        //             discount: STORE_OFERTS[i].discount
-        //         }
-        //         aux.push(obj)
-        //     }
-        // }
-        //setOferts(aux)
-        console.log(idProduct)
+
         swal(` 
         Id Product ${idProduct}
         `)
