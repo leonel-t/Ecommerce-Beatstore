@@ -56,7 +56,7 @@ import EditUserProfile from "./pages/Auth/Profile/EditUserProfile/EditUserProfil
 import ListOrder from './pages/Admin/AdminOrders/ListOrder';
 import OrderDetails from "./components/Profile/OrderDetails/OrderDetails";
 
-
+import SubscriptionsUser from "./pages/Subscriptions/SubscriptionsUser";
 //Subscriptions
 import AdminSubscriptions from './pages/AdminSubscriptions/AdminSubscriptions';
 import Payouts from './pages/AdminSubscriptions/Payouts/Payouts';
@@ -122,7 +122,7 @@ const App = () => {
         <RouteWrapper exact path="/adminsuscriptions/invoices" component={Invoices} layout={AdminSubscriptionsLayout} />
         <RouteWrapper exact path="/profile/messages" component={Messages} layout={PagesLayout} />
         <RouteWrapper exact path="/publicProfile/:idUser" component={PublicProfile} layout={PagesLayout} />
-
+        <RouteWrapper exact path="/subscriptionuser" component={SubscriptionsUser} layout={PagesLayout} />
         <RouteWrapper exact path="/checkout/order/:orderId" component={CheckoutCart} layout={PrintLayout}/>
       </Switch>
     </BrowserRouter>
