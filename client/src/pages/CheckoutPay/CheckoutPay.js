@@ -35,10 +35,12 @@ function CheckoutPay({ totalPrice, cart, userReducer, store_orders, fetchAllOrde
         
     });
     console.log("ofertsDiscount",ofertsDiscount)
+    const totalFinal = totalPrice-ofertsDiscount
+    
     return (
         <Elements stripe={stripePromise}>
             <div className="container-pay">
-                <CheckoutForm price={totalPrice-ofertsDiscount} cart={cart} userReducer={userReducer} store_orders={store_orders} action={action} />
+                <CheckoutForm price={totalFinal > 0?(totalFinal):(totalFinal)} cart={cart} userReducer={userReducer} store_orders={store_orders} action={action} />
             </div>
         </Elements>
     );
@@ -108,7 +110,7 @@ const CheckoutForm = ({ price, cart, userReducer, store_orders, action }) => {
                 let emailData = {
                     email: input.email,
                     id: store_orders[store_orders.length - 1].id,
-                    price: userReducer.totalPrice,
+                    price: price,
                     products: products,
                     date: input.date,
                     fname: userForm[userForm.length - 1].firstName,
