@@ -27,6 +27,7 @@ const SummaryCard = ({ t, getDiscountCouponEffect, STORE_USER, subtotal, total, 
     const handleDiscount = (code) => {
         getDiscountCouponEffect(code, user, user.orderId)
     }
+    const totalFinal = total - (discount + discountOferts);
     return (
         <div className="--SummaryCard">
             <h1>{t("page.cart.summary")}</h1>
@@ -35,7 +36,7 @@ const SummaryCard = ({ t, getDiscountCouponEffect, STORE_USER, subtotal, total, 
                 e.preventDefault()
                 handleDiscount(code)
             }}>
-                <input name="code" value={code} onChange={(e) => setCode(e.target.value)} className="--SummaryCard-code" placeholder={t("page.cart.promoCodeInput")} />
+                <input name="code" autoComplete="off" value={code} onChange={(e) => setCode(e.target.value)} className="--SummaryCard-code" placeholder={t("page.cart.promoCodeInput") } />
                 <button onClick={() => audio.play()} type="submit" className="--SummaryCard-buttoncode">{t("page.cart.promoCodeButton")}</button>
             </form>
             <div className="--SummaryCard-sub">
@@ -48,7 +49,7 @@ const SummaryCard = ({ t, getDiscountCouponEffect, STORE_USER, subtotal, total, 
             </div>
             <div className="--SummaryCard-tot">
                 <span>{t("page.cart.total")}</span>
-                <span>${total - (discount + discountOferts)}</span>
+                <span>${totalFinal >= 0 ?(totalFinal):(0)}</span>
             </div>
             { user && user.id
                 ?(
