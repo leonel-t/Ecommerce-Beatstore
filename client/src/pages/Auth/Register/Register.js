@@ -88,13 +88,13 @@ const Register = ({t}) => {
         })
     }
     const handleThanksReg = () =>{
-           swal("Thanks for register,an email was sent to your acount!") 
+           swal("Thanks for signing up! An email was sent to your account!") 
            let mail = {
-            name:input.username,
+             name:input.username,
              password: input.password,
              email: input.email
             }
-        emailjs.send('service_wh6ybz2', 'template_jhy0w4e', mail, 'user_TgPSia94H5R5iet7h197p')
+        emailjs.send('service_ujh0pt9', 'template_ootei2e', mail, 'user_GMmdOaIuR0lQAhBU7rIK1')
                     .then((result) => {
                         console.log(result.text);
                     }, (error) => {

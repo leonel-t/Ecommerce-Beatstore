@@ -124,7 +124,7 @@ const CheckoutForm = ({ price, cart, userReducer, store_orders, action }) => {
                 console.log(emailData)
                 if (data.message === 'Successful Payment') {
                     // send email
-                    emailjs.send('service_b9mqvzg', 'template_lw3aj8d', emailData, 'user_G41cbN7fW7VHqXdcmtBXT')
+                    emailjs.send('service_dltd1f5', 'template_0mfi7c2', emailData, 'user_xlZ5TJyGl03KbieKyEwWL')
                         .then((result) => {
                             console.log(result.text);
                         }, (error) => {

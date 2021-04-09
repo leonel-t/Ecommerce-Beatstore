@@ -10,6 +10,7 @@ import flagSP from "../../../assets/images/espana.png";
 import i18n from '../../../i18n';
 import { withTranslation } from 'react-i18next';
 import {serverUrl} from '../../../auxiliar/variables';
+import swal from 'sweetalert';
 const InsCode = ({t}) => {
     
     const changeLanguage = (lng) => {
@@ -59,6 +60,7 @@ const InsCode = ({t}) => {
             axios.put(`${serverUrl}/users`, input)
             .then((result) => {
               console.log(result);
+              swal('Password has been reset succesfully')
           }, (error) => {
               console.log(error);
           });

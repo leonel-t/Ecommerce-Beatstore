@@ -11,6 +11,7 @@ import flagSP from "../../../assets/images/espana.png";
 import i18n from '../../../i18n';
 import { withTranslation } from 'react-i18next';
 import {serverUrl} from '../../../auxiliar/variables';
+import swal from 'sweetalert';
 
 const ResetPass = ({t}) => {
 
@@ -61,9 +62,10 @@ const ResetPass = ({t}) => {
         } catch(err){
           console.log(err.message)
         } finally {
-          await emailjs.send('service_b9mqvzg', 'template_j7o69td', input, 'user_G41cbN7fW7VHqXdcmtBXT')
+          await emailjs.send('service_dltd1f5', 'template_kfv458r', input, 'user_xlZ5TJyGl03KbieKyEwWL')
           .then((result) => {
             console.log(result.text);
+            swal('An email has been sent to your mail inbox')
           }, (error) => {
               console.log(error.text);
           });
@@ -73,6 +75,7 @@ const ResetPass = ({t}) => {
             }, (error) => {
                 console.log(error.message);
             });
+          
         }
     }
     
