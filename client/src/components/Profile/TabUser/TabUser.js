@@ -53,14 +53,14 @@ const TabUser = ({ t, orders, favorites }) => {
                 >
                     <p>{t("page.profile.tabUser.purchases")}</p>
                 </div>
-                <div
+                {/* <div
                     className={
                         comments ? "--TabUser-tab-active" : "--TabUser-tab-inactive"
                     }
                     onClick={handleClick(comments ? "" : "comments")}
                 >
                     <p>{t("page.profile.tabUser.coments")}</p>
-                </div>
+                </div> */}
                 <div
                     className={likes ? "--TabUser-tab-active" : "--TabUser-tab-inactive"}
                     onClick={handleClick(likes ? "" : "likes")}
