@@ -24,7 +24,7 @@ const SummaryCard = ({ t, getDiscountCouponEffect, STORE_USER, subtotal, total, 
         orderId: STORE_USER.cartDetaills.id ? STORE_USER.cartDetaills.id : 0
     }
     const handleDiscount = (code) => {
-        getDiscountCouponEffect(code, user)
+        getDiscountCouponEffect(code, user, user.orderId)
     }
     return (
         <div className="--SummaryCard">
@@ -75,7 +75,7 @@ const mapStateToProps = state => {
 
 const mapDispatchToProps = dispatch => {
     return {
-        getDiscountCouponEffect: (code, user) => dispatch(getDiscountCoupon(code, user))
+        getDiscountCouponEffect: (code, user, orderId) => dispatch(getDiscountCoupon(code, user,orderId))
     };
 };
 

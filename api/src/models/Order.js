@@ -11,6 +11,11 @@ module.exports = (sequelize) => {
       allowNull: true,
       defaultValue: 0
     },
+    discount: {
+      type: DataTypes.DECIMAL,
+      allowNull: true,
+      defaultValue: 0
+    },
     userId: {
       type: DataTypes.STRING,
       allowNull: false,
