@@ -2,8 +2,14 @@ import React from 'react';
 import "./rankingitem.scss";
 import Spinner from "../../../assets/images/Spin-1s-200px.svg";
 import {serverUrl} from '../../../auxiliar/variables';
+import {useHistory} from "react-router-dom"
 
 const RankingItem = ({ position, id, name, artist, description, reproductions, image  }) => {
+  const history = useHistory();
+
+  const handleClick = (id)=>{
+    return history.push(`/product/${id}`)
+  }
 
   return (
     <>
@@ -14,7 +20,7 @@ const RankingItem = ({ position, id, name, artist, description, reproductions, i
           </div>
         )
         : (
-          <article className="--ranking-item-article">
+          <article className="--ranking-item-article" onClick={()=>handleClick(id)}>
               <div className="--ranking-item-article-position">
                   {position + 1 }
               </div>
