@@ -1,19 +1,18 @@
-const { Comment, Product } = require("../../db");
+const { Comment, Product , User} = require("../../db");
 
 module.exports = {
   createComment: async (idProduct,comment) => {
-    return await Comment.create(comment).then((comment) => {
-      return Product.findByPk(idProduct).then((Product) => {
-        Comment.findByPk(comment.id).then((newComment) => {
-          var commentAdded = newComment;
-            return Product.addComment(newComment).then(()=>{
-              return commentAdded.dataValues;
-            });            
-          }).catch((error) => {
+    return await Comment.create({
+      comment: comment.comment,
+      author: comment.author,
+      productId: idProduct,
+      userId: comment.userId,
+    }).then((comment) => {
+      return  comment;
+    })          
+    .catch((error) => {
             return res.json(error);
-          });
-       })
-    });
+          })      
   },
   getComments: async () => {
     return await Comment.findAll().then((comments) => comments);

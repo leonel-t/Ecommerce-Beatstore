@@ -21,9 +21,11 @@ const BeatCommentsInputComponent = ({t,action, product, STORE_USER}) =>{
     const [visibleInput, setVisibleInput] = useState(true)
 
     const handleKeyPress = (event) => {
+        console.log("User en comment", userStore)
         let obj = {
             author: user.name,
-            text: comment
+            text: comment,
+            userId: user.id,
         }
         if(event.key === 'Enter'){
             setVisibleInput(false)

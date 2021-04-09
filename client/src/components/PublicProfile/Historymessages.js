@@ -8,9 +8,7 @@ const HistoryMessages =  ({usernameFrom,idFrom, idTo,username}) => {
   const [messages, setMessages] = useState([])
   const dispatch = useDispatch();
   useEffect( () => {
-    
       dispatch(getMessagesConversation(idFrom,idTo))
-
    }, [dispatch, idFrom,idTo ]) 
   const conversation = useSelector(state => state.userReducers)
   const conver = conversation.conversation;
@@ -30,7 +28,7 @@ const HistoryMessages =  ({usernameFrom,idFrom, idTo,username}) => {
             ?
              (
               <div>
-               CARGANDO...
+              
               </div>
           ):(
           <div className="messagesTable">
@@ -55,7 +53,7 @@ const HistoryMessages =  ({usernameFrom,idFrom, idTo,username}) => {
                       
               <tbody>
               {orden && orden.length > 0 && messages.length > 0? (
-                  messages.map((m) => ( 
+                  orden.map((m) => ( 
                       
                     <tr key={m.id}>
                       <td className="userCol">

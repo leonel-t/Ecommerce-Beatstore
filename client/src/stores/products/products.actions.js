@@ -243,7 +243,7 @@ export const searchProductFailure = (error) => {
 
 //POST COMMENT
 export const postComment = (productId, comment) => {
-
+console.log("en action",comment)
     return (dispatch) => {
 
         dispatch(postCommentRequest())
@@ -257,6 +257,7 @@ export const postComment = (productId, comment) => {
             data: {
                 idProduct: productId,
                 comment: {
+                    userId: comment.userId,
                     author: comment.author,
                     comment: comment.text
                 }

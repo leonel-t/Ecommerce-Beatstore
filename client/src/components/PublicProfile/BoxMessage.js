@@ -1,10 +1,13 @@
 import React from "react";
+import {useDispatch, useSelector} from 'react-redux';
 import "./boxMessage.css";
 import swal from 'sweetalert';
 import axios from 'axios';
 import {serverUrl} from '../../auxiliar/variables';
+import {getMessagesConversation} from '../../stores/user/user.actions';
 const BoxMessage = ({username , idFrom, idTo,  date}) => {
- 
+    
+    const dispatch = useDispatch();
     const handleLike = ()=>{
 
         swal({
@@ -33,6 +36,7 @@ const BoxMessage = ({username , idFrom, idTo,  date}) => {
                   };
                   
                 return await axios.request(options).then(()=>{
+                    dispatch(getMessagesConversation(idFrom,idTo))
                     return swal("Mensaje Enviado!");
                    
                 })

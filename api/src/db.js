@@ -68,6 +68,9 @@ Review.belongsToMany(Product, { through: 'Products_Reviews', as: 'products' });
 Product.hasMany(Comment, { foreignKey: "productId" });
 Comment.belongsTo(Product);
 
+// PRODUCTS COMMENTS
+User.hasMany(Comment, { foreignKey: "userId" });
+Comment.belongsTo(User);
 
 // PRODUCTS LIKES
 Product.belongsToMany(Likes, { through: 'Products_Likes', as: 'likes' });
