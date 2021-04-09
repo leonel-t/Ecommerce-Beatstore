@@ -6,7 +6,7 @@ import AdminNav from '../../pages/Admin/AdminNav/AdminNav';
 
 //components
 import OrderWidget from "./AdminDashboard/OrdersWidget/OrdersWidget";
-import ProductsWidget from "./AdminDashboard/ProductsWidget/ProductsWidget";
+//import ProductsWidget from "./AdminDashboard/ProductsWidget/ProductsWidget";
 
 //Homer Spinners
 import HomerSecuriy from  "../../assets/images/spiners-homers/homero-fbi-2.gif";
@@ -32,7 +32,6 @@ const Admin = ({t, STORE_USER}) => {
     <main className="--admin--main-panel">
       <AdminNav/>
       <OrderWidget/>
-      <ProductsWidget/>
     </main>
       ):(
         <div className="--admin--main-panel" >
