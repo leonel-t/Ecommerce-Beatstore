@@ -70,7 +70,7 @@ const Oferts = ({ t,STORE_OFERTS, fetchAllOfertsEffect }) => {
               </ScrollBox>
             </>
           ) : (
-            <p>HOLA</p>
+            <p>no offers week</p>
           )}
         </div>
 
@@ -96,7 +96,7 @@ const Oferts = ({ t,STORE_OFERTS, fetchAllOfertsEffect }) => {
               </ScrollBox>
             </>
           ) : (
-            <p>HOLA</p>
+            <p>No Month Oferts</p>
           )}
         </div>
 
@@ -117,7 +117,7 @@ const Oferts = ({ t,STORE_OFERTS, fetchAllOfertsEffect }) => {
               </ScrollBox>
             </>
           ) : (
-            <p>HOLA</p>
+            <p>No Season Oferts</p>
           )}
         </div>
 
@@ -138,7 +138,7 @@ const Oferts = ({ t,STORE_OFERTS, fetchAllOfertsEffect }) => {
               </ScrollBox>
             </>
           ) : (
-            <p>HOLA</p>
+            <p>No Holiday Oferts</p>
           )}
         </div>
       </main>
