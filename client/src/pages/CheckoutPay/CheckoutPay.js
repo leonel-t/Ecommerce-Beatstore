@@ -23,10 +23,22 @@ function CheckoutPay({ totalPrice, cart, userReducer, store_orders, fetchAllOrde
     useEffect(() => {
         fetchAllOrders()
     }, [fetchAllOrders]);
+    
+    let ofertsDiscount = 0
+    
+    cart.forEach(element => {
+        
+        if(element.product.oferts.length > 0){
+          
+          ofertsDiscount = ofertsDiscount + parseInt(element.product.oferts[0].discount)
+        }
+        
+    });
+    console.log("ofertsDiscount",ofertsDiscount)
     return (
         <Elements stripe={stripePromise}>
             <div className="container-pay">
-                <CheckoutForm price={totalPrice} cart={cart} userReducer={userReducer} store_orders={store_orders} action={action} />
+                <CheckoutForm price={totalPrice-ofertsDiscount} cart={cart} userReducer={userReducer} store_orders={store_orders} action={action} />
             </div>
         </Elements>
     );
