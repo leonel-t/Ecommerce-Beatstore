@@ -2,11 +2,12 @@ const { User, Messages } = require("../../db");
 
 module.exports = {
 
-createMessages: async (idTo, idFrom, message) => { 
+createMessages: async (idTo, idFrom, message,userFrom) => { 
     let newMessageDos = {
         from:idFrom,
         to:idTo,
-        data:message
+        data:message,
+        userFrom:userFrom
     }
     return await Messages.create(newMessageDos).then(async(message) => {
       return await User.findByPk(idTo).then(async(oneMessage) => {

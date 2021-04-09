@@ -1,6 +1,7 @@
 import "./SummaryCard.css"
 import React, { useState } from "react"
 import { connect } from 'react-redux';
+
 import sound from "../../../assets/audio/laser-click.mp3"
 import { getDiscountCoupon } from '../../../stores/user/user.actions';
 //Internationalization
@@ -8,7 +9,7 @@ import { withTranslation } from 'react-i18next';
 import { useHistory } from "react-router-dom"
 import swal from "sweetalert";
 
-const SummaryCard = ({ t, getDiscountCouponEffect, STORE_USER, subtotal, total, discount }) => {
+const SummaryCard = ({ t, getDiscountCouponEffect, STORE_USER, subtotal, total, discount, discountOferts }) => {
     const history = useHistory()
 
     const [code, setCode] = useState("");
@@ -26,6 +27,7 @@ const SummaryCard = ({ t, getDiscountCouponEffect, STORE_USER, subtotal, total, 
     const handleDiscount = (code) => {
         getDiscountCouponEffect(code, user, user.orderId)
     }
+    const totalFinal = total - (discount + discountOferts);
     return (
         <div className="--SummaryCard">
             <h1>{t("page.cart.summary")}</h1>
@@ -34,7 +36,7 @@ const SummaryCard = ({ t, getDiscountCouponEffect, STORE_USER, subtotal, total, 
                 e.preventDefault()
                 handleDiscount(code)
             }}>
-                <input name="code" value={code} onChange={(e) => setCode(e.target.value)} className="--SummaryCard-code" placeholder={t("page.cart.promoCodeInput")} />
+                <input name="code" autoComplete="off" value={code} onChange={(e) => setCode(e.target.value)} className="--SummaryCard-code" placeholder={t("page.cart.promoCodeInput") } />
                 <button onClick={() => audio.play()} type="submit" className="--SummaryCard-buttoncode">{t("page.cart.promoCodeButton")}</button>
             </form>
             <div className="--SummaryCard-sub">
@@ -43,11 +45,11 @@ const SummaryCard = ({ t, getDiscountCouponEffect, STORE_USER, subtotal, total, 
             </div>
             <div className="--SummaryCard-sub">
                 <span>{t("page.cart.discount")}</span>
-                <span>${discount}</span>
+                <span>${discount + discountOferts}</span>
             </div>
             <div className="--SummaryCard-tot">
                 <span>{t("page.cart.total")}</span>
-                <span>${total}</span>
+                <span>${totalFinal >= 0 ?(totalFinal):(0)}</span>
             </div>
             { user && user.id
                 ?(

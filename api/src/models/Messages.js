@@ -13,6 +13,10 @@ module.exports = (sequelize) => {
     data: {
         type: DataTypes.STRING,
         allowNull: false,
-      }
+      },
+    userFrom: {
+        type: DataTypes.STRING,
+        allowNull: false,
+      },
   });
 };
