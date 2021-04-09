@@ -9,7 +9,7 @@ import { withTranslation } from 'react-i18next';
 
 const Cart = ({
   t,fetchCartEffect, getDiscountCouponEffect, deleteAllItemInCartEffect,
-  STORE_CART,STORE_USER, TOTAL_PRICE, SUBTOTAL_PRICE, DISCOUNT_PRICE}) => {
+  STORE_CART,STORE_USER, TOTAL_PRICE, SUBTOTAL_PRICE, DISCOUNT_PRICE, STORE_CART2}) => {
   
   //USER
   var userStore = STORE_USER.user && STORE_USER.user.data && STORE_USER.user.data.user ? STORE_USER.user.data.user : null ; 
@@ -64,30 +64,30 @@ const Cart = ({
             };
           });
     };
-    //console.log("PRODUCT",STORE_CART)
+
     let ofertsDiscount = 0
-     if(STORE_CART.length > 0){
-      STORE_CART.forEach(element => {
-        console.log("HOLA",element.product.oferts)
-        if(element.product && element.product.oferts && element.product.oferts.length > 0){
+
+     
+    if(STORE_CART && STORE_CART.cart && STORE_CART.cart.length > 0 ){
+      STORE_CART.cart.forEach(element => {
+              if(element.product && element.product.oferts && element.product.oferts.length > 0){
           console.log("OFERTS",element.product.oferts)
           ofertsDiscount = ofertsDiscount + parseInt(element.product.oferts[0].discount)
         } 
-      });
-     }
-     
+      })
+    }
     
       
     return (
         <div className="--Cart">
             <div className="--Cart-items">
               <h1>{t("page.cart.title")}</h1>
-                {STORE_CART && STORE_CART.length > 0
+                {STORE_CART.cart && STORE_CART.cart.length > 0
                     ?(
                       <>
                         <div>
                         {
-                         STORE_CART.map((product, index)=>
+                         STORE_CART.cart.map((product, index)=>
                             {                           
                                 if(product.product){
                                   return (
@@ -121,7 +121,7 @@ const Cart = ({
             <SummaryCard 
               subtotal={SUBTOTAL_PRICE}
               total={TOTAL_PRICE} discount={DISCOUNT_PRICE}
-              discountOferts={ofertsDiscount}
+              discountOferts={ofertsDiscount ? ofertsDiscount : 0}
             />
         </div>
     )
@@ -129,7 +129,7 @@ const Cart = ({
 
 const mapStateToProps =  state => {
     return {
-      STORE_CART : state.userReducers.cart,
+      STORE_CART : state.userReducers,
       TOTAL_PRICE : state.userReducers.totalPrice,
       SUBTOTAL_PRICE : state.userReducers.subtotalPrice,
       DISCOUNT_PRICE : state.userReducers.coupon,
