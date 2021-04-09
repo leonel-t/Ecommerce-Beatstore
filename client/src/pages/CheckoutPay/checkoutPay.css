@@ -8,9 +8,12 @@
 .example.example1 {
   padding-top: 15px;
   border-radius: 5px;
-  background-color: #5700fa;
-  height: 25rem;
+  background-color: #800ac446;
+  height: auto;
+  border:2px solid rgb(166, 7, 172);
+  padding-bottom: 3em ;
   width: 30rem;
+  border-radius: 10px;
 }
 
 .example.example1 * {
@@ -23,7 +26,7 @@
   margin: 0 15px 20px;
   padding: 0;
   border-style: none;
-  background-color: #1d1d1d;
+
   border-radius: 4px;
 }
 
@@ -34,7 +37,6 @@
   align-items: center;
   margin-left: 15px;
 }
-
 .example.example1 .row+.row {
   border-top: 1px solid white;
 }
@@ -55,6 +57,7 @@
   appearance: none;
   outline: none;
   border-style: none;
+  color: wheat;
 }
 
 .example.example1 input:-webkit-autofill {
