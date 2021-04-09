@@ -28,6 +28,8 @@ const SummaryCard = ({ t, getDiscountCouponEffect, STORE_USER, subtotal, total, 
         getDiscountCouponEffect(code, user, user.orderId)
     }
     const totalFinal = total - (discount + discountOferts);
+    console.log("TOTAL ", total)
+    console.log("TOTAL FINAL ", totalFinal)
     return (
         <div className="--SummaryCard">
             <h1>{t("page.cart.summary")}</h1>
@@ -49,7 +51,7 @@ const SummaryCard = ({ t, getDiscountCouponEffect, STORE_USER, subtotal, total, 
             </div>
             <div className="--SummaryCard-tot">
                 <span>{t("page.cart.total")}</span>
-                <span>${totalFinal >= 0 ?(totalFinal):(0)}</span>
+                <span>${total >= 0 ?(total):(0)}</span>
             </div>
             { user && user.id
                 ?(
