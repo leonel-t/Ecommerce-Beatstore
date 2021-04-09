@@ -302,7 +302,7 @@ export const getCalculator = () => {
 };
 
 //COUPON CODE----------------------------------------FALTA USER
-export const getDiscountCoupon = (code, user) => {
+export const getDiscountCoupon = (code, user, IdOrder) => {
     return (dispatch) => {
         return axios.get(`${serverUrl}/coupons`)
             .then((coupons) => {
@@ -310,6 +310,7 @@ export const getDiscountCoupon = (code, user) => {
                     const result = coupons.data.find((coupon) => coupon.coupon === code)
                     if (result) {
                         dispatch(getDiscountCouponAction(result));
+                        dispatch(fetchProductDiscount(IdOrder,result.discount))
                         dispatch(fetchCart(user));
                     }
                 }
@@ -323,7 +324,29 @@ export const getDiscountCouponAction = (code) => {
         payload: code
     };
 };
+//UPDATE ORDER DISCOUNT
+export const fetchProductDiscount = (IdOrder, discount) => {
 
+    return (dispatch) => {
+        const options = {
+            method: 'PUT',
+            url: `${serverUrl}/order/discount/${IdOrder}`, 
+            headers: {
+                ContentType: "application/json",
+            },
+            data: {
+                orderDiscount: discount,
+            }
+        };
+
+        try {
+            return axios.request(options)
+        } catch {
+            return console.log("Error")
+        }
+
+    }
+}
 //DELETE ITEM CART
 export const deleteItemInCart = (orderLineId, user, idProduct) => {
 

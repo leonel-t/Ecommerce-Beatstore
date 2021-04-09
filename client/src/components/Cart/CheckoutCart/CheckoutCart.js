@@ -75,6 +75,9 @@ const CheckoutCart = ({ STORE_USER, getOrderByCheckoutIdEffect }) => {
                                 )
                             })
                         }
+                        <div className="--CheckoutCart-main-item">
+                            <span>Discount</span><span>- ${STORE_USER.orderCheckout.discount}</span>
+                        </div>
                         <div className="--CheckoutCart-main-total">
                             <p>Total</p><p>${STORE_USER.orderCheckout.total}</p>
                         </div>
