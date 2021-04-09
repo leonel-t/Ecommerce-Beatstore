@@ -158,12 +158,12 @@ const CheckoutForm = ({ price, cart, userReducer, store_orders, action }) => {
                 <fieldset>
                     <div className="row">
                         <label  >Name</label>
-                        <input autoComplete="off" name="name" onChange={handleInputChange} id="example1-name" type="text" autocomplete="name" />
+                        <input autoComplete="off" name="name" onChange={handleInputChange} id="example1-name" type="text" />
                     </div>
                     <div className="row">
                         <label  >Email</label>
                         <input autoComplete="off" onChange={handleInputChange}
-                            name="email" type="email" required="" autocomplete="email" />
+                            name="email" type="email" required=""  />
                     </div>
 
                 </fieldset>
