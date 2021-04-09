@@ -1,0 +1,86 @@
+.--subscriptions--main-form{
+    color:white;
+    display: flex;
+    flex-direction: row;
+    width: 80%;
+    margin-left: auto;
+    margin-right: auto;
+    justify-content: center;
+}
+.--subscriptions--main-form-col-1{
+    display: flex;
+    flex-direction: column;
+    width: 40%;
+    justify-content: center;
+    align-items: center;
+
+}
+.--subscriptions--main-form-col-1-details{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    font-family: "Goldman";
+    font-size: 1.3rem;
+
+}
+
+.--subscriptions--main-form-col-1-img img{
+    width: 150px;
+    height: 140px;
+    border-radius: 50%;
+    border: 2px solid rgb(133, 6, 133);
+}
+
+.--subscriptions--main-form-col-2-img img{
+    margin-top: 2em;
+    width: 120px;
+    height: 110px;
+    border-radius: 50%;
+    background-color: aliceblue;
+}
+.gotoregister{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    color: aliceblue;
+    align-items: center;
+    align-content: center;
+}
+.gotoregister button{
+    padding: 1em;
+    background-color: rgb(136, 9, 130);
+    color: aliceblue;
+}
+.--subscriptions--main-form-col-3{
+    width: 60%;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+    align-content: flex-start;
+}
+
+.--subscriptions--main-form-col-3-title{
+    color: aliceblue;
+}
+.--subscriptions--main-form-col-3-form-one input{
+    border: 1px solid rgb(139, 6, 122);
+    height: 30px;
+    background-color: rgb(46, 2, 66);
+    border-radius: 5px;
+}
+.--subscriptions--main-form-col-3-form-one-col{
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+}
+
+.--subscriptions--main-form-col-3-form-one-col button{ 
+    margin: 1em;
+    background-color: rgb(119, 14, 145);
+    color: white;
+    height: 60px;
+    border-radius: 5px;
+    outline: none;
+}

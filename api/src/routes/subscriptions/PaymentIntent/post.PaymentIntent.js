@@ -7,11 +7,13 @@ const stripe = new Stripe(STRIPE_KEY);
 server.post("/create", async (req, res, next) => {
 const { amount } = req.body;
   return await stripe.paymentIntents.create({
-    amount: amount,
+    amount: 0.50,
     currency: 'usd',
     payment_method_types: ['card'],
   }).then((paymentIntent)=>{
           return res.status(200).json(paymentIntent);
+      }).catch((error)=>{
+        return res.status(400).json(error);
       })  
 });
 

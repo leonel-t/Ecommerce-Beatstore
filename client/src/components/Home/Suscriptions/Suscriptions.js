@@ -2,11 +2,21 @@ import React from 'react';
 import './suscriptions.scss'
 import { withTranslation } from 'react-i18next';
 //IMAGES
-import RatImg from './images/Rat.svg'
-import MonkeyImg from './images/Monkey.svg'
-import TigerImg from './images/Tiger.svg'
-import LionImg from './images/lion.png'
+import RatImg from './images/Rat.svg';
+import MonkeyImg from './images/Monkey.svg';
+import TigerImg from './images/Tiger.svg';
+import LionImg from './images/lion.png';
+
+import {useHistory} from "react-router-dom";
+
 const Suscriptions = ({t})=>{
+
+    const history = useHistory();
+
+    const handleClick = ()=>{
+        return history.push("/subscriptionuser")
+    }
+
     return (
         <div className='--allSubscriptions'>
             <h2>{t("page.home.subscriptions.title")}</h2>
@@ -27,7 +37,9 @@ const Suscriptions = ({t})=>{
                     <li>{t("page.home.subscriptions.rat.list.6")}</li>
                    
                 </ul>
-                <button>{t("page.home.subscriptions.button")}</button>
+                <button
+                 onClick={handleClick}
+                >{t("page.home.subscriptions.button")}</button>
             </div>
             <div className="--suscriptions-main--col">
             <div className='--subscription-title'>
@@ -43,7 +55,9 @@ const Suscriptions = ({t})=>{
                     <li>{t("page.home.subscriptions.monkey.list.5")}</li>
                     <li>{t("page.home.subscriptions.monkey.list.6")}</li>
                 </ul>
-                <button>{t("page.home.subscriptions.button")}</button>
+                <button
+                onClick={handleClick}
+                >{t("page.home.subscriptions.button")}</button>
             </div>
             <div className="--suscriptions-main--col">
             <div className='--subscription-title'>
@@ -59,7 +73,9 @@ const Suscriptions = ({t})=>{
                     <li>{t("page.home.subscriptions.cougar.list.6")}</li>
                     <li>{t("page.home.subscriptions.monkey.list.6")}</li>
                 </ul>
-                <button>{t("page.home.subscriptions.button")}</button>
+                <button
+                 onClick={handleClick}
+                >{t("page.home.subscriptions.button")}</button>
             </div>
             <div className="--suscriptions-main--col">
             <div className='--subscription-title'>
@@ -75,7 +91,9 @@ const Suscriptions = ({t})=>{
                     <li>{t("page.home.subscriptions.lion.list.6")}</li>
                     <li>{t("page.home.subscriptions.monkey.list.6")}</li>
                 </ul>
-                <button>{t("page.home.subscriptions.button")}</button>
+                <button
+                 onClick={handleClick}
+                >{t("page.home.subscriptions.button")}</button>
             </div>
         </div>
         </div>
