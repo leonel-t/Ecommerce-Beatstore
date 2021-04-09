@@ -45,7 +45,7 @@ const SummaryCard = ({ t, getDiscountCouponEffect, STORE_USER, subtotal, total, 
             </div>
             <div className="--SummaryCard-sub">
                 <span>{t("page.cart.discount")}</span>
-                <span>${discount + discountOferts}</span>
+                <span>${parseInt(discount) + parseInt(discountOferts)}</span>
             </div>
             <div className="--SummaryCard-tot">
                 <span>{t("page.cart.total")}</span>
