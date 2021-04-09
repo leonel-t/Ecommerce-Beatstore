@@ -69,7 +69,8 @@ const Messages = ({t, USER_INBOX, fetchUserInBoxEffect})=>{
                 data: {
                   idTo: idTo,
                   idFrom: idFrom,
-                  message: message
+                  message: message,
+                  userFrom:USER_INBOX.user.data.user.name
                 }
               };
               
