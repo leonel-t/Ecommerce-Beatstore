@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from "react-router-dom";
 import "./FansCard.css";
 import imgProfile from "../../../assets/images/profile-image.jpg";
 import moment from "moment";
@@ -56,7 +57,16 @@ const FansCard = ({username , idAuthor, user,  date}) => {
                 <img alt="userimage" src={imgProfile}/>
             </div>
             <div className="--FansCard-content">
+              {user && user.id === idAuthor ?(
+              <Link to={`/profile`}>
+              <p className="--FansCard-content-username">{username}</p>
+              </Link>
+              ):(
+                <Link to={`/publicProfile/${idAuthor}`}>
                 <p className="--FansCard-content-username">{username}</p>
+                </Link>
+              )}
+                
                 <span className="--FansCard-content-date">{moment(date).fromNow()}</span>                
             </div>
             <div className="--FansCard-content">

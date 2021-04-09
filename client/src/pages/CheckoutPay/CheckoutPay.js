@@ -17,7 +17,7 @@ import axios from "axios";
 import swal from "sweetalert";
 import {serverUrl,STRIPE_KEY} from '../../auxiliar/variables';
 
-const stripePromise = loadStripe(STRIPE_KEY);
+const stripePromise = loadStripe("pk_test_51Ich3gJj5Ba2PSuVziIbEEjBGj2n8aLWrt1c8ZlBI8tvCgklYIWofFSlFMZVB0hMr0wqenC4odKgVZGX1UwQO5Nu00qRE8vaJM");
 
 function CheckoutPay({ totalPrice, cart, userReducer, store_orders, fetchAllOrders, action }) {
     useEffect(() => {

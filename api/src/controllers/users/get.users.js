@@ -1,4 +1,6 @@
 const { User, Messages } = require("../../db");
+const Sequelize = require("sequelize");
+const Op = Sequelize.Op;
 
 module.exports = {
     findAllUsers() {
@@ -36,6 +38,16 @@ module.exports = {
          }
          return userInfo
        }).catch(err=>{err.message})
-     }
+     },
+     getUserByLetterIncludeInTheName: async (inputValue) => {
+       console.log("en contoller", inputValue)
+      return await User.findAll({
+        where: {
+          name: {
+            [Op.iLike]: '%' + inputValue + '%'
+          }
+        }
+      });
+    },
 
 };

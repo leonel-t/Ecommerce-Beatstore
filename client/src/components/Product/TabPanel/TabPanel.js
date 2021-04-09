@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+
 import CommentCard from "../CommentCard/CommentCard";
 import RelatedTracks from '../RelatedTracks/RelatedTracks';
 import FansCard from "../FansCard/FansCard";
@@ -15,10 +16,10 @@ const TabPanel = ({ t, product,user, relatedArtist, related, nameProduct }) => {
   const [relatedTrack, setRelatedTrack] = useState(false);
   const [fans, setFans] = useState(false);
   const [comments, setComments] = useState(true);
-
+  
   const audio = new Audio(sound);
   audio.volume = 0.1;
-
+  
   const handleClick = (param) => {
     switch (param) {
       case "relatedTrack":
@@ -121,6 +122,7 @@ const TabPanel = ({ t, product,user, relatedArtist, related, nameProduct }) => {
                     username={comment.author}
                     date={comment.createdAt}
                     comment={comment.comment}
+                    userId={comment.userId}
                   />
                 );
               })

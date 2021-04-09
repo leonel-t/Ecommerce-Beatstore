@@ -26,6 +26,16 @@ export const GET_DISCOUNT_COUPON = "GET_DISCOUNT_COUPON";
 //CLEAN CART
 export const CLEAN_CART = "CLEAN_CART";
 
+//USER BY ID
+export const GET_USER_ID_REQUEST = "GET_USER_ID_REQUEST";
+export const GET_USER_ID_SUCCESS = "GET_USER_ID_SUCCESS";
+export const GET_USER_ID_FAILURE = "GET_USER_ID_FAILURE";
+
+//CONVERSATION
+export const GET_CONVERSATION_REQUEST = "GET_CONVERSATION_REQUEST";
+export const GET_CONVERSATION_SUCCESS = "GET_CONVERSATION_SUCCESS";
+export const GET_CONVERSATION_FAILURE = "GET_CONVERSATION_FAILURE";
+
 //orders by user${serverUrl}
 export const GET_ORDERS_BY_USER = "GET_ORDERS_BY_USER";
 //user likes
@@ -35,6 +45,12 @@ export const GET_LIKES_BY_USER = "GET_LIKES_BY_USER";
 export const GET_ORDER_CHECKOUT_REQUEST = "GET_ORDER_CHECKOUT_REQUEST";
 export const GET_ORDER_CHECKOUT_SUCCESS = "GET_ORDER_CHECKOUT_SUCCESS";
 export const GET_ORDER_CHECKOUT_FAILURE = "GET_ORDER_CHECKOUT_FAILURE";
+
+//SEARCH USER
+export const SEARCH_USER_REQUEST = "SEARCH_USER_REQUEST";
+export const SEARCH_USER_SUCCESS = "SEARCH_USER_SUCCESS";
+export const SEARCH_USER_FAILURE = "SEARCH_USER_FAILURE";
+
 
 export const getLikesByUser = (userId) => {
 
@@ -475,6 +491,54 @@ export const cleanCart = () => {
         type: CLEAN_CART
     };
 }
+
+//GET USER BY ID
+
+export const getUserById = (id) => async (dispatch) => {
+    try {
+      dispatch({ type: GET_USER_ID_REQUEST });
+  
+      const { data } = await axios.get(`${serverUrl}/users/${id}`);
+      console.log(data);
+  
+      dispatch({
+        type: GET_USER_ID_SUCCESS,
+        payload: data,
+      });
+    } catch (error) {
+      dispatch({
+        type: GET_USER_ID_FAILURE,
+        payload:
+          error.response && error.response.data.message
+            ? error.response.data.message
+            : error.message,
+      });
+    }
+  };
+
+  //getMessagesConversation
+
+  export const getMessagesConversation = (idFrom, idTo) => async (dispatch) => {
+    try {
+      dispatch({ type: GET_CONVERSATION_REQUEST });
+      
+      console.log("IDTO",idTo)
+      const { data } = await axios.get(`${serverUrl}/messages/${idFrom}/conversation/${idTo}`);
+      
+      dispatch({
+        type: GET_CONVERSATION_SUCCESS,
+        payload: data,
+      });
+    } catch (error) {
+      dispatch({
+        type: GET_CONVERSATION_FAILURE,
+        payload:
+          error.response && error.response.data.message
+            ? error.response.data.message
+            : error.message,
+      });
+    }
+  };
 //GET ORDER BY ID CHECKOUT
 export const getOrderByCheckoutId = (orderId) => {
 
@@ -516,3 +580,27 @@ export const getOrderByCheckoutIdFailure = (error) => {
         payload: error
     };
 };
+
+ //SEARCHUSER
+
+ export const searchUser = (user) => async (dispatch) => {
+    try {
+      dispatch({ type: SEARCH_USER_REQUEST });
+      
+      
+      const { data } = await axios.get(`${serverUrl}/users/search/${user}`);
+      
+      dispatch({
+        type: SEARCH_USER_SUCCESS,
+        payload: data,
+      });
+    } catch (error) {
+      dispatch({
+        type: SEARCH_USER_FAILURE,
+        payload:
+          error.response && error.response.data.message
+            ? error.response.data.message
+            : error.message,
+      });
+    }
+  };

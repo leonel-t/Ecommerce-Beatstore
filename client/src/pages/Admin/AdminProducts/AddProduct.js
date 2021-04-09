@@ -1,14 +1,16 @@
-import './newform.scss';
 import React, { useEffect, useState } from "react";
 import {connect} from "react-redux";
-import { withTranslation } from 'react-i18next';
-import axios from "axios";
 import Select from "react-select";
+import axios from "axios";
+import laserSound from "../../../assets/audio/tab-sound.ogg"
+//Internationalization
+import './newform.scss';
+import { withTranslation } from 'react-i18next';
 import swal from 'sweetalert';
 import { serverUrl } from '../../../auxiliar/variables';
 import AdminNav from "../AdminNav/AdminNav";
-import laserSound from "../../../assets/audio/tab-sound.ogg";
 import {useHistory} from "react-router-dom";
+
 
 const Form = ({ t, STORE_USER }) => {
 const history = useHistory();

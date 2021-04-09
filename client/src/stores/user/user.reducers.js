@@ -19,16 +19,27 @@ import {
     GET_USER_INBOX_FAILURE,
     CLEAN_CART,
     GET_LIKES_BY_USER,
+    GET_USER_ID_REQUEST,
+    GET_USER_ID_SUCCESS,
+    GET_USER_ID_FAILURE,
+    GET_CONVERSATION_REQUEST,
+    GET_CONVERSATION_SUCCESS,
+    GET_CONVERSATION_FAILURE,
     GET_ORDER_CHECKOUT_REQUEST,
     GET_ORDER_CHECKOUT_SUCCESS,
     GET_ORDER_CHECKOUT_FAILURE,
-
+    SEARCH_USER_REQUEST,
+    SEARCH_USER_SUCCESS,
+    SEARCH_USER_FAILURE,
 } from './user.actions';
 
 let initialState = {
     user: [],
     userLoading: true,
     userError: "",
+    searchResultsUser: [],
+    searchLoading: true,
+    searchError: "",
     cart: [],
     cartDetaills: "",
     totalPrice: 0,
@@ -42,6 +53,12 @@ let initialState = {
     userInBoxLoading: true,
     userInBoxError: "",
     userLikes:[],
+    userPublic:[],
+    userPublicLoading:true,
+    userPublicError:"",
+    conversation:[],
+    conversationLoading:true,
+    conversationError:"",
     orderCheckout:{},
     orderCheckoutLoading:true,
     orderCheckoutError:"",
@@ -49,6 +66,74 @@ let initialState = {
 
 const userReducers = (state = initialState, action) => {
     switch (action.type) {
+        case SEARCH_USER_REQUEST:
+            return {
+                ...state,
+                searchLoading: true
+            }
+        case SEARCH_USER_SUCCESS:
+            return {
+                ...state,
+                searchLoading: false,
+                searchResultsUser: action.payload
+            }
+        case SEARCH_USER_FAILURE:
+            return {
+                ...state,
+                searchError: 'error 404',
+                searchLoading: false
+            }
+        case GET_CONVERSATION_REQUEST:
+            return {
+                ...state,
+                conversationLoading: true
+            }
+        case GET_CONVERSATION_SUCCESS:
+            return {
+                ...state,
+                conversationLoading: false,
+                conversation: action.payload
+            }
+        case GET_CONVERSATION_FAILURE:
+            return {
+                ...state,
+                conversationLoading: false,
+                conversationError: action.payload
+            }
+        case GET_USER_ID_REQUEST:
+            return {
+                ...state,
+                userPublicLoading: true
+            }
+        case GET_USER_ID_SUCCESS:
+            return {
+                ...state,
+                userPublicLoading: false,
+                userPublic: action.payload
+            }
+        case GET_USER_ID_FAILURE:
+            return {
+                ...state,
+                userPublicLoading: false,
+                userPublicError: action.payload
+            }
+        case GET_USER_ID_REQUEST:
+            return {
+                ...state,
+                userPublicLoading: true
+            }
+        case GET_USER_ID_SUCCESS:
+            return {
+                ...state,
+                userPublicLoading: false,
+                userPublic: action.payload
+            }
+        case GET_USER_ID_FAILURE:
+            return {
+                ...state,
+                userPublicLoading: false,
+                userPublicError: action.payload
+            }
         case GET_ORDER_CHECKOUT_REQUEST:
             return {
                 ...state,
