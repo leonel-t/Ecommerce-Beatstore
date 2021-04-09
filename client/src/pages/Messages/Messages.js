@@ -19,7 +19,7 @@ const Messages = ({t, USER_INBOX, fetchUserInBoxEffect})=>{
     const handleModal = ()=>{
         return modal ? setModal(false) : setModal(true)
     }
-
+    
     const handleDelete = async (messageId, userId)=>{
         setDeleteMessage(true)
         swal({
@@ -82,6 +82,8 @@ const Messages = ({t, USER_INBOX, fetchUserInBoxEffect})=>{
             
         }
     }
+   
+    console.log("USER_INBOX",USER_INBOX)
     return (
     
         <div className="--messages-main">
@@ -106,7 +108,8 @@ const Messages = ({t, USER_INBOX, fetchUserInBoxEffect})=>{
                 </div>
             ):(
                 USER_INBOX.userInBox.map((message, index)=>{
-
+                
+                   console.log("message",message)
                     return (
                         <div key={index} className="--messages-item">
                             <div className="--message-item-delete">
@@ -119,7 +122,7 @@ const Messages = ({t, USER_INBOX, fetchUserInBoxEffect})=>{
                             <div className="--messages-item-col">
                                 <div className="--messages-item-col-main">
                                     <span className="--messages-item-col-span">To:</span>
-                                    <span className="--messages-item-col-text"> {message.to}</span>
+                                    <span className="--messages-item-col-text"> {USER_INBOX.user.data.user.name}</span>
                                 </div>
                                 <div className="--messages-item-col-main">
                                     <span className="--messages-item-col-span">Date:</span>
@@ -132,7 +135,7 @@ const Messages = ({t, USER_INBOX, fetchUserInBoxEffect})=>{
 
                                 <div className="--messages-item-col-main">
                                     <span className="--messages-item-col-span">From:</span>
-                                    <span className="--messages-item-col-text"> {message.from}</span>
+                                    <span className="--messages-item-col-text"> {message.userFrom}</span>
                                     <span 
                                     onClick={handleModal}
                                     className="--messages-item-col-text-reply">
