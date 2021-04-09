@@ -5,7 +5,7 @@ import swal from 'sweetalert';
 import axios from 'axios';
 import {serverUrl} from '../../auxiliar/variables';
 import {getMessagesConversation} from '../../stores/user/user.actions';
-const BoxMessage = ({username , idFrom, idTo,  date}) => {
+const BoxMessage = ({username , idFrom, idTo,  userNameFrom}) => {
     
     const dispatch = useDispatch();
     const handleLike = ()=>{
@@ -31,7 +31,8 @@ const BoxMessage = ({username , idFrom, idTo,  date}) => {
                     data: {
                       idTo: idTo,
                       idFrom: idFrom,
-                      message: message
+                      message: message,
+                      userFrom:userNameFrom
                     }
                   };
                   

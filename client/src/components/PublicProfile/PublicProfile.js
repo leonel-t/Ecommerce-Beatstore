@@ -47,7 +47,7 @@ const PublicProfile = () => {
             user.id && userFrom && userFrom.length!== 0 ?(
         <div>
             <div className="userMail">
-            <BoxMessage username={user.name} idFrom={userFrom.data.user.id} idTo={idUser} />
+            <BoxMessage username={user.name} idFrom={userFrom.data.user.id} idTo={idUser} userNameFrom={userFrom.data.user.name} />
         </div>
         <div>
             <HistoryMessages usernameFrom={userFrom.data.user.name} idFrom={userFrom.data.user.id} idTo={idUser} username={user.name}/>

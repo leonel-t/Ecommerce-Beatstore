@@ -4,8 +4,8 @@ const {createMessages } = require("../../controllers/messages/messages.controlle
 
 server.post("/", (req, res, next) => {
   console.log(req.body)
-  const {idTo, idFrom, message} = req.body;
-  return createMessages(idTo,idFrom, message).then((messageAdded) => {
+  const {idTo, idFrom, message, userFrom} = req.body;
+  return createMessages(idTo,idFrom, message, userFrom).then((messageAdded) => {
       return res.status(201).json(messageAdded);
     }).catch((error) => {
       return res.status(400).json(error.message);

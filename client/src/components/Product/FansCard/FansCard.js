@@ -7,7 +7,7 @@ import swal from 'sweetalert';
 import axios from 'axios';
 import {serverUrl} from '../../../auxiliar/variables';
 const FansCard = ({username , idAuthor, user,  date}) => {
-
+    console.log("username",username)
     const handleLike = ()=>{
 
         swal({
@@ -31,7 +31,8 @@ const FansCard = ({username , idAuthor, user,  date}) => {
                     data: {
                       idTo: idAuthor,
                       idFrom: user.id,
-                      message: message
+                      message: message,
+                      userFrom:username
                     }
                   };
                   
