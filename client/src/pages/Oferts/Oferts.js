@@ -45,7 +45,7 @@ const Oferts = ({ t,STORE_OFERTS, fetchAllOfertsEffect }) => {
               </ScrollBox>
             </>
           ) : (
-            <p>no offers today</p>
+            <p>No offers today</p>
           )}
         </div>
         <div>
@@ -70,7 +70,7 @@ const Oferts = ({ t,STORE_OFERTS, fetchAllOfertsEffect }) => {
               </ScrollBox>
             </>
           ) : (
-            <p>no offers week</p>
+            <p>No Week offers </p>
           )}
         </div>
 
