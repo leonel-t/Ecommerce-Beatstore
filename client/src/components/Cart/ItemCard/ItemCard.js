@@ -8,9 +8,11 @@ import sound from "../../../assets/audio/trash-click.mp3";
 import { withTranslation } from 'react-i18next';
 import { serverUrl } from '../../../auxiliar/variables';
 
-const ItemCard = ({deleteItemInCartEffect, t, cartForItemCard,user_store, id, img, name, autor, price }) => {
+const ItemCard = ({deleteItemInCartEffect, t, cartForItemCard,user_store, id, img, name, autor, price, ofert }) => {
   const audio = new Audio(sound);
         audio.volume=1;  
+        console.log("user_store",ofert)
+  
 
   const handleDelete= (id) => {
     swal({
@@ -31,6 +33,7 @@ const ItemCard = ({deleteItemInCartEffect, t, cartForItemCard,user_store, id, im
           id: userStore && userStore.id ? userStore.id : 0,
           orderId: user_store.cartDetaills.id ? user_store.cartDetaills.id : 0
         }
+        
         for (let i = 0; i < cartForItemCard.length; i++) {
           console.log(cartForItemCard[i])
           if(cartForItemCard[i].productId === id){
@@ -54,7 +57,11 @@ const ItemCard = ({deleteItemInCartEffect, t, cartForItemCard,user_store, id, im
             </div>
             <div
              className="--ItemCard-right">
+               {ofert.length > 0 ? (
+                 <span className="--ItemCard-right-price">${price - parseInt(ofert[0].discount)}</span>
+               ):(
                 <span className="--ItemCard-right-price">${price}</span>
+               )}
                 <span  onClick={()=>handleDelete(id, false)}>
                   <i class="fas fa-trash-alt --ItemCard-deletItem"></i>
                 </span>

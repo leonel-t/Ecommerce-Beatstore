@@ -15,7 +15,7 @@ const Cart = ({
   var userStore = STORE_USER.user && STORE_USER.user.data && STORE_USER.user.data.user ? STORE_USER.user.data.user : null ; 
   var cartForItemCard = STORE_USER.cart ;
   //###########################################################################################################################
-
+   
     useEffect(()=>{
 
         setTimeout(()=>{
@@ -64,6 +64,18 @@ const Cart = ({
             };
           });
     };
+    //console.log("PRODUCT",STORE_CART)
+    let ofertsDiscount = 0
+    
+      STORE_CART.forEach(element => {
+        console.log("HOLA",element.product.oferts)
+        if(element.product.oferts.length > 0){
+          console.log("OFERTS",element.product.oferts)
+          ofertsDiscount = ofertsDiscount + parseInt(element.product.oferts[0].discount)
+        } 
+      });
+    
+      
     return (
         <div className="--Cart">
             <div className="--Cart-items">
@@ -80,7 +92,9 @@ const Cart = ({
                                     <ItemCard key={index} user_store={STORE_USER}
                                      cartForItemCard={cartForItemCard} id={product.product.id}
                                      img={product.product.image} name={product.product.name} 
-                                     autor={product.product.artist} price={product.product.price}/>
+                                     autor={product.product.artist} price={product.product.price}
+                                     ofert={product.product.oferts}
+                                     />
                                   )
                                 }else{
                                   console.log("EL PRODUCTO SE GUARDO DISTINTO EN EL CART")
@@ -105,6 +119,7 @@ const Cart = ({
             <SummaryCard 
               subtotal={SUBTOTAL_PRICE}
               total={TOTAL_PRICE} discount={DISCOUNT_PRICE}
+              discountOferts={ofertsDiscount}
             />
         </div>
     )

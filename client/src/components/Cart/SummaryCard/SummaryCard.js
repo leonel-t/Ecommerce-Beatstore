@@ -1,6 +1,7 @@
 import "./SummaryCard.css"
 import React, { useState } from "react"
 import { connect } from 'react-redux';
+
 import sound from "../../../assets/audio/laser-click.mp3"
 import { getDiscountCoupon } from '../../../stores/user/user.actions';
 //Internationalization
@@ -8,7 +9,7 @@ import { withTranslation } from 'react-i18next';
 import { useHistory } from "react-router-dom"
 import swal from "sweetalert";
 
-const SummaryCard = ({ t, getDiscountCouponEffect, STORE_USER, subtotal, total, discount }) => {
+const SummaryCard = ({ t, getDiscountCouponEffect, STORE_USER, subtotal, total, discount, discountOferts }) => {
     const history = useHistory()
 
     const [code, setCode] = useState("");
@@ -43,11 +44,11 @@ const SummaryCard = ({ t, getDiscountCouponEffect, STORE_USER, subtotal, total, 
             </div>
             <div className="--SummaryCard-sub">
                 <span>{t("page.cart.discount")}</span>
-                <span>${discount}</span>
+                <span>${discount + discountOferts}</span>
             </div>
             <div className="--SummaryCard-tot">
                 <span>{t("page.cart.total")}</span>
-                <span>${total}</span>
+                <span>${total - (discount + discountOferts)}</span>
             </div>
             { user && user.id
                 ?(
