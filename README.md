@@ -1,18 +1,16 @@
 # Proyecto final parte del bootcamp Henry
 
-## Objetivos del Proyecto
+En este proyecto trabajamos con un equipo bajo la metodologia scrum para desarrollar un ecommerce.
 
-- Construir una App JavaScript desde cero.
-- Afirmar y conectar los conceptos aprendidos en la carrera.
-- Aprender mejores prácticas.
-- Aprender y practicar el workflow de GIT.
-- Utilizar Metodologías Ágiles.
-- Trabajar en equipo.
-- Usar y practicar testing.
+## Tecnologias usadas
 
-## Trabajo en Equipo
-
-En este proyecto, van a trabajar en equipo de 4 a 10 personas. Van a trabajar siempre en pares, al terminar una tarea, van a cambiar de pareja para llegar a trabajar con todos los compañeros.
-Ninguna tarea debería llevar más de dos días en terminar, si esto sucede contactar con tu PM.
-
-
+- Node.js
+- React
+- Redux
+- Express
+- Sequelize
+- Postgresql
+- Nodemailer
+- Passport
+- Axios
+- Stripe
